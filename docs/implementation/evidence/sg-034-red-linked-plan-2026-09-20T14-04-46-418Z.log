@@ -1,0 +1,359 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/plan-service.test.ts (6 tests | 1 failed | 5 skipped) 46865ms
+   × persists a deterministic verified plan with exact ignored script bytes and required JUnit IDs 46865ms
+   ↓ rejects oversized plan files before allocating their contents
+   ↓ rejects unconfirmed task or unreviewed trust before persisting an executable plan
+   ↓ rechecks ignored script, policy and task identity, and rejects modified stored context
+   ↓ retains an explicitly required runtime check and marks unsupported local backend requirements blocked
+   ↓ keeps required e2e and an explicit environment dependency when M3 environment is unavailable
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/plan-service.test.ts > persists a deterministic verified plan with exact ignored script bytes and required JUnit IDs
+AssertionError: promise resolved "{ plan: { …(13) }, context: { …(18) } }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "context": {
++     "base_ref": "HEAD",
++     "blockers": [],
++     "config": {
++       "checks": {
++         "smoke": {
++           "adapter": "command",
++           "command": "smoke",
++           "result_kind": "exit-code",
++         },
++         "unit": {
++           "adapter": "junit",
++           "command": "unit",
++           "min_tests": 1,
++         },
++       },
++       "commands": {
++         "smoke": {
++           "args": [
++             "run.js",
++           ],
++           "exec": "F:\\node.exe",
++           "timeout_seconds": 10,
++           "workspace": "web",
++         },
++         "unit": {
++           "args": [
++             "run.js",
++           ],
++           "exec": "F:\\node.exe",
++           "timeout_seconds": 10,
++           "workspace": "web",
++         },
++       },
++       "contracts": {
++         "api": {
++           "baseline_file": "contracts/openapi.json",
++           "candidate_artifact": "candidate-openapi.json",
++           "external_refs": "deny",
++           "target_file": "contracts/openapi.json",
++           "version": "3.1",
++         },
++       },
++       "environments": {},
++       "profiles": {
++         "local": {
++           "environment": null,
++           "flaky_policy": "incomplete",
++           "minimum_provenance": "DECLARED",
++           "required_checks": [
++             "smoke",
++           ],
++           "unknown_impact": "workspace-regression",
++           "workspace_regression": {
++             "api": [
++               "unit",
++             ],
++             "web": [
++               "unit",
++             ],
++           },
++         },
++       },
++       "project_id": "demo-stack",
++       "schema_version": "0.1",
++       "security": {
++         "allow_origins": [
++           "http://127.0.0.1:5173",
++           "http://127.0.0.1:8000",
++         ],
++         "env_allowlist": [
++           "STACKGATE_TEST_TOKEN",
++         ],
++         "protected_inputs": [
++           ".stackgate/tasks/**",
++           "contracts/**",
++           "tests/acceptance/**",
++         ],
++         "telemetry": "off",
++       },
++       "state_dir": ".stackgate/state",
++       "workspaces": {
++         "api": {
++           "kind": "fastapi",
++           "path": "apps/api",
++         },
++         "web": {
++           "kind": "typescript",
++           "path": "apps/web",
++         },
++       },
++     },
++     "configuration_hash": "474b8a98b856d8cfea11b8bc2d146c846ec4194aa064e3b826554bffb1ed9253",
++     "confirmation_digest": "f2658ec01b82f595f535120da578a006cfff53a7b6e8ff6215c0f33bd14b96b4",
++     "environment_requirements": {
++       "required": false,
++     },
++     "execution_digest": "ff5a55b5e795ead24f706b865b6ecb1394db49e6017170047f39746d1d05eed0",
++     "input_manifest": {
++       "base_oid": "3c21f08cf1af3eb65b2b1d8cb2ffeefdb76fa44e",
++       "completeness": "COMPLETE",
++       "diagnostics": [],
++       "exclusions": [
++         {
++           "reason": "Git internal state",
++           "relative_path": ".git",
++         },
++         {
++           "reason": "StackGate local state",
++           "relative_path": ".stackgate/state",
++         },
++         {
++           "reason": "StackGate state",
++           "relative_path": ".stackgate/state",
++         },
++       ],
++       "files": [
++         {
++           "digest": "4934192995e5b69d2b469f21f4be92d2ab6801a73f7f8e38aeefff6c929f9df4",
++           "kind": "file",
++           "mode": "100644",
++           "relative_path": ".gitignore",
++           "staged": false,
++           "tracked": false,
++           "unstaged": false,
++         },
++         {
++           "digest": "7c75cbc6305e0d9274ff620f690a8acd1c11d8647ca1ddbf03cf50fced435e3a",
++           "kind": "file",
++           "mode": "100644",
++           "relative_path": ".stackgate.yaml",
++           "staged": false,
++           "tracked": true,
++           "unstaged": true,
++         },
++         {
++           "digest": "2450a66f427164575eae5c3c19f7f313a530435301a0e2c6c88fafbf89e7fc58",
++           "kind": "file",
++           "mode": "100644",
++           "relative_path": ".stackgate/tasks/performance.json",
++           "staged": false,
++           "tracked": true,
++           "unstaged": true,
++         },
++         {
++           "digest": "03934cb876c4fbf6c70198435b99e77f48ffea99dbffe4d15ec695a4b302ee49",
++           "kind": "file",
++           "mode": "100644",
++           "relative_path": "apps/web/run.js",
++           "staged": false,
++           "tracked": false,
++           "unstaged": false,
++         },
++         {
++           "digest": "1a38de0d66d791dec4cc7ae6b3f9f2ae0aa3410ae7bbcb0c3bfd88cdf45aae8d",
++           "kind": "file",
++           "mode": "100644",
++           "relative_path": "contracts/openapi.json",
++           "staged": false,
++           "tracked": true,
++           "unstaged": false,
++         },
++         {
++           "digest": "da68f54607d5f5644954096ce1597c006c5bb9f2497e07441bf064b81003ef8a",
++           "kind": "file",
++           "mode": "100644",
++           "relative_path": "source.txt",
++           "staged": false,
++           "tracked": true,
++           "unstaged": false,
++         },
++         {
++           "digest": "3f62d9392cc8809938d491a29bfcedbd49ca39a725943c4c07863b39e0f0e16d",
++           "kind": "file",
++           "mode": "100644",
++           "relative_path": "tests/acceptance/performance.test.ts",
++           "staged": false,
++           "tracked": true,
++           "unstaged": false,
++         },
++       ],
++       "git_object_format": "sha1",
++       "head_oid": "3c21f08cf1af3eb65b2b1d8cb2ffeefdb76fa44e",
++       "input_hash": "29acf9cfc3da7ae07ee0319f49f5cace731ebb22a83b9df36c887dfb1a903c29",
++       "platform_id": "win32-x64",
++       "repo_id": "repo_ecacdf6fe7780f5e7dee977f87f956253a0f1be9ccb2e1f82991b313a45bc5c6",
++       "schema_version": "0.1",
++       "staged_changes": [],
++       "target_tip_oid": "3c21f08cf1af3eb65b2b1d8cb2ffeefdb76fa44e",
++       "unstaged_changes": [
++         ".stackgate.yaml",
++         ".stackgate/tasks/performance.json",
++       ],
++       "worktree_id": "worktree_6f73667735487da9c329e8e70251e6c47a14f0769ee2679e36563e216f96ee0c",
++     },
++     "policy_hash": "452e4caa96ef2171856913235aa5d81b85261ffc3f8c2816cf38bb4bd1016d4f",
++     "profile": "local",
++     "required_check_ids": [
++       "smoke",
++       "unit",
++     ],
++     "schema_version": "0.1",
++     "target_contract_hashes": {
++       "api": "1a38de0d66d791dec4cc7ae6b3f9f2ae0aa3410ae7bbcb0c3bfd88cdf45aae8d",
++     },
++     "task": {
++       "allowed_change_paths": [
++         "apps/web/src/**",
++         "apps/api/app/**",
++       ],
++       "compatibility": {
++         "approved_breaking_rules": [],
++         "mode": "preserve",
++       },
++       "constraints": {
++         "allow_production_targets": false,
++         "allow_test_deletion": false,
++         "preserve_target_contract": true,
++         "require_backend_observation": false,
++       },
++       "expected_behavior": [
++         "页面读取 data.performance.total_return",
++         "缺失数据时展示明确空状态，不显示 NaN",
++       ],
++       "goal": "Verify the local unit behavior",
++       "required_checks": [
++         "smoke",
++       ],
++       "required_operations": [
++         "GET /api/performance",
++       ],
++       "required_test_ids": [
++         "local-case",
++       ],
++       "revision": 1,
++       "schema_version": "0.1",
++       "status": "DRAFT",
++       "target_contract": "contracts/openapi.json",
++       "task_id": "local-verification",
++     },
++     "task_file": ".stackgate/tasks/performance.json",
++     "test_assignments": {
++       "unit": [
++         "local-case",
++       ],
++     },
++     "tool_versions": {
++       "command_smoke": "24.11.1",
++       "command_unit": "24.11.1",
++       "node": "24.11.1",
++       "oasdiff": "1.32.1",
++       "stackgate": "0.1.0",
++       "typescript": "5.9.3",
++     },
++     "toolchain_hash": "188e96d1f803b3cacd60c23ab42f9d944ac6910ca0d47c5daa650a31f887c6b0",
++   },
++   "plan": {
++     "environment_requirements_hash": "8376431f05ed0574aa914db9f36153ed5837a067d6d3450847c49d89b37ad1bf",
++     "input_hash": "29acf9cfc3da7ae07ee0319f49f5cace731ebb22a83b9df36c887dfb1a903c29",
++     "plan_hash": "e86d6fbf929a6a8def5d4292fced3f6f7e9cd5ade4045785c7e19b680a0bcb49",
++     "plan_id": "plan_148f416a146cd417398eda8bb57db783efb2039781444e525e6e17d0ec781b9d",
++     "policy_hash": "452e4caa96ef2171856913235aa5d81b85261ffc3f8c2816cf38bb4bd1016d4f",
++     "profile": "local",
++     "required_check_ids": [
++       "smoke",
++       "unit",
++     ],
++     "schema_version": "0.1",
++     "steps": [
++       {
++         "adapter_id": "command",
++         "check_id": "smoke",
++         "command_id": "smoke",
++         "depends_on": [],
++         "expected_artifacts": [],
++         "expected_test_ids": [],
++         "min_tests": null,
++         "parameters": {
++           "adapter_id": "command",
++           "result_kind": "exit-code",
++         },
++         "required": true,
++         "resource_locks": [
++           "workspace_bde1489624c3f4f8",
++         ],
++         "step_id": "step_aaba7feeeca66ca21951792d",
++         "timeout_ms": 10000,
++       },
++       {
++         "adapter_id": "junit",
++         "check_id": "unit",
++         "command_id": "unit",
++         "depends_on": [],
++         "expected_artifacts": [
++           "junit.xml",
++         ],
++         "expected_test_ids": [
++           "local-case",
++         ],
++         "min_tests": 1,
++         "parameters": {
++           "adapter_id": "junit",
++           "report_name": "junit.xml",
++         },
++         "required": true,
++         "resource_locks": [
++           "workspace_bde1489624c3f4f8",
++         ],
++         "step_id": "step_f5ed203d0a3d577629eb40b1",
++         "timeout_ms": 10000,
++       },
++     ],
++     "target_contract_hashes": {
++       "api": "1a38de0d66d791dec4cc7ae6b3f9f2ae0aa3410ae7bbcb0c3bfd88cdf45aae8d",
++     },
++     "task_id": "local-verification",
++     "task_revision": 1,
++     "toolchain_hash": "188e96d1f803b3cacd60c23ab42f9d944ac6910ca0d47c5daa650a31f887c6b0",
++   },
+  }
+
+ ❯ tests/integration/plan-service.test.ts:27:44
+     25|     await fs.rename(originalDirectory, movedDirectory);
+     26|     await fs.symlink(movedDirectory, originalDirectory, process.platfo…
+     27|     await expect(service.load(plan.plan_id)).rejects.toThrow();
+       |                                            ^
+     28|   } finally { await f.close(); }
+     29| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 skipped (6)
+   Start at  22:04:47
+   Duration  48.72s (transform 549ms, setup 0ms, import 1.61s, tests 46.87s, environment 0ms)
+

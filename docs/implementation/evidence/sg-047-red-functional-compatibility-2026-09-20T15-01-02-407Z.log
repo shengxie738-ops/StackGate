@@ -1,0 +1,59 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/contract/schema-compatibility.test.ts (4 tests | 4 failed) 803ms
+   × rejects unsupported versions, undeclared fields, invalid UTF8 and duplicate JSON keys 4ms
+   × preserves declared extensions and converts supported older optional-retention views without changing source bytes 1ms
+   × requires explicit exact core and command versions and never assumes UNKNOWN or latest succeeds 0ms
+   × exports only verified safe artifacts to a new directory, preserving exact sealed source bytes 797ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/contract/schema-compatibility.test.ts > rejects unsupported versions, undeclared fields, invalid UTF8 and duplicate JSON keys
+Error: Schema compatibility reader is not implemented
+ ❯ readVersionedDocument packages/core/src/storage/schema-reader.ts:1:72
+      1| export function readVersionedDocument(..._args:unknown[]):never {throw…
+       |                                                                        ^
+      2| 
+ ❯ tests/contract/schema-compatibility.test.ts:14:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/contract/schema-compatibility.test.ts > preserves declared extensions and converts supported older optional-retention views without changing source bytes
+Error: Schema compatibility reader is not implemented
+ ❯ readVersionedDocument packages/core/src/storage/schema-reader.ts:1:72
+      1| export function readVersionedDocument(..._args:unknown[]):never {throw…
+       |                                                                        ^
+      2| 
+ ❯ tests/contract/schema-compatibility.test.ts:23:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/contract/schema-compatibility.test.ts > requires explicit exact core and command versions and never assumes UNKNOWN or latest succeeds
+Error: Tool provenance validation is not implemented
+ ❯ inspectToolProvenance packages/core/src/domain/tool-provenance.ts:1:72
+      1| export function inspectToolProvenance(..._args:unknown[]):never {throw…
+       |                                                                        ^
+      2| 
+ ❯ tests/contract/schema-compatibility.test.ts:29:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/contract/schema-compatibility.test.ts > exports only verified safe artifacts to a new directory, preserving exact sealed source bytes
+Error: Verified export planning is not implemented
+ ❯ exportBundle packages/core/src/storage/export-bundle.ts:1:63
+      1| export function exportBundle(..._args:unknown[]):never {throw Error('V…
+       |                                                               ^
+      2| export function writeExportBundle(..._args:unknown[]):never {throw Err…
+      3| 
+ ❯ tests/contract/schema-compatibility.test.ts:45:19
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  23:01:04
+   Duration  2.02s (transform 355ms, setup 0ms, import 874ms, tests 803ms, environment 0ms)
+

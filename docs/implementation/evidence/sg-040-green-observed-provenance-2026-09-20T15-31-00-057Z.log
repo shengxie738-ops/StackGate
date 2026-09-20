@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/gate/command-provenance.test.ts (14 tests) 4ms
+ ✓ tests/unit/gate/plan-binding.test.ts (9 tests) 4ms
+
+ Test Files  2 passed (2)
+      Tests  23 passed (23)
+   Start at  23:31:02
+   Duration  3.19s (transform 1.07s, setup 0ms, import 2.81s, tests 8ms, environment 0ms)
+

@@ -1,0 +1,27 @@
+{
+  "task_id": "SG-035",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+    "branch": "V1",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+  },
+  "command": "pnpm exec vitest run tests/unit/execution/scheduler.test.ts tests/integration/scheduler/resource-lock.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/execution/scheduler.test.ts",
+    "tests/integration/scheduler/resource-lock.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T14:32:29.214Z",
+  "finished_at": "2026-09-20T14:32:34.892Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-035-green-locked-scheduler-2026-09-20T14-32-29-214Z.json",
+  "log_path": "docs/implementation/evidence/sg-035-green-locked-scheduler-2026-09-20T14-32-29-214Z.log",
+  "signal": null,
+  "duration_ms": 5678
+}

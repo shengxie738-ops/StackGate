@@ -1,0 +1,3 @@
+$ node scripts/verify-schemas.mjs
+Validated 7 OpenAPI documents and strict fixture response schemas (no network at verification time)
+Validated 26 schemas, 19 fixtures, generated type drift: none

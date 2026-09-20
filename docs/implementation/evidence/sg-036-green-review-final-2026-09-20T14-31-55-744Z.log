@@ -1,0 +1,19 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/policy/drift.test.ts (7 tests) 6ms
+ ✓ tests/integration/adapters/command.test.ts (11 tests) 10835ms
+   ✓ collects actual exit 0 with immutable command evidence  1411ms
+   ✓ collects actual exit 1 with immutable command evidence  1269ms
+   ✓ collects actual exit 7 with immutable command evidence  1224ms
+   ✓ preserves timeout without pretending a normal nonzero assertion  1285ms
+   ✓ rejects supplied artifact metadata that differs from the verified store index  1200ms
+   ✓ rejects contradictory runner facts: secondary-evidence  1315ms
+   ✓ rejects contradictory runner facts: signal  1253ms
+   ✓ rejects contradictory runner facts: diagnostic  1265ms
+
+ Test Files  2 passed (2)
+      Tests  18 passed (18)
+   Start at  22:31:57
+   Duration  12.06s (transform 397ms, setup 0ms, import 981ms, tests 10.84s, environment 0ms)
+

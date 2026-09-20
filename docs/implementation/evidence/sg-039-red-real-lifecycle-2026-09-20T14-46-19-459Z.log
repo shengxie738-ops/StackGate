@@ -1,0 +1,31 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/run/lifecycle.test.ts (5 tests | 1 failed | 4 skipped) 29194ms
+   × produces a sealed real command and JUnit run with complete lifecycle facts 29193ms
+   ↓ rejects stale preflight without starting any business command
+   ↓ keeps failed historical runs immutable when repeated
+   ↓ retains the original input identity and reports mutation during execution as stale
+   ↓ retains canceled required checks without launching a new process
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/run/lifecycle.test.ts > produces a sealed real command and JUnit run with complete lifecycle facts
+Error: Run lifecycle execution is not implemented
+ ❯ RunService.execute packages/core/src/services/run-service.ts:5:126
+      3| export class RunService {
+      4|  constructor(readonly root:string,readonly options:{trustStoreRoot?:st…
+      5|  async execute(plan_id:string,options:{signal?:AbortSignal}={}):Promis…
+       |                                                                                                                              ^
+      6| }
+      7| 
+ ❯ tests/integration/run/lifecycle.test.ts:10:102
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 skipped (5)
+   Start at  22:46:20
+   Duration  31.60s (transform 665ms, setup 0ms, import 2.11s, tests 29.19s, environment 0ms)
+

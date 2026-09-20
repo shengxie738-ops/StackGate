@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/run/lifecycle.test.ts (8 tests | 7 skipped) 201339ms
+   ✓ keeps failed historical runs immutable when repeated  201337ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 7 skipped (8)
+   Start at  23:23:10
+   Duration  204.53s (transform 1.06s, setup 0ms, import 2.79s, tests 201.34s, environment 0ms)
+

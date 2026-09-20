@@ -1,0 +1,43 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/adapters/command.test.ts (11 tests | 3 failed | 8 skipped) 4304ms
+   ↓ collects actual exit 0 with immutable command evidence
+   ↓ collects actual exit 1 with immutable command evidence
+   ↓ collects actual exit 7 with immutable command evidence
+   ↓ does not promote missing evidence or a canceled process into PASS
+   ↓ preserves timeout without pretending a normal nonzero assertion
+   ↓ keeps unavailable executable failures distinct from business assertion failure
+   ↓ rejects supplied artifact metadata that differs from the verified store index
+   × rejects contradictory runner facts: secondary-evidence 1546ms
+   × rejects contradictory runner facts: signal 1418ms
+   × rejects contradictory runner facts: diagnostic 1340ms
+   ↓ rejects using the exit-code adapter for a declared test collector
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/adapters/command.test.ts > rejects contradictory runner facts: secondary-evidence
+ FAIL  tests/integration/adapters/command.test.ts > rejects contradictory runner facts: signal
+ FAIL  tests/integration/adapters/command.test.ts > rejects contradictory runner facts: diagnostic
+AssertionError: expected 'PASS' to be 'ERROR' // Object.is equality
+
+Expected: "ERROR"
+Received: "PASS"
+
+ ❯ tests/integration/adapters/command.test.ts:45:106
+     43|  };
+     44|  for await(const event of adapter.execute(commandStep,harness.context)…
+     45|  expect((await adapter.collect(commandStep,{...harness.collection,arti…
+       |                                                                                                          ^
+     46| }));
+     47| it('rejects using the exit-code adapter for a declared test collector'…
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 8 skipped (11)
+   Start at  22:31:10
+   Duration  5.42s (transform 286ms, setup 0ms, import 829ms, tests 4.30s, environment 0ms)
+

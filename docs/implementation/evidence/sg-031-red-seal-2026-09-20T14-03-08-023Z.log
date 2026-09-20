@@ -1,0 +1,95 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/storage/integrity.test.ts (9 tests | 9 failed) 5129ms
+   × seals immutable facts, supports identical repeat, and exposes verified readonly snapshots 614ms
+   × detects modified sealed manifest.json without overwriting history 535ms
+   × detects modified sealed events.jsonl without overwriting history 528ms
+   × detects modified sealed artifact-index.json without overwriting history 505ms
+   × detects modified sealed document without overwriting history 680ms
+   × detects modified sealed artifact without overwriting history 660ms
+   × rejects missing required artifacts and preserves readable unsealed facts 557ms
+   × rejects internally contradictory facts even when each document has a valid schema 513ms
+   × refuses to seal undeclared orphan evidence or an incomplete event log 536ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/storage/integrity.test.ts > seals immutable facts, supports identical repeat, and exposes verified readonly snapshots
+AssertionError: expected { status: 'BLOCKED', …(3) } to match object { status: 'SEALED', …(1) }
+(2 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "manifest_hash": Any<String>,
+-   "status": "SEALED",
++   "manifest_hash": null,
++   "status": "BLOCKED",
+  }
+
+ ❯ tests/integration/storage/integrity.test.ts:26:147
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  tests/integration/storage/integrity.test.ts > detects modified sealed manifest.json without overwriting history
+ FAIL  tests/integration/storage/integrity.test.ts > detects modified sealed events.jsonl without overwriting history
+ FAIL  tests/integration/storage/integrity.test.ts > detects modified sealed artifact-index.json without overwriting history
+ FAIL  tests/integration/storage/integrity.test.ts > detects modified sealed document without overwriting history
+ FAIL  tests/integration/storage/integrity.test.ts > detects modified sealed artifact without overwriting history
+AssertionError: expected 'BLOCKED' to be 'SEALED' // Object.is equality
+
+Expected: "SEALED"
+Received: "BLOCKED"
+
+ ❯ tests/integration/storage/integrity.test.ts:32:79
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  tests/integration/storage/integrity.test.ts > rejects missing required artifacts and preserves readable unsealed facts
+TypeError: f.store.verifyRun is not a function
+ ❯ tests/integration/storage/integrity.test.ts:36:164
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  tests/integration/storage/integrity.test.ts > rejects internally contradictory facts even when each document has a valid schema
+AssertionError: expected 'BLOCKED' to be 'ERROR' // Object.is equality
+
+Expected: "ERROR"
+Received: "BLOCKED"
+
+ ❯ tests/integration/storage/integrity.test.ts:40:276
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  tests/integration/storage/integrity.test.ts > refuses to seal undeclared orphan evidence or an incomplete event log
+AssertionError: expected 'BLOCKED' to be 'ERROR' // Object.is equality
+
+Expected: "ERROR"
+Received: "BLOCKED"
+
+ ❯ tests/integration/storage/integrity.test.ts:43:185
+     41| }));
+     42| it('refuses to seal undeclared orphan evidence or an incomplete event …
+     43|  const f=await completed(root);await fs.writeFile(path.join(root,'runs…
+       |                                                                                                                                                                                         ^
+     44| }));
+     45| 
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  9 failed (9)
+   Start at  22:03:09
+   Duration  5.97s (transform 226ms, setup 0ms, import 580ms, tests 5.13s, environment 0ms)
+

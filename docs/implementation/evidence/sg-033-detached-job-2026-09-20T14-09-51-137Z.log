@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/runner/process.test.ts (7 tests | 6 skipped) 1252ms
+   ✓ kills only its owned job including detached descendants and leaves unrelated process alive  1252ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 6 skipped (7)
+   Start at  22:09:52
+   Duration  1.68s (transform 65ms, setup 0ms, import 178ms, tests 1.25s, environment 0ms)
+

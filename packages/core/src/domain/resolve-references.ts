@@ -8,7 +8,19 @@ export function resolveReferences(config:ProjectConfig):ReferenceIssue[]{
     if(check.adapter==='openapi'){requireRef(config.contracts,check.service,`/checks/${id}/service`);requireRef(config.commands,check.candidate_command,`/checks/${id}/candidate_command`);}
     else requireRef(config.commands,check.command,`/checks/${id}/command`);
   }
-  for(const[id,profile]of Object.entries(config.profiles)){requireRef(config.environments,profile.environment,`/profiles/${id}/environment`);for(const check of profile.required_checks)requireRef(config.checks,check,`/profiles/${id}/required_checks`);}
+  for(const[id,profile]of Object.entries(config.profiles)){
+    if(profile.environment!==null)requireRef(config.environments,profile.environment,`/profiles/${id}/environment`);
+    else {
+      if(profile.minimum_provenance!=='DECLARED')issues.push({location:`/profiles/${id}/minimum_provenance`,message:'A local profile cannot claim external environment provenance'});
+      const selected=[...profile.required_checks,...Object.values(profile.workspace_regression??{}).flat()];
+      for(const check of selected)if(config.checks[check]&&!['command','junit'].includes(config.checks[check]!.adapter))issues.push({location:`/profiles/${id}/environment`,message:'A local profile supports only command and JUnit checks'});
+    }
+    for(const check of profile.required_checks)requireRef(config.checks,check,`/profiles/${id}/required_checks`);
+    for(const [workspace,checks] of Object.entries(profile.workspace_regression??{})){
+      requireRef(config.workspaces,workspace,`/profiles/${id}/workspace_regression/${workspace}`);
+      for(const check of checks)requireRef(config.checks,check,`/profiles/${id}/workspace_regression/${workspace}`);
+    }
+  }
   const extension=config.extensions?.stackgate_v0_1 as Record<string,unknown>|undefined;
   const deps=extension?.check_dependencies;
   if(deps!==undefined){

@@ -1,0 +1,33 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/cleanup/process-resources.test.ts (13 tests) 11307ms
+   ✓ defaults to a nonmutating plan and explicitly cleans only the owned terminal workspace  2285ms
+   ✓ preserves ownerless resources  748ms
+   ✓ preserves foreign resources  810ms
+   ✓ preserves changed resources  762ms
+   ✓ preserves hash resources  809ms
+   ✓ preserves a user service and refuses stale PID lock ownership  770ms
+   ✓ rejects a directory junction and never touches its target  761ms
+   ✓ rejects hard-linked files and reports malformed or traversal run identifiers safely  721ms
+   ✓ preserves a replaced directory even when copied owner bytes and content match  860ms
+   ✓ preserves associated global locks without relying on current PID existence  731ms
+   ✓ keeps evidence readable when apply encounters changed or unverified ownership  797ms
+   ✓ reports unverified process cleanup but never kills its historical PID  1064ms
+ ✓ tests/integration/storage/integrity.test.ts (10 tests) 13845ms
+   ✓ seals immutable facts, supports identical repeat, and exposes verified readonly snapshots  2916ms
+   ✓ detects modified sealed manifest.json without overwriting history  1256ms
+   ✓ detects modified sealed events.jsonl without overwriting history  1197ms
+   ✓ detects modified sealed artifact-index.json without overwriting history  1350ms
+   ✓ detects modified sealed document without overwriting history  1448ms
+   ✓ detects modified sealed artifact without overwriting history  1351ms
+   ✓ rejects missing required artifacts and preserves readable unsealed facts  1021ms
+   ✓ rejects internally contradictory facts even when each document has a valid schema  868ms
+   ✓ refuses to seal undeclared orphan evidence or an incomplete event log  832ms
+   ✓ retains failed retry documents alongside the final check without rewriting history  1603ms
+
+ Test Files  2 passed (2)
+      Tests  23 passed (23)
+   Start at  23:06:42
+   Duration  15.87s (transform 1.37s, setup 0ms, import 3.06s, tests 25.15s, environment 0ms)
+

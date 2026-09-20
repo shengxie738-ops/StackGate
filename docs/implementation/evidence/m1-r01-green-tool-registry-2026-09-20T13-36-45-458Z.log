@@ -1,0 +1,10 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/tool-registry.test.ts (4 tests) 146ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  21:36:46
+   Duration  515ms (transform 57ms, setup 0ms, import 134ms, tests 146ms, environment 0ms)
+

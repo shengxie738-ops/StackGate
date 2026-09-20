@@ -1,0 +1,17 @@
+# Local execution recovery
+
+An interrupted run is historical evidence, not a resumable PASS. A hard process exit may leave its last persisted phase (including CREATED or RUNNING), an incomplete event suffix, temporary write files or locks. Missing or invalid seals cannot establish approval. Preserve those files and inspect the explicit run ID; do not select an arbitrary latest report.
+
+The Windows runner keeps business processes in a private Job Object and uses a parent-owned stdin lifeline. A real hard-exit regression verifies that loss of the Node runner parent terminates both the business child and a detached descendant by comparing their kernel creation identities, while an unrelated service survives. A historical PID alone is never permission to terminate a process. POSIX execution remains unsupported and is not covered by these Windows observations.
+
+State writes use exclusive ownership locks and temporary files. If a process dies after writing a partial temporary manifest or event log, the previous published bytes remain intact. The stale lock remains visible and is not automatically reaped merely because its PID disappeared or was reused. Interrupted private files never get promoted into a completed run. Concurrent writers either publish identical idempotent facts, serialize safely, or report a conflict; they cannot overwrite a different artifact's bytes.
+
+Cleanup is a separate explicit operation. Preview is read-only. Apply requires the preview digest, valid sealed terminal evidence, exact current owner markers and unchanged file identities. Unknown process completion, associated locks, links and replaced directories stop deletion. Crashes before and after cleanup do not remove sealed evidence. Cleanup never kills a historical PID, removes a state root, or prunes Docker resources.
+
+A new execution must receive a new run ID. A prior run reference is history only and never supplies current success. A surviving worktree lock may continue to block new side effects; this implementation does not include an automatic orphan-lock recovery command. Inspect the ownership record and original process evidence before any separate operator recovery action. Do not delete lock files or directories by age, process name, or a PID-only check.
+
+Repeated finalization and seal calls must agree with existing bytes and facts. Changed terminal facts, modified sealed manifests, missing evidence or mismatched digests are integrity failures. Report rendering does not repair or reinterpret those failures as PASS.
+
+Normal worktree lock contention is INCOMPLETE/2 with blocked checks and no business attempts; it does not become a tool error merely because another legitimate run holds the lock. The initial CLI concurrency regression incorrectly expected ERROR/3 from an implementation inference. That failed record is retained; the corrected assertion follows the task card's wait/conflict contract and still requires DENY, distinct run IDs, no loser business evidence and exactly one successful owner.
+
+Verification is retained under `docs/implementation/evidence/sg-049-*`. Test-only subprocess interception pauses a real temporary file after a partial write and sync; production storage has no injected success or crash paths. Business subprocesses in the hard-exit fixture have a 20-second emergency lifetime, but the assertion requires their original kernel identities to disappear within five seconds of parent termination, so expiration cannot satisfy the test.

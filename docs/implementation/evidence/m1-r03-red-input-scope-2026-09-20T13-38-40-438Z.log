@@ -1,0 +1,67 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/trust/input-scope.test.ts (6 tests | 3 failed) 29245ms
+   × ignored dependencies and untracked generated caches do not alter trust or get recursively read 4645ms
+   ✓ tracked generated-looking source, untracked source, and dependency identities each change trust  14903ms
+   × direct ignored dist script is retained without reading sibling generated files 4274ms
+   × explicit ignored required files bind bytes and reject missing or secret-bearing inputs 599ms
+   ✓ ordinary ignored .env bytes do not enter preview or change digest  4046ms
+   ✓ explicit command input through an escaping directory link is rejected  776ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/trust/input-scope.test.ts > ignored dependencies and untracked generated caches do not alter trust or get recursively read
+AssertionError: expected '0283a205200f79c58f67065d2b1a87af1cb49…' to be '6409d295f46de6751fffbe89dd92766bb737c…' // Object.is equality
+
+Expected: "6409d295f46de6751fffbe89dd92766bb737cca69768bd4e18d1ecf9b050bcef"
+Received: "0283a205200f79c58f67065d2b1a87af1cb4980eaf33670542594919443b8517"
+
+ ❯ tests/integration/trust/input-scope.test.ts:31:38
+     29|     try {
+     30|       const after = await f.service.review();
+     31|       expect(after.execution_digest).toBe(before.execution_digest);
+       |                                      ^
+     32|       expect(reads.filter(file => /(?:node_modules|\.venv|[\\/]build|\…
+     33|     } finally { spy.mockRestore(); }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/integration/trust/input-scope.test.ts > direct ignored dist script is retained without reading sibling generated files
+AssertionError: expected '839aa734c0255dccc744583d96927349a0ab4…' to be '1552e1d062a64d78cf23c071055790a14a953…' // Object.is equality
+
+Expected: "1552e1d062a64d78cf23c071055790a14a953198a43f73b28ebd939522ece66c"
+Received: "839aa734c0255dccc744583d96927349a0ab409eca106404f56da8db60222f7d"
+
+ ❯ tests/integration/trust/input-scope.test.ts:57:57
+     55|     const before = await f.service.review();
+     56|     await fs.appendFile(path.join(f.root, 'apps/web/dist/unrelated.js'…
+     57|     expect((await f.service.review()).execution_digest).toBe(before.ex…
+       |                                                         ^
+     58|     await fs.appendFile(path.join(f.root, 'apps/web/dist/custom-runner…
+     59|     expect((await f.service.review()).execution_digest).not.toBe(befor…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/integration/trust/input-scope.test.ts > explicit ignored required files bind bytes and reject missing or secret-bearing inputs
+ServiceError: must NOT have additional properties
+ ❯ parseConfiguration packages/core/src/services/config-service.ts:11:23
+      9| export function parseConfiguration(bytes:Uint8Array,source:string):Pro…
+     10|   const result=validateProjectConfig(parseStrictDocument(bytes,source)…
+     11|   if(!result.ok)throw new ServiceError(64,result.diagnostics);
+       |                       ^
+     12|   const issues=resolveReferences(result.value);
+     13|   if(issues.length)throw new ServiceError(64,issues.flatMap(issue=>con…
+ ❯ loadConfiguration packages/core/src/services/config-service.ts:19:10
+ ❯ TrustService.snapshot packages/core/src/services/trust-service.ts:29:18
+ ❯ TrustService.review packages/core/src/services/trust-service.ts:64:13
+ ❯ tests/integration/trust/input-scope.test.ts:67:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 3 passed (6)
+   Start at  21:38:41
+   Duration  30.27s (transform 271ms, setup 0ms, import 767ms, tests 29.25s, environment 0ms)
+

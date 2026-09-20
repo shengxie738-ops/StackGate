@@ -1,0 +1,16 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/storage/store.test.ts (12 tests) 2976ms
+   ✓ creates independent runs and preserves immutable artifacts with checked bytes  371ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 1)  330ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 2)  329ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 3)  325ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 4)  358ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 5)  303ms
+
+ Test Files  1 passed (1)
+      Tests  12 passed (12)
+   Start at  22:10:14
+   Duration  3.86s (transform 214ms, setup 0ms, import 643ms, tests 2.98s, environment 0ms)
+

@@ -1,0 +1,38 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/adapters/command.test.ts (8 tests | 1 failed) 7382ms
+   ✓ collects actual exit 0 with immutable command evidence  1383ms
+   ✓ collects actual exit 1 with immutable command evidence  1444ms
+   ✓ collects actual exit 7 with immutable command evidence  1289ms
+   ✓ does not promote missing evidence or a canceled process into PASS 237ms
+   ✓ preserves timeout without pretending a normal nonzero assertion  1439ms
+   ✓ keeps unavailable executable failures distinct from business assertion failure 222ms
+   × rejects supplied artifact metadata that differs from the verified store index 1302ms
+   ✓ rejects using the exit-code adapter for a declared test collector 65ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/adapters/command.test.ts > rejects supplied artifact metadata that differs from the verified store index
+AssertionError: expected 'PASS' to be 'ERROR' // Object.is equality
+
+Expected: "ERROR"
+Received: "PASS"
+
+ ❯ tests/integration/adapters/command.test.ts:33:185
+     31|  const harness=await commandExecution(root,'process.exit(0)'),adapter=…
+     32|  for await(const event of adapter.execute(commandStep,harness.context)…
+     33|  const result=await adapter.collect(commandStep,{...harness.collection…
+       |                                                                                                                                                                                         ^
+     34| }));
+     35| it('rejects using the exit-code adapter for a declared test collector'…
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  22:26:27
+   Duration  8.51s (transform 300ms, setup 0ms, import 841ms, tests 7.38s, environment 0ms)
+

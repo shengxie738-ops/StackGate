@@ -1,0 +1,4 @@
+$ tsc --noEmit
+packages/core/src/storage/file-evidence-store.ts(32,84): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+[ELIFECYCLE] Command failed with exit code 2.

@@ -1,0 +1,48 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/security/redaction.test.ts (6 tests) 4ms
+ ✓ tests/security/artifact-budget.test.ts (6 tests) 687ms
+ ❯ tests/integration/storage/store.test.ts (8 tests | 1 failed) 1594ms
+   ✓ creates independent runs and preserves immutable artifacts with checked bytes  473ms
+   × serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope 317ms
+   ✓ diagnoses truncated JSONL while retaining completed records and refusing further append 125ms
+   ✓ validates event documents and rejects illegal lifecycle or cross-run check results 150ms
+   ✓ rejects traversal, links, malformed documents and scope mismatch 128ms
+   ✓ requires explicit exact manifest CAS and immutable run identity 162ms
+   ✓ preserves unrelated temp bytes when a parent is replaced during commit 22ms
+   ✓ check completion preserves matching step identity and cannot finalize active attempts 215ms
+ ✓ tests/integration/storage/integrity.test.ts (9 tests) 8591ms
+   ✓ seals immutable facts, supports identical repeat, and exposes verified readonly snapshots  1183ms
+   ✓ detects modified sealed manifest.json without overwriting history  732ms
+   ✓ detects modified sealed events.jsonl without overwriting history  931ms
+   ✓ detects modified sealed artifact-index.json without overwriting history  1145ms
+   ✓ detects modified sealed document without overwriting history  1083ms
+   ✓ detects modified sealed artifact without overwriting history  1043ms
+   ✓ rejects missing required artifacts and preserves readable unsealed facts  842ms
+   ✓ rejects internally contradictory facts even when each document has a valid schema  742ms
+   ✓ refuses to seal undeclared orphan evidence or an incomplete event log  888ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/storage/store.test.ts > serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope
+AssertionError: expected [ { status: 'DUPLICATE', …(2) }, …(5) ] to have a length of 7 but got 6
+
+- Expected
++ Received
+
+- 7
++ 6
+
+ ❯ tests/integration/storage/store.test.ts:24:193
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 28 passed (29)
+   Start at  22:09:17
+   Duration  9.56s (transform 627ms, setup 0ms, import 1.99s, tests 10.88s, environment 0ms)
+

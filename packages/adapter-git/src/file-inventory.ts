@@ -4,7 +4,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { decodeGitPath, inspectPathWithin } from '../../core/src/storage/safe-path.js';
 export interface InventoryEntry {relative_path:string;mode:string|null;oid?:string;tracked:boolean;conflicted:boolean}
-export async function fileInventory(root: string, base: string, includeIgnored: readonly string[], exclusions: readonly string[] = []) {
+export async function fileInventory(root: string, base: string, includeIgnored: readonly string[], exclusions: readonly string[] = [], scope: {exclude_untracked_directory_names?: readonly string[]; required_files?: readonly string[]} = {}) {
   const [tree,index,untracked,ignored] = await Promise.all([
     gitCommand(root,['ls-tree','-r','-z',base]), gitCommand(root,['ls-files','--stage','-z']),
     gitCommand(root,['ls-files','--others','--directory','--exclude-standard','-z']),
@@ -16,6 +16,8 @@ export async function fileInventory(root: string, base: string, includeIgnored: 
   async function add(relative_path:string, ignoredEntry:boolean): Promise<void> {
     relative_path = relative_path.replace(/\/$/,'');
     if (relative_path.split('/').includes('.git') || exclusions.some(e => matchesScope(relative_path,e))) return;
+    // Tree/index entries are already retained. Pruning applies only to untracked traversal.
+    if (relative_path.split('/').some(part => scope.exclude_untracked_directory_names?.includes(part)) && !scope.required_files?.some(file => file === relative_path || matchesScope(file,relative_path))) return;
     if (ignoredEntry && !includeIgnored.some(i => matchesScope(relative_path,i) || matchesScope(i,relative_path))) return;
     const addEntry = () => { if (!entries.has(relative_path)) entries.set(relative_path,{relative_path,mode:null,tracked:false,conflicted:false}); };
     try {

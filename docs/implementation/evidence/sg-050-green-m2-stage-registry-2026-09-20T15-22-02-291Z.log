@@ -1,0 +1,13 @@
+✔ M1 requires every M0 check, actual integration checks and the real oasdiff capability (3.1315ms)
+✔ M2 registers every execution, evidence and Gate check without allowing omissions (0.398ms)
+✔ M0 rejects removed, duplicate and arbitrary shell checks (0.221ms)
+✔ unknown tools block any stage requiring them (0.3257ms)
+✔ a real failed child command propagates its exit and retains its identity (173.3772ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 602.4454

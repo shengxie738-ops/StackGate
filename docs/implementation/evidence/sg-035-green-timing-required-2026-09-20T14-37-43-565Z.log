@@ -1,0 +1,23 @@
+Lockfile is up to date, resolution step is skipped
+Already up to date
+
+Done in 632ms using pnpm v11.2.2
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/runner/locks.test.ts (1 test) 4256ms
+   ✓ serializes an actual other Node process and refuses release after creation identity substitution  4255ms
+ ✓ tests/unit/runner/scheduler.test.ts (8 tests) 13154ms
+   ✓ runs A to B/C to D with lexicographic starts and real independent concurrency  933ms
+   ✓ failure blocks only dependent branches and cancellation stops new steps  1388ms
+   ✓ serializes shared resources while independent resources progress  2291ms
+   ✓ does not invent a second result when finished event persistence fails  667ms
+   ✓ cancels or times out while another owner holds a resource without removing its lock  5021ms
+   ✓ excludes another whole run even when its workspace locks differ  2107ms
+   ✓ records queue waiting separately from actual execution duration  741ms
+
+ Test Files  2 passed (2)
+      Tests  9 passed (9)
+   Start at  22:37:45
+   Duration  14.11s (transform 373ms, setup 0ms, import 1.21s, tests 17.41s, environment 0ms)
+

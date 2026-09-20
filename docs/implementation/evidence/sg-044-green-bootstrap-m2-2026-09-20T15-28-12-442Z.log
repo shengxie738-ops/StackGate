@@ -1,0 +1,14 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/bootstrap.test.ts (6 tests) 2303ms
+   ✓ built help is executable without a TypeScript runtime  334ms
+   ✓ rejects unsupported arguments and combinations with exit 64  605ms
+   ✓ rejects the implemented run command when its required plan is missing  322ms
+   ✓ an empty test selection exits nonzero  740ms
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  23:28:14
+   Duration  2.76s (transform 25ms, setup 0ms, import 67ms, tests 2.30s, environment 0ms)
+

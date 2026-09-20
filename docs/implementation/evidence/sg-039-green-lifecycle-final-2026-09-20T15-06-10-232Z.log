@@ -1,0 +1,18 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/run/lifecycle.test.ts (8 tests) 637516ms
+   ✓ produces a sealed real command and JUnit run with complete lifecycle facts  89509ms
+   ✓ rejects stale preflight without starting any business command  54529ms
+   ✓ keeps failed historical runs immutable when repeated  139339ms
+   ✓ retains the original input identity and reports mutation during execution as stale  88537ms
+   ✓ retains canceled required checks without launching a new process  62863ms
+   ✓ never allows a run when an event consumer fails after a completed check  51293ms
+   ✓ detects source changes in the final event callback before returning current approval  76892ms
+   ✓ cancels during completion persistence without converting cancellation into a tool error  74550ms
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  23:06:11
+   Duration  640.23s (transform 789ms, setup 0ms, import 2.41s, tests 637.52s, environment 0ms)
+

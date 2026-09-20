@@ -1,4 +1,4 @@
-import type { AdapterCapabilities, CheckResult, CheckStep, Diagnostic, EffectivePolicy, InputManifest, ProjectConfig, RunEvent } from '../../../contracts/src/index.js';
+import type { Artifact, AdapterCapabilities, CheckResult, CheckStep, Diagnostic, EffectivePolicy, InputManifest, ProjectConfig, RunEvent } from '../../../contracts/src/index.js';
 import type { Clock, IdFactory } from './clock.js';
 import type { AuthorizedRunner } from './runner.js';
 import type { EvidenceReader, RestrictedArtifactWriter, RestrictedLogWriter } from './evidence.js';
@@ -32,6 +32,8 @@ export interface ExecutionContext {
 export interface CollectionContext {
   run_id: string; check_id: string; attempt_id: string;
   expected_artifacts: readonly string[]; evidence: EvidenceReader; signal: AbortSignal;
+  /** Metadata from the scoped evidence index; bytes must still pass EvidenceReader verification. */
+  artifacts?: readonly Artifact[];
 }
 export interface Adapter {
   describe(): AdapterCapabilities;

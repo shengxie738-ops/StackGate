@@ -1,0 +1,62 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/run/lifecycle.test.ts (8 tests | 2 failed | 6 skipped) 159854ms
+   ↓ produces a sealed real command and JUnit run with complete lifecycle facts
+   ↓ rejects stale preflight without starting any business command
+   ↓ keeps failed historical runs immutable when repeated
+   ↓ retains the original input identity and reports mutation during execution as stale
+   ↓ retains canceled required checks without launching a new process
+   ↓ never allows a run when an event consumer fails after a completed check
+   × detects source changes in the final event callback before returning current approval 85941ms
+   × cancels during completion persistence without converting cancellation into a tool error 73912ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/run/lifecycle.test.ts > detects source changes in the final event callback before returning current approval
+AssertionError: expected { schema_version: '0.1', …(5) } to match object { freshness: 'STALE', …(2) }
+(3 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "decision": "DENY",
+-   "exit_code": 4,
+-   "freshness": "STALE",
++   "decision": "ALLOW",
++   "exit_code": 0,
++   "freshness": "FRESH",
+  }
+
+ ❯ tests/integration/run/lifecycle.test.ts:33:311
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/integration/run/lifecycle.test.ts > cancels during completion persistence without converting cancellation into a tool error
+AssertionError: expected { schema_version: '0.1', …(5) } to match object { verdict: 'INCOMPLETE', …(2) }
+(3 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "decision": "DENY",
+-   "exit_code": 2,
+-   "verdict": "INCOMPLETE",
++   "exit_code": 3,
++   "verdict": "ERROR",
+  }
+
+ ❯ tests/integration/run/lifecycle.test.ts:36:393
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 6 skipped (8)
+   Start at  23:01:35
+   Duration  162.53s (transform 841ms, setup 0ms, import 2.38s, tests 159.85s, environment 0ms)
+

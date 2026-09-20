@@ -1,0 +1,35 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/run/lifecycle.test.ts (8 tests | 1 failed | 7 skipped) 199677ms
+   ↓ produces a sealed real command and JUnit run with complete lifecycle facts
+   ↓ rejects stale preflight without starting any business command
+   × keeps failed historical runs immutable when repeated 199676ms
+   ↓ retains the original input identity and reports mutation during execution as stale
+   ↓ retains canceled required checks without launching a new process
+   ↓ never allows a run when an event consumer fails after a completed check
+   ↓ detects source changes in the final event callback before returning current approval
+   ↓ cancels during completion persistence without converting cancellation into a tool error
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/run/lifecycle.test.ts > keeps failed historical runs immutable when repeated
+AssertionError: expected undefined to be 'run_e09fa685-d1da-4709-9028-149b71a22…' // Object.is equality
+
+- Expected: 
+"run_e09fa685-d1da-4709-9028-149b71a22509"
+
++ Received: 
+undefined
+
+ ❯ tests/integration/run/lifecycle.test.ts:21:518
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 skipped (8)
+   Start at  23:18:54
+   Duration  202.43s (transform 860ms, setup 0ms, import 2.44s, tests 199.68s, environment 0ms)
+

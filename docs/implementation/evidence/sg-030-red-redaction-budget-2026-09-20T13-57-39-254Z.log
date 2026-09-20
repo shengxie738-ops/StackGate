@@ -1,0 +1,33 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/security/artifact-budget.test.ts (0 test)
+ ❯ tests/security/redaction.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/security/artifact-budget.test.ts [ tests/security/artifact-budget.test.ts ]
+Error: Cannot find module '../../packages/core/src/evidence/budget.js' imported from 'G:/StackGate/tests/security/artifact-budget.test.ts'
+ ❯ tests/security/artifact-budget.test.ts:4:1
+      2| import fs from 'node:fs/promises';
+      3| import path from 'node:path';
+      4| import {EvidenceBudget,BudgetedArtifactWriter} from '../../packages/co…
+       | ^
+      5| import {FileEvidenceStore} from '../../packages/core/src/storage/file-…
+      6| import {withTestDirectory} from '../support/test-paths.js';
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/security/redaction.test.ts [ tests/security/redaction.test.ts ]
+Error: Cannot find module '../../packages/core/src/evidence/redaction.js' imported from 'G:/StackGate/tests/security/redaction.test.ts'
+ ❯ tests/security/redaction.test.ts:2:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  no tests
+   Start at  21:57:40
+   Duration  383ms (transform 32ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

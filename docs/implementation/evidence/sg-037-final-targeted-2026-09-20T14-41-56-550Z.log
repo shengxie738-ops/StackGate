@@ -1,0 +1,25 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/reports/junit-input.test.ts (13 tests) 7ms
+ ✓ tests/integration/adapters/junit.test.ts (16 tests) 18337ms
+   ✓ collects real report <testsuite><testcase name="one"/></testsuite> exit 0 as PASS  1329ms
+   ✓ collects real report <testsuite tests="999"/> exit 0 as BLOCKED  1213ms
+   ✓ collects real report null exit 0 as BLOCKED  1196ms
+   ✓ collects real report <testsuite><testcase name="one"><skipped/></testcase></testsuite> exit 0 as BLOCKED  1312ms
+   ✓ collects real report <testsuite><testcase name="one"><failure>bad</failure></testcase></testsuite> exit 0 as FAIL  1295ms
+   ✓ collects real report <testsuite><testcase name="one"><failure/></testcase></testsuite> exit 7 as FAIL  1274ms
+   ✓ collects real report <testsuite><testcase name="one"/></testsuite> exit 7 as ERROR  1370ms
+   ✓ collects real report <testsuite> exit 0 as ERROR  1377ms
+   ✓ collects real report <!DOCTYPE testsuite SYSTEM "file:///secret"><testsuite/> exit 0 as ERROR  1322ms
+   ✓ collects real report <testsuite><testcase name="one"><flakyFailure/></testcase></testsuite> exit 0 as BLOCKED  1384ms
+   ✓ requires declared IDs and minimum executed cases  1278ms
+   ✓ rejects a producer hard link to another report and preserves source bytes  1230ms
+   ✓ collects only stored current-scope evidence and rejects tampered metadata  1323ms
+   ✓ retains no credential messages in regular result facts  1298ms
+
+ Test Files  2 passed (2)
+      Tests  29 passed (29)
+   Start at  22:41:57
+   Duration  19.37s (transform 282ms, setup 0ms, import 841ms, tests 18.34s, environment 0ms)
+

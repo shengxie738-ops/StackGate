@@ -1,0 +1,24 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/cli/doctor.test.ts (5 tests) 1845ms
+   ✓ rejects semantically missing check references in otherwise valid configuration  372ms
+   ✓ inspects a Chinese project without running postinstall, Python imports or writing state  331ms
+   ✓ returns precise invalid-config diagnostics and never scans a parent manifest  352ms
+   ✓ reports conflicting configuration files rather than choosing one  314ms
+   ✓ reports declared commands/workspaces missing without executing them  474ms
+ ✓ tests/integration/cli/json-envelope.test.ts (6 tests) 2846ms
+   ✓ unknown command and malformed arguments produce one JSON document with exit 64  821ms
+   ✓ configuration diagnostics have uniform envelope and retain doctor details  355ms
+   ✓ success carries structured data and does not invent a Gate decision  344ms
+   ✓ help and version honor JSON mode while plain help stays readable  800ms
+ ✓ tests/integration/cli/static-workflow.test.ts (3 tests) 17482ms
+   ✓ previews init without writes and applies only absent files preserving existing content  888ms
+   ✓ task and trust machine previews implement required data fields without running code  13308ms
+   ✓ scan returns breaking data with exit zero and never claims runtime or gate success  3284ms
+
+ Test Files  3 passed (3)
+      Tests  14 passed (14)
+   Start at  21:37:32
+   Duration  17.84s (transform 72ms, setup 0ms, import 199ms, tests 22.17s, environment 0ms)
+

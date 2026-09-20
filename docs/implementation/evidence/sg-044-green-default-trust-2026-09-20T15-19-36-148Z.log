@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/trust/default-store.test.ts (1 test) 30933ms
+   ✓ creates a real grant in the default external platform trust store  30932ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  23:19:37
+   Duration  33.16s (transform 691ms, setup 0ms, import 1.92s, tests 30.93s, environment 0ms)
+

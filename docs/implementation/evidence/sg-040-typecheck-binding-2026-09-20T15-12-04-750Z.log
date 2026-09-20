@@ -1,0 +1,20 @@
+$ tsc --noEmit
+tests/integration/gate/current-state.test.ts(27,60): error TS18046: 'command' is of type 'unknown'.
+tests/integration/handoff.test.ts(13,110): error TS2339: Property 'facts' does not exist on type 'never'.
+tests/integration/handoff.test.ts(13,132): error TS2339: Property 'facts' does not exist on type 'never'.
+tests/integration/handoff.test.ts(13,152): error TS2339: Property 'entry' does not exist on type 'never'.
+tests/integration/handoff.test.ts(13,175): error TS2339: Property 'entry' does not exist on type 'never'.
+tests/integration/handoff.test.ts(18,30): error TS2698: Spread types may only be created from object types.
+tests/integration/handoff.test.ts(18,55): error TS2339: Property 'facts' does not exist on type 'never'.
+tests/integration/handoff.test.ts(23,27): error TS2322: Type 'string[]' is not assignable to type '[string, ...string[]]'.
+  Source provides no match for required element at position 0 in target.
+tests/integration/handoff.test.ts(24,135): error TS2339: Property 'truncated' does not exist on type 'never'.
+tests/integration/handoff.test.ts(24,171): error TS2339: Property 'facts' does not exist on type 'never'.
+tests/integration/handoff.test.ts(24,194): error TS7006: Parameter 'f' implicitly has an 'any' type.
+tests/integration/handoff.test.ts(24,242): error TS2339: Property 'facts' does not exist on type 'never'.
+tests/integration/handoff.test.ts(28,262): error TS2339: Property 'facts' does not exist on type 'never'.
+tests/integration/handoff.test.ts(28,286): error TS7006: Parameter 'f' implicitly has an 'any' type.
+tests/integration/handoff.test.ts(28,334): error TS2339: Property 'facts' does not exist on type 'never'.
+tests/integration/handoff.test.ts(28,399): error TS2339: Property 'facts' does not exist on type 'never'.
+tests/integration/handoff.test.ts(28,420): error TS7006: Parameter 'a' implicitly has an 'any' type.
+[ELIFECYCLE] Command failed with exit code 2.

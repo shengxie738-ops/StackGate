@@ -1,0 +1,39 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/compatibility/command-resolver.test.ts (8 tests | 1 failed) 52794ms
+   ✓ requires current explicit grant then preserves Unicode and shell metacharacters as argv  14510ms
+   ✓ resolves reviewed npm.cmd to Node and fixed JS entry, then runs actual npm script without shell fallback  9372ms
+   ✓ blocks unknown batch commands and repository PATH tool substitution  797ms
+   ✓ rejects output outside exact run scope and origins outside the reviewed permission  17325ms
+   ✓ normalizes Windows environment names and rejects ambiguous duplicate values 2ms
+   ✓ resolves the actually installed pnpm wrapper and binds its CRLF wrapper bytes and JavaScript entry  611ms
+   × executes a reviewed native binary from an installation path containing spaces and Chinese 803ms
+   ✓ invalidates the grant when a reviewed wrapper JavaScript entry changes  9371ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/compatibility/command-resolver.test.ts > executes a reviewed native binary from an installation path containing spaces and Chinese
+ServiceError: must match pattern "^[A-Za-z0-9_./\\:-]+$"
+ ❯ parseConfiguration packages/core/src/services/config-service.ts:11:23
+      9| export function parseConfiguration(bytes:Uint8Array,source:string):Pro…
+     10|   const result=validateProjectConfig(parseStrictDocument(bytes,source)…
+     11|   if(!result.ok)throw new ServiceError(64,result.diagnostics);
+       |                       ^
+     12|   const issues=resolveReferences(result.value);
+     13|   if(issues.length)throw new ServiceError(64,issues.flatMap(issue=>con…
+ ❯ loadConfiguration packages/core/src/services/config-service.ts:19:10
+ ❯ TrustService.snapshot packages/core/src/services/trust-service.ts:32:18
+ ❯ TrustService.review packages/core/src/services/trust-service.ts:66:20
+ ❯ Object.authorize tests/compatibility/command-resolver.test.ts:22:77
+ ❯ tests/compatibility/command-resolver.test.ts:55:40
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  21:58:44
+   Duration  53.96s (transform 324ms, setup 0ms, import 921ms, tests 52.79s, environment 0ms)
+

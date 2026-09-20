@@ -1,0 +1,2 @@
+$ node scripts/verify-boundaries.mjs
+Verified module boundaries for 127 product source files using the TypeScript AST.

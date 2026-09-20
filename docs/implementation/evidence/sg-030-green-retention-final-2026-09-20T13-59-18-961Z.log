@@ -1,0 +1,15 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/security/redaction.test.ts (4 tests) 4ms
+ ✓ tests/security/artifact-budget.test.ts (3 tests) 337ms
+   ✓ ordinary evidence never receives unredacted logs; restricted binary remains excluded  333ms
+ ✓ tests/integration/storage/store.test.ts (8 tests) 1821ms
+   ✓ creates independent runs and preserves immutable artifacts with checked bytes  520ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope  402ms
+
+ Test Files  3 passed (3)
+      Tests  15 passed (15)
+   Start at  21:59:20
+   Duration  2.90s (transform 498ms, setup 0ms, import 1.47s, tests 2.16s, environment 0ms)
+

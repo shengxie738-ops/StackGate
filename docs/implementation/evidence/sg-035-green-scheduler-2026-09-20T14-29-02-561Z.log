@@ -1,0 +1,10 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/execution/scheduler.test.ts (3 tests) 98ms
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  22:29:03
+   Duration  817ms (transform 140ms, setup 0ms, import 455ms, tests 98ms, environment 0ms)
+

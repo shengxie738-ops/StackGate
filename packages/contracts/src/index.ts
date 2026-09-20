@@ -9,3 +9,6 @@ export type { ProjectConfig } from './project-config.js';
 export type { AdapterCapabilities } from './adapter-capabilities.js';
 export { validateSchema, validateProjectConfig } from './validation.js';
 export type { ConsumerMappings } from './generated/mappings.js';
+export type { PlanContext } from './generated/plan-context.js';
+export type { CommandExecution } from './generated/command-execution.js';
+export type { HandoffBundle } from './generated/handoff.js';

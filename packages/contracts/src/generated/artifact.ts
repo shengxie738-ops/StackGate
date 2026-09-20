@@ -14,5 +14,12 @@ export type Artifact = {
   digest: string;
   sensitivity: "regular" | "restricted";
   redaction_state: "REDACTED" | "NOT_REQUIRED" | "UNREDACTED" | "UNKNOWN";
+  retention?: {
+    original_bytes: number;
+    retained_bytes: number;
+    truncated: boolean;
+    reason: null | "ARTIFACT_BUDGET_EXCEEDED" | "REDACTION_LINE_LIMIT";
+    critical: boolean;
+  };
   artifact_kind: "log" | "report" | "contract" | "trace" | "screenshot" | "observation";
 };

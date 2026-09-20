@@ -1,0 +1,71 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/tool-registry.test.ts (3 tests | 3 failed) 30ms
+   × resolves copied verified bytes in Chinese and space installation paths 23ms
+   × blocks missing and same-name wrong bytes without trusting PATH 6ms
+   × does not inherit Windows verification on Linux or another architecture 0ms
+ ❯ tests/integration/oasdiff-relocation.test.ts (1 test | 1 failed) 4656ms
+   × copied built CLI uses only its relocated verified native tool 4655ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/oasdiff-relocation.test.ts > copied built CLI uses only its relocated verified native tool
+AssertionError: expected 'FAIL' to be 'BLOCKED' // Object.is equality
+
+Expected: "BLOCKED"
+Received: "FAIL"
+
+ ❯ tests/integration/oasdiff-relocation.test.ts:14:108
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/unit/tool-registry.test.ts > resolves copied verified bytes in Chinese and space installation paths
+Error: R01 not implemented
+ ❯ ToolRegistryService.resolveOasdiff packages/core/src/services/tool-registry-service.ts:3:134
+      1| export class ToolRegistryService {
+      2|  constructor(readonly options:{installationRoot?:string;platform?:stri…
+      3|  async resolveOasdiff():Promise<{status:'VERIFIED';tool:{executable:st…
+       |                                                                                                                                      ^
+      4| }
+      5| 
+ ❯ tests/unit/tool-registry.test.ts:10:70
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/unit/tool-registry.test.ts > blocks missing and same-name wrong bytes without trusting PATH
+Error: R01 not implemented
+ ❯ ToolRegistryService.resolveOasdiff packages/core/src/services/tool-registry-service.ts:3:134
+      1| export class ToolRegistryService {
+      2|  constructor(readonly options:{installationRoot?:string;platform?:stri…
+      3|  async resolveOasdiff():Promise<{status:'VERIFIED';tool:{executable:st…
+       |                                                                                                                                      ^
+      4| }
+      5| 
+ ❯ tests/unit/tool-registry.test.ts:14:69
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/unit/tool-registry.test.ts > does not inherit Windows verification on Linux or another architecture
+Error: R01 not implemented
+ ❯ ToolRegistryService.resolveOasdiff packages/core/src/services/tool-registry-service.ts:3:134
+      1| export class ToolRegistryService {
+      2|  constructor(readonly options:{installationRoot?:string;platform?:stri…
+      3|  async resolveOasdiff():Promise<{status:'VERIFIED';tool:{executable:st…
+       |                                                                                                                                      ^
+      4| }
+      5| 
+ ❯ tests/unit/tool-registry.test.ts:17:63
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  4 failed (4)
+   Start at  21:35:01
+   Duration  5.06s (transform 87ms, setup 0ms, import 172ms, tests 4.69s, environment 0ms)
+

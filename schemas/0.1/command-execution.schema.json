@@ -1,0 +1,286 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/command-execution.schema.json",
+  "title": "CommandExecution",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "kind": {
+      "const": "stackgate-command-execution"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^run_[A-Za-z0-9_-]+$"
+    },
+    "check_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "step_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "attempt_id": {
+      "type": "string",
+      "pattern": "^attempt_[A-Za-z0-9_-]+$"
+    },
+    "command_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "started_at": {
+      "$ref": "common.schema.json#/$defs/UtcTimestamp"
+    },
+    "finished_at": {
+      "$ref": "common.schema.json#/$defs/UtcTimestamp"
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "EXITED",
+            "TIMED_OUT",
+            "CANCELED",
+            "ERROR"
+          ]
+        },
+        "raw_exit_code": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "signal": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "process": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "pid": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "creation_identity": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "owner_token": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "pid",
+                "creation_identity",
+                "owner_token"
+              ]
+            }
+          ]
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "$ref": "artifact.schema.json"
+          }
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "$ref": "common.schema.json#/$defs/ReasonCode"
+              },
+              "rule_id": {
+                "type": "string",
+                "pattern": "^SG-(CONTRACT|CONSUMER|RUNTIME|EVIDENCE|POLICY|ENV|TOOL)-.+$"
+              },
+              "message": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              },
+              "observed_facts": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "recommended_action": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "message",
+              "location",
+              "observed_facts",
+              "recommended_action",
+              "source"
+            ]
+          }
+        },
+        "execution": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "command_id": {
+              "$ref": "common.schema.json#/$defs/SafeId"
+            },
+            "command_hash": {
+              "$ref": "common.schema.json#/$defs/Sha256"
+            },
+            "authorization_hash": {
+              "$ref": "common.schema.json#/$defs/Sha256"
+            },
+            "executable_digest": {
+              "$ref": "common.schema.json#/$defs/Sha256"
+            }
+          },
+          "required": [
+            "command_id",
+            "command_hash",
+            "authorization_hash",
+            "executable_digest"
+          ]
+        },
+        "output": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "original_bytes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "retained_bytes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "truncated": {
+              "type": "boolean"
+            },
+            "reason": {
+              "enum": [
+                null,
+                "ARTIFACT_BUDGET_EXCEEDED",
+                "REDACTION_LINE_LIMIT"
+              ]
+            },
+            "streams": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "stdout": {
+                  "$ref": "#/$defs/StreamRetention"
+                },
+                "stderr": {
+                  "$ref": "#/$defs/StreamRetention"
+                }
+              },
+              "required": [
+                "stdout",
+                "stderr"
+              ]
+            }
+          },
+          "required": [
+            "original_bytes",
+            "retained_bytes",
+            "truncated",
+            "reason"
+          ]
+        },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "mechanism": {
+              "type": "string",
+              "minLength": 1
+            },
+            "broker_version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "cleanup": {
+              "enum": [
+                "VERIFIED",
+                "UNVERIFIED"
+              ]
+            }
+          },
+          "required": [
+            "mechanism",
+            "cleanup"
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "raw_exit_code",
+        "signal",
+        "process",
+        "artifacts",
+        "diagnostics"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "run_id",
+    "check_id",
+    "step_id",
+    "attempt_id",
+    "command_id",
+    "started_at",
+    "finished_at",
+    "result"
+  ],
+  "$defs": {
+    "StreamRetention": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "original_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "retained_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "truncated": {
+          "type": "boolean"
+        },
+        "reason": {
+          "enum": [
+            null,
+            "ARTIFACT_BUDGET_EXCEEDED",
+            "REDACTION_LINE_LIMIT"
+          ]
+        }
+      },
+      "required": [
+        "original_bytes",
+        "retained_bytes",
+        "truncated",
+        "reason"
+      ]
+    }
+  }
+}

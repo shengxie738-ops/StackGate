@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-028",
+  "command": "pnpm verify:stage -- --stage M1",
+  "argv": [
+    "pnpm",
+    "verify:stage",
+    "--",
+    "--stage",
+    "M1"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T13:31:20.485Z",
+  "finished_at": "2026-09-20T13:33:40.689Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-stage-2026-09-20T13-31-20-485Z.json",
+  "log_path": "docs/implementation/evidence/sg-028-m1-r00-stage-2026-09-20T13-31-20-485Z.log",
+  "signal": null,
+  "duration_ms": 140204
+}

@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/plan-service.test.ts (6 tests | 5 skipped) 673ms
+   ✓ rejects oversized plan files before allocating their contents  672ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 5 skipped (6)
+   Start at  22:06:28
+   Duration  2.59s (transform 578ms, setup 0ms, import 1.66s, tests 673ms, environment 0ms)
+

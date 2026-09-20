@@ -1,0 +1,75 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/reports/junit-input.test.ts (11 tests | 3 failed) 8ms
+   × counts actual nested cases and ignores inflated suite totals 4ms
+   × keeps empty suites empty and recognizes explicit retry evidence 2ms
+   ✓ rejects malformed, entity or ambiguous XML <testsuite> 0ms
+   ✓ rejects malformed, entity or ambiguous XML <!DOCTYPE testsuite [<!ENTITY x SYSTEM "file:///secret">]><testsuite/> 0ms
+   ✓ rejects malformed, entity or ambiguous XML <testsuite><testcase name="x"/><testcase name="x"/></testsuite> 0ms
+   ✓ rejects malformed, entity or ambiguous XML <testsuite><testcase name="x" id="same"/><testcase name="y" id="same"/></testsuite> 0ms
+   ✓ rejects malformed, entity or ambiguous XML <html/> 0ms
+   ✓ rejects malformed, entity or ambiguous XML <testsuite><unknown/></testsuite> 0ms
+   ✓ rejects malformed, entity or ambiguous XML <testsuite><testcase name="x"><skipped/><failure/></testcase></testsuite> 0ms
+   ✓ bounds bytes, XML depth and invalid UTF8 without parsing a partial success 0ms
+   × decodes predefined entities and supports failure CDATA without exposing messages 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/reports/junit-input.test.ts > counts actual nested cases and ignores inflated suite totals
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/unit/reports/junit-input.test.ts:6:20
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/unit/reports/junit-input.test.ts > keeps empty suites empty and recognizes explicit retry evidence
+AssertionError: expected { Object (ok, reason) } to deeply equal { ok: true, cases: [] }
+
+- Expected
++ Received
+
+  {
+-   "cases": [],
+-   "ok": true,
++   "ok": false,
++   "reason": "NOT_IMPLEMENTED",
+  }
+
+ ❯ tests/unit/reports/junit-input.test.ts:9:43
+      7| });
+      8| it('keeps empty suites empty and recognizes explicit retry evidence',(…
+      9|  expect(parse('<testsuite tests="42"/>')).toEqual({ok:true,cases:[]});
+       |                                           ^
+     10|  const result=parse('<testsuite><testcase name="flaky"><flakyFailure>f…
+     11| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/unit/reports/junit-input.test.ts > decodes predefined entities and supports failure CDATA without exposing messages
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/unit/reports/junit-input.test.ts:17:184
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 8 passed (11)
+   Start at  22:34:03
+   Duration  357ms (transform 30ms, setup 0ms, import 79ms, tests 8ms, environment 0ms)
+

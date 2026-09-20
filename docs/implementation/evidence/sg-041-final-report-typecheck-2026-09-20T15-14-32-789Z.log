@@ -1,0 +1,4 @@
+$ tsc --noEmit
+tests/integration/handoff.test.ts(23,27): error TS2322: Type 'string[]' is not assignable to type '[string, ...string[]]'.
+  Source provides no match for required element at position 0 in target.
+[ELIFECYCLE] Command failed with exit code 2.

@@ -1,0 +1,41 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/gate/current-state.test.ts (2 tests | 2 failed) 155497ms
+   × missing run evidence remains unverified and cannot be allowed 3097ms
+   × authenticates a real sealed run then reevaluates source, task, policy and evidence without changing historical facts 152398ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/gate/current-state.test.ts > missing run evidence remains unverified and cannot be allowed
+AssertionError: expected 'INVALID' to be 'MISSING' // Object.is equality
+
+Expected: "MISSING"
+Received: "INVALID"
+
+ ❯ tests/integration/gate/current-state.test.ts:8:259
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/integration/gate/current-state.test.ts > authenticates a real sealed run then reevaluates source, task, policy and evidence without changing historical facts
+ServiceError: must be equal to constant
+ ❯ parseConfiguration packages/core/src/services/config-service.ts:11:23
+      9| export function parseConfiguration(bytes:Uint8Array,source:string):Pro…
+     10|   const result=validateProjectConfig(parseStrictDocument(bytes,source)…
+     11|   if(!result.ok)throw new ServiceError(64,result.diagnostics);
+       |                       ^
+     12|   const issues=resolveReferences(result.value);
+     13|   if(issues.length)throw new ServiceError(64,issues.flatMap(issue=>con…
+ ❯ loadConfiguration packages/core/src/services/config-service.ts:19:10
+ ❯ GateService.inspect packages/core/src/services/gate-service.ts:39:16
+ ❯ tests/integration/gate/current-state.test.ts:17:290
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  23:06:39
+   Duration  158.51s (transform 997ms, setup 0ms, import 2.70s, tests 155.50s, environment 0ms)
+

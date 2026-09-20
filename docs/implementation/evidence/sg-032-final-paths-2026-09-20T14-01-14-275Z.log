@@ -1,0 +1,25 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/config/merge.test.ts (3 tests) 5ms
+ ✓ tests/unit/contracts/primitives.test.ts (13 tests) 65ms
+ ✓ tests/unit/contracts/run-schema.test.ts (24 tests) 137ms
+ ✓ tests/unit/contracts/task-schema.test.ts (17 tests) 79ms
+ ✓ tests/unit/config/execution-inputs.test.ts (3 tests) 76ms
+ ✓ tests/unit/contracts/config-schema.test.ts (9 tests) 105ms
+ ✓ tests/unit/config/parse.test.ts (7 tests) 111ms
+ ✓ tests/unit/config/init-safety.test.ts (6 tests) 258ms
+ ✓ tests/compatibility/command-resolver.test.ts (8 tests) 61759ms
+   ✓ requires current explicit grant then preserves Unicode and shell metacharacters as argv  14872ms
+   ✓ resolves reviewed npm.cmd to Node and fixed JS entry, then runs actual npm script without shell fallback  10050ms
+   ✓ blocks unknown batch commands and repository PATH tool substitution  756ms
+   ✓ rejects output outside exact run scope and origins outside the reviewed permission  15558ms
+   ✓ resolves the actually installed pnpm wrapper and binds its CRLF wrapper bytes and JavaScript entry  511ms
+   ✓ executes a reviewed native binary from an installation path containing spaces and Chinese  11632ms
+   ✓ invalidates the grant when a reviewed wrapper JavaScript entry changes  8378ms
+
+ Test Files  9 passed (9)
+      Tests  90 passed (90)
+   Start at  22:01:15
+   Duration  63.63s (transform 1.21s, setup 0ms, import 8.46s, tests 62.60s, environment 1ms)
+

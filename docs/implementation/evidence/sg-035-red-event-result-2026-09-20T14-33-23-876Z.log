@@ -1,0 +1,35 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/execution/scheduler.test.ts (6 tests | 1 failed | 5 skipped) 27ms
+   ↓ runs A to B/C to D with lexicographic starts and real independent concurrency
+   ↓ failure blocks only dependent branches and cancellation stops new steps
+   ↓ rejects invalid concurrency and never launches malformed DAGs
+   ↓ serializes shared resources while independent resources progress
+   × does not invent a second result when finished event persistence fails 26ms
+   ↓ cancels or times out while another owner holds a resource without removing its lock
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/execution/scheduler.test.ts > does not invent a second result when finished event persistence fails
+AssertionError: expected [ 'a', 'b' ] to deeply equal [ 'b' ]
+
+- Expected
++ Received
+
+  [
++   "a",
+    "b",
+  ]
+
+ ❯ tests/unit/execution/scheduler.test.ts:16:589
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 skipped (6)
+   Start at  22:33:25
+   Duration  843ms (transform 203ms, setup 0ms, import 553ms, tests 27ms, environment 0ms)
+

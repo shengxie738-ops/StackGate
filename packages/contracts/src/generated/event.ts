@@ -88,6 +88,19 @@ export type RunEvent =
         payload_version: "0.1";
         reason: string;
       };
+    }
+  | {
+      schema_version: "0.1";
+      event_id: string;
+      run_id: string;
+      seq: number;
+      at: string;
+      type: "run.phase_changed";
+      payload: {
+        payload_version: "0.1";
+        from: ("CREATED" | "PLANNED" | "RUNNING" | "FINALIZING" | "COMPLETED" | "CANCELED" | "ABORTED") | null;
+        to: "CREATED" | "PLANNED" | "RUNNING" | "FINALIZING" | "COMPLETED" | "CANCELED" | "ABORTED";
+      };
     };
 export type Artifact = {
   [k: string]: unknown;
@@ -103,6 +116,13 @@ export type Artifact = {
   digest: string;
   sensitivity: "regular" | "restricted";
   redaction_state: "REDACTED" | "NOT_REQUIRED" | "UNREDACTED" | "UNKNOWN";
+  retention?: {
+    original_bytes: number;
+    retained_bytes: number;
+    truncated: boolean;
+    reason: null | "ARTIFACT_BUDGET_EXCEEDED" | "REDACTION_LINE_LIMIT";
+    critical: boolean;
+  };
   artifact_kind: "log" | "report" | "contract" | "trace" | "screenshot" | "observation";
 };
 

@@ -1,0 +1,20 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/storage/atomic-write.test.ts (6 tests) 192ms
+ ✓ tests/integration/trust/review.test.ts (9 tests) 203516ms
+   ✓ does not recognize mismatched grant IDs or permission scopes as trusted  33851ms
+   ✓ refuses a script whose bytes are excluded by the credential-input policy  6088ms
+   ✓ renews an expired matching record and preserves unrelated or concurrently changed records  49125ms
+   ✓ rejects external script arguments and binds ignored scripts outside workspaces  29867ms
+   ✓ binds inline code as arguments without interpreting code fragments as paths  5601ms
+   ✓ binds resolved tool identity without launching it  15185ms
+   ✓ previews names only and never trusts without explicit reviewed authorization  6668ms
+   ✓ stores outside repository, binds scripts, arguments and origins, and does not become CI trust  31356ms
+   ✓ refuses repository-contained trust stores and copying trust into another checkout  25770ms
+
+ Test Files  2 passed (2)
+      Tests  15 passed (15)
+   Start at  23:20:52
+   Duration  205.29s (transform 567ms, setup 0ms, import 1.55s, tests 203.71s, environment 0ms)
+

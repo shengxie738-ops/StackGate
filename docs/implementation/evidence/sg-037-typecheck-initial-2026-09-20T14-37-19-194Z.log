@@ -1,0 +1,13 @@
+$ tsc --noEmit
+node_modules/.pnpm/saxes@6.0.0/node_modules/saxes/saxes.d.ts(46,71): error TS2344: Type 'O' does not satisfy the constraint 'SaxesOptions'.
+  Type 'O' is not assignable to type 'CommonOptions'.
+node_modules/.pnpm/saxes@6.0.0/node_modules/saxes/saxes.d.ts(55,80): error TS2344: Type 'O' does not satisfy the constraint 'SaxesOptions'.
+  Type 'O' is not assignable to type 'CommonOptions'.
+node_modules/.pnpm/saxes@6.0.0/node_modules/saxes/saxes.d.ts(62,61): error TS2344: Type 'O' does not satisfy the constraint 'SaxesOptions'.
+  Type 'O' is not assignable to type 'CommonOptions'.
+node_modules/.pnpm/saxes@6.0.0/node_modules/saxes/saxes.d.ts(69,62): error TS2344: Type 'O' does not satisfy the constraint 'SaxesOptions'.
+  Type 'O' is not assignable to type 'CommonOptions'.
+node_modules/.pnpm/saxes@6.0.0/node_modules/saxes/saxes.d.ts(265,18): error TS2430: Interface 'NSOptionsWithoutNamespaces' incorrectly extends interface 'NSOptions'.
+  Types of property 'additionalNamespaces' are incompatible.
+    Type 'undefined' is not assignable to type 'Record<string, string>'.
+[ELIFECYCLE] Command failed with exit code 2.

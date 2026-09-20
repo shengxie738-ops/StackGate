@@ -1,0 +1,18 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/runner/locks.test.ts (1 test) 4605ms
+   ✓ serializes an actual other Node process and refuses release after creation identity substitution  4604ms
+ ✓ tests/unit/runner/scheduler.test.ts (7 tests) 13072ms
+   ✓ runs A to B/C to D with lexicographic starts and real independent concurrency  1005ms
+   ✓ failure blocks only dependent branches and cancellation stops new steps  1500ms
+   ✓ serializes shared resources while independent resources progress  2608ms
+   ✓ does not invent a second result when finished event persistence fails  721ms
+   ✓ cancels or times out while another owner holds a resource without removing its lock  5185ms
+   ✓ excludes another whole run even when its workspace locks differ  2047ms
+
+ Test Files  2 passed (2)
+      Tests  8 passed (8)
+   Start at  22:36:19
+   Duration  14.09s (transform 399ms, setup 0ms, import 1.25s, tests 17.68s, environment 0ms)
+

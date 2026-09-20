@@ -1,0 +1,53 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/reports/terminal.test.ts (1 test | 1 failed) 4ms
+   × shows denial before checks and strips terminal control sequences 3ms
+ ❯ tests/unit/reports/json.test.ts (2 tests | 2 failed) 6ms
+   × keeps current denial, historical result and complete required/missing facts separately 4ms
+   × retains both business failures and tool errors without reporting missing checks as passed 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/reports/json.test.ts > keeps current denial, historical result and complete required/missing facts separately
+Error: Report view is not implemented
+ ❯ buildReportView packages/reporters/src/report-view.ts:3:96
+      1| import type {Artifact,CheckPlan,GateEvaluation,RunManifest} from '../.…
+      2| export interface ReportSource {manifest:RunManifest;plan:CheckPlan;art…
+      3| export function buildReportView(_source:ReportSource,_evaluation:GateE…
+       |                                                                                                ^
+      4| 
+ ❯ tests/unit/reports/json.test.ts:6:101
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/unit/reports/json.test.ts > retains both business failures and tool errors without reporting missing checks as passed
+Error: Report view is not implemented
+ ❯ buildReportView packages/reporters/src/report-view.ts:3:96
+      1| import type {Artifact,CheckPlan,GateEvaluation,RunManifest} from '../.…
+      2| export interface ReportSource {manifest:RunManifest;plan:CheckPlan;art…
+      3| export function buildReportView(_source:ReportSource,_evaluation:GateE…
+       |                                                                                                ^
+      4| 
+ ❯ tests/unit/reports/json.test.ts:10:194
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/unit/reports/terminal.test.ts > shows denial before checks and strips terminal control sequences
+Error: Report view is not implemented
+ ❯ buildReportView packages/reporters/src/report-view.ts:3:96
+      1| import type {Artifact,CheckPlan,GateEvaluation,RunManifest} from '../.…
+      2| export interface ReportSource {manifest:RunManifest;plan:CheckPlan;art…
+      3| export function buildReportView(_source:ReportSource,_evaluation:GateE…
+       |                                                                                                ^
+      4| 
+ ❯ tests/unit/reports/terminal.test.ts:6:64
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  3 failed (3)
+   Start at  23:03:53
+   Duration  545ms (transform 75ms, setup 0ms, import 220ms, tests 10ms, environment 0ms)
+

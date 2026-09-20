@@ -1,0 +1,18 @@
+{
+  "task_id": "SG-028",
+  "command": "pnpm install --frozen-lockfile",
+  "argv": [
+    "pnpm",
+    "install",
+    "--frozen-lockfile"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T13:28:28.353Z",
+  "finished_at": "2026-09-20T13:28:28.857Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-install-2026-09-20T13-28-28-353Z.json",
+  "log_path": "docs/implementation/evidence/sg-028-m1-r00-install-2026-09-20T13-28-28-353Z.log",
+  "signal": null,
+  "duration_ms": 504
+}

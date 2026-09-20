@@ -1,0 +1,40 @@
+✔ M1 requires every M0 check, actual integration checks and the real oasdiff capability (2.8008ms)
+✖ M2 registers every execution, evidence and Gate check without allowing omissions (1.6301ms)
+✔ M0 rejects removed, duplicate and arbitrary shell checks (0.2419ms)
+✔ unknown tools block any stage requiring them (0.3356ms)
+✔ a real failed child command propagates its exit and retains its identity (111.3804ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 226.3047
+
+✖ failing tests:
+
+test at tests\bootstrap\stage.test.mjs:16:1
+✖ M2 registers every execution, evidence and Gate check without allowing omissions (1.6301ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'Unimplemented stage; only M0 and M1 have registered checks'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///G:/StackGate/tests/bootstrap/stage.test.mjs:18:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'Unimplemented stage; only M0 and M1 have registered checks' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

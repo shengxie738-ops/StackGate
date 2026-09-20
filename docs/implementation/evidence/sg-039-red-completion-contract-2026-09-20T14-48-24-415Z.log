@@ -1,0 +1,43 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/storage/completion.test.ts (2 tests | 2 failed) 53ms
+   × validates strict completion facts and persists them bound to the run plan 4ms
+   × accepts continuous phase events and rejects jumps, duplicate initialization, and mismatched finalization 47ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/storage/completion.test.ts > validates strict completion facts and persists them bound to the run plan
+Error: Unregistered schema: run-completion
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/integration/storage/completion.test.ts:13:9
+ ❯ withTestDirectory tests/support/test-paths.ts:7:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/integration/storage/completion.test.ts > accepts continuous phase events and rejects jumps, duplicate initialization, and mismatched finalization
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/integration/storage/completion.test.ts:24:45
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  22:48:25
+   Duration  1.09s (transform 251ms, setup 0ms, import 739ms, tests 53ms, environment 0ms)
+

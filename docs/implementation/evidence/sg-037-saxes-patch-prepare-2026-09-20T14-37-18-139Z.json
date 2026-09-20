@@ -1,0 +1,26 @@
+{
+  "task_id": "SG-037",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+    "branch": "V1",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+  },
+  "command": "pnpm patch saxes@6.0.0 --edit-dir .stackgate-saxes-patch",
+  "argv": [
+    "pnpm",
+    "patch",
+    "saxes@6.0.0",
+    "--edit-dir",
+    ".stackgate-saxes-patch"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T14:37:18.139Z",
+  "finished_at": "2026-09-20T14:37:19.038Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-037-saxes-patch-prepare-2026-09-20T14-37-18-139Z.json",
+  "log_path": "docs/implementation/evidence/sg-037-saxes-patch-prepare-2026-09-20T14-37-18-139Z.log",
+  "signal": null,
+  "duration_ms": 899
+}

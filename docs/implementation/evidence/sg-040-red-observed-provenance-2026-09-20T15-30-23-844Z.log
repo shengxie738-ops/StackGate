@@ -1,0 +1,41 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/gate/command-provenance.test.ts (14 tests | 8 failed) 11ms
+   ✓ accepts a fully bound observed command and nonzero business exit 2ms
+   × rejects missing or forged execution evidence 3ms
+   × rejects missing or forged process evidence 1ms
+   × rejects missing or forged provenance evidence 1ms
+   × rejects missing or forged mechanism evidence 0ms
+   × rejects missing or forged cleanup evidence 0ms
+   × rejects missing or forged broker evidence 1ms
+   ✓ rejects missing or forged authorization evidence 0ms
+   ✓ rejects missing or forged command evidence 0ms
+   × rejects missing or forged executable evidence 0ms
+   × rejects missing or forged command-hash evidence 0ms
+   ✓ retains ordinary ERROR failure evidence without inventing process completion 0ms
+   ✓ retains ordinary TIMED_OUT failure evidence without inventing process completion 0ms
+   ✓ retains ordinary CANCELED failure evidence without inventing process completion 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/gate/command-provenance.test.ts > rejects missing or forged execution evidence
+ FAIL  tests/unit/gate/command-provenance.test.ts > rejects missing or forged process evidence
+ FAIL  tests/unit/gate/command-provenance.test.ts > rejects missing or forged provenance evidence
+ FAIL  tests/unit/gate/command-provenance.test.ts > rejects missing or forged mechanism evidence
+ FAIL  tests/unit/gate/command-provenance.test.ts > rejects missing or forged cleanup evidence
+ FAIL  tests/unit/gate/command-provenance.test.ts > rejects missing or forged broker evidence
+ FAIL  tests/unit/gate/command-provenance.test.ts > rejects missing or forged executable evidence
+ FAIL  tests/unit/gate/command-provenance.test.ts > rejects missing or forged command-hash evidence
+AssertionError: expected 0 to be greater than 0
+ ❯ tests/unit/gate/command-provenance.test.ts:7:852
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  8 failed | 6 passed (14)
+   Start at  23:30:25
+   Duration  568ms (transform 44ms, setup 0ms, import 116ms, tests 11ms, environment 0ms)
+

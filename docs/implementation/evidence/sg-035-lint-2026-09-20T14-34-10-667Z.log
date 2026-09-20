@@ -1,0 +1,8 @@
+$ eslint .
+
+G:\StackGate\packages\core\src\domain\junit-parser.ts
+  3:28  error  '_bytes' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (1 error, 0 warnings)
+
+[ELIFECYCLE] Command failed with exit code 1.

@@ -1,0 +1,34 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/cleanup/process-resources.test.ts (9 tests | 1 failed) 3707ms
+   × defaults to a nonmutating plan and explicitly cleans only the owned terminal workspace 501ms
+   ✓ preserves ownerless resources  431ms
+   ✓ preserves foreign resources  478ms
+   ✓ preserves live resources 108ms
+   ✓ preserves changed resources  438ms
+   ✓ preserves hash resources  432ms
+   ✓ preserves a user service and refuses stale PID lock ownership  459ms
+   ✓ rejects a directory junction and never touches its target  430ms
+   ✓ rejects hard-linked files and reports malformed or traversal run identifiers safely  428ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/cleanup/process-resources.test.ts > defaults to a nonmutating plan and explicitly cleans only the owned terminal workspace
+AssertionError: expected 'BLOCKED' to be 'READY' // Object.is equality
+
+Expected: "READY"
+Received: "BLOCKED"
+
+ ❯ tests/integration/cleanup/process-resources.test.ts:21:102
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed (9)
+   Start at  23:01:24
+   Duration  4.78s (transform 289ms, setup 0ms, import 753ms, tests 3.71s, environment 0ms)
+

@@ -1,0 +1,29 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/storage/completion.test.ts (3 tests) 1082ms
+   ✓ binds restricted context bytes and completion to the sealed manifest, retaining old event compatibility  841ms
+ ✓ tests/integration/storage/store.test.ts (13 tests) 3408ms
+   ✓ creates independent runs and preserves immutable artifacts with checked bytes  558ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 1)  441ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 2)  373ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 3)  342ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 4)  348ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 5)  402ms
+ ✓ tests/integration/storage/integrity.test.ts (10 tests) 8966ms
+   ✓ seals immutable facts, supports identical repeat, and exposes verified readonly snapshots  1357ms
+   ✓ detects modified sealed manifest.json without overwriting history  859ms
+   ✓ detects modified sealed events.jsonl without overwriting history  825ms
+   ✓ detects modified sealed artifact-index.json without overwriting history  948ms
+   ✓ detects modified sealed document without overwriting history  947ms
+   ✓ detects modified sealed artifact without overwriting history  924ms
+   ✓ rejects missing required artifacts and preserves readable unsealed facts  676ms
+   ✓ rejects internally contradictory facts even when each document has a valid schema  604ms
+   ✓ refuses to seal undeclared orphan evidence or an incomplete event log  664ms
+   ✓ retains failed retry documents alongside the final check without rewriting history  1159ms
+
+ Test Files  3 passed (3)
+      Tests  26 passed (26)
+   Start at  22:52:39
+   Duration  10.05s (transform 668ms, setup 0ms, import 2.15s, tests 13.46s, environment 0ms)
+

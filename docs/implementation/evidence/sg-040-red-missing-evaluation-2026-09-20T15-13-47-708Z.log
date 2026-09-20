@@ -1,0 +1,34 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/gate/current-state.test.ts (5 tests | 1 failed | 4 skipped) 951ms
+   ↓ missing run evidence remains unverified and cannot be allowed
+   × stores a missing-run evaluation outside runs without inventing a run directory 950ms
+   ↓ authenticates a real sealed run then reevaluates source, task, policy and evidence without changing historical facts
+   ↓ keeps real failed evidence denied and detects changed executable bytes without launching that executable
+   ↓ does not turn local CI environment claims into required backend provenance
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/gate/current-state.test.ts > stores a missing-run evaluation outside runs without inventing a run directory
+Error: ENOENT: no such file or directory, lstat 'C:\Users\17894\AppData\Local\Temp\stackgate-task-ippB4i\.stackgate\state'
+ ❯ inspectPathWithin packages/core/src/storage/safe-path.ts:31:20
+     29|   const parts = components(relative);
+     30|   const rootPath = path.resolve(root);
+     31|   const rootStat = await fs.lstat(rootPath);
+       |                    ^
+     32|   if (!rootStat.isDirectory() || rootStat.isSymbolicLink()) unsafe('Ro…
+     33|   const realRoot = await fs.realpath(rootPath);
+ ❯ ensureDirectoryWithin packages/core/src/storage/task-revisions.ts:8:79
+ ❯ storeEvaluation packages/core/src/storage/evaluations.ts:9:53
+ ❯ GateService.evaluate packages/core/src/services/gate-service.ts:83:159
+ ❯ tests/integration/gate/current-state.test.ts:10:169
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 skipped (5)
+   Start at  23:13:49
+   Duration  3.54s (transform 890ms, setup 0ms, import 2.28s, tests 951ms, environment 0ms)
+

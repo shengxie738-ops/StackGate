@@ -1,0 +1,25 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/reports/json.test.ts (3 tests | 1 failed) 13ms
+   ✓ keeps current denial, historical result and complete required/missing facts separately 5ms
+   ✓ retains both business failures and tool errors without reporting missing checks as passed 2ms
+   × reports an interrupted prefix without inventing a known required set 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/reports/json.test.ts > reports an interrupted prefix without inventing a known required set
+TypeError: Cannot read properties of null (reading 'required_check_ids')
+ ❯ packages/reporters/src/report-view.ts:8:132
+
+ ❯ buildReportView packages/reporters/src/report-view.ts:8:31
+ ❯ tests/unit/reports/json.test.ts:13:77
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  23:24:13
+   Duration  531ms (transform 67ms, setup 0ms, import 143ms, tests 13ms, environment 0ms)
+

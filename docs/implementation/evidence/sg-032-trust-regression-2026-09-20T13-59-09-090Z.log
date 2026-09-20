@@ -1,0 +1,27 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/trust/input-scope.test.ts (7 tests) 56571ms
+   ✓ ignored dependencies and untracked generated caches do not alter trust or get recursively read  5783ms
+   ✓ tracked generated-looking source, untracked source, and dependency identities each change trust  22551ms
+   ✓ direct ignored dist script is retained without reading sibling generated files  8532ms
+   ✓ explicit ignored required files bind bytes and reject missing or secret-bearing inputs  10523ms
+   ✓ ordinary ignored .env bytes do not enter preview or change digest  6679ms
+   ✓ rejects command directory entry points whose concrete executed inputs are unknown  1256ms
+   ✓ explicit command input through an escaping directory link is rejected  1243ms
+ ✓ tests/integration/trust/review.test.ts (9 tests) 107487ms
+   ✓ does not recognize mismatched grant IDs or permission scopes as trusted  19032ms
+   ✓ refuses a script whose bytes are excluded by the credential-input policy  3404ms
+   ✓ renews an expired matching record and preserves unrelated or concurrently changed records  24128ms
+   ✓ rejects external script arguments and binds ignored scripts outside workspaces  15086ms
+   ✓ binds inline code as arguments without interpreting code fragments as paths  3320ms
+   ✓ binds resolved tool identity without launching it  7910ms
+   ✓ previews names only and never trusts without explicit reviewed authorization  3037ms
+   ✓ stores outside repository, binds scripts, arguments and origins, and does not become CI trust  17979ms
+   ✓ refuses repository-contained trust stores and copying trust into another checkout  13586ms
+
+ Test Files  2 passed (2)
+      Tests  16 passed (16)
+   Start at  21:59:10
+   Duration  108.69s (transform 596ms, setup 0ms, import 1.84s, tests 164.06s, environment 0ms)
+

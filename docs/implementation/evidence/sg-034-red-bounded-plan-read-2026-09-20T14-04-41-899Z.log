@@ -1,0 +1,38 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/plan-service.test.ts (6 tests | 1 failed | 5 skipped) 671ms
+   ↓ persists a deterministic verified plan with exact ignored script bytes and required JUnit IDs
+   × rejects oversized plan files before allocating their contents 671ms
+   ↓ rejects unconfirmed task or unreviewed trust before persisting an executable plan
+   ↓ rechecks ignored script, policy and task identity, and rejects modified stored context
+   ↓ retains an explicitly required runtime check and marks unsupported local backend requirements blocked
+   ↓ keeps required e2e and an explicit environment dependency when M3 environment is unavailable
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/plan-service.test.ts > rejects oversized plan files before allocating their contents
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/integration/plan-service.test.ts:39:73
+     37|     try {
+     38|       await expect(new PlanService(f.root, {trustStoreRoot: f.store}).…
+     39|       expect(spy.mock.calls.some(call => String(call[0]) === planFile)…
+       |                                                                         ^
+     40|     } finally { spy.mockRestore(); }
+     41|   } finally { await f.close(); }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 skipped (6)
+   Start at  22:04:43
+   Duration  2.60s (transform 535ms, setup 0ms, import 1.65s, tests 671ms, environment 0ms)
+

@@ -1,0 +1,25 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/contract/probe-envelope.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/contract/probe-envelope.test.ts [ tests/contract/probe-envelope.test.ts ]
+Error: Cannot find module '../../packages/core/src/services/adapters/probe-adapter.js' imported from 'G:/StackGate/tests/contract/probe-envelope.test.ts'
+ ❯ tests/contract/probe-envelope.test.ts:8:1
+      6| import {loadContract} from '../../packages/adapter-oasdiff/src/load-co…
+      7| import {FileEvidenceStore} from '../../packages/core/src/storage/file-…
+      8| import {collectProbe} from '../../packages/core/src/services/adapters/…
+       | ^
+      9| import {withTestDirectory} from '../support/test-paths.js';
+     10| const reportFixture=JSON.parse(await fs.readFile('tests/fixtures/proto…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  22:22:16
+   Duration  1.10s (transform 264ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

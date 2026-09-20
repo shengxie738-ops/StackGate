@@ -1,0 +1,23 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/handoff.test.ts (3 tests | 1 failed | 2 skipped) 776ms
+   ↓ changes target wrapper only, preserves blocking facts, excludes prompt injection and validates current identity
+   × truncates optional indexes within budget without removing failures or gaps 775ms
+   ↓ reads a real sealed failed run without executing again or mutating its evidence
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/handoff.test.ts > truncates optional indexes within budget without removing failures or gaps
+AssertionError: expected 58212 to be less than or equal to 32768
+ ❯ tests/integration/handoff.test.ts:25:232
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 skipped (3)
+   Start at  23:15:25
+   Duration  3.66s (transform 1.00s, setup 0ms, import 2.56s, tests 776ms, environment 0ms)
+

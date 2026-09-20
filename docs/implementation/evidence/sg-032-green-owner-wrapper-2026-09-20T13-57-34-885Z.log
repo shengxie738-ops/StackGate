@@ -1,0 +1,15 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/compatibility/command-resolver.test.ts (6 tests) 38022ms
+   ✓ requires current explicit grant then preserves Unicode and shell metacharacters as argv  13412ms
+   ✓ resolves reviewed npm.cmd to Node and fixed JS entry, then runs actual npm script without shell fallback  8867ms
+   ✓ blocks unknown batch commands and repository PATH tool substitution  734ms
+   ✓ rejects output outside exact run scope and origins outside the reviewed permission  14469ms
+   ✓ resolves the actually installed pnpm wrapper and binds its CRLF wrapper bytes and JavaScript entry  537ms
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  21:57:36
+   Duration  39.25s (transform 329ms, setup 0ms, import 944ms, tests 38.02s, environment 0ms)
+

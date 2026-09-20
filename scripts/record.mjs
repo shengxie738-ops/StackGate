@@ -1,15 +1,27 @@
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const [taskId, label, separator, command, ...args] = process.argv.slice(2);
-if (!/^SG-\d{3}$/.test(taskId ?? '') || !/^[a-z0-9-]+$/i.test(label ?? '') || separator !== '--' || !command) {
+if (!/^(SG-\d{3}|M1-R0[0-7])$/.test(taskId ?? '') || !/^[a-z0-9-]+$/i.test(label ?? '') || separator !== '--' || !command) {
   console.error('Usage: node scripts/record.mjs SG-001 label -- command args...');
   process.exit(64);
 }
 const startedAt = new Date().toISOString();
+function repositoryIdentity() {
+  const options={cwd:root,encoding:'utf8',windowsHide:true,timeout:10000};
+  const head=spawnSync('git',['rev-parse','HEAD'],options);
+  const top=spawnSync('git',['rev-parse','--show-toplevel'],options);
+  const branch=spawnSync('git',['branch','--show-current'],options);
+  const valid=head.status===0&&top.status===0;
+  return {identity_status:valid?'VERIFIED':'UNVERIFIED',head:valid?head.stdout.trim():null,
+    branch:branch.status===0?branch.stdout.trim():null,
+    worktree_digest:valid?createHash('sha256').update(top.stdout.trim().replaceAll('\\','/')).digest('hex'):null};
+}
+const repository=repositoryIdentity();
 const stem = `${taskId.toLowerCase()}-${label}-${startedAt.replace(/[:.]/g, '-')}`;
 const evidencePath = `docs/implementation/evidence/${stem}.json`;
 const logPath = `docs/implementation/evidence/${stem}.log`;
@@ -41,6 +53,7 @@ function record(exitCode, signal = null) {
   const finishedAt = new Date().toISOString();
   const result = {
     task_id: taskId,
+    repository,
     command: [command, ...args].map(value => /\s/.test(value) ? JSON.stringify(value) : value).join(' '),
     argv: [command, ...args], cwd_relative: '.', started_at: startedAt, finished_at: finishedAt,
     exit_code: exitCode, result: exitCode === 0 ? 'PASSED' : 'FAILED', evidence_path: evidencePath,

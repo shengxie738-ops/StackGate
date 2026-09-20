@@ -1,0 +1,24 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/ports.test.ts (27 tests) 5431ms
+   ✓ runs the AST checker and rejects domain IO  314ms
+   ✓ runs the AST checker and rejects domain dynamic IO  313ms
+   ✓ runs the AST checker and rejects domain date constructor  310ms
+   ✓ runs the AST checker and rejects domain environment  318ms
+   ✓ runs the AST checker and rejects domain console IO  339ms
+   ✓ runs the AST checker and rejects domain indirect random  328ms
+   ✓ runs the AST checker and rejects domain spread clock  334ms
+   ✓ runs the AST checker and rejects domain network  319ms
+   ✓ runs the AST checker and rejects test fake import  327ms
+   ✓ runs the AST checker and rejects reporter runner  317ms
+   ✓ runs the AST checker and rejects reporter computed execution  323ms
+   ✓ runs the AST checker and rejects reporter destructured execution  319ms
+   ✓ rejects IO reached indirectly through a domain helper  341ms
+   ✓ allows pure objects, type-only ports and words in comments or strings  337ms
+
+ Test Files  1 passed (1)
+      Tests  27 passed (27)
+   Start at  21:40:53
+   Duration  5.78s (transform 47ms, setup 0ms, import 98ms, tests 5.43s, environment 0ms)
+

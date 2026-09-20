@@ -1,0 +1,21 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/cleanup/process-resources.test.ts (12 tests) 6565ms
+   ✓ defaults to a nonmutating plan and explicitly cleans only the owned terminal workspace  705ms
+   ✓ preserves ownerless resources  587ms
+   ✓ preserves foreign resources  554ms
+   ✓ preserves changed resources  549ms
+   ✓ preserves hash resources  562ms
+   ✓ preserves a user service and refuses stale PID lock ownership  586ms
+   ✓ rejects a directory junction and never touches its target  584ms
+   ✓ rejects hard-linked files and reports malformed or traversal run identifiers safely  518ms
+   ✓ preserves a replaced directory even when copied owner bytes and content match  655ms
+   ✓ preserves associated global locks without relying on current PID existence  549ms
+   ✓ keeps evidence readable when apply encounters changed or unverified ownership  577ms
+
+ Test Files  1 passed (1)
+      Tests  12 passed (12)
+   Start at  23:03:54
+   Duration  7.66s (transform 300ms, setup 0ms, import 773ms, tests 6.56s, environment 0ms)
+

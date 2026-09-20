@@ -1,0 +1,90 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/cleanup/process-resources.test.ts (9 tests | 8 failed) 3574ms
+   × defaults to a nonmutating plan and explicitly cleans only the owned terminal workspace 481ms
+   × preserves ownerless resources 452ms
+   × preserves foreign resources 413ms
+   ✓ preserves live resources 140ms
+   × preserves changed resources 434ms
+   × preserves hash resources 398ms
+   × preserves a user service and refuses stale PID lock ownership 426ms
+   × rejects a directory junction and never touches its target 393ms
+   × rejects hard-linked files and reports malformed or traversal run identifiers safely 436ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/cleanup/process-resources.test.ts > defaults to a nonmutating plan and explicitly cleans only the owned terminal workspace
+AssertionError: expected 'ERROR' to be 'SEALED' // Object.is equality
+
+Expected: "SEALED"
+Received: "ERROR"
+
+ ❯ fixture tests/integration/cleanup/process-resources.test.ts:16:320
+
+ ❯ tests/integration/cleanup/process-resources.test.ts:21:10
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  tests/integration/cleanup/process-resources.test.ts > preserves ownerless resources
+ FAIL  tests/integration/cleanup/process-resources.test.ts > preserves foreign resources
+ FAIL  tests/integration/cleanup/process-resources.test.ts > preserves changed resources
+ FAIL  tests/integration/cleanup/process-resources.test.ts > preserves hash resources
+AssertionError: expected 'ERROR' to be 'SEALED' // Object.is equality
+
+Expected: "SEALED"
+Received: "ERROR"
+
+ ❯ fixture tests/integration/cleanup/process-resources.test.ts:16:320
+
+ ❯ tests/integration/cleanup/process-resources.test.ts:25:10
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  tests/integration/cleanup/process-resources.test.ts > preserves a user service and refuses stale PID lock ownership
+AssertionError: expected 'ERROR' to be 'SEALED' // Object.is equality
+
+Expected: "SEALED"
+Received: "ERROR"
+
+ ❯ fixture tests/integration/cleanup/process-resources.test.ts:16:320
+
+ ❯ tests/integration/cleanup/process-resources.test.ts:33:14
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  tests/integration/cleanup/process-resources.test.ts > rejects a directory junction and never touches its target
+AssertionError: expected 'ERROR' to be 'SEALED' // Object.is equality
+
+Expected: "SEALED"
+Received: "ERROR"
+
+ ❯ fixture tests/integration/cleanup/process-resources.test.ts:16:320
+
+ ❯ tests/integration/cleanup/process-resources.test.ts:36:10
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  tests/integration/cleanup/process-resources.test.ts > rejects hard-linked files and reports malformed or traversal run identifiers safely
+AssertionError: expected 'ERROR' to be 'SEALED' // Object.is equality
+
+Expected: "SEALED"
+Received: "ERROR"
+
+ ❯ fixture tests/integration/cleanup/process-resources.test.ts:16:320
+
+ ❯ tests/integration/cleanup/process-resources.test.ts:39:10
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  8 failed | 1 passed (9)
+   Start at  23:01:00
+   Duration  4.92s (transform 360ms, setup 0ms, import 930ms, tests 3.57s, environment 0ms)
+

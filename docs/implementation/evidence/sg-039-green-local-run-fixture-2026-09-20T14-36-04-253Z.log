@@ -1,0 +1,12 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/fixtures/local-run-project.test.ts (2 tests) 17123ms
+   ✓ builds a confirmed trusted local fixture whose actual assertion emits stable JUnit  16093ms
+   ✓ failure fixture reports a real mismatching calculation with process exit one  1028ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  22:36:05
+   Duration  19.36s (transform 649ms, setup 0ms, import 1.96s, tests 17.12s, environment 0ms)
+

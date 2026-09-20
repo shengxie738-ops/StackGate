@@ -1,0 +1,8 @@
+$ tsc --noEmit
+packages/core/src/services/gate-service.ts(75,54): error TS2379: Argument of type '{ status: "CANCELED" | "ERROR" | "EXITED" | "TIMED_OUT"; raw_exit_code: number | null; signal: string | null; process: { pid: number; creation_identity: string; owner_token: string; } | null; ... 4 more ...; provenance?: { ...; }; }' is not assignable to parameter of type 'RunnerResult' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+  Types of property 'diagnostics' are incompatible.
+    Type '{ code: "CONFIG_INVALID" | "TASK_UNCONFIRMED" | "EXECUTION_UNTRUSTED" | "BASELINE_UNAVAILABLE" | "PLAN_STALE" | "INPUT_STALE" | "UNSUPPORTED_SCHEMA" | "CONTRACT_MISMATCH" | ... 15 more ... | "DEPENDENCY_BLOCKED"; ... 5 more ...; source: string; }[]' is not assignable to type 'Diagnostic[]'.
+      Type '{ code: "CONFIG_INVALID" | "TASK_UNCONFIRMED" | "EXECUTION_UNTRUSTED" | "BASELINE_UNAVAILABLE" | "PLAN_STALE" | "INPUT_STALE" | "UNSUPPORTED_SCHEMA" | "CONTRACT_MISMATCH" | ... 15 more ... | "DEPENDENCY_BLOCKED"; ... 5 more ...; source: string; }' is not assignable to type 'Diagnostic' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+        Types of property 'rule_id' are incompatible.
+          Type 'string' is not assignable to type '`SG-CONTRACT-${string}` | `SG-CONSUMER-${string}` | `SG-RUNTIME-${string}` | `SG-EVIDENCE-${string}` | `SG-POLICY-${string}` | `SG-ENV-${string}` | `SG-TOOL-${string}`'.
+[ELIFECYCLE] Command failed with exit code 2.

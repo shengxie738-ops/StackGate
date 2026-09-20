@@ -1,0 +1,29 @@
+{
+  "task_id": "SG-029",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+    "branch": "V1",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+  },
+  "command": "pnpm exec eslint packages/core/src/storage/file-evidence-store.ts packages/core/src/storage/event-log.ts packages/core/src/storage/run-layout.ts packages/core/src/ports/evidence.ts tests/integration/storage/store.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "eslint",
+    "packages/core/src/storage/file-evidence-store.ts",
+    "packages/core/src/storage/event-log.ts",
+    "packages/core/src/storage/run-layout.ts",
+    "packages/core/src/ports/evidence.ts",
+    "tests/integration/storage/store.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T13:56:02.165Z",
+  "finished_at": "2026-09-20T13:56:04.919Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-029-lint-final-2026-09-20T13-56-02-165Z.json",
+  "log_path": "docs/implementation/evidence/sg-029-lint-final-2026-09-20T13-56-02-165Z.log",
+  "signal": null,
+  "duration_ms": 2754
+}

@@ -1,0 +1,20 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/gate/command-provenance.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/gate/command-provenance.test.ts [ tests/unit/gate/command-provenance.test.ts ]
+Error: Cannot find module '../../../packages/core/src/services/command-provenance.js' imported from 'G:/StackGate/tests/unit/gate/command-provenance.test.ts'
+ ❯ tests/unit/gate/command-provenance.test.ts:3:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  23:30:11
+   Duration  472ms (transform 33ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

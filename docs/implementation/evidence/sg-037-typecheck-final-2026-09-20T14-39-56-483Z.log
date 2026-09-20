@@ -1,0 +1,10 @@
+Lockfile is up to date, resolution step is skipped
+Already up to date
+
+[WARN] Failed to create bin at G:\StackGate\node_modules\.bin\tsc. ENOENT: no such file or directory, chmod 'G:\StackGate\node_modules\.bin\tsc'
+[WARN] Failed to create bin at G:\StackGate\node_modules\.bin\eslint. ENOENT: no such file or directory, chmod 'G:\StackGate\node_modules\.bin\eslint'
+[WARN] Failed to create bin at G:\StackGate\node_modules\.bin\json2ts. ENOENT: no such file or directory, chmod 'G:\StackGate\node_modules\.bin\json2ts.CMD'
+Done in 634ms using pnpm v11.2.2
+$ tsc --noEmit
+node_modules/.pnpm/saxes@6.0.0_patch_hash=c126_e3b961624c3712b68b8726a74ea59433/node_modules/saxes/saxes.d.ts(428,88): error TS1005: '?' expected.
+[ELIFECYCLE] Command failed with exit code 2.

@@ -1,0 +1,22 @@
+$ node scripts/build.mjs
+apps/cli/src/output.ts(9,37): error TS2322: Type '"TOOL_FAILURE"' is not assignable to type 'ReasonCode'.
+node:internal/errors:985
+  const err = new Error(message);
+              ^
+
+Error: Command failed: F:\node.exe node_modules/typescript/bin/tsc --project tsconfig.build.json
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:925:11)
+    at execFileSync (node:child_process:961:15)
+    at file:///G:/StackGate/scripts/build.mjs:6:1 {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 39392,
+  stdout: null,
+  stderr: null
+}
+
+Node.js v24.11.1
+[ELIFECYCLE] Command failed with exit code 1.

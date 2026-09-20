@@ -1,0 +1,37 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/gate/current-state.test.ts (6 tests | 1 failed | 5 skipped) 4311ms
+   ↓ missing run evidence remains unverified and cannot be allowed
+   ↓ stores a missing-run evaluation outside runs without inventing a run directory
+   × retains actual unsealed lifecycle prefixes and distinguishes an aborted run from pending work 4310ms
+   ↓ authenticates a real sealed run then reevaluates source, task, policy and evidence without changing historical facts
+   ↓ keeps real failed evidence denied and detects changed executable bytes without launching that executable
+   ↓ does not turn local CI environment claims into required backend provenance
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/gate/current-state.test.ts > retains actual unsealed lifecycle prefixes and distinguishes an aborted run from pending work
+AssertionError: expected { schema_version: '0.1', …(8) } to match object { decision: 'DENY', exit_code: 3 }
+(7 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "decision": "DENY",
+-   "exit_code": 3,
++   "exit_code": 2,
+  }
+
+ ❯ tests/integration/gate/current-state.test.ts:17:211
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 skipped (6)
+   Start at  23:23:12
+   Duration  7.52s (transform 1.09s, setup 0ms, import 2.80s, tests 4.31s, environment 0ms)
+

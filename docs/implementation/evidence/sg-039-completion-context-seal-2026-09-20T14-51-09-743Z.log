@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/storage/completion.test.ts (3 tests) 951ms
+   ✓ binds restricted context bytes and completion to the sealed manifest, retaining old event compatibility  751ms
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  22:51:11
+   Duration  2.03s (transform 255ms, setup 0ms, import 787ms, tests 951ms, environment 0ms)
+

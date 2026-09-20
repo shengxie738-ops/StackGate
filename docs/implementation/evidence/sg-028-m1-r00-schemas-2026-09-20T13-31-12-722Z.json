@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-028",
+  "command": "pnpm verify:schemas",
+  "argv": [
+    "pnpm",
+    "verify:schemas"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T13:31:12.722Z",
+  "finished_at": "2026-09-20T13:31:15.468Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-schemas-2026-09-20T13-31-12-722Z.json",
+  "log_path": "docs/implementation/evidence/sg-028-m1-r00-schemas-2026-09-20T13-31-12-722Z.log",
+  "signal": null,
+  "duration_ms": 2746
+}

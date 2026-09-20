@@ -1,0 +1,11 @@
+$ tsc --noEmit
+packages/core/src/services/plan-service.ts(71,47): error TS2379: Argument of type '{ storeRoot: string | undefined; }' is not assignable to parameter of type '{ storeRoot?: string; additionalTools?: Record<string, string>; }' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+  Types of property 'storeRoot' are incompatible.
+    Type 'string | undefined' is not assignable to type 'string'.
+      Type 'undefined' is not assignable to type 'string'.
+packages/core/src/services/plan-service.ts(146,63): error TS2379: Argument of type '{ storeRoot: string | undefined; }' is not assignable to parameter of type '{ storeRoot?: string; additionalTools?: Record<string, string>; }' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+  Types of property 'storeRoot' are incompatible.
+    Type 'string | undefined' is not assignable to type 'string'.
+      Type 'undefined' is not assignable to type 'string'.
+packages/core/src/services/plan-service.ts(148,172): error TS2353: Object literal may only specify known properties, and 'maxNodes' does not exist in type 'DocumentLimits'.
+[ELIFECYCLE] Command failed with exit code 2.

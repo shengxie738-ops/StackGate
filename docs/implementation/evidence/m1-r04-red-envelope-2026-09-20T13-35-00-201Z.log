@@ -1,0 +1,157 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/cli/json-envelope.test.ts (6 tests | 6 failed) 1847ms
+   × unknown command and malformed arguments produce one JSON document with exit 64 284ms
+   × configuration diagnostics have uniform envelope and retain doctor details 369ms
+   × ServiceError retains diagnostics and never prints a second document 291ms
+   × unexpected filesystem exceptions produce safe JSON without raw error details 303ms
+   × success carries structured data and does not invent a Gate decision 335ms
+   × help and version honor JSON mode while plain help stays readable 264ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/cli/json-envelope.test.ts > unknown command and malformed arguments produce one JSON document with exit 64
+SyntaxError: Unexpected end of JSON input
+ ❯ envelope tests/integration/cli/json-envelope.test.ts:11:20
+      9|   expect(result.status,result.stderr).toBe(exit);
+     10|   expect(result.stdout).not.toMatch(/\u001b/);
+     11|   const value=JSON.parse(result.stdout); // Whole-output parsing rejec…
+       |                    ^
+     12|   expect(value).toMatchObject({schema_version:'0.1',ok:exit===0,operat…
+     13|   if(exit!==0)expect(value.diagnostics.length).toBeGreaterThan(0);
+ ❯ tests/integration/cli/json-envelope.test.ts:17:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/integration/cli/json-envelope.test.ts > configuration diagnostics have uniform envelope and retain doctor details
+AssertionError: expected { schema_version: '0.1', …(9) } to match object { schema_version: '0.1', …(5) }
+(8 matching properties omitted from actual)
+
+- Expected
++ Received
+
+@@ -119,11 +119,8 @@
+        "recommended_action": "Correct the field against the versioned schema; validation never modifies inputs.",
+        "rule_id": "SG-POLICY-INVALID_STRUCTURE",
+        "source": "project-config",
+      },
+    ],
+-   "exit_code": 64,
+-   "ok": false,
+-   "operation": "doctor",
+    "runtime": "NOT_EXECUTED",
+    "schema_version": "0.1",
+  }
+
+ ❯ envelope tests/integration/cli/json-envelope.test.ts:12:17
+     10|   expect(result.stdout).not.toMatch(/\u001b/);
+     11|   const value=JSON.parse(result.stdout); // Whole-output parsing rejec…
+     12|   expect(value).toMatchObject({schema_version:'0.1',ok:exit===0,operat…
+       |                 ^
+     13|   if(exit!==0)expect(value.diagnostics.length).toBeGreaterThan(0);
+     14|   return value;
+ ❯ tests/integration/cli/json-envelope.test.ts:23:15
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/integration/cli/json-envelope.test.ts > ServiceError retains diagnostics and never prints a second document
+AssertionError: expected { diagnostics: [ { …(7) } ], …(1) } to match object { schema_version: '0.1', …(5) }
+
+- Expected
++ Received
+
+@@ -8,11 +8,7 @@
+        "recommended_action": "Correct the declared configuration; no business command was executed.",
+        "rule_id": "SG-POLICY-CONFIGURATION",
+        "source": "configuration",
+      },
+    ],
+-   "exit_code": 64,
+-   "ok": false,
+-   "operation": "task confirm",
+    "runtime": "NOT_EXECUTED",
+-   "schema_version": "0.1",
+  }
+
+ ❯ envelope tests/integration/cli/json-envelope.test.ts:12:17
+     10|   expect(result.stdout).not.toMatch(/\u001b/);
+     11|   const value=JSON.parse(result.stdout); // Whole-output parsing rejec…
+     12|   expect(value).toMatchObject({schema_version:'0.1',ok:exit===0,operat…
+       |                 ^
+     13|   if(exit!==0)expect(value.diagnostics.length).toBeGreaterThan(0);
+     14|   return value;
+ ❯ tests/integration/cli/json-envelope.test.ts:28:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/integration/cli/json-envelope.test.ts > unexpected filesystem exceptions produce safe JSON without raw error details
+SyntaxError: Unexpected end of JSON input
+ ❯ envelope tests/integration/cli/json-envelope.test.ts:11:20
+      9|   expect(result.status,result.stderr).toBe(exit);
+     10|   expect(result.stdout).not.toMatch(/\u001b/);
+     11|   const value=JSON.parse(result.stdout); // Whole-output parsing rejec…
+       |                    ^
+     12|   expect(value).toMatchObject({schema_version:'0.1',ok:exit===0,operat…
+     13|   if(exit!==0)expect(value.diagnostics.length).toBeGreaterThan(0);
+ ❯ tests/integration/cli/json-envelope.test.ts:34:15
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/integration/cli/json-envelope.test.ts > success carries structured data and does not invent a Gate decision
+AssertionError: expected { schema_version: '0.1', …(9) } to match object { schema_version: '0.1', …(5) }
+(8 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "diagnostics": [],
+-   "exit_code": 0,
+-   "ok": true,
+-   "operation": "doctor",
+    "runtime": "NOT_EXECUTED",
+    "schema_version": "0.1",
+  }
+
+ ❯ envelope tests/integration/cli/json-envelope.test.ts:12:17
+     10|   expect(result.stdout).not.toMatch(/\u001b/);
+     11|   const value=JSON.parse(result.stdout); // Whole-output parsing rejec…
+     12|   expect(value).toMatchObject({schema_version:'0.1',ok:exit===0,operat…
+       |                 ^
+     13|   if(exit!==0)expect(value.diagnostics.length).toBeGreaterThan(0);
+     14|   return value;
+ ❯ tests/integration/cli/json-envelope.test.ts:40:15
+ ❯ withTestDirectory tests/support/test-paths.ts:7:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  tests/integration/cli/json-envelope.test.ts > help and version honor JSON mode while plain help stays readable
+AssertionError: Unknown or unsupported command/arguments. Use --help.
+: expected 64 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 64
+
+ ❯ envelope tests/integration/cli/json-envelope.test.ts:9:39
+      7| function invoke(args:string[]){return spawnSync(process.execPath,[cli,…
+      8| function envelope(result:ReturnType<typeof invoke>,operation:string,ex…
+      9|   expect(result.status,result.stderr).toBe(exit);
+       |                                       ^
+     10|   expect(result.stdout).not.toMatch(/\u001b/);
+     11|   const value=JSON.parse(result.stdout); // Whole-output parsing rejec…
+ ❯ tests/integration/cli/json-envelope.test.ts:44:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed (6)
+   Start at  21:35:01
+   Duration  2.18s (transform 28ms, setup 0ms, import 64ms, tests 1.85s, environment 0ms)
+

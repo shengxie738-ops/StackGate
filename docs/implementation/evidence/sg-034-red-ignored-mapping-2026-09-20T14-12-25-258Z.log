@@ -1,0 +1,110 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/plan-service.test.ts (7 tests | 1 failed | 6 skipped) 30525ms
+   ↓ persists a deterministic verified plan with exact ignored script bytes and required JUnit IDs
+   ↓ rejects oversized plan files before allocating their contents
+   ↓ rejects unconfirmed task or unreviewed trust before persisting an executable plan
+   ↓ rechecks ignored script, policy and task identity, and rejects modified stored context
+   ↓ retains an explicitly required runtime check and marks unsupported local backend requirements blocked
+   ↓ keeps required e2e and an explicit environment dependency when M3 environment is unavailable
+   × binds the raw bytes of ignored mappings used to select checks 30524ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/plan-service.test.ts > binds the raw bytes of ignored mappings used to select checks
+AssertionError: expected [ { …(7) }, { …(7) }, { …(7) }, …(5) ] to deep equally contain ObjectContaining{…}
+
+- Expected: 
+ObjectContaining {
+  "digest": StringMatching /^[a-f0-9]{64}$/,
+  "relative_path": ".stackgate/mappings.json",
+}
+
++ Received: 
+[
+  {
+    "digest": "a99b3d7cbe7c14c090a0b6c91e33a5f20d1de93695916388bb740669a43e2760",
+    "kind": "file",
+    "mode": "100644",
+    "relative_path": ".gitignore",
+    "staged": false,
+    "tracked": false,
+    "unstaged": false,
+  },
+  {
+    "digest": "7c75cbc6305e0d9274ff620f690a8acd1c11d8647ca1ddbf03cf50fced435e3a",
+    "kind": "file",
+    "mode": "100644",
+    "relative_path": ".stackgate.yaml",
+    "staged": false,
+    "tracked": true,
+    "unstaged": true,
+  },
+  {
+    "digest": "2450a66f427164575eae5c3c19f7f313a530435301a0e2c6c88fafbf89e7fc58",
+    "kind": "file",
+    "mode": "100644",
+    "relative_path": ".stackgate/tasks/performance.json",
+    "staged": false,
+    "tracked": true,
+    "unstaged": true,
+  },
+  {
+    "digest": "37c7eee652d10bed821ae787cb52b320087c6309809ddef407e1d5fa213e1fe7",
+    "kind": "file",
+    "mode": "100644",
+    "relative_path": "apps/web/consumer.ts",
+    "staged": false,
+    "tracked": false,
+    "unstaged": false,
+  },
+  {
+    "digest": "03934cb876c4fbf6c70198435b99e77f48ffea99dbffe4d15ec695a4b302ee49",
+    "kind": "file",
+    "mode": "100644",
+    "relative_path": "apps/web/run.js",
+    "staged": false,
+    "tracked": false,
+    "unstaged": false,
+  },
+  {
+    "digest": "1a38de0d66d791dec4cc7ae6b3f9f2ae0aa3410ae7bbcb0c3bfd88cdf45aae8d",
+    "kind": "file",
+    "mode": "100644",
+    "relative_path": "contracts/openapi.json",
+    "staged": false,
+    "tracked": true,
+    "unstaged": false,
+  },
+  {
+    "digest": "da68f54607d5f5644954096ce1597c006c5bb9f2497e07441bf064b81003ef8a",
+    "kind": "file",
+    "mode": "100644",
+    "relative_path": "source.txt",
+    "staged": false,
+    "tracked": true,
+    "unstaged": false,
+  },
+  {
+    "digest": "3f62d9392cc8809938d491a29bfcedbd49ca39a725943c4c07863b39e0f0e16d",
+    "kind": "file",
+    "mode": "100644",
+    "relative_path": "tests/acceptance/performance.test.ts",
+    "staged": false,
+    "tracked": true,
+    "unstaged": false,
+  },
+]
+
+ ❯ tests/integration/plan-service.test.ts:108:77
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 skipped (7)
+   Start at  22:12:26
+   Duration  32.62s (transform 595ms, setup 0ms, import 1.77s, tests 30.52s, environment 0ms)
+

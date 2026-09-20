@@ -1,0 +1,74 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/storage/cache.test.ts (5 tests | 4 failed) 13ms
+   × reuses identical static parse data and invalidates every identity input 5ms
+   ✓ rejects runtime check and gate results even when cast through an untyped caller 2ms
+   × treats corruption as a miss, reparses and preserves unrelated files 1ms
+   × bounds retained bytes and never follows a substituted cache link 1ms
+   × supports only strict static configuration and bounded OpenAPI operation projections 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/storage/cache.test.ts > reuses identical static parse data and invalidates every identity input
+Error: Static cache not implemented
+ ❯ ParseCache.put packages/core/src/storage/parse-cache.ts:5:72
+      3|  constructor(readonly root:string,readonly options:{max_bytes?:number;…
+      4|  async get(_identity:CacheIdentity,_kind:string):Promise<unknown>{retu…
+      5|  async put(_identity:CacheIdentity,_entry:unknown):Promise<void>{throw…
+       |                                                                        ^
+      6|  async getOrParse(_identity:CacheIdentity,_kind:string,_parse:()=>unkn…
+      7| }
+ ❯ tests/unit/storage/cache.test.ts:9:47
+ ❯ withTestDirectory tests/support/test-paths.ts:7:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/unit/storage/cache.test.ts > treats corruption as a miss, reparses and preserves unrelated files
+Error: Static cache not implemented
+ ❯ ParseCache.getOrParse packages/core/src/storage/parse-cache.ts:6:122
+      4|  async get(_identity:CacheIdentity,_kind:string):Promise<unknown>{retu…
+      5|  async put(_identity:CacheIdentity,_entry:unknown):Promise<void>{throw…
+      6|  async getOrParse(_identity:CacheIdentity,_kind:string,_parse:()=>unkn…
+       |                                                                                                                          ^
+      7| }
+      8| 
+ ❯ tests/unit/storage/cache.test.ts:20:26
+ ❯ withTestDirectory tests/support/test-paths.ts:7:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/unit/storage/cache.test.ts > bounds retained bytes and never follows a substituted cache link
+Error: Static cache not implemented
+ ❯ ParseCache.put packages/core/src/storage/parse-cache.ts:5:72
+      3|  constructor(readonly root:string,readonly options:{max_bytes?:number;…
+      4|  async get(_identity:CacheIdentity,_kind:string):Promise<unknown>{retu…
+      5|  async put(_identity:CacheIdentity,_entry:unknown):Promise<void>{throw…
+       |                                                                        ^
+      6|  async getOrParse(_identity:CacheIdentity,_kind:string,_parse:()=>unkn…
+      7| }
+ ❯ tests/unit/storage/cache.test.ts:28:34
+ ❯ withTestDirectory tests/support/test-paths.ts:7:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/unit/storage/cache.test.ts > supports only strict static configuration and bounded OpenAPI operation projections
+Error: Static cache not implemented
+ ❯ ParseCache.put packages/core/src/storage/parse-cache.ts:5:72
+      3|  constructor(readonly root:string,readonly options:{max_bytes?:number;…
+      4|  async get(_identity:CacheIdentity,_kind:string):Promise<unknown>{retu…
+      5|  async put(_identity:CacheIdentity,_entry:unknown):Promise<void>{throw…
+       |                                                                        ^
+      6|  async getOrParse(_identity:CacheIdentity,_kind:string,_parse:()=>unkn…
+      7| }
+ ❯ tests/unit/storage/cache.test.ts:37:14
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 1 passed (5)
+   Start at  21:58:01
+   Duration  383ms (transform 39ms, setup 0ms, import 91ms, tests 13ms, environment 0ms)
+

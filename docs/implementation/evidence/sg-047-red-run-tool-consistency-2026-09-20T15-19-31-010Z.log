@@ -1,0 +1,35 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/run-evaluation.test.ts (1 test | 1 failed) 7ms
+   × does not allow UNKNOWN recorded tool identities to differ from GateService policy 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/run-evaluation.test.ts > does not allow UNKNOWN recorded tool identities to differ from GateService policy
+AssertionError: expected { schema_version: '0.1', …(5) } to match object { verdict: 'INCOMPLETE', …(2) }
+(3 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "decision": "DENY",
+-   "exit_code": 2,
+-   "verdict": "INCOMPLETE",
++   "decision": "ALLOW",
++   "exit_code": 0,
++   "verdict": "PASS",
+  }
+
+ ❯ tests/unit/run-evaluation.test.ts:8:162
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  23:19:32
+   Duration  510ms (transform 91ms, setup 0ms, import 187ms, tests 7ms, environment 0ms)
+

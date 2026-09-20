@@ -1,0 +1,14 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/security/redaction.test.ts (5 tests) 3ms
+ ✓ tests/security/artifact-budget.test.ts (3 tests) 284ms
+ ✓ tests/integration/storage/store.test.ts (8 tests) 1563ms
+   ✓ creates independent runs and preserves immutable artifacts with checked bytes  445ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope  307ms
+
+ Test Files  3 passed (3)
+      Tests  16 passed (16)
+   Start at  22:01:21
+   Duration  2.61s (transform 488ms, setup 0ms, import 1.47s, tests 1.85s, environment 0ms)
+

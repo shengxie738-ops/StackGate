@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-028",
+  "command": "pnpm test:contract",
+  "argv": [
+    "pnpm",
+    "test:contract"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T13:29:13.736Z",
+  "finished_at": "2026-09-20T13:29:19.051Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-contract-2026-09-20T13-29-13-736Z.json",
+  "log_path": "docs/implementation/evidence/sg-028-m1-r00-contract-2026-09-20T13-29-13-736Z.log",
+  "signal": null,
+  "duration_ms": 5315
+}

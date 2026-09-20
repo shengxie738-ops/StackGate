@@ -1,0 +1,18 @@
+$ node scripts/generate-types.mjs
+G:\StackGate\node_modules\.pnpm\@apidevtools+json-schema-ref-parser@11.5.5\node_modules\@apidevtools\json-schema-ref-parser\dist\lib\resolvers\file.js:61
+            throw new errors_js_1.ResolverError((0, ono_1.ono)(err, `Error opening file "${path}"`), path);
+                  ^
+
+ResolverError: Error opening file "G:\StackGate\schemas\0.1\diagnostic.schema.json" 
+ENOENT: no such file or directory, open 'G:\StackGate\schemas\0.1\diagnostic.schema.json'
+    at Object.read (G:\StackGate\node_modules\.pnpm\@apidevtools+json-schema-ref-parser@11.5.5\node_modules\@apidevtools\json-schema-ref-parser\dist\lib\resolvers\file.js:61:19) {
+  code: 'ERESOLVER',
+  source: 'G:\\StackGate\\schemas\\0.1\\diagnostic.schema.json',
+  path: null,
+  toJSON: [Function: toJSON],
+  ioErrorCode: 'ENOENT',
+  Symbol(nodejs.util.inspect.custom): [Function: inspect]
+}
+
+Node.js v24.11.1
+[ELIFECYCLE] Command failed with exit code 1.

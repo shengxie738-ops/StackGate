@@ -1,0 +1,206 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/trust/input-scope.test.ts (7 tests | 2 failed | 5 skipped) 7527ms
+   ↓ ignored dependencies and untracked generated caches do not alter trust or get recursively read
+   ↓ tracked generated-looking source, untracked source, and dependency identities each change trust
+   ↓ direct ignored dist script is retained without reading sibling generated files
+   × explicit ignored required files bind bytes and reject missing or secret-bearing inputs 5149ms
+   ↓ ordinary ignored .env bytes do not enter preview or change digest
+   × rejects command directory entry points whose concrete executed inputs are unknown 2377ms
+   ↓ explicit command input through an escaping directory link is rejected
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/trust/input-scope.test.ts > explicit ignored required files bind bytes and reject missing or secret-bearing inputs
+AssertionError: expected error to match asymmetric matcher
+
+- Expected
++ Received
+
+- ObjectContaining {
+-   "exit_code": 64,
++ Error {
++   "message": "ENOENT: no such file or directory, stat 'C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-task-d6Uq0T\\missing.local.json'",
++   "errno": -4058,
++   "code": "ENOENT",
++   "syscall": "stat",
++   "path": "C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-task-d6Uq0T\\missing.local.json",
+  }
+
+ ❯ tests/integration/trust/input-scope.test.ts:71:5
+     69|     expect((await f.service.review()).execution_digest).not.toBe(befor…
+     70|     f.config.security.required_ignored_inputs = ['missing.local.json']…
+     71|     await expect(f.service.review()).rejects.toThrowError(expect.objec…
+       |     ^
+     72|     await fs.writeFile(path.join(f.root, '.env'), 'PRIVATE_TOKEN=do-no…
+     73|     f.config.security.required_ignored_inputs = ['.env']; await f.save…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/integration/trust/input-scope.test.ts > rejects command directory entry points whose concrete executed inputs are unknown
+AssertionError: promise resolved "{ execution_preview: { …(14) }, …(2) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "already_trusted": false,
++   "execution_digest": "f7d1ad78b9910d11b3545704d6ac8d18f8c017bed9db8500748b5c93fbc1f653",
++   "execution_preview": {
++     "analysis_tools": {
++       "oasdiff": {
++         "status": "VERIFIED",
++         "tool": {
++           "digest": "cce550834cddfa7584a5cfde8deb2a6a57effcbc445f040f4f7ac37da47e8173",
++           "executable": "G:\\StackGate\\tools\\bin\\oasdiff-1.32.1\\oasdiff.exe",
++           "name": "oasdiff",
++           "platform": "win32-x64",
++           "version": "1.32.1",
++         },
++       },
++     },
++     "commands": [
++       {
++         "args": [
++           "run.js",
++         ],
++         "cwd": "apps/api",
++         "executable": "F:\\node.exe",
++         "id": "api_probe",
++         "timeout_seconds": 60,
++         "tool_hash": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++       },
++       {
++         "args": [
++           "run.js",
++         ],
++         "cwd": "apps/api",
++         "executable": "F:\\node.exe",
++         "id": "export_api",
++         "timeout_seconds": 60,
++         "tool_hash": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++       },
++       {
++         "args": [
++           "run.js",
++         ],
++         "cwd": "apps/web",
++         "executable": "F:\\node.exe",
++         "id": "web_e2e",
++         "timeout_seconds": 180,
++         "tool_hash": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++       },
++       {
++         "args": [
++           "run.js",
++         ],
++         "cwd": "apps/web",
++         "executable": "F:\\node.exe",
++         "id": "web_typecheck",
++         "timeout_seconds": 120,
++         "tool_hash": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++       },
++       {
++         "args": [
++           "dist",
++         ],
++         "cwd": "apps/web",
++         "executable": "F:\\node.exe",
++         "id": "web_unit",
++         "timeout_seconds": 180,
++         "tool_hash": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++       },
++     ],
++     "configuration_hash": "a2884c0b8f12765f5964debc98c24202dc2e5c3b0a15a1f9f4e5cf4ec0f2eb68",
++     "docker_operations": [],
++     "environment_names": [
++       "STACKGATE_TEST_TOKEN",
++     ],
++     "input_scope": {
++       "command_inputs": [
++         "apps/api/run.js",
++         "apps/web/run.js",
++       ],
++       "dependency_identity_files": [],
++       "excluded_generated_paths": [
++         "**/node_modules/**",
++         "**/.venv/**",
++         "**/venv/**",
++         "**/dist/**",
++         "**/build/**",
++         "**/coverage/**",
++         "**/.next/**",
++         "**/.vite/**",
++         "**/.cache/**",
++         "**/.pytest_cache/**",
++         "**/__pycache__/**",
++       ],
++       "explicitly_required_ignored_inputs": [],
++       "protected_inputs": [
++         ".stackgate/tasks",
++         "contracts",
++         "tests/acceptance",
++       ],
++       "workspace_sources": [
++         "apps/api",
++         "apps/web",
++       ],
++     },
++     "network_targets": [
++       "http://127.0.0.1:5173",
++       "http://127.0.0.1:8000",
++     ],
++     "platform_id": "win32-x64",
++     "repo_id": "repo_f8ab1a2b69aa905153cf894c28f196c3e50ae771ab26b047a3d4fd1af77fc3d3",
++     "runtime": "NOT_EXECUTED",
++     "script_input_hash": "53c96dfdbefca0358bc5932206f3fb2329ba306d39be6c36f6c07b85980f89c5",
++     "tools": {
++       "api_probe": {
++         "digest": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++         "executable": "F:\\node.exe",
++       },
++       "export_api": {
++         "digest": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++         "executable": "F:\\node.exe",
++       },
++       "web_e2e": {
++         "digest": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++         "executable": "F:\\node.exe",
++       },
++       "web_typecheck": {
++         "digest": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++         "executable": "F:\\node.exe",
++       },
++       "web_unit": {
++         "digest": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++         "executable": "F:\\node.exe",
++       },
++     },
++     "worktree_id": "worktree_6607e1507816bcc3b37be0bbf7da8d85024fdf650d5b6bf3004ac7f7d6aaf213",
++     "writable_paths": [
++       ".stackgate/state",
++       "apps/api",
++       "apps/web",
++     ],
++   },
+  }
+
+ ❯ tests/integration/trust/input-scope.test.ts:93:36
+     91|     await fs.writeFile(path.join(f.root, 'apps/web/dist/index.js'), '/…
+     92|     f.config.commands.web_unit.args = ['dist']; await f.save();
+     93|     await expect(f.service.review()).rejects.toThrowError(expect.objec…
+       |                                    ^
+     94|   } finally { await f.close(); }
+     95| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 5 skipped (7)
+   Start at  21:42:28
+   Duration  8.56s (transform 271ms, setup 0ms, import 801ms, tests 7.53s, environment 0ms)
+

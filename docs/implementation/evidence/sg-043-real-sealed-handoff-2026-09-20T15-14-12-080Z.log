@@ -1,0 +1,12 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/handoff.test.ts (3 tests) 87961ms
+   ✓ truncates optional indexes within budget without removing failures or gaps  379ms
+   ✓ reads a real sealed failed run without executing again or mutating its evidence  87550ms
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  23:14:13
+   Duration  90.82s (transform 951ms, setup 0ms, import 2.53s, tests 87.96s, environment 0ms)
+

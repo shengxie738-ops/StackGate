@@ -142,6 +142,10 @@
     },
     "canceled": {
       "type": "boolean"
+    },
+    "previous_run_id": {
+      "type": "string",
+      "pattern": "^run_[A-Za-z0-9_-]+$"
     }
   },
   "required": [

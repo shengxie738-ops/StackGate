@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/run/lifecycle.test.ts (6 tests | 5 skipped) 53296ms
+   ✓ never allows a run when an event consumer fails after a completed check  53295ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 5 skipped (6)
+   Start at  23:00:17
+   Duration  56.07s (transform 822ms, setup 0ms, import 2.46s, tests 53.30s, environment 0ms)
+

@@ -13,11 +13,14 @@ it('built help is executable without a TypeScript runtime', () => {
 });
 
 it('rejects unsupported arguments and combinations with exit 64', () => {
-  for (const args of [['--made-up'], ['--help', '--made-up'], ['run']]) {
+  for (const args of [['--made-up'], ['--help', '--made-up']]) {
     const result = spawnSync(process.execPath, ['dist/cli.mjs', ...args], { encoding: 'utf8' });
     expect(result.status, result.stderr).toBe(64);
     expect(result.stderr).toMatch(/unknown|unsupported/i);
   }
+});
+it('rejects the implemented run command when its required plan is missing',()=>{
+  const result=spawnSync(process.execPath,['dist/cli.mjs','run'],{encoding:'utf8'});expect(result.status).toBe(64);expect(result.stderr).toMatch(/requires.*plan/i);
 });
 
 it('prints package version', () => {

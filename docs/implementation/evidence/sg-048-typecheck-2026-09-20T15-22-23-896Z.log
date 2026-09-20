@@ -1,0 +1,4 @@
+$ tsc --noEmit
+tests/integration/run/lifecycle.test.ts(21,400): error TS2353: Object literal may only specify known properties, and 'previous_run_id' does not exist in type '{ signal?: AbortSignal; concurrency?: number; }'.
+tests/integration/runner/negative-matrix.test.ts(77,267): error TS18046: 'command' is of type 'unknown'.
+[ELIFECYCLE] Command failed with exit code 2.

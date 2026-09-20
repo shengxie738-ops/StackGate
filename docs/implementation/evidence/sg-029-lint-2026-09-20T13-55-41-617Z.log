@@ -1,0 +1,6 @@
+
+G:\StackGate\packages\core\src\storage\file-evidence-store.ts
+  82:13  error  '_request' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (1 error, 0 warnings)
+

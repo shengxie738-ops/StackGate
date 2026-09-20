@@ -1,0 +1,155 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/compatibility/command-resolver.test.ts (5 tests | 4 failed) 17887ms
+   × requires current explicit grant then preserves Unicode and shell metacharacters as argv 6348ms
+   × resolves reviewed npm.cmd to Node and fixed JS entry, then runs actual npm script without shell fallback 4635ms
+   × blocks unknown batch commands and repository PATH tool substitution 1966ms
+   ✓ rejects output outside exact run scope and origins outside the reviewed permission  4933ms
+   × normalizes Windows environment names and rejects ambiguous duplicate values 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/compatibility/command-resolver.test.ts > requires current explicit grant then preserves Unicode and shell metacharacters as argv
+Error: SG032 not implemented
+ ❯ CommandResolver.resolve packages/core/src/services/command-resolver.ts:5:100
+      3| export class CommandResolver {
+      4|  constructor(readonly root:string,readonly options:{trustStoreRoot?:st…
+      5|  async resolve(_commandId:string,_context:CommandResolutionContext):Pr…
+       |                                                                                                    ^
+      6| }
+      7| 
+ ❯ tests/compatibility/command-resolver.test.ts:24:130
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/compatibility/command-resolver.test.ts > resolves reviewed npm.cmd to Node and fixed JS entry, then runs actual npm script without shell fallback
+Error: SG032 not implemented
+ ❯ CommandResolver.resolve packages/core/src/services/command-resolver.ts:5:100
+      3| export class CommandResolver {
+      4|  constructor(readonly root:string,readonly options:{trustStoreRoot?:st…
+      5|  async resolve(_commandId:string,_context:CommandResolutionContext):Pr…
+       |                                                                                                    ^
+      6| }
+      7| 
+ ❯ tests/compatibility/command-resolver.test.ts:33:178
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/compatibility/command-resolver.test.ts > blocks unknown batch commands and repository PATH tool substitution
+AssertionError: promise resolved "{ execution_preview: { …(14) }, …(2) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "already_trusted": false,
++   "execution_digest": "57640438f21c9aa92d8c9a9dff9eb90fe90d534a0784ea62d7481dd47982dcf7",
++   "execution_preview": {
++     "analysis_tools": {
++       "oasdiff": {
++         "status": "VERIFIED",
++         "tool": {
++           "digest": "cce550834cddfa7584a5cfde8deb2a6a57effcbc445f040f4f7ac37da47e8173",
++           "executable": "G:\\StackGate\\tools\\bin\\oasdiff-1.32.1\\oasdiff.exe",
++           "name": "oasdiff",
++           "platform": "win32-x64",
++           "version": "1.32.1",
++         },
++       },
++     },
++     "commands": [
++       {
++         "args": [
++           "argv.cjs",
++           "中文 空格",
++           "a&b",
++           "a;b",
++         ],
++         "cwd": "apps/web",
++         "executable": "C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-task-TdB7h2\\evil.cmd",
++         "id": "test",
++         "timeout_seconds": 15,
++         "tool_hash": "1012f2241a2bbe45d1604795670584a7c62e633f5c9adbdacd3e98448efc6367",
++       },
++     ],
++     "configuration_hash": "b69d623319c5810c185582d730414dc7efb3a55b052777614fb7383814eae410",
++     "docker_operations": [],
++     "environment_names": [
++       "STACKGATE_TEST_TOKEN",
++     ],
++     "input_scope": {
++       "command_inputs": [
++         "apps/web/argv.cjs",
++       ],
++       "dependency_identity_files": [],
++       "excluded_generated_paths": [
++         "**/node_modules/**",
++         "**/.venv/**",
++         "**/venv/**",
++         "**/dist/**",
++         "**/build/**",
++         "**/coverage/**",
++         "**/.next/**",
++         "**/.vite/**",
++         "**/.cache/**",
++         "**/.pytest_cache/**",
++         "**/__pycache__/**",
++       ],
++       "explicitly_required_ignored_inputs": [],
++       "protected_inputs": [
++         ".stackgate/tasks",
++         "contracts",
++         "tests/acceptance",
++       ],
++       "workspace_sources": [
++         "apps/api",
++         "apps/web",
++       ],
++     },
++     "network_targets": [
++       "http://127.0.0.1:5173",
++       "http://127.0.0.1:8000",
++     ],
++     "platform_id": "win32-x64",
++     "repo_id": "repo_e334e2b1882af0db39cf63ee2c8de755c5915c6323f1293c7630e01d5e1f53fb",
++     "runtime": "NOT_EXECUTED",
++     "script_input_hash": "7556a319ba98e8a577fb415ab11d74b76e703d28d9d477f651b2a0aed56471a2",
++     "tools": {
++       "test": {
++         "digest": "1012f2241a2bbe45d1604795670584a7c62e633f5c9adbdacd3e98448efc6367",
++         "executable": "C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-task-TdB7h2\\evil.cmd",
++       },
++     },
++     "worktree_id": "worktree_c71fb93aa7d20fb6cd136da6831449f57512a53d535a0be94d8ab5eed9ad1e60",
++     "writable_paths": [
++       ".stackgate/state",
++       "apps/api",
++       "apps/web",
++     ],
++   },
+  }
+
+ ❯ tests/compatibility/command-resolver.test.ts:36:255
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/compatibility/command-resolver.test.ts > normalizes Windows environment names and rejects ambiguous duplicate values
+Error: SG032 not implemented
+ ❯ filterEnvironment packages/core/src/domain/environment-filter.ts:1:160
+      1| export function filterEnvironment(_source:Readonly<Record<string,strin…
+       |                                                                                                                                                                ^
+      2| 
+ ❯ tests/compatibility/command-resolver.test.ts:42:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 1 passed (5)
+   Start at  21:52:23
+   Duration  18.96s (transform 281ms, setup 0ms, import 827ms, tests 17.89s, environment 0ms)
+

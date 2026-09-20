@@ -1,0 +1,12 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/gate/current-state.test.ts (4 tests | 2 skipped) 192229ms
+   ✓ keeps real failed evidence denied and detects changed executable bytes without launching that executable  103584ms
+   ✓ does not turn local CI environment claims into required backend provenance  88643ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed | 2 skipped (4)
+   Start at  23:11:56
+   Duration  195.14s (transform 895ms, setup 0ms, import 2.56s, tests 192.23s, environment 0ms)
+

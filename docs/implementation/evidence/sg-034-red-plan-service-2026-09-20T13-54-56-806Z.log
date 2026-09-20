@@ -1,0 +1,56 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/plan-service.test.ts (3 tests | 3 failed) 21996ms
+   × persists a deterministic verified plan with exact ignored script bytes and required JUnit IDs 10933ms
+   × rejects unconfirmed task or unreviewed trust before persisting an executable plan 682ms
+   × rechecks ignored script, policy and task identity, and rejects modified stored context 10380ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/plan-service.test.ts > persists a deterministic verified plan with exact ignored script bytes and required JUnit IDs
+Error: Plan creation not implemented
+ ❯ PlanService.create packages/core/src/services/plan-service.ts:3:100
+      1| export class PlanService {
+      2|   constructor(readonly root: string, readonly options: {trustStoreRoot…
+      3|   async create(_request: {task: string; profile: string; base?: string…
+       |                                                                                                    ^
+      4|   async load(_plan_id: string): Promise<unknown> { throw new Error('Pl…
+      5|   async inspectCurrent(_plan_id: string): Promise<unknown> { throw new…
+ ❯ tests/integration/plan-service.test.ts:13:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/integration/plan-service.test.ts > rejects unconfirmed task or unreviewed trust before persisting an executable plan
+AssertionError: expected error to match asymmetric matcher
+
+- Expected
++ Received
+
+- ObjectContaining {
+-   "exit_code": 64,
++ Error {
++   "message": "Plan creation not implemented",
+  }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/integration/plan-service.test.ts > rechecks ignored script, policy and task identity, and rejects modified stored context
+Error: Plan creation not implemented
+ ❯ PlanService.create packages/core/src/services/plan-service.ts:3:100
+      1| export class PlanService {
+      2|   constructor(readonly root: string, readonly options: {trustStoreRoot…
+      3|   async create(_request: {task: string; profile: string; base?: string…
+       |                                                                                                    ^
+      4|   async load(_plan_id: string): Promise<unknown> { throw new Error('Pl…
+      5|   async inspectCurrent(_plan_id: string): Promise<unknown> { throw new…
+ ❯ tests/integration/plan-service.test.ts:38:94
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  21:54:58
+   Duration  23.18s (transform 342ms, setup 0ms, import 906ms, tests 22.00s, environment 0ms)
+

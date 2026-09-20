@@ -1,0 +1,28 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/gate/current-state.test.ts (2 tests | 1 failed | 1 skipped) 786ms
+   × missing run evidence remains unverified and cannot be allowed 785ms
+   ↓ authenticates a real sealed run then reevaluates source, task, policy and evidence without changing historical facts
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/gate/current-state.test.ts > missing run evidence remains unverified and cannot be allowed
+Error: Gate authentication is not implemented
+ ❯ GateService.inspect packages/core/src/services/gate-service.ts:7:73
+      5| export class GateService {
+      6|  constructor(readonly root:string,readonly options:{trustStoreRoot?:st…
+      7|  async inspect(run_id:string):Promise<GateInspection>{void run_id;thro…
+       |                                                                         ^
+      8|  async evaluate(run_id:string):Promise<GateInspection&{evaluation_path…
+      9| }
+ ❯ tests/integration/gate/current-state.test.ts:8:213
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 skipped (2)
+   Start at  23:03:57
+   Duration  3.56s (transform 924ms, setup 0ms, import 2.46s, tests 786ms, environment 0ms)
+

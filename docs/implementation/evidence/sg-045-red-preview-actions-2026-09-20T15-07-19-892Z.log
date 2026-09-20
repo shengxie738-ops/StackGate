@@ -1,0 +1,41 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/cleanup/process-resources.test.ts (13 tests | 1 failed | 12 skipped) 600ms
+   ↓ defaults to a nonmutating plan and explicitly cleans only the owned terminal workspace
+   ↓ preserves ownerless resources
+   ↓ preserves foreign resources
+   ↓ preserves live resources
+   ↓ preserves changed resources
+   ↓ preserves hash resources
+   ↓ preserves a user service and refuses stale PID lock ownership
+   × rejects a directory junction and never touches its target 599ms
+   ↓ rejects hard-linked files and reports malformed or traversal run identifiers safely
+   ↓ preserves a replaced directory even when copied owner bytes and content match
+   ↓ preserves associated global locks without relying on current PID existence
+   ↓ keeps evidence readable when apply encounters changed or unverified ownership
+   ↓ reports unverified process cleanup but never kills its historical PID
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/cleanup/process-resources.test.ts > rejects a directory junction and never touches its target
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/integration/cleanup/process-resources.test.ts:37:374
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 skipped (13)
+   Start at  23:07:21
+   Duration  1.86s (transform 325ms, setup 0ms, import 873ms, tests 600ms, environment 0ms)
+

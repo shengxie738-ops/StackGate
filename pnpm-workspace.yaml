@@ -3,3 +3,5 @@ packages:
   - 'packages/*'
 allowBuilds:
   esbuild: true
+patchedDependencies:
+  saxes@6.0.0: patches/saxes@6.0.0.patch

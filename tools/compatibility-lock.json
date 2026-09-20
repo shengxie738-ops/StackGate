@@ -3,7 +3,7 @@
   "generated_at": "2026-09-20T01:24:14.436Z",
   "platform": "win32-x64",
   "os_release": "10.0.26200",
-  "lockfile_sha256": "sha256:482887f0cc81b56f5eeb2bf584edfed466499c4db1c8db217f016c064db6aba7",
+  "lockfile_sha256": "sha256:f7cad24ec828f000d874c0e9c89bd95420087855a29e659de498c98e52084854",
   "tools": [
     {
       "name": "node",
@@ -250,6 +250,24 @@
       "observed_version_output": "Docker Compose version v5.1.4",
       "observation_exit_code": 0,
       "reason": "No product adapter contract or integration suite executed; installing/starting a tool alone is not compatibility verification."
+    },
+    {
+      "name": "saxes",
+      "version": "6.0.0",
+      "platform": "win32-x64",
+      "source": "https://registry.npmjs.org/saxes/6.0.0",
+      "checksum_or_lock_integrity": "sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==",
+      "declaration_patch_sha256": "70475d62791419524500c8ceb49dd00060d7844990e6603e323fb53a26ee1afd",
+      "tested_capabilities": [
+        "Strict bounded SAX JUnit parsing",
+        "DTD and external entity rejection",
+        "Malformed/zero/skipped/duplicate case rejection"
+      ],
+      "status": "VERIFIED",
+      "verified_at": "2026-09-20T14:44:26.021Z",
+      "evidence_refs": [
+        "docs/implementation/evidence/sg-037-final-targeted-with-streams-2026-09-20T14-44-01-231Z.json"
+      ]
     }
   ],
   "platform_matrix": [
@@ -269,6 +287,6 @@
   "limitations": [
     "Playwright/Compose integration capabilities remain UNKNOWN; oasdiff has only the explicit SG-020 Windows subset VERIFIED",
     "Ajv nested dynamic anchors unsupported: official OpenAPI document meta-schema uses a local static binding only in fixture checks; arbitrary response dynamic refs are NOT validated as supported",
-    "No product runner, real browser acceptance, packaging, host loading, release or production deployment claim"
+    "Windows local runner has task-level evidence; full M2 stage remains pending. Real browser, packaging, host loading, release and production deployment remain unverified."
   ]
 }

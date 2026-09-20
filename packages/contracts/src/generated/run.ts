@@ -41,6 +41,7 @@ export type RunManifest = {
    */
   coverage_gaps: string[];
   canceled: boolean;
+  previous_run_id?: string;
 };
 
 export interface CheckResult {

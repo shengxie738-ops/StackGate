@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-011",
+  "command": "pnpm verify:source",
+  "argv": [
+    "pnpm",
+    "verify:source"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:12:30.787Z",
+  "finished_at": "2026-09-20T02:12:31.682Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-011-final-source-2026-09-20T02-12-30-787Z.json",
+  "log_path": "docs/implementation/evidence/sg-011-final-source-2026-09-20T02-12-30-787Z.log",
+  "signal": null,
+  "duration_ms": 895
+}

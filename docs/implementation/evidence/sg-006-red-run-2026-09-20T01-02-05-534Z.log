@@ -1,0 +1,257 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/contracts/run-schema.test.ts (20 tests | 20 failed) 11ms
+   × accepts complete check-result protocol 4ms
+   × accepts complete artifact protocol 0ms
+   × accepts complete gate-evaluation protocol 0ms
+   × accepts complete plan protocol 0ms
+   × accepts complete probe protocol 0ms
+   × accepts complete event protocol 0ms
+   × accepts complete input-manifest protocol 0ms
+   × accepts complete environment protocol 0ms
+   × accepts complete finding protocol 0ms
+   × accepts complete playwright-report protocol 0ms
+   × accepts complete run protocol 0ms
+   × represents zero-test BLOCKED and cancellation without inventing a check status 0ms
+   × rejects missing run identity and duplicate required IDs 0ms
+   × rejects timezone-less event, seq zero, unknown event fields and payload variants 0ms
+   × rejects artifact escape ../secret 0ms
+   × rejects artifact escape C:/secret 0ms
+   × rejects artifact escape a/../secret 0ms
+   × rejects artifact escape a\secret 0ms
+   × requires trace to be restricted and declares redaction state 0ms
+   × does not conflate Git sha1 and sha256 object widths 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 20 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > accepts complete check-result protocol
+Error: Unregistered schema: check-result
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/run-schema.test.ts:4:193
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/20]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > accepts complete artifact protocol
+Error: Unregistered schema: artifact
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/run-schema.test.ts:4:193
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/20]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > accepts complete gate-evaluation protocol
+Error: Unregistered schema: gate-evaluation
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/run-schema.test.ts:4:193
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/20]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > accepts complete plan protocol
+Error: Unregistered schema: plan
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/run-schema.test.ts:4:193
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/20]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > accepts complete probe protocol
+Error: Unregistered schema: probe
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/run-schema.test.ts:4:193
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/20]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > accepts complete event protocol
+Error: Unregistered schema: event
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/run-schema.test.ts:4:193
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/20]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > accepts complete input-manifest protocol
+Error: Unregistered schema: input-manifest
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/run-schema.test.ts:4:193
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/20]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > accepts complete environment protocol
+Error: Unregistered schema: environment
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/run-schema.test.ts:4:193
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/20]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > accepts complete finding protocol
+Error: Unregistered schema: finding
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/run-schema.test.ts:4:193
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/20]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > accepts complete playwright-report protocol
+Error: Unregistered schema: playwright-report
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/run-schema.test.ts:4:193
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/20]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > accepts complete run protocol
+Error: Unregistered schema: run
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/run-schema.test.ts:4:193
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/20]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > represents zero-test BLOCKED and cancellation without inventing a check status
+Error: Unregistered schema: check-result
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/run-schema.test.ts:8:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/20]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > rejects missing run identity and duplicate required IDs
+Error: Unregistered schema: probe
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/run-schema.test.ts:14:69
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/20]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > rejects timezone-less event, seq zero, unknown event fields and payload variants
+Error: Unregistered schema: event
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/run-schema.test.ts:19:42
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/20]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > rejects artifact escape ../secret
+ FAIL  tests/unit/contracts/run-schema.test.ts > rejects artifact escape C:/secret
+ FAIL  tests/unit/contracts/run-schema.test.ts > rejects artifact escape a/../secret
+ FAIL  tests/unit/contracts/run-schema.test.ts > rejects artifact escape a\secret
+Error: Unregistered schema: artifact
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/run-schema.test.ts:25:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/20]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > requires trace to be restricted and declares redaction state
+Error: Unregistered schema: artifact
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/run-schema.test.ts:30:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/20]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > does not conflate Git sha1 and sha256 object widths
+Error: Unregistered schema: input-manifest
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/run-schema.test.ts:35:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/20]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  20 failed (20)
+   Start at  09:02:07
+   Duration  921ms (transform 114ms, setup 0ms, import 469ms, tests 11ms, environment 0ms)
+

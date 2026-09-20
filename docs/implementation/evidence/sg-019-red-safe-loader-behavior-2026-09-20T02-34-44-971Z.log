@@ -1,0 +1,260 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/openapi/safe-loader.test.ts (52 tests | 52 failed) 163ms
+     × loads retained contract raw bytes without normalizing the raw hash 16ms
+     × rejects ambiguous or malformed documents: {"openapi":"3.1.1","openapi":"3.0.3"} 1ms
+     × rejects ambiguous or malformed documents: openapi: 3.1.1
+openapi: 3.1.0 1ms
+     × rejects ambiguous or malformed documents: openapi: !custom 3.1.1 1ms
+     × rejects ambiguous or malformed documents: a: &a [1]
+b: *a 1ms
+     × rejects ambiguous or malformed documents: {"a": 1ms
+     × rejects invalid OpenAPI document basics 1ms
+     × rejects invalid OpenAPI document basics 1ms
+     × rejects invalid OpenAPI document basics 0ms
+     × rejects invalid OpenAPI document basics 1ms
+     × rejects invalid OpenAPI document basics 1ms
+     × rejects invalid OpenAPI document basics 1ms
+     × rejects invalid OpenAPI document basics 0ms
+     × accepts strict YAML and preserves trailing slash and path-parameter spelling 1ms
+     × denies external HTTP refs in unused components without a single request 107ms
+     × rejects external or invalid refs other.json#/schema 1ms
+     × rejects external or invalid refs file:///secret 1ms
+     × rejects external or invalid refs //host/path 1ms
+     × rejects external or invalid refs http://example.invalid/schema 0ms
+     × rejects external or invalid refs #not-a-pointer 0ms
+     × rejects external or invalid refs #/%ZZ 1ms
+     × rejects external or invalid refs 17 0ms
+     × identifies a missing fragment at the referring pointer 1ms
+     × resolves escaped and percent-encoded local pointers recursively 1ms
+     × diagnoses recursive and dynamic reference constructs 1ms
+     × enforces byte, depth and reference traversal bounds 1ms
+     × supports the explicit basic schema subset {"type":"number"} 1ms
+     × supports the explicit basic schema subset {"type":"integer"} 0ms
+     × supports the explicit basic schema subset {"type":"boolean"} 1ms
+     × supports the explicit basic schema subset {"type":"null"} 1ms
+     × supports the explicit basic schema subset {"type":["number","null"]} 1ms
+     × supports the explicit basic schema subset {"anyOf":[{"type":"number"},{"type":"null"}]} 0ms
+     × supports the explicit basic schema subset {"type":"string","enum":["a","b"]} 0ms
+     × supports the explicit basic schema subset {"type":"array","items":{"type":"number"}} 1ms
+     × supports the explicit basic schema subset {"type":"object","required":["id"],"properties":{"id":{"type":"string","readOnly":true},"password":{"type":"string","writeOnly":true}},"additionalProperties":false} 0ms
+     × does not silently pass untested schema constructs {"oneOf":[{"type":"number"},{"type":"string"}]} 1ms
+     × does not silently pass untested schema constructs {"allOf":[{"type":"number"}]} 1ms
+     × does not silently pass untested schema constructs {"anyOf":[{"type":"number"},{"type":"string"}]} 1ms
+     × does not silently pass untested schema constructs {"type":["number","string"]} 1ms
+     × does not silently pass untested schema constructs {"type":"string","format":"unregistered-format"} 1ms
+     × does not silently pass untested schema constructs {"type":"string","pattern":"[a-z]"} 0ms
+     × does not silently pass untested schema constructs {"type":"number","default":5} 0ms
+     × does not silently pass untested schema constructs {"type":"number","example":5} 0ms
+     × does not silently pass untested schema constructs {"if":{"type":"string"},"then":{"minLength":1}} 0ms
+     × does not silently pass untested schema constructs {"type":"number","madeUpKeyword":true} 0ms
+     × does not silently pass untested schema constructs {"$schema":"https://example.invalid/dialect","type":"number"} 1ms
+     × does not silently pass untested schema constructs {"type":"array"} 1ms
+     × does not silently pass untested schema constructs {"type":"object","additionalProperties":{"type":"number"}} 1ms
+     × does not silently pass untested schema constructs {"type":"string","readOnly":"yes"} 1ms
+     × does not silently pass untested schema constructs {"type":"object","required":["absent"],"properties":{}} 1ms
+     × limits schema inspection to known selected operations but expands unknown scope 1ms
+     × inspects shared parameters and recursively referenced schemas for the chosen operation 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 52 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > loads retained contract raw bytes without normalizing the raw hash
+Error: SG-019 not implemented
+ ❯ loadContract packages/adapter-oasdiff/src/load-contract.ts:1:64
+      1| export function loadContract(..._args: unknown[]): any { throw new Err…
+       |                                                                ^
+      2| 
+ ❯ tests/unit/openapi/safe-loader.test.ts:18:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/52]⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects ambiguous or malformed documents: {"openapi":"3.1.1","openapi":"3.0.3"}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects ambiguous or malformed documents: openapi: 3.1.1
+openapi: 3.1.0
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects ambiguous or malformed documents: openapi: !custom 3.1.1
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects ambiguous or malformed documents: a: &a [1]
+b: *a
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects ambiguous or malformed documents: {"a":
+Error: SG-019 not implemented
+ ❯ loadContract packages/adapter-oasdiff/src/load-contract.ts:1:64
+      1| export function loadContract(..._args: unknown[]): any { throw new Err…
+       |                                                                ^
+      2| 
+ ❯ tests/unit/openapi/safe-loader.test.ts:32:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/52]⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects invalid OpenAPI document basics
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects invalid OpenAPI document basics
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects invalid OpenAPI document basics
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects invalid OpenAPI document basics
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects invalid OpenAPI document basics
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects invalid OpenAPI document basics
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects invalid OpenAPI document basics
+Error: SG-019 not implemented
+ ❯ loadContract packages/adapter-oasdiff/src/load-contract.ts:1:64
+      1| export function loadContract(..._args: unknown[]): any { throw new Err…
+       |                                                                ^
+      2| 
+ ❯ load tests/unit/openapi/safe-loader.test.ts:12:34
+ ❯ tests/unit/openapi/safe-loader.test.ts:35:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/52]⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > accepts strict YAML and preserves trailing slash and path-parameter spelling
+Error: SG-019 not implemented
+ ❯ loadContract packages/adapter-oasdiff/src/load-contract.ts:1:64
+      1| export function loadContract(..._args: unknown[]): any { throw new Err…
+       |                                                                ^
+      2| 
+ ❯ load tests/unit/openapi/safe-loader.test.ts:12:34
+ ❯ tests/unit/openapi/safe-loader.test.ts:42:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/52]⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > denies external HTTP refs in unused components without a single request
+Error: SG-019 not implemented
+ ❯ loadContract packages/adapter-oasdiff/src/load-contract.ts:1:64
+      1| export function loadContract(..._args: unknown[]): any { throw new Err…
+       |                                                                ^
+      2| 
+ ❯ load tests/unit/openapi/safe-loader.test.ts:12:34
+ ❯ tests/unit/openapi/safe-loader.test.ts:53:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/52]⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects external or invalid refs other.json#/schema
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects external or invalid refs file:///secret
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects external or invalid refs //host/path
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects external or invalid refs http://example.invalid/schema
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects external or invalid refs #not-a-pointer
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects external or invalid refs #/%ZZ
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects external or invalid refs 17
+Error: SG-019 not implemented
+ ❯ loadContract packages/adapter-oasdiff/src/load-contract.ts:1:64
+      1| export function loadContract(..._args: unknown[]): any { throw new Err…
+       |                                                                ^
+      2| 
+ ❯ load tests/unit/openapi/safe-loader.test.ts:12:34
+ ❯ tests/unit/openapi/safe-loader.test.ts:60:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/52]⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > identifies a missing fragment at the referring pointer
+Error: SG-019 not implemented
+ ❯ loadContract packages/adapter-oasdiff/src/load-contract.ts:1:64
+      1| export function loadContract(..._args: unknown[]): any { throw new Err…
+       |                                                                ^
+      2| 
+ ❯ load tests/unit/openapi/safe-loader.test.ts:12:34
+ ❯ tests/unit/openapi/safe-loader.test.ts:65:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/52]⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > resolves escaped and percent-encoded local pointers recursively
+Error: SG-019 not implemented
+ ❯ loadContract packages/adapter-oasdiff/src/load-contract.ts:1:64
+      1| export function loadContract(..._args: unknown[]): any { throw new Err…
+       |                                                                ^
+      2| 
+ ❯ load tests/unit/openapi/safe-loader.test.ts:12:34
+ ❯ tests/unit/openapi/safe-loader.test.ts:72:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/52]⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > diagnoses recursive and dynamic reference constructs
+Error: SG-019 not implemented
+ ❯ loadContract packages/adapter-oasdiff/src/load-contract.ts:1:64
+      1| export function loadContract(..._args: unknown[]): any { throw new Err…
+       |                                                                ^
+      2| 
+ ❯ load tests/unit/openapi/safe-loader.test.ts:12:34
+ ❯ tests/unit/openapi/safe-loader.test.ts:79:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/52]⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > enforces byte, depth and reference traversal bounds
+Error: SG-019 not implemented
+ ❯ loadContract packages/adapter-oasdiff/src/load-contract.ts:1:64
+      1| export function loadContract(..._args: unknown[]): any { throw new Err…
+       |                                                                ^
+      2| 
+ ❯ tests/unit/openapi/safe-loader.test.ts:85:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/52]⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > supports the explicit basic schema subset {"type":"number"}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > supports the explicit basic schema subset {"type":"integer"}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > supports the explicit basic schema subset {"type":"boolean"}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > supports the explicit basic schema subset {"type":"null"}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > supports the explicit basic schema subset {"type":["number","null"]}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > supports the explicit basic schema subset {"anyOf":[{"type":"number"},{"type":"null"}]}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > supports the explicit basic schema subset {"type":"string","enum":["a","b"]}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > supports the explicit basic schema subset {"type":"array","items":{"type":"number"}}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > supports the explicit basic schema subset {"type":"object","required":["id"],"properties":{"id":{"type":"string","readOnly":true},"password":{"type":"string","writeOnly":true}},"additionalProperties":false}
+Error: SG-019 not implemented
+ ❯ loadContract packages/adapter-oasdiff/src/load-contract.ts:1:64
+      1| export function loadContract(..._args: unknown[]): any { throw new Err…
+       |                                                                ^
+      2| 
+ ❯ load tests/unit/openapi/safe-loader.test.ts:12:34
+ ❯ capability tests/unit/openapi/safe-loader.test.ts:13:60
+ ❯ tests/unit/openapi/safe-loader.test.ts:97:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/52]⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"oneOf":[{"type":"number"},{"type":"string"}]}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"allOf":[{"type":"number"}]}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"anyOf":[{"type":"number"},{"type":"string"}]}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"type":["number","string"]}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"type":"string","format":"unregistered-format"}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"type":"string","pattern":"[a-z]"}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"type":"number","default":5}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"type":"number","example":5}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"if":{"type":"string"},"then":{"minLength":1}}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"type":"number","madeUpKeyword":true}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"$schema":"https://example.invalid/dialect","type":"number"}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"type":"array"}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"type":"object","additionalProperties":{"type":"number"}}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"type":"string","readOnly":"yes"}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"type":"object","required":["absent"],"properties":{}}
+Error: SG-019 not implemented
+ ❯ loadContract packages/adapter-oasdiff/src/load-contract.ts:1:64
+      1| export function loadContract(..._args: unknown[]): any { throw new Err…
+       |                                                                ^
+      2| 
+ ❯ load tests/unit/openapi/safe-loader.test.ts:12:34
+ ❯ capability tests/unit/openapi/safe-loader.test.ts:13:60
+ ❯ tests/unit/openapi/safe-loader.test.ts:109:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/52]⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > limits schema inspection to known selected operations but expands unknown scope
+Error: SG-019 not implemented
+ ❯ loadContract packages/adapter-oasdiff/src/load-contract.ts:1:64
+      1| export function loadContract(..._args: unknown[]): any { throw new Err…
+       |                                                                ^
+      2| 
+ ❯ load tests/unit/openapi/safe-loader.test.ts:12:34
+ ❯ tests/unit/openapi/safe-loader.test.ts:115:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/52]⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > inspects shared parameters and recursively referenced schemas for the chosen operation
+Error: SG-019 not implemented
+ ❯ loadContract packages/adapter-oasdiff/src/load-contract.ts:1:64
+      1| export function loadContract(..._args: unknown[]): any { throw new Err…
+       |                                                                ^
+      2| 
+ ❯ load tests/unit/openapi/safe-loader.test.ts:12:34
+ ❯ tests/unit/openapi/safe-loader.test.ts:123:43
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/52]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  52 failed (52)
+   Start at  10:34:49
+   Duration  1.67s (transform 179ms, setup 0ms, import 391ms, tests 163ms, environment 0ms)
+

@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1",
+  "artifact_id": "ev-unit-001",
+  "run_id": "run_fixture",
+  "check_id": "unit",
+  "attempt_id": "attempt_1",
+  "relative_path": "artifacts/checks/unit/attempt_1/junit.xml",
+  "media_type": "application/xml",
+  "size": 120,
+  "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "sensitivity": "regular",
+  "redaction_state": "REDACTED",
+  "artifact_kind": "report"
+}

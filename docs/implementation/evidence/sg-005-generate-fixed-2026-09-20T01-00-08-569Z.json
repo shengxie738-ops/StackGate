@@ -1,0 +1,16 @@
+{
+  "command": "pnpm generate:types",
+  "argv": [
+    "pnpm",
+    "generate:types"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:00:08.569Z",
+  "finished_at": "2026-09-20T01:00:09.631Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-005-generate-fixed-2026-09-20T01-00-08-569Z.json",
+  "log_path": "docs/implementation/evidence/sg-005-generate-fixed-2026-09-20T01-00-08-569Z.log",
+  "signal": null,
+  "duration_ms": 1062
+}

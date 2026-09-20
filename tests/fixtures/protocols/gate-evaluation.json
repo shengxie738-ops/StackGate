@@ -1,0 +1,11 @@
+{
+  "schema_version": "0.1",
+  "verdict": "PASS",
+  "freshness": "FRESH",
+  "decision": "ALLOW",
+  "exit_code": 0,
+  "reasons": [],
+  "run_id": "run_fixture",
+  "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "evaluated_at": "2026-09-20T00:00:00Z"
+}

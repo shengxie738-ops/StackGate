@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-020",
+  "command": "pnpm exec vitest run tests/contract/oasdiff.test.ts -t \"duplicate JSON keys\"",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/contract/oasdiff.test.ts",
+    "-t",
+    "duplicate JSON keys"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:58:05.534Z",
+  "finished_at": "2026-09-20T02:58:09.076Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-020-red-duplicate-output-2026-09-20T02-58-05-534Z.json",
+  "log_path": "docs/implementation/evidence/sg-020-red-duplicate-output-2026-09-20T02-58-05-534Z.log",
+  "signal": null,
+  "duration_ms": 3542
+}

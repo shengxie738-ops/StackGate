@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-014",
+  "command": "pnpm verify:boundaries",
+  "argv": [
+    "pnpm",
+    "verify:boundaries"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:39:55.091Z",
+  "finished_at": "2026-09-20T02:39:56.711Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-014-boundaries-2026-09-20T02-39-55-091Z.json",
+  "log_path": "docs/implementation/evidence/sg-014-boundaries-2026-09-20T02-39-55-091Z.log",
+  "signal": null,
+  "duration_ms": 1620
+}

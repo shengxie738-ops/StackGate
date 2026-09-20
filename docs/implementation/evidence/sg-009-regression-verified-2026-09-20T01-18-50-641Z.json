@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-009",
+  "command": "pnpm test:unit",
+  "argv": [
+    "pnpm",
+    "test:unit"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:18:50.641Z",
+  "finished_at": "2026-09-20T01:19:03.799Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-009-regression-verified-2026-09-20T01-18-50-641Z.json",
+  "log_path": "docs/implementation/evidence/sg-009-regression-verified-2026-09-20T01-18-50-641Z.log",
+  "signal": null,
+  "duration_ms": 13158
+}

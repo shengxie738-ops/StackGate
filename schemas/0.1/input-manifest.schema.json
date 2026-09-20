@@ -1,0 +1,311 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/input-manifest.schema.json",
+  "title": "InputManifest",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "repo_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "worktree_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "platform_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "base_oid": {
+      "type": "string",
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    },
+    "head_oid": {
+      "type": "string",
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    },
+    "target_tip_oid": {
+      "type": "string",
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    },
+    "git_object_format": {
+      "type": "string",
+      "enum": [
+        "sha1",
+        "sha256"
+      ]
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "relative_path": {
+                "$ref": "common.schema.json#/$defs/RelativePath"
+              },
+              "kind": {
+                "const": "file"
+              },
+              "digest": {
+                "$ref": "common.schema.json#/$defs/Sha256"
+              },
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "100644",
+                  "100755"
+                ]
+              },
+              "tracked": {
+                "type": "boolean"
+              },
+              "staged": {
+                "type": "boolean"
+              },
+              "unstaged": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "relative_path",
+              "kind",
+              "digest",
+              "mode",
+              "tracked",
+              "staged",
+              "unstaged"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "relative_path": {
+                "$ref": "common.schema.json#/$defs/RelativePath"
+              },
+              "kind": {
+                "const": "deleted"
+              },
+              "digest": {
+                "type": "null"
+              },
+              "mode": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "tracked": {
+                "type": "boolean"
+              },
+              "staged": {
+                "type": "boolean"
+              },
+              "unstaged": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "relative_path",
+              "kind",
+              "digest",
+              "mode",
+              "tracked",
+              "staged",
+              "unstaged"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "relative_path": {
+                "$ref": "common.schema.json#/$defs/RelativePath"
+              },
+              "kind": {
+                "const": "symlink"
+              },
+              "digest": {
+                "$ref": "common.schema.json#/$defs/Sha256"
+              },
+              "mode": {
+                "const": "120000"
+              },
+              "link_target": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+              },
+              "tracked": {
+                "type": "boolean"
+              },
+              "staged": {
+                "type": "boolean"
+              },
+              "unstaged": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "relative_path",
+              "kind",
+              "digest",
+              "mode",
+              "link_target",
+              "tracked",
+              "staged",
+              "unstaged"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "exclusions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "relative_path": {
+            "$ref": "common.schema.json#/$defs/RelativePath"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+          }
+        },
+        "required": [
+          "relative_path",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "staged_changes": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/RelativePath"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "unstaged_changes": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/RelativePath"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "completeness": {
+      "type": "string",
+      "enum": [
+        "COMPLETE",
+        "INCOMPLETE",
+        "UNKNOWN"
+      ]
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "input_hash": {
+      "$ref": "common.schema.json#/$defs/Sha256"
+    }
+  },
+  "required": [
+    "schema_version",
+    "repo_id",
+    "worktree_id",
+    "platform_id",
+    "base_oid",
+    "head_oid",
+    "target_tip_oid",
+    "git_object_format",
+    "files",
+    "exclusions",
+    "staged_changes",
+    "unstaged_changes",
+    "completeness",
+    "diagnostics",
+    "input_hash"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "git_object_format": {
+            "const": "sha1"
+          }
+        },
+        "required": [
+          "git_object_format"
+        ]
+      },
+      "then": {
+        "properties": {
+          "base_oid": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "head_oid": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "target_tip_oid": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "git_object_format": {
+            "const": "sha256"
+          }
+        },
+        "required": [
+          "git_object_format"
+        ]
+      },
+      "then": {
+        "properties": {
+          "base_oid": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "head_oid": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "target_tip_oid": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+
+G:\StackGate\packages\core\src\storage\user-trust-store.ts
+  27:59  error  '_granted' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  27:79  error  '_expires' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 2 problems (2 errors, 0 warnings)
+

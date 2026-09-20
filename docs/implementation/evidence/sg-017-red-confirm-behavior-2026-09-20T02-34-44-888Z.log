@@ -1,0 +1,97 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/tasks/confirm.test.ts (6 tests | 6 failed) 15402ms
+   × does not treat a YAML CONFIRMED status as a confirmation record 2624ms
+   × confirms exact input into an immutable revision and repeats idempotently 2736ms
+   × rejects missing authorization, a changed target and mutated protected inputs 2471ms
+   × returns a null digest for missing target/check references 2455ms
+   × rejects changes during confirm and never seals a stale revision 2697ms
+   × rejects tampered immutable target and forces a new revision for changed task content 2416ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/tasks/confirm.test.ts > does not treat a YAML CONFIRMED status as a confirmation record
+Error: SG-017 not implemented
+ ❯ TaskService.validate packages/core/src/services/task-service.ts:3:59
+      1| export class TaskService {
+      2|   constructor(_root:string) {}
+      3|   async validate(..._args:unknown[]):Promise<never>{throw new Error('S…
+       |                                                           ^
+      4|   async confirm(..._args:unknown[]):Promise<never>{throw new Error('SG…
+      5|   async loadConfirmed(..._args:unknown[]):Promise<never>{throw new Err…
+ ❯ tests/integration/tasks/confirm.test.ts:9:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/integration/tasks/confirm.test.ts > confirms exact input into an immutable revision and repeats idempotently
+Error: SG-017 not implemented
+ ❯ TaskService.validate packages/core/src/services/task-service.ts:3:59
+      1| export class TaskService {
+      2|   constructor(_root:string) {}
+      3|   async validate(..._args:unknown[]):Promise<never>{throw new Error('S…
+       |                                                           ^
+      4|   async confirm(..._args:unknown[]):Promise<never>{throw new Error('SG…
+      5|   async loadConfirmed(..._args:unknown[]):Promise<never>{throw new Err…
+ ❯ tests/integration/tasks/confirm.test.ts:14:101
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/integration/tasks/confirm.test.ts > rejects missing authorization, a changed target and mutated protected inputs
+Error: SG-017 not implemented
+ ❯ TaskService.validate packages/core/src/services/task-service.ts:3:59
+      1| export class TaskService {
+      2|   constructor(_root:string) {}
+      3|   async validate(..._args:unknown[]):Promise<never>{throw new Error('S…
+       |                                                           ^
+      4|   async confirm(..._args:unknown[]):Promise<never>{throw new Error('SG…
+      5|   async loadConfirmed(..._args:unknown[]):Promise<never>{throw new Err…
+ ❯ tests/integration/tasks/confirm.test.ts:25:101
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/integration/tasks/confirm.test.ts > returns a null digest for missing target/check references
+Error: SG-017 not implemented
+ ❯ TaskService.validate packages/core/src/services/task-service.ts:3:59
+      1| export class TaskService {
+      2|   constructor(_root:string) {}
+      3|   async validate(..._args:unknown[]):Promise<never>{throw new Error('S…
+       |                                                           ^
+      4|   async confirm(..._args:unknown[]):Promise<never>{throw new Error('SG…
+      5|   async loadConfirmed(..._args:unknown[]):Promise<never>{throw new Err…
+ ❯ tests/integration/tasks/confirm.test.ts:34:181
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/integration/tasks/confirm.test.ts > rejects changes during confirm and never seals a stale revision
+Error: SG-017 not implemented
+ ❯ TaskService.validate packages/core/src/services/task-service.ts:3:59
+      1| export class TaskService {
+      2|   constructor(_root:string) {}
+      3|   async validate(..._args:unknown[]):Promise<never>{throw new Error('S…
+       |                                                           ^
+      4|   async confirm(..._args:unknown[]):Promise<never>{throw new Error('SG…
+      5|   async loadConfirmed(..._args:unknown[]):Promise<never>{throw new Err…
+ ❯ tests/integration/tasks/confirm.test.ts:37:101
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  tests/integration/tasks/confirm.test.ts > rejects tampered immutable target and forces a new revision for changed task content
+Error: SG-017 not implemented
+ ❯ TaskService.validate packages/core/src/services/task-service.ts:3:59
+      1| export class TaskService {
+      2|   constructor(_root:string) {}
+      3|   async validate(..._args:unknown[]):Promise<never>{throw new Error('S…
+       |                                                           ^
+      4|   async confirm(..._args:unknown[]):Promise<never>{throw new Error('SG…
+      5|   async loadConfirmed(..._args:unknown[]):Promise<never>{throw new Err…
+ ❯ tests/integration/tasks/confirm.test.ts:44:101
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed (6)
+   Start at  10:34:49
+   Duration  16.78s (transform 180ms, setup 0ms, import 313ms, tests 15.40s, environment 0ms)
+

@@ -1,0 +1,40 @@
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Progress: resolved 123, reused 94, downloaded 0, added 0
+Progress: resolved 216, reused 161, downloaded 0, added 0
+[WARN] 1 deprecated subdependencies found: glob@10.5.0
+Packages: +187
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 237, reused 185, downloaded 0, added 0
+Progress: resolved 237, reused 185, downloaded 1, added 1
+Progress: resolved 237, reused 185, downloaded 2, added 2, done
+
+dependencies:
++ ajv 8.20.0
++ ajv-formats 3.0.1
++ yaml 2.9.1
+
+devDependencies:
++ @types/node 24.13.6 (26.6.2 is available)
++ esbuild 0.28.2
++ eslint 9.39.2 (10.9.0 is available)
++ json-schema-to-typescript 15.0.4 (16.0.0 is available)
++ typescript 5.9.3 (7.0.2 is available)
++ typescript-eslint 8.70.0
++ vitest 4.0.18 (4.1.11 is available)
+
+[ERR_PNPM_IGNORED_BUILDS] Ignored build scripts: esbuild@0.28.2
+
+Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.
+[ERROR] Command failed with exit code 1: pnpm install
+
+pnpm: Command failed with exit code 1: pnpm install
+    at getFinalError (file:///C:/Users/17894/AppData/Roaming/npm/node_modules/pnpm/dist/pnpm.mjs:29448:14)
+    at makeError (file:///C:/Users/17894/AppData/Roaming/npm/node_modules/pnpm/dist/pnpm.mjs:31755:21)
+    at getSyncResult (file:///C:/Users/17894/AppData/Roaming/npm/node_modules/pnpm/dist/pnpm.mjs:33599:10)
+    at spawnSubprocessSync (file:///C:/Users/17894/AppData/Roaming/npm/node_modules/pnpm/dist/pnpm.mjs:33559:14)
+    at execaCoreSync (file:///C:/Users/17894/AppData/Roaming/npm/node_modules/pnpm/dist/pnpm.mjs:33489:23)
+    at callBoundExeca (file:///C:/Users/17894/AppData/Roaming/npm/node_modules/pnpm/dist/pnpm.mjs:36017:23)
+    at boundExeca (file:///C:/Users/17894/AppData/Roaming/npm/node_modules/pnpm/dist/pnpm.mjs:35994:49)
+    at sync (file:///C:/Users/17894/AppData/Roaming/npm/node_modules/pnpm/dist/pnpm.mjs:36149:14)
+    at runPnpmCli (file:///C:/Users/17894/AppData/Roaming/npm/node_modules/pnpm/dist/pnpm.mjs:213263:5)
+    at runDepsStatusCheck (file:///C:/Users/17894/AppData/Roaming/npm/node_modules/pnpm/dist/pnpm.mjs:214967:7)

@@ -1,0 +1,18 @@
+{
+  "task_id": "SG-010",
+  "command": "node --test tests/bootstrap/stage.test.mjs",
+  "argv": [
+    "node",
+    "--test",
+    "tests/bootstrap/stage.test.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:19:25.199Z",
+  "finished_at": "2026-09-20T01:19:25.463Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-010-red-stage-2026-09-20T01-19-25-199Z.json",
+  "log_path": "docs/implementation/evidence/sg-010-red-stage-2026-09-20T01-19-25-199Z.log",
+  "signal": null,
+  "duration_ms": 264
+}

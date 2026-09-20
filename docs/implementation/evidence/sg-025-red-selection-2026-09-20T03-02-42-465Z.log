@@ -1,0 +1,97 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/impact/selection.test.ts (6 tests | 6 failed) 10ms
+     × preserves task and policy checks even with no changes or mapping 5ms
+     × adds confirmed workspace regression while retaining original analysis gaps 1ms
+     × requires incomplete coverage when unknown impact has no usable regression set 1ms
+     × deduplicates mapped checks and test IDs without losing any provenance 1ms
+     × retains missing required IDs and rejects unavailable regression checks 1ms
+     × aggregates distinct sources and flags changed operations without reliable mappings 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/impact/selection.test.ts > conservative check selection > preserves task and policy checks even with no changes or mapping
+Error: SG-025 not implemented
+ ❯ selectChecks packages/core/src/domain/select-checks.ts:11:9
+      9| }
+     10| export function selectChecks(_task:SelectionTask,_policy:SelectionPoli…
+     11|   throw new Error('SG-025 not implemented');
+       |         ^
+     12| }
+     13| 
+ ❯ tests/unit/impact/selection.test.ts:10:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/unit/impact/selection.test.ts > conservative check selection > adds confirmed workspace regression while retaining original analysis gaps
+Error: SG-025 not implemented
+ ❯ selectChecks packages/core/src/domain/select-checks.ts:11:9
+      9| }
+     10| export function selectChecks(_task:SelectionTask,_policy:SelectionPoli…
+     11|   throw new Error('SG-025 not implemented');
+       |         ^
+     12| }
+     13| 
+ ❯ tests/unit/impact/selection.test.ts:18:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/unit/impact/selection.test.ts > conservative check selection > requires incomplete coverage when unknown impact has no usable regression set
+Error: SG-025 not implemented
+ ❯ selectChecks packages/core/src/domain/select-checks.ts:11:9
+      9| }
+     10| export function selectChecks(_task:SelectionTask,_policy:SelectionPoli…
+     11|   throw new Error('SG-025 not implemented');
+       |         ^
+     12| }
+     13| 
+ ❯ tests/unit/impact/selection.test.ts:25:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/unit/impact/selection.test.ts > conservative check selection > deduplicates mapped checks and test IDs without losing any provenance
+Error: SG-025 not implemented
+ ❯ selectChecks packages/core/src/domain/select-checks.ts:11:9
+      9| }
+     10| export function selectChecks(_task:SelectionTask,_policy:SelectionPoli…
+     11|   throw new Error('SG-025 not implemented');
+       |         ^
+     12| }
+     13| 
+ ❯ tests/unit/impact/selection.test.ts:32:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/unit/impact/selection.test.ts > conservative check selection > retains missing required IDs and rejects unavailable regression checks
+Error: SG-025 not implemented
+ ❯ selectChecks packages/core/src/domain/select-checks.ts:11:9
+      9| }
+     10| export function selectChecks(_task:SelectionTask,_policy:SelectionPoli…
+     11|   throw new Error('SG-025 not implemented');
+       |         ^
+     12| }
+     13| 
+ ❯ tests/unit/impact/selection.test.ts:38:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  tests/unit/impact/selection.test.ts > conservative check selection > aggregates distinct sources and flags changed operations without reliable mappings
+Error: SG-025 not implemented
+ ❯ aggregateImpacts packages/core/src/domain/aggregate-impacts.ts:3:9
+      1| import type { ImpactGraph } from '../../../adapter-typescript/src/impa…
+      2| export function aggregateImpacts(_graphs:readonly ImpactGraph[],_chang…
+      3|   throw new Error('SG-025 not implemented');
+       |         ^
+      4| }
+      5| 
+ ❯ tests/unit/impact/selection.test.ts:47:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed (6)
+   Start at  11:02:44
+   Duration  849ms (transform 95ms, setup 0ms, import 212ms, tests 10ms, environment 0ms)
+

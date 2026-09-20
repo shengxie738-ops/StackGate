@@ -1,0 +1,26 @@
+$ vitest run tests/contract
+
+ RUN  v4.0.18 G:/StackGate
+
+stdout | tests/contract/oasdiff.test.ts > SG020 real pinned oasdiff adapter > retains real version, raw IDs, raw JSON, original hashes and business exit status
+{"fixture":"type-change","status":"FAIL","evidence":[{"command":"version","argv":["--version"],"stdout":"oasdiff version 1.32.1\n","stderr":"","exit_code":0,"signal":null,"version":"1.32.1","executable_sha256":"sha256:cce550834cddfa7584a5cfde8deb2a6a57effcbc445f040f4f7ac37da47e8173"},{"command":"breaking","argv":["breaking","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-hlGgp5\\base.json","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-hlGgp5\\target.json","--format","json","--allow-external-refs=false","--config","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-hlGgp5\\oasdiff-config.json","--include-path-params","--auto-upgrade=false","--flatten-allof=false","--flatten-params=false","--fail-on","WARN"],"stdout":"[{\"id\":\"response-property-type-changed\",\"text\":\"the `data/performance/total_return` response's property `type` changed from `number` to `string` for status `200`\",\"level\":3,\"operation\":\"GET\",\"operationId\":\"getPerformance\",\"path\":\"/api/performance\",\"section\":\"paths\",\"fingerprint\":\"d4e087392f73\"}]\n","stderr":"","exit_code":1,"signal":null,"version":"1.32.1","executable_sha256":"sha256:cce550834cddfa7584a5cfde8deb2a6a57effcbc445f040f4f7ac37da47e8173","base_hash":"sha256:1a38de0d66d791dec4cc7ae6b3f9f2ae0aa3410ae7bbcb0c3bfd88cdf45aae8d","target_hash":"sha256:f5f78132329e73893ece7250514bd54906ed2db56e6a2215b261a0bff307f41d","audited_base_hash":"sha256:4fccf8fb30c0e712fcdfad06bd978906b22366af4532b8cd640c98061ad085bd","audited_target_hash":"sha256:a2527f9b8b2b416b0fd7292de08c7e1a9385819f41ed5ffb12132d46c67ab851"}]}
+
+ ✓ tests/contract/oasdiff.test.ts (30 tests) 4200ms
+     ✓ retains real version, raw IDs, raw JSON, original hashes and business exit status  393ms
+     ✓ returns PASS only from real empty valid breaking output  338ms
+     ✓ maps real removed-property finding target→candidate-missing  362ms
+     ✓ maps real removed-property finding upgrade-baseline→upgrade-target  393ms
+     ✓ preserves direction-dependent finding request-base→request-required  425ms
+     ✓ preserves direction-dependent finding enum-base→enum-revision  422ms
+     ✓ retains structural diff and distinguishes real empty diff  831ms
+     ✓ ignores inherited malicious oasdiff config environment  403ms
+ ✓ tests/contract/toolchain.test.ts (5 tests) 4047ms
+   ✓ runs real TypeScript program and compiler CLI diagnostics  1929ms
+   ✓ runs real esbuild to emit a standalone ESM program and observes its result  324ms
+   ✓ build declarations are actually consumable with strict type checking  1728ms
+
+ Test Files  2 passed (2)
+      Tests  35 passed (35)
+   Start at  11:00:18
+   Duration  5.78s (transform 526ms, setup 0ms, import 1.95s, tests 8.25s, environment 0ms)
+

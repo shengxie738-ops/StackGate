@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-024",
+  "command": "pnpm exec eslint packages/adapter-typescript/src tests/unit/impact",
+  "argv": [
+    "pnpm",
+    "exec",
+    "eslint",
+    "packages/adapter-typescript/src",
+    "tests/unit/impact"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:47:42.827Z",
+  "finished_at": "2026-09-20T02:47:48.616Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-024-scoped-lint-2026-09-20T02-47-42-827Z.json",
+  "log_path": "docs/implementation/evidence/sg-024-scoped-lint-2026-09-20T02-47-42-827Z.log",
+  "signal": null,
+  "duration_ms": 5789
+}

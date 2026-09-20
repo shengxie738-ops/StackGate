@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/artifact.schema.json",
+  "title": "Artifact",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "artifact_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^run_[A-Za-z0-9_-]+$"
+    },
+    "check_id": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/SafeId"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "attempt_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^attempt_[A-Za-z0-9_-]+$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "relative_path": {
+      "$ref": "common.schema.json#/$defs/RelativePath"
+    },
+    "media_type": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+    },
+    "size": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "digest": {
+      "$ref": "common.schema.json#/$defs/Sha256"
+    },
+    "sensitivity": {
+      "type": "string",
+      "enum": [
+        "regular",
+        "restricted"
+      ]
+    },
+    "redaction_state": {
+      "type": "string",
+      "enum": [
+        "REDACTED",
+        "NOT_REQUIRED",
+        "UNREDACTED",
+        "UNKNOWN"
+      ]
+    },
+    "artifact_kind": {
+      "type": "string",
+      "enum": [
+        "log",
+        "report",
+        "contract",
+        "trace",
+        "screenshot",
+        "observation"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_id",
+    "run_id",
+    "check_id",
+    "attempt_id",
+    "relative_path",
+    "media_type",
+    "size",
+    "digest",
+    "sensitivity",
+    "redaction_state",
+    "artifact_kind"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "artifact_kind": {
+            "type": "string",
+            "enum": [
+              "trace",
+              "screenshot"
+            ]
+          }
+        },
+        "required": [
+          "artifact_kind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "sensitivity": {
+            "const": "restricted"
+          }
+        }
+      }
+    }
+  ]
+}

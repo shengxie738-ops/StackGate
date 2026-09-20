@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-013",
+  "command": "pnpm exec vitest run tests/integration/git/input-manifest.test.ts -t \"does not execute configured clean filters\"",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/git/input-manifest.test.ts",
+    "-t",
+    "does not execute configured clean filters"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:35:37.263Z",
+  "finished_at": "2026-09-20T02:35:43.908Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-013-green-clean-filter-2026-09-20T02-35-37-263Z.json",
+  "log_path": "docs/implementation/evidence/sg-013-green-clean-filter-2026-09-20T02-35-37-263Z.log",
+  "signal": null,
+  "duration_ms": 6645
+}

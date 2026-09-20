@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-008",
+  "command": "pnpm exec vitest run tests/unit/ports.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/ports.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:18:25.693Z",
+  "finished_at": "2026-09-20T01:18:38.108Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-008-red-indirect-effects-2026-09-20T01-18-25-693Z.json",
+  "log_path": "docs/implementation/evidence/sg-008-red-indirect-effects-2026-09-20T01-18-25-693Z.log",
+  "signal": null,
+  "duration_ms": 12415
+}

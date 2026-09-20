@@ -1,0 +1,35 @@
+{
+  "name": "stackgate-local",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.2.2",
+  "engines": { "node": "24.11.1" },
+  "bin": { "stackgate": "dist/cli.mjs" },
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test:unit": "node scripts/test-unit.mjs",
+    "test:contract": "vitest run tests/contract",
+    "test:integration": "vitest run tests/integration",
+    "test:acceptance": "node scripts/unimplemented.mjs test:acceptance SG-073",
+    "verify:source": "node scripts/verify-source.mjs",
+    "verify:schemas": "node scripts/verify-schemas.mjs",
+    "verify:tasks": "node scripts/verify-tasks.mjs",
+    "verify:boundaries": "node scripts/verify-boundaries.mjs",
+    "verify:stage": "node scripts/verify-stage.mjs",
+    "bench": "node scripts/unimplemented.mjs bench SG-075",
+    "pack:local": "node scripts/unimplemented.mjs pack:local SG-078",
+    "test:package": "node scripts/unimplemented.mjs test:package SG-089",
+    "verify:release": "node scripts/unimplemented.mjs verify:release SG-092",
+    "generate:types": "node scripts/generate-types.mjs"
+  },
+  "dependencies": { "ajv": "8.20.0", "ajv-formats": "3.0.1", "yaml": "2.9.1" },
+  "devDependencies": {
+    "@types/node": "24.13.6", "typescript": "5.9.3", "vitest": "4.0.18",
+    "esbuild": "0.28.2", "eslint": "9.39.2", "typescript-eslint": "8.70.0",
+    "json-schema-to-typescript": "15.0.4"
+  }
+}

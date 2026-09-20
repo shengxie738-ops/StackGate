@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-010",
+  "command": "pnpm verify:tasks",
+  "argv": [
+    "pnpm",
+    "verify:tasks"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:33:20.446Z",
+  "finished_at": "2026-09-20T01:33:21.434Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-010-final-ledger-2026-09-20T01-33-20-446Z.json",
+  "log_path": "docs/implementation/evidence/sg-010-final-ledger-2026-09-20T01-33-20-446Z.log",
+  "signal": null,
+  "duration_ms": 988
+}

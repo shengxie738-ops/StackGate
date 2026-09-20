@@ -1,0 +1,24 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/contracts/primitives.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/contracts/primitives.test.ts [ tests/unit/contracts/primitives.test.ts ]
+Error: Cannot find module '../../../..//schemas/0.1/common.schema.json' imported from 'G:/StackGate/packages/contracts/src/identifiers.ts'
+ ❯ packages/contracts/src/identifiers.ts:1:1
+      1| import common from '../../../..//schemas/0.1/common.schema.json';
+       | ^
+      2| export interface Operation { service_id: string; method: string; path:…
+      3| export function parseOperationKey(value: string): Operation {
+ ❯ tests/unit/contracts/primitives.test.ts:4:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  08:54:56
+   Duration  731ms (transform 61ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

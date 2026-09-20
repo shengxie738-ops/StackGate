@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-009",
+  "command": "pnpm verify:schemas",
+  "argv": [
+    "pnpm",
+    "verify:schemas"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:17:42.142Z",
+  "finished_at": "2026-09-20T01:17:44.370Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-009-schemas-openapi-2026-09-20T01-17-42-142Z.json",
+  "log_path": "docs/implementation/evidence/sg-009-schemas-openapi-2026-09-20T01-17-42-142Z.log",
+  "signal": null,
+  "duration_ms": 2228
+}

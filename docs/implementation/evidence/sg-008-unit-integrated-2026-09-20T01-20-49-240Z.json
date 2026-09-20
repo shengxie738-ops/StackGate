@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-008",
+  "command": "pnpm test:unit",
+  "argv": [
+    "pnpm",
+    "test:unit"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:20:49.240Z",
+  "finished_at": "2026-09-20T01:21:00.546Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-008-unit-integrated-2026-09-20T01-20-49-240Z.json",
+  "log_path": "docs/implementation/evidence/sg-008-unit-integrated-2026-09-20T01-20-49-240Z.log",
+  "signal": null,
+  "duration_ms": 11306
+}

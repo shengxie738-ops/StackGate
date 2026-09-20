@@ -1,0 +1,19 @@
+{
+  "command": "pnpm exec vitest run tests/unit/contracts/task-schema.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/contracts/task-schema.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:00:09.728Z",
+  "finished_at": "2026-09-20T01:00:12.456Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-005-task-fixed-2026-09-20T01-00-09-728Z.json",
+  "log_path": "docs/implementation/evidence/sg-005-task-fixed-2026-09-20T01-00-09-728Z.log",
+  "signal": null,
+  "duration_ms": 2728
+}

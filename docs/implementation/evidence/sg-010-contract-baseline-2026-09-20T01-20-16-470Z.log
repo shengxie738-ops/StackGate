@@ -1,0 +1,13 @@
+$ vitest run tests/contract
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/contract/toolchain.test.ts (5 tests) 3722ms
+   ✓ runs real TypeScript program and compiler CLI diagnostics  1778ms
+   ✓ build declarations are actually consumable with strict type checking  1603ms
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  09:20:18
+   Duration  5.24s (transform 177ms, setup 0ms, import 1.07s, tests 3.72s, environment 0ms)
+

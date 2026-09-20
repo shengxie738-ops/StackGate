@@ -1,0 +1,5 @@
+$ tsc --noEmit
+tests/contract/oasdiff.test.ts(36,68): error TS7006: Parameter 'finding' implicitly has an 'any' type.
+tests/contract/oasdiff.test.ts(43,68): error TS7006: Parameter 'finding' implicitly has an 'any' type.
+tests/contract/oasdiff.test.ts(77,76): error TS7006: Parameter 'diagnostic' implicitly has an 'any' type.
+[ELIFECYCLE] Command failed with exit code 2.

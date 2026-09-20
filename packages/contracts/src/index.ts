@@ -1,0 +1,11 @@
+export type * from './enums.js';
+export type * from './protocols.js';
+export type * from './task.js';
+export type * from './confirmation.js';
+export type * from './policy.js';
+export type * from './diagnostic.js';
+export * from './identifiers.js';
+export type { ProjectConfig } from './project-config.js';
+export type { AdapterCapabilities } from './adapter-capabilities.js';
+export { validateSchema, validateProjectConfig } from './validation.js';
+export type { ConsumerMappings } from './generated/mappings.js';

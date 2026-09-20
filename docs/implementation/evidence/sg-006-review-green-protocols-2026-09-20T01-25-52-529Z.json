@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-006",
+  "command": "pnpm exec vitest run tests/unit/contracts/run-schema.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/contracts/run-schema.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:25:52.529Z",
+  "finished_at": "2026-09-20T01:25:56.027Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-006-review-green-protocols-2026-09-20T01-25-52-529Z.json",
+  "log_path": "docs/implementation/evidence/sg-006-review-green-protocols-2026-09-20T01-25-52-529Z.log",
+  "signal": null,
+  "duration_ms": 3498
+}

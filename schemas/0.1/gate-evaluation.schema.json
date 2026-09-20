@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/gate-evaluation.schema.json",
+  "title": "GateEvaluationDocument",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "verdict": {
+      "$ref": "common.schema.json#/$defs/Verdict"
+    },
+    "freshness": {
+      "$ref": "common.schema.json#/$defs/Freshness"
+    },
+    "decision": {
+      "$ref": "common.schema.json#/$defs/Decision"
+    },
+    "exit_code": {
+      "$ref": "common.schema.json#/$defs/ExitCode"
+    },
+    "reasons": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^run_[A-Za-z0-9_-]+$"
+    },
+    "policy_hash": {
+      "$ref": "common.schema.json#/$defs/Sha256"
+    },
+    "evaluated_at": {
+      "$ref": "common.schema.json#/$defs/UtcTimestamp"
+    }
+  },
+  "required": [
+    "schema_version",
+    "verdict",
+    "freshness",
+    "decision",
+    "exit_code",
+    "reasons",
+    "run_id",
+    "policy_hash",
+    "evaluated_at"
+  ],
+  "additionalProperties": false
+}

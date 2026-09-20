@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-011",
+  "command": "pnpm exec vitest run tests/unit/storage",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/storage"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:07:16.275Z",
+  "finished_at": "2026-09-20T02:07:18.911Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-011-green-storage-2026-09-20T02-07-16-275Z.json",
+  "log_path": "docs/implementation/evidence/sg-011-green-storage-2026-09-20T02-07-16-275Z.log",
+  "signal": null,
+  "duration_ms": 2636
+}

@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-017",
+  "command": "pnpm exec vitest run tests/integration/tasks/confirm.test.ts -t \"binds ignored|tampered task-derived|root-leading|other than\"",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/tasks/confirm.test.ts",
+    "-t",
+    "binds ignored|tampered task-derived|root-leading|other than"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:45:13.169Z",
+  "finished_at": "2026-09-20T02:45:32.032Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-017-red-protected-preview-2026-09-20T02-45-13-169Z.json",
+  "log_path": "docs/implementation/evidence/sg-017-red-protected-preview-2026-09-20T02-45-13-169Z.log",
+  "signal": null,
+  "duration_ms": 18863
+}

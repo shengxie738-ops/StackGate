@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/task.schema.json",
+  "title": "TaskPayload",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "task_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "CONFIRMED"
+      ]
+    },
+    "goal": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+    },
+    "target_contract": {
+      "$ref": "common.schema.json#/$defs/RelativePath"
+    },
+    "required_operations": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/OperationRef"
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "required_checks": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "required_test_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "allowed_change_paths": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/RelativePath"
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "constraints": {
+      "type": "object",
+      "properties": {
+        "preserve_target_contract": {
+          "const": true
+        },
+        "allow_test_deletion": {
+          "const": false
+        },
+        "require_backend_observation": {
+          "type": "boolean"
+        },
+        "allow_production_targets": {
+          "const": false
+        }
+      },
+      "required": [
+        "preserve_target_contract",
+        "allow_test_deletion",
+        "require_backend_observation",
+        "allow_production_targets"
+      ],
+      "additionalProperties": false
+    },
+    "expected_behavior": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "compatibility": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "preserve",
+            "approved-changes"
+          ]
+        },
+        "approved_breaking_rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "operation_key": {
+                "$ref": "common.schema.json#/$defs/OperationKey"
+              },
+              "rule_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]+$"
+              },
+              "baseline_hash": {
+                "$ref": "common.schema.json#/$defs/Sha256"
+              },
+              "target_hash": {
+                "$ref": "common.schema.json#/$defs/Sha256"
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+              }
+            },
+            "required": [
+              "operation_key",
+              "rule_id",
+              "baseline_hash",
+              "target_hash",
+              "reason"
+            ],
+            "additionalProperties": false
+          },
+          "uniqueItems": true,
+          "minItems": 0
+        }
+      },
+      "required": [
+        "mode",
+        "approved_breaking_rules"
+      ],
+      "additionalProperties": false
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "task_id",
+    "revision",
+    "status",
+    "goal",
+    "target_contract",
+    "required_operations",
+    "required_checks",
+    "required_test_ids",
+    "allowed_change_paths",
+    "constraints",
+    "expected_behavior",
+    "compatibility"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,34 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/trust/review.test.ts (7 tests | 1 failed | 6 skipped) 12480ms
+   ↓ renews an expired matching record and preserves unrelated or concurrently changed records
+   × rejects external script arguments and binds ignored scripts outside workspaces 12478ms
+   ↓ binds inline code as arguments without interpreting code fragments as paths
+   ↓ binds resolved tool identity without launching it
+   ↓ previews names only and never trusts without explicit reviewed authorization
+   ↓ stores outside repository, binds scripts, arguments and origins, and does not become CI trust
+   ↓ refuses repository-contained trust stores and copying trust into another checkout
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/trust/review.test.ts > rejects external script arguments and binds ignored scripts outside workspaces
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/integration/trust/review.test.ts:10:903
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 skipped (7)
+   Start at  10:56:25
+   Duration  14.70s (transform 613ms, setup 0ms, import 1.65s, tests 12.48s, environment 0ms)
+

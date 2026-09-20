@@ -1,0 +1,20 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/tasks/confirm.test.ts (10 tests) 64298ms
+   ✓ does not treat a YAML CONFIRMED status as a confirmation record  3043ms
+   ✓ confirms exact input into an immutable revision and repeats idempotently  10285ms
+   ✓ rejects missing authorization, a changed target and mutated protected inputs  8697ms
+   ✓ returns a null digest for missing target/check references  990ms
+   ✓ rejects changes during confirm and never seals a stale revision  6122ms
+   ✓ rejects tampered immutable target and forces a new revision for changed task content  12000ms
+   ✓ binds ignored protected inputs into the reviewed confirmation digest  8044ms
+   ✓ rejects tampered task-derived preview fields and sealed local identity  11848ms
+   ✓ rejects unsupported root-leading protected globs instead of omitting ignored files  1990ms
+   ✓ rejects a required operation naming a service other than the target contract service  1278ms
+
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+   Start at  10:46:25
+   Duration  65.96s (transform 450ms, setup 0ms, import 1.18s, tests 64.30s, environment 0ms)
+

@@ -1,0 +1,9 @@
+$ tsc --noEmit
+packages/core/src/services/scan-service.ts(13,32): error TS2307: Cannot find module '../domain/aggregate-impacts.js' or its corresponding type declarations.
+packages/core/src/services/scan-service.ts(14,28): error TS2307: Cannot find module '../domain/select-checks.js' or its corresponding type declarations.
+tests/unit/impact/selection.test.ts(2,30): error TS2307: Cannot find module '../../../packages/core/src/domain/select-checks.js' or its corresponding type declarations.
+tests/unit/impact/selection.test.ts(3,34): error TS2307: Cannot find module '../../../packages/core/src/domain/aggregate-impacts.js' or its corresponding type declarations.
+tests/unit/impact/selection.test.ts(22,42): error TS7006: Parameter 'check' implicitly has an 'any' type.
+tests/unit/impact/selection.test.ts(34,42): error TS7006: Parameter 'check' implicitly has an 'any' type.
+tests/unit/impact/selection.test.ts(42,39): error TS7006: Parameter 'gap' implicitly has an 'any' type.
+[ELIFECYCLE] Command failed with exit code 2.

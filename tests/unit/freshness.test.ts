@@ -1,0 +1,21 @@
+import { describe, expect, it } from 'vitest';
+import { evaluateFreshness, type EvidenceIdentity } from '../../packages/core/src/domain/evaluate-freshness.js';
+import { identityFields } from '../../packages/core/src/domain/compare-inputs.js';
+const identity: EvidenceIdentity = {...Object.fromEntries(identityFields.map(f => [f,'identity-'+f])),target_tip_oid:'target',completeness:'COMPLETE'};
+const pinned = {require_latest_target:false};
+describe('deterministic field-level freshness', () => {
+  it('returns FRESH only when required identities match', () => expect(evaluateFreshness(identity,{...identity},pinned)).toEqual({freshness:'FRESH',reasons:[]}));
+  it.each(identityFields)('invalidates changed %s independently', field => { const result = evaluateFreshness(identity,{...identity,[field]:'changed'},pinned); expect(result.freshness).toBe('STALE'); expect(result.reasons).toContainEqual({field,code:'CHANGED'}); });
+  it.each(identityFields)('missing %s is UNVERIFIED rather than equal', field => { const current = {...identity}; delete current[field]; const result = evaluateFreshness(identity,current,pinned); expect(result.freshness).toBe('UNVERIFIED'); expect(result.reasons).toContainEqual({field,code:'MISSING'}); });
+  it('does not treat two entirely missing identities as fresh', () => expect(evaluateFreshness({}, {}, pinned).freshness).toBe('UNVERIFIED'));
+  it('requires verified target evidence under latest-target policy', () => { expect(evaluateFreshness(identity,identity,{require_latest_target:true}).freshness).toBe('UNVERIFIED'); expect(evaluateFreshness(identity,identity,{require_latest_target:true,target_tip_verified:true}).freshness).toBe('FRESH'); expect(evaluateFreshness(identity,{...identity,target_tip_oid:'advanced'},{require_latest_target:true,target_tip_verified:true}).freshness).toBe('STALE'); });
+  it('respects confirmed pinned-target policy', () => expect(evaluateFreshness(identity,{...identity,target_tip_oid:'advanced'},pinned).freshness).toBe('FRESH'));
+  it('preserves history after temporary environments are normally cleaned up', () => expect(evaluateFreshness({...identity,environment_live:true},{...identity,environment_live:false},pinned).freshness).toBe('FRESH'));
+  it('invalidates inputs changing during a run', () => expect(evaluateFreshness(identity,identity,{...pinned,run_input_hash_before:'before',run_input_hash_after:'after'})).toEqual({freshness:'STALE',reasons:[{field:'run.input_hash',code:'INPUT_CHANGED_DURING_RUN'}]}));
+  it('does not treat a lone run snapshot as verified', () => expect(evaluateFreshness(identity,identity,{...pinned,run_input_hash_before:'before'}).freshness).toBe('UNVERIFIED'));
+  it('rejects incomplete captured inputs', () => expect(evaluateFreshness(identity,{...identity,completeness:'INCOMPLETE'},pinned).freshness).toBe('UNVERIFIED'));
+  it('uses timestamps only when a TTL is configured', () => { expect(evaluateFreshness({...identity,captured_at:'2000-01-01T00:00:00Z'},identity,pinned).freshness).toBe('FRESH'); expect(evaluateFreshness({...identity,captured_at:'2000-01-01T00:00:00Z'},identity,{...pinned,ttl_ms:1000,now:'2000-01-01T00:00:02Z'}).freshness).toBe('STALE'); });
+  it('rejects invalid TTL evidence and future timestamps', () => { for (const captured_at of ['invalid','2000-01-02T00:00:00Z']) expect(evaluateFreshness({...identity,captured_at},identity,{...pinned,ttl_ms:1000,now:'2000-01-01T00:00:00Z'}).freshness).toBe('UNVERIFIED'); });
+  it('known changed fields stay STALE even with other missing evidence', () => expect(evaluateFreshness(identity,{...identity,input_hash:'changed',task_revision:''},pinned).freshness).toBe('STALE'));
+  it('ties both run snapshots to the evidence identity', () => expect(evaluateFreshness(identity,identity,{...pinned,run_input_hash_before:'other',run_input_hash_after:'other'}).freshness).toBe('STALE'));
+});

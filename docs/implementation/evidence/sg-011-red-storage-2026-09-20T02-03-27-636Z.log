@@ -1,0 +1,50 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/storage/paths.test.ts (0 test)
+ ❯ tests/unit/storage/hash.test.ts (0 test)
+ ❯ tests/unit/storage/atomic-write.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/storage/atomic-write.test.ts [ tests/unit/storage/atomic-write.test.ts ]
+Error: Cannot find module '../../../../packages/core/src/storage/atomic-write.js' imported from 'G:/StackGate/tests/unit/storage/atomic-write.test.ts'
+ ❯ tests/unit/storage/atomic-write.test.ts:4:1
+      2| import * as fs from 'node:fs/promises';
+      3| import { join } from 'node:path';
+      4| import { writeJsonAtomic } from '../../../../packages/core/src/storage…
+       | ^
+      5| import { hashBytes } from '../../../../packages/core/src/storage/hash.…
+      6| import { withTestDirectory } from '../../../support/test-paths.js';
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/unit/storage/hash.test.ts [ tests/unit/storage/hash.test.ts ]
+Error: Cannot find module '../../../..//packages/core/src/storage/hash.js' imported from 'G:/StackGate/tests/unit/storage/hash.test.ts'
+ ❯ tests/unit/storage/hash.test.ts:2:1
+      1| import { expect, it } from 'vitest';
+      2| import { hashBytes } from '../../../..//packages/core/src/storage/hash…
+       | ^
+      3| import { canonicalJson } from '../../../../packages/core/src/storage/c…
+      4| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/unit/storage/paths.test.ts [ tests/unit/storage/paths.test.ts ]
+Error: Cannot find module '../../../../packages/core/src/storage/safe-path.js' imported from 'G:/StackGate/tests/unit/storage/paths.test.ts'
+ ❯ tests/unit/storage/paths.test.ts:4:1
+      2| import { mkdir, readFile, symlink, writeFile } from 'node:fs/promises';
+      3| import { join } from 'node:path';
+      4| import { resolveWithin, inspectPathWithin, decodeGitPath } from '../..…
+       | ^
+      5| import { withTestDirectory } from '../../../support/test-paths.js';
+      6| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  no tests
+   Start at  10:03:29
+   Duration  838ms (transform 169ms, setup 0ms, import 0ms, tests 0ms, environment 1ms)
+

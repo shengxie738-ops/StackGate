@@ -1,0 +1,16 @@
+{
+  "command": "pnpm typecheck",
+  "argv": [
+    "pnpm",
+    "typecheck"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T00:54:57.223Z",
+  "finished_at": "2026-09-20T00:55:01.085Z",
+  "exit_code": 2,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-003-typecheck-2026-09-20T00-54-57-223Z.json",
+  "log_path": "docs/implementation/evidence/sg-003-typecheck-2026-09-20T00-54-57-223Z.log",
+  "signal": null,
+  "duration_ms": 3862
+}

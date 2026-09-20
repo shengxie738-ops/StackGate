@@ -1,0 +1,140 @@
+{
+  "schema_version": "0.1",
+  "project_id": "demo-stack",
+  "state_dir": ".stackgate/state",
+  "workspaces": {
+    "web": {
+      "path": "apps/web",
+      "kind": "typescript"
+    },
+    "api": {
+      "path": "apps/api",
+      "kind": "fastapi"
+    }
+  },
+  "contracts": {
+    "api": {
+      "baseline_file": "contracts/openapi.json",
+      "target_file": "contracts/openapi.json",
+      "candidate_artifact": "candidate-openapi.json",
+      "version": "3.1",
+      "external_refs": "deny"
+    }
+  },
+  "commands": {
+    "web_typecheck": {
+      "workspace": "web",
+      "exec": "npm",
+      "args": [
+        "run",
+        "typecheck"
+      ],
+      "timeout_seconds": 120
+    },
+    "web_unit": {
+      "workspace": "web",
+      "exec": "npm",
+      "args": [
+        "run",
+        "test:stackgate"
+      ],
+      "timeout_seconds": 180
+    },
+    "export_api": {
+      "workspace": "api",
+      "exec": "python",
+      "args": [
+        "scripts/export_openapi.py"
+      ],
+      "timeout_seconds": 60
+    },
+    "api_probe": {
+      "workspace": "api",
+      "exec": "python",
+      "args": [
+        "scripts/probe_performance.py"
+      ],
+      "timeout_seconds": 60
+    },
+    "web_e2e": {
+      "workspace": "web",
+      "exec": "npm",
+      "args": [
+        "run",
+        "test:e2e:stackgate"
+      ],
+      "timeout_seconds": 180
+    }
+  },
+  "checks": {
+    "contract": {
+      "adapter": "openapi",
+      "service": "api",
+      "candidate_command": "export_api"
+    },
+    "typecheck": {
+      "adapter": "command",
+      "command": "web_typecheck",
+      "result_kind": "exit-code"
+    },
+    "unit": {
+      "adapter": "junit",
+      "command": "web_unit",
+      "min_tests": 1
+    },
+    "runtime": {
+      "adapter": "stackgate-probe",
+      "command": "api_probe",
+      "required_operations": [
+        "GET /api/performance"
+      ]
+    },
+    "e2e": {
+      "adapter": "playwright",
+      "command": "web_e2e",
+      "required_test_ids": [
+        "performance-summary"
+      ],
+      "require_real_backend": true
+    }
+  },
+  "profiles": {
+    "integration": {
+      "required_checks": [
+        "contract",
+        "typecheck",
+        "unit",
+        "runtime",
+        "e2e"
+      ],
+      "environment": "test",
+      "minimum_provenance": "OBSERVED",
+      "unknown_impact": "workspace-regression",
+      "flaky_policy": "incomplete"
+    }
+  },
+  "environments": {
+    "test": {
+      "mode": "attach",
+      "frontend_origin": "http://127.0.0.1:5173",
+      "backend_origin": "http://127.0.0.1:8000",
+      "health_path": "/health",
+      "provenance_file": ".stackgate-runtime.json"
+    }
+  },
+  "security": {
+    "env_allowlist": [
+      "STACKGATE_TEST_TOKEN"
+    ],
+    "allow_origins": [
+      "http://127.0.0.1:5173",
+      "http://127.0.0.1:8000"
+    ],
+    "protected_inputs": [
+      ".stackgate/tasks/**",
+      "contracts/**",
+      "tests/acceptance/**"
+    ],
+    "telemetry": "off"
+  }
+}

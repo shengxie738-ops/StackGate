@@ -1,0 +1,37 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/freshness.test.ts (46 tests) 15ms
+ ✓ tests/integration/git/target-advance.test.ts (2 tests) 7177ms
+   ✓ sees target advancement while preserving detached candidate identity and never fetching  3119ms
+   ✓ invalidates untracked source changes at the same Git HEAD  4056ms
+ ✓ tests/integration/git/baseline.test.ts (8 tests) 17474ms
+     ✓ pins actual merge base and advancing target with detached HEAD  2657ms
+     ✓ rejects missing refs and option-like refs  2190ms
+     ✓ treats leading dash directory as path and hashes local identities  1973ms
+     ✓ fails explicitly when shallow history cannot establish a common ancestor  3145ms
+     ✓ rejects unresolved merges  2878ms
+     ✓ disables repository fsmonitor and ignores hostile inherited Git environment  1531ms
+     ✓ reports nonrepository distinctly  774ms
+     ✓ does not choose arbitrarily between multiple merge bases  2316ms
+ ✓ tests/integration/git/input-manifest.test.ts (14 tests) 51466ms
+     ✓ hashes final bytes B while keeping staged A and unstaged explanations  2857ms
+     ✓ includes untracked source and dependency locks in input hash  5440ms
+     ✓ retains tombstones for staged and unstaged deletions  3585ms
+     ✓ explicitly includes ignored build inputs and diagnoses missing required inputs  5155ms
+     ✓ excludes declared outputs and credential files with reasons  3664ms
+     ✓ blocks oversized files, LFS pointers and unresolved generated inputs  4847ms
+     ✓ blocks submodules and out-of-root directory links  4029ms
+     ✓ keeps documentation as input unless explicitly excluded  3929ms
+     ✓ respects nested ignore rules during safe directory enumeration  3698ms
+     ✓ does not run configured external diff or text conversion commands  2991ms
+     ✓ keeps task payload changes but excludes only StackGate state artifacts  4776ms
+     ✓ detects index entries whose object is missing  2250ms
+     ✓ hashes binary and CRLF bytes without normalizing them  2276ms
+     ✓ does not execute configured clean filters while computing dirty changes  1963ms
+
+ Test Files  4 passed (4)
+      Tests  70 passed (70)
+   Start at  10:41:01
+   Duration  53.05s (transform 631ms, setup 0ms, import 1.49s, tests 76.13s, environment 1ms)
+

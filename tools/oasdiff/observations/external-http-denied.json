@@ -1,0 +1,19 @@
+{
+  "executable": "G:\\StackGate\\tools\\bin\\oasdiff-1.32.1\\oasdiff.exe",
+  "argv": [
+    "breaking",
+    "G:\\StackGate\\tests\\fixtures\\oasdiff\\preparation\\external-http.json",
+    "G:\\StackGate\\tests\\fixtures\\contracts\\target.json",
+    "--format",
+    "json",
+    "--config",
+    "G:\\StackGate\\tests\\fixtures\\oasdiff\\preparation\\empty-config.yaml",
+    "--allow-external-refs=false",
+    "--fail-on",
+    "ERR"
+  ],
+  "exit_code": 102,
+  "signal": null,
+  "stdout": "",
+  "stderr": "Error: failed to load base spec from \"G:\\\\StackGate\\\\tests\\\\fixtures\\\\oasdiff\\\\preparation\\\\external-http.json\": encountered disallowed external reference: \"http://127.0.0.1:2933/schema.json\"\n"
+}

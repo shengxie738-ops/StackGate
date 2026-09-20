@@ -1,0 +1,18 @@
+{
+  "task_id": "SG-001",
+  "command": "node --test tests/bootstrap/ledger.test.mjs",
+  "argv": [
+    "node",
+    "--test",
+    "tests/bootstrap/ledger.test.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:05:47.906Z",
+  "finished_at": "2026-09-20T01:05:48.593Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-001-review-green-binding-2026-09-20T01-05-47-906Z.json",
+  "log_path": "docs/implementation/evidence/sg-001-review-green-binding-2026-09-20T01-05-47-906Z.log",
+  "signal": null,
+  "duration_ms": 687
+}

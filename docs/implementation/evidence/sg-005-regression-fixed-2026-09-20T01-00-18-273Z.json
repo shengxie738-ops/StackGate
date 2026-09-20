@@ -1,0 +1,16 @@
+{
+  "command": "pnpm test:unit",
+  "argv": [
+    "pnpm",
+    "test:unit"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:00:18.273Z",
+  "finished_at": "2026-09-20T01:00:22.992Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-005-regression-fixed-2026-09-20T01-00-18-273Z.json",
+  "log_path": "docs/implementation/evidence/sg-005-regression-fixed-2026-09-20T01-00-18-273Z.log",
+  "signal": null,
+  "duration_ms": 4719
+}

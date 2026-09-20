@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1",
+  "stage": "M0",
+  "checks": [
+    "source",
+    "tasks",
+    "schemas",
+    "boundaries",
+    "build",
+    "typecheck",
+    "unit",
+    "lint",
+    "contract"
+  ],
+  "required_tools": [
+    "node",
+    "pnpm",
+    "typescript",
+    "ajv",
+    "vitest",
+    "esbuild"
+  ]
+}

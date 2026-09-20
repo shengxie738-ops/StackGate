@@ -1,0 +1,36 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/openapi/three-way.test.ts (9 tests | 1 failed | 8 skipped) 11ms
+     ↓ approves only the exact operation/rule/base/target tuple
+     ↓ does not use YAML CONFIRMED status or preserve mode to authorize exceptions
+     ↓ finds target behavior absent from a candidate even when it is optional
+     ↓ ignores only explicit metadata, retaining properties named description/title
+     ↓ retains security behavior in alignment
+     ↓ retains parameters behavior in alignment
+     ↓ retains status behavior in alignment
+     ↓ retains media behavior in alignment
+     × keeps security scheme names and undeclared extension semantics 9ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/openapi/three-way.test.ts > behavior alignment is stricter than mutual compatibility > keeps security scheme names and undeclared extension semantics
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/unit/openapi/three-way.test.ts:21:245
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 skipped (9)
+   Start at  11:06:14
+   Duration  799ms (transform 86ms, setup 0ms, import 176ms, tests 11ms, environment 0ms)
+

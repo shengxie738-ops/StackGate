@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/stages/m1.test.ts (3 tests | 2 skipped) 4240ms
+   ✓ keeps changed unsupported workspace sources visible even with an explicit mapping file  4236ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 2 skipped (3)
+   Start at  11:12:23
+   Duration  4.81s (transform 57ms, setup 0ms, import 133ms, tests 4.24s, environment 0ms)
+

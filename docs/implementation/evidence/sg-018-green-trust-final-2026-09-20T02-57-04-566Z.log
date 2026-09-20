@@ -1,0 +1,17 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/trust/review.test.ts (7 tests) 111312ms
+   ✓ renews an expired matching record and preserves unrelated or concurrently changed records  29834ms
+   ✓ rejects external script arguments and binds ignored scripts outside workspaces  18122ms
+   ✓ binds inline code as arguments without interpreting code fragments as paths  4370ms
+   ✓ binds resolved tool identity without launching it  11347ms
+   ✓ previews names only and never trusts without explicit reviewed authorization  5075ms
+   ✓ stores outside repository, binds scripts, arguments and origins, and does not become CI trust  23586ms
+   ✓ refuses repository-contained trust stores and copying trust into another checkout  18973ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  10:57:06
+   Duration  112.67s (transform 357ms, setup 0ms, import 1.00s, tests 111.31s, environment 0ms)
+

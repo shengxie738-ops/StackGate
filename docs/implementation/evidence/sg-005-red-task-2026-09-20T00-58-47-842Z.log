@@ -1,0 +1,93 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/contracts/task-schema.test.ts (10 tests | 10 failed) 37ms
+   × reads original DRAFT and user-written CONFIRMED without treating either as approval 15ms
+   × rejects non-positive integer revision 0 3ms
+   × rejects non-positive integer revision -1 3ms
+   × rejects non-positive integer revision 1.5 2ms
+   × rejects non-positive integer revision 1 2ms
+   × rejects empty target_contract 2ms
+   × rejects empty required_operations 3ms
+   × rejects empty required_checks 2ms
+   × requires exact operation, rule, baseline, target and rationale for upgrade approval 2ms
+   × requires independent trusted reference, not a claimed name 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/contracts/task-schema.test.ts > reads original DRAFT and user-written CONFIRMED without treating either as approval
+Error: Unregistered schema: task
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/task-schema.test.ts:6:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  tests/unit/contracts/task-schema.test.ts > rejects non-positive integer revision 0
+ FAIL  tests/unit/contracts/task-schema.test.ts > rejects non-positive integer revision -1
+ FAIL  tests/unit/contracts/task-schema.test.ts > rejects non-positive integer revision 1.5
+ FAIL  tests/unit/contracts/task-schema.test.ts > rejects non-positive integer revision 1
+Error: Unregistered schema: task
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/task-schema.test.ts:14:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  tests/unit/contracts/task-schema.test.ts > rejects empty target_contract
+ FAIL  tests/unit/contracts/task-schema.test.ts > rejects empty required_operations
+ FAIL  tests/unit/contracts/task-schema.test.ts > rejects empty required_checks
+Error: Unregistered schema: task
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/task-schema.test.ts:18:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  tests/unit/contracts/task-schema.test.ts > requires exact operation, rule, baseline, target and rationale for upgrade approval
+Error: Unregistered schema: task
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/task-schema.test.ts:24:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  tests/unit/contracts/task-schema.test.ts > requires independent trusted reference, not a claimed name
+Error: Unregistered schema: confirmation
+ ❯ validateSchema packages/contracts/src/validation.ts:11:24
+      9| export function validateSchema<T = unknown>(name: string, value: unkno…
+     10|   const validate = ajv.getSchema('https://stackgate.local/schemas/0.1/…
+     11|   if (!validate) throw new Error('Unregistered schema: ' + name);
+       |                        ^
+     12|   if (validate(value)) return { ok: true, value: value as T };
+     13|   return { ok: false, diagnostics: (validate.errors ?? []).map(error =…
+ ❯ tests/unit/contracts/task-schema.test.ts:33:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  10 failed (10)
+   Start at  08:58:49
+   Duration  1.12s (transform 97ms, setup 0ms, import 627ms, tests 37ms, environment 0ms)
+

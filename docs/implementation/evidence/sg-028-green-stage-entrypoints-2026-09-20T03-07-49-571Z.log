@@ -1,0 +1,93 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/stages/m1.test.ts (2 tests | 2 failed) 4386ms
+   × all M1 entrypoints leave postinstall, JavaScript and Python sentinels unexecuted 2451ms
+   × reports no baseline, untracked Chinese consumers, changed target and unknown schema honestly 1933ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/stages/m1.test.ts > all M1 entrypoints leave postinstall, JavaScript and Python sentinels unexecuted
+AssertionError: file:///G:/StackGate/dist/cli.mjs:23919
+          const executingFilePath = __filename.endsWith("sys.js") ? _path.join(_path.dirname(__dirname), "__fake__.js") : __filename;
+                                    ^
+
+ReferenceError: Cannot determine intended module format because both require() and top-level await are present. If the code is intended to be CommonJS, wrap await in an async function. If the code is intended to be an ES module, replace require() with import.
+    at getNodeSystem (file:///G:/StackGate/dist/cli.mjs:23919:37)
+    at file:///G:/StackGate/dist/cli.mjs:24310:18
+    at file:///G:/StackGate/dist/cli.mjs:24316:9
+    at node_modules/.pnpm/typescript@5.9.3/node_modules/typescript/lib/typescript.js (file:///G:/StackGate/dist/cli.mjs:226088:7)
+    at __require2 (file:///G:/StackGate/dist/cli.mjs:16:52)
+    at file:///G:/StackGate/dist/cli.mjs:232045:34
+    at ModuleJob.run (node:internal/modules/esm/module_job:377:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:671:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  code: 'ERR_AMBIGUOUS_MODULE_SYNTAX'
+}
+
+Node.js v24.11.1
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ getNodeSystem dist/cli.mjs:23919:37
+ ❯ dist/cli.mjs:24310:18
+ ❯ dist/cli.mjs:24316:9
+ ❯ node_modules/.pnpm/typescript@5.9.3/node_modules/typescript/lib/typescript.js dist/cli.mjs:226088:7
+ ❯ __require2 dist/cli.mjs:16:52
+ ❯ dist/cli.mjs:232045:34
+ ❯ run tests/integration/stages/m1.test.ts:8:191
+
+ ❯ tests/integration/stages/m1.test.ts:14:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/integration/stages/m1.test.ts > reports no baseline, untracked Chinese consumers, changed target and unknown schema honestly
+AssertionError: file:///G:/StackGate/dist/cli.mjs:23919
+          const executingFilePath = __filename.endsWith("sys.js") ? _path.join(_path.dirname(__dirname), "__fake__.js") : __filename;
+                                    ^
+
+ReferenceError: Cannot determine intended module format because both require() and top-level await are present. If the code is intended to be CommonJS, wrap await in an async function. If the code is intended to be an ES module, replace require() with import.
+    at getNodeSystem (file:///G:/StackGate/dist/cli.mjs:23919:37)
+    at file:///G:/StackGate/dist/cli.mjs:24310:18
+    at file:///G:/StackGate/dist/cli.mjs:24316:9
+    at node_modules/.pnpm/typescript@5.9.3/node_modules/typescript/lib/typescript.js (file:///G:/StackGate/dist/cli.mjs:226088:7)
+    at __require2 (file:///G:/StackGate/dist/cli.mjs:16:52)
+    at file:///G:/StackGate/dist/cli.mjs:232045:34
+    at ModuleJob.run (node:internal/modules/esm/module_job:377:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:671:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  code: 'ERR_AMBIGUOUS_MODULE_SYNTAX'
+}
+
+Node.js v24.11.1
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ getNodeSystem dist/cli.mjs:23919:37
+ ❯ dist/cli.mjs:24310:18
+ ❯ dist/cli.mjs:24316:9
+ ❯ node_modules/.pnpm/typescript@5.9.3/node_modules/typescript/lib/typescript.js dist/cli.mjs:226088:7
+ ❯ __require2 dist/cli.mjs:16:52
+ ❯ dist/cli.mjs:232045:34
+ ❯ run tests/integration/stages/m1.test.ts:8:191
+
+ ❯ tests/integration/stages/m1.test.ts:22:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  11:07:53
+   Duration  5.51s (transform 153ms, setup 0ms, import 261ms, tests 4.39s, environment 0ms)
+

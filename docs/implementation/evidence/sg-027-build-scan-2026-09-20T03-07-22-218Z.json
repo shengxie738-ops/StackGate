@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-027",
+  "command": "pnpm build",
+  "argv": [
+    "pnpm",
+    "build"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:07:22.218Z",
+  "finished_at": "2026-09-20T03:07:30.620Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-027-build-scan-2026-09-20T03-07-22-218Z.json",
+  "log_path": "docs/implementation/evidence/sg-027-build-scan-2026-09-20T03-07-22-218Z.log",
+  "signal": null,
+  "duration_ms": 8402
+}

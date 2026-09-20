@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-019",
+  "command": "pnpm exec vitest run tests/unit/openapi/safe-loader.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/openapi/safe-loader.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:38:09.397Z",
+  "finished_at": "2026-09-20T02:38:12.059Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-019-red-envelope-counterexamples-2026-09-20T02-38-09-397Z.json",
+  "log_path": "docs/implementation/evidence/sg-019-red-envelope-counterexamples-2026-09-20T02-38-09-397Z.log",
+  "signal": null,
+  "duration_ms": 2662
+}

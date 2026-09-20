@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-013",
+  "command": "pnpm exec vitest run tests/integration/git",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/git"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:06:52.921Z",
+  "finished_at": "2026-09-20T03:07:58.328Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-013-safeid-git-regression-2026-09-20T03-06-52-921Z.json",
+  "log_path": "docs/implementation/evidence/sg-013-safeid-git-regression-2026-09-20T03-06-52-921Z.log",
+  "signal": null,
+  "duration_ms": 65407
+}

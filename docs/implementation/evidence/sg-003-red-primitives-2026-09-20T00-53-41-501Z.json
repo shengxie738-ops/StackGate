@@ -1,0 +1,19 @@
+{
+  "command": "pnpm exec vitest run tests/unit/contracts/primitives.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/contracts/primitives.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T00:53:41.501Z",
+  "finished_at": "2026-09-20T00:53:44.201Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-003-red-primitives-2026-09-20T00-53-41-501Z.json",
+  "log_path": "docs/implementation/evidence/sg-003-red-primitives-2026-09-20T00-53-41-501Z.log",
+  "signal": null,
+  "duration_ms": 2700
+}

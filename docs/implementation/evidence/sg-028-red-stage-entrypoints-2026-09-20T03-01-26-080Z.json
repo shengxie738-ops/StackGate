@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-028",
+  "command": "pnpm exec vitest run tests/integration/stages/m1.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/stages/m1.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:01:26.080Z",
+  "finished_at": "2026-09-20T03:01:49.400Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-028-red-stage-entrypoints-2026-09-20T03-01-26-080Z.json",
+  "log_path": "docs/implementation/evidence/sg-028-red-stage-entrypoints-2026-09-20T03-01-26-080Z.log",
+  "signal": null,
+  "duration_ms": 23320
+}

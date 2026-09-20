@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/git/input-manifest.test.ts (15 tests | 14 skipped) 3531ms
+     ✓ blocks CRLF LFS pointers and emulated symlink checkouts  3530ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 14 skipped (15)
+   Start at  10:42:02
+   Duration  4.25s (transform 162ms, setup 0ms, import 321ms, tests 3.53s, environment 0ms)
+

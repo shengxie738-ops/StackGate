@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-027",
+  "command": "pnpm exec vitest run tests/integration/cli/static-workflow.test.ts -t \"previews init|task and trust\"",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/cli/static-workflow.test.ts",
+    "-t",
+    "previews init|task and trust"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:54:51.645Z",
+  "finished_at": "2026-09-20T02:55:11.066Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-027-green-initial-cli-2026-09-20T02-54-51-645Z.json",
+  "log_path": "docs/implementation/evidence/sg-027-green-initial-cli-2026-09-20T02-54-51-645Z.log",
+  "signal": null,
+  "duration_ms": 19421
+}

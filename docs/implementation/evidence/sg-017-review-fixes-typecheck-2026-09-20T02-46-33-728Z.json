@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-017",
+  "command": "pnpm typecheck",
+  "argv": [
+    "pnpm",
+    "typecheck"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:46:33.728Z",
+  "finished_at": "2026-09-20T02:46:39.461Z",
+  "exit_code": 2,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-017-review-fixes-typecheck-2026-09-20T02-46-33-728Z.json",
+  "log_path": "docs/implementation/evidence/sg-017-review-fixes-typecheck-2026-09-20T02-46-33-728Z.log",
+  "signal": null,
+  "duration_ms": 5733
+}

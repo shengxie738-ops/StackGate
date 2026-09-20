@@ -1,0 +1,227 @@
+$ node scripts/verify-stage.mjs "--" "--stage" "M1"
+Stage check: node scripts/verify-source.mjs
+{
+  "sources": [
+    {
+      "original": "StackGate_功能与架构设计_v0.1.md",
+      "retained": "docs/specs/stackgate-v0.1.md",
+      "sha256": "56b349eda55673090dee2c611baa250b90f1afa5a3f85a0e78c670fa553af8a9",
+      "expected_sha256": "56b349eda55673090dee2c611baa250b90f1afa5a3f85a0e78c670fa553af8a9",
+      "bytes": 73743
+    },
+    {
+      "original": "StackGate_Codex可执行开发任务规划_v0.1.md",
+      "retained": "docs/plans/2026-09-18-stackgate-v0.1-execution.md",
+      "sha256": "faca196c04dd4a420046415e1bce49411f2fc3e42d54c70859647da904133e17",
+      "expected_sha256": null,
+      "bytes": 335286
+    }
+  ],
+  "errors": []
+}
+Stage check: node scripts/verify-tasks.mjs
+Validated 100 tasks, dependencies, states, files and recorded evidence.
+Stage check: node scripts/verify-schemas.mjs
+Validated 7 OpenAPI documents and strict fixture response schemas (no network at verification time)
+Validated 23 schemas, 19 fixtures, generated type drift: none
+Stage check: node scripts/verify-boundaries.mjs
+Verified module boundaries for 104 product source files using the TypeScript AST.
+Stage check: node scripts/build.mjs
+Built: cli, contracts, core
+Stage check: node node_modules/typescript/bin/tsc --noEmit
+Stage check: node scripts/test-unit.mjs
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/storage/paths.test.ts (27 tests) 343ms
+ ✓ tests/unit/storage/atomic-write.test.ts (6 tests) 627ms
+ ✓ tests/unit/storage/hash.test.ts (17 tests) 16ms
+ ✓ tests/unit/openapi/three-way.test.ts (10 tests) 17ms
+ ✓ tests/unit/policy/drift.test.ts (7 tests) 17ms
+ ✓ tests/unit/gate/acceptance-boundaries.test.ts (11 tests) 19ms
+ ✓ tests/unit/gate/truth-table.test.ts (22 tests) 30ms
+ ✓ tests/unit/freshness.test.ts (46 tests) 21ms
+ ✓ tests/unit/gate/exit-priority.test.ts (65 tests) 50ms
+ ✓ tests/unit/impact/selection.test.ts (6 tests) 48ms
+ ✓ tests/unit/openapi/safe-loader.test.ts (60 tests) 254ms
+ ✓ tests/unit/contracts/primitives.test.ts (13 tests) 204ms
+ ✓ tests/unit/config/merge.test.ts (3 tests) 11ms
+ ✓ tests/unit/openapi/public-scan-report.test.ts (1 test) 21ms
+ ✓ tests/unit/impact/typescript.test.ts (6 tests) 128ms
+ ✓ tests/unit/impact/mappings.test.ts (6 tests) 33ms
+ ✓ tests/unit/contracts/run-schema.test.ts (24 tests) 428ms
+ ✓ tests/unit/contracts/task-schema.test.ts (17 tests) 174ms
+ ✓ tests/unit/contracts/config-schema.test.ts (9 tests) 217ms
+ ✓ tests/unit/config/parse.test.ts (7 tests) 195ms
+ ✓ tests/unit/openapi/runtime-validator.test.ts (23 tests) 942ms
+ ✓ tests/unit/fixtures.test.ts (10 tests) 1505ms
+   ✓ validates all OpenAPI documents against the retained official document schema and strict response schemas  1328ms
+ ✓ tests/unit/config/init-safety.test.ts (6 tests) 478ms
+ ✓ tests/unit/bootstrap.test.ts (5 tests) 5371ms
+   ✓ built help is executable without a TypeScript runtime  894ms
+   ✓ rejects unsupported arguments and combinations with exit 64  2715ms
+   ✓ prints package version  527ms
+   ✓ an empty test selection exits nonzero  1229ms
+ ✓ tests/unit/ports.test.ts (27 tests) 11735ms
+   ✓ runs the AST checker and rejects domain IO  1118ms
+   ✓ runs the AST checker and rejects domain dynamic IO  1158ms
+   ✓ runs the AST checker and rejects domain time  962ms
+   ✓ runs the AST checker and rejects domain date constructor  669ms
+   ✓ runs the AST checker and rejects domain environment  548ms
+   ✓ runs the AST checker and rejects domain console IO  574ms
+   ✓ runs the AST checker and rejects domain require alias  670ms
+   ✓ runs the AST checker and rejects domain indirect random  625ms
+   ✓ runs the AST checker and rejects domain spread clock  648ms
+   ✓ runs the AST checker and rejects domain network  683ms
+   ✓ runs the AST checker and rejects test fake import  730ms
+   ✓ runs the AST checker and rejects reporter runner  599ms
+   ✓ runs the AST checker and rejects reporter execution  569ms
+   ✓ runs the AST checker and rejects reporter computed execution  532ms
+   ✓ runs the AST checker and rejects reporter destructured execution  570ms
+   ✓ rejects IO reached indirectly through a domain helper  561ms
+   ✓ allows pure objects, type-only ports and words in comments or strings  502ms
+
+ Test Files  25 passed (25)
+      Tests  434 passed (434)
+   Start at  11:35:43
+   Duration  13.72s (transform 5.10s, setup 0ms, import 27.69s, tests 22.88s, environment 11ms)
+
+✔ built CLI help exposes only implemented commands (464.6671ms)
+✔ unknown CLI option returns configuration error (468.9264ms)
+✔ plan has 100 unique sequential tasks and original dependencies (3.3336ms)
+✔ rejects duplicate ID (1.4789ms)
+✔ rejects missing dependency (2.1047ms)
+✔ rejects dependency cycle (1.4951ms)
+✔ rejects DONE without evidence (0.9152ms)
+✔ rejects illegal status (1.0072ms)
+✔ rejects early READY (0.9596ms)
+✔ rejects missing task (0.9784ms)
+✔ rejects absolute file path (1.4266ms)
+✔ rejects absolute evidence path (1.0114ms)
+✔ rejects traversal evidence path (0.8135ms)
+✔ rejects failed-only DONE (1.0189ms)
+✔ source is preserved byte-for-byte and matches the supplied SHA-256 (3.3713ms)
+✔ source inspection rejects missing or changed content (2.201ms)
+✔ verify-tasks CLI returns nonzero and identifies the task with SG-999 dependency (157.2901ms)
+✔ DONE requires actual implementation files even with valid task evidence (3.1236ms)
+✔ DONE cannot borrow another task successful evidence (55.7886ms)
+✔ evidence runner records task ownership and preserves a failed child exit code (211.2051ms)
+✔ negative cases do not mutate the shared plan baseline (1.4861ms)
+✔ M1 requires every M0 check, actual integration checks and the real oasdiff capability (2.9011ms)
+✔ M0 rejects removed, duplicate and arbitrary shell checks (0.2387ms)
+✔ unknown tools block any stage requiring them (0.2735ms)
+✔ a real failed child command propagates its exit and retains its identity (167.0113ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1099.2627
+Stage check: node node_modules/eslint/bin/eslint.js .
+Stage check: node node_modules/vitest/vitest.mjs run tests/contract
+
+ RUN  v4.0.18 G:/StackGate
+
+stdout | tests/contract/oasdiff.test.ts > SG020 real pinned oasdiff adapter > retains real version, raw IDs, raw JSON, original hashes and business exit status
+{"fixture":"type-change","status":"FAIL","evidence":[{"command":"version","argv":["--version"],"stdout":"oasdiff version 1.32.1\n","stderr":"","exit_code":0,"signal":null,"version":"1.32.1","executable_sha256":"sha256:cce550834cddfa7584a5cfde8deb2a6a57effcbc445f040f4f7ac37da47e8173"},{"command":"breaking","argv":["breaking","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-ZPypJp\\base.json","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-ZPypJp\\target.json","--format","json","--allow-external-refs=false","--config","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-ZPypJp\\oasdiff-config.json","--include-path-params","--auto-upgrade=false","--flatten-allof=false","--flatten-params=false","--fail-on","WARN"],"stdout":"[{\"id\":\"response-property-type-changed\",\"text\":\"the `data/performance/total_return` response's property `type` changed from `number` to `string` for status `200`\",\"level\":3,\"operation\":\"GET\",\"operationId\":\"getPerformance\",\"path\":\"/api/performance\",\"section\":\"paths\",\"fingerprint\":\"d4e087392f73\"}]\n","stderr":"","exit_code":1,"signal":null,"version":"1.32.1","executable_sha256":"sha256:cce550834cddfa7584a5cfde8deb2a6a57effcbc445f040f4f7ac37da47e8173","base_hash":"sha256:1a38de0d66d791dec4cc7ae6b3f9f2ae0aa3410ae7bbcb0c3bfd88cdf45aae8d","target_hash":"sha256:f5f78132329e73893ece7250514bd54906ed2db56e6a2215b261a0bff307f41d","audited_base_hash":"sha256:4fccf8fb30c0e712fcdfad06bd978906b22366af4532b8cd640c98061ad085bd","audited_target_hash":"sha256:a2527f9b8b2b416b0fd7292de08c7e1a9385819f41ed5ffb12132d46c67ab851"}]}
+
+ ✓ tests/contract/toolchain.test.ts (5 tests) 3640ms
+   ✓ runs real TypeScript program and compiler CLI diagnostics  2095ms
+   ✓ build declarations are actually consumable with strict type checking  1259ms
+ ✓ tests/contract/oasdiff.test.ts (31 tests) 4180ms
+     ✓ retains real version, raw IDs, raw JSON, original hashes and business exit status  442ms
+     ✓ returns PASS only from real empty valid breaking output  407ms
+     ✓ maps real removed-property finding target→candidate-missing  436ms
+     ✓ maps real removed-property finding upgrade-baseline→upgrade-target  394ms
+     ✓ preserves direction-dependent finding request-base→request-required  378ms
+     ✓ preserves direction-dependent finding enum-base→enum-revision  374ms
+     ✓ retains structural diff and distinguishes real empty diff  727ms
+     ✓ ignores inherited malicious oasdiff config environment  427ms
+
+ Test Files  2 passed (2)
+      Tests  36 passed (36)
+   Start at  11:36:03
+   Duration  5.31s (transform 377ms, setup 0ms, import 1.87s, tests 7.82s, environment 0ms)
+
+Stage check: node node_modules/vitest/vitest.mjs run tests/integration
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/cli/doctor.test.ts (5 tests) 6382ms
+   ✓ rejects semantically missing check references in otherwise valid configuration  1046ms
+   ✓ inspects a Chinese project without running postinstall, Python imports or writing state  1212ms
+   ✓ returns precise invalid-config diagnostics and never scans a parent manifest  1190ms
+   ✓ reports conflicting configuration files rather than choosing one  1066ms
+   ✓ reports declared commands/workspaces missing without executing them  1866ms
+ ✓ tests/integration/contracts/three-way.test.ts (8 tests) 5082ms
+     ✓ uses real compatibility while missing candidate/runtime remain NOT_EXECUTED  693ms
+     ✓ rejects absent target behavior independently of mutual breaking checks  1815ms
+     ✓ requires real confirmation hashes and grants no approval to a draft  1262ms
+     ✓ blocks target byte drift despite equal behavior and separates export errors  1273ms
+ ✓ tests/integration/git/target-advance.test.ts (2 tests) 10095ms
+   ✓ sees target advancement while preserving detached candidate identity and never fetching  4597ms
+   ✓ invalidates untracked source changes at the same Git HEAD  5495ms
+ ✓ tests/integration/git/baseline.test.ts (8 tests) 24288ms
+     ✓ pins actual merge base and advancing target with detached HEAD  3515ms
+     ✓ rejects missing refs and option-like refs  3099ms
+     ✓ treats leading dash directory as path and hashes local identities  2451ms
+     ✓ fails explicitly when shallow history cannot establish a common ancestor  4051ms
+     ✓ rejects unresolved merges  4886ms
+     ✓ disables repository fsmonitor and ignores hostile inherited Git environment  2349ms
+     ✓ reports nonrepository distinctly  1038ms
+     ✓ does not choose arbitrarily between multiple merge bases  2895ms
+ ✓ tests/integration/cli/static-workflow.test.ts (3 tests) 40509ms
+   ✓ previews init without writes and applies only absent files preserving existing content  2776ms
+   ✓ task and trust machine previews implement required data fields without running code  31666ms
+   ✓ scan returns breaking data with exit zero and never claims runtime or gate success  6063ms
+ ✓ tests/integration/stages/m1.test.ts (3 tests) 53649ms
+   ✓ keeps changed unsupported workspace sources visible even with an explicit mapping file  8256ms
+   ✓ all M1 entrypoints leave postinstall, JavaScript and Python sentinels unexecuted  34126ms
+   ✓ reports no baseline, untracked Chinese consumers, changed target and unknown schema honestly  11264ms
+ ✓ tests/integration/git/input-manifest.test.ts (16 tests) 72108ms
+     ✓ emits schema-valid SafeIds in a real captured manifest  3983ms
+     ✓ hashes final bytes B while keeping staged A and unstaged explanations  4117ms
+     ✓ includes untracked source and dependency locks in input hash  7442ms
+     ✓ retains tombstones for staged and unstaged deletions  5417ms
+     ✓ explicitly includes ignored build inputs and diagnoses missing required inputs  6079ms
+     ✓ excludes declared outputs and credential files with reasons  4633ms
+     ✓ blocks oversized files, LFS pointers and unresolved generated inputs  6320ms
+     ✓ blocks submodules and out-of-root directory links  4758ms
+     ✓ keeps documentation as input unless explicitly excluded  4231ms
+     ✓ respects nested ignore rules during safe directory enumeration  3249ms
+     ✓ does not run configured external diff or text conversion commands  3233ms
+     ✓ keeps task payload changes but excludes only StackGate state artifacts  5867ms
+     ✓ detects index entries whose object is missing  2789ms
+     ✓ hashes binary and CRLF bytes without normalizing them  2683ms
+     ✓ does not execute configured clean filters while computing dirty changes  3030ms
+     ✓ blocks CRLF LFS pointers and emulated symlink checkouts  4272ms
+ ✓ tests/integration/tasks/confirm.test.ts (10 tests) 84867ms
+   ✓ does not treat a YAML CONFIRMED status as a confirmation record  6091ms
+   ✓ confirms exact input into an immutable revision and repeats idempotently  17113ms
+   ✓ rejects missing authorization, a changed target and mutated protected inputs  12964ms
+   ✓ returns a null digest for missing target/check references  1563ms
+   ✓ rejects changes during confirm and never seals a stale revision  9910ms
+   ✓ rejects tampered immutable target and forces a new revision for changed task content  15023ms
+   ✓ binds ignored protected inputs into the reviewed confirmation digest  8525ms
+   ✓ rejects tampered task-derived preview fields and sealed local identity  10913ms
+   ✓ rejects unsupported root-leading protected globs instead of omitting ignored files  1661ms
+   ✓ rejects a required operation naming a service other than the target contract service  1099ms
+ ✓ tests/integration/trust/review.test.ts (9 tests) 148152ms
+   ✓ does not recognize mismatched grant IDs or permission scopes as trusted  37040ms
+   ✓ refuses a script whose bytes are excluded by the credential-input policy  6169ms
+   ✓ renews an expired matching record and preserves unrelated or concurrently changed records  35183ms
+   ✓ rejects external script arguments and binds ignored scripts outside workspaces  17964ms
+   ✓ binds inline code as arguments without interpreting code fragments as paths  3707ms
+   ✓ binds resolved tool identity without launching it  9184ms
+   ✓ previews names only and never trusts without explicit reviewed authorization  3529ms
+   ✓ stores outside repository, binds scripts, arguments and origins, and does not become CI trust  19748ms
+   ✓ refuses repository-contained trust stores and copying trust into another checkout  15620ms
+
+ Test Files  9 passed (9)
+      Tests  64 passed (64)
+   Start at  11:36:09
+   Duration  151.33s (transform 2.66s, setup 0ms, import 9.13s, tests 445.13s, environment 2ms)
+
+M1 stage exit=0; child command evidence: docs/implementation/evidence/m1-stage-2026-09-20T03-38-41-246Z.json

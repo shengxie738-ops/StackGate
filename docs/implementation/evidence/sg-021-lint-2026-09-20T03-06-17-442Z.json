@@ -1,0 +1,23 @@
+{
+  "task_id": "SG-021",
+  "command": "pnpm exec eslint packages/core/src/domain/contract-policy.ts packages/core/src/domain/contract-projection.ts packages/core/src/services/contract-service.ts tests/unit/openapi/three-way.test.ts tests/integration/contracts/three-way.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "eslint",
+    "packages/core/src/domain/contract-policy.ts",
+    "packages/core/src/domain/contract-projection.ts",
+    "packages/core/src/services/contract-service.ts",
+    "tests/unit/openapi/three-way.test.ts",
+    "tests/integration/contracts/three-way.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:06:17.442Z",
+  "finished_at": "2026-09-20T03:06:23.095Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-021-lint-2026-09-20T03-06-17-442Z.json",
+  "log_path": "docs/implementation/evidence/sg-021-lint-2026-09-20T03-06-17-442Z.log",
+  "signal": null,
+  "duration_ms": 5653
+}

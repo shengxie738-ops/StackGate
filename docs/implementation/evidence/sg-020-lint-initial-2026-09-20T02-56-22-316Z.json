@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-020",
+  "command": "pnpm exec eslint packages/adapter-oasdiff/src tests/contract/oasdiff.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "eslint",
+    "packages/adapter-oasdiff/src",
+    "tests/contract/oasdiff.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:56:22.316Z",
+  "finished_at": "2026-09-20T02:56:27.612Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-020-lint-initial-2026-09-20T02-56-22-316Z.json",
+  "log_path": "docs/implementation/evidence/sg-020-lint-initial-2026-09-20T02-56-22-316Z.log",
+  "signal": null,
+  "duration_ms": 5296
+}

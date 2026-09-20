@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/mappings.schema.json",
+  "title": "ConsumerMappings",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "mappings": { "type": "array", "items": {
+      "type": "object",
+      "properties": {
+        "operation_key": { "$ref": "common.schema.json#/$defs/OperationKey" },
+        "consumer_paths": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/RelativePath" }, "uniqueItems": true, "minItems": 1 },
+        "check_ids": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/SafeId" }, "uniqueItems": true },
+        "test_ids": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/SafeId" }, "uniqueItems": true },
+        "workspace": { "$ref": "common.schema.json#/$defs/SafeId" },
+        "generated_client": { "type": "object", "properties": {
+          "path": { "$ref": "common.schema.json#/$defs/RelativePath" },
+          "metadata_source": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" }
+        }, "required": ["path", "metadata_source"], "additionalProperties": false }
+      },
+      "required": ["operation_key", "consumer_paths", "check_ids", "test_ids", "workspace"],
+      "additionalProperties": false
+    } }
+  },
+  "required": ["schema_version", "mappings"],
+  "additionalProperties": false
+}

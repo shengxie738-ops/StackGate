@@ -1,0 +1,14 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/trust/review.test.ts (4 tests) 51729ms
+   ✓ binds resolved tool identity without launching it  9690ms
+   ✓ previews names only and never trusts without explicit reviewed authorization  4497ms
+   ✓ stores outside repository, binds scripts, arguments and origins, and does not become CI trust  21074ms
+   ✓ refuses repository-contained trust stores and copying trust into another checkout  16465ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  10:48:56
+   Duration  53.33s (transform 429ms, setup 0ms, import 1.12s, tests 51.73s, environment 0ms)
+

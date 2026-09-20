@@ -1,0 +1,95 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/contracts/run-schema.test.ts (24 tests | 4 failed) 276ms
+   ✓ accepts complete check-result protocol 26ms
+   ✓ accepts complete artifact protocol 10ms
+   ✓ accepts complete gate-evaluation protocol 10ms
+   ✓ accepts complete plan protocol 45ms
+   ✓ accepts complete probe protocol 8ms
+   ✓ accepts complete event protocol 24ms
+   ✓ accepts complete input-manifest protocol 22ms
+   ✓ accepts complete environment protocol 26ms
+   ✓ accepts complete finding protocol 10ms
+   ✓ accepts complete playwright-report protocol 30ms
+   ✓ accepts complete run protocol 38ms
+   ✓ represents zero-test BLOCKED and cancellation without inventing a check status 2ms
+   ✓ rejects missing run identity and duplicate required IDs 2ms
+   ✓ rejects timezone-less event, seq zero, unknown event fields and payload variants 2ms
+   ✓ rejects artifact escape ../secret 0ms
+   ✓ rejects artifact escape C:/secret 0ms
+   ✓ rejects artifact escape a/../secret 0ms
+   ✓ rejects artifact escape a\secret 0ms
+   ✓ requires trace to be restricted and declares redaction state 1ms
+   ✓ does not conflate Git sha1 and sha256 object widths 1ms
+   × rejects non-origin environment identity file:///etc/passwd 13ms
+   × rejects non-origin environment identity http://user:secret@localhost/path 1ms
+   × enforces run Git object width 1ms
+   × requires explicit artifact classification before regular/restricted policy 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > rejects non-origin environment identity file:///etc/passwd
+ FAIL  tests/unit/contracts/run-schema.test.ts > rejects non-origin environment identity http://user:secret@localhost/path
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/unit/contracts/run-schema.test.ts:41:48
+     39| it.each(['file:///etc/passwd','http://user:secret@localhost/path'])('r…
+     40|   const env=protocolFixture('environment');env.backend_origin=origin;
+     41|   expect(validateSchema('environment',env).ok).toBe(false);
+       |                                                ^
+     42| });
+     43| it('enforces run Git object width', () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > enforces run Git object width
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/unit/contracts/run-schema.test.ts:45:40
+     43| it('enforces run Git object width', () => {
+     44|   const run=protocolFixture('run');run.git_object_format='sha256';
+     45|   expect(validateSchema('run',run).ok).toBe(false);
+       |                                        ^
+     46|   run.base_oid='b'.repeat(64);expect(validateSchema('run',run).ok).toB…
+     47| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/unit/contracts/run-schema.test.ts > requires explicit artifact classification before regular/restricted policy
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/unit/contracts/run-schema.test.ts:50:50
+     48| it('requires explicit artifact classification before regular/restricte…
+     49|   const artifact=protocolFixture('artifact');delete artifact.artifact_…
+     50|   expect(validateSchema('artifact',artifact).ok).toBe(false);
+       |                                                  ^
+     51| });
+     52| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 20 passed (24)
+   Start at  09:25:44
+   Duration  1.74s (transform 291ms, setup 0ms, import 888ms, tests 276ms, environment 0ms)
+

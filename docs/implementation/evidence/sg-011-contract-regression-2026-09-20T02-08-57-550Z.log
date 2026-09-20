@@ -1,0 +1,14 @@
+$ vitest run tests/contract
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/contract/toolchain.test.ts (5 tests) 4555ms
+   ✓ runs real TypeScript program and compiler CLI diagnostics  2652ms
+   ✓ runs real esbuild to emit a standalone ESM program and observes its result  303ms
+   ✓ build declarations are actually consumable with strict type checking  1496ms
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  10:08:59
+   Duration  7.54s (transform 274ms, setup 0ms, import 2.01s, tests 4.55s, environment 0ms)
+

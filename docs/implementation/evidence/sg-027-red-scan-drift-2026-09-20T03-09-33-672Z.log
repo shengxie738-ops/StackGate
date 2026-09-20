@@ -1,0 +1,23 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/cli/static-workflow.test.ts (3 tests | 1 failed | 2 skipped) 19677ms
+   ↓ previews init without writes and applies only absent files preserving existing content
+   × task and trust machine previews implement required data fields without running code 19675ms
+   ↓ scan returns breaking data with exit zero and never claims runtime or gate success
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/cli/static-workflow.test.ts > task and trust machine previews implement required data fields without running code
+TypeError: Cannot read properties of undefined (reading 'some')
+ ❯ tests/integration/cli/static-workflow.test.ts:27:272
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 skipped (3)
+   Start at  11:09:35
+   Duration  20.29s (transform 74ms, setup 0ms, import 143ms, tests 19.68s, environment 0ms)
+

@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-013",
+  "command": "pnpm exec vitest run tests/integration/git/input-manifest.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/git/input-manifest.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:35:54.430Z",
+  "finished_at": "2026-09-20T02:36:57.434Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-013-green-final-2026-09-20T02-35-54-430Z.json",
+  "log_path": "docs/implementation/evidence/sg-013-green-final-2026-09-20T02-35-54-430Z.log",
+  "signal": null,
+  "duration_ms": 63004
+}

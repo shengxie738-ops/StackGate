@@ -1,0 +1,2 @@
+$ node scripts/verify-schemas.mjs
+Validated 3 schemas, 1 fixtures, generated type drift: none

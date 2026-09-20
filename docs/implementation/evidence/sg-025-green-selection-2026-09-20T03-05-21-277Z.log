@@ -1,0 +1,10 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/impact/selection.test.ts (6 tests) 19ms
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  11:05:23
+   Duration  676ms (transform 87ms, setup 0ms, import 208ms, tests 19ms, environment 0ms)
+

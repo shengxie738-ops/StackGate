@@ -1,0 +1,12 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/cli/static-workflow.test.ts (3 tests | 1 skipped) 16096ms
+   ✓ previews init without writes and applies only absent files preserving existing content  872ms
+   ✓ task and trust machine previews implement required data fields without running code  15222ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed | 1 skipped (3)
+   Start at  10:54:54
+   Duration  16.84s (transform 108ms, setup 0ms, import 180ms, tests 16.10s, environment 0ms)
+

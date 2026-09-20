@@ -1,0 +1,94 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/git/baseline.test.ts (7 tests | 7 failed) 8639ms
+     × pins actual merge base and advancing target with detached HEAD 1572ms
+     × rejects missing refs and option-like refs 676ms
+     × treats leading dash directory as path and hashes local identities 937ms
+     × fails explicitly when shallow history cannot establish a common ancestor 2045ms
+     × rejects unresolved merges 2219ms
+     × disables repository fsmonitor and ignores hostile inherited Git environment 698ms
+     × reports nonrepository distinctly 488ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/git/baseline.test.ts > fixed Git baselines > pins actual merge base and advancing target with detached HEAD
+Error: NOT_IMPLEMENTED
+ ❯ resolveBaseline packages/adapter-git/src/baseline.ts:3:139
+      1| import type { BaselineIdentity } from '../../core/src/ports/git.js';
+      2| export type Baseline = BaselineIdentity;
+      3| export async function resolveBaseline(_request: {project_root: string;…
+       |                                                                                                                                           ^
+      4| 
+ ❯ tests/integration/git/baseline.test.ts:12:307
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  tests/integration/git/baseline.test.ts > fixed Git baselines > rejects missing refs and option-like refs
+ FAIL  tests/integration/git/baseline.test.ts > fixed Git baselines > fails explicitly when shallow history cannot establish a common ancestor
+AssertionError: expected Error: NOT_IMPLEMENTED to match object { code: 'BASELINE_MISSING' }
+
+- Expected
++ Received
+
+- {
+-   "code": "BASELINE_MISSING",
++ Error {
++   "message": "NOT_IMPLEMENTED",
+  }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  tests/integration/git/baseline.test.ts > fixed Git baselines > treats leading dash directory as path and hashes local identities
+Error: NOT_IMPLEMENTED
+ ❯ inspectRepository packages/adapter-git/src/repository.ts:1:220
+
+ ❯ tests/integration/git/baseline.test.ts:14:224
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  tests/integration/git/baseline.test.ts > fixed Git baselines > rejects unresolved merges
+AssertionError: expected Error: NOT_IMPLEMENTED to match object { code: 'UNRESOLVED_MERGE' }
+
+- Expected
++ Received
+
+- {
+-   "code": "UNRESOLVED_MERGE",
++ Error {
++   "message": "NOT_IMPLEMENTED",
+  }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  tests/integration/git/baseline.test.ts > fixed Git baselines > disables repository fsmonitor and ignores hostile inherited Git environment
+AssertionError: promise rejected "Error: NOT_IMPLEMENTED" instead of resolving
+ ❯ tests/integration/git/baseline.test.ts:17:421
+
+
+Caused by: Error: NOT_IMPLEMENTED
+ ❯ resolveBaseline packages/adapter-git/src/baseline.ts:3:139
+ ❯ tests/integration/git/baseline.test.ts:17:365
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  tests/integration/git/baseline.test.ts > fixed Git baselines > reports nonrepository distinctly
+AssertionError: expected Error: NOT_IMPLEMENTED to match object { code: 'NOT_A_REPOSITORY' }
+
+- Expected
++ Received
+
+- {
+-   "code": "NOT_A_REPOSITORY",
++ Error {
++   "message": "NOT_IMPLEMENTED",
+  }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed (7)
+   Start at  10:23:53
+   Duration  9.34s (transform 64ms, setup 0ms, import 168ms, tests 8.64s, environment 0ms)
+

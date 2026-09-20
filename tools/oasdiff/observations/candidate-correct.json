@@ -1,0 +1,19 @@
+{
+  "executable": "G:\\StackGate\\tools\\bin\\oasdiff-1.32.1\\oasdiff.exe",
+  "argv": [
+    "breaking",
+    "G:\\StackGate\\tests\\fixtures\\contracts\\target.json",
+    "G:\\StackGate\\tests\\fixtures\\contracts\\candidate-correct.json",
+    "--format",
+    "json",
+    "--config",
+    "G:\\StackGate\\tests\\fixtures\\oasdiff\\preparation\\empty-config.yaml",
+    "--allow-external-refs=false",
+    "--fail-on",
+    "ERR"
+  ],
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "[]\n",
+  "stderr": ""
+}

@@ -1,0 +1,430 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/check-step.schema.json",
+  "title": "CheckStep",
+  "type": "object",
+  "properties": {
+    "step_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "check_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "adapter_id": {
+      "type": "string",
+      "enum": [
+        "command",
+        "junit",
+        "openapi",
+        "stackgate-probe",
+        "playwright",
+        "environment"
+      ]
+    },
+    "command_id": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/SafeId"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "depends_on": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "required": {
+      "type": "boolean"
+    },
+    "timeout_ms": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "resource_locks": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "expected_artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/RelativePath"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "expected_test_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "min_tests": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "parameters": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "adapter_id": {
+              "const": "command"
+            },
+            "result_kind": {
+              "const": "exit-code"
+            }
+          },
+          "required": [
+            "adapter_id",
+            "result_kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "adapter_id": {
+              "const": "junit"
+            },
+            "report_name": {
+              "const": "junit.xml"
+            }
+          },
+          "required": [
+            "adapter_id",
+            "report_name"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "adapter_id": {
+              "const": "openapi"
+            },
+            "service": {
+              "$ref": "common.schema.json#/$defs/SafeId"
+            },
+            "candidate_artifact": {
+              "const": "candidate-openapi.json"
+            }
+          },
+          "required": [
+            "adapter_id",
+            "service",
+            "candidate_artifact"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "adapter_id": {
+              "const": "stackgate-probe"
+            },
+            "required_operations": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/OperationKey"
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            }
+          },
+          "required": [
+            "adapter_id",
+            "required_operations"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "adapter_id": {
+              "const": "playwright"
+            },
+            "required_test_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/SafeId"
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "require_real_backend": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "adapter_id",
+            "required_test_ids",
+            "require_real_backend"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "adapter_id": {
+              "const": "environment"
+            },
+            "environment_id": {
+              "$ref": "common.schema.json#/$defs/SafeId"
+            }
+          },
+          "required": [
+            "adapter_id",
+            "environment_id"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": [
+    "step_id",
+    "check_id",
+    "adapter_id",
+    "command_id",
+    "depends_on",
+    "required",
+    "timeout_ms",
+    "resource_locks",
+    "expected_artifacts",
+    "expected_test_ids",
+    "min_tests",
+    "parameters"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "adapter_id": {
+            "const": "command"
+          }
+        },
+        "required": [
+          "adapter_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "adapter_id": {
+                "const": "command"
+              },
+              "result_kind": {
+                "const": "exit-code"
+              }
+            },
+            "required": [
+              "adapter_id",
+              "result_kind"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "adapter_id": {
+            "const": "junit"
+          }
+        },
+        "required": [
+          "adapter_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "adapter_id": {
+                "const": "junit"
+              },
+              "report_name": {
+                "const": "junit.xml"
+              }
+            },
+            "required": [
+              "adapter_id",
+              "report_name"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "adapter_id": {
+            "const": "openapi"
+          }
+        },
+        "required": [
+          "adapter_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "adapter_id": {
+                "const": "openapi"
+              },
+              "service": {
+                "$ref": "common.schema.json#/$defs/SafeId"
+              },
+              "candidate_artifact": {
+                "const": "candidate-openapi.json"
+              }
+            },
+            "required": [
+              "adapter_id",
+              "service",
+              "candidate_artifact"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "adapter_id": {
+            "const": "stackgate-probe"
+          }
+        },
+        "required": [
+          "adapter_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "adapter_id": {
+                "const": "stackgate-probe"
+              },
+              "required_operations": {
+                "type": "array",
+                "items": {
+                  "$ref": "common.schema.json#/$defs/OperationKey"
+                },
+                "uniqueItems": true,
+                "minItems": 1
+              }
+            },
+            "required": [
+              "adapter_id",
+              "required_operations"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "adapter_id": {
+            "const": "playwright"
+          }
+        },
+        "required": [
+          "adapter_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "adapter_id": {
+                "const": "playwright"
+              },
+              "required_test_ids": {
+                "type": "array",
+                "items": {
+                  "$ref": "common.schema.json#/$defs/SafeId"
+                },
+                "uniqueItems": true,
+                "minItems": 1
+              },
+              "require_real_backend": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "adapter_id",
+              "required_test_ids",
+              "require_real_backend"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "adapter_id": {
+            "const": "environment"
+          }
+        },
+        "required": [
+          "adapter_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "adapter_id": {
+                "const": "environment"
+              },
+              "environment_id": {
+                "$ref": "common.schema.json#/$defs/SafeId"
+              }
+            },
+            "required": [
+              "adapter_id",
+              "environment_id"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  ]
+}

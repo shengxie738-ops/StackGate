@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-017",
+  "command": "pnpm exec vitest run tests/integration/tasks/confirm.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/tasks/confirm.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:34:44.888Z",
+  "finished_at": "2026-09-20T02:35:06.524Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-017-red-confirm-behavior-2026-09-20T02-34-44-888Z.json",
+  "log_path": "docs/implementation/evidence/sg-017-red-confirm-behavior-2026-09-20T02-34-44-888Z.log",
+  "signal": null,
+  "duration_ms": 21636
+}

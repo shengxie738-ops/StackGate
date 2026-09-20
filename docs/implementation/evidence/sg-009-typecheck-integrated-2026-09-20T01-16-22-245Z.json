@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-009",
+  "command": "pnpm typecheck",
+  "argv": [
+    "pnpm",
+    "typecheck"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:16:22.245Z",
+  "finished_at": "2026-09-20T01:16:27.387Z",
+  "exit_code": 2,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-009-typecheck-integrated-2026-09-20T01-16-22-245Z.json",
+  "log_path": "docs/implementation/evidence/sg-009-typecheck-integrated-2026-09-20T01-16-22-245Z.log",
+  "signal": null,
+  "duration_ms": 5142
+}

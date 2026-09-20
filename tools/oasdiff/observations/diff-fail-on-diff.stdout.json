@@ -1,0 +1,1 @@
+{"paths":{"modified":{"/api/performance":{"operations":{"modified":{"GET":{"responses":{"modified":{"200":{"content":{"modified":{"application/json":{"schema":{"properties":{"modified":{"data":{"properties":{"modified":{"performance":{"properties":{"modified":{"total_return":{"type":{"added":["string"],"deleted":["number"]}}}}}}}}}}}}}}}}}}}}}}}}

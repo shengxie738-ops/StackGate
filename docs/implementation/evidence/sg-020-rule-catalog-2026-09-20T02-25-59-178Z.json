@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-020",
+  "command": "tools/bin/oasdiff-1.32.1/oasdiff.exe checks changelog --id response-property-type-changed --format json",
+  "argv": [
+    "tools/bin/oasdiff-1.32.1/oasdiff.exe",
+    "checks",
+    "changelog",
+    "--id",
+    "response-property-type-changed",
+    "--format",
+    "json"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:25:59.178Z",
+  "finished_at": "2026-09-20T02:25:59.261Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-020-rule-catalog-2026-09-20T02-25-59-178Z.json",
+  "log_path": "docs/implementation/evidence/sg-020-rule-catalog-2026-09-20T02-25-59-178Z.log",
+  "signal": null,
+  "duration_ms": 83
+}

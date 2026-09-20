@@ -1,0 +1,125 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/git/input-manifest.test.ts (8 tests | 8 failed) 13553ms
+     × hashes final bytes B while keeping staged A and unstaged explanations 1877ms
+     × includes untracked source and dependency locks in input hash 1642ms
+     × retains tombstones for staged and unstaged deletions 1521ms
+     × explicitly includes ignored build inputs and diagnoses missing required inputs 1669ms
+     × excludes declared outputs and credential files with reasons 1817ms
+     × blocks oversized files, LFS pointers and unresolved generated inputs 1685ms
+     × blocks submodules and out-of-root directory links 1659ms
+     × keeps documentation as input unless explicitly excluded 1680ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/git/input-manifest.test.ts > complete input byte capture > hashes final bytes B while keeping staged A and unstaged explanations
+Error: NOT_IMPLEMENTED
+ ❯ captureInputs packages/adapter-git/src/input-manifest.ts:5:141
+      3| import type { Baseline } from './baseline.js';
+      4| export interface InputScope { exclusions?: readonly {relative_path:str…
+      5| export async function captureInputs(_project: ProjectContext, _baselin…
+       |                                                                                                                                             ^
+      6| 
+ ❯ Object.capture tests/integration/git/input-manifest.test.ts:9:210
+ ❯ tests/integration/git/input-manifest.test.ts:12:281
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  tests/integration/git/input-manifest.test.ts > complete input byte capture > includes untracked source and dependency locks in input hash
+Error: NOT_IMPLEMENTED
+ ❯ captureInputs packages/adapter-git/src/input-manifest.ts:5:141
+      3| import type { Baseline } from './baseline.js';
+      4| export interface InputScope { exclusions?: readonly {relative_path:str…
+      5| export async function captureInputs(_project: ProjectContext, _baselin…
+       |                                                                                                                                             ^
+      6| 
+ ❯ Object.capture tests/integration/git/input-manifest.test.ts:9:210
+ ❯ tests/integration/git/input-manifest.test.ts:13:127
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  tests/integration/git/input-manifest.test.ts > complete input byte capture > retains tombstones for staged and unstaged deletions
+Error: NOT_IMPLEMENTED
+ ❯ captureInputs packages/adapter-git/src/input-manifest.ts:5:141
+      3| import type { Baseline } from './baseline.js';
+      4| export interface InputScope { exclusions?: readonly {relative_path:str…
+      5| export async function captureInputs(_project: ProjectContext, _baselin…
+       |                                                                                                                                             ^
+      6| 
+ ❯ Object.capture tests/integration/git/input-manifest.test.ts:9:210
+ ❯ tests/integration/git/input-manifest.test.ts:14:168
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  tests/integration/git/input-manifest.test.ts > complete input byte capture > explicitly includes ignored build inputs and diagnoses missing required inputs
+Error: NOT_IMPLEMENTED
+ ❯ captureInputs packages/adapter-git/src/input-manifest.ts:5:141
+      3| import type { Baseline } from './baseline.js';
+      4| export interface InputScope { exclusions?: readonly {relative_path:str…
+      5| export async function captureInputs(_project: ProjectContext, _baselin…
+       |                                                                                                                                             ^
+      6| 
+ ❯ Object.capture tests/integration/git/input-manifest.test.ts:9:210
+ ❯ tests/integration/git/input-manifest.test.ts:15:327
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  tests/integration/git/input-manifest.test.ts > complete input byte capture > excludes declared outputs and credential files with reasons
+Error: NOT_IMPLEMENTED
+ ❯ captureInputs packages/adapter-git/src/input-manifest.ts:5:141
+      3| import type { Baseline } from './baseline.js';
+      4| export interface InputScope { exclusions?: readonly {relative_path:str…
+      5| export async function captureInputs(_project: ProjectContext, _baselin…
+       |                                                                                                                                             ^
+      6| 
+ ❯ Object.capture tests/integration/git/input-manifest.test.ts:9:210
+ ❯ tests/integration/git/input-manifest.test.ts:16:210
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  tests/integration/git/input-manifest.test.ts > complete input byte capture > blocks oversized files, LFS pointers and unresolved generated inputs
+Error: NOT_IMPLEMENTED
+ ❯ captureInputs packages/adapter-git/src/input-manifest.ts:5:141
+      3| import type { Baseline } from './baseline.js';
+      4| export interface InputScope { exclusions?: readonly {relative_path:str…
+      5| export async function captureInputs(_project: ProjectContext, _baselin…
+       |                                                                                                                                             ^
+      6| 
+ ❯ Object.capture tests/integration/git/input-manifest.test.ts:9:210
+ ❯ tests/integration/git/input-manifest.test.ts:17:188
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  tests/integration/git/input-manifest.test.ts > complete input byte capture > blocks submodules and out-of-root directory links
+Error: NOT_IMPLEMENTED
+ ❯ captureInputs packages/adapter-git/src/input-manifest.ts:5:141
+      3| import type { Baseline } from './baseline.js';
+      4| export interface InputScope { exclusions?: readonly {relative_path:str…
+      5| export async function captureInputs(_project: ProjectContext, _baselin…
+       |                                                                                                                                             ^
+      6| 
+ ❯ Object.capture tests/integration/git/input-manifest.test.ts:9:210
+ ❯ tests/integration/git/input-manifest.test.ts:18:213
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+ FAIL  tests/integration/git/input-manifest.test.ts > complete input byte capture > keeps documentation as input unless explicitly excluded
+Error: NOT_IMPLEMENTED
+ ❯ captureInputs packages/adapter-git/src/input-manifest.ts:5:141
+      3| import type { Baseline } from './baseline.js';
+      4| export interface InputScope { exclusions?: readonly {relative_path:str…
+      5| export async function captureInputs(_project: ProjectContext, _baselin…
+       |                                                                                                                                             ^
+      6| 
+ ❯ Object.capture tests/integration/git/input-manifest.test.ts:9:210
+ ❯ tests/integration/git/input-manifest.test.ts:19:122
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  8 failed (8)
+   Start at  10:27:19
+   Duration  14.40s (transform 113ms, setup 0ms, import 228ms, tests 13.55s, environment 0ms)
+

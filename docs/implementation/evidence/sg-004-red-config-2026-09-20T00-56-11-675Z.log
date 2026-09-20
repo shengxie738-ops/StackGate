@@ -1,0 +1,24 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/contracts/config-schema.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/contracts/config-schema.test.ts [ tests/unit/contracts/config-schema.test.ts ]
+Error: Cannot find module '../../../packages/contracts/src/validation.js' imported from 'G:/StackGate/tests/unit/contracts/config-schema.test.ts'
+ ❯ tests/unit/contracts/config-schema.test.ts:2:1
+      1| import { expect, it } from 'vitest';
+      2| import { validateProjectConfig, validateSchema } from '../../../packag…
+       | ^
+      3| import { sourceFixture } from '../../support/source-fixtures.js';
+      4| it('accepts the unmodified original project config', () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  08:56:15
+   Duration  701ms (transform 52ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

@@ -1,0 +1,32 @@
+{
+  "task_id": "SG-017",
+  "command": "pnpm exec tsc --noEmit --strict --noUncheckedIndexedAccess --exactOptionalPropertyTypes --target ES2023 --module ESNext --moduleResolution Bundler --esModuleInterop --resolveJsonModule --skipLibCheck tests/integration/tasks/confirm.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "tsc",
+    "--noEmit",
+    "--strict",
+    "--noUncheckedIndexedAccess",
+    "--exactOptionalPropertyTypes",
+    "--target",
+    "ES2023",
+    "--module",
+    "ESNext",
+    "--moduleResolution",
+    "Bundler",
+    "--esModuleInterop",
+    "--resolveJsonModule",
+    "--skipLibCheck",
+    "tests/integration/tasks/confirm.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:47:13.388Z",
+  "finished_at": "2026-09-20T02:47:17.299Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-017-review-fixes-scoped-typecheck-2026-09-20T02-47-13-388Z.json",
+  "log_path": "docs/implementation/evidence/sg-017-review-fixes-scoped-typecheck-2026-09-20T02-47-13-388Z.log",
+  "signal": null,
+  "duration_ms": 3911
+}

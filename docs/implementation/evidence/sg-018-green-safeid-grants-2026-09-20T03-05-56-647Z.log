@@ -1,0 +1,12 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/trust/review.test.ts (9 tests | 7 skipped) 45543ms
+   ✓ does not recognize mismatched grant IDs or permission scopes as trusted  24526ms
+   ✓ stores outside repository, binds scripts, arguments and origins, and does not become CI trust  21013ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed | 7 skipped (9)
+   Start at  11:05:58
+   Duration  47.52s (transform 519ms, setup 0ms, import 1.46s, tests 45.54s, environment 0ms)
+

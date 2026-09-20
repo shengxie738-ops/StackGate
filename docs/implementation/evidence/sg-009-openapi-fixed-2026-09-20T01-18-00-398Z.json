@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-009",
+  "command": "node scripts/verify-openapi-fixtures.mjs",
+  "argv": [
+    "node",
+    "scripts/verify-openapi-fixtures.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:18:00.398Z",
+  "finished_at": "2026-09-20T01:18:00.811Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-009-openapi-fixed-2026-09-20T01-18-00-398Z.json",
+  "log_path": "docs/implementation/evidence/sg-009-openapi-fixed-2026-09-20T01-18-00-398Z.log",
+  "signal": null,
+  "duration_ms": 413
+}

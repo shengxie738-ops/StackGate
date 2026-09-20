@@ -1,0 +1,1 @@
+{"schema_version":"0.1","stage":"M1","checks":["source","tasks","schemas","boundaries","build","typecheck","unit","lint","contract","integration"],"required_tools":["node","pnpm","typescript","ajv","vitest","esbuild","oasdiff"]}

@@ -1,0 +1,14 @@
+$ vitest run tests/unit
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/contracts/primitives.test.ts (12 tests) 66ms
+ ✓ tests/unit/bootstrap.test.ts (4 tests) 1394ms
+   ✓ rejects unsupported arguments and combinations with exit 64  306ms
+   ✓ an empty test selection exits nonzero  895ms
+
+ Test Files  2 passed (2)
+      Tests  16 passed (16)
+   Start at  08:55:19
+   Duration  1.96s (transform 106ms, setup 0ms, import 508ms, tests 1.46s, environment 0ms)
+

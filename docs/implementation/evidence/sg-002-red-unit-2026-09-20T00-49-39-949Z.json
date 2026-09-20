@@ -1,0 +1,19 @@
+{
+  "command": "pnpm exec vitest run tests/unit/bootstrap.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/bootstrap.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T00:49:39.949Z",
+  "finished_at": "2026-09-20T00:49:47.186Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-002-red-unit-2026-09-20T00-49-39-949Z.json",
+  "log_path": "docs/implementation/evidence/sg-002-red-unit-2026-09-20T00-49-39-949Z.log",
+  "signal": null,
+  "duration_ms": 7237
+}

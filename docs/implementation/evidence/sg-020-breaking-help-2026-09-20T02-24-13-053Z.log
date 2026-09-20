@@ -1,0 +1,42 @@
+Display breaking changes between base and revision specs.
+Base and revision can be a path to a file, a URL, a git ref (e.g. main:openapi.yaml), or '-' to read standard input.
+In 'composed' mode, base and revision can be a glob and oasdiff will compare matching endpoints between the two sets of files.
+
+Usage:
+  oasdiff breaking base revision [flags]
+
+Flags:
+      --allow-external-refs            allow external $refs in specs; disable to prevent SSRF when processing untrusted specs (default true)
+      --attributes strings             OpenAPI Extensions to include in json or yaml output
+      --auto-upgrade                   canonicalize both specs to the latest OpenAPI 3.x before diffing; useful for cross-version comparisons (e.g. 3.0 vs 3.1)
+      --case-insensitive-headers       case-insensitive header name comparison (HTTP headers are case-insensitive per RFC 7230) (default true)
+      --color string                   when to colorize textual output: auto, always, or never (default "auto")
+  -c, --composed                       work in 'composed' mode, compare paths in all specs matching base and revision globs
+      --deprecation-days-beta uint     min days required between deprecating a beta resource and removing it
+      --deprecation-days-stable uint   min days required between deprecating a stable resource and removing it
+      --err-ignore string              configuration file for ignoring errors
+      --exclude-extensions strings     OpenAPI Extension names to exclude from diff (e.g., x-internal)
+  -o, --fail-on string                 exit with return code 1 when output includes errors with this level or higher: ERR or WARN
+      --fetch                          fetch missing git revisions from the 'origin' remote (writes objects to your local repo)
+      --filter-extension string        exclude paths and operations with an OpenAPI Extension matching this regular expression
+      --flatten-allof                  merge subschemas under allOf before diff
+      --flatten-params                 merge common parameters at path level with operation parameters
+  -f, --format string                  output format: githubactions, html, json, junit, markdown, markup, singleline, text, or yaml (default "text")
+  -h, --help                           help for breaking
+      --include-path-params            include path parameter names in endpoint matching
+  -l, --lang string                    language for localized output: en, ru, pt-br, or es (default "en")
+      --match-inline-refs              match validation-equivalent inline/$ref subschemas as the same anyOf/oneOf branch (default true)
+  -p, --match-path string              include only paths that match this regular expression
+      --open                           after printing the breaking changes, encrypt the comparison and upload it to oasdiff.com, then open the side-by-side review in a browser
+      --prefix-base string             add this prefix to paths in base-spec before comparison
+      --prefix-revision string         add this prefix to paths in revised-spec before comparison
+      --severity-levels string         configuration file for custom severity levels
+      --stability-level string         minimum stability level to include: draft, alpha, beta, or stable
+      --strip-prefix-base string       strip this prefix from paths in base-spec before comparison
+      --strip-prefix-revision string   strip this prefix from paths in revised-spec before comparison
+      --template string                path to custom template file for changelog generation
+  -q, --unmatch-path string            exclude paths that match this regular expression
+      --warn-ignore string             configuration file for ignoring warnings
+
+Global Flags:
+      --config string   path to config file (overrides .oasdiff.* lookup; can also use the OASDIFF_CONFIG env var)

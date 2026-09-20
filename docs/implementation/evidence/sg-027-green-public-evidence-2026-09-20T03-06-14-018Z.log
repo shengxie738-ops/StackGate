@@ -1,0 +1,10 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/openapi/public-scan-report.test.ts (1 test) 6ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  11:06:16
+   Duration  925ms (transform 94ms, setup 0ms, import 200ms, tests 6ms, environment 0ms)
+

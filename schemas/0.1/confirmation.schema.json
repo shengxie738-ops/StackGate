@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/confirmation.schema.json",
+  "title": "ConfirmationRecord",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "task_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "payload_hash": {
+      "$ref": "common.schema.json#/$defs/Sha256"
+    },
+    "target_hashes": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "additionalProperties": {
+        "$ref": "common.schema.json#/$defs/Sha256"
+      },
+      "minProperties": 1
+    },
+    "protected_input_hash": {
+      "$ref": "common.schema.json#/$defs/Sha256"
+    },
+    "confirmed_at": {
+      "$ref": "common.schema.json#/$defs/UtcTimestamp"
+    },
+    "confirmation_source": {
+      "type": "string",
+      "enum": [
+        "local-review",
+        "trusted-ci"
+      ]
+    },
+    "trusted_source_ref": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "task_id",
+    "revision",
+    "payload_hash",
+    "target_hashes",
+    "protected_input_hash",
+    "confirmed_at",
+    "confirmation_source"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "confirmation_source": {
+            "const": "trusted-ci"
+          }
+        },
+        "required": [
+          "confirmation_source"
+        ]
+      },
+      "then": {
+        "required": [
+          "trusted_source_ref"
+        ],
+        "properties": {
+          "trusted_source_ref": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+          }
+        }
+      }
+    }
+  ]
+}

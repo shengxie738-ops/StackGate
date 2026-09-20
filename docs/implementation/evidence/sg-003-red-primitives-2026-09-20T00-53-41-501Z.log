@@ -1,0 +1,25 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/contracts/primitives.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/contracts/primitives.test.ts [ tests/unit/contracts/primitives.test.ts ]
+Error: Cannot find module '../../../schemas/0.1/common.schema.json' imported from 'G:/StackGate/tests/unit/contracts/primitives.test.ts'
+ ❯ tests/unit/contracts/primitives.test.ts:3:1
+      1| import { describe, expect, it } from 'vitest';
+      2| import Ajv2020 from 'ajv/dist/2020.js';
+      3| import common from '../../../schemas/0.1/common.schema.json';
+       | ^
+      4| import { parseOperationKey, formatOperationKey, resolveOperationKey, i…
+      5| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  08:53:43
+   Duration  823ms (transform 47ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

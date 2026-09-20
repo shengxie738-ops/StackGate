@@ -1,0 +1,122 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/openapi/safe-loader.test.ts (59 tests | 7 failed) 111ms
+     ✓ loads retained contract raw bytes without normalizing the raw hash 15ms
+     ✓ rejects ambiguous or malformed documents: {"openapi":"3.1.1","openapi":"3.0.3"} 1ms
+     ✓ rejects ambiguous or malformed documents: openapi: 3.1.1
+openapi: 3.1.0 1ms
+     ✓ rejects ambiguous or malformed documents: openapi: !custom 3.1.1 1ms
+     ✓ rejects ambiguous or malformed documents: a: &a [1]
+b: *a 1ms
+     ✓ rejects ambiguous or malformed documents: {"a": 1ms
+     ✓ rejects invalid OpenAPI document basics 0ms
+     ✓ rejects invalid OpenAPI document basics 0ms
+     ✓ rejects invalid OpenAPI document basics 0ms
+     ✓ rejects invalid OpenAPI document basics 0ms
+     ✓ rejects invalid OpenAPI document basics 1ms
+     ✓ rejects invalid OpenAPI document basics 1ms
+     ✓ rejects invalid OpenAPI document basics 0ms
+     ✓ accepts strict YAML and preserves trailing slash and path-parameter spelling 1ms
+     ✓ denies external HTTP refs in unused components without a single request 38ms
+     ✓ rejects external or invalid refs other.json#/schema 1ms
+     ✓ rejects external or invalid refs file:///secret 1ms
+     ✓ rejects external or invalid refs //host/path 1ms
+     ✓ rejects external or invalid refs http://example.invalid/schema 1ms
+     ✓ rejects external or invalid refs #not-a-pointer 1ms
+     ✓ rejects external or invalid refs #/%ZZ 1ms
+     ✓ rejects external or invalid refs 17 1ms
+     ✓ identifies a missing fragment at the referring pointer 1ms
+     ✓ resolves escaped and percent-encoded local pointers recursively 1ms
+     ✓ diagnoses recursive and dynamic reference constructs 2ms
+     ✓ enforces byte, depth and reference traversal bounds 3ms
+     ✓ supports the explicit basic schema subset {"type":"number"} 1ms
+     ✓ supports the explicit basic schema subset {"type":"integer"} 1ms
+     ✓ supports the explicit basic schema subset {"type":"boolean"} 1ms
+     ✓ supports the explicit basic schema subset {"type":"null"} 1ms
+     ✓ supports the explicit basic schema subset {"type":["number","null"]} 1ms
+     ✓ supports the explicit basic schema subset {"anyOf":[{"type":"number"},{"type":"null"}]} 1ms
+     ✓ supports the explicit basic schema subset {"type":"string","enum":["a","b"]} 1ms
+     ✓ supports the explicit basic schema subset {"type":"array","items":{"type":"number"}} 1ms
+     ✓ supports the explicit basic schema subset {"type":"object","required":["id"],"properties":{"id":{"type":"string","readOnly":true},"password":{"type":"string","writeOnly":true}},"additionalProperties":false} 1ms
+     ✓ does not silently pass untested schema constructs {"oneOf":[{"type":"number"},{"type":"string"}]} 1ms
+     ✓ does not silently pass untested schema constructs {"allOf":[{"type":"number"}]} 1ms
+     ✓ does not silently pass untested schema constructs {"anyOf":[{"type":"number"},{"type":"string"}]} 1ms
+     ✓ does not silently pass untested schema constructs {"type":["number","string"]} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"string","format":"unregistered-format"} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"string","pattern":"[a-z]"} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"number","default":5} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"number","example":5} 1ms
+     ✓ does not silently pass untested schema constructs {"if":{"type":"string"},"then":{"minLength":1}} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"number","madeUpKeyword":true} 1ms
+     ✓ does not silently pass untested schema constructs {"$schema":"https://example.invalid/dialect","type":"number"} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"array"} 0ms
+     ✓ does not silently pass untested schema constructs {"type":"object","additionalProperties":{"type":"number"}} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"string","readOnly":"yes"} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"object","required":["absent"],"properties":{}} 1ms
+     × does not silently pass untested schema constructs {"type":"number","enum":["wrong-type"]} 10ms
+     × does not silently pass untested schema constructs {"type":"integer","enum":[1.5]} 2ms
+     × does not silently pass untested schema constructs {"type":"number","anyOf":[{"type":"object"},{"type":"null"}]} 1ms
+     ✓ limits schema inspection to known selected operations but expands unknown scope 1ms
+     ✓ inspects shared parameters and recursively referenced schemas for the chosen operation 1ms
+     × rejects malformed or unsupported request/response envelopes 1ms
+     × rejects malformed or unsupported request/response envelopes 1ms
+     × rejects malformed or unsupported request/response envelopes 1ms
+     × rejects malformed or unsupported request/response envelopes 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"type":"number","enum":["wrong-type"]}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"type":"integer","enum":[1.5]}
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not silently pass untested schema constructs {"type":"number","anyOf":[{"type":"object"},{"type":"null"}]}
+AssertionError: expected { supported: true, …(4) } to match object { supported: false, …(1) }
+(3 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "supported": false,
+-   "verdict": "INCOMPLETE",
++   "supported": true,
++   "verdict": "SUPPORTED",
+  }
+
+ ❯ tests/unit/openapi/safe-loader.test.ts:112:20
+    110|   ])('does not silently pass untested schema constructs %j', (schema) …
+    111|     const result = capability(schema);
+    112|     expect(result).toMatchObject({ supported: false, verdict: 'INCOMPL…
+       |                    ^
+    113|     expect(result.diagnostics.some((diagnostic) => diagnostic.code ===…
+    114|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects malformed or unsupported request/response envelopes
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects malformed or unsupported request/response envelopes
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects malformed or unsupported request/response envelopes
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > rejects malformed or unsupported request/response envelopes
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/unit/openapi/safe-loader.test.ts:136:62
+    134|   ])('rejects malformed or unsupported request/response envelopes', (o…
+    135|     const document = contract(); document.paths['/value'].get = operat…
+    136|     expect(inspectSupportedSchema(load(document)).supported).toBe(fals…
+       |                                                              ^
+    137|   });
+    138| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed | 52 passed (59)
+   Start at  10:38:11
+   Duration  902ms (transform 128ms, setup 0ms, import 408ms, tests 111ms, environment 0ms)
+

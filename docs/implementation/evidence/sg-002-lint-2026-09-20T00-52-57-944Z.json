@@ -1,0 +1,16 @@
+{
+  "command": "pnpm lint",
+  "argv": [
+    "pnpm",
+    "lint"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T00:52:57.944Z",
+  "finished_at": "2026-09-20T00:53:11.306Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-002-lint-2026-09-20T00-52-57-944Z.json",
+  "log_path": "docs/implementation/evidence/sg-002-lint-2026-09-20T00-52-57-944Z.log",
+  "signal": null,
+  "duration_ms": 13362
+}

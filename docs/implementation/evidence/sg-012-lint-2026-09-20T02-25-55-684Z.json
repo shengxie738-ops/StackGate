@@ -1,0 +1,21 @@
+{
+  "task_id": "SG-012",
+  "command": "pnpm exec eslint packages/adapter-git/src tests/support/git-repo.ts tests/integration/git/baseline.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "eslint",
+    "packages/adapter-git/src",
+    "tests/support/git-repo.ts",
+    "tests/integration/git/baseline.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:25:55.684Z",
+  "finished_at": "2026-09-20T02:25:58.861Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-012-lint-2026-09-20T02-25-55-684Z.json",
+  "log_path": "docs/implementation/evidence/sg-012-lint-2026-09-20T02-25-55-684Z.log",
+  "signal": null,
+  "duration_ms": 3177
+}

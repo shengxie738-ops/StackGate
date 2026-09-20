@@ -1,0 +1,15 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/openapi/three-way.test.ts (8 tests) 13ms
+ ✓ tests/integration/contracts/three-way.test.ts (5 tests) 3306ms
+     ✓ uses real compatibility while missing candidate/runtime remain NOT_EXECUTED  456ms
+     ✓ rejects absent target behavior independently of mutual breaking checks  1213ms
+     ✓ requires real confirmation hashes and grants no approval to a draft  735ms
+     ✓ blocks target byte drift despite equal behavior and separates export errors  896ms
+
+ Test Files  2 passed (2)
+      Tests  13 passed (13)
+   Start at  11:03:02
+   Duration  5.85s (transform 661ms, setup 0ms, import 1.95s, tests 3.32s, environment 0ms)
+

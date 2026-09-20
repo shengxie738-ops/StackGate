@@ -1,0 +1,18 @@
+{
+  "task_id": "SG-028",
+  "command": "node --test tests/bootstrap/stage.test.mjs",
+  "argv": [
+    "node",
+    "--test",
+    "tests/bootstrap/stage.test.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:12:15.197Z",
+  "finished_at": "2026-09-20T03:12:15.647Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-028-green-stage-identity-2026-09-20T03-12-15-197Z.json",
+  "log_path": "docs/implementation/evidence/sg-028-green-stage-identity-2026-09-20T03-12-15-197Z.log",
+  "signal": null,
+  "duration_ms": 450
+}

@@ -1,0 +1,14 @@
+import { afterEach, expect, it } from 'vitest';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { makeRepo } from '../../support/git-repo.js';
+import { resolveBaseline } from '../../../packages/adapter-git/src/baseline.js';
+import { captureInputs } from '../../../packages/adapter-git/src/input-manifest.js';
+import { evaluateFreshness, type EvidenceIdentity } from '../../../packages/core/src/domain/evaluate-freshness.js';
+import { identityFields } from '../../../packages/core/src/domain/compare-inputs.js';
+const repos: Awaited<ReturnType<typeof makeRepo>>[] = [];
+afterEach(async () => { await Promise.all(repos.splice(0).map(r => r.cleanup())); });
+const context = (root:string) => ({project_id:'test',repo_root:root,configuration_hash:'a'.repeat(64),workspaces:{},contracts:{}});
+const identity = (input:object): EvidenceIdentity => ({...Object.fromEntries(identityFields.map(f => [f,'identity-'+f])),completeness:'COMPLETE',...input});
+it('sees target advancement while preserving detached candidate identity and never fetching', async () => { const r = await makeRepo(); repos.push(r); const previous = await resolveBaseline({project_root:r.root,target_ref:'main'}); await r.commit('target.txt','advance'); await r.git('checkout','--detach',previous.head_oid); const current = await resolveBaseline({project_root:r.root,target_ref:'main'}); expect(current.head_oid).toBe(previous.head_oid); expect(current.base_oid).toBe(previous.base_oid); expect(evaluateFreshness(identity(previous),identity(current),{require_latest_target:true,target_tip_verified:true}).freshness).toBe('STALE'); expect(evaluateFreshness(identity(previous),identity(current),{require_latest_target:true}).freshness).toBe('UNVERIFIED'); await expect(fs.stat(path.join(r.root,'.git','FETCH_HEAD'))).rejects.toMatchObject({code:'ENOENT'}); });
+it('invalidates untracked source changes at the same Git HEAD', async () => { const r = await makeRepo(); repos.push(r); const baseline = await resolveBaseline({project_root:r.root,target_ref:'main'}); const before = await captureInputs(context(r.root),baseline); await fs.writeFile(path.join(r.root,'new.ts'),'new code'); const after = await captureInputs(context(r.root),baseline); expect(before.head_oid).toBe(after.head_oid); const result = evaluateFreshness(identity(before),identity(after),{require_latest_target:false}); expect(result.freshness).toBe('STALE'); expect(result.reasons).toContainEqual({field:'input_hash',code:'CHANGED'}); });

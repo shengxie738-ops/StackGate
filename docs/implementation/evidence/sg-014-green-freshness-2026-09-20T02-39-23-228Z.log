@@ -1,0 +1,13 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/freshness.test.ts (46 tests) 10ms
+ ✓ tests/integration/git/target-advance.test.ts (2 tests) 7672ms
+   ✓ sees target advancement while preserving detached candidate identity and never fetching  3275ms
+   ✓ invalidates untracked source changes at the same Git HEAD  4396ms
+
+ Test Files  2 passed (2)
+      Tests  48 passed (48)
+   Start at  10:39:25
+   Duration  8.56s (transform 263ms, setup 0ms, import 517ms, tests 7.68s, environment 0ms)
+

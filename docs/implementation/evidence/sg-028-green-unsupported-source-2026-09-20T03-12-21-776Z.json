@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-028",
+  "command": "pnpm exec vitest run tests/integration/stages/m1.test.ts -t \"unsupported workspace\"",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/stages/m1.test.ts",
+    "-t",
+    "unsupported workspace"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:12:21.776Z",
+  "finished_at": "2026-09-20T03:12:28.045Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-028-green-unsupported-source-2026-09-20T03-12-21-776Z.json",
+  "log_path": "docs/implementation/evidence/sg-028-green-unsupported-source-2026-09-20T03-12-21-776Z.log",
+  "signal": null,
+  "duration_ms": 6269
+}

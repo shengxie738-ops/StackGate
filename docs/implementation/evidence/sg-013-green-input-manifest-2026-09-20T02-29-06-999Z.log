@@ -1,0 +1,33 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/git/input-manifest.test.ts (8 tests | 1 failed) 49318ms
+     ✓ hashes final bytes B while keeping staged A and unstaged explanations  3299ms
+     ✓ includes untracked source and dependency locks in input hash  5192ms
+     ✓ retains tombstones for staged and unstaged deletions  6244ms
+     ✓ explicitly includes ignored build inputs and diagnoses missing required inputs  5801ms
+     ✓ excludes declared outputs and credential files with reasons  3884ms
+     ✓ blocks oversized files, LFS pointers and unresolved generated inputs  5284ms
+     × blocks submodules and out-of-root directory links 15005ms
+     ✓ keeps documentation as input unless explicitly excluded  4607ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/git/input-manifest.test.ts > complete input byte capture > blocks submodules and out-of-root directory links
+Error: Test timed out in 15000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/integration/git/input-manifest.test.ts:18:3
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/integration/git/input-manifest.test.ts > complete input byte capture > blocks submodules and out-of-root directory links
+Error: EBUSY: resource busy or locked, rmdir 'C:\Users\17894\AppData\Local\Temp\stackgate-git-FMs3gk'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  10:29:09
+   Duration  50.30s (transform 183ms, setup 0ms, import 342ms, tests 49.32s, environment 0ms)
+

@@ -1,0 +1,19 @@
+{
+  "executable": "G:\\StackGate\\tools\\bin\\oasdiff-1.32.1\\oasdiff.exe",
+  "argv": [
+    "breaking",
+    "G:\\StackGate\\tests\\fixtures\\contracts\\target.json",
+    "G:\\StackGate\\tests\\fixtures\\contracts\\candidate-missing.json",
+    "--format",
+    "json",
+    "--config",
+    "G:\\StackGate\\tests\\fixtures\\oasdiff\\preparation\\empty-config.yaml",
+    "--allow-external-refs=false",
+    "--fail-on",
+    "ERR"
+  ],
+  "exit_code": 1,
+  "signal": null,
+  "stdout": "[{\"id\":\"response-required-property-removed\",\"text\":\"removed the required property `data/performance/total_return` from the response with the `200` status\",\"level\":3,\"operation\":\"GET\",\"operationId\":\"getPerformance\",\"path\":\"/api/performance\",\"section\":\"paths\",\"fingerprint\":\"87ade2d57a3c\"}]\n",
+  "stderr": ""
+}

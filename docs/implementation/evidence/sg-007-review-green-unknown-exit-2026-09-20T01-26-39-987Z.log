@@ -1,0 +1,12 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/gate/truth-table.test.ts (22 tests) 16ms
+ ✓ tests/unit/gate/acceptance-boundaries.test.ts (11 tests) 9ms
+ ✓ tests/unit/gate/exit-priority.test.ts (65 tests) 19ms
+
+ Test Files  3 passed (3)
+      Tests  98 passed (98)
+   Start at  09:26:42
+   Duration  784ms (transform 134ms, setup 0ms, import 396ms, tests 44ms, environment 4ms)
+

@@ -1,0 +1,24 @@
+{
+  "task_id": "SG-020",
+  "command": "tools/bin/oasdiff-1.32.1/oasdiff.exe breaking tests/fixtures/contracts/target.json tests/fixtures/contracts/candidate-wrong.json --format json --allow-external-refs=false --fail-on ERR",
+  "argv": [
+    "tools/bin/oasdiff-1.32.1/oasdiff.exe",
+    "breaking",
+    "tests/fixtures/contracts/target.json",
+    "tests/fixtures/contracts/candidate-wrong.json",
+    "--format",
+    "json",
+    "--allow-external-refs=false",
+    "--fail-on",
+    "ERR"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:24:13.152Z",
+  "finished_at": "2026-09-20T02:24:13.240Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-020-breaking-wrong-2026-09-20T02-24-13-152Z.json",
+  "log_path": "docs/implementation/evidence/sg-020-breaking-wrong-2026-09-20T02-24-13-152Z.log",
+  "signal": null,
+  "duration_ms": 88
+}

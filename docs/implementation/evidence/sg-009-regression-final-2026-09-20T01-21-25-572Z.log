@@ -1,0 +1,40 @@
+$ vitest run tests/unit
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/gate/acceptance-boundaries.test.ts (11 tests) 17ms
+ ✓ tests/unit/gate/truth-table.test.ts (22 tests) 21ms
+ ✓ tests/unit/gate/exit-priority.test.ts (64 tests) 34ms
+ ✓ tests/unit/contracts/primitives.test.ts (13 tests) 153ms
+ ✓ tests/unit/contracts/run-schema.test.ts (20 tests) 218ms
+ ✓ tests/unit/contracts/config-schema.test.ts (9 tests) 150ms
+ ✓ tests/unit/contracts/task-schema.test.ts (17 tests) 146ms
+ ✓ tests/unit/fixtures.test.ts (10 tests) 939ms
+   ✓ validates all OpenAPI documents against the retained official document schema and strict response schemas  802ms
+ ✓ tests/unit/bootstrap.test.ts (5 tests) 2198ms
+   ✓ rejects unsupported arguments and combinations with exit 64  404ms
+   ✓ an empty test selection exits nonzero  1426ms
+ ✓ tests/unit/ports.test.ts (27 tests) 9467ms
+   ✓ runs the AST checker and rejects domain IO  919ms
+   ✓ runs the AST checker and rejects domain dynamic IO  763ms
+   ✓ runs the AST checker and rejects domain time  529ms
+   ✓ runs the AST checker and rejects domain date constructor  503ms
+   ✓ runs the AST checker and rejects domain environment  454ms
+   ✓ runs the AST checker and rejects domain console IO  460ms
+   ✓ runs the AST checker and rejects domain require alias  540ms
+   ✓ runs the AST checker and rejects domain indirect random  479ms
+   ✓ runs the AST checker and rejects domain spread clock  558ms
+   ✓ runs the AST checker and rejects domain network  499ms
+   ✓ runs the AST checker and rejects test fake import  499ms
+   ✓ runs the AST checker and rejects reporter runner  541ms
+   ✓ runs the AST checker and rejects reporter execution  449ms
+   ✓ runs the AST checker and rejects reporter computed execution  572ms
+   ✓ runs the AST checker and rejects reporter destructured execution  534ms
+   ✓ rejects IO reached indirectly through a domain helper  622ms
+   ✓ allows pure objects, type-only ports and words in comments or strings  535ms
+
+ Test Files  10 passed (10)
+      Tests  198 passed (198)
+   Start at  09:21:27
+   Duration  10.76s (transform 901ms, setup 0ms, import 6.57s, tests 13.34s, environment 2ms)
+

@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-024",
+  "command": "pnpm exec vitest run tests/unit/impact/typescript.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/impact/typescript.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:45:44.325Z",
+  "finished_at": "2026-09-20T02:45:47.655Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-024-red-typescript-2026-09-20T02-45-44-325Z.json",
+  "log_path": "docs/implementation/evidence/sg-024-red-typescript-2026-09-20T02-45-44-325Z.log",
+  "signal": null,
+  "duration_ms": 3330
+}

@@ -1,0 +1,19 @@
+{
+  "command": "pnpm exec vitest run tests/unit/contracts/task-schema.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/contracts/task-schema.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:05:11.612Z",
+  "finished_at": "2026-09-20T01:05:15.485Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-005-review-red-structural-2026-09-20T01-05-11-612Z.json",
+  "log_path": "docs/implementation/evidence/sg-005-review-red-structural-2026-09-20T01-05-11-612Z.log",
+  "signal": null,
+  "duration_ms": 3873
+}

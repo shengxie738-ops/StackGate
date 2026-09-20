@@ -1,0 +1,37 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/bootstrap.test.ts (5 tests | 1 failed) 1331ms
+   × build emits reusable TypeScript declarations for the shared contracts 8ms
+   ✓ built help is executable without a TypeScript runtime 79ms
+   ✓ rejects unsupported arguments and combinations with exit 64 240ms
+   ✓ prints package version 83ms
+   ✓ an empty test selection exits nonzero  918ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/bootstrap.test.ts > build emits reusable TypeScript declarations for the shared contracts
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/unit/bootstrap.test.ts:5:70
+      3| import { expect, it } from 'vitest';
+      4| it('build emits reusable TypeScript declarations for the shared contra…
+      5|   expect(existsSync('dist/types/packages/contracts/src/index.d.ts')).t…
+       |                                                                      ^
+      6| });
+      7| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  09:15:31
+   Duration  1.77s (transform 33ms, setup 0ms, import 73ms, tests 1.33s, environment 0ms)
+

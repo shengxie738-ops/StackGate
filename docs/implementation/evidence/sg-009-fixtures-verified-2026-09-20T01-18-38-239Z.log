@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/fixtures.test.ts (10 tests) 796ms
+   ✓ validates all OpenAPI documents against the retained official document schema and strict response schemas  646ms
+
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+   Start at  09:18:40
+   Duration  1.97s (transform 206ms, setup 0ms, import 620ms, tests 796ms, environment 0ms)
+

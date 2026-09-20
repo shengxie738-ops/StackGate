@@ -1,0 +1,18 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/git/baseline.test.ts (8 tests) 16489ms
+     ✓ pins actual merge base and advancing target with detached HEAD  2118ms
+     ✓ rejects missing refs and option-like refs  1797ms
+     ✓ treats leading dash directory as path and hashes local identities  1535ms
+     ✓ fails explicitly when shallow history cannot establish a common ancestor  2437ms
+     ✓ rejects unresolved merges  2936ms
+     ✓ disables repository fsmonitor and ignores hostile inherited Git environment  1858ms
+     ✓ reports nonrepository distinctly  919ms
+     ✓ does not choose arbitrarily between multiple merge bases  2888ms
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  10:25:32
+   Duration  17.03s (transform 79ms, setup 0ms, import 138ms, tests 16.49s, environment 0ms)
+

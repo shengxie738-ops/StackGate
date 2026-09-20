@@ -1,0 +1,109 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/policy/drift.test.ts (7 tests | 7 failed) 11ms
+     × detects deleted protected tests and removed stable check/test IDs 7ms
+     × rejects adapter/result-kind changes and reduced minimum counts 1ms
+     × requires review for assertion changes it cannot prove harmless and strictly denies them 1ms
+     × reports introduced skip/only/mock patterns as observed input changes 1ms
+     × approves only exact confirmed revision/path and before/after digests 0ms
+     × denies task identity or target configuration drift 0ms
+     × never infers actual execution from unchanged files or declared test IDs 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/policy/drift.test.ts > acceptance input drift > detects deleted protected tests and removed stable check/test IDs
+Error: SG-026 not implemented
+ ❯ detectAcceptanceDrift packages/core/src/domain/protected-input-drift.ts:11:119
+      9| }
+     10| export interface DriftFinding {code:string;reference:string;category:'…
+     11| export function detectAcceptanceDrift(_confirmed:AcceptanceSnapshot,_c…
+       |                                                                                                                       ^
+     12| 
+ ❯ codes tests/unit/policy/drift.test.ts:5:64
+ ❯ tests/unit/policy/drift.test.ts:9:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  tests/unit/policy/drift.test.ts > acceptance input drift > rejects adapter/result-kind changes and reduced minimum counts
+Error: SG-026 not implemented
+ ❯ detectAcceptanceDrift packages/core/src/domain/protected-input-drift.ts:11:119
+      9| }
+     10| export interface DriftFinding {code:string;reference:string;category:'…
+     11| export function detectAcceptanceDrift(_confirmed:AcceptanceSnapshot,_c…
+       |                                                                                                                       ^
+     12| 
+ ❯ codes tests/unit/policy/drift.test.ts:5:64
+ ❯ tests/unit/policy/drift.test.ts:12:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  tests/unit/policy/drift.test.ts > acceptance input drift > requires review for assertion changes it cannot prove harmless and strictly denies them
+Error: SG-026 not implemented
+ ❯ detectAcceptanceDrift packages/core/src/domain/protected-input-drift.ts:11:119
+      9| }
+     10| export interface DriftFinding {code:string;reference:string;category:'…
+     11| export function detectAcceptanceDrift(_confirmed:AcceptanceSnapshot,_c…
+       |                                                                                                                       ^
+     12| 
+ ❯ tests/unit/policy/drift.test.ts:16:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  tests/unit/policy/drift.test.ts > acceptance input drift > reports introduced skip/only/mock patterns as observed input changes
+Error: SG-026 not implemented
+ ❯ detectAcceptanceDrift packages/core/src/domain/protected-input-drift.ts:11:119
+      9| }
+     10| export interface DriftFinding {code:string;reference:string;category:'…
+     11| export function detectAcceptanceDrift(_confirmed:AcceptanceSnapshot,_c…
+       |                                                                                                                       ^
+     12| 
+ ❯ codes tests/unit/policy/drift.test.ts:5:64
+ ❯ tests/unit/policy/drift.test.ts:21:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  tests/unit/policy/drift.test.ts > acceptance input drift > approves only exact confirmed revision/path and before/after digests
+Error: SG-026 not implemented
+ ❯ detectAcceptanceDrift packages/core/src/domain/protected-input-drift.ts:11:119
+      9| }
+     10| export interface DriftFinding {code:string;reference:string;category:'…
+     11| export function detectAcceptanceDrift(_confirmed:AcceptanceSnapshot,_c…
+       |                                                                                                                       ^
+     12| 
+ ❯ codes tests/unit/policy/drift.test.ts:5:64
+ ❯ tests/unit/policy/drift.test.ts:27:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  tests/unit/policy/drift.test.ts > acceptance input drift > denies task identity or target configuration drift
+Error: SG-026 not implemented
+ ❯ detectAcceptanceDrift packages/core/src/domain/protected-input-drift.ts:11:119
+      9| }
+     10| export interface DriftFinding {code:string;reference:string;category:'…
+     11| export function detectAcceptanceDrift(_confirmed:AcceptanceSnapshot,_c…
+       |                                                                                                                       ^
+     12| 
+ ❯ codes tests/unit/policy/drift.test.ts:5:64
+ ❯ tests/unit/policy/drift.test.ts:32:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  tests/unit/policy/drift.test.ts > acceptance input drift > never infers actual execution from unchanged files or declared test IDs
+Error: SG-026 not implemented
+ ❯ detectAcceptanceDrift packages/core/src/domain/protected-input-drift.ts:11:119
+      9| }
+     10| export interface DriftFinding {code:string;reference:string;category:'…
+     11| export function detectAcceptanceDrift(_confirmed:AcceptanceSnapshot,_c…
+       |                                                                                                                       ^
+     12| 
+ ❯ tests/unit/policy/drift.test.ts:35:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed (7)
+   Start at  11:07:26
+   Duration  840ms (transform 60ms, setup 0ms, import 138ms, tests 11ms, environment 0ms)
+

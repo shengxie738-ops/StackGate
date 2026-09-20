@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-011",
+  "command": "pnpm exec vitest run tests/unit/storage",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/storage"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:03:27.636Z",
+  "finished_at": "2026-09-20T02:03:30.454Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-011-red-storage-2026-09-20T02-03-27-636Z.json",
+  "log_path": "docs/implementation/evidence/sg-011-red-storage-2026-09-20T02-03-27-636Z.log",
+  "signal": null,
+  "duration_ms": 2818
+}

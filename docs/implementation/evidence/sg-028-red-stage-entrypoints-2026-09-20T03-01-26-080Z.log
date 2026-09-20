@@ -1,0 +1,47 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/stages/m1.test.ts (2 tests | 2 failed) 20745ms
+   × all M1 entrypoints leave postinstall, JavaScript and Python sentinels unexecuted 19248ms
+   × reports no baseline, untracked Chinese consumers, changed target and unknown schema honestly 1495ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/stages/m1.test.ts > all M1 entrypoints leave postinstall, JavaScript and Python sentinels unexecuted
+AssertionError: Unknown or unsupported command/arguments. Use --help.
+: expected 64 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 64
+
+ ❯ run tests/integration/stages/m1.test.ts:8:191
+
+ ❯ tests/integration/stages/m1.test.ts:16:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/integration/stages/m1.test.ts > reports no baseline, untracked Chinese consumers, changed target and unknown schema honestly
+AssertionError: Unknown or unsupported command/arguments. Use --help.
+: expected 64 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 64
+
+ ❯ run tests/integration/stages/m1.test.ts:8:191
+
+
+ ❯ tests/integration/stages/m1.test.ts:22:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  11:01:27
+   Duration  21.44s (transform 84ms, setup 0ms, import 154ms, tests 20.75s, environment 0ms)
+

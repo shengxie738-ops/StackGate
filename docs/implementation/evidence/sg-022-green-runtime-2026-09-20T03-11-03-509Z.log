@@ -1,0 +1,10 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/openapi/runtime-validator.test.ts (23 tests) 405ms
+
+ Test Files  1 passed (1)
+      Tests  23 passed (23)
+   Start at  11:11:05
+   Duration  1.73s (transform 171ms, setup 0ms, import 702ms, tests 405ms, environment 0ms)
+

@@ -1,0 +1,18 @@
+{
+  "executable": "G:\\StackGate\\tools\\bin\\oasdiff-1.32.1\\oasdiff.exe",
+  "argv": [
+    "diff",
+    "G:\\StackGate\\tests\\fixtures\\contracts\\target.json",
+    "G:\\StackGate\\tests\\fixtures\\contracts\\candidate-wrong.json",
+    "--format",
+    "json",
+    "--config",
+    "G:\\StackGate\\tests\\fixtures\\oasdiff\\preparation\\empty-config.yaml",
+    "--allow-external-refs=false",
+    "--fail-on-diff"
+  ],
+  "exit_code": 1,
+  "signal": null,
+  "stdout": "{\"paths\":{\"modified\":{\"/api/performance\":{\"operations\":{\"modified\":{\"GET\":{\"responses\":{\"modified\":{\"200\":{\"content\":{\"modified\":{\"application/json\":{\"schema\":{\"properties\":{\"modified\":{\"data\":{\"properties\":{\"modified\":{\"performance\":{\"properties\":{\"modified\":{\"total_return\":{\"type\":{\"added\":[\"string\"],\"deleted\":[\"number\"]}}}}}}}}}}}}}}}}}}}}}}}}\n",
+  "stderr": ""
+}

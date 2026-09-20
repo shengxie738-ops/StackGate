@@ -1,0 +1,27 @@
+✔ plan has 100 unique sequential tasks and original dependencies (3.2454ms)
+✔ rejects duplicate ID (1.149ms)
+✔ rejects missing dependency (1.1203ms)
+✔ rejects dependency cycle (1.1535ms)
+✔ rejects DONE without evidence (1.4594ms)
+✔ rejects illegal status (0.9665ms)
+✔ rejects early READY (0.9511ms)
+✔ rejects missing task (0.9859ms)
+✔ rejects absolute file path (1.058ms)
+✔ rejects absolute evidence path (1.3982ms)
+✔ rejects traversal evidence path (0.8256ms)
+✔ rejects failed-only DONE (0.9173ms)
+✔ source is preserved byte-for-byte and matches the supplied SHA-256 (2.9476ms)
+✔ source inspection rejects missing or changed content (1.9306ms)
+✔ verify-tasks CLI returns nonzero and identifies the task with SG-999 dependency (107.8507ms)
+✔ DONE requires actual implementation files even with valid task evidence (1.5802ms)
+✔ DONE cannot borrow another task successful evidence (48.7771ms)
+✔ evidence runner records task ownership and preserves a failed child exit code (215.0933ms)
+✔ negative cases do not mutate the shared plan baseline (3.6827ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 565.7855

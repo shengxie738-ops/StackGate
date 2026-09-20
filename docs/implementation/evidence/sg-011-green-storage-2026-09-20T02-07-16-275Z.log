@@ -1,0 +1,12 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/storage/hash.test.ts (17 tests) 6ms
+ ✓ tests/unit/storage/paths.test.ts (27 tests) 129ms
+ ✓ tests/unit/storage/atomic-write.test.ts (6 tests) 215ms
+
+ Test Files  3 passed (3)
+      Tests  50 passed (50)
+   Start at  10:07:17
+   Duration  950ms (transform 188ms, setup 0ms, import 488ms, tests 350ms, environment 0ms)
+

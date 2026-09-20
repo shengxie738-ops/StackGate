@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/git/input-manifest.test.ts (14 tests | 13 skipped) 3636ms
+     ✓ does not execute configured clean filters while computing dirty changes  3634ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 13 skipped (14)
+   Start at  10:35:39
+   Duration  4.44s (transform 149ms, setup 0ms, import 341ms, tests 3.64s, environment 0ms)
+

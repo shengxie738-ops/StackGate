@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-022",
+  "command": "pnpm exec vitest run tests/unit/openapi/runtime-validator.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/openapi/runtime-validator.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:11:03.509Z",
+  "finished_at": "2026-09-20T03:11:07.164Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-022-green-runtime-2026-09-20T03-11-03-509Z.json",
+  "log_path": "docs/implementation/evidence/sg-022-green-runtime-2026-09-20T03-11-03-509Z.log",
+  "signal": null,
+  "duration_ms": 3655
+}

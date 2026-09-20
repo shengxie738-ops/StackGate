@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-025",
+  "command": "pnpm exec vitest run tests/unit/impact/selection.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/impact/selection.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:02:42.465Z",
+  "finished_at": "2026-09-20T03:02:45.791Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-025-red-selection-2026-09-20T03-02-42-465Z.json",
+  "log_path": "docs/implementation/evidence/sg-025-red-selection-2026-09-20T03-02-42-465Z.log",
+  "signal": null,
+  "duration_ms": 3326
+}

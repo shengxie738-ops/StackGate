@@ -1,0 +1,60 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/fixtures.test.ts (10 tests | 1 failed) 179ms
+   × validates all OpenAPI documents against the retained official document schema and strict response schemas 86ms
+   ✓ default baseline equals target bytes and correct candidate has the same behavior projection 2ms
+   ✓ preserves string and missing-field faults and does not coerce actual responses 26ms
+   ✓ intentional upgrade binds exact operation and real before/after byte hashes 14ms
+   ✓ validates complete pass goldens without treating them as observed runs 44ms
+   ✓ validates complete fail goldens without treating them as observed runs 1ms
+   ✓ validates complete incomplete goldens without treating them as observed runs 1ms
+   ✓ validates complete error goldens without treating them as observed runs 1ms
+   ✓ validates complete stale goldens without treating them as observed runs 1ms
+   ✓ factory overrides and fixture reads are isolated 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/fixtures.test.ts > validates all OpenAPI documents against the retained official document schema and strict response schemas
+AssertionError: node:internal/modules/cjs/loader:1424
+  throw err;
+  ^
+
+Error: Cannot find module 'G:\StackGate\scripts\verify-openapi-fixtures.mjs'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1421:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v24.11.1
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/unit/fixtures.test.ts:13:37
+     11| it('validates all OpenAPI documents against the retained official docu…
+     12|   const child = spawnSync(process.execPath, ['scripts/verify-openapi-f…
+     13|   expect(child.status,child.stderr).toBe(0);
+       |                                     ^
+     14|   expect(child.stdout).toContain('7 OpenAPI');
+     15| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 passed (10)
+   Start at  09:16:59
+   Duration  1.20s (transform 186ms, setup 0ms, import 534ms, tests 179ms, environment 0ms)
+

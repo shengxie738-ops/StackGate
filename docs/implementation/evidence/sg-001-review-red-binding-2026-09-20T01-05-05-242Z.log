@@ -1,0 +1,98 @@
+✔ plan has 100 unique sequential tasks and original dependencies (3.3876ms)
+✔ rejects duplicate ID (1.0012ms)
+✔ rejects missing dependency (0.7313ms)
+✔ rejects dependency cycle (0.9891ms)
+✔ rejects DONE without evidence (0.8032ms)
+✔ rejects illegal status (1.7203ms)
+✔ rejects early READY (0.9315ms)
+✔ rejects missing task (4.8746ms)
+✔ rejects absolute file path (0.8405ms)
+✔ rejects absolute evidence path (0.8133ms)
+✔ rejects traversal evidence path (0.9182ms)
+✔ rejects failed-only DONE (0.8126ms)
+✔ source is preserved byte-for-byte and matches the supplied SHA-256 (9.5184ms)
+✔ source inspection rejects missing or changed content (3.0209ms)
+✔ verify-tasks CLI returns nonzero and identifies the task with SG-999 dependency (147.4881ms)
+✖ DONE requires actual implementation files even with valid task evidence (2.6598ms)
+✖ DONE cannot borrow another task successful evidence (73.4951ms)
+✖ evidence runner records task ownership and preserves a failed child exit code (224.2062ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 15
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 673.7021
+
+✖ failing tests:
+
+test at tests\bootstrap\ledger.test.mjs:56:1
+✖ DONE requires actual implementation files even with valid task evidence (2.6598ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /SG-001.*actual_files/i. Input:
+  
+  'SG-001: dependency SG-002 must be DONE before DONE\n' +
+    'SG-002: missing dependency SG-999\n' +
+    'SG-002: missing dependency SG-999\n' +
+    'dependency cycle at SG-001'
+  
+      at TestContext.<anonymous> (file:///G:/StackGate/tests/bootstrap/ledger.test.mjs:60:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'SG-001: dependency SG-002 must be DONE before DONE\nSG-002: missing dependency SG-999\nSG-002: missing dependency SG-999\ndependency cycle at SG-001',
+    expected: /SG-001.*actual_files/i,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests\bootstrap\ledger.test.mjs:62:1
+✖ DONE cannot borrow another task successful evidence (73.4951ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /SG-002.*evidence.*SG-002/i. Input:
+  
+  'SG-002: missing dependency SG-999\n' +
+    'SG-002: missing dependency SG-999\n' +
+    'dependency cycle at SG-001'
+  
+      at TestContext.<anonymous> (file:///G:/StackGate/tests/bootstrap/ledger.test.mjs:69:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'SG-002: missing dependency SG-999\nSG-002: missing dependency SG-999\ndependency cycle at SG-001',
+    expected: /SG-002.*evidence.*SG-002/i,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests\bootstrap\ledger.test.mjs:71:1
+✖ evidence runner records task ownership and preserves a failed child exit code (224.2062ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'SG-001'
+  
+      at TestContext.<anonymous> (file:///G:/StackGate/tests/bootstrap/ledger.test.mjs:78:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'SG-001',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

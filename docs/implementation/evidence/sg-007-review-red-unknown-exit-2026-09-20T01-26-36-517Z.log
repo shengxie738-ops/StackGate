@@ -1,0 +1,90 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/gate/exit-priority.test.ts (65 tests | 1 failed) 24ms
+   × the public exit-code function denies unknown facts 6ms
+   ✓ exit priority combination 0 -> 0 1ms
+   ✓ exit priority combination 1 -> 64 0ms
+   ✓ exit priority combination 2 -> 3 1ms
+   ✓ exit priority combination 3 -> 64 0ms
+   ✓ exit priority combination 4 -> 4 0ms
+   ✓ exit priority combination 5 -> 64 0ms
+   ✓ exit priority combination 6 -> 3 0ms
+   ✓ exit priority combination 7 -> 64 0ms
+   ✓ exit priority combination 8 -> 1 0ms
+   ✓ exit priority combination 9 -> 64 0ms
+   ✓ exit priority combination 10 -> 3 0ms
+   ✓ exit priority combination 11 -> 64 0ms
+   ✓ exit priority combination 12 -> 4 0ms
+   ✓ exit priority combination 13 -> 64 0ms
+   ✓ exit priority combination 14 -> 3 0ms
+   ✓ exit priority combination 15 -> 64 0ms
+   ✓ exit priority combination 16 -> 2 0ms
+   ✓ exit priority combination 17 -> 64 0ms
+   ✓ exit priority combination 18 -> 3 0ms
+   ✓ exit priority combination 19 -> 64 0ms
+   ✓ exit priority combination 20 -> 4 0ms
+   ✓ exit priority combination 21 -> 64 0ms
+   ✓ exit priority combination 22 -> 3 0ms
+   ✓ exit priority combination 23 -> 64 0ms
+   ✓ exit priority combination 24 -> 1 0ms
+   ✓ exit priority combination 25 -> 64 0ms
+   ✓ exit priority combination 26 -> 3 0ms
+   ✓ exit priority combination 27 -> 64 0ms
+   ✓ exit priority combination 28 -> 4 0ms
+   ✓ exit priority combination 29 -> 64 0ms
+   ✓ exit priority combination 30 -> 3 0ms
+   ✓ exit priority combination 31 -> 64 0ms
+   ✓ exit priority combination 32 -> 1 0ms
+   ✓ exit priority combination 33 -> 64 0ms
+   ✓ exit priority combination 34 -> 3 0ms
+   ✓ exit priority combination 35 -> 64 0ms
+   ✓ exit priority combination 36 -> 4 0ms
+   ✓ exit priority combination 37 -> 64 0ms
+   ✓ exit priority combination 38 -> 3 0ms
+   ✓ exit priority combination 39 -> 64 0ms
+   ✓ exit priority combination 40 -> 1 0ms
+   ✓ exit priority combination 41 -> 64 0ms
+   ✓ exit priority combination 42 -> 3 0ms
+   ✓ exit priority combination 43 -> 64 0ms
+   ✓ exit priority combination 44 -> 4 0ms
+   ✓ exit priority combination 45 -> 64 1ms
+   ✓ exit priority combination 46 -> 3 0ms
+   ✓ exit priority combination 47 -> 64 0ms
+   ✓ exit priority combination 48 -> 1 0ms
+   ✓ exit priority combination 49 -> 64 0ms
+   ✓ exit priority combination 50 -> 3 0ms
+   ✓ exit priority combination 51 -> 64 0ms
+   ✓ exit priority combination 52 -> 4 0ms
+   ✓ exit priority combination 53 -> 64 0ms
+   ✓ exit priority combination 54 -> 3 0ms
+   ✓ exit priority combination 55 -> 64 0ms
+   ✓ exit priority combination 56 -> 1 0ms
+   ✓ exit priority combination 57 -> 64 0ms
+   ✓ exit priority combination 58 -> 3 0ms
+   ✓ exit priority combination 59 -> 64 0ms
+   ✓ exit priority combination 60 -> 4 0ms
+   ✓ exit priority combination 61 -> 64 0ms
+   ✓ exit priority combination 62 -> 3 0ms
+   ✓ exit priority combination 63 -> 64 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/gate/exit-priority.test.ts > the public exit-code function denies unknown facts
+AssertionError: expected +0 not to be +0 // Object.is equality
+ ❯ tests/unit/gate/exit-priority.test.ts:8:104
+      6|   const valid={configuration_valid:true,verdict:'PASS',freshness:'FRES…
+      7|   for(const patch of [{verdict:'UNKNOWN'},{deterministic_denial:undefi…
+      8|     expect(selectExitCode({...valid,...patch} as unknown as Parameters…
+       |                                                                                                        ^
+      9|   }
+     10| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 64 passed (65)
+   Start at  09:26:38
+   Duration  595ms (transform 81ms, setup 0ms, import 172ms, tests 24ms, environment 0ms)
+

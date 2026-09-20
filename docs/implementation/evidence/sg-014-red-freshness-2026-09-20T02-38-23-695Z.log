@@ -1,0 +1,265 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/freshness.test.ts (41 tests | 41 failed) 20ms
+     × returns FRESH only when required identities match 4ms
+     × invalidates changed repo_id independently 1ms
+     × invalidates changed worktree_id independently 0ms
+     × invalidates changed platform_id independently 0ms
+     × invalidates changed git_object_format independently 0ms
+     × invalidates changed base_oid independently 0ms
+     × invalidates changed head_oid independently 0ms
+     × invalidates changed input_hash independently 2ms
+     × invalidates changed task_revision independently 0ms
+     × invalidates changed target_contract_hash independently 0ms
+     × invalidates changed policy_hash independently 0ms
+     × invalidates changed plan_hash independently 0ms
+     × invalidates changed toolchain_hash independently 0ms
+     × invalidates changed environment_requirements_hash independently 0ms
+     × invalidates changed environment_provenance_hash independently 0ms
+     × invalidates changed test_data_revision independently 0ms
+     × missing repo_id is UNVERIFIED rather than equal 0ms
+     × missing worktree_id is UNVERIFIED rather than equal 0ms
+     × missing platform_id is UNVERIFIED rather than equal 0ms
+     × missing git_object_format is UNVERIFIED rather than equal 0ms
+     × missing base_oid is UNVERIFIED rather than equal 0ms
+     × missing head_oid is UNVERIFIED rather than equal 0ms
+     × missing input_hash is UNVERIFIED rather than equal 0ms
+     × missing task_revision is UNVERIFIED rather than equal 0ms
+     × missing target_contract_hash is UNVERIFIED rather than equal 0ms
+     × missing policy_hash is UNVERIFIED rather than equal 0ms
+     × missing plan_hash is UNVERIFIED rather than equal 0ms
+     × missing toolchain_hash is UNVERIFIED rather than equal 0ms
+     × missing environment_requirements_hash is UNVERIFIED rather than equal 0ms
+     × missing environment_provenance_hash is UNVERIFIED rather than equal 0ms
+     × missing test_data_revision is UNVERIFIED rather than equal 0ms
+     × does not treat two entirely missing identities as fresh 0ms
+     × requires verified target evidence under latest-target policy 0ms
+     × respects confirmed pinned-target policy 4ms
+     × preserves history after temporary environments are normally cleaned up 0ms
+     × invalidates inputs changing during a run 0ms
+     × does not treat a lone run snapshot as verified 0ms
+     × rejects incomplete captured inputs 0ms
+     × uses timestamps only when a TTL is configured 0ms
+     × rejects invalid TTL evidence and future timestamps 0ms
+     × known changed fields stay STALE even with other missing evidence 0ms
+ ❯ tests/integration/git/target-advance.test.ts (2 tests | 2 failed) 7384ms
+   × sees target advancement while preserving detached candidate identity and never fetching 3153ms
+   × invalidates untracked source changes at the same Git HEAD 4230ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 43 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > returns FRESH only when required identities match
+Error: NOT_IMPLEMENTED
+ ❯ evaluateFreshness packages/core/src/domain/evaluate-freshness.ts:5:150
+      3| export interface FreshnessRequirements { require_latest_target:boolean…
+      4| export interface FreshnessResult {freshness:'FRESH'|'STALE'|'UNVERIFIE…
+      5| export function evaluateFreshness(_recorded:EvidenceIdentity,_current:…
+       |                                                                                                                                                      ^
+      6| 
+ ❯ tests/unit/freshness.test.ts:7:72
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/43]⎯
+
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > invalidates changed repo_id independently
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > invalidates changed worktree_id independently
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > invalidates changed platform_id independently
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > invalidates changed git_object_format independently
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > invalidates changed base_oid independently
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > invalidates changed head_oid independently
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > invalidates changed input_hash independently
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > invalidates changed task_revision independently
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > invalidates changed target_contract_hash independently
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > invalidates changed policy_hash independently
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > invalidates changed plan_hash independently
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > invalidates changed toolchain_hash independently
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > invalidates changed environment_requirements_hash independently
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > invalidates changed environment_provenance_hash independently
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > invalidates changed test_data_revision independently
+Error: NOT_IMPLEMENTED
+ ❯ evaluateFreshness packages/core/src/domain/evaluate-freshness.ts:5:150
+      3| export interface FreshnessRequirements { require_latest_target:boolean…
+      4| export interface FreshnessResult {freshness:'FRESH'|'STALE'|'UNVERIFIE…
+      5| export function evaluateFreshness(_recorded:EvidenceIdentity,_current:…
+       |                                                                                                                                                      ^
+      6| 
+ ❯ tests/unit/freshness.test.ts:8:93
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/43]⎯
+
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > missing repo_id is UNVERIFIED rather than equal
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > missing worktree_id is UNVERIFIED rather than equal
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > missing platform_id is UNVERIFIED rather than equal
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > missing git_object_format is UNVERIFIED rather than equal
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > missing base_oid is UNVERIFIED rather than equal
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > missing head_oid is UNVERIFIED rather than equal
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > missing input_hash is UNVERIFIED rather than equal
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > missing task_revision is UNVERIFIED rather than equal
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > missing target_contract_hash is UNVERIFIED rather than equal
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > missing policy_hash is UNVERIFIED rather than equal
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > missing plan_hash is UNVERIFIED rather than equal
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > missing toolchain_hash is UNVERIFIED rather than equal
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > missing environment_requirements_hash is UNVERIFIED rather than equal
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > missing environment_provenance_hash is UNVERIFIED rather than equal
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > missing test_data_revision is UNVERIFIED rather than equal
+Error: NOT_IMPLEMENTED
+ ❯ evaluateFreshness packages/core/src/domain/evaluate-freshness.ts:5:150
+      3| export interface FreshnessRequirements { require_latest_target:boolean…
+      4| export interface FreshnessResult {freshness:'FRESH'|'STALE'|'UNVERIFIE…
+      5| export function evaluateFreshness(_recorded:EvidenceIdentity,_current:…
+       |                                                                                                                                                      ^
+      6| 
+ ❯ tests/unit/freshness.test.ts:9:153
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/43]⎯
+
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > does not treat two entirely missing identities as fresh
+Error: NOT_IMPLEMENTED
+ ❯ evaluateFreshness packages/core/src/domain/evaluate-freshness.ts:5:150
+      3| export interface FreshnessRequirements { require_latest_target:boolean…
+      4| export interface FreshnessResult {freshness:'FRESH'|'STALE'|'UNVERIFIE…
+      5| export function evaluateFreshness(_recorded:EvidenceIdentity,_current:…
+       |                                                                                                                                                      ^
+      6| 
+ ❯ tests/unit/freshness.test.ts:10:78
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/43]⎯
+
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > requires verified target evidence under latest-target policy
+Error: NOT_IMPLEMENTED
+ ❯ evaluateFreshness packages/core/src/domain/evaluate-freshness.ts:5:150
+      3| export interface FreshnessRequirements { require_latest_target:boolean…
+      4| export interface FreshnessResult {freshness:'FRESH'|'STALE'|'UNVERIFIE…
+      5| export function evaluateFreshness(_recorded:EvidenceIdentity,_current:…
+       |                                                                                                                                                      ^
+      6| 
+ ❯ tests/unit/freshness.test.ts:11:85
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/43]⎯
+
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > respects confirmed pinned-target policy
+Error: NOT_IMPLEMENTED
+ ❯ evaluateFreshness packages/core/src/domain/evaluate-freshness.ts:5:150
+      3| export interface FreshnessRequirements { require_latest_target:boolean…
+      4| export interface FreshnessResult {freshness:'FRESH'|'STALE'|'UNVERIFIE…
+      5| export function evaluateFreshness(_recorded:EvidenceIdentity,_current:…
+       |                                                                                                                                                      ^
+      6| 
+ ❯ tests/unit/freshness.test.ts:12:62
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/43]⎯
+
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > preserves history after temporary environments are normally cleaned up
+Error: NOT_IMPLEMENTED
+ ❯ evaluateFreshness packages/core/src/domain/evaluate-freshness.ts:5:150
+      3| export interface FreshnessRequirements { require_latest_target:boolean…
+      4| export interface FreshnessResult {freshness:'FRESH'|'STALE'|'UNVERIFIE…
+      5| export function evaluateFreshness(_recorded:EvidenceIdentity,_current:…
+       |                                                                                                                                                      ^
+      6| 
+ ❯ tests/unit/freshness.test.ts:13:93
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/43]⎯
+
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > invalidates inputs changing during a run
+Error: NOT_IMPLEMENTED
+ ❯ evaluateFreshness packages/core/src/domain/evaluate-freshness.ts:5:150
+      3| export interface FreshnessRequirements { require_latest_target:boolean…
+      4| export interface FreshnessResult {freshness:'FRESH'|'STALE'|'UNVERIFIE…
+      5| export function evaluateFreshness(_recorded:EvidenceIdentity,_current:…
+       |                                                                                                                                                      ^
+      6| 
+ ❯ tests/unit/freshness.test.ts:14:63
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/43]⎯
+
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > does not treat a lone run snapshot as verified
+Error: NOT_IMPLEMENTED
+ ❯ evaluateFreshness packages/core/src/domain/evaluate-freshness.ts:5:150
+      3| export interface FreshnessRequirements { require_latest_target:boolean…
+      4| export interface FreshnessResult {freshness:'FRESH'|'STALE'|'UNVERIFIE…
+      5| export function evaluateFreshness(_recorded:EvidenceIdentity,_current:…
+       |                                                                                                                                                      ^
+      6| 
+ ❯ tests/unit/freshness.test.ts:15:69
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/43]⎯
+
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > rejects incomplete captured inputs
+Error: NOT_IMPLEMENTED
+ ❯ evaluateFreshness packages/core/src/domain/evaluate-freshness.ts:5:150
+      3| export interface FreshnessRequirements { require_latest_target:boolean…
+      4| export interface FreshnessResult {freshness:'FRESH'|'STALE'|'UNVERIFIE…
+      5| export function evaluateFreshness(_recorded:EvidenceIdentity,_current:…
+       |                                                                                                                                                      ^
+      6| 
+ ❯ tests/unit/freshness.test.ts:16:57
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/43]⎯
+
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > uses timestamps only when a TTL is configured
+Error: NOT_IMPLEMENTED
+ ❯ evaluateFreshness packages/core/src/domain/evaluate-freshness.ts:5:150
+      3| export interface FreshnessRequirements { require_latest_target:boolean…
+      4| export interface FreshnessResult {freshness:'FRESH'|'STALE'|'UNVERIFIE…
+      5| export function evaluateFreshness(_recorded:EvidenceIdentity,_current:…
+       |                                                                                                                                                      ^
+      6| 
+ ❯ tests/unit/freshness.test.ts:17:70
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/43]⎯
+
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > rejects invalid TTL evidence and future timestamps
+Error: NOT_IMPLEMENTED
+ ❯ evaluateFreshness packages/core/src/domain/evaluate-freshness.ts:5:150
+      3| export interface FreshnessRequirements { require_latest_target:boolean…
+      4| export interface FreshnessResult {freshness:'FRESH'|'STALE'|'UNVERIFIE…
+      5| export function evaluateFreshness(_recorded:EvidenceIdentity,_current:…
+       |                                                                                                                                                      ^
+      6| 
+ ❯ tests/unit/freshness.test.ts:18:137
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/43]⎯
+
+ FAIL  tests/unit/freshness.test.ts > deterministic field-level freshness > known changed fields stay STALE even with other missing evidence
+Error: NOT_IMPLEMENTED
+ ❯ evaluateFreshness packages/core/src/domain/evaluate-freshness.ts:5:150
+      3| export interface FreshnessRequirements { require_latest_target:boolean…
+      4| export interface FreshnessResult {freshness:'FRESH'|'STALE'|'UNVERIFIE…
+      5| export function evaluateFreshness(_recorded:EvidenceIdentity,_current:…
+       |                                                                                                                                                      ^
+      6| 
+ ❯ tests/unit/freshness.test.ts:19:87
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/43]⎯
+
+ FAIL  tests/integration/git/target-advance.test.ts > sees target advancement while preserving detached candidate identity and never fetching
+Error: NOT_IMPLEMENTED
+ ❯ evaluateFreshness packages/core/src/domain/evaluate-freshness.ts:5:150
+      3| export interface FreshnessRequirements { require_latest_target:boolean…
+      4| export interface FreshnessResult {freshness:'FRESH'|'STALE'|'UNVERIFIE…
+      5| export function evaluateFreshness(_recorded:EvidenceIdentity,_current:…
+       |                                                                                                                                                      ^
+      6| 
+ ❯ tests/integration/git/target-advance.test.ts:13:514
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/43]⎯
+
+ FAIL  tests/integration/git/target-advance.test.ts > invalidates untracked source changes at the same Git HEAD
+Error: NOT_IMPLEMENTED
+ ❯ evaluateFreshness packages/core/src/domain/evaluate-freshness.ts:5:150
+      3| export interface FreshnessRequirements { require_latest_target:boolean…
+      4| export interface FreshnessResult {freshness:'FRESH'|'STALE'|'UNVERIFIE…
+      5| export function evaluateFreshness(_recorded:EvidenceIdentity,_current:…
+       |                                                                                                                                                      ^
+      6| 
+ ❯ tests/integration/git/target-advance.test.ts:14:446
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/43]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  43 failed (43)
+   Start at  10:38:25
+   Duration  8.24s (transform 205ms, setup 0ms, import 472ms, tests 7.40s, environment 0ms)
+

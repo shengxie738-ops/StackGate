@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/gate-input.schema.json",
+  "title": "GateInput",
+  "type": "object",
+  "properties": {
+    "checks": {
+      "type": "array",
+      "items": {
+        "$ref": "check-fact.schema.json"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "required_check_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "configuration_valid": {
+      "type": "boolean"
+    },
+    "report_integrity": {
+      "type": "string",
+      "enum": [
+        "VALID",
+        "INVALID",
+        "UNVERIFIED"
+      ]
+    },
+    "freshness": {
+      "$ref": "common.schema.json#/$defs/Freshness"
+    },
+    "inputs_complete": {
+      "type": "boolean"
+    },
+    "task_confirmed": {
+      "type": "boolean"
+    },
+    "policy_confirmed": {
+      "type": "boolean"
+    },
+    "environment_satisfied": {
+      "type": "boolean"
+    },
+    "acceptance_inputs_approved": {
+      "type": "boolean"
+    },
+    "canceled": {
+      "type": "boolean"
+    },
+    "fatal_error": {
+      "type": "boolean"
+    },
+    "deterministic_denials": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    }
+  },
+  "required": [
+    "checks",
+    "required_check_ids",
+    "configuration_valid",
+    "report_integrity",
+    "freshness",
+    "inputs_complete",
+    "task_confirmed",
+    "policy_confirmed",
+    "environment_satisfied",
+    "acceptance_inputs_approved",
+    "canceled",
+    "fatal_error",
+    "deterministic_denials"
+  ],
+  "additionalProperties": false
+}

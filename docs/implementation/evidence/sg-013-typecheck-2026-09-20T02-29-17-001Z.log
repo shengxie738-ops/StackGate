@@ -1,0 +1,9 @@
+$ tsc --noEmit
+tests/integration/git/input-manifest.test.ts(9,294): error TS2322: Type 'never[]' is not assignable to type 'Readonly<{ [k: string]: { path: string; kind: "typescript" | "fastapi"; }; }>'.
+  Index signature for type 'string' is missing in type 'never[]'.
+tests/integration/git/input-manifest.test.ts(9,308): error TS2322: Type 'never[]' is not assignable to type 'Readonly<{ [k: string]: { baseline_file: string; target_file: string; candidate_artifact: string; version: "3.1"; external_refs: "deny"; }; }>'.
+  Index signature for type 'string' is missing in type 'never[]'.
+tests/unit/config/merge.test.ts(2,44): error TS2307: Cannot find module '../../../packages/core/src/domain/merge-policy.js' or its corresponding type declarations.
+tests/unit/config/merge.test.ts(7,110): error TS7006: Parameter 'c' implicitly has an 'any' type.
+tests/unit/config/parse.test.ts(5,55): error TS2307: Cannot find module '../../../packages/core/src/services/config-service.js' or its corresponding type declarations.
+[ELIFECYCLE] Command failed with exit code 2.

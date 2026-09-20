@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-011",
+  "command": "pnpm lint",
+  "argv": [
+    "pnpm",
+    "lint"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:07:51.376Z",
+  "finished_at": "2026-09-20T02:07:57.340Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-011-lint-2026-09-20T02-07-51-376Z.json",
+  "log_path": "docs/implementation/evidence/sg-011-lint-2026-09-20T02-07-51-376Z.log",
+  "signal": null,
+  "duration_ms": 5964
+}

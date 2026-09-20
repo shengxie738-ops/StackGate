@@ -1,0 +1,233 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/storage/hash.test.ts (17 tests | 3 failed) 17ms
+   × hashes exact bytes with the SHA-256 known answer and respects typed-array offsets 10ms
+   × sorts object keys recursively while preserving arrays, Unicode and input objects 1ms
+   ✓ rejects lossy or executable JSON input 0 2ms
+   ✓ rejects lossy or executable JSON input 1 0ms
+   ✓ rejects lossy or executable JSON input 2 0ms
+   ✓ rejects lossy or executable JSON input 3 0ms
+   ✓ rejects lossy or executable JSON input 4 0ms
+   ✓ rejects lossy or executable JSON input 5 0ms
+   ✓ rejects lossy or executable JSON input 6 0ms
+   ✓ rejects lossy or executable JSON input 7 0ms
+   ✓ rejects lossy or executable JSON input 8 0ms
+   ✓ rejects lossy or executable JSON input 9 0ms
+   ✓ rejects lossy or executable JSON input 10 0ms
+   ✓ rejects lossy or executable JSON input 11 0ms
+   ✓ rejects lossy or executable JSON input 12 0ms
+   ✓ rejects lossy or executable JSON input 13 0ms
+   × rejects cycles, accessors, symbol keys and array properties without executing getters 1ms
+ ❯ tests/unit/storage/atomic-write.test.ts (5 tests | 4 failed) 46ms
+   × publishes complete canonical JSON and leaves no temporary files 7ms
+   × does not overwrite existing files without an explicit matching prior digest 12ms
+   ✓ rejects escaped paths, linked parents, directory targets and invalid JSON before publication 16ms
+   × preserves the old target and cleans its own temporary file after real rename fails 6ms
+   × publishes at most one concurrent creation without clobbering the winner 3ms
+ ❯ tests/unit/storage/paths.test.ts (27 tests | 26 failed) 108ms
+   × preserves Chinese, spaces, exact case and raw CRLF file contents 13ms
+   × rejects unsafe portable path "" 9ms
+   × rejects unsafe portable path ".." 3ms
+   × rejects unsafe portable path "../outside" 3ms
+   × rejects unsafe portable path "a/../../outside" 3ms
+   × rejects unsafe portable path "/absolute" 4ms
+   × rejects unsafe portable path "C:\\outside" 3ms
+   × rejects unsafe portable path "C:relative" 5ms
+   × rejects unsafe portable path "\\\\server\\share" 2ms
+   × rejects unsafe portable path "\\\\?\\C:\\outside" 3ms
+   × rejects unsafe portable path "a\u0000b" 3ms
+   × rejects unsafe portable path "a/./b" 2ms
+   × rejects unsafe portable path "a//b" 2ms
+   × rejects unsafe portable path "a\\..\\b" 2ms
+   × rejects unsafe portable path "file:stream" 2ms
+   × rejects unsafe portable path "a." 2ms
+   × rejects unsafe portable path "a " 2ms
+   × rejects unsafe portable path "CON" 2ms
+   × rejects unsafe portable path "NUL.json" 3ms
+   × rejects unsafe portable path "COM1" 2ms
+   × rejects unsafe portable path "LPT².txt" 2ms
+   × rejects unsafe portable path "a\ud800" 2ms
+   × rejects unsafe portable path "a?b" 2ms
+   × rejects a directory junction that escapes to a sibling, even with a shared prefix 9ms
+   × retains link text and verified target for an in-root junction 8ms
+   ✓ rejects dangling links, cycles and non-directory ancestors 8ms
+   × rejects a symbolic-link root and undecodable Git path bytes 8ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 33 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/storage/atomic-write.test.ts > publishes complete canonical JSON and leaves no temporary files
+Error: SG-011 not implemented
+ ❯ writeJsonAtomic packages/core/src/storage/atomic-write.ts:2:129
+      1| export interface AtomicWriteOptions { root?: string; expectedHash?: st…
+      2| export async function writeJsonAtomic(_path: string, _value: unknown, …
+       |                                                                                                                                 ^
+      3| 
+ ❯ tests/unit/storage/atomic-write.test.ts:10:9
+ ❯ withTestDirectory tests/support/test-paths.ts:7:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/33]⎯
+
+ FAIL  tests/unit/storage/atomic-write.test.ts > does not overwrite existing files without an explicit matching prior digest
+AssertionError: expected Error: SG-011 not implemented to match object { code: 'TARGET_EXISTS' }
+
+- Expected
++ Received
+
+- {
+-   "code": "TARGET_EXISTS",
++ Error {
++   "message": "SG-011 not implemented",
+  }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/33]⎯
+
+ FAIL  tests/unit/storage/atomic-write.test.ts > preserves the old target and cleans its own temporary file after real rename fails
+TypeError: Cannot spy on export "rename". Module namespace is not configurable in ESM. See: https://vitest.dev/guide/browser/#limitations
+ ❯ tests/unit/storage/atomic-write.test.ts:34:6
+     32|   const file=join(root,'state.json');await fs.writeFile(file,'{"old":1…
+     33|   // Only the final OS rename fails; temp creation, writing, sync and …
+     34|   vi.spyOn(fs,'rename').mockRejectedValueOnce(Object.assign(new Error(…
+       |      ^
+     35|   await expect(writeJsonAtomic(file,{next:2},{root,expectedHash:hashBy…
+     36|   expect(await fs.readFile(file,'utf8')).toBe('{"old":1}');
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+Caused by: TypeError: Cannot redefine property: rename
+ ❯ tests/unit/storage/atomic-write.test.ts:34:6
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/33]⎯
+
+ FAIL  tests/unit/storage/atomic-write.test.ts > publishes at most one concurrent creation without clobbering the winner
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/unit/storage/atomic-write.test.ts:42:53
+     40|   const file=join(root,'state.json');
+     41|   const results=await Promise.allSettled([writeJsonAtomic(file,{writer…
+     42|   expect(results.filter(r=>r.status==='fulfilled')).toHaveLength(1);
+       |                                                     ^
+     43|   expect([1,2]).toContain(JSON.parse(await fs.readFile(file,'utf8')).w…
+     44|   expect(await fs.readdir(root)).toEqual(['state.json']);
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/33]⎯
+
+ FAIL  tests/unit/storage/hash.test.ts > hashes exact bytes with the SHA-256 known answer and respects typed-array offsets
+Error: SG-011 not implemented
+ ❯ hashBytes packages/core/src/storage/hash.ts:1:63
+      1| export function hashBytes(_bytes: Uint8Array): string { throw new Erro…
+       |                                                               ^
+      2| 
+ ❯ tests/unit/storage/hash.test.ts:6:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/33]⎯
+
+ FAIL  tests/unit/storage/hash.test.ts > sorts object keys recursively while preserving arrays, Unicode and input objects
+Error: SG-011 not implemented
+ ❯ canonicalJson packages/core/src/storage/canonical-json.ts:1:64
+      1| export function canonicalJson(_value: unknown): string { throw new Err…
+       |                                                                ^
+      2| 
+ ❯ tests/unit/storage/hash.test.ts:12:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/33]⎯
+
+ FAIL  tests/unit/storage/hash.test.ts > rejects cycles, accessors, symbol keys and array properties without executing getters
+Error: SG-011 not implemented
+ ❯ canonicalJson packages/core/src/storage/canonical-json.ts:1:64
+      1| export function canonicalJson(_value: unknown): string { throw new Err…
+       |                                                                ^
+      2| 
+ ❯ tests/unit/storage/hash.test.ts:26:29
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/33]⎯
+
+ FAIL  tests/unit/storage/paths.test.ts > preserves Chinese, spaces, exact case and raw CRLF file contents
+Error: SG-011 not implemented
+ ❯ resolveWithin packages/core/src/storage/safe-path.ts:2:96
+      1| export interface PathInspection { path: string; links: {path:string;li…
+      2| export async function resolveWithin(_root: string, _relative: string):…
+       |                                                                                                ^
+      3| export async function inspectPathWithin(_root: string, _relative: stri…
+      4| export function decodeGitPath(_bytes: Uint8Array): string { throw new …
+ ❯ tests/unit/storage/paths.test.ts:10:20
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/33]⎯
+
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path ""
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path ".."
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "../outside"
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "a/../../outside"
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "/absolute"
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "C:\\outside"
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "C:relative"
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "\\\\server\\share"
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "\\\\?\\C:\\outside"
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "a\u0000b"
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "a/./b"
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "a//b"
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "a\\..\\b"
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "file:stream"
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "a."
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "a "
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "CON"
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "NUL.json"
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "COM1"
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "LPT².txt"
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "a\ud800"
+ FAIL  tests/unit/storage/paths.test.ts > rejects unsafe portable path "a?b"
+ FAIL  tests/unit/storage/paths.test.ts > rejects a directory junction that escapes to a sibling, even with a shared prefix
+AssertionError: expected Error: SG-011 not implemented to match object { code: 'UNSAFE_PATH' }
+
+- Expected
++ Received
+
+- {
+-   "code": "UNSAFE_PATH",
++ Error {
++   "message": "SG-011 not implemented",
+  }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/33]⎯
+
+ FAIL  tests/unit/storage/paths.test.ts > retains link text and verified target for an in-root junction
+Error: SG-011 not implemented
+ ❯ inspectPathWithin packages/core/src/storage/safe-path.ts:3:108
+      1| export interface PathInspection { path: string; links: {path:string;li…
+      2| export async function resolveWithin(_root: string, _relative: string):…
+      3| export async function inspectPathWithin(_root: string, _relative: stri…
+       |                                                                                                            ^
+      4| export function decodeGitPath(_bytes: Uint8Array): string { throw new …
+      5| 
+ ❯ tests/unit/storage/paths.test.ts:27:22
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/33]⎯
+
+ FAIL  tests/unit/storage/paths.test.ts > rejects a symbolic-link root and undecodable Git path bytes
+Error: SG-011 not implemented
+ ❯ decodeGitPath packages/core/src/storage/safe-path.ts:4:67
+      2| export async function resolveWithin(_root: string, _relative: string):…
+      3| export async function inspectPathWithin(_root: string, _relative: stri…
+      4| export function decodeGitPath(_bytes: Uint8Array): string { throw new …
+       |                                                                   ^
+      5| 
+ ❯ tests/unit/storage/paths.test.ts:42:10
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/33]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  33 failed | 16 passed (49)
+   Start at  10:04:21
+   Duration  821ms (transform 197ms, setup 0ms, import 453ms, tests 171ms, environment 0ms)
+

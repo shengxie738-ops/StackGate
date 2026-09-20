@@ -1,0 +1,1 @@
+[{"id":"response-property-type-changed","text":"the `data/performance/total_return` response's property `type` changed from `number` to `string` for status `200`","level":3,"operation":"GET","operationId":"getPerformance","path":"/api/performance","section":"paths","fingerprint":"d4e087392f73"}]

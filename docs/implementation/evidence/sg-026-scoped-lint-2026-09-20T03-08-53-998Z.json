@@ -1,0 +1,21 @@
+{
+  "task_id": "SG-026",
+  "command": "pnpm exec eslint packages/core/src/domain/protected-input-drift.ts packages/core/src/domain/test-inventory-drift.ts tests/unit/policy/drift.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "eslint",
+    "packages/core/src/domain/protected-input-drift.ts",
+    "packages/core/src/domain/test-inventory-drift.ts",
+    "tests/unit/policy/drift.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:08:53.998Z",
+  "finished_at": "2026-09-20T03:09:00.182Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-026-scoped-lint-2026-09-20T03-08-53-998Z.json",
+  "log_path": "docs/implementation/evidence/sg-026-scoped-lint-2026-09-20T03-08-53-998Z.log",
+  "signal": null,
+  "duration_ms": 6184
+}

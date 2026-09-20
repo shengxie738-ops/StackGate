@@ -1,0 +1,17 @@
+{
+  "command": "node -e process.exit(7)",
+  "argv": [
+    "node",
+    "-e",
+    "process.exit(7)"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:05:05.856Z",
+  "finished_at": "2026-09-20T01:05:05.953Z",
+  "exit_code": 7,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-001-review-runner-child-2026-09-20T01-05-05-856Z.json",
+  "log_path": "docs/implementation/evidence/sg-001-review-runner-child-2026-09-20T01-05-05-856Z.log",
+  "signal": null,
+  "duration_ms": 97
+}

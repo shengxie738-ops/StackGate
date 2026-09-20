@@ -1,0 +1,21 @@
+{
+  "task_id": "SG-020",
+  "command": "pnpm exec vitest run tests/contract/oasdiff.test.ts tests/unit/openapi/safe-loader.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/contract/oasdiff.test.ts",
+    "tests/unit/openapi/safe-loader.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:58:10.379Z",
+  "finished_at": "2026-09-20T02:58:18.301Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-020-green-adapter-hardened-2026-09-20T02-58-10-379Z.json",
+  "log_path": "docs/implementation/evidence/sg-020-green-adapter-hardened-2026-09-20T02-58-10-379Z.log",
+  "signal": null,
+  "duration_ms": 7922
+}

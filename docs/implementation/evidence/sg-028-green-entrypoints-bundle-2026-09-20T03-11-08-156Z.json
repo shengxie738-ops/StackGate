@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-028",
+  "command": "pnpm exec vitest run tests/integration/stages/m1.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/stages/m1.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:11:08.156Z",
+  "finished_at": "2026-09-20T03:11:39.351Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-028-green-entrypoints-bundle-2026-09-20T03-11-08-156Z.json",
+  "log_path": "docs/implementation/evidence/sg-028-green-entrypoints-bundle-2026-09-20T03-11-08-156Z.log",
+  "signal": null,
+  "duration_ms": 31195
+}

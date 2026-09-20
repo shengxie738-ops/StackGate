@@ -1,0 +1,30 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/trust/review.test.ts (7 tests | 1 failed) 96821ms
+   ✓ renews an expired matching record and preserves unrelated or concurrently changed records  26599ms
+   ✓ rejects external script arguments and binds ignored scripts outside workspaces  17545ms
+   ✓ binds inline code as arguments without interpreting code fragments as paths  4525ms
+   ✓ binds resolved tool identity without launching it  10518ms
+   ✓ previews names only and never trusts without explicit reviewed authorization  3830ms
+   × stores outside repository, binds scripts, arguments and origins, and does not become CI trust 17367ms
+   ✓ refuses repository-contained trust stores and copying trust into another checkout  16432ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/trust/review.test.ts > stores outside repository, binds scripts, arguments and origins, and does not become CI trust
+ServiceError: Script input is missing
+ ❯ configurationError packages/core/src/services/service-error.ts:6:10
+
+ ❯ TrustService.snapshot packages/core/src/services/trust-service.ts:49:339
+ ❯ TrustService.review packages/core/src/services/trust-service.ts:59:26
+ ❯ tests/integration/trust/review.test.ts:15:968
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 passed (7)
+   Start at  10:54:14
+   Duration  98.45s (transform 456ms, setup 0ms, import 1.20s, tests 96.82s, environment 0ms)
+

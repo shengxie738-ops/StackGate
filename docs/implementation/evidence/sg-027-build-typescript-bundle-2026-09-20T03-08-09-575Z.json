@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-027",
+  "command": "pnpm build",
+  "argv": [
+    "pnpm",
+    "build"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:08:09.575Z",
+  "finished_at": "2026-09-20T03:08:14.708Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-027-build-typescript-bundle-2026-09-20T03-08-09-575Z.json",
+  "log_path": "docs/implementation/evidence/sg-027-build-typescript-bundle-2026-09-20T03-08-09-575Z.log",
+  "signal": null,
+  "duration_ms": 5133
+}

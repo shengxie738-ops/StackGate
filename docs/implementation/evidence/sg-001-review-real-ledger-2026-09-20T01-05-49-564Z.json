@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-001",
+  "command": "node scripts/verify-tasks.mjs",
+  "argv": [
+    "node",
+    "scripts/verify-tasks.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:05:49.564Z",
+  "finished_at": "2026-09-20T01:05:49.733Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-001-review-real-ledger-2026-09-20T01-05-49-564Z.json",
+  "log_path": "docs/implementation/evidence/sg-001-review-real-ledger-2026-09-20T01-05-49-564Z.log",
+  "signal": null,
+  "duration_ms": 169
+}

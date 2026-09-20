@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-016",
+  "command": "pnpm exec vitest run tests/unit/config",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/config"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:25:45.807Z",
+  "finished_at": "2026-09-20T02:25:48.961Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-016-red-config-2026-09-20T02-25-45-807Z.json",
+  "log_path": "docs/implementation/evidence/sg-016-red-config-2026-09-20T02-25-45-807Z.log",
+  "signal": null,
+  "duration_ms": 3154
+}

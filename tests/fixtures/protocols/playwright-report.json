@@ -1,0 +1,49 @@
+{
+  "schema_version": "0.1",
+  "kind": "stackgate-playwright",
+  "run_id": "run_fixture",
+  "check_id": "e2e",
+  "attempt_id": "attempt_1",
+  "started_at": "2026-09-20T00:00:00Z",
+  "ended_at": "2026-09-20T00:00:00Z",
+  "completed": true,
+  "status": "passed",
+  "inventory": [
+    {
+      "test_id": "performance-summary",
+      "title": "shows total return",
+      "file": "tests/acceptance/performance.spec.ts",
+      "line": 1,
+      "annotations": [
+        {
+          "type": "stackgate-id",
+          "description": "performance-summary"
+        }
+      ],
+      "only": false
+    }
+  ],
+  "attempts": [
+    {
+      "test_id": "performance-summary",
+      "retry": 0,
+      "expected_status": "passed",
+      "actual_status": "passed",
+      "duration_ms": 10,
+      "attachments": [],
+      "errors": []
+    }
+  ],
+  "requests": [
+    {
+      "test_id": "performance-summary",
+      "request_id": "request_fixture",
+      "instance_id": "instance_fixture",
+      "operation_key": "api:GET /api/performance",
+      "url": "http://127.0.0.1:8000/api/performance",
+      "status_code": 200,
+      "backend_observation_ref": "backend-requests.jsonl#request_fixture"
+    }
+  ],
+  "console": []
+}

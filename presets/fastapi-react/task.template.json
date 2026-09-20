@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1",
+  "task_id": "example",
+  "revision": 1,
+  "status": "DRAFT",
+  "goal": "TODO: review and replace this draft with the actual acceptance goal",
+  "target_contract": "contracts/openapi.json",
+  "required_operations": [
+    "GET /api/performance"
+  ],
+  "required_checks": [
+    "contract",
+    "typecheck",
+    "unit",
+    "runtime",
+    "e2e"
+  ],
+  "required_test_ids": [
+    "performance-summary"
+  ],
+  "allowed_change_paths": [
+    "apps/web/src/**",
+    "apps/api/app/**"
+  ],
+  "constraints": {
+    "preserve_target_contract": true,
+    "allow_test_deletion": false,
+    "require_backend_observation": true,
+    "allow_production_targets": false
+  },
+  "expected_behavior": [
+    "页面读取 data.performance.total_return",
+    "缺失数据时展示明确空状态，不显示 NaN"
+  ],
+  "compatibility": {
+    "mode": "preserve",
+    "approved_breaking_rules": []
+  }
+}

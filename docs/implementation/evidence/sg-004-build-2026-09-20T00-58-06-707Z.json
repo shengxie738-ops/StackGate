@@ -1,0 +1,16 @@
+{
+  "command": "pnpm build",
+  "argv": [
+    "pnpm",
+    "build"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T00:58:06.707Z",
+  "finished_at": "2026-09-20T00:58:07.801Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-004-build-2026-09-20T00-58-06-707Z.json",
+  "log_path": "docs/implementation/evidence/sg-004-build-2026-09-20T00-58-06-707Z.log",
+  "signal": null,
+  "duration_ms": 1094
+}

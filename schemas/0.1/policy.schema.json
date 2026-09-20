@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/policy.schema.json",
+  "title": "EffectivePolicy",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "policy_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "policy_hash": {
+      "$ref": "common.schema.json#/$defs/Sha256"
+    },
+    "required_set": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "allowed_origins": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/Origin"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "allowed_paths": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/RelativePath"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "protected_inputs": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/RelativePath"
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "minimum_provenance": {
+      "$ref": "common.schema.json#/$defs/ProvenanceLevel"
+    },
+    "approved_change_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "operation_key": {
+            "$ref": "common.schema.json#/$defs/OperationKey"
+          },
+          "rule_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]+$"
+          },
+          "baseline_hash": {
+            "$ref": "common.schema.json#/$defs/Sha256"
+          },
+          "target_hash": {
+            "$ref": "common.schema.json#/$defs/Sha256"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+          }
+        },
+        "required": [
+          "operation_key",
+          "rule_id",
+          "baseline_hash",
+          "target_hash",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "flaky_policy": {
+      "const": "incomplete"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "local-review",
+        "trusted-ci"
+      ]
+    },
+    "trusted_source_ref": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "policy_id",
+    "policy_hash",
+    "required_set",
+    "allowed_origins",
+    "allowed_paths",
+    "protected_inputs",
+    "minimum_provenance",
+    "approved_change_records",
+    "flaky_policy",
+    "source"
+  ],
+  "additionalProperties": false,
+  "description": "Merge direction: union required_set/protected_inputs; intersect allowed_origins/allowed_paths; maximum minimum_provenance. Structural validation does not authenticate source.",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "source": {
+            "const": "trusted-ci"
+          }
+        },
+        "required": [
+          "source"
+        ]
+      },
+      "then": {
+        "required": [
+          "trusted_source_ref"
+        ],
+        "properties": {
+          "trusted_source_ref": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+          }
+        }
+      }
+    }
+  ]
+}

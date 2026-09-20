@@ -1,0 +1,28 @@
+$ tsc --noEmit
+tests/integration/tasks/confirm.test.ts(9,76): error TS2339: Property 'valid' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(9,111): error TS2339: Property 'confirmation_digest' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(15,62): error TS2339: Property 'confirmation_digest' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(16,63): error TS2339: Property 'confirmation_ref' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(17,61): error TS2339: Property 'confirmation_digest' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(18,18): error TS2339: Property 'confirmation_ref' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(18,48): error TS2339: Property 'confirmation_ref' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(18,118): error TS2339: Property 'confirmation_ref' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(19,77): error TS2339: Property 'task' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(19,123): error TS2339: Property 'confirmation' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(20,19): error TS2339: Property 'target_bytes' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(26,56): error TS2339: Property 'confirmation_digest' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(28,56): error TS2339: Property 'confirmation_digest' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(30,55): error TS2339: Property 'confirmation_digest' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(34,219): error TS2339: Property 'valid' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(34,252): error TS2339: Property 'confirmation_digest' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(39,56): error TS2339: Property 'confirmation_digest' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(44,182): error TS2339: Property 'confirmation_digest' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(46,53): error TS2339: Property 'confirmation_digest' does not exist on type 'never'.
+tests/integration/tasks/confirm.test.ts(47,75): error TS2339: Property 'confirmation_ref' does not exist on type 'never'.
+tests/unit/openapi/safe-loader.test.ts(23,35): error TS7006: Parameter 'operation' implicitly has an 'any' type.
+tests/unit/openapi/safe-loader.test.ts(55,39): error TS7006: Parameter 'diagnostic' implicitly has an 'any' type.
+tests/unit/openapi/safe-loader.test.ts(62,37): error TS7006: Parameter 'diagnostic' implicitly has an 'any' type.
+tests/unit/openapi/safe-loader.test.ts(81,37): error TS7006: Parameter 'diagnostic' implicitly has an 'any' type.
+tests/unit/openapi/safe-loader.test.ts(111,37): error TS7006: Parameter 'diagnostic' implicitly has an 'any' type.
+tests/unit/openapi/safe-loader.test.ts(125,37): error TS7006: Parameter 'diagnostic' implicitly has an 'any' type.
+[ELIFECYCLE] Command failed with exit code 2.

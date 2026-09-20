@@ -1,0 +1,18 @@
+{
+  "task_id": "SG-028",
+  "command": "node dist/cli.mjs --help",
+  "argv": [
+    "node",
+    "dist/cli.mjs",
+    "--help"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:20:22.168Z",
+  "finished_at": "2026-09-20T03:20:22.645Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-028-final-cli-help-2026-09-20T03-20-22-168Z.json",
+  "log_path": "docs/implementation/evidence/sg-028-final-cli-help-2026-09-20T03-20-22-168Z.log",
+  "signal": null,
+  "duration_ms": 477
+}

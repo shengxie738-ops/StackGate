@@ -1,0 +1,60 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/contract/oasdiff.test.ts (31 tests | 1 failed | 30 skipped) 45ms
+     ↓ retains real version, raw IDs, raw JSON, original hashes and business exit status
+     ↓ returns PASS only from real empty valid breaking output
+     ↓ maps real removed-property finding target→candidate-missing
+     ↓ maps real removed-property finding upgrade-baseline→upgrade-target
+     ↓ preserves direction-dependent finding request-base→request-required
+     ↓ preserves direction-dependent finding enum-base→enum-revision
+     ↓ retains structural diff and distinguishes real empty diff
+     ↓ blocks missing tools without inventing empty findings
+     ↓ requires trusted pinned identity and rejects digest changes before version execution
+     ↓ blocks a mismatched tool version after preserving actual version evidence
+     ↓ rechecks mutated LoadedContract documents before any process including --version
+     ↓ rejects unsupported schema before even checking tool availability
+     ↓ does not attribute changed supported documents or forged hashes to original source bytes
+     ↓ bounds real tool output and keeps truncated evidence without returning PASS
+     × does not expose absolute temporary paths in filesystem errors 44ms
+     ↓ ignores inherited malicious oasdiff config environment
+     ↓ rejects unknown breaking JSON shape {}
+     ↓ rejects unknown breaking JSON shape null
+     ↓ rejects unknown breaking JSON shape [{"newField":true}]
+     ↓ rejects unknown breaking JSON shape [{"id":"response-property-type-changed","level":3}]
+     ↓ rejects unknown breaking JSON shape [] trailing
+     ↓ rejects unknown breaking JSON shape 
+     ↓ rejects unknown breaking JSON shape [{"id":"response-property-type-changed","id":"response-required-property-removed","text":"duplicate ID","level":3,"operation":"GET","path":"/x","section":"paths"}]
+     ↓ preserves unknown IDs but cannot return PASS or an approvable mapped rule
+     ↓ rejects duplicate JSON keys even when status and fields otherwise match
+     ↓ rejects inconsistent exit/output pairs and tool-error exits
+     ↓ rejects unknown structural diff shape []
+     ↓ rejects unknown structural diff shape null
+     ↓ rejects unknown structural diff shape {"unexpected":true}
+     ↓ rejects unknown structural diff shape {"paths":{"modified":[]}}
+     ↓ rejects unknown structural diff shape {"paths":{}}
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/contract/oasdiff.test.ts > SG020 real pinned oasdiff adapter > does not expose absolute temporary paths in filesystem errors
+AssertionError: expected '{"status":"ERROR","value":null,"diagn…' not to contain 'private-path-canary'
+
+Expected: "private-path-canary"
+Received: "{"status":"ERROR","value":null,"diagnostics":[{"code":"REPORT_INVALID","rule_id":"SG-TOOL-OASDIFF","message":"ENOENT: no such file or directory, realpath 'G:\\StackGate\\tests\\fixtures\\oasdiff\\private-path-canary-not-present'","location":"","observed_facts":{},"recommended_action":"Preserve raw tool evidence and use the reviewed pinned executable and supported contract subset.","source":"oasdiff"}],"evidence":[]}"
+
+ ❯ tests/contract/oasdiff.test.ts:98:40
+     96|     expect(result.status).toBe('ERROR');
+     97|     expect(result.evidence).toEqual([]);
+     98|     expect(JSON.stringify(result)).not.toContain('private-path-canary'…
+       |                                        ^
+     99|     expect(result.diagnostics[0]?.observed_facts.system_error_code).to…
+    100|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 30 skipped (31)
+   Start at  11:12:08
+   Duration  1.07s (transform 157ms, setup 0ms, import 479ms, tests 45ms, environment 0ms)
+

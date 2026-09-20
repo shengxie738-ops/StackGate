@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-015",
+  "command": "pnpm exec vitest run tests/integration/cli/doctor.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/cli/doctor.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:23:50.485Z",
+  "finished_at": "2026-09-20T02:23:53.477Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-015-red-doctor-2026-09-20T02-23-50-485Z.json",
+  "log_path": "docs/implementation/evidence/sg-015-red-doctor-2026-09-20T02-23-50-485Z.log",
+  "signal": null,
+  "duration_ms": 2992
+}

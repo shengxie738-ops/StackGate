@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-019",
+  "command": "pnpm exec vitest run tests/unit/openapi/safe-loader.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/openapi/safe-loader.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:34:14.046Z",
+  "finished_at": "2026-09-20T02:34:19.804Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-019-red-safe-loader-2026-09-20T02-34-14-046Z.json",
+  "log_path": "docs/implementation/evidence/sg-019-red-safe-loader-2026-09-20T02-34-14-046Z.log",
+  "signal": null,
+  "duration_ms": 5758
+}

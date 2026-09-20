@@ -1,0 +1,52 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/ports.test.ts (22 tests | 5 failed) 7379ms
+   ✓ negotiates only the declared exact adapter version, platform and dialect 2ms
+   ✓ does not promote UNKNOWN capabilities 0ms
+   ✓ does not promote UNSUPPORTED capabilities 0ms
+   ✓ counts an identical fake event only once and preserves input objects 1ms
+   ✓ compares duplicate event objects independently of JSON key insertion order 0ms
+   × rejects conflicting identities, noncontiguous sequence or mixed runs (0) 3ms
+   × rejects conflicting identities, noncontiguous sequence or mixed runs (1) 0ms
+   × rejects conflicting identities, noncontiguous sequence or mixed runs (2) 0ms
+   × rejects conflicting identities, noncontiguous sequence or mixed runs (3) 0ms
+   × rejects conflicting identities, noncontiguous sequence or mixed runs (4) 0ms
+   ✓ runs the AST checker and rejects domain IO  476ms
+   ✓ runs the AST checker and rejects domain dynamic IO  473ms
+   ✓ runs the AST checker and rejects domain time  458ms
+   ✓ runs the AST checker and rejects domain date constructor  494ms
+   ✓ runs the AST checker and rejects domain environment  470ms
+   ✓ runs the AST checker and rejects domain network  551ms
+   ✓ runs the AST checker and rejects test fake import  516ms
+   ✓ runs the AST checker and rejects reporter runner  587ms
+   ✓ runs the AST checker and rejects reporter execution  632ms
+   ✓ runs the AST checker and rejects reporter computed execution  740ms
+   ✓ rejects IO reached indirectly through a domain helper  1016ms
+   ✓ allows pure objects, type-only ports and words in comments or strings  957ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/ports.test.ts > rejects conflicting identities, noncontiguous sequence or mixed runs (0)
+ FAIL  tests/unit/ports.test.ts > rejects conflicting identities, noncontiguous sequence or mixed runs (1)
+ FAIL  tests/unit/ports.test.ts > rejects conflicting identities, noncontiguous sequence or mixed runs (2)
+ FAIL  tests/unit/ports.test.ts > rejects conflicting identities, noncontiguous sequence or mixed runs (3)
+ FAIL  tests/unit/ports.test.ts > rejects conflicting identities, noncontiguous sequence or mixed runs (4)
+TypeError: incoming is not iterable
+ ❯ reduceEvents packages/core/src/domain/reduce-events.ts:15:23
+     13|   let runId: string | null = null;
+     14|   let nextSeq = 1;
+     15|   for (const event of incoming) {
+       |                       ^
+     16|     const serialized = canonical(event);
+     17|     const previous = seen.get(event.event_id);
+ ❯ tests/unit/ports.test.ts:49:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 17 passed (22)
+   Start at  09:16:44
+   Duration  7.95s (transform 69ms, setup 0ms, import 131ms, tests 7.38s, environment 0ms)
+

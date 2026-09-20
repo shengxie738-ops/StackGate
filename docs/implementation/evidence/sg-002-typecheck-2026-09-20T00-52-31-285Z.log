@@ -1,0 +1,4 @@
+$ tsc --noEmit
+tests/unit/contracts/primitives.test.ts(3,20): error TS2307: Cannot find module '../../../schemas/0.1/common.schema.json' or its corresponding type declarations.
+tests/unit/contracts/primitives.test.ts(4,122): error TS2307: Cannot find module '../../../packages/contracts/src/identifiers.js' or its corresponding type declarations.
+[ELIFECYCLE] Command failed with exit code 2.

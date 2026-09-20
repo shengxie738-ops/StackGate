@@ -1,0 +1,16 @@
+{
+  "command": "pnpm install",
+  "argv": [
+    "pnpm",
+    "install"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T00:50:06.369Z",
+  "finished_at": "2026-09-20T00:50:06.818Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-002-dependencies-2026-09-20T00-50-06-369Z.json",
+  "log_path": "docs/implementation/evidence/sg-002-dependencies-2026-09-20T00-50-06-369Z.log",
+  "signal": null,
+  "duration_ms": 449
+}

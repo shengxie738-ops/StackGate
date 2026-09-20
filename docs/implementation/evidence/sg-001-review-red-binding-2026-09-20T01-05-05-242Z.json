@@ -1,0 +1,17 @@
+{
+  "command": "node --test tests/bootstrap/ledger.test.mjs",
+  "argv": [
+    "node",
+    "--test",
+    "tests/bootstrap/ledger.test.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:05:05.242Z",
+  "finished_at": "2026-09-20T01:05:06.015Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-001-review-red-binding-2026-09-20T01-05-05-242Z.json",
+  "log_path": "docs/implementation/evidence/sg-001-review-red-binding-2026-09-20T01-05-05-242Z.log",
+  "signal": null,
+  "duration_ms": 773
+}

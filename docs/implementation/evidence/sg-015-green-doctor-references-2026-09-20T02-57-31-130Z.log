@@ -1,0 +1,15 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/cli/doctor.test.ts (5 tests) 2196ms
+   ✓ rejects semantically missing check references in otherwise valid configuration  422ms
+   ✓ inspects a Chinese project without running postinstall, Python imports or writing state  398ms
+   ✓ returns precise invalid-config diagnostics and never scans a parent manifest  461ms
+   ✓ reports conflicting configuration files rather than choosing one  330ms
+   ✓ reports declared commands/workspaces missing without executing them  584ms
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  10:57:32
+   Duration  2.87s (transform 64ms, setup 0ms, import 127ms, tests 2.20s, environment 0ms)
+

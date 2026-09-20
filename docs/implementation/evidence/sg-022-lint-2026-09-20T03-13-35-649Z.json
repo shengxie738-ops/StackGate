@@ -1,0 +1,26 @@
+{
+  "task_id": "SG-022",
+  "command": "pnpm exec eslint packages/adapter-oasdiff/src/runtime-validator.ts packages/adapter-oasdiff/src/direction-projection.ts packages/core/src/domain/contract-policy.ts packages/core/src/domain/contract-projection.ts packages/core/src/services/contract-service.ts tests/unit/openapi/runtime-validator.test.ts tests/unit/openapi/three-way.test.ts tests/integration/contracts/three-way.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "eslint",
+    "packages/adapter-oasdiff/src/runtime-validator.ts",
+    "packages/adapter-oasdiff/src/direction-projection.ts",
+    "packages/core/src/domain/contract-policy.ts",
+    "packages/core/src/domain/contract-projection.ts",
+    "packages/core/src/services/contract-service.ts",
+    "tests/unit/openapi/runtime-validator.test.ts",
+    "tests/unit/openapi/three-way.test.ts",
+    "tests/integration/contracts/three-way.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:13:35.649Z",
+  "finished_at": "2026-09-20T03:13:41.661Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-022-lint-2026-09-20T03-13-35-649Z.json",
+  "log_path": "docs/implementation/evidence/sg-022-lint-2026-09-20T03-13-35-649Z.log",
+  "signal": null,
+  "duration_ms": 6012
+}

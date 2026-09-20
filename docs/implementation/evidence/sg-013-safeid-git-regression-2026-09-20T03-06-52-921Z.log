@@ -1,0 +1,38 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/git/target-advance.test.ts (2 tests) 6994ms
+   ✓ sees target advancement while preserving detached candidate identity and never fetching  2928ms
+   ✓ invalidates untracked source changes at the same Git HEAD  4065ms
+ ✓ tests/integration/git/baseline.test.ts (8 tests) 16591ms
+     ✓ pins actual merge base and advancing target with detached HEAD  2282ms
+     ✓ rejects missing refs and option-like refs  1887ms
+     ✓ treats leading dash directory as path and hashes local identities  1910ms
+     ✓ fails explicitly when shallow history cannot establish a common ancestor  3233ms
+     ✓ rejects unresolved merges  2809ms
+     ✓ disables repository fsmonitor and ignores hostile inherited Git environment  1703ms
+     ✓ reports nonrepository distinctly  664ms
+     ✓ does not choose arbitrarily between multiple merge bases  2101ms
+ ✓ tests/integration/git/input-manifest.test.ts (16 tests) 61733ms
+     ✓ emits schema-valid SafeIds in a real captured manifest  2537ms
+     ✓ hashes final bytes B while keeping staged A and unstaged explanations  2817ms
+     ✓ includes untracked source and dependency locks in input hash  5185ms
+     ✓ retains tombstones for staged and unstaged deletions  3582ms
+     ✓ explicitly includes ignored build inputs and diagnoses missing required inputs  4785ms
+     ✓ excludes declared outputs and credential files with reasons  3979ms
+     ✓ blocks oversized files, LFS pointers and unresolved generated inputs  6149ms
+     ✓ blocks submodules and out-of-root directory links  3962ms
+     ✓ keeps documentation as input unless explicitly excluded  2975ms
+     ✓ respects nested ignore rules during safe directory enumeration  2626ms
+     ✓ does not run configured external diff or text conversion commands  2493ms
+     ✓ keeps task payload changes but excludes only StackGate state artifacts  5273ms
+     ✓ detects index entries whose object is missing  3167ms
+     ✓ hashes binary and CRLF bytes without normalizing them  3156ms
+     ✓ does not execute configured clean filters while computing dirty changes  3925ms
+     ✓ blocks CRLF LFS pointers and emulated symlink checkouts  5119ms
+
+ Test Files  3 passed (3)
+      Tests  26 passed (26)
+   Start at  11:06:54
+   Duration  63.33s (transform 584ms, setup 0ms, import 1.55s, tests 85.32s, environment 0ms)
+

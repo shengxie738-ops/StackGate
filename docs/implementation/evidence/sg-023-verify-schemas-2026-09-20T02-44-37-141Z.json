@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-023",
+  "command": "pnpm verify:schemas",
+  "argv": [
+    "pnpm",
+    "verify:schemas"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:44:37.141Z",
+  "finished_at": "2026-09-20T02:44:39.495Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-023-verify-schemas-2026-09-20T02-44-37-141Z.json",
+  "log_path": "docs/implementation/evidence/sg-023-verify-schemas-2026-09-20T02-44-37-141Z.log",
+  "signal": null,
+  "duration_ms": 2354
+}

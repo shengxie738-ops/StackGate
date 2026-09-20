@@ -1,0 +1,77 @@
+$ vitest run tests/unit
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/gate/truth-table.test.ts (22 tests) 14ms
+ ✓ tests/unit/gate/acceptance-boundaries.test.ts (11 tests) 11ms
+ ✓ tests/unit/gate/exit-priority.test.ts (64 tests) 30ms
+ ✓ tests/unit/contracts/primitives.test.ts (13 tests) 126ms
+ ✓ tests/unit/contracts/run-schema.test.ts (20 tests) 211ms
+ ✓ tests/unit/contracts/task-schema.test.ts (17 tests) 199ms
+ ✓ tests/unit/contracts/config-schema.test.ts (9 tests) 215ms
+ ✓ tests/unit/fixtures.test.ts (10 tests) 1098ms
+   ✓ validates all OpenAPI documents against the retained official document schema and strict response schemas  932ms
+ ✓ tests/unit/bootstrap.test.ts (5 tests) 2197ms
+   ✓ rejects unsupported arguments and combinations with exit 64  415ms
+   ✓ an empty test selection exits nonzero  1491ms
+ ❯ tests/unit/ports.test.ts (27 tests | 5 failed) 10017ms
+   ✓ negotiates only the declared exact adapter version, platform and dialect 5ms
+   ✓ does not promote UNKNOWN capabilities 0ms
+   ✓ does not promote UNSUPPORTED capabilities 0ms
+   ✓ counts an identical fake event only once and preserves input objects 2ms
+   ✓ compares duplicate event objects independently of JSON key insertion order 0ms
+   ✓ rejects conflicting identities, noncontiguous sequence or mixed runs (0) 0ms
+   ✓ rejects conflicting identities, noncontiguous sequence or mixed runs (1) 0ms
+   ✓ rejects conflicting identities, noncontiguous sequence or mixed runs (2) 0ms
+   ✓ rejects conflicting identities, noncontiguous sequence or mixed runs (3) 0ms
+   ✓ rejects conflicting identities, noncontiguous sequence or mixed runs (4) 0ms
+   ✓ runs the AST checker and rejects domain IO  761ms
+   ✓ runs the AST checker and rejects domain dynamic IO  836ms
+   ✓ runs the AST checker and rejects domain time  690ms
+   ✓ runs the AST checker and rejects domain date constructor  519ms
+   ✓ runs the AST checker and rejects domain environment  591ms
+   × runs the AST checker and rejects domain console IO 509ms
+   × runs the AST checker and rejects domain require alias 635ms
+   × runs the AST checker and rejects domain indirect random 488ms
+   × runs the AST checker and rejects domain spread clock 438ms
+   ✓ runs the AST checker and rejects domain network  613ms
+   ✓ runs the AST checker and rejects test fake import  634ms
+   ✓ runs the AST checker and rejects reporter runner  660ms
+   ✓ runs the AST checker and rejects reporter execution  506ms
+   ✓ runs the AST checker and rejects reporter computed execution  536ms
+   × runs the AST checker and rejects reporter destructured execution 527ms
+   ✓ rejects IO reached indirectly through a domain helper  518ms
+   ✓ allows pure objects, type-only ports and words in comments or strings  546ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects domain console IO
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects domain require alias
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects domain indirect random
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects domain spread clock
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects reporter destructured execution
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/unit/ports.test.ts:79:40
+     77| ])('runs the AST checker and rejects %s', async (_label, file, source)…
+     78|   const result = await checkFixture({ [file]: source });
+     79|   expect(result.status, result.stderr).toBe(1);
+       |                                        ^
+     80|   expect(result.stderr).toMatch(/boundary|forbidden/i);
+     81| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+
+ Test Files  1 failed | 9 passed (10)
+      Tests  5 failed | 193 passed (198)
+   Start at  09:18:52
+   Duration  11.37s (transform 1.29s, setup 0ms, import 6.63s, tests 14.12s, environment 2ms)
+
+[ELIFECYCLE] Command failed with exit code 1.

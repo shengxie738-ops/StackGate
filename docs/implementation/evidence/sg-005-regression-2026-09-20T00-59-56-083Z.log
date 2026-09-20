@@ -1,0 +1,46 @@
+$ vitest run tests/unit
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/contracts/primitives.test.ts (12 tests) 62ms
+ ❯ tests/unit/contracts/task-schema.test.ts (10 tests | 2 failed) 71ms
+   × reads original DRAFT and user-written CONFIRMED without treating either as approval 36ms
+   ✓ rejects non-positive integer revision 0 4ms
+   ✓ rejects non-positive integer revision -1 3ms
+   ✓ rejects non-positive integer revision 1.5 3ms
+   ✓ rejects non-positive integer revision 1 4ms
+   ✓ rejects empty target_contract 3ms
+   ✓ rejects empty required_operations 4ms
+   ✓ rejects empty required_checks 4ms
+   ✓ requires exact operation, rule, baseline, target and rationale for upgrade approval 5ms
+   × requires independent trusted reference, not a claimed name 2ms
+ ✓ tests/unit/contracts/config-schema.test.ts (9 tests) 133ms
+ ✓ tests/unit/bootstrap.test.ts (4 tests) 1765ms
+   ✓ rejects unsupported arguments and combinations with exit 64  331ms
+   ✓ an empty test selection exits nonzero  1204ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/contracts/task-schema.test.ts > reads original DRAFT and user-written CONFIRMED without treating either as approval
+ FAIL  tests/unit/contracts/task-schema.test.ts > requires independent trusted reference, not a claimed name
+Error: strict mode: required property "trusted_source_ref" is not defined at "https://stackgate.local/schemas/0.1/confirmation.schema.json#/allOf/0/then" (strictRequired)
+ ❯ checkStrictMode node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/util.js:174:15
+ ❯ Object.code node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/vocabularies/validation/required.js:33:48
+ ❯ keywordCode node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/validate/index.js:464:13
+ ❯ node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/validate/index.js:222:17
+ ❯ CodeGen.code node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/codegen/index.js:439:13
+ ❯ CodeGen.block node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/codegen/index.js:568:18
+ ❯ iterateKeywords node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/validate/index.js:219:9
+ ❯ groupKeywords node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/validate/index.js:200:13
+ ❯ node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/validate/index.js:192:13
+ ❯ CodeGen.code node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/codegen/index.js:439:13
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  2 failed | 33 passed (35)
+   Start at  08:59:57
+   Duration  2.67s (transform 313ms, setup 0ms, import 2.52s, tests 2.03s, environment 1ms)
+
+[ELIFECYCLE] Command failed with exit code 1.

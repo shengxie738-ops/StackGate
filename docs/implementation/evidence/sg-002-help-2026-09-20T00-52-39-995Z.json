@@ -1,0 +1,17 @@
+{
+  "command": "node dist/cli.mjs --help",
+  "argv": [
+    "node",
+    "dist/cli.mjs",
+    "--help"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T00:52:39.995Z",
+  "finished_at": "2026-09-20T00:52:40.085Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-002-help-2026-09-20T00-52-39-995Z.json",
+  "log_path": "docs/implementation/evidence/sg-002-help-2026-09-20T00-52-39-995Z.log",
+  "signal": null,
+  "duration_ms": 90
+}

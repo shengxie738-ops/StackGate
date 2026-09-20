@@ -1,0 +1,25 @@
+// Generated from schemas/0.1; do not edit.
+import schema0 from '../../../../schemas/0.1/adapter-capabilities.schema.json';
+import schema1 from '../../../../schemas/0.1/artifact.schema.json';
+import schema2 from '../../../../schemas/0.1/check-fact.schema.json';
+import schema3 from '../../../../schemas/0.1/check-result.schema.json';
+import schema4 from '../../../../schemas/0.1/check-step.schema.json';
+import schema5 from '../../../../schemas/0.1/common.schema.json';
+import schema6 from '../../../../schemas/0.1/confirmation.schema.json';
+import schema7 from '../../../../schemas/0.1/environment.schema.json';
+import schema8 from '../../../../schemas/0.1/event.schema.json';
+import schema9 from '../../../../schemas/0.1/finding.schema.json';
+import schema10 from '../../../../schemas/0.1/gate-evaluation.schema.json';
+import schema11 from '../../../../schemas/0.1/gate-fixture.schema.json';
+import schema12 from '../../../../schemas/0.1/gate-input.schema.json';
+import schema13 from '../../../../schemas/0.1/input-manifest.schema.json';
+import schema14 from '../../../../schemas/0.1/mappings.schema.json';
+import schema15 from '../../../../schemas/0.1/plan.schema.json';
+import schema16 from '../../../../schemas/0.1/playwright-report.schema.json';
+import schema17 from '../../../../schemas/0.1/policy.schema.json';
+import schema18 from '../../../../schemas/0.1/probe.schema.json';
+import schema19 from '../../../../schemas/0.1/project-config.schema.json';
+import schema20 from '../../../../schemas/0.1/run.schema.json';
+import schema21 from '../../../../schemas/0.1/task.schema.json';
+import schema22 from '../../../../schemas/0.1/trust-record.schema.json';
+export const schemas = [schema0, schema1, schema2, schema3, schema4, schema5, schema6, schema7, schema8, schema9, schema10, schema11, schema12, schema13, schema14, schema15, schema16, schema17, schema18, schema19, schema20, schema21, schema22];

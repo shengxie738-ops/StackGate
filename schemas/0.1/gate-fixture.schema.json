@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/gate-fixture.schema.json",
+  "title": "GateFixture",
+  "description": "Test-only wrapper, never accepted as observed product evidence.",
+  "type": "object",
+  "properties": {
+    "fixture_only": {
+      "const": true
+    },
+    "run": {
+      "$ref": "run.schema.json"
+    },
+    "input": {
+      "$ref": "gate-input.schema.json"
+    },
+    "evaluation": {
+      "$ref": "gate-evaluation.schema.json"
+    }
+  },
+  "required": [
+    "fixture_only",
+    "run",
+    "input",
+    "evaluation"
+  ],
+  "additionalProperties": false
+}

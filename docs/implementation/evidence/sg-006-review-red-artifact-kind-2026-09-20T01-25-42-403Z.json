@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-006",
+  "command": "pnpm exec vitest run tests/unit/contracts/run-schema.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/contracts/run-schema.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:25:42.403Z",
+  "finished_at": "2026-09-20T01:25:46.378Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-006-review-red-artifact-kind-2026-09-20T01-25-42-403Z.json",
+  "log_path": "docs/implementation/evidence/sg-006-review-red-artifact-kind-2026-09-20T01-25-42-403Z.log",
+  "signal": null,
+  "duration_ms": 3975
+}

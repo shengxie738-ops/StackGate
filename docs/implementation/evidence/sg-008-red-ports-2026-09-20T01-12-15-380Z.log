@@ -1,0 +1,33 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/ports.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/ports.test.ts [ tests/unit/ports.test.ts ]
+Error: Transform failed with 1 error:
+G:/StackGate/tests/unit/ports.test.ts:84:0: ERROR: Unexpected end of file
+  Plugin: vite:esbuild
+  File: G:/StackGate/tests/unit/ports.test.ts:84:0
+  
+  Unexpected end of file
+  82 |    expect(result.status, result.stderr).toBe(0);
+  83 |  });
+  84 |  
+     |  ^
+  
+ ❯ failureErrorWithLog node_modules/.pnpm/esbuild@0.28.2/node_modules/esbuild/lib/main.js:1752:15
+ ❯ node_modules/.pnpm/esbuild@0.28.2/node_modules/esbuild/lib/main.js:1019:50
+ ❯ responseCallbacks.<computed> node_modules/.pnpm/esbuild@0.28.2/node_modules/esbuild/lib/main.js:886:9
+ ❯ handleIncomingPacket node_modules/.pnpm/esbuild@0.28.2/node_modules/esbuild/lib/main.js:941:12
+ ❯ Socket.readFromStdout node_modules/.pnpm/esbuild@0.28.2/node_modules/esbuild/lib/main.js:864:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  09:12:17
+   Duration  477ms (transform 0ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

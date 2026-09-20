@@ -1,0 +1,38 @@
+$ vitest run tests/unit
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/ports.test.ts (0 test)
+ ✓ tests/unit/gate/acceptance-boundaries.test.ts (11 tests) 16ms
+ ✓ tests/unit/gate/truth-table.test.ts (22 tests) 19ms
+ ✓ tests/unit/gate/exit-priority.test.ts (64 tests) 33ms
+ ✓ tests/unit/contracts/primitives.test.ts (13 tests) 106ms
+ ✓ tests/unit/fixtures.test.ts (9 tests) 133ms
+ ✓ tests/unit/contracts/run-schema.test.ts (20 tests) 197ms
+ ✓ tests/unit/contracts/task-schema.test.ts (17 tests) 100ms
+ ✓ tests/unit/contracts/config-schema.test.ts (9 tests) 130ms
+ ✓ tests/unit/bootstrap.test.ts (4 tests) 2014ms
+   ✓ rejects unsupported arguments and combinations with exit 64  404ms
+   ✓ an empty test selection exits nonzero  1337ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/ports.test.ts [ tests/unit/ports.test.ts ]
+Error: Cannot find module '../../packages/core/src/domain/negotiate-capabilities.js' imported from 'G:/StackGate/tests/unit/ports.test.ts'
+ ❯ tests/unit/ports.test.ts:6:1
+      4| import path from 'node:path';
+      5| import type { AdapterCapabilities, RunEvent } from '../../packages/con…
+      6| import { negotiateCapabilities } from '../../packages/core/src/domain/…
+       | ^
+      7| import { reduceEvents } from '../../packages/core/src/domain/reduce-ev…
+      8| import { FakeAdapter } from '../support/fake-adapters.js';
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 9 passed (10)
+      Tests  169 passed (169)
+   Start at  09:13:45
+   Duration  3.31s (transform 1.57s, setup 0ms, import 6.65s, tests 2.75s, environment 3ms)
+
+[ELIFECYCLE] Command failed with exit code 1.

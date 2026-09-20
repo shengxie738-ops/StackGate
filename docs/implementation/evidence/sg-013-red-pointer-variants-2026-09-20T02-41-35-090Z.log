@@ -1,0 +1,35 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/git/input-manifest.test.ts (15 tests | 1 failed | 14 skipped) 3222ms
+     ↓ hashes final bytes B while keeping staged A and unstaged explanations
+     ↓ includes untracked source and dependency locks in input hash
+     ↓ retains tombstones for staged and unstaged deletions
+     ↓ explicitly includes ignored build inputs and diagnoses missing required inputs
+     ↓ excludes declared outputs and credential files with reasons
+     ↓ blocks oversized files, LFS pointers and unresolved generated inputs
+     ↓ blocks submodules and out-of-root directory links
+     ↓ keeps documentation as input unless explicitly excluded
+     ↓ respects nested ignore rules during safe directory enumeration
+     ↓ does not run configured external diff or text conversion commands
+     ↓ keeps task payload changes but excludes only StackGate state artifacts
+     ↓ detects index entries whose object is missing
+     ↓ hashes binary and CRLF bytes without normalizing them
+     ↓ does not execute configured clean filters while computing dirty changes
+     × blocks CRLF LFS pointers and emulated symlink checkouts 3218ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/git/input-manifest.test.ts > complete input byte capture > blocks CRLF LFS pointers and emulated symlink checkouts
+AssertionError: expected [] to include 'LFS_OBJECT_UNAVAILABLE: pointer'
+ ❯ tests/integration/git/input-manifest.test.ts:26:310
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 14 skipped (15)
+   Start at  10:41:37
+   Duration  4.32s (transform 221ms, setup 0ms, import 393ms, tests 3.22s, environment 0ms)
+

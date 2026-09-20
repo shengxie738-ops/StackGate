@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-018",
+  "command": "pnpm exec vitest run tests/integration/trust/review.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/trust/review.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:54:13.064Z",
+  "finished_at": "2026-09-20T02:55:53.049Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-018-green-renewal-script-scope-2026-09-20T02-54-13-064Z.json",
+  "log_path": "docs/implementation/evidence/sg-018-green-renewal-script-scope-2026-09-20T02-54-13-064Z.log",
+  "signal": null,
+  "duration_ms": 99985
+}

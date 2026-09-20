@@ -1,0 +1,155 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/openapi/three-way.test.ts (8 tests | 8 failed) 13ms
+     × approves only the exact operation/rule/base/target tuple 6ms
+     × does not use YAML CONFIRMED status or preserve mode to authorize exceptions 1ms
+     × finds target behavior absent from a candidate even when it is optional 1ms
+     × ignores only explicit metadata, retaining properties named description/title 1ms
+     × retains security behavior in alignment 1ms
+     × retains parameters behavior in alignment 1ms
+     × retains status behavior in alignment 0ms
+     × retains media behavior in alignment 0ms
+ ❯ tests/integration/contracts/three-way.test.ts (5 tests | 5 failed) 832ms
+     × uses real compatibility while missing candidate/runtime remain NOT_EXECUTED 23ms
+     × rejects absent target behavior independently of mutual breaking checks 789ms
+     × requires real confirmation hashes and grants no approval to a draft 12ms
+     × blocks target byte drift despite equal behavior and separates export errors 6ms
+     × blocks unsupported target schema before projection rather than silently aligning it 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 13 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/contracts/three-way.test.ts > real three-way contract orchestration > uses real compatibility while missing candidate/runtime remain NOT_EXECUTED
+Error: SG-021 not implemented
+ ❯ ContractService.compareThreeWay packages/core/src/services/contract-service.ts:19:95
+     17| export class ContractService {
+     18|   constructor(readonly tool:ContractCompatibilityTool) {}
+     19|   async compareThreeWay(_request:ContractComparisonRequest):Promise<Co…
+       |                                                                                               ^
+     20| }
+     21| 
+ ❯ tests/integration/contracts/three-way.test.ts:16:204
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/13]⎯
+
+ FAIL  tests/integration/contracts/three-way.test.ts > real three-way contract orchestration > rejects absent target behavior independently of mutual breaking checks
+Error: SG-021 not implemented
+ ❯ ContractService.compareThreeWay packages/core/src/services/contract-service.ts:19:95
+     17| export class ContractService {
+     18|   constructor(readonly tool:ContractCompatibilityTool) {}
+     19|   async compareThreeWay(_request:ContractComparisonRequest):Promise<Co…
+       |                                                                                               ^
+     20| }
+     21| 
+ ❯ tests/integration/contracts/three-way.test.ts:17:610
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/13]⎯
+
+ FAIL  tests/integration/contracts/three-way.test.ts > real three-way contract orchestration > requires real confirmation hashes and grants no approval to a draft
+Error: SG-021 not implemented
+ ❯ ContractService.compareThreeWay packages/core/src/services/contract-service.ts:19:95
+     17| export class ContractService {
+     18|   constructor(readonly tool:ContractCompatibilityTool) {}
+     19|   async compareThreeWay(_request:ContractComparisonRequest):Promise<Co…
+       |                                                                                               ^
+     20| }
+     21| 
+ ❯ tests/integration/contracts/three-way.test.ts:18:661
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/13]⎯
+
+ FAIL  tests/integration/contracts/three-way.test.ts > real three-way contract orchestration > blocks target byte drift despite equal behavior and separates export errors
+Error: SG-021 not implemented
+ ❯ ContractService.compareThreeWay packages/core/src/services/contract-service.ts:19:95
+     17| export class ContractService {
+     18|   constructor(readonly tool:ContractCompatibilityTool) {}
+     19|   async compareThreeWay(_request:ContractComparisonRequest):Promise<Co…
+       |                                                                                               ^
+     20| }
+     21| 
+ ❯ tests/integration/contracts/three-way.test.ts:19:311
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/13]⎯
+
+ FAIL  tests/integration/contracts/three-way.test.ts > real three-way contract orchestration > blocks unsupported target schema before projection rather than silently aligning it
+Error: SG-021 not implemented
+ ❯ ContractService.compareThreeWay packages/core/src/services/contract-service.ts:19:95
+     17| export class ContractService {
+     18|   constructor(readonly tool:ContractCompatibilityTool) {}
+     19|   async compareThreeWay(_request:ContractComparisonRequest):Promise<Co…
+       |                                                                                               ^
+     20| }
+     21| 
+ ❯ tests/integration/contracts/three-way.test.ts:20:380
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/13]⎯
+
+ FAIL  tests/unit/openapi/three-way.test.ts > exact confirmed approvals > approves only the exact operation/rule/base/target tuple
+Error: SG-021 not implemented
+ ❯ approveBreakingChanges packages/core/src/domain/contract-policy.ts:4:156
+      2| export interface ContractIssue {rule_id:string;operation_key:string}
+      3| export interface ContractApprovalContext {service_id:string;baseline_h…
+      4| export function approveBreakingChanges<T extends ContractIssue>(_findi…
+       |                                                                                                                                                            ^
+      5| 
+ ❯ tests/unit/openapi/three-way.test.ts:12:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/13]⎯
+
+ FAIL  tests/unit/openapi/three-way.test.ts > exact confirmed approvals > does not use YAML CONFIRMED status or preserve mode to authorize exceptions
+Error: SG-021 not implemented
+ ❯ approveBreakingChanges packages/core/src/domain/contract-policy.ts:4:156
+      2| export interface ContractIssue {rule_id:string;operation_key:string}
+      3| export interface ContractApprovalContext {service_id:string;baseline_h…
+      4| export function approveBreakingChanges<T extends ContractIssue>(_findi…
+       |                                                                                                                                                            ^
+      5| 
+ ❯ tests/unit/openapi/three-way.test.ts:15:222
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/13]⎯
+
+ FAIL  tests/unit/openapi/three-way.test.ts > behavior alignment is stricter than mutual compatibility > finds target behavior absent from a candidate even when it is optional
+Error: SG-021 not implemented
+ ❯ compareContractBehavior packages/core/src/domain/contract-projection.ts:3:160
+      1| export interface BehaviorProjection {operations:Record<string,unknown>…
+      2| export function projectContractBehavior(_document:Record<string,unknow…
+      3| export function compareContractBehavior(_target:Record<string,unknown>…
+       |                                                                                                                                                                ^
+      4| 
+ ❯ tests/unit/openapi/three-way.test.ts:18:273
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/13]⎯
+
+ FAIL  tests/unit/openapi/three-way.test.ts > behavior alignment is stricter than mutual compatibility > ignores only explicit metadata, retaining properties named description/title
+Error: SG-021 not implemented
+ ❯ compareContractBehavior packages/core/src/domain/contract-projection.ts:3:160
+      1| export interface BehaviorProjection {operations:Record<string,unknown>…
+      2| export function projectContractBehavior(_document:Record<string,unknow…
+      3| export function compareContractBehavior(_target:Record<string,unknown>…
+       |                                                                                                                                                                ^
+      4| 
+ ❯ tests/unit/openapi/three-way.test.ts:19:353
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/13]⎯
+
+ FAIL  tests/unit/openapi/three-way.test.ts > behavior alignment is stricter than mutual compatibility > retains security behavior in alignment
+ FAIL  tests/unit/openapi/three-way.test.ts > behavior alignment is stricter than mutual compatibility > retains parameters behavior in alignment
+ FAIL  tests/unit/openapi/three-way.test.ts > behavior alignment is stricter than mutual compatibility > retains status behavior in alignment
+ FAIL  tests/unit/openapi/three-way.test.ts > behavior alignment is stricter than mutual compatibility > retains media behavior in alignment
+Error: SG-021 not implemented
+ ❯ compareContractBehavior packages/core/src/domain/contract-projection.ts:3:160
+      1| export interface BehaviorProjection {operations:Record<string,unknown>…
+      2| export function projectContractBehavior(_document:Record<string,unknow…
+      3| export function compareContractBehavior(_target:Record<string,unknown>…
+       |                                                                                                                                                                ^
+      4| 
+ ❯ tests/unit/openapi/three-way.test.ts:20:694
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/13]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  13 failed (13)
+   Start at  10:58:49
+   Duration  2.35s (transform 354ms, setup 0ms, import 1.04s, tests 845ms, environment 1ms)
+

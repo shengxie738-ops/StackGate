@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.1",
+  "plan_id": "plan_fixture",
+  "task_id": "performance",
+  "task_revision": 1,
+  "profile": "integration",
+  "input_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "target_contract_hashes": {
+    "api": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "toolchain_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "environment_requirements_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "required_check_ids": [
+    "unit"
+  ],
+  "steps": [
+    {
+      "step_id": "step_unit",
+      "check_id": "unit",
+      "adapter_id": "junit",
+      "command_id": "web_unit",
+      "depends_on": [],
+      "required": true,
+      "timeout_ms": 10000,
+      "resource_locks": [],
+      "expected_artifacts": [
+        "junit.xml"
+      ],
+      "expected_test_ids": [
+        "unit-001"
+      ],
+      "min_tests": 1,
+      "parameters": {
+        "adapter_id": "junit",
+        "report_name": "junit.xml"
+      }
+    }
+  ],
+  "plan_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

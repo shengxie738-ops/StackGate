@@ -1,0 +1,22 @@
+✔ plan has 100 unique sequential tasks and original dependencies (3.8858ms)
+✔ rejects duplicate ID (0.7329ms)
+✔ rejects missing dependency (0.6144ms)
+✔ rejects dependency cycle (0.8963ms)
+✔ rejects DONE without evidence (0.7492ms)
+✔ rejects illegal status (0.718ms)
+✔ rejects early READY (1.2645ms)
+✔ rejects missing task (0.607ms)
+✔ rejects absolute file path (0.7276ms)
+✔ rejects absolute evidence path (0.7069ms)
+✔ rejects traversal evidence path (0.6216ms)
+✔ rejects failed-only DONE (0.6561ms)
+✔ source is preserved byte-for-byte and matches the supplied SHA-256 (20.6834ms)
+✔ source inspection rejects missing or changed content (2.1007ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 189.9492

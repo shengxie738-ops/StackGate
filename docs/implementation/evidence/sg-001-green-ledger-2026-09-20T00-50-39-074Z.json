@@ -1,0 +1,17 @@
+{
+  "command": "node --test tests/bootstrap/ledger.test.mjs",
+  "argv": [
+    "node",
+    "--test",
+    "tests/bootstrap/ledger.test.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T00:50:39.074Z",
+  "finished_at": "2026-09-20T00:50:39.392Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-001-green-ledger-2026-09-20T00-50-39-074Z.json",
+  "log_path": "docs/implementation/evidence/sg-001-green-ledger-2026-09-20T00-50-39-074Z.log",
+  "signal": null,
+  "duration_ms": 318
+}

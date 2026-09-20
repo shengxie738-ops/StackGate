@@ -1,0 +1,12 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/stages/m1.test.ts (2 tests) 28704ms
+   ✓ all M1 entrypoints leave postinstall, JavaScript and Python sentinels unexecuted  21370ms
+   ✓ reports no baseline, untracked Chinese consumers, changed target and unknown schema honestly  7332ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  11:11:09
+   Duration  29.37s (transform 74ms, setup 0ms, import 144ms, tests 28.70s, environment 0ms)
+

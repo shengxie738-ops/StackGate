@@ -1,0 +1,21 @@
+{
+  "task_id": "SG-014",
+  "command": "pnpm exec vitest run tests/integration/git tests/unit/freshness.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/git",
+    "tests/unit/freshness.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:40:59.622Z",
+  "finished_at": "2026-09-20T02:41:54.923Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-014-git-regression-direct-executable-2026-09-20T02-40-59-622Z.json",
+  "log_path": "docs/implementation/evidence/sg-014-git-regression-direct-executable-2026-09-20T02-40-59-622Z.log",
+  "signal": null,
+  "duration_ms": 55301
+}

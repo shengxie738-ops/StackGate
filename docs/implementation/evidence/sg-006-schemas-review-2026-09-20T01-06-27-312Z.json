@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-006",
+  "command": "pnpm verify:schemas",
+  "argv": [
+    "pnpm",
+    "verify:schemas"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:06:27.312Z",
+  "finished_at": "2026-09-20T01:06:29.156Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-006-schemas-review-2026-09-20T01-06-27-312Z.json",
+  "log_path": "docs/implementation/evidence/sg-006-schemas-review-2026-09-20T01-06-27-312Z.log",
+  "signal": null,
+  "duration_ms": 1844
+}

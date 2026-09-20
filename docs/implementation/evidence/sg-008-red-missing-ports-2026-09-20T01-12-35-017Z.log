@@ -1,0 +1,25 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/ports.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/ports.test.ts [ tests/unit/ports.test.ts ]
+Error: Cannot find module '../../packages/core/src/domain/negotiate-capabilities.js' imported from 'G:/StackGate/tests/unit/ports.test.ts'
+ ❯ tests/unit/ports.test.ts:6:1
+      4| import path from 'node:path';
+      5| import type { AdapterCapabilities, RunEvent } from '../../packages/con…
+      6| import { negotiateCapabilities } from '../../packages/core/src/domain/…
+       | ^
+      7| import { reduceEvents } from '../../packages/core/src/domain/reduce-ev…
+      8| import { FakeAdapter } from '../support/fake-adapters.js';
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  09:12:36
+   Duration  524ms (transform 42ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

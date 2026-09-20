@@ -1,0 +1,84 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/cli/doctor.test.ts (4 tests | 4 failed) 439ms
+   × inspects a Chinese project without running postinstall, Python imports or writing state 124ms
+   × returns precise invalid-config diagnostics and never scans a parent manifest 102ms
+   × reports conflicting configuration files rather than choosing one 101ms
+   × reports declared commands/workspaces missing without executing them 110ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/cli/doctor.test.ts > inspects a Chinese project without running postinstall, Python imports or writing state
+AssertionError: Unknown or unsupported command/arguments. Use --help.
+: expected 64 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 64
+
+ ❯ tests/integration/cli/doctor.test.ts:15:65
+     13|   await writeFile(join(root,'main.py'),'open("PYTHON_EXECUTED", "w").w…
+     14|   const before=(await readdir(root)).sort();
+     15|   const result=doctor(root);expect(result.status,result.stderr).toBe(0…
+       |                                                                 ^
+     16|   const report=JSON.parse(result.stdout);
+     17|   expect(report.runtime).toBe('NOT_EXECUTED');expect(report.capabiliti…
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/integration/cli/doctor.test.ts > returns precise invalid-config diagnostics and never scans a parent manifest
+SyntaxError: Unexpected end of JSON input
+ ❯ tests/integration/cli/doctor.test.ts:27:21
+     25|   const root=join(parent,'child');await mkdir(root);await writeFile(jo…
+     26|   const result=doctor(root);expect(result.status).toBe(64);
+     27|   const report=JSON.parse(result.stdout);expect(report.diagnostics.som…
+       |                     ^
+     28|   expect(report.capabilities).not.toContain('typescript');expect((awai…
+     29| }));
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/integration/cli/doctor.test.ts > reports conflicting configuration files rather than choosing one
+SyntaxError: Unexpected end of JSON input
+ ❯ tests/integration/cli/doctor.test.ts:32:72
+     30| it('reports conflicting configuration files rather than choosing one',…
+     31|   await writeFile(join(root,'.stackgate.yaml'),'schema_version: "0.1"'…
+     32|   const result=doctor(root);expect(result.status).toBe(64);expect(JSON…
+       |                                                                        ^
+     33| }));
+     34| it('reports declared commands/workspaces missing without executing the…
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/integration/cli/doctor.test.ts > reports declared commands/workspaces missing without executing them
+AssertionError: expected 64 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 64
+
+ ❯ tests/integration/cli/doctor.test.ts:37:51
+     35|   const config=structuredClone(configFixture);config.commands.web_unit…
+     36|   await writeFile(join(root,'.stackgate.yaml'),JSON.stringify(config));
+     37|   const result=doctor(root);expect(result.status).toBe(0);const report…
+       |                                                   ^
+     38|   expect(report.missing).toContain('COMMAND:web_unit');expect(report.m…
+     39| }));
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  10:23:52
+   Duration  1.01s (transform 49ms, setup 0ms, import 100ms, tests 439ms, environment 0ms)
+

@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-027",
+  "command": "pnpm lint",
+  "argv": [
+    "pnpm",
+    "lint"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:15:12.904Z",
+  "finished_at": "2026-09-20T03:15:16.695Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-027-lint-final-2026-09-20T03-15-12-904Z.json",
+  "log_path": "docs/implementation/evidence/sg-027-lint-final-2026-09-20T03-15-12-904Z.log",
+  "signal": null,
+  "duration_ms": 3791
+}

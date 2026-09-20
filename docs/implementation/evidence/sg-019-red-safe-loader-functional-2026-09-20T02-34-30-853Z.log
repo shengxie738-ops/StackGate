@@ -1,0 +1,25 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/openapi/safe-loader.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts [ tests/unit/openapi/safe-loader.test.ts ]
+Error: Cannot find module '../../../../packages/adapter-oasdiff/src/load-contract.js' imported from 'G:/StackGate/tests/unit/openapi/safe-loader.test.ts'
+ ❯ tests/unit/openapi/safe-loader.test.ts:4:1
+      2| import { readFile } from 'node:fs/promises';
+      3| import { describe, expect, it } from 'vitest';
+      4| import { loadContract } from '../../../../packages/adapter-oasdiff/src…
+       | ^
+      5| import { inspectSupportedSchema } from '../../../../packages/adapter-o…
+      6| import { resolveOperationScope } from '../../../../packages/adapter-oa…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  10:34:34
+   Duration  1.45s (transform 126ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

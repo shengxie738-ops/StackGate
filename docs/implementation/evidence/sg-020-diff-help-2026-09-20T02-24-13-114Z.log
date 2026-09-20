@@ -1,0 +1,32 @@
+Generate a diff report between base and revision specs.
+Base and revision can be a path to a file, a URL, a git ref (e.g. main:openapi.yaml), or '-' to read standard input.
+In 'composed' mode, base and revision can be a glob and oasdiff will compare matching endpoints between the two sets of files.
+
+Usage:
+  oasdiff diff base revision [flags]
+
+Flags:
+      --allow-external-refs            allow external $refs in specs; disable to prevent SSRF when processing untrusted specs (default true)
+      --auto-upgrade                   canonicalize both specs to the latest OpenAPI 3.x before diffing; useful for cross-version comparisons (e.g. 3.0 vs 3.1)
+      --case-insensitive-headers       case-insensitive header name comparison (HTTP headers are case-insensitive per RFC 7230) (default true)
+  -c, --composed                       work in 'composed' mode, compare paths in all specs matching base and revision globs
+  -e, --exclude-elements strings       elements to exclude: description, endpoints, examples, extensions, summary, or title
+      --exclude-extensions strings     OpenAPI Extension names to exclude from diff (e.g., x-internal)
+  -o, --fail-on-diff                   exit with return code 1 when any change is found
+      --fetch                          fetch missing git revisions from the 'origin' remote (writes objects to your local repo)
+      --filter-extension string        exclude paths and operations with an OpenAPI Extension matching this regular expression
+      --flatten-allof                  merge subschemas under allOf before diff
+      --flatten-params                 merge common parameters at path level with operation parameters
+  -f, --format string                  output format: html, json, markdown, markup, text, or yaml (default "yaml")
+  -h, --help                           help for diff
+      --include-path-params            include path parameter names in endpoint matching
+      --match-inline-refs              match validation-equivalent inline/$ref subschemas as the same anyOf/oneOf branch (default true)
+  -p, --match-path string              include only paths that match this regular expression
+      --prefix-base string             add this prefix to paths in base-spec before comparison
+      --prefix-revision string         add this prefix to paths in revised-spec before comparison
+      --strip-prefix-base string       strip this prefix from paths in base-spec before comparison
+      --strip-prefix-revision string   strip this prefix from paths in revised-spec before comparison
+  -q, --unmatch-path string            exclude paths that match this regular expression
+
+Global Flags:
+      --config string   path to config file (overrides .oasdiff.* lookup; can also use the OASDIFF_CONFIG env var)

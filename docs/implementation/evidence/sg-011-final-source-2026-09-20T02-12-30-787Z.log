@@ -1,0 +1,20 @@
+$ node scripts/verify-source.mjs
+{
+  "sources": [
+    {
+      "original": "StackGate_功能与架构设计_v0.1.md",
+      "retained": "docs/specs/stackgate-v0.1.md",
+      "sha256": "56b349eda55673090dee2c611baa250b90f1afa5a3f85a0e78c670fa553af8a9",
+      "expected_sha256": "56b349eda55673090dee2c611baa250b90f1afa5a3f85a0e78c670fa553af8a9",
+      "bytes": 73743
+    },
+    {
+      "original": "StackGate_Codex可执行开发任务规划_v0.1.md",
+      "retained": "docs/plans/2026-09-18-stackgate-v0.1-execution.md",
+      "sha256": "faca196c04dd4a420046415e1bce49411f2fc3e42d54c70859647da904133e17",
+      "expected_sha256": null,
+      "bytes": 335286
+    }
+  ],
+  "errors": []
+}

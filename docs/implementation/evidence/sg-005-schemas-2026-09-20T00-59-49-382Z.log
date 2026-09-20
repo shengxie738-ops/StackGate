@@ -1,0 +1,19 @@
+$ node scripts/verify-schemas.mjs
+G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\util.js:174
+        throw new Error(msg);
+              ^
+
+Error: strict mode: required property "trusted_source_ref" is not defined at "https://stackgate.local/schemas/0.1/confirmation.schema.json#/allOf/0/then" (strictRequired)
+    at checkStrictMode (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\util.js:174:15)
+    at Object.code (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\vocabularies\validation\required.js:33:48)
+    at keywordCode (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:464:13)
+    at G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:222:17
+    at CodeGen.code (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\codegen\index.js:439:13)
+    at CodeGen.block (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\codegen\index.js:568:18)
+    at iterateKeywords (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:219:9)
+    at groupKeywords (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:200:13)
+    at G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:192:13
+    at CodeGen.code (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\codegen\index.js:439:13)
+
+Node.js v24.11.1
+[ELIFECYCLE] Command failed with exit code 1.

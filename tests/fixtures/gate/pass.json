@@ -1,0 +1,124 @@
+{
+  "fixture_only": true,
+  "run": {
+    "schema_version": "0.1",
+    "run_id": "run_fixture",
+    "plan_id": "plan_fixture",
+    "phase": "COMPLETED",
+    "verdict": "PASS",
+    "created_at": "2026-09-20T00:00:00Z",
+    "started_at": "2026-09-20T00:00:00Z",
+    "finished_at": "2026-09-20T00:00:00Z",
+    "task_id": "performance",
+    "task_revision": 1,
+    "repo_id": "repo_fixture",
+    "worktree_id": "worktree_fixture",
+    "base_oid": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "git_object_format": "sha1",
+    "input_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "plan_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "target_contract_hashes": {
+      "api": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "tool_versions": {
+      "node": "24.11.1"
+    },
+    "environment_ref": "environment.json",
+    "data_revision": "fixture-1",
+    "checks": [
+      {
+        "schema_version": "0.1",
+        "check_id": "unit",
+        "required": true,
+        "status": "PASS",
+        "result_kind": "junit",
+        "exit_code": 0,
+        "expected_test_ids": [
+          "unit-001"
+        ],
+        "executed_test_ids": [
+          "unit-001"
+        ],
+        "discovered_tests": 1,
+        "executed_tests": 1,
+        "skipped_tests": 0,
+        "flaky_tests": 0,
+        "reasons": [],
+        "evidence_refs": [
+          "ev-unit-001"
+        ],
+        "run_id": "run_fixture",
+        "step_id": "step_unit",
+        "attempt_id": "attempt_1",
+        "attempts": [
+          {
+            "attempt_id": "attempt_1",
+            "started_at": "2026-09-20T00:00:00Z",
+            "finished_at": "2026-09-20T00:00:00Z",
+            "raw_exit_code": 0,
+            "status": "PASS",
+            "evidence_refs": [
+              "ev-unit-001"
+            ]
+          }
+        ]
+      }
+    ],
+    "artifact_refs": [
+      "ev-unit-001"
+    ],
+    "coverage_gaps": [],
+    "canceled": false
+  },
+  "input": {
+    "checks": [
+      {
+        "check_id": "unit",
+        "required": true,
+        "status": "PASS",
+        "result_kind": "junit",
+        "exit_code": 0,
+        "expected_test_ids": [
+          "unit-001"
+        ],
+        "executed_test_ids": [
+          "unit-001"
+        ],
+        "discovered_tests": 1,
+        "executed_tests": 1,
+        "skipped_tests": 0,
+        "flaky_tests": 0,
+        "reasons": [],
+        "evidence_refs": [
+          "ev-unit-001"
+        ]
+      }
+    ],
+    "required_check_ids": [
+      "unit"
+    ],
+    "configuration_valid": true,
+    "report_integrity": "VALID",
+    "freshness": "FRESH",
+    "inputs_complete": true,
+    "task_confirmed": true,
+    "policy_confirmed": true,
+    "environment_satisfied": true,
+    "acceptance_inputs_approved": true,
+    "canceled": false,
+    "fatal_error": false,
+    "deterministic_denials": []
+  },
+  "evaluation": {
+    "schema_version": "0.1",
+    "run_id": "run_fixture",
+    "policy_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "evaluated_at": "2026-09-20T00:00:00Z",
+    "verdict": "PASS",
+    "freshness": "FRESH",
+    "exit_code": 0,
+    "reasons": [],
+    "decision": "ALLOW"
+  }
+}

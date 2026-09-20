@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-022",
+  "command": "pnpm exec vitest run tests/unit/openapi tests/integration/contracts/three-way.test.ts tests/contract/oasdiff.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/openapi",
+    "tests/integration/contracts/three-way.test.ts",
+    "tests/contract/oasdiff.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:13:35.619Z",
+  "finished_at": "2026-09-20T03:13:43.726Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-022-openapi-regression-2026-09-20T03-13-35-619Z.json",
+  "log_path": "docs/implementation/evidence/sg-022-openapi-regression-2026-09-20T03-13-35-619Z.log",
+  "signal": null,
+  "duration_ms": 8107
+}

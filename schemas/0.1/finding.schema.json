@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/finding.schema.json",
+  "title": "Finding",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "finding_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "rule_id": {
+      "type": "string",
+      "pattern": "^SG-(CONTRACT|CONSUMER|RUNTIME|EVIDENCE|POLICY|ENV|TOOL)-[A-Za-z0-9_-]+$"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "contract",
+        "consumer",
+        "runtime",
+        "evidence",
+        "policy",
+        "environment",
+        "tool"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "error"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+    },
+    "observed_facts": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "suggested_cause": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "recommended_action": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+    },
+    "locations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "baseline",
+              "target",
+              "candidate",
+              "workspace",
+              "runtime"
+            ]
+          },
+          "relative_path": {
+            "$ref": "common.schema.json#/$defs/RelativePath"
+          },
+          "pointer": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "relative_path",
+          "pointer"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "finding_id",
+    "rule_id",
+    "category",
+    "severity",
+    "message",
+    "observed_facts",
+    "suggested_cause",
+    "recommended_action",
+    "locations",
+    "evidence_refs"
+  ],
+  "additionalProperties": false
+}

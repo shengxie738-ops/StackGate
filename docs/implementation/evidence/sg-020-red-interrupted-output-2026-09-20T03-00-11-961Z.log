@@ -1,0 +1,59 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/contract/oasdiff.test.ts (30 tests | 1 failed | 29 skipped) 14ms
+     ↓ retains real version, raw IDs, raw JSON, original hashes and business exit status
+     ↓ returns PASS only from real empty valid breaking output
+     ↓ maps real removed-property finding target→candidate-missing
+     ↓ maps real removed-property finding upgrade-baseline→upgrade-target
+     ↓ preserves direction-dependent finding request-base→request-required
+     ↓ preserves direction-dependent finding enum-base→enum-revision
+     ↓ retains structural diff and distinguishes real empty diff
+     ↓ blocks missing tools without inventing empty findings
+     ↓ requires trusted pinned identity and rejects digest changes before version execution
+     ↓ blocks a mismatched tool version after preserving actual version evidence
+     ↓ rechecks mutated LoadedContract documents before any process including --version
+     ↓ rejects unsupported schema before even checking tool availability
+     ↓ does not attribute changed supported documents or forged hashes to original source bytes
+     ↓ bounds real tool output and keeps truncated evidence without returning PASS
+     ↓ ignores inherited malicious oasdiff config environment
+     ↓ rejects unknown breaking JSON shape {}
+     ↓ rejects unknown breaking JSON shape null
+     ↓ rejects unknown breaking JSON shape [{"newField":true}]
+     ↓ rejects unknown breaking JSON shape [{"id":"response-property-type-changed","level":3}]
+     ↓ rejects unknown breaking JSON shape [] trailing
+     ↓ rejects unknown breaking JSON shape 
+     ↓ rejects unknown breaking JSON shape [{"id":"response-property-type-changed","id":"response-required-property-removed","text":"duplicate ID","level":3,"operation":"GET","path":"/x","section":"paths"}]
+     ↓ preserves unknown IDs but cannot return PASS or an approvable mapped rule
+     ↓ rejects duplicate JSON keys even when status and fields otherwise match
+     × rejects inconsistent exit/output pairs and tool-error exits 12ms
+     ↓ rejects unknown structural diff shape []
+     ↓ rejects unknown structural diff shape null
+     ↓ rejects unknown structural diff shape {"unexpected":true}
+     ↓ rejects unknown structural diff shape {"paths":{"modified":[]}}
+     ↓ rejects unknown structural diff shape {"paths":{}}
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/contract/oasdiff.test.ts > SG020 strict evidence interpretation > rejects inconsistent exit/output pairs and tool-error exits
+AssertionError: expected 'PASS' to be 'ERROR' // Object.is equality
+
+Expected: "ERROR"
+Received: "PASS"
+
+ ❯ tests/contract/oasdiff.test.ts:116:92
+    114|     expect(parseBreakingResult(observed('[]', 102)).status).toBe('ERRO…
+    115|     expect(parseDiffResult({ ...observed('{}', 1), command: 'diff' }).…
+    116|     expect(parseBreakingResult({ ...observed('[]'), interrupted: 'outp…
+       |                                                                                            ^
+    117|   });
+    118|   it.each(['[]', 'null', '{"unexpected":true}', '{"paths":{"modified":…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 29 skipped (30)
+   Start at  11:00:13
+   Duration  1.16s (transform 244ms, setup 0ms, import 657ms, tests 14ms, environment 0ms)
+

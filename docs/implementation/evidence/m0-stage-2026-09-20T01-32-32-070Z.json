@@ -1,0 +1,80 @@
+{
+  "schema_version": "0.1",
+  "stage": "M0",
+  "platform": "win32-x64",
+  "exit_code": 0,
+  "checks": [
+    {
+      "id": "source",
+      "command": "node scripts/verify-source.mjs",
+      "started_at": "2026-09-20T01:31:52.775Z",
+      "finished_at": "2026-09-20T01:31:52.945Z",
+      "exit_code": 0,
+      "output": "{\n  \"sources\": [\n    {\n      \"original\": \"StackGate_功能与架构设计_v0.1.md\",\n      \"retained\": \"docs/specs/stackgate-v0.1.md\",\n      \"sha256\": \"56b349eda55673090dee2c611baa250b90f1afa5a3f85a0e78c670fa553af8a9\",\n      \"expected_sha256\": \"56b349eda55673090dee2c611baa250b90f1afa5a3f85a0e78c670fa553af8a9\",\n      \"bytes\": 73743\n    },\n    {\n      \"original\": \"StackGate_Codex可执行开发任务规划_v0.1.md\",\n      \"retained\": \"docs/plans/2026-09-18-stackgate-v0.1-execution.md\",\n      \"sha256\": \"faca196c04dd4a420046415e1bce49411f2fc3e42d54c70859647da904133e17\",\n      \"expected_sha256\": null,\n      \"bytes\": 335286\n    }\n  ],\n  \"errors\": []\n}\n"
+    },
+    {
+      "id": "tasks",
+      "command": "node scripts/verify-tasks.mjs",
+      "started_at": "2026-09-20T01:31:52.945Z",
+      "finished_at": "2026-09-20T01:31:53.223Z",
+      "exit_code": 0,
+      "output": "Validated 100 tasks, dependencies, states, files and recorded evidence.\n"
+    },
+    {
+      "id": "schemas",
+      "command": "node scripts/verify-schemas.mjs",
+      "started_at": "2026-09-20T01:31:53.223Z",
+      "finished_at": "2026-09-20T01:31:54.824Z",
+      "exit_code": 0,
+      "output": "Validated 7 OpenAPI documents and strict fixture response schemas (no network at verification time)\nValidated 22 schemas, 19 fixtures, generated type drift: none\n"
+    },
+    {
+      "id": "boundaries",
+      "command": "node scripts/verify-boundaries.mjs",
+      "started_at": "2026-09-20T01:31:54.824Z",
+      "finished_at": "2026-09-20T01:31:55.697Z",
+      "exit_code": 0,
+      "output": "Verified module boundaries for 47 product source files using the TypeScript AST.\n"
+    },
+    {
+      "id": "build",
+      "command": "node scripts/build.mjs",
+      "started_at": "2026-09-20T01:31:55.697Z",
+      "finished_at": "2026-09-20T01:31:59.601Z",
+      "exit_code": 0,
+      "output": "Built: cli, contracts, core\n"
+    },
+    {
+      "id": "typecheck",
+      "command": "node node_modules/typescript/bin/tsc --noEmit",
+      "started_at": "2026-09-20T01:31:59.602Z",
+      "finished_at": "2026-09-20T01:32:04.669Z",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "id": "unit",
+      "command": "node scripts/test-unit.mjs",
+      "started_at": "2026-09-20T01:32:04.669Z",
+      "finished_at": "2026-09-20T01:32:20.066Z",
+      "exit_code": 0,
+      "output": "\n RUN  v4.0.18 G:/StackGate\n\n ✓ tests/unit/gate/acceptance-boundaries.test.ts (11 tests) 18ms\n ✓ tests/unit/gate/truth-table.test.ts (22 tests) 26ms\n ✓ tests/unit/gate/exit-priority.test.ts (65 tests) 45ms\n ✓ tests/unit/contracts/primitives.test.ts (13 tests) 147ms\n ✓ tests/unit/contracts/run-schema.test.ts (24 tests) 246ms\n ✓ tests/unit/contracts/task-schema.test.ts (17 tests) 121ms\n ✓ tests/unit/contracts/config-schema.test.ts (9 tests) 182ms\n ✓ tests/unit/fixtures.test.ts (10 tests) 1089ms\n   ✓ validates all OpenAPI documents against the retained official document schema and strict response schemas  893ms\n ✓ tests/unit/bootstrap.test.ts (5 tests) 2493ms\n   ✓ rejects unsupported arguments and combinations with exit 64  497ms\n   ✓ an empty test selection exits nonzero  1592ms\n ✓ tests/unit/ports.test.ts (27 tests) 11566ms\n   ✓ runs the AST checker and rejects domain IO  940ms\n   ✓ runs the AST checker and rejects domain dynamic IO  786ms\n   ✓ runs the AST checker and rejects domain time  718ms\n   ✓ runs the AST checker and rejects domain date constructor  627ms\n   ✓ runs the AST checker and rejects domain environment  585ms\n   ✓ runs the AST checker and rejects domain console IO  738ms\n   ✓ runs the AST checker and rejects domain require alias  626ms\n   ✓ runs the AST checker and rejects domain indirect random  663ms\n   ✓ runs the AST checker and rejects domain spread clock  647ms\n   ✓ runs the AST checker and rejects domain network  664ms\n   ✓ runs the AST checker and rejects test fake import  611ms\n   ✓ runs the AST checker and rejects reporter runner  642ms\n   ✓ runs the AST checker and rejects reporter execution  795ms\n   ✓ runs the AST checker and rejects reporter computed execution  636ms\n   ✓ runs the AST checker and rejects reporter destructured execution  653ms\n   ✓ rejects IO reached indirectly through a domain helper  588ms\n   ✓ allows pure objects, type-only ports and words in comments or strings  630ms\n\n Test Files  10 passed (10)\n      Tests  203 passed (203)\n   Start at  09:32:06\n   Duration  13.00s (transform 1.60s, setup 0ms, import 8.20s, tests 15.93s, environment 3ms)\n\n✔ built CLI help exposes only implemented commands (157.0674ms)\n✔ unknown CLI option returns configuration error (123.3155ms)\n✔ plan has 100 unique sequential tasks and original dependencies (6.8733ms)\n✔ rejects duplicate ID (2.587ms)\n✔ rejects missing dependency (1.8512ms)\n✔ rejects dependency cycle (1.8555ms)\n✔ rejects DONE without evidence (2.7892ms)\n✔ rejects illegal status (1.8407ms)\n✔ rejects early READY (1.9151ms)\n✔ rejects missing task (1.8472ms)\n✔ rejects absolute file path (1.4422ms)\n✔ rejects absolute evidence path (2.1302ms)\n✔ rejects traversal evidence path (1.1753ms)\n✔ rejects failed-only DONE (1.2815ms)\n✔ source is preserved byte-for-byte and matches the supplied SHA-256 (3.9803ms)\n✔ source inspection rejects missing or changed content (2.5452ms)\n✔ verify-tasks CLI returns nonzero and identifies the task with SG-999 dependency (172.9347ms)\n✔ DONE requires actual implementation files even with valid task evidence (2.4284ms)\n✔ DONE cannot borrow another task successful evidence (79.0744ms)\n✔ evidence runner records task ownership and preserves a failed child exit code (242.9696ms)\n✔ negative cases do not mutate the shared plan baseline (1.6192ms)\n✔ M0 rejects removed, duplicate and arbitrary shell checks (2.5532ms)\n✔ unknown tools block any stage requiring them (1.452ms)\n✔ a real failed child command propagates its exit and retains its identity (200.5323ms)\nℹ tests 24\nℹ suites 0\nℹ pass 24\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 784.0986\n"
+    },
+    {
+      "id": "lint",
+      "command": "node node_modules/eslint/bin/eslint.js .",
+      "started_at": "2026-09-20T01:32:20.066Z",
+      "finished_at": "2026-09-20T01:32:25.445Z",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "id": "contract",
+      "command": "node node_modules/vitest/vitest.mjs run tests/contract",
+      "started_at": "2026-09-20T01:32:25.445Z",
+      "finished_at": "2026-09-20T01:32:32.070Z",
+      "exit_code": 0,
+      "output": "\n RUN  v4.0.18 G:/StackGate\n\n ✓ tests/contract/toolchain.test.ts (5 tests) 3716ms\n   ✓ runs real TypeScript program and compiler CLI diagnostics  1857ms\n   ✓ build declarations are actually consumable with strict type checking  1531ms\n\n Test Files  1 passed (1)\n      Tests  5 passed (5)\n   Start at  09:32:26\n   Duration  5.31s (transform 179ms, setup 0ms, import 1.10s, tests 3.72s, environment 0ms)\n\n"
+    }
+  ]
+}

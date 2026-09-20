@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-009",
+  "command": "pnpm generate:types",
+  "argv": [
+    "pnpm",
+    "generate:types"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:13:05.893Z",
+  "finished_at": "2026-09-20T01:13:07.701Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-009-generate-2026-09-20T01-13-05-893Z.json",
+  "log_path": "docs/implementation/evidence/sg-009-generate-2026-09-20T01-13-05-893Z.log",
+  "signal": null,
+  "duration_ms": 1808
+}

@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-017",
+  "command": "pnpm exec vitest run tests/integration/tasks/confirm.test.ts -t \"confirms exact\"",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/tasks/confirm.test.ts",
+    "-t",
+    "confirms exact"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:07:43.213Z",
+  "finished_at": "2026-09-20T03:08:02.875Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-017-red-check-contracts-2026-09-20T03-07-43-213Z.json",
+  "log_path": "docs/implementation/evidence/sg-017-red-check-contracts-2026-09-20T03-07-43-213Z.log",
+  "signal": null,
+  "duration_ms": 19662
+}

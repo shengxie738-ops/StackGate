@@ -1,0 +1,16 @@
+{
+  "command": "node scripts/verify-source.mjs",
+  "argv": [
+    "node",
+    "scripts/verify-source.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T00:51:13.453Z",
+  "finished_at": "2026-09-20T00:51:13.624Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-001-source-2026-09-20T00-51-13-453Z.json",
+  "log_path": "docs/implementation/evidence/sg-001-source-2026-09-20T00-51-13-453Z.log",
+  "signal": null,
+  "duration_ms": 171
+}

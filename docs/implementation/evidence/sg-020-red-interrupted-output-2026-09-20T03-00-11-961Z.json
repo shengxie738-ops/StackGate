@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-020",
+  "command": "pnpm exec vitest run tests/contract/oasdiff.test.ts -t \"inconsistent exit\"",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/contract/oasdiff.test.ts",
+    "-t",
+    "inconsistent exit"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:00:11.961Z",
+  "finished_at": "2026-09-20T03:00:15.147Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-020-red-interrupted-output-2026-09-20T03-00-11-961Z.json",
+  "log_path": "docs/implementation/evidence/sg-020-red-interrupted-output-2026-09-20T03-00-11-961Z.log",
+  "signal": null,
+  "duration_ms": 3186
+}

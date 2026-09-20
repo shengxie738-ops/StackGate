@@ -1,0 +1,24 @@
+{
+  "task_id": "SG-014",
+  "command": "pnpm exec eslint packages/adapter-git/src packages/core/src/domain/compare-inputs.ts packages/core/src/domain/evaluate-freshness.ts tests/unit/freshness.test.ts tests/integration/git tests/support/git-repo.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "eslint",
+    "packages/adapter-git/src",
+    "packages/core/src/domain/compare-inputs.ts",
+    "packages/core/src/domain/evaluate-freshness.ts",
+    "tests/unit/freshness.test.ts",
+    "tests/integration/git",
+    "tests/support/git-repo.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:42:20.334Z",
+  "finished_at": "2026-09-20T02:42:26.358Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-014-final-scoped-lint-2026-09-20T02-42-20-334Z.json",
+  "log_path": "docs/implementation/evidence/sg-014-final-scoped-lint-2026-09-20T02-42-20-334Z.log",
+  "signal": null,
+  "duration_ms": 6024
+}

@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-027",
+  "command": "pnpm exec vitest run tests/integration/cli/static-workflow.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/cli/static-workflow.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:52:40.173Z",
+  "finished_at": "2026-09-20T02:52:45.848Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-027-red-static-cli-2026-09-20T02-52-40-173Z.json",
+  "log_path": "docs/implementation/evidence/sg-027-red-static-cli-2026-09-20T02-52-40-173Z.log",
+  "signal": null,
+  "duration_ms": 5675
+}

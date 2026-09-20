@@ -1,0 +1,23 @@
+{
+  "task_id": "SG-027",
+  "command": "pnpm exec eslint apps/cli/src packages/core/src/services/init-service.ts packages/core/src/services/scan-service.ts tests/integration/cli/static-workflow.test.ts tests/integration/stages/m1.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "eslint",
+    "apps/cli/src",
+    "packages/core/src/services/init-service.ts",
+    "packages/core/src/services/scan-service.ts",
+    "tests/integration/cli/static-workflow.test.ts",
+    "tests/integration/stages/m1.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:03:00.728Z",
+  "finished_at": "2026-09-20T03:03:06.467Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-027-scoped-lint-2026-09-20T03-03-00-728Z.json",
+  "log_path": "docs/implementation/evidence/sg-027-scoped-lint-2026-09-20T03-03-00-728Z.log",
+  "signal": null,
+  "duration_ms": 5739
+}

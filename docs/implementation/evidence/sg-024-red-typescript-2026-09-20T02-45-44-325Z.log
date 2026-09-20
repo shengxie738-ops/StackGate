@@ -1,0 +1,91 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/impact/typescript.test.ts (6 tests | 6 failed) 10ms
+     × finds literal fetch and explicitly configured wrappers as candidates only 4ms
+     × preserves dynamic template, concatenated URL and injected-client uncertainty 0ms
+     × tracks transitive imports and re-exports from a changed type file 0ms
+     × resolves finite static aliases but records unresolved aliases 0ms
+     × never executes supplied plugins, extends or source code 3ms
+     × retains cross-language, malformed source, ambiguous services and unknown HTTP methods 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/impact/typescript.test.ts > bounded TypeScript impact analysis > finds literal fetch and explicitly configured wrappers as candidates only
+Error: SG-024 not implemented
+ ❯ analyzeTypeScript packages/adapter-typescript/src/program.ts:2:9
+      1| export function analyzeTypeScript(_scope: unknown, _compiler_options: …
+      2|   throw new Error('SG-024 not implemented');
+       |         ^
+      3| }
+      4| 
+ ❯ tests/unit/impact/typescript.test.ts:9:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/unit/impact/typescript.test.ts > bounded TypeScript impact analysis > preserves dynamic template, concatenated URL and injected-client uncertainty
+Error: SG-024 not implemented
+ ❯ analyzeTypeScript packages/adapter-typescript/src/program.ts:2:9
+      1| export function analyzeTypeScript(_scope: unknown, _compiler_options: …
+      2|   throw new Error('SG-024 not implemented');
+       |         ^
+      3| }
+      4| 
+ ❯ tests/unit/impact/typescript.test.ts:16:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/unit/impact/typescript.test.ts > bounded TypeScript impact analysis > tracks transitive imports and re-exports from a changed type file
+Error: SG-024 not implemented
+ ❯ analyzeTypeScript packages/adapter-typescript/src/program.ts:2:9
+      1| export function analyzeTypeScript(_scope: unknown, _compiler_options: …
+      2|   throw new Error('SG-024 not implemented');
+       |         ^
+      3| }
+      4| 
+ ❯ tests/unit/impact/typescript.test.ts:21:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/unit/impact/typescript.test.ts > bounded TypeScript impact analysis > resolves finite static aliases but records unresolved aliases
+Error: SG-024 not implemented
+ ❯ analyzeTypeScript packages/adapter-typescript/src/program.ts:2:9
+      1| export function analyzeTypeScript(_scope: unknown, _compiler_options: …
+      2|   throw new Error('SG-024 not implemented');
+       |         ^
+      3| }
+      4| 
+ ❯ tests/unit/impact/typescript.test.ts:26:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/unit/impact/typescript.test.ts > bounded TypeScript impact analysis > never executes supplied plugins, extends or source code
+Error: SG-024 not implemented
+ ❯ analyzeTypeScript packages/adapter-typescript/src/program.ts:2:9
+      1| export function analyzeTypeScript(_scope: unknown, _compiler_options: …
+      2|   throw new Error('SG-024 not implemented');
+       |         ^
+      3| }
+      4| 
+ ❯ tests/unit/impact/typescript.test.ts:33:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  tests/unit/impact/typescript.test.ts > bounded TypeScript impact analysis > retains cross-language, malformed source, ambiguous services and unknown HTTP methods
+Error: SG-024 not implemented
+ ❯ analyzeTypeScript packages/adapter-typescript/src/program.ts:2:9
+      1| export function analyzeTypeScript(_scope: unknown, _compiler_options: …
+      2|   throw new Error('SG-024 not implemented');
+       |         ^
+      3| }
+      4| 
+ ❯ tests/unit/impact/typescript.test.ts:39:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed (6)
+   Start at  10:45:46
+   Duration  1.23s (transform 52ms, setup 0ms, import 605ms, tests 10ms, environment 0ms)
+

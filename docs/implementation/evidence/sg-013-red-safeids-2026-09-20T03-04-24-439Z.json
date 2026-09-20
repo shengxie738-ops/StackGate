@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-013",
+  "command": "pnpm exec vitest run tests/integration/git/input-manifest.test.ts -t \"emits schema-valid\"",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/git/input-manifest.test.ts",
+    "-t",
+    "emits schema-valid"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:04:24.439Z",
+  "finished_at": "2026-09-20T03:04:30.878Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-013-red-safeids-2026-09-20T03-04-24-439Z.json",
+  "log_path": "docs/implementation/evidence/sg-013-red-safeids-2026-09-20T03-04-24-439Z.log",
+  "signal": null,
+  "duration_ms": 6439
+}

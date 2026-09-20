@@ -1,0 +1,19 @@
+{
+  "executable": "G:\\StackGate\\tools\\bin\\oasdiff-1.32.1\\oasdiff.exe",
+  "argv": [
+    "breaking",
+    "G:\\StackGate\\tests\\fixtures\\oasdiff\\preparation\\enum-base.json",
+    "G:\\StackGate\\tests\\fixtures\\oasdiff\\preparation\\enum-revision.json",
+    "--format",
+    "json",
+    "--config",
+    "G:\\StackGate\\tests\\fixtures\\oasdiff\\preparation\\empty-config.yaml",
+    "--allow-external-refs=false",
+    "--fail-on",
+    "ERR"
+  ],
+  "exit_code": 1,
+  "signal": null,
+  "stdout": "[{\"id\":\"response-property-enum-value-added\",\"text\":\"added the new `2.00` enum value to the `data/performance/total_return` response property for the response status `200`\",\"comment\":\"The server may now return a value the previous contract excluded, so a client written against it may not handle the response. If the value set is meant to grow, declare it with x-extensible-enum.\",\"level\":3,\"operation\":\"GET\",\"operationId\":\"getPerformance\",\"path\":\"/api/performance\",\"section\":\"paths\",\"fingerprint\":\"6e4251a522db\"}]\n",
+  "stderr": ""
+}

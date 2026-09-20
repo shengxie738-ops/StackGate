@@ -1,0 +1,74 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "StackGate synthetic performance fixture",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/performance": {
+      "get": {
+        "operationId": "getPerformance",
+        "responses": {
+          "200": {
+            "description": "Synthetic total return; no financial account or production data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "performance": {
+                          "type": "object",
+                          "properties": {
+                            "total_return": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "total_return"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "performance"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "accepted"
+          }
+        }
+      }
+    }
+  }
+}

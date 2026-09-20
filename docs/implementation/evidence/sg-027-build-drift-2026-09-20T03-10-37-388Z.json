@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-027",
+  "command": "pnpm build",
+  "argv": [
+    "pnpm",
+    "build"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:10:37.388Z",
+  "finished_at": "2026-09-20T03:10:43.520Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-027-build-drift-2026-09-20T03-10-37-388Z.json",
+  "log_path": "docs/implementation/evidence/sg-027-build-drift-2026-09-20T03-10-37-388Z.log",
+  "signal": null,
+  "duration_ms": 6132
+}

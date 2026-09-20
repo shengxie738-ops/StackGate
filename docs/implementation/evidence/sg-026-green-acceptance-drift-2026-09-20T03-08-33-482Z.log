@@ -1,0 +1,10 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/policy/drift.test.ts (7 tests) 8ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  11:08:35
+   Duration  834ms (transform 99ms, setup 0ms, import 201ms, tests 8ms, environment 0ms)
+

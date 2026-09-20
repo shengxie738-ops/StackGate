@@ -1,0 +1,75 @@
+$ node scripts/test-unit.mjs
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/storage/hash.test.ts (17 tests) 14ms
+ ✓ tests/unit/gate/truth-table.test.ts (22 tests) 24ms
+ ✓ tests/unit/gate/acceptance-boundaries.test.ts (11 tests) 22ms
+ ✓ tests/unit/gate/exit-priority.test.ts (65 tests) 46ms
+ ✓ tests/unit/storage/paths.test.ts (27 tests) 318ms
+ ✓ tests/unit/storage/atomic-write.test.ts (6 tests) 514ms
+ ✓ tests/unit/contracts/primitives.test.ts (13 tests) 143ms
+ ✓ tests/unit/contracts/run-schema.test.ts (24 tests) 304ms
+ ✓ tests/unit/contracts/task-schema.test.ts (17 tests) 171ms
+ ✓ tests/unit/contracts/config-schema.test.ts (9 tests) 222ms
+ ✓ tests/unit/fixtures.test.ts (10 tests) 931ms
+   ✓ validates all OpenAPI documents against the retained official document schema and strict response schemas  760ms
+ ✓ tests/unit/bootstrap.test.ts (5 tests) 2512ms
+   ✓ rejects unsupported arguments and combinations with exit 64  640ms
+   ✓ an empty test selection exits nonzero  1515ms
+ ✓ tests/unit/ports.test.ts (27 tests) 9949ms
+   ✓ runs the AST checker and rejects domain IO  1104ms
+   ✓ runs the AST checker and rejects domain dynamic IO  705ms
+   ✓ runs the AST checker and rejects domain time  680ms
+   ✓ runs the AST checker and rejects domain date constructor  612ms
+   ✓ runs the AST checker and rejects domain environment  533ms
+   ✓ runs the AST checker and rejects domain console IO  623ms
+   ✓ runs the AST checker and rejects domain require alias  518ms
+   ✓ runs the AST checker and rejects domain indirect random  528ms
+   ✓ runs the AST checker and rejects domain spread clock  571ms
+   ✓ runs the AST checker and rejects domain network  498ms
+   ✓ runs the AST checker and rejects test fake import  589ms
+   ✓ runs the AST checker and rejects reporter runner  481ms
+   ✓ runs the AST checker and rejects reporter execution  471ms
+   ✓ runs the AST checker and rejects reporter computed execution  568ms
+   ✓ runs the AST checker and rejects reporter destructured execution  486ms
+   ✓ rejects IO reached indirectly through a domain helper  536ms
+   ✓ allows pure objects, type-only ports and words in comments or strings  434ms
+
+ Test Files  13 passed (13)
+      Tests  253 passed (253)
+   Start at  10:08:59
+   Duration  11.63s (transform 1.89s, setup 0ms, import 9.73s, tests 15.17s, environment 4ms)
+
+✔ built CLI help exposes only implemented commands (108.6151ms)
+✔ unknown CLI option returns configuration error (113.5704ms)
+✔ plan has 100 unique sequential tasks and original dependencies (2.998ms)
+✔ rejects duplicate ID (1.0341ms)
+✔ rejects missing dependency (1.091ms)
+✔ rejects dependency cycle (0.9615ms)
+✔ rejects DONE without evidence (1.5811ms)
+✔ rejects illegal status (1.0217ms)
+✔ rejects early READY (0.8751ms)
+✔ rejects missing task (0.9326ms)
+✔ rejects absolute file path (0.9278ms)
+✔ rejects absolute evidence path (1.3745ms)
+✔ rejects traversal evidence path (0.7572ms)
+✔ rejects failed-only DONE (0.8193ms)
+✔ source is preserved byte-for-byte and matches the supplied SHA-256 (3.6924ms)
+✔ source inspection rejects missing or changed content (1.9831ms)
+✔ verify-tasks CLI returns nonzero and identifies the task with SG-999 dependency (136.2817ms)
+✔ DONE requires actual implementation files even with valid task evidence (2.0094ms)
+✔ DONE cannot borrow another task successful evidence (75.0211ms)
+✔ evidence runner records task ownership and preserves a failed child exit code (191.4796ms)
+✔ negative cases do not mutate the shared plan baseline (1.2856ms)
+✔ M0 rejects removed, duplicate and arbitrary shell checks (1.9958ms)
+✔ unknown tools block any stage requiring them (1.2513ms)
+✔ a real failed child command propagates its exit and retains its identity (159.2943ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 578.2515

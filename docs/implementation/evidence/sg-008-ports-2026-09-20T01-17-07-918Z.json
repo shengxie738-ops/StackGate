@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-008",
+  "command": "pnpm exec vitest run tests/unit/ports.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/ports.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:17:07.918Z",
+  "finished_at": "2026-09-20T01:17:17.548Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-008-ports-2026-09-20T01-17-07-918Z.json",
+  "log_path": "docs/implementation/evidence/sg-008-ports-2026-09-20T01-17-07-918Z.log",
+  "signal": null,
+  "duration_ms": 9630
+}

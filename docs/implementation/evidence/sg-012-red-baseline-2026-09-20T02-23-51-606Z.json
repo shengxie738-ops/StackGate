@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-012",
+  "command": "pnpm exec vitest run tests/integration/git/baseline.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/git/baseline.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:23:51.606Z",
+  "finished_at": "2026-09-20T02:24:02.852Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-012-red-baseline-2026-09-20T02-23-51-606Z.json",
+  "log_path": "docs/implementation/evidence/sg-012-red-baseline-2026-09-20T02-23-51-606Z.log",
+  "signal": null,
+  "duration_ms": 11246
+}

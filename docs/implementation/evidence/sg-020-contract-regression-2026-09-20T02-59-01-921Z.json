@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-020",
+  "command": "pnpm test:contract",
+  "argv": [
+    "pnpm",
+    "test:contract"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:59:01.921Z",
+  "finished_at": "2026-09-20T02:59:15.526Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-020-contract-regression-2026-09-20T02-59-01-921Z.json",
+  "log_path": "docs/implementation/evidence/sg-020-contract-regression-2026-09-20T02-59-01-921Z.log",
+  "signal": null,
+  "duration_ms": 13605
+}

@@ -1,0 +1,17 @@
+{
+  "command": "pnpm install --registry=https://registry.npmjs.org",
+  "argv": [
+    "pnpm",
+    "install",
+    "--registry=https://registry.npmjs.org"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T00:50:38.698Z",
+  "finished_at": "2026-09-20T00:50:41.109Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-002-dependencies-official-2026-09-20T00-50-38-698Z.json",
+  "log_path": "docs/implementation/evidence/sg-002-dependencies-official-2026-09-20T00-50-38-698Z.log",
+  "signal": null,
+  "duration_ms": 2411
+}

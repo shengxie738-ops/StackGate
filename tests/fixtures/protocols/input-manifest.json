@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1",
+  "repo_id": "repo_fixture",
+  "worktree_id": "worktree_fixture",
+  "platform_id": "win32-x64",
+  "base_oid": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "head_oid": "cccccccccccccccccccccccccccccccccccccccc",
+  "target_tip_oid": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "git_object_format": "sha1",
+  "files": [
+    {
+      "relative_path": "src/main.ts",
+      "kind": "file",
+      "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "mode": "100644",
+      "tracked": true,
+      "staged": false,
+      "unstaged": true
+    }
+  ],
+  "exclusions": [],
+  "staged_changes": [],
+  "unstaged_changes": [
+    "src/main.ts"
+  ],
+  "completeness": "COMPLETE",
+  "diagnostics": [],
+  "input_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

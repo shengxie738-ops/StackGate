@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-010",
+  "command": "pnpm verify:stage -- --stage M0",
+  "argv": [
+    "pnpm",
+    "verify:stage",
+    "--",
+    "--stage",
+    "M0"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:22:52.855Z",
+  "finished_at": "2026-09-20T01:22:53.839Z",
+  "exit_code": 3,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-010-required-tools-missing-2026-09-20T01-22-52-855Z.json",
+  "log_path": "docs/implementation/evidence/sg-010-required-tools-missing-2026-09-20T01-22-52-855Z.log",
+  "signal": null,
+  "duration_ms": 984
+}

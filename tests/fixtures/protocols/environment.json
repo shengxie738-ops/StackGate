@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1",
+  "run_id": "run_fixture",
+  "mode": "attach",
+  "status": "READY",
+  "frontend_origin": "http://127.0.0.1:5173",
+  "backend_origin": "http://127.0.0.1:8000",
+  "instance_id": "instance_fixture",
+  "provenance": "OBSERVED",
+  "input_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "image_ids": [],
+  "resources": [],
+  "data_revision": "fixture-1",
+  "observations": [
+    "ev-startup"
+  ],
+  "reasons": []
+}

@@ -1,0 +1,10 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/contracts/primitives.test.ts (13 tests) 87ms
+
+ Test Files  1 passed (1)
+      Tests  13 passed (13)
+   Start at  09:06:21
+   Duration  968ms (transform 74ms, setup 0ms, import 430ms, tests 87ms, environment 0ms)
+

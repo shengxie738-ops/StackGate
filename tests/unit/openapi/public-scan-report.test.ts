@@ -1,0 +1,7 @@
+import {expect,it} from 'vitest';
+import {publicContractAssessment} from '../../../packages/core/src/services/public-scan-report.js';
+import type {ContractAssessment} from '../../../packages/core/src/services/contract-service.js';
+it('retains internal raw tool evidence while publishing only labelled locations and raw output digests',()=>{
+ const raw='C:\\Users\\sensitive-user\\Temp\\oasdiff\\base.json';const input:ContractAssessment={compatibility:{status:'FAIL',findings:[{approved:false,rule_id:'SG-CONTRACT-TYPE_CHANGED',raw_rule_id:'response-property-type-changed',operation_key:'GET /a',severity:'error',message:'changed',raw:{baseSource:{file:raw,line:1},revisionSource:{file:raw,line:2},id:'response-property-type-changed'}}],diagnostics:[],evidence:[{command:'breaking',argv:[raw],stdout:JSON.stringify({file:raw}),stderr:raw,exit_code:1,signal:null,version:'1.32.1',executable_sha256:'a'.repeat(64)}]},implementation_alignment:{status:'NOT_EXECUTED',changed_operations:[],diagnostics:[]},runtime_validation:{status:'NOT_EXECUTED'},target_authorization:'UNCONFIRMED',source_hashes:{baseline:'a',target:'b',candidate:null}};
+ const result=publicContractAssessment(input);expect(JSON.stringify(result)).not.toContain('sensitive-user');expect(result.compatibility.evidence[0]!.stdout_sha256).toMatch(/^[a-f0-9]{64}$/);expect(result.compatibility.findings[0]!.raw.baseSource).toEqual({file:'baseline.openapi.json',line:1});expect(input.compatibility.evidence[0]!.stderr).toBe(raw);
+});

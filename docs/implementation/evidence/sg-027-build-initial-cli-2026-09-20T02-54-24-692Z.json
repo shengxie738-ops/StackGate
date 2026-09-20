@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-027",
+  "command": "pnpm build",
+  "argv": [
+    "pnpm",
+    "build"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:54:24.692Z",
+  "finished_at": "2026-09-20T02:54:30.568Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-027-build-initial-cli-2026-09-20T02-54-24-692Z.json",
+  "log_path": "docs/implementation/evidence/sg-027-build-initial-cli-2026-09-20T02-54-24-692Z.log",
+  "signal": null,
+  "duration_ms": 5876
+}

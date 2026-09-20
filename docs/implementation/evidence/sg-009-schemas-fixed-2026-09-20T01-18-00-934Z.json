@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-009",
+  "command": "pnpm verify:schemas",
+  "argv": [
+    "pnpm",
+    "verify:schemas"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:18:00.934Z",
+  "finished_at": "2026-09-20T01:18:03.070Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-009-schemas-fixed-2026-09-20T01-18-00-934Z.json",
+  "log_path": "docs/implementation/evidence/sg-009-schemas-fixed-2026-09-20T01-18-00-934Z.log",
+  "signal": null,
+  "duration_ms": 2136
+}

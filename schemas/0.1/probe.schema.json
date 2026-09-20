@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/probe.schema.json",
+  "title": "ProbeReport",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "kind": {
+      "const": "stackgate-probe"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^run_[A-Za-z0-9_-]+$"
+    },
+    "check_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "attempt_id": {
+      "type": "string",
+      "pattern": "^attempt_[A-Za-z0-9_-]+$"
+    },
+    "instance_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "operation_key": {
+            "$ref": "common.schema.json#/$defs/OperationKey"
+          },
+          "request_id": {
+            "$ref": "common.schema.json#/$defs/SafeId"
+          },
+          "status_code": {
+            "type": "integer",
+            "minimum": 100,
+            "maximum": 599
+          },
+          "media_type": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+          },
+          "schema_valid": {
+            "type": "boolean"
+          },
+          "response_body": {},
+          "assertions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "assertion_id": {
+                  "$ref": "common.schema.json#/$defs/SafeId"
+                },
+                "passed": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "assertion_id",
+                "passed"
+              ],
+              "additionalProperties": false
+            },
+            "uniqueItems": true,
+            "minItems": 0
+          },
+          "backend_observation_ref": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+          }
+        },
+        "required": [
+          "operation_key",
+          "request_id",
+          "status_code",
+          "media_type",
+          "schema_valid",
+          "assertions",
+          "backend_observation_ref"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "completed": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "run_id",
+    "check_id",
+    "attempt_id",
+    "instance_id",
+    "operations",
+    "completed"
+  ],
+  "additionalProperties": false
+}

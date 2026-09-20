@@ -1,0 +1,94 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/openapi/safe-loader.test.ts (60 tests | 1 failed) 118ms
+     ✓ loads retained contract raw bytes without normalizing the raw hash 30ms
+     ✓ rejects ambiguous or malformed documents: {"openapi":"3.1.1","openapi":"3.0.3"} 1ms
+     ✓ rejects ambiguous or malformed documents: openapi: 3.1.1
+openapi: 3.1.0 1ms
+     ✓ rejects ambiguous or malformed documents: openapi: !custom 3.1.1 1ms
+     ✓ rejects ambiguous or malformed documents: a: &a [1]
+b: *a 1ms
+     ✓ rejects ambiguous or malformed documents: {"a": 0ms
+     ✓ rejects invalid OpenAPI document basics 0ms
+     ✓ rejects invalid OpenAPI document basics 0ms
+     ✓ rejects invalid OpenAPI document basics 0ms
+     ✓ rejects invalid OpenAPI document basics 0ms
+     ✓ rejects invalid OpenAPI document basics 1ms
+     ✓ rejects invalid OpenAPI document basics 1ms
+     ✓ rejects invalid OpenAPI document basics 0ms
+     ✓ accepts strict YAML and preserves trailing slash and path-parameter spelling 1ms
+     ✓ denies external HTTP refs in unused components without a single request 36ms
+     ✓ rejects external or invalid refs other.json#/schema 1ms
+     ✓ rejects external or invalid refs file:///secret 1ms
+     ✓ rejects external or invalid refs //host/path 1ms
+     ✓ rejects external or invalid refs http://example.invalid/schema 1ms
+     ✓ rejects external or invalid refs #not-a-pointer 1ms
+     ✓ rejects external or invalid refs #/%ZZ 1ms
+     ✓ rejects external or invalid refs 17 1ms
+     ✓ identifies a missing fragment at the referring pointer 1ms
+     ✓ resolves escaped and percent-encoded local pointers recursively 1ms
+     ✓ diagnoses recursive and dynamic reference constructs 2ms
+     ✓ enforces byte, depth and reference traversal bounds 2ms
+     ✓ supports the explicit basic schema subset {"type":"number"} 1ms
+     ✓ supports the explicit basic schema subset {"type":"integer"} 1ms
+     ✓ supports the explicit basic schema subset {"type":"boolean"} 1ms
+     ✓ supports the explicit basic schema subset {"type":"null"} 1ms
+     ✓ supports the explicit basic schema subset {"type":["number","null"]} 1ms
+     ✓ supports the explicit basic schema subset {"anyOf":[{"type":"number"},{"type":"null"}]} 1ms
+     ✓ supports the explicit basic schema subset {"type":"string","enum":["a","b"]} 1ms
+     ✓ supports the explicit basic schema subset {"type":"array","items":{"type":"number"}} 1ms
+     ✓ supports the explicit basic schema subset {"type":"object","required":["id"],"properties":{"id":{"type":"string","readOnly":true},"password":{"type":"string","writeOnly":true}},"additionalProperties":false} 1ms
+     ✓ does not silently pass untested schema constructs {"oneOf":[{"type":"number"},{"type":"string"}]} 1ms
+     ✓ does not silently pass untested schema constructs {"allOf":[{"type":"number"}]} 1ms
+     ✓ does not silently pass untested schema constructs {"anyOf":[{"type":"number"},{"type":"string"}]} 1ms
+     ✓ does not silently pass untested schema constructs {"type":["number","string"]} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"string","format":"unregistered-format"} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"string","pattern":"[a-z]"} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"number","default":5} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"number","example":5} 1ms
+     ✓ does not silently pass untested schema constructs {"if":{"type":"string"},"then":{"minLength":1}} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"number","madeUpKeyword":true} 1ms
+     ✓ does not silently pass untested schema constructs {"$schema":"https://example.invalid/dialect","type":"number"} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"array"} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"object","additionalProperties":{"type":"number"}} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"string","readOnly":"yes"} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"object","required":["absent"],"properties":{}} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"number","enum":["wrong-type"]} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"integer","enum":[1.5]} 1ms
+     ✓ does not silently pass untested schema constructs {"type":"number","anyOf":[{"type":"object"},{"type":"null"}]} 2ms
+     ✓ limits schema inspection to known selected operations but expands unknown scope 1ms
+     × does not decode literal percent escapes in operation paths during scope inspection 7ms
+     ✓ inspects shared parameters and recursively referenced schemas for the chosen operation 1ms
+     ✓ rejects malformed or unsupported request/response envelopes 0ms
+     ✓ rejects malformed or unsupported request/response envelopes 0ms
+     ✓ rejects malformed or unsupported request/response envelopes 0ms
+     ✓ rejects malformed or unsupported request/response envelopes 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/openapi/safe-loader.test.ts > SG019 strict OpenAPI boundary > does not decode literal percent escapes in operation paths during scope inspection
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/unit/openapi/safe-loader.test.ts:127:54
+    125|     const loaded = load(document);
+    126|     expect(loaded.operations[0]?.key).toBe('GET /literal%2Fvalue');
+    127|     expect(inspectSupportedSchema(loaded).supported).toBe(false);
+       |                                                      ^
+    128|   });
+    129|   it('inspects shared parameters and recursively referenced schemas fo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 59 passed (60)
+   Start at  10:40:07
+   Duration  1.05s (transform 144ms, setup 0ms, import 481ms, tests 118ms, environment 0ms)
+

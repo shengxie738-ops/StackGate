@@ -1,0 +1,504 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/project-config.schema.json",
+  "title": "ProjectConfig",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "project_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "state_dir": {
+      "$ref": "common.schema.json#/$defs/RelativePath"
+    },
+    "workspaces": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "$ref": "common.schema.json#/$defs/RelativePath"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "typescript",
+              "fastapi"
+            ]
+          }
+        },
+        "required": [
+          "path",
+          "kind"
+        ],
+        "additionalProperties": false
+      },
+      "minProperties": 1
+    },
+    "contracts": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "baseline_file": {
+            "$ref": "common.schema.json#/$defs/RelativePath"
+          },
+          "target_file": {
+            "$ref": "common.schema.json#/$defs/RelativePath"
+          },
+          "candidate_artifact": {
+            "$ref": "common.schema.json#/$defs/RelativePath"
+          },
+          "version": {
+            "const": "3.1"
+          },
+          "external_refs": {
+            "const": "deny"
+          }
+        },
+        "required": [
+          "baseline_file",
+          "target_file",
+          "candidate_artifact",
+          "version",
+          "external_refs"
+        ],
+        "additionalProperties": false
+      },
+      "minProperties": 1
+    },
+    "commands": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "workspace": {
+            "$ref": "common.schema.json#/$defs/SafeId"
+          },
+          "exec": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_./\\\\:-]+$"
+          },
+          "args": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^(?!.*\\$\\{)[^\\u0000\\r\\n]*$"
+            },
+            "uniqueItems": false,
+            "minItems": 0
+          },
+          "timeout_seconds": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "workspace",
+          "exec",
+          "args",
+          "timeout_seconds"
+        ],
+        "additionalProperties": false
+      },
+      "minProperties": 1
+    },
+    "checks": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "adapter": {
+                "const": "openapi"
+              },
+              "service": {
+                "$ref": "common.schema.json#/$defs/SafeId"
+              },
+              "candidate_command": {
+                "$ref": "common.schema.json#/$defs/SafeId"
+              }
+            },
+            "required": [
+              "adapter",
+              "service",
+              "candidate_command"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "adapter": {
+                "const": "command"
+              },
+              "command": {
+                "$ref": "common.schema.json#/$defs/SafeId"
+              },
+              "result_kind": {
+                "const": "exit-code"
+              }
+            },
+            "required": [
+              "adapter",
+              "command",
+              "result_kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "adapter": {
+                "const": "junit"
+              },
+              "command": {
+                "$ref": "common.schema.json#/$defs/SafeId"
+              },
+              "min_tests": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "adapter",
+              "command",
+              "min_tests"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "adapter": {
+                "const": "stackgate-probe"
+              },
+              "command": {
+                "$ref": "common.schema.json#/$defs/SafeId"
+              },
+              "required_operations": {
+                "type": "array",
+                "items": {
+                  "$ref": "common.schema.json#/$defs/OperationRef"
+                },
+                "uniqueItems": true,
+                "minItems": 1
+              }
+            },
+            "required": [
+              "adapter",
+              "command",
+              "required_operations"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "adapter": {
+                "const": "playwright"
+              },
+              "command": {
+                "$ref": "common.schema.json#/$defs/SafeId"
+              },
+              "required_test_ids": {
+                "type": "array",
+                "items": {
+                  "$ref": "common.schema.json#/$defs/SafeId"
+                },
+                "uniqueItems": true,
+                "minItems": 1
+              },
+              "require_real_backend": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "adapter",
+              "command",
+              "required_test_ids",
+              "require_real_backend"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "minProperties": 1
+    },
+    "profiles": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "required_checks": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/SafeId"
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "environment": {
+            "$ref": "common.schema.json#/$defs/SafeId"
+          },
+          "minimum_provenance": {
+            "$ref": "common.schema.json#/$defs/ProvenanceLevel"
+          },
+          "unknown_impact": {
+            "type": "string",
+            "enum": [
+              "workspace-regression",
+              "incomplete"
+            ]
+          },
+          "flaky_policy": {
+            "const": "incomplete"
+          }
+        },
+        "required": [
+          "required_checks",
+          "environment",
+          "minimum_provenance",
+          "unknown_impact",
+          "flaky_policy"
+        ],
+        "additionalProperties": false
+      },
+      "minProperties": 1
+    },
+    "environments": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "const": "attach"
+              },
+              "frontend_origin": {
+                "$ref": "common.schema.json#/$defs/Origin"
+              },
+              "backend_origin": {
+                "$ref": "common.schema.json#/$defs/Origin"
+              },
+              "health_path": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^/"
+              },
+              "provenance_file": {
+                "$ref": "common.schema.json#/$defs/RelativePath"
+              }
+            },
+            "required": [
+              "mode",
+              "frontend_origin",
+              "backend_origin",
+              "health_path",
+              "provenance_file"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "const": "compose"
+              },
+              "compose_file": {
+                "$ref": "common.schema.json#/$defs/RelativePath"
+              },
+              "services": {
+                "type": "array",
+                "items": {
+                  "$ref": "common.schema.json#/$defs/SafeId"
+                },
+                "uniqueItems": true,
+                "minItems": 1
+              },
+              "health_path": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^/"
+              },
+              "data_revision": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+              }
+            },
+            "required": [
+              "mode",
+              "compose_file",
+              "services",
+              "data_revision"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "minProperties": 1
+    },
+    "security": {
+      "type": "object",
+      "properties": {
+        "env_allowlist": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z_][A-Z0-9_]*$"
+          },
+          "uniqueItems": true,
+          "minItems": 0
+        },
+        "allow_origins": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/Origin"
+          },
+          "uniqueItems": true,
+          "minItems": 0
+        },
+        "protected_inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/RelativePath"
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "telemetry": {
+          "const": "off"
+        },
+        "extensions": {
+          "type": "object",
+          "properties": {
+            "stackgate_v0_1": {
+              "type": "object",
+              "properties": {
+                "allowed_environment_bindings": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]*\\.[A-Za-z][A-Za-z0-9_-]*$"
+                  },
+                  "uniqueItems": true,
+                  "minItems": 1
+                }
+              },
+              "required": [
+                "allowed_environment_bindings"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "env_allowlist",
+        "allow_origins",
+        "protected_inputs",
+        "telemetry"
+      ],
+      "additionalProperties": false
+    },
+    "extensions": {
+      "type": "object",
+      "properties": {
+        "stackgate_v0_1": {
+          "type": "object",
+          "properties": {
+            "environment_bindings": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "common.schema.json#/$defs/SafeId"
+              },
+              "additionalProperties": {
+                "type": "object",
+                "propertyNames": {
+                  "$ref": "common.schema.json#/$defs/SafeId"
+                },
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "service": {
+                      "$ref": "common.schema.json#/$defs/SafeId"
+                    },
+                    "container_port": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 65535
+                    },
+                    "protocol": {
+                      "type": "string",
+                      "enum": [
+                        "http",
+                        "https"
+                      ]
+                    },
+                    "publish_host": {
+                      "const": "127.0.0.1"
+                    }
+                  },
+                  "required": [
+                    "service",
+                    "container_port",
+                    "protocol",
+                    "publish_host"
+                  ],
+                  "additionalProperties": false
+                },
+                "minProperties": 1
+              },
+              "minProperties": 1
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "project_id",
+    "state_dir",
+    "workspaces",
+    "contracts",
+    "commands",
+    "checks",
+    "profiles",
+    "environments",
+    "security"
+  ],
+  "additionalProperties": false
+}

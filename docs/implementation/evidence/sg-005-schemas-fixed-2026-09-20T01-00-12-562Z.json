@@ -1,0 +1,16 @@
+{
+  "command": "pnpm verify:schemas",
+  "argv": [
+    "pnpm",
+    "verify:schemas"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:00:12.562Z",
+  "finished_at": "2026-09-20T01:00:14.110Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-005-schemas-fixed-2026-09-20T01-00-12-562Z.json",
+  "log_path": "docs/implementation/evidence/sg-005-schemas-fixed-2026-09-20T01-00-12-562Z.log",
+  "signal": null,
+  "duration_ms": 1548
+}

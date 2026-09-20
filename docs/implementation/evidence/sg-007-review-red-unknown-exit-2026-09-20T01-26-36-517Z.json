@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-007",
+  "command": "pnpm exec vitest run tests/unit/gate/exit-priority.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/gate/exit-priority.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:26:36.517Z",
+  "finished_at": "2026-09-20T01:26:38.942Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-007-review-red-unknown-exit-2026-09-20T01-26-36-517Z.json",
+  "log_path": "docs/implementation/evidence/sg-007-review-red-unknown-exit-2026-09-20T01-26-36-517Z.log",
+  "signal": null,
+  "duration_ms": 2425
+}

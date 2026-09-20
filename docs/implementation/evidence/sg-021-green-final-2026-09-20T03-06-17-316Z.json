@@ -1,0 +1,21 @@
+{
+  "task_id": "SG-021",
+  "command": "pnpm exec vitest run tests/unit/openapi/three-way.test.ts tests/integration/contracts/three-way.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/openapi/three-way.test.ts",
+    "tests/integration/contracts/three-way.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:06:17.316Z",
+  "finished_at": "2026-09-20T03:06:24.827Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-021-green-final-2026-09-20T03-06-17-316Z.json",
+  "log_path": "docs/implementation/evidence/sg-021-green-final-2026-09-20T03-06-17-316Z.log",
+  "signal": null,
+  "duration_ms": 7511
+}

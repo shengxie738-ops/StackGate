@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/adapter-capabilities.schema.json",
+  "title": "AdapterCapabilities",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "adapter_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+    },
+    "platforms": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "win32",
+          "linux",
+          "darwin"
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "schema_dialects": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "schema_features": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "evidence_formats": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "provenance_levels": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/ProvenanceLevel"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "SUPPORTED",
+        "UNKNOWN",
+        "UNSUPPORTED"
+      ]
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "adapter_id",
+    "version",
+    "platforms",
+    "schema_dialects",
+    "schema_features",
+    "evidence_formats",
+    "provenance_levels",
+    "status",
+    "limitations"
+  ],
+  "additionalProperties": false
+}

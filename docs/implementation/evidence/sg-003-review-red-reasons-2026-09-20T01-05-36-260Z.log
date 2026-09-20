@@ -1,0 +1,42 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/contracts/primitives.test.ts (13 tests | 1 failed) 64ms
+     × freezes the diagnostic reason catalogue independently of display text 39ms
+     ✓ round trips api:GET /api/performance 1ms
+     ✓ round trips api:POST /Users/ 0ms
+     ✓ round trips api:GET /users/{id} 0ms
+     ✓ rejects malformed key api:get /x 1ms
+     ✓ rejects malformed key api:/x 0ms
+     ✓ rejects malformed key api:GET /x
+ 0ms
+     ✓ rejects malformed key api:GET https://example.com/x 0ms
+     ✓ rejects malformed key GET /x 0ms
+     ✓ requires a unique service to expand shorthand 0ms
+     ✓ rejects traversal, absolute, backslash and control paths 1ms
+     ✓ keeps content hashes separate from Git object formats 0ms
+     ✓ does not accept verdict INCOMPLETE as a check status 19ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/contracts/primitives.test.ts > stable identifiers and operation semantics > freezes the diagnostic reason catalogue independently of display text
+Error: can't resolve reference https://stackgate.local/schemas/0.1/common.schema.json#/$defs/ReasonCode from id #
+ ❯ Object.code node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/vocabularies/core/ref.js:21:19
+ ❯ keywordCode node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/validate/index.js:464:13
+ ❯ node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/validate/index.js:185:25
+ ❯ CodeGen.code node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/codegen/index.js:439:13
+ ❯ CodeGen.block node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/codegen/index.js:568:18
+ ❯ schemaKeywords node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/validate/index.js:185:13
+ ❯ typeAndKeywords node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/validate/index.js:128:5
+ ❯ node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/validate/index.js:70:9
+ ❯ CodeGen.code node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/codegen/index.js:439:13
+ ❯ node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/validate/index.js:37:166
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 passed (13)
+   Start at  09:05:38
+   Duration  978ms (transform 64ms, setup 0ms, import 341ms, tests 64ms, environment 0ms)
+

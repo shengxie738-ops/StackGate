@@ -1,0 +1,2 @@
+$ node scripts/build.mjs
+Built: cli, contracts, core

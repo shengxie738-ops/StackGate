@@ -1,0 +1,48 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/gate/acceptance-boundaries.test.ts (0 test)
+ ❯ tests/unit/gate/truth-table.test.ts (0 test)
+ ❯ tests/unit/gate/exit-priority.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/gate/acceptance-boundaries.test.ts [ tests/unit/gate/acceptance-boundaries.test.ts ]
+Error: Cannot find module '../../../packages/core/src/domain/evaluate-gate.js' imported from 'G:/StackGate/tests/unit/gate/acceptance-boundaries.test.ts'
+ ❯ tests/unit/gate/acceptance-boundaries.test.ts:2:1
+      1| import { describe, expect, it } from 'vitest';
+      2| import { evaluateGate } from '../../../packages/core/src/domain/evalua…
+       | ^
+      3| import { createCheckFact, createGateInput } from '../../support/factor…
+      4| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/unit/gate/exit-priority.test.ts [ tests/unit/gate/exit-priority.test.ts ]
+Error: Cannot find module '../../../packages/core/src/domain/evaluate-gate.js' imported from 'G:/StackGate/tests/unit/gate/exit-priority.test.ts'
+ ❯ tests/unit/gate/exit-priority.test.ts:2:1
+      1| import { expect, it } from 'vitest';
+      2| import { evaluateGate } from '../../../packages/core/src/domain/evalua…
+       | ^
+      3| import { createCheckFact, createGateInput } from '../../support/factor…
+      4| for(let mask=0;mask<64;mask++) {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/unit/gate/truth-table.test.ts [ tests/unit/gate/truth-table.test.ts ]
+Error: Cannot find module '../../../packages/core/src/domain/evaluate-gate.js' imported from 'G:/StackGate/tests/unit/gate/truth-table.test.ts'
+ ❯ tests/unit/gate/truth-table.test.ts:2:1
+      1| import { expect, it } from 'vitest';
+      2| import { evaluateGate } from '../../../packages/core/src/domain/evalua…
+       | ^
+      3| import { createCheckFact, createGateInput } from '../../support/factor…
+      4| import type { CheckFact, GateInput } from '../../../packages/contracts…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  no tests
+   Start at  09:08:06
+   Duration  835ms (transform 109ms, setup 0ms, import 0ms, tests 0ms, environment 1ms)
+

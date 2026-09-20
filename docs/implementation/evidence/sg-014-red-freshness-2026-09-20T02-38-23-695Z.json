@@ -1,0 +1,21 @@
+{
+  "task_id": "SG-014",
+  "command": "pnpm exec vitest run tests/unit/freshness.test.ts tests/integration/git/target-advance.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/freshness.test.ts",
+    "tests/integration/git/target-advance.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:38:23.695Z",
+  "finished_at": "2026-09-20T02:38:33.738Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-014-red-freshness-2026-09-20T02-38-23-695Z.json",
+  "log_path": "docs/implementation/evidence/sg-014-red-freshness-2026-09-20T02-38-23-695Z.log",
+  "signal": null,
+  "duration_ms": 10043
+}

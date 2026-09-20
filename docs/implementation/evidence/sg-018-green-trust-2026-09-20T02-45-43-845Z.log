@@ -1,0 +1,46 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/trust/review.test.ts (3 tests | 3 failed) 13275ms
+   × previews names only and never trusts without explicit reviewed authorization 3904ms
+   × stores outside repository, binds scripts, arguments and origins, and does not become CI trust 4117ms
+   × refuses repository-contained trust stores and copying trust into another checkout 5253ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/trust/review.test.ts > previews names only and never trusts without explicit reviewed authorization
+ServiceError: Execution inputs are incomplete
+ ❯ configurationError packages/core/src/services/service-error.ts:6:10
+
+ ❯ TrustService.snapshot packages/core/src/services/trust-service.ts:39:49
+ ❯ TrustService.review packages/core/src/services/trust-service.ts:43:26
+ ❯ tests/integration/trust/review.test.ts:9:180
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/integration/trust/review.test.ts > stores outside repository, binds scripts, arguments and origins, and does not become CI trust
+ServiceError: Execution inputs are incomplete
+ ❯ configurationError packages/core/src/services/service-error.ts:6:10
+
+ ❯ TrustService.snapshot packages/core/src/services/trust-service.ts:39:49
+ ❯ TrustService.review packages/core/src/services/trust-service.ts:43:26
+ ❯ tests/integration/trust/review.test.ts:10:146
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/integration/trust/review.test.ts > refuses repository-contained trust stores and copying trust into another checkout
+ServiceError: Execution inputs are incomplete
+ ❯ configurationError packages/core/src/services/service-error.ts:6:10
+
+ ❯ TrustService.snapshot packages/core/src/services/trust-service.ts:39:49
+ ❯ TrustService.review packages/core/src/services/trust-service.ts:43:26
+ ❯ tests/integration/trust/review.test.ts:11:256
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  10:45:45
+   Duration  15.62s (transform 925ms, setup 0ms, import 1.84s, tests 13.27s, environment 0ms)
+

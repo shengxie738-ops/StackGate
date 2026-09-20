@@ -1,0 +1,12 @@
+✔ M1 requires every M0 check, actual integration checks and the real oasdiff capability (9.3373ms)
+✔ M0 rejects removed, duplicate and arbitrary shell checks (0.2893ms)
+✔ unknown tools block any stage requiring them (0.2993ms)
+✔ a real failed child command propagates its exit and retains its identity (150.9897ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 322.9632

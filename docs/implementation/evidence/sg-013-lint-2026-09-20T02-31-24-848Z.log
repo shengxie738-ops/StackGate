@@ -1,0 +1,8 @@
+
+G:\StackGate\packages\adapter-git\src\input-manifest.ts
+  63:48  error  '_staged' is defined but never used    @typescript-eslint/no-unused-vars
+  63:66  error  '_unstaged' is defined but never used  @typescript-eslint/no-unused-vars
+  63:85  error  '_tracked' is defined but never used   @typescript-eslint/no-unused-vars
+
+✖ 3 problems (3 errors, 0 warnings)
+

@@ -1,0 +1,187 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/openapi/runtime-validator.test.ts (23 tests | 23 failed) 65ms
+     × rejects number strings without converting or mutating input 14ms
+     × reports escaped JSON pointers for missing required properties 3ms
+     × validates declared supported shape 0 2ms
+     × validates declared supported shape 1 2ms
+     × validates declared supported shape 2 1ms
+     × validates declared supported shape 3 1ms
+     × validates declared supported shape 4 2ms
+     × validates declared supported shape 5 3ms
+     × validates declared supported shape 6 2ms
+     × validates declared supported shape 7 2ms
+     × validates declared supported shape 8 10ms
+     × validates declared supported shape 9 2ms
+     × preserves disallowed additional properties and rejects them 2ms
+     × applies required readOnly/writeOnly semantics in opposite directions 3ms
+     × resolves directional annotations through local property refs 3ms
+     × selects exact, class and default status schema in precedence order 1ms
+     × fails an undeclared status or media type and an unknown operation 1ms
+     × keeps unsupported semantics incomplete rather than coercing to any 1ms
+     × keeps unsupported semantics incomplete rather than coercing to any 2ms
+     × keeps unsupported semantics incomplete rather than coercing to any 1ms
+     × keeps unsupported semantics incomplete rather than coercing to any 2ms
+     × does not accept a changed document with the old raw identity 1ms
+     × does not execute payload accessors and does not return payload values in violations 2ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 23 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > rejects number strings without converting or mutating input
+Error: SG-022 not implemented
+ ❯ validatePayload packages/adapter-oasdiff/src/runtime-validator.ts:7:93
+      5| export interface PayloadViolation {pointer:string;schema_pointer:strin…
+      6| export interface PayloadValidation {supported:boolean;status:'PASS'|'F…
+      7| export function validatePayload(_request:PayloadValidationRequest):Pay…
+       |                                                                                             ^
+      8| 
+ ❯ validate tests/unit/openapi/runtime-validator.test.ts:6:100
+ ❯ tests/unit/openapi/runtime-validator.test.ts:8:151
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/23]⎯
+
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > reports escaped JSON pointers for missing required properties
+Error: SG-022 not implemented
+ ❯ validatePayload packages/adapter-oasdiff/src/runtime-validator.ts:7:93
+      5| export interface PayloadViolation {pointer:string;schema_pointer:strin…
+      6| export interface PayloadValidation {supported:boolean;status:'PASS'|'F…
+      7| export function validatePayload(_request:PayloadValidationRequest):Pay…
+       |                                                                                             ^
+      8| 
+ ❯ validate tests/unit/openapi/runtime-validator.test.ts:6:100
+ ❯ tests/unit/openapi/runtime-validator.test.ts:9:88
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/23]⎯
+
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > validates declared supported shape 0
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > validates declared supported shape 1
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > validates declared supported shape 2
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > validates declared supported shape 3
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > validates declared supported shape 4
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > validates declared supported shape 5
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > validates declared supported shape 6
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > validates declared supported shape 7
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > validates declared supported shape 8
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > validates declared supported shape 9
+Error: SG-022 not implemented
+ ❯ validatePayload packages/adapter-oasdiff/src/runtime-validator.ts:7:93
+      5| export interface PayloadViolation {pointer:string;schema_pointer:strin…
+      6| export interface PayloadValidation {supported:boolean;status:'PASS'|'F…
+      7| export function validatePayload(_request:PayloadValidationRequest):Pay…
+       |                                                                                             ^
+      8| 
+ ❯ validate tests/unit/openapi/runtime-validator.test.ts:6:100
+ ❯ tests/unit/openapi/runtime-validator.test.ts:15:78
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/23]⎯
+
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > preserves disallowed additional properties and rejects them
+Error: SG-022 not implemented
+ ❯ validatePayload packages/adapter-oasdiff/src/runtime-validator.ts:7:93
+      5| export interface PayloadViolation {pointer:string;schema_pointer:strin…
+      6| export interface PayloadValidation {supported:boolean;status:'PASS'|'F…
+      7| export function validatePayload(_request:PayloadValidationRequest):Pay…
+       |                                                                                             ^
+      8| 
+ ❯ validate tests/unit/openapi/runtime-validator.test.ts:6:100
+ ❯ tests/unit/openapi/runtime-validator.test.ts:16:127
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/23]⎯
+
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > applies required readOnly/writeOnly semantics in opposite directions
+Error: SG-022 not implemented
+ ❯ validatePayload packages/adapter-oasdiff/src/runtime-validator.ts:7:93
+      5| export interface PayloadViolation {pointer:string;schema_pointer:strin…
+      6| export interface PayloadValidation {supported:boolean;status:'PASS'|'F…
+      7| export function validatePayload(_request:PayloadValidationRequest):Pay…
+       |                                                                                             ^
+      8| 
+ ❯ validate tests/unit/openapi/runtime-validator.test.ts:6:100
+ ❯ tests/unit/openapi/runtime-validator.test.ts:17:258
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/23]⎯
+
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > resolves directional annotations through local property refs
+Error: SG-022 not implemented
+ ❯ validatePayload packages/adapter-oasdiff/src/runtime-validator.ts:7:93
+      5| export interface PayloadViolation {pointer:string;schema_pointer:strin…
+      6| export interface PayloadValidation {supported:boolean;status:'PASS'|'F…
+      7| export function validatePayload(_request:PayloadValidationRequest):Pay…
+       |                                                                                             ^
+      8| 
+ ❯ tests/unit/openapi/runtime-validator.test.ts:18:405
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/23]⎯
+
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > selects exact, class and default status schema in precedence order
+Error: SG-022 not implemented
+ ❯ validatePayload packages/adapter-oasdiff/src/runtime-validator.ts:7:93
+      5| export interface PayloadViolation {pointer:string;schema_pointer:strin…
+      6| export interface PayloadValidation {supported:boolean;status:'PASS'|'F…
+      7| export function validatePayload(_request:PayloadValidationRequest):Pay…
+       |                                                                                             ^
+      8| 
+ ❯ tests/unit/openapi/runtime-validator.test.ts:19:518
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/23]⎯
+
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > fails an undeclared status or media type and an unknown operation
+Error: SG-022 not implemented
+ ❯ validatePayload packages/adapter-oasdiff/src/runtime-validator.ts:7:93
+      5| export interface PayloadViolation {pointer:string;schema_pointer:strin…
+      6| export interface PayloadValidation {supported:boolean;status:'PASS'|'F…
+      7| export function validatePayload(_request:PayloadValidationRequest):Pay…
+       |                                                                                             ^
+      8| 
+ ❯ tests/unit/openapi/runtime-validator.test.ts:20:260
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/23]⎯
+
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > keeps unsupported semantics incomplete rather than coercing to any
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > keeps unsupported semantics incomplete rather than coercing to any
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > keeps unsupported semantics incomplete rather than coercing to any
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > keeps unsupported semantics incomplete rather than coercing to any
+Error: SG-022 not implemented
+ ❯ validatePayload packages/adapter-oasdiff/src/runtime-validator.ts:7:93
+      5| export interface PayloadViolation {pointer:string;schema_pointer:strin…
+      6| export interface PayloadValidation {supported:boolean;status:'PASS'|'F…
+      7| export function validatePayload(_request:PayloadValidationRequest):Pay…
+       |                                                                                             ^
+      8| 
+ ❯ validate tests/unit/openapi/runtime-validator.test.ts:6:100
+ ❯ tests/unit/openapi/runtime-validator.test.ts:21:229
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/23]⎯
+
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > does not accept a changed document with the old raw identity
+Error: SG-022 not implemented
+ ❯ validatePayload packages/adapter-oasdiff/src/runtime-validator.ts:7:93
+      5| export interface PayloadViolation {pointer:string;schema_pointer:strin…
+      6| export interface PayloadValidation {supported:boolean;status:'PASS'|'F…
+      7| export function validatePayload(_request:PayloadValidationRequest):Pay…
+       |                                                                                             ^
+      8| 
+ ❯ tests/unit/openapi/runtime-validator.test.ts:22:234
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/23]⎯
+
+ FAIL  tests/unit/openapi/runtime-validator.test.ts > strict directional payload schemas > does not execute payload accessors and does not return payload values in violations
+Error: SG-022 not implemented
+ ❯ validatePayload packages/adapter-oasdiff/src/runtime-validator.ts:7:93
+      5| export interface PayloadViolation {pointer:string;schema_pointer:strin…
+      6| export interface PayloadValidation {supported:boolean;status:'PASS'|'F…
+      7| export function validatePayload(_request:PayloadValidationRequest):Pay…
+       |                                                                                             ^
+      8| 
+ ❯ validate tests/unit/openapi/runtime-validator.test.ts:6:100
+ ❯ tests/unit/openapi/runtime-validator.test.ts:23:220
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/23]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  23 failed (23)
+   Start at  11:09:07
+   Duration  1.02s (transform 127ms, setup 0ms, import 495ms, tests 65ms, environment 0ms)
+

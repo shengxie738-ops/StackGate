@@ -1,0 +1,79 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/impact/mappings.test.ts (6 tests | 5 failed) 8ms
+     × retains a deleted consumer as unresolved and preserves its checks 4ms
+     × uses method/path identity independently of operationId changes 0ms
+     × deduplicates tests while retaining each operation source 0ms
+     × reports all missing reference kinds explicitly 0ms
+     ✓ rejects invalid structures, unsafe paths and unknown fields without coercion 1ms
+     × uses generated client metadata only when explicitly supplied 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/impact/mappings.test.ts > explicit consumer mappings > retains a deleted consumer as unresolved and preserves its checks
+Error: SG-023 not implemented
+ ❯ loadMappings packages/adapter-typescript/src/explicit-mappings.ts:2:9
+      1| export function loadMappings(_document: unknown, _inventory: unknown):…
+      2|   throw new Error('SG-023 not implemented');
+       |         ^
+      3| }
+      4| 
+ ❯ tests/unit/impact/mappings.test.ts:15:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/unit/impact/mappings.test.ts > explicit consumer mappings > uses method/path identity independently of operationId changes
+Error: SG-023 not implemented
+ ❯ loadMappings packages/adapter-typescript/src/explicit-mappings.ts:2:9
+      1| export function loadMappings(_document: unknown, _inventory: unknown):…
+      2|   throw new Error('SG-023 not implemented');
+       |         ^
+      3| }
+      4| 
+ ❯ tests/unit/impact/mappings.test.ts:21:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/unit/impact/mappings.test.ts > explicit consumer mappings > deduplicates tests while retaining each operation source
+Error: SG-023 not implemented
+ ❯ loadMappings packages/adapter-typescript/src/explicit-mappings.ts:2:9
+      1| export function loadMappings(_document: unknown, _inventory: unknown):…
+      2|   throw new Error('SG-023 not implemented');
+       |         ^
+      3| }
+      4| 
+ ❯ tests/unit/impact/mappings.test.ts:28:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/unit/impact/mappings.test.ts > explicit consumer mappings > reports all missing reference kinds explicitly
+Error: SG-023 not implemented
+ ❯ loadMappings packages/adapter-typescript/src/explicit-mappings.ts:2:9
+      1| export function loadMappings(_document: unknown, _inventory: unknown):…
+      2|   throw new Error('SG-023 not implemented');
+       |         ^
+      3| }
+      4| 
+ ❯ tests/unit/impact/mappings.test.ts:33:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/unit/impact/mappings.test.ts > explicit consumer mappings > uses generated client metadata only when explicitly supplied
+Error: SG-023 not implemented
+ ❯ loadMappings packages/adapter-typescript/src/explicit-mappings.ts:2:9
+      1| export function loadMappings(_document: unknown, _inventory: unknown):…
+      2|   throw new Error('SG-023 not implemented');
+       |         ^
+      3| }
+      4| 
+ ❯ tests/unit/impact/mappings.test.ts:43:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 1 passed (6)
+   Start at  10:43:20
+   Duration  502ms (transform 44ms, setup 0ms, import 105ms, tests 8ms, environment 0ms)
+

@@ -1,0 +1,24 @@
+{
+  "task_id": "SG-008",
+  "command": "pnpm exec eslint packages/core/src/ports packages/core/src/domain/negotiate-capabilities.ts packages/core/src/domain/reduce-events.ts tests/support/fake-adapters.ts tests/unit/ports.test.ts scripts/verify-boundaries.mjs",
+  "argv": [
+    "pnpm",
+    "exec",
+    "eslint",
+    "packages/core/src/ports",
+    "packages/core/src/domain/negotiate-capabilities.ts",
+    "packages/core/src/domain/reduce-events.ts",
+    "tests/support/fake-adapters.ts",
+    "tests/unit/ports.test.ts",
+    "scripts/verify-boundaries.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:17:30.245Z",
+  "finished_at": "2026-09-20T01:17:35.180Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-008-lint-2026-09-20T01-17-30-245Z.json",
+  "log_path": "docs/implementation/evidence/sg-008-lint-2026-09-20T01-17-30-245Z.log",
+  "signal": null,
+  "duration_ms": 4935
+}

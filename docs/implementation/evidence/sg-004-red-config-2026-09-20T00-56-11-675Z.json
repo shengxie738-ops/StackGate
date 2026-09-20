@@ -1,0 +1,19 @@
+{
+  "command": "pnpm exec vitest run tests/unit/contracts/config-schema.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/contracts/config-schema.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T00:56:11.675Z",
+  "finished_at": "2026-09-20T00:56:15.947Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-004-red-config-2026-09-20T00-56-11-675Z.json",
+  "log_path": "docs/implementation/evidence/sg-004-red-config-2026-09-20T00-56-11-675Z.log",
+  "signal": null,
+  "duration_ms": 4272
+}

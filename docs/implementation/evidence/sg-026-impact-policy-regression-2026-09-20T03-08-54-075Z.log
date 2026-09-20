@@ -1,0 +1,13 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/policy/drift.test.ts (7 tests) 14ms
+ ✓ tests/unit/impact/selection.test.ts (6 tests) 33ms
+ ✓ tests/unit/impact/typescript.test.ts (6 tests) 48ms
+ ✓ tests/unit/impact/mappings.test.ts (6 tests) 29ms
+
+ Test Files  4 passed (4)
+      Tests  25 passed (25)
+   Start at  11:08:56
+   Duration  2.40s (transform 1.19s, setup 0ms, import 3.67s, tests 124ms, environment 1ms)
+

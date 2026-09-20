@@ -1,0 +1,19 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/trust/review.test.ts (9 tests) 142992ms
+   ✓ does not recognize mismatched grant IDs or permission scopes as trusted  27005ms
+   ✓ refuses a script whose bytes are excluded by the credential-input policy  4493ms
+   ✓ renews an expired matching record and preserves unrelated or concurrently changed records  32407ms
+   ✓ rejects external script arguments and binds ignored scripts outside workspaces  18523ms
+   ✓ binds inline code as arguments without interpreting code fragments as paths  4173ms
+   ✓ binds resolved tool identity without launching it  9601ms
+   ✓ previews names only and never trusts without explicit reviewed authorization  4849ms
+   ✓ stores outside repository, binds scripts, arguments and origins, and does not become CI trust  26345ms
+   ✓ refuses repository-contained trust stores and copying trust into another checkout  15589ms
+
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  11:01:49
+   Duration  144.81s (transform 520ms, setup 0ms, import 1.38s, tests 142.99s, environment 0ms)
+

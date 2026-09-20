@@ -1,0 +1,1 @@
+[{"id":"response-property-type-changed","level":"error","direction":"response","area":"schema","kind":"type","actions":["add","change","remove","set","unset"],"effect":"incomparable","locations":["paths.*.*.responses.*.content.*.schema.type:add,remove","paths.*.*.responses.*.content.*.schema.format:set,unset,change"],"description":"response property type changed"}]

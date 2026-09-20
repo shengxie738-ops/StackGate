@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-027",
+  "command": "pnpm exec vitest run tests/integration/cli/static-workflow.test.ts -t \"task and trust\"",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/cli/static-workflow.test.ts",
+    "-t",
+    "task and trust"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:09:33.672Z",
+  "finished_at": "2026-09-20T03:09:55.920Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-027-red-scan-drift-2026-09-20T03-09-33-672Z.json",
+  "log_path": "docs/implementation/evidence/sg-027-red-scan-drift-2026-09-20T03-09-33-672Z.log",
+  "signal": null,
+  "duration_ms": 22248
+}

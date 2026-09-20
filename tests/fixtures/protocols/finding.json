@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1",
+  "finding_id": "finding_fixture",
+  "rule_id": "SG-CONTRACT-TYPE_MISMATCH",
+  "category": "contract",
+  "severity": "error",
+  "message": "Expected number",
+  "observed_facts": {
+    "actual_type": "string"
+  },
+  "suggested_cause": "Candidate response drift",
+  "recommended_action": "Match confirmed target",
+  "locations": [
+    {
+      "source": "candidate",
+      "relative_path": "candidate-openapi.json",
+      "pointer": "/paths"
+    }
+  ],
+  "evidence_refs": [
+    "ev-unit-001"
+  ]
+}

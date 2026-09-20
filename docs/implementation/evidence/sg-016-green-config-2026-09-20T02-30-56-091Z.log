@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/config/merge.test.ts (3 tests) 6ms
+ ✓ tests/unit/config/parse.test.ts (7 tests) 119ms
+
+ Test Files  2 passed (2)
+      Tests  10 passed (10)
+   Start at  10:30:58
+   Duration  2.03s (transform 375ms, setup 0ms, import 1.48s, tests 125ms, environment 0ms)
+

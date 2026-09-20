@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-027",
+  "command": "pnpm exec vitest run tests/unit/openapi/public-scan-report.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/openapi/public-scan-report.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:06:14.018Z",
+  "finished_at": "2026-09-20T03:06:17.296Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-027-green-public-evidence-2026-09-20T03-06-14-018Z.json",
+  "log_path": "docs/implementation/evidence/sg-027-green-public-evidence-2026-09-20T03-06-14-018Z.log",
+  "signal": null,
+  "duration_ms": 3278
+}

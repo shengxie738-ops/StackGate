@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-011",
+  "command": "pnpm verify:tasks",
+  "argv": [
+    "pnpm",
+    "verify:tasks"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:12:29.580Z",
+  "finished_at": "2026-09-20T02:12:30.631Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-011-final-tasks-2026-09-20T02-12-29-580Z.json",
+  "log_path": "docs/implementation/evidence/sg-011-final-tasks-2026-09-20T02-12-29-580Z.log",
+  "signal": null,
+  "duration_ms": 1051
+}

@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-013",
+  "command": "pnpm exec vitest run tests/integration/git/input-manifest.test.ts -t \"blocks CRLF LFS pointers\"",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/git/input-manifest.test.ts",
+    "-t",
+    "blocks CRLF LFS pointers"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:41:35.090Z",
+  "finished_at": "2026-09-20T02:41:42.060Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-013-red-pointer-variants-2026-09-20T02-41-35-090Z.json",
+  "log_path": "docs/implementation/evidence/sg-013-red-pointer-variants-2026-09-20T02-41-35-090Z.log",
+  "signal": null,
+  "duration_ms": 6970
+}

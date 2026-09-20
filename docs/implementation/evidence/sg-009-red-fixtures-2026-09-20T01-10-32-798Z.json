@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-009",
+  "command": "pnpm exec vitest run tests/unit/fixtures.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/fixtures.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:10:32.798Z",
+  "finished_at": "2026-09-20T01:10:36.430Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-009-red-fixtures-2026-09-20T01-10-32-798Z.json",
+  "log_path": "docs/implementation/evidence/sg-009-red-fixtures-2026-09-20T01-10-32-798Z.log",
+  "signal": null,
+  "duration_ms": 3632
+}

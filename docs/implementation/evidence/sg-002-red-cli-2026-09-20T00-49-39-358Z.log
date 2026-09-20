@@ -1,0 +1,88 @@
+✖ built CLI help exposes only implemented commands (102.1744ms)
+✖ unknown CLI option returns configuration error (94.9971ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 341.4491
+
+✖ failing tests:
+
+test at tests\bootstrap\cli.test.mjs:5:1
+✖ built CLI help exposes only implemented commands (102.1744ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/cjs/loader:1424
+    throw err;
+    ^
+  
+  Error: Cannot find module 'G:\StackGate\dist\cli.mjs'
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1421:15)
+      at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+      at Module._load (node:internal/modules/cjs/loader:1227:37)
+      at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+      at node:internal/main/run_main_module:33:47 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: []
+  }
+  
+  Node.js v24.11.1
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///G:/StackGate/tests/bootstrap/cli.test.mjs:7:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\bootstrap\cli.test.mjs:12:1
+✖ unknown CLI option returns configuration error (94.9971ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/cjs/loader:1424
+    throw err;
+    ^
+  
+  Error: Cannot find module 'G:\StackGate\dist\cli.mjs'
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1421:15)
+      at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+      at Module._load (node:internal/modules/cjs/loader:1227:37)
+      at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+      at node:internal/main/run_main_module:33:47 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: []
+  }
+  
+  Node.js v24.11.1
+  
+  
+  1 !== 64
+  
+      at TestContext.<anonymous> (file:///G:/StackGate/tests/bootstrap/cli.test.mjs:14:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 64,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

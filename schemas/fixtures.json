@@ -1,0 +1,97 @@
+[
+  {
+    "schema": "project-config",
+    "path": "tests/fixtures/config/original.json",
+    "valid": true
+  },
+  {
+    "schema": "task",
+    "path": "tests/fixtures/tasks/draft.json",
+    "valid": true
+  },
+  {
+    "schema": "check-result",
+    "path": "tests/fixtures/protocols/check-result.json",
+    "valid": true
+  },
+  {
+    "schema": "artifact",
+    "path": "tests/fixtures/protocols/artifact.json",
+    "valid": true
+  },
+  {
+    "schema": "gate-evaluation",
+    "path": "tests/fixtures/protocols/gate-evaluation.json",
+    "valid": true
+  },
+  {
+    "schema": "plan",
+    "path": "tests/fixtures/protocols/plan.json",
+    "valid": true
+  },
+  {
+    "schema": "probe",
+    "path": "tests/fixtures/protocols/probe.json",
+    "valid": true
+  },
+  {
+    "schema": "event",
+    "path": "tests/fixtures/protocols/event.json",
+    "valid": true
+  },
+  {
+    "schema": "input-manifest",
+    "path": "tests/fixtures/protocols/input-manifest.json",
+    "valid": true
+  },
+  {
+    "schema": "environment",
+    "path": "tests/fixtures/protocols/environment.json",
+    "valid": true
+  },
+  {
+    "schema": "finding",
+    "path": "tests/fixtures/protocols/finding.json",
+    "valid": true
+  },
+  {
+    "schema": "playwright-report",
+    "path": "tests/fixtures/protocols/playwright-report.json",
+    "valid": true
+  },
+  {
+    "schema": "run",
+    "path": "tests/fixtures/protocols/run.json",
+    "valid": true
+  },
+  {
+    "schema": "gate-fixture",
+    "path": "tests/fixtures/gate/pass.json",
+    "valid": true
+  },
+  {
+    "schema": "gate-fixture",
+    "path": "tests/fixtures/gate/fail.json",
+    "valid": true
+  },
+  {
+    "schema": "gate-fixture",
+    "path": "tests/fixtures/gate/incomplete.json",
+    "valid": true
+  },
+  {
+    "schema": "gate-fixture",
+    "path": "tests/fixtures/gate/error.json",
+    "valid": true
+  },
+  {
+    "schema": "gate-fixture",
+    "path": "tests/fixtures/gate/stale.json",
+    "valid": true
+  },
+  {
+    "schema": "task",
+    "path": "tests/fixtures/tasks/approved-upgrade.json",
+    "valid": true
+  }
+]

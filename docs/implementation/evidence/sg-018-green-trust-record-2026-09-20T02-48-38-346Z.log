@@ -1,0 +1,35 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/trust/review.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/trust/review.test.ts [ tests/integration/trust/review.test.ts ]
+Error: Transform failed with 1 error:
+G:/StackGate/packages/core/src/storage/user-trust-store.ts:19:258: ERROR: Expected ")" but found "'trust_'"
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  10:48:39
+   Duration  1.52s (transform 407ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+
+  Plugin: vite:esbuild
+  File: G:/StackGate/packages/core/src/storage/user-trust-store.ts:19:258
+  
+  Expected ")" but found "'trust_'"
+  17 |    }
+  18 |    async read(id:string):Promise<TrustRecord|null>{await this.checkLocation();if(!/^[a-f0-9]{64}$/.test(id))throw new ...
+  19 |  ...onst destination=await resolveWithin(this.root,record.trust_'trust_'+id+'.json');await writeJsonAtomic(destination...
+     |                                                                 ^
+  20 |    reference(id:string){return path.join(this.root,'trust_'+id+'.json');}
+  21 |  }
+  
+ ❯ failureErrorWithLog node_modules/.pnpm/esbuild@0.28.2/node_modules/esbuild/lib/main.js:1752:15
+ ❯ node_modules/.pnpm/esbuild@0.28.2/node_modules/esbuild/lib/main.js:1019:50
+ ❯ responseCallbacks.<computed> node_modules/.pnpm/esbuild@0.28.2/node_modules/esbuild/lib/main.js:886:9
+ ❯ handleIncomingPacket node_modules/.pnpm/esbuild@0.28.2/node_modules/esbuild/lib/main.js:941:12
+ ❯ Socket.readFromStdout node_modules/.pnpm/esbuild@0.28.2/node_modules/esbuild/lib/main.js:864:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

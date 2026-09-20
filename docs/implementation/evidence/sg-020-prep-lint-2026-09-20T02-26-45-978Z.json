@@ -1,0 +1,19 @@
+{
+  "task_id": "SG-020",
+  "command": "pnpm exec eslint tests/fixtures/oasdiff/tool-preparation-probe.mjs",
+  "argv": [
+    "pnpm",
+    "exec",
+    "eslint",
+    "tests/fixtures/oasdiff/tool-preparation-probe.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:26:45.978Z",
+  "finished_at": "2026-09-20T02:26:49.268Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-020-prep-lint-2026-09-20T02-26-45-978Z.json",
+  "log_path": "docs/implementation/evidence/sg-020-prep-lint-2026-09-20T02-26-45-978Z.log",
+  "signal": null,
+  "duration_ms": 3290
+}

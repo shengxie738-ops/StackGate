@@ -1,0 +1,3 @@
+$ node scripts/verify-stage.mjs "--" "--stage" "M0"
+ENOENT: no such file or directory, open 'G:\StackGate\tools\compatibility-lock.json'
+[ELIFECYCLE] Command failed with exit code 3.

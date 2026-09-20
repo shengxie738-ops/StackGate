@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-008",
+  "command": "pnpm exec vitest run tests/unit/ports.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/ports.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:16:42.784Z",
+  "finished_at": "2026-09-20T01:16:52.750Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-008-green-ports-2026-09-20T01-16-42-784Z.json",
+  "log_path": "docs/implementation/evidence/sg-008-green-ports-2026-09-20T01-16-42-784Z.log",
+  "signal": null,
+  "duration_ms": 9966
+}

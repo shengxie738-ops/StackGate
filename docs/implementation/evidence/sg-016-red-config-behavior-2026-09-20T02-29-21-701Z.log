@@ -1,0 +1,100 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/config/merge.test.ts (3 tests | 2 failed) 12ms
+   × unions required/protected sets, intersects origins and raises provenance with source attribution 7ms
+   × empty permissions deny everything and missing permission sources do not widen constraints 1ms
+   ✓ rejects unsupported glob syntax rather than interpreting it permissively 2ms
+ ❯ tests/unit/config/parse.test.ts (7 tests | 6 failed) 39ms
+   × loads the retained config without mutation 17ms
+   × rejects duplicate keys, executable tags and aliases 0 9ms
+   × rejects duplicate keys, executable tags and aliases 1 2ms
+   × rejects duplicate keys, executable tags and aliases 2 2ms
+   × rejects duplicate keys, executable tags and aliases 3 1ms
+   × rejects unknown references and dependency cycles 2ms
+   ✓ rejects oversized and excessively nested documents 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/config/merge.test.ts > unions required/protected sets, intersects origins and raises provenance with source attribution
+Error: SG-016 not implemented
+ ❯ mergePolicy packages/core/src/domain/merge-policy.ts:1:63
+      1| export function mergePolicy(..._args:unknown[]):never { throw new Erro…
+       |                                                               ^
+      2| export function isPathAllowed(..._args:unknown[]):never { throw new Er…
+      3| 
+ ❯ tests/unit/config/merge.test.ts:5:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  tests/unit/config/merge.test.ts > empty permissions deny everything and missing permission sources do not widen constraints
+Error: SG-016 not implemented
+ ❯ mergePolicy packages/core/src/domain/merge-policy.ts:1:63
+      1| export function mergePolicy(..._args:unknown[]):never { throw new Erro…
+       |                                                               ^
+      2| export function isPathAllowed(..._args:unknown[]):never { throw new Er…
+      3| 
+ ❯ tests/unit/config/merge.test.ts:11:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  tests/unit/config/parse.test.ts > loads the retained config without mutation
+Error: SG-016 not implemented
+ ❯ loadConfiguration packages/core/src/services/config-service.ts:2:84
+      1| export function parseConfiguration(..._args:unknown[]):never { throw n…
+      2| export async function loadConfiguration(..._args:unknown[]):Promise<ne…
+       |                                                                                    ^
+      3| 
+ ❯ tests/unit/config/parse.test.ts:8:101
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  tests/unit/config/parse.test.ts > rejects duplicate keys, executable tags and aliases 0
+ FAIL  tests/unit/config/parse.test.ts > rejects duplicate keys, executable tags and aliases 1
+ FAIL  tests/unit/config/parse.test.ts > rejects duplicate keys, executable tags and aliases 2
+ FAIL  tests/unit/config/parse.test.ts > rejects duplicate keys, executable tags and aliases 3
+AssertionError: expected error to match asymmetric matcher
+
+- Expected
++ Received
+
+- ObjectContaining {
+-   "exit_code": 64,
++ Error {
++   "message": "SG-016 not implemented",
+  }
+
+ ❯ tests/unit/config/parse.test.ts:11:73
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  tests/unit/config/parse.test.ts > rejects unknown references and dependency cycles
+AssertionError: expected error to match asymmetric matcher
+
+- Expected
++ Received
+
+- ObjectContaining {
+-   "exit_code": 64,
++ Error {
++   "message": "SG-016 not implemented",
+  }
+
+ ❯ tests/unit/config/parse.test.ts:15:90
+     13| it('rejects unknown references and dependency cycles',()=>{
+     14|   const unknown=structuredClone(sample);unknown.commands.web_unit.work…
+     15|   expect(()=>parseConfiguration(Buffer.from(JSON.stringify(unknown)),'…
+       |                                                                                          ^
+     16|   const cycle=structuredClone(sample);cycle.extensions={stackgate_v0_1…
+     17|   expect(()=>parseConfiguration(Buffer.from(JSON.stringify(cycle)),'.s…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  8 failed | 2 passed (10)
+   Start at  10:29:24
+   Duration  979ms (transform 113ms, setup 0ms, import 325ms, tests 50ms, environment 1ms)
+

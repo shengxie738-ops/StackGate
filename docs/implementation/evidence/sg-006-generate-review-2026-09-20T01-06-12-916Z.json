@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-006",
+  "command": "pnpm generate:types",
+  "argv": [
+    "pnpm",
+    "generate:types"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:06:12.916Z",
+  "finished_at": "2026-09-20T01:06:14.620Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-006-generate-review-2026-09-20T01-06-12-916Z.json",
+  "log_path": "docs/implementation/evidence/sg-006-generate-review-2026-09-20T01-06-12-916Z.log",
+  "signal": null,
+  "duration_ms": 1704
+}

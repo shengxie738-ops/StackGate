@@ -1,0 +1,10 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/openapi/safe-loader.test.ts (60 tests) 149ms
+
+ Test Files  1 passed (1)
+      Tests  60 passed (60)
+   Start at  10:40:12
+   Duration  1.43s (transform 199ms, setup 0ms, import 653ms, tests 149ms, environment 0ms)
+

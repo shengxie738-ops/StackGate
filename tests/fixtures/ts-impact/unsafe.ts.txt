@@ -1,0 +1,2 @@
+Reflect.set(globalThis, '__STACKGATE_STATIC_SENTINEL__', true);
+fetch('/api/performance');

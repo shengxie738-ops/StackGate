@@ -1,0 +1,19 @@
+{
+  "task_id": "SG-010",
+  "command": "pnpm install --frozen-lockfile --registry=https://registry.npmjs.org",
+  "argv": [
+    "pnpm",
+    "install",
+    "--frozen-lockfile",
+    "--registry=https://registry.npmjs.org"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:24:11.037Z",
+  "finished_at": "2026-09-20T01:24:11.864Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-010-frozen-install-2026-09-20T01-24-11-037Z.json",
+  "log_path": "docs/implementation/evidence/sg-010-frozen-install-2026-09-20T01-24-11-037Z.log",
+  "signal": null,
+  "duration_ms": 827
+}

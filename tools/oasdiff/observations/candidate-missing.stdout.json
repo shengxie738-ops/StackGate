@@ -1,0 +1,1 @@
+[{"id":"response-required-property-removed","text":"removed the required property `data/performance/total_return` from the response with the `200` status","level":3,"operation":"GET","operationId":"getPerformance","path":"/api/performance","section":"paths","fingerprint":"87ade2d57a3c"}]

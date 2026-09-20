@@ -1,0 +1,21 @@
+{
+  "task_id": "SG-026",
+  "command": "pnpm exec vitest run tests/unit/impact tests/unit/policy",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/impact",
+    "tests/unit/policy"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:08:54.075Z",
+  "finished_at": "2026-09-20T03:08:58.950Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-026-impact-policy-regression-2026-09-20T03-08-54-075Z.json",
+  "log_path": "docs/implementation/evidence/sg-026-impact-policy-regression-2026-09-20T03-08-54-075Z.log",
+  "signal": null,
+  "duration_ms": 4875
+}

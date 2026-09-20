@@ -1,0 +1,18 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/git/input-manifest.test.ts (8 tests) 54266ms
+     ✓ hashes final bytes B while keeping staged A and unstaged explanations  3116ms
+     ✓ includes untracked source and dependency locks in input hash  6339ms
+     ✓ retains tombstones for staged and unstaged deletions  4408ms
+     ✓ explicitly includes ignored build inputs and diagnoses missing required inputs  8368ms
+     ✓ excludes declared outputs and credential files with reasons  8990ms
+     ✓ blocks oversized files, LFS pointers and unresolved generated inputs  7663ms
+     ✓ blocks submodules and out-of-root directory links  6568ms
+     ✓ keeps documentation as input unless explicitly excluded  8809ms
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  10:31:16
+   Duration  55.15s (transform 181ms, setup 0ms, import 428ms, tests 54.27s, environment 0ms)
+

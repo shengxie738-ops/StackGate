@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-014",
+  "command": "pnpm exec eslint packages/core/src/domain/compare-inputs.ts packages/core/src/domain/evaluate-freshness.ts tests/unit/freshness.test.ts tests/integration/git/target-advance.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "eslint",
+    "packages/core/src/domain/compare-inputs.ts",
+    "packages/core/src/domain/evaluate-freshness.ts",
+    "tests/unit/freshness.test.ts",
+    "tests/integration/git/target-advance.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:39:55.036Z",
+  "finished_at": "2026-09-20T02:39:59.097Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-014-lint-2026-09-20T02-39-55-036Z.json",
+  "log_path": "docs/implementation/evidence/sg-014-lint-2026-09-20T02-39-55-036Z.log",
+  "signal": null,
+  "duration_ms": 4061
+}

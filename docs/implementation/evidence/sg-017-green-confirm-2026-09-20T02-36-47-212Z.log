@@ -1,0 +1,37 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/tasks/confirm.test.ts (6 tests | 2 failed) 58740ms
+   ✓ does not treat a YAML CONFIRMED status as a confirmation record  4548ms
+   × confirms exact input into an immutable revision and repeats idempotently 13337ms
+   ✓ rejects missing authorization, a changed target and mutated protected inputs  13192ms
+   ✓ returns a null digest for missing target/check references  1381ms
+   ✓ rejects changes during confirm and never seals a stale revision  11277ms
+   × rejects tampered immutable target and forces a new revision for changed task content 15003ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/tasks/confirm.test.ts > confirms exact input into an immutable revision and repeats idempotently
+ServiceError: Stored confirmation structure is invalid
+ ❯ configurationError packages/core/src/services/service-error.ts:6:10
+
+ ❯ TaskService.loadConfirmed packages/core/src/services/task-service.ts:89:41
+ ❯ TaskService.confirm packages/core/src/services/task-service.ts:66:22
+ ❯ tests/integration/tasks/confirm.test.ts:17:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/integration/tasks/confirm.test.ts > rejects tampered immutable target and forces a new revision for changed task content
+Error: Test timed out in 15000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/integration/tasks/confirm.test.ts:43:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+   Start at  10:36:49
+   Duration  61.30s (transform 561ms, setup 0ms, import 1.97s, tests 58.74s, environment 0ms)
+

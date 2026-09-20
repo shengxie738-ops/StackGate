@@ -1,0 +1,23 @@
+import { describe,expect,it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import type { TaskPayload } from '../../../packages/contracts/src/index.js';
+import { approveBreakingChanges } from '../../../packages/core/src/domain/contract-policy.js';
+import { compareContractBehavior } from '../../../packages/core/src/domain/contract-projection.js';
+const task=():TaskPayload=>JSON.parse(readFileSync('tests/fixtures/tasks/draft.json','utf8'));
+const document=(schema:object={type:'number'})=>({openapi:'3.1.1',info:{title:'fixture',version:'1'},paths:{'/value':{get:{responses:{'200':{description:'ok',content:{'application/json':{schema}}}}}}}});
+describe('exact confirmed approvals',()=>{
+  it('approves only the exact operation/rule/base/target tuple',()=>{const payload=task();payload.compatibility={mode:'approved-changes',approved_breaking_rules:[{operation_key:'api:GET /value',rule_id:'SG-CONTRACT-TYPE_CHANGED',baseline_hash:'a'.repeat(64),target_hash:'b'.repeat(64),reason:'reviewed migration'}]};
+    const context={service_id:'api',baseline_hash:'sha256:'+'a'.repeat(64),target_hash:'sha256:'+'b'.repeat(64),confirmed:true,task:payload};
+    const findings=[{operation_key:'GET /value',rule_id:'SG-CONTRACT-TYPE_CHANGED'},{operation_key:'GET /other',rule_id:'SG-CONTRACT-TYPE_CHANGED'},{operation_key:'GET /value',rule_id:'SG-CONTRACT-REQUIRED_PROPERTY_REMOVED'}];
+    expect(approveBreakingChanges(findings,context).map(f=>f.approved)).toEqual([true,false,false]);
+    for(const patch of [{confirmed:false},{baseline_hash:'c'.repeat(64)},{target_hash:'d'.repeat(64)},{service_id:'other'}])expect(approveBreakingChanges(findings,{...context,...patch}).every(f=>!f.approved)).toBe(true);
+  });
+  it('does not use YAML CONFIRMED status or preserve mode to authorize exceptions',()=>{const payload=task();payload.status='CONFIRMED';const finding={operation_key:'GET /value',rule_id:'SG-CONTRACT-TYPE_CHANGED'};expect(approveBreakingChanges([finding],{service_id:'api',baseline_hash:'a'.repeat(64),target_hash:'b'.repeat(64),confirmed:false,task:payload})[0]?.approved).toBe(false);});
+});
+describe('behavior alignment is stricter than mutual compatibility',()=>{
+  it('finds target behavior absent from a candidate even when it is optional',()=>{const target=document({type:'object',properties:{existing:{type:'string'},newField:{type:'string'}}});const candidate=document({type:'object',properties:{existing:{type:'string'}}});expect(compareContractBehavior(target,candidate)).toEqual({aligned:false,changed_operations:['GET /value']});});
+  it('ignores only explicit metadata, retaining properties named description/title',()=>{const target=document({type:'object',properties:{description:{type:'number'},title:{type:'string'}}});const candidate=structuredClone(target);candidate.info.title='documentation';candidate.paths['/value'].get.responses['200'].description='different prose';expect(compareContractBehavior(target,candidate).aligned).toBe(true);const changed=document({type:'object',properties:{description:{type:'string'},title:{type:'string'}}});expect(compareContractBehavior(target,changed).aligned).toBe(false);});
+  it.each(['security','parameters','status','media'])('retains %s behavior in alignment',kind=>{const target:Record<string,unknown>=document();const candidate=structuredClone(target) as ReturnType<typeof document> & {security?:unknown};if(kind==='security')candidate.security=[{key:[]}];if(kind==='parameters')Object.assign(candidate.paths['/value'].get,{parameters:[{name:'q',in:'query',schema:{type:'string'}}]});if(kind==='status')Object.assign(candidate.paths['/value'].get.responses,{'201':candidate.paths['/value'].get.responses['200']});if(kind==='media')Object.assign(candidate.paths['/value'].get.responses['200'].content,{'application/problem+json':{schema:{type:'number'}}});expect(compareContractBehavior(target,candidate).aligned).toBe(false);});
+  it('keeps security scheme names and undeclared extension semantics',()=>{const target={...document(),security:[{description:[]}]};const candidate={...document(),security:[{title:[]}]};expect(compareContractBehavior(target,candidate).aligned).toBe(false);expect(compareContractBehavior({...document(),'x-routing':'old'},{...document(),'x-routing':'new'}).aligned).toBe(false);});
+  it('retains reserved property names without prototype mutation',()=>{const target=document(JSON.parse('{"type":"object","properties":{"__proto__":{"type":"number"}}}'));const candidate=document(JSON.parse('{"type":"object","properties":{"__proto__":{"type":"string"}}}'));expect(compareContractBehavior(target,candidate).aligned).toBe(false);});
+});

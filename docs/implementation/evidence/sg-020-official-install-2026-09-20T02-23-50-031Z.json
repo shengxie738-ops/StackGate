@@ -1,0 +1,19 @@
+{
+  "task_id": "SG-020",
+  "command": "pwsh -NoProfile -File tools/oasdiff/prepare.ps1",
+  "argv": [
+    "pwsh",
+    "-NoProfile",
+    "-File",
+    "tools/oasdiff/prepare.ps1"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:23:50.031Z",
+  "finished_at": "2026-09-20T02:23:56.945Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-020-official-install-2026-09-20T02-23-50-031Z.json",
+  "log_path": "docs/implementation/evidence/sg-020-official-install-2026-09-20T02-23-50-031Z.log",
+  "signal": null,
+  "duration_ms": 6914
+}

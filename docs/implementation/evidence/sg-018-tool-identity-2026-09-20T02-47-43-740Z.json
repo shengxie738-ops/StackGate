@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-018",
+  "command": "pnpm exec vitest run tests/integration/trust/review.test.ts -t \"resolved tool identity\"",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/trust/review.test.ts",
+    "-t",
+    "resolved tool identity"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:47:43.740Z",
+  "finished_at": "2026-09-20T02:47:59.096Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-018-tool-identity-2026-09-20T02-47-43-740Z.json",
+  "log_path": "docs/implementation/evidence/sg-018-tool-identity-2026-09-20T02-47-43-740Z.log",
+  "signal": null,
+  "duration_ms": 15356
+}

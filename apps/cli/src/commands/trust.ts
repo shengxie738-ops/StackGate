@@ -1,0 +1,2 @@
+import {TrustService} from '../../../../packages/core/src/services/trust-service.js';
+export async function trustCommand(root:string,confirmDigest?:string){const service=new TrustService(root);const data=confirmDigest===undefined?await service.review():await service.confirm(confirmDigest,{authorized:true});process.stdout.write(JSON.stringify({schema_version:'0.1',data,runtime:'NOT_EXECUTED'})+'\n');return 0;}

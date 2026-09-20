@@ -1,0 +1,3 @@
+$ tsc --noEmit
+packages/contracts/src/identifiers.ts(1,20): error TS2307: Cannot find module '../../../..//schemas/0.1/common.schema.json' or its corresponding type declarations.
+[ELIFECYCLE] Command failed with exit code 2.

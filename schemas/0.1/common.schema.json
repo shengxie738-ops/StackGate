@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/common.schema.json",
+  "title": "Common",
+  "$defs": {
+    "Phase": {
+      "type": "string",
+      "enum": [
+        "CREATED",
+        "PLANNED",
+        "RUNNING",
+        "FINALIZING",
+        "COMPLETED",
+        "CANCELED",
+        "ABORTED"
+      ]
+    },
+    "CheckStatus": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "FAIL",
+        "BLOCKED",
+        "SKIPPED",
+        "ERROR"
+      ]
+    },
+    "Verdict": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "FAIL",
+        "INCOMPLETE",
+        "ERROR"
+      ]
+    },
+    "Freshness": {
+      "type": "string",
+      "enum": [
+        "FRESH",
+        "STALE",
+        "UNVERIFIED"
+      ]
+    },
+    "Decision": {
+      "type": "string",
+      "enum": [
+        "ALLOW",
+        "DENY"
+      ]
+    },
+    "ExitCode": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        64
+      ]
+    },
+    "ProvenanceLevel": {
+      "type": "string",
+      "enum": [
+        "DECLARED",
+        "OBSERVED",
+        "CONTROLLED"
+      ]
+    },
+    "ResultKind": {
+      "type": "string",
+      "enum": [
+        "exit-code",
+        "junit",
+        "probe",
+        "playwright",
+        "contract"
+      ]
+    },
+    "SafeId": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,127}$"
+    },
+    "RelativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*[\\\\:\\u0000-\\u001f\\u007f])(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//).+[^/]$|^[A-Za-z0-9_-]$"
+    },
+    "Sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "UtcTimestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$"
+    },
+    "OperationKey": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]*:(GET|PUT|POST|DELETE|OPTIONS|HEAD|PATCH|TRACE) /[^\\s\\u0000-\\u001f\\u007f]*$"
+    },
+    "OperationRef": {
+      "type": "string",
+      "pattern": "^(?:[A-Za-z][A-Za-z0-9_-]*:)?(GET|PUT|POST|DELETE|OPTIONS|HEAD|PATCH|TRACE) /[^\\s\\u0000-\\u001f\\u007f]*$"
+    },
+    "Origin": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https?://(?:\\[[0-9A-Fa-f:]+\\]|[A-Za-z0-9.-]+)(?::[0-9]{1,5})?$"
+    },
+    "ReasonCode": {
+      "type": "string",
+      "enum": [
+        "CONFIG_INVALID",
+        "TASK_UNCONFIRMED",
+        "EXECUTION_UNTRUSTED",
+        "BASELINE_UNAVAILABLE",
+        "PLAN_STALE",
+        "INPUT_STALE",
+        "UNSUPPORTED_SCHEMA",
+        "CONTRACT_MISMATCH",
+        "UNRESOLVED_IMPACT",
+        "PROTECTED_INPUT_CHANGED",
+        "NO_TESTS",
+        "REQUIRED_TEST_MISSING",
+        "MISSING_REPORT",
+        "REPORT_INVALID",
+        "ENV_PROVENANCE_INSUFFICIENT",
+        "ENV_INSTANCE_MISMATCH",
+        "FLAKY_REQUIRED_TEST",
+        "ARTIFACT_BUDGET_EXCEEDED",
+        "RESOURCE_OWNERSHIP_UNVERIFIED",
+        "POLICY_WEAKEN_ATTEMPT",
+        "UNSUPPORTED_CAPABILITY"
+      ]
+    }
+  }
+}

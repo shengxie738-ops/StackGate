@@ -1,0 +1,143 @@
+$ vitest run tests/unit
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/gate/acceptance-boundaries.test.ts (11 tests) 17ms
+ ✓ tests/unit/gate/truth-table.test.ts (22 tests) 23ms
+ ✓ tests/unit/gate/exit-priority.test.ts (64 tests) 37ms
+ ✓ tests/unit/contracts/primitives.test.ts (13 tests) 149ms
+ ✓ tests/unit/fixtures.test.ts (9 tests) 159ms
+ ✓ tests/unit/contracts/run-schema.test.ts (20 tests) 237ms
+ ✓ tests/unit/contracts/task-schema.test.ts (17 tests) 127ms
+ ✓ tests/unit/contracts/config-schema.test.ts (9 tests) 145ms
+ ❯ tests/unit/ports.test.ts (22 tests | 16 failed) 1957ms
+   ✓ negotiates only the declared exact adapter version, platform and dialect 5ms
+   ✓ does not promote UNKNOWN capabilities 0ms
+   ✓ does not promote UNSUPPORTED capabilities 0ms
+   ✓ counts an identical fake event only once and preserves input objects 3ms
+   ✓ compares duplicate event objects independently of JSON key insertion order 1ms
+   × rejects conflicting identities, noncontiguous sequence or mixed runs (0) 7ms
+   × rejects conflicting identities, noncontiguous sequence or mixed runs (1) 1ms
+   × rejects conflicting identities, noncontiguous sequence or mixed runs (2) 1ms
+   × rejects conflicting identities, noncontiguous sequence or mixed runs (3) 1ms
+   × rejects conflicting identities, noncontiguous sequence or mixed runs (4) 1ms
+   × runs the AST checker and rejects domain IO 181ms
+   × runs the AST checker and rejects domain dynamic IO 149ms
+   × runs the AST checker and rejects domain time 160ms
+   × runs the AST checker and rejects domain date constructor 192ms
+   × runs the AST checker and rejects domain environment 173ms
+   × runs the AST checker and rejects domain network 174ms
+   × runs the AST checker and rejects test fake import 176ms
+   × runs the AST checker and rejects reporter runner 157ms
+   × runs the AST checker and rejects reporter execution 158ms
+   × runs the AST checker and rejects reporter computed execution 126ms
+   ✓ rejects IO reached indirectly through a domain helper 142ms
+   × allows pure objects, type-only ports and words in comments or strings 147ms
+ ✓ tests/unit/bootstrap.test.ts (5 tests) 2257ms
+   ✓ rejects unsupported arguments and combinations with exit 64  439ms
+   ✓ an empty test selection exits nonzero  1517ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 16 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/ports.test.ts > rejects conflicting identities, noncontiguous sequence or mixed runs (0)
+ FAIL  tests/unit/ports.test.ts > rejects conflicting identities, noncontiguous sequence or mixed runs (1)
+ FAIL  tests/unit/ports.test.ts > rejects conflicting identities, noncontiguous sequence or mixed runs (2)
+ FAIL  tests/unit/ports.test.ts > rejects conflicting identities, noncontiguous sequence or mixed runs (3)
+ FAIL  tests/unit/ports.test.ts > rejects conflicting identities, noncontiguous sequence or mixed runs (4)
+TypeError: incoming is not iterable
+ ❯ reduceEvents packages/core/src/domain/reduce-events.ts:15:23
+     13|   let runId: string | null = null;
+     14|   let nextSeq = 1;
+     15|   for (const event of incoming) {
+       |                       ^
+     16|     const serialized = canonical(event);
+     17|     const previous = seen.get(event.event_id);
+ ❯ tests/unit/ports.test.ts:49:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/16]⎯
+
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects domain IO
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects domain dynamic IO
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects domain time
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects domain date constructor
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects domain environment
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects domain network
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects test fake import
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects reporter runner
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects reporter execution
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects reporter computed execution
+AssertionError: expected 'node:internal/modules/cjs/loader:1424…' to match /boundary|forbidden/i
+
+- Expected: 
+/boundary|forbidden/i
+
++ Received: 
+"node:internal/modules/cjs/loader:1424
+  throw err;
+  ^
+
+Error: Cannot find module 'G:\\StackGate\\scripts\\verify-boundaries.mjs'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1421:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v24.11.1
+"
+
+ ❯ tests/unit/ports.test.ts:75:25
+     73|   const result = await checkFixture({ [file]: source });
+     74|   expect(result.status, result.stderr).toBe(1);
+     75|   expect(result.stderr).toMatch(/boundary|forbidden/i);
+       |                         ^
+     76| });
+     77| it('rejects IO reached indirectly through a domain helper', async () =…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/16]⎯
+
+ FAIL  tests/unit/ports.test.ts > allows pure objects, type-only ports and words in comments or strings
+AssertionError: node:internal/modules/cjs/loader:1424
+  throw err;
+  ^
+
+Error: Cannot find module 'G:\StackGate\scripts\verify-boundaries.mjs'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1421:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v24.11.1
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/unit/ports.test.ts:83:40
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/16]⎯
+
+
+ Test Files  1 failed | 9 passed (10)
+      Tests  16 failed | 176 passed (192)
+   Start at  09:16:29
+   Duration  3.62s (transform 1.58s, setup 0ms, import 7.35s, tests 5.11s, environment 3ms)
+
+[ELIFECYCLE] Command failed with exit code 1.

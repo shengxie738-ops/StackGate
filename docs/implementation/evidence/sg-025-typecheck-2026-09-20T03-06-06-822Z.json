@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-025",
+  "command": "pnpm typecheck",
+  "argv": [
+    "pnpm",
+    "typecheck"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:06:06.822Z",
+  "finished_at": "2026-09-20T03:06:14.271Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-025-typecheck-2026-09-20T03-06-06-822Z.json",
+  "log_path": "docs/implementation/evidence/sg-025-typecheck-2026-09-20T03-06-06-822Z.log",
+  "signal": null,
+  "duration_ms": 7449
+}

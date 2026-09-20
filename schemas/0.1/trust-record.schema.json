@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/trust-record.schema.json",
+  "title": "TrustRecord",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "trust_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "repo_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "input_hash": {
+      "$ref": "common.schema.json#/$defs/Sha256"
+    },
+    "command_hash": {
+      "$ref": "common.schema.json#/$defs/Sha256"
+    },
+    "allowed_command_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "allowed_origins": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/Origin"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "allowed_paths": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/RelativePath"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "granted_at": {
+      "$ref": "common.schema.json#/$defs/UtcTimestamp"
+    },
+    "expires_at": {
+      "$ref": "common.schema.json#/$defs/UtcTimestamp"
+    },
+    "trust_source": {
+      "type": "string",
+      "enum": [
+        "local-execution",
+        "trusted-ci"
+      ]
+    },
+    "trusted_source_ref": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "trust_id",
+    "repo_id",
+    "input_hash",
+    "command_hash",
+    "allowed_command_ids",
+    "allowed_origins",
+    "allowed_paths",
+    "granted_at",
+    "expires_at",
+    "trust_source"
+  ],
+  "additionalProperties": false,
+  "description": "Execution authorization is separate from business confirmation. Only a trusted loader can authenticate this record's origin.",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "trust_source": {
+            "const": "trusted-ci"
+          }
+        },
+        "required": [
+          "trust_source"
+        ]
+      },
+      "then": {
+        "required": [
+          "trusted_source_ref"
+        ],
+        "properties": {
+          "trusted_source_ref": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "command": "node scripts/verify-tasks.mjs",
+  "argv": [
+    "node",
+    "scripts/verify-tasks.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T00:51:46.619Z",
+  "finished_at": "2026-09-20T00:51:46.726Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-001-final-ledger-2026-09-20T00-51-46-619Z.json",
+  "log_path": "docs/implementation/evidence/sg-001-final-ledger-2026-09-20T00-51-46-619Z.log",
+  "signal": null,
+  "duration_ms": 107
+}

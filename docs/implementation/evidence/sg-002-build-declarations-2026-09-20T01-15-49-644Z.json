@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-002",
+  "command": "pnpm build",
+  "argv": [
+    "pnpm",
+    "build"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:15:49.644Z",
+  "finished_at": "2026-09-20T01:15:54.109Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-002-build-declarations-2026-09-20T01-15-49-644Z.json",
+  "log_path": "docs/implementation/evidence/sg-002-build-declarations-2026-09-20T01-15-49-644Z.log",
+  "signal": null,
+  "duration_ms": 4465
+}

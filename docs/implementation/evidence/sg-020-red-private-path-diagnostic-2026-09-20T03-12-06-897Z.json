@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-020",
+  "command": "pnpm exec vitest run tests/contract/oasdiff.test.ts -t \"filesystem errors\"",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/contract/oasdiff.test.ts",
+    "-t",
+    "filesystem errors"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:12:06.897Z",
+  "finished_at": "2026-09-20T03:12:09.643Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-020-red-private-path-diagnostic-2026-09-20T03-12-06-897Z.json",
+  "log_path": "docs/implementation/evidence/sg-020-red-private-path-diagnostic-2026-09-20T03-12-06-897Z.log",
+  "signal": null,
+  "duration_ms": 2746
+}

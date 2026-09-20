@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-018",
+  "command": "pnpm exec vitest run tests/integration/trust/review.test.ts -t \"rejects external script\"",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/trust/review.test.ts",
+    "-t",
+    "rejects external script"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:56:23.412Z",
+  "finished_at": "2026-09-20T02:56:40.331Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-018-red-node-check-ignored-script-2026-09-20T02-56-23-412Z.json",
+  "log_path": "docs/implementation/evidence/sg-018-red-node-check-ignored-script-2026-09-20T02-56-23-412Z.log",
+  "signal": null,
+  "duration_ms": 16919
+}

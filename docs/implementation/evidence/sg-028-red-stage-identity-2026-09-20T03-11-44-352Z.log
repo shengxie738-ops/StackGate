@@ -1,0 +1,30 @@
+✖ M1 requires every M0 check, actual integration checks and the real oasdiff capability (1.1072ms)
+✔ M0 rejects removed, duplicate and arbitrary shell checks (1.2556ms)
+✔ unknown tools block any stage requiring them (0.2363ms)
+✔ a real failed child command propagates its exit and retains its identity (101.6384ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 202.3984
+
+✖ failing tests:
+
+test at tests\bootstrap\stage.test.mjs:8:1
+✖ M1 requires every M0 check, actual integration checks and the real oasdiff capability (1.1072ms)
+  AssertionError [ERR_ASSERTION]: a renamed M0 manifest must never satisfy a requested M1 stage
+      at TestContext.<anonymous> (file:///G:/StackGate/tests/bootstrap/stage.test.mjs:9:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -1,0 +1,69 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/fixtures.test.ts (10 tests | 1 failed) 720ms
+   × validates all OpenAPI documents against the retained official document schema and strict response schemas 583ms
+   ✓ default baseline equals target bytes and correct candidate has the same behavior projection 3ms
+   ✓ preserves string and missing-field faults and does not coerce actual responses 42ms
+   ✓ intentional upgrade binds exact operation and real before/after byte hashes 18ms
+   ✓ validates complete pass goldens without treating them as observed runs 64ms
+   ✓ validates complete fail goldens without treating them as observed runs 1ms
+   ✓ validates complete incomplete goldens without treating them as observed runs 1ms
+   ✓ validates complete error goldens without treating them as observed runs 1ms
+   ✓ validates complete stale goldens without treating them as observed runs 2ms
+   ✓ factory overrides and fixture reads are isolated 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/fixtures.test.ts > validates all OpenAPI documents against the retained official document schema and strict response schemas
+AssertionError: G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\util.js:174
+        throw new Error(msg);
+              ^
+
+Error: strict mode: property schemas matches pattern ^(schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems)$ (use allowMatchingProperties)
+    at checkStrictMode (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\util.js:174:15)
+    at checkMatchingProperties (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\vocabularies\applicator\patternProperties.js:45:48)
+    at validatePatternProperties (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\vocabularies\applicator\patternProperties.js:31:21)
+    at Object.code (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\vocabularies\applicator\patternProperties.js:27:9)
+    at keywordCode (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:464:13)
+    at G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:222:17
+    at CodeGen.code (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\codegen\index.js:439:13)
+    at CodeGen.block (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\codegen\index.js:568:18)
+    at iterateKeywords (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:219:9)
+    at groupKeywords (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:200:13)
+
+Node.js v24.11.1
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ checkStrictMode node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/util.js:174:15
+ ❯ checkMatchingProperties node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/vocabularies/applicator/patternProperties.js:45:48
+ ❯ validatePatternProperties node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/vocabularies/applicator/patternProperties.js:31:21
+ ❯ Object.code node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/vocabularies/applicator/patternProperties.js:27:9
+ ❯ keywordCode node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/validate/index.js:464:13
+ ❯ node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/validate/index.js:222:17
+ ❯ CodeGen.code node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/codegen/index.js:439:13
+ ❯ CodeGen.block node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/codegen/index.js:568:18
+ ❯ iterateKeywords node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/validate/index.js:219:9
+ ❯ groupKeywords node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/compile/validate/index.js:200:13
+ ❯ tests/unit/fixtures.test.ts:13:37
+     11| it('validates all OpenAPI documents against the retained official docu…
+     12|   const child = spawnSync(process.execPath, ['scripts/verify-openapi-f…
+     13|   expect(child.status,child.stderr).toBe(0);
+       |                                     ^
+     14|   expect(child.stdout).toContain('7 OpenAPI');
+     15| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 passed (10)
+   Start at  09:17:39
+   Duration  1.93s (transform 253ms, setup 0ms, import 704ms, tests 720ms, environment 0ms)
+

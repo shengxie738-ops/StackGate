@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-018",
+  "command": "pnpm exec vitest run tests/integration/trust/review.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/trust/review.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:43:42.709Z",
+  "finished_at": "2026-09-20T02:43:48.201Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-018-red-trust-2026-09-20T02-43-42-709Z.json",
+  "log_path": "docs/implementation/evidence/sg-018-red-trust-2026-09-20T02-43-42-709Z.log",
+  "signal": null,
+  "duration_ms": 5492
+}

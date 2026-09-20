@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-018",
+  "command": "pnpm exec vitest run tests/integration/trust/review.test.ts -t \"mismatched grant\"",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/trust/review.test.ts",
+    "-t",
+    "mismatched grant"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:01:05.038Z",
+  "finished_at": "2026-09-20T03:01:25.243Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-018-red-grant-scope-2026-09-20T03-01-05-038Z.json",
+  "log_path": "docs/implementation/evidence/sg-018-red-grant-scope-2026-09-20T03-01-05-038Z.log",
+  "signal": null,
+  "duration_ms": 20205
+}

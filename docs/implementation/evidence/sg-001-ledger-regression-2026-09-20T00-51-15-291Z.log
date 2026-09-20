@@ -1,0 +1,23 @@
+✔ plan has 100 unique sequential tasks and original dependencies (5.373ms)
+✔ rejects duplicate ID (1.4714ms)
+✔ rejects missing dependency (1.1899ms)
+✔ rejects dependency cycle (1.1886ms)
+✔ rejects DONE without evidence (1.1365ms)
+✔ rejects illegal status (1.2055ms)
+✔ rejects early READY (2.1302ms)
+✔ rejects missing task (0.6531ms)
+✔ rejects absolute file path (1.1358ms)
+✔ rejects absolute evidence path (1.216ms)
+✔ rejects traversal evidence path (0.7756ms)
+✔ rejects failed-only DONE (1.1266ms)
+✔ source is preserved byte-for-byte and matches the supplied SHA-256 (4.1584ms)
+✔ source inspection rejects missing or changed content (2.6011ms)
+✔ verify-tasks CLI returns nonzero and identifies the task with SG-999 dependency (154.7512ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 381.7394

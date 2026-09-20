@@ -1,0 +1,149 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/trust/review.test.ts (7 tests | 2 failed) 70636ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+   × renews an expired matching record and preserves unrelated or concurrently changed records 15917ms
+   × rejects external script arguments and binds ignored scripts outside workspaces 3330ms
+   ✓ binds inline code as arguments without interpreting code fragments as paths  3295ms
+   ✓ binds resolved tool identity without launching it  8509ms
+   ✓ previews names only and never trusts without explicit reviewed authorization  3275ms
+   ✓ stores outside repository, binds scripts, arguments and origins, and does not become CI trust  20463ms
+   ✓ refuses repository-contained trust stores and copying trust into another checkout  15844ms
+ FAIL  tests/integration/trust/review.test.ts > renews an expired matching record and preserves unrelated or concurrently changed records
+AssertionError: promise rejected "StorageError: Refusing to overwrite an ex… { code: '…' }" instead of resolving
+ ❯ tests/integration/trust/review.test.ts:9:567
+
+
+Caused by: StorageError: Refusing to overwrite an existing file
+ ❯ checkTarget packages/core/src/storage/atomic-write.ts:41:51
+ ❯ writeJsonAtomic packages/core/src/storage/atomic-write.ts:44:3
+ ❯ UserTrustStore.write packages/core/src/storage/user-trust-store.ts:19:271
+ ❯ TrustService.confirm packages/core/src/services/trust-service.ts:52:49
+ ❯ tests/integration/trust/review.test.ts:9:493
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+Serialized Error: { code: 'TARGET_EXISTS' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/integration/trust/review.test.ts > rejects external script arguments and binds ignored scripts outside workspaces
+AssertionError: promise resolved "{ execution_preview: { …(12) }, …(2) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "already_trusted": false,
++   "execution_digest": "99dc97cf077a125c34ea6b0432b7078798f3b5aa0b4f2c96be43877a68540eb0",
++   "execution_preview": {
++     "commands": [
++       {
++         "args": [
++           "script.js",
++         ],
++         "cwd": "apps/api",
++         "executable": "F:\\node.exe",
++         "id": "api_probe",
++         "timeout_seconds": 60,
++         "tool_hash": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++       },
++       {
++         "args": [
++           "C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-trust-eujDAi\\external.js",
++         ],
++         "cwd": "apps/api",
++         "executable": "F:\\node.exe",
++         "id": "export_api",
++         "timeout_seconds": 60,
++         "tool_hash": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++       },
++       {
++         "args": [
++           "script.js",
++         ],
++         "cwd": "apps/web",
++         "executable": "F:\\node.exe",
++         "id": "web_e2e",
++         "timeout_seconds": 180,
++         "tool_hash": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++       },
++       {
++         "args": [
++           "script.js",
++         ],
++         "cwd": "apps/web",
++         "executable": "F:\\node.exe",
++         "id": "web_typecheck",
++         "timeout_seconds": 120,
++         "tool_hash": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++       },
++       {
++         "args": [
++           "script.js",
++         ],
++         "cwd": "apps/web",
++         "executable": "F:\\node.exe",
++         "id": "web_unit",
++         "timeout_seconds": 180,
++         "tool_hash": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++       },
++     ],
++     "configuration_hash": "2a1750f4b7b810085c85d848f6be512bed2e39f82c9bc2b29b7120af33d05d2c",
++     "docker_operations": [],
++     "environment_names": [
++       "STACKGATE_TEST_TOKEN",
++     ],
++     "network_targets": [
++       "http://127.0.0.1:5173",
++       "http://127.0.0.1:8000",
++     ],
++     "platform_id": "win32-x64",
++     "repo_id": "98c05a680fdb4c06a3fc809355053653d6da5e4f8990b21d847ee8a71db731c9",
++     "runtime": "NOT_EXECUTED",
++     "script_input_hash": "efe4f0a7693decf2dddc58623b5285cff59bb1fdbb56e500032a751bc6c520a2",
++     "tools": {
++       "api_probe": {
++         "digest": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++         "executable": "F:\\node.exe",
++       },
++       "export_api": {
++         "digest": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++         "executable": "F:\\node.exe",
++       },
++       "web_e2e": {
++         "digest": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++         "executable": "F:\\node.exe",
++       },
++       "web_typecheck": {
++         "digest": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++         "executable": "F:\\node.exe",
++       },
++       "web_unit": {
++         "digest": "f13ac3ca23248dc389507e8fe38c34489ab7edb3e6d6700eb6da6a0b7e128eaf",
++         "executable": "F:\\node.exe",
++       },
++     },
++     "worktree_id": "01b2428f8776a653919d9e594fcc2b6f07952f509d1b4c427c5a1216e7acf22c",
++     "writable_paths": [
++       ".stackgate/state",
++       "apps/api",
++       "apps/web",
++     ],
++   },
+  }
+
+ ❯ tests/integration/trust/review.test.ts:10:375
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 5 passed (7)
+   Start at  10:51:57
+   Duration  72.17s (transform 406ms, setup 0ms, import 1.12s, tests 70.64s, environment 0ms)
+

@@ -1,0 +1,33 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/cli/doctor.test.ts (5 tests | 1 failed | 4 skipped) 578ms
+   × rejects semantically missing check references in otherwise valid configuration 577ms
+   ↓ inspects a Chinese project without running postinstall, Python imports or writing state
+   ↓ returns precise invalid-config diagnostics and never scans a parent manifest
+   ↓ reports conflicting configuration files rather than choosing one
+   ↓ reports declared commands/workspaces missing without executing them
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/cli/doctor.test.ts > rejects semantically missing check references in otherwise valid configuration
+AssertionError: expected +0 to be 64 // Object.is equality
+
+- Expected
++ Received
+
+- 64
++ 0
+
+ ❯ tests/integration/cli/doctor.test.ts:9:341
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 skipped (5)
+   Start at  10:57:12
+   Duration  1.20s (transform 56ms, setup 0ms, import 116ms, tests 578ms, environment 0ms)
+

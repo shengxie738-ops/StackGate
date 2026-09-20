@@ -1,0 +1,5 @@
+$ tsc --noEmit
+tests/unit/ports.test.ts(6,39): error TS2307: Cannot find module '../../packages/core/src/domain/negotiate-capabilities.js' or its corresponding type declarations.
+tests/unit/ports.test.ts(7,30): error TS2307: Cannot find module '../../packages/core/src/domain/reduce-events.js' or its corresponding type declarations.
+tests/unit/ports.test.ts(8,29): error TS2307: Cannot find module '../support/fake-adapters.js' or its corresponding type declarations.
+[ELIFECYCLE] Command failed with exit code 2.

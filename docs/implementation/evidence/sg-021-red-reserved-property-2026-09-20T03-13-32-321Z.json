@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-021",
+  "command": "pnpm exec vitest run tests/unit/openapi/three-way.test.ts -t \"reserved property\"",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/openapi/three-way.test.ts",
+    "-t",
+    "reserved property"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:13:32.321Z",
+  "finished_at": "2026-09-20T03:13:34.492Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-021-red-reserved-property-2026-09-20T03-13-32-321Z.json",
+  "log_path": "docs/implementation/evidence/sg-021-red-reserved-property-2026-09-20T03-13-32-321Z.log",
+  "signal": null,
+  "duration_ms": 2171
+}

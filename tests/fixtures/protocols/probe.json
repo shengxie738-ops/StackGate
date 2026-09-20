@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.1",
+  "kind": "stackgate-probe",
+  "run_id": "run_fixture",
+  "check_id": "runtime",
+  "attempt_id": "attempt_1",
+  "instance_id": "instance_fixture",
+  "operations": [
+    {
+      "operation_key": "api:GET /api/performance",
+      "request_id": "request_fixture",
+      "status_code": 200,
+      "media_type": "application/json",
+      "schema_valid": true,
+      "response_body": {
+        "data": {
+          "performance": {
+            "total_return": 0.1234
+          }
+        }
+      },
+      "assertions": [
+        {
+          "assertion_id": "total-return-is-number",
+          "passed": true
+        }
+      ],
+      "backend_observation_ref": "backend-requests.jsonl#request_fixture"
+    }
+  ],
+  "completed": true
+}

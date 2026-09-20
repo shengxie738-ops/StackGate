@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-028",
+  "command": "pnpm test:unit",
+  "argv": [
+    "pnpm",
+    "test:unit"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:51:17.852Z",
+  "finished_at": "2026-09-20T02:51:31.545Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-028-preflight-unit-2026-09-20T02-51-17-852Z.json",
+  "log_path": "docs/implementation/evidence/sg-028-preflight-unit-2026-09-20T02-51-17-852Z.log",
+  "signal": null,
+  "duration_ms": 13693
+}

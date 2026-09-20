@@ -1,0 +1,19 @@
+{
+  "task_id": "SG-027",
+  "command": "node --input-type=module -e \"import {build} from \\\"esbuild\\\"; import fs from \\\"node:fs/promises\\\"; import os from \\\"node:os\\\"; import path from \\\"node:path\\\"; const built=await build({entryPoints:[\\\"packages/core/src/services/init-service.ts\\\"],bundle:true,platform:\\\"node\\\",format:\\\"esm\\\",write:false});const {InitService}=await import(\\\"data:text/javascript;base64,\\\"+Buffer.from(built.outputFiles[0].text).toString(\\\"base64\\\"));const root=await fs.mkdtemp(path.join(os.tmpdir(),\\\"sg-filelink-probe-\\\"));try {await fs.writeFile(path.join(root,\\\"user-file\\\"),\\\"do not append\\\"); try{await fs.symlink(path.join(root,\\\"user-file\\\"),path.join(root,\\\".gitignore\\\"),\\\"file\\\");}catch(error){if(error.code!==\\\"EPERM\\\")throw error; console.log(\\\"UNVERIFIED: native file symlink creation denied by host EPERM; hard-link and directory-junction tests are separate executed checks.\\\");process.exitCode=2;}if(process.exitCode!==2){let rejected=false;try{await new InitService(root,path.resolve(\\\"presets/fastapi-react\\\")).preview();}catch(error){rejected=/link/i.test(error.message);}if(!rejected)throw Error(\\\"File symlink was not rejected\\\");console.log(\\\"Native file symlink rejected before writes\\\");}}finally{const relative=path.relative(os.tmpdir(),root);if(!relative.startsWith(\\\"sg-filelink-probe-\\\")||relative.includes(path.sep))throw Error(\\\"Unexpected cleanup path\\\");await fs.rm(root,{recursive:true,force:true});}\"",
+  "argv": [
+    "node",
+    "--input-type=module",
+    "-e",
+    "import {build} from \"esbuild\"; import fs from \"node:fs/promises\"; import os from \"node:os\"; import path from \"node:path\"; const built=await build({entryPoints:[\"packages/core/src/services/init-service.ts\"],bundle:true,platform:\"node\",format:\"esm\",write:false});const {InitService}=await import(\"data:text/javascript;base64,\"+Buffer.from(built.outputFiles[0].text).toString(\"base64\"));const root=await fs.mkdtemp(path.join(os.tmpdir(),\"sg-filelink-probe-\"));try {await fs.writeFile(path.join(root,\"user-file\"),\"do not append\"); try{await fs.symlink(path.join(root,\"user-file\"),path.join(root,\".gitignore\"),\"file\");}catch(error){if(error.code!==\"EPERM\")throw error; console.log(\"UNVERIFIED: native file symlink creation denied by host EPERM; hard-link and directory-junction tests are separate executed checks.\");process.exitCode=2;}if(process.exitCode!==2){let rejected=false;try{await new InitService(root,path.resolve(\"presets/fastapi-react\")).preview();}catch(error){rejected=/link/i.test(error.message);}if(!rejected)throw Error(\"File symlink was not rejected\");console.log(\"Native file symlink rejected before writes\");}}finally{const relative=path.relative(os.tmpdir(),root);if(!relative.startsWith(\"sg-filelink-probe-\")||relative.includes(path.sep))throw Error(\"Unexpected cleanup path\");await fs.rm(root,{recursive:true,force:true});}"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:08:00.640Z",
+  "finished_at": "2026-09-20T03:08:01.298Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-027-native-filelink-probe-2026-09-20T03-08-00-640Z.json",
+  "log_path": "docs/implementation/evidence/sg-027-native-filelink-probe-2026-09-20T03-08-00-640Z.log",
+  "signal": null,
+  "duration_ms": 658
+}

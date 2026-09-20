@@ -1,0 +1,61 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+stdout | tests/contract/oasdiff.test.ts > SG020 real pinned oasdiff adapter > retains real version, raw IDs, raw JSON, original hashes and business exit status
+{"fixture":"type-change","status":"FAIL","evidence":[{"command":"version","argv":["--version"],"stdout":"oasdiff version 1.32.1\n","stderr":"","exit_code":0,"signal":null,"version":"1.32.1","executable_sha256":"sha256:cce550834cddfa7584a5cfde8deb2a6a57effcbc445f040f4f7ac37da47e8173"},{"command":"breaking","argv":["breaking","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-qUiCkv\\base.json","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-qUiCkv\\target.json","--format","json","--allow-external-refs=false","--config","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-qUiCkv\\oasdiff-config.json","--include-path-params","--auto-upgrade=false","--flatten-allof=false","--flatten-params=false","--fail-on","WARN"],"stdout":"[{\"id\":\"response-property-type-changed\",\"text\":\"the `data/performance/total_return` response's property `type` changed from `number` to `string` for status `200`\",\"level\":3,\"operation\":\"GET\",\"operationId\":\"getPerformance\",\"path\":\"/api/performance\",\"section\":\"paths\",\"fingerprint\":\"d4e087392f73\"}]\n","stderr":"","exit_code":1,"signal":null,"version":"1.32.1","executable_sha256":"sha256:cce550834cddfa7584a5cfde8deb2a6a57effcbc445f040f4f7ac37da47e8173","base_hash":"sha256:1a38de0d66d791dec4cc7ae6b3f9f2ae0aa3410ae7bbcb0c3bfd88cdf45aae8d","target_hash":"sha256:f5f78132329e73893ece7250514bd54906ed2db56e6a2215b261a0bff307f41d","audited_base_hash":"sha256:4fccf8fb30c0e712fcdfad06bd978906b22366af4532b8cd640c98061ad085bd","audited_target_hash":"sha256:a2527f9b8b2b416b0fd7292de08c7e1a9385819f41ed5ffb12132d46c67ab851"}]}
+
+ ❯ tests/contract/oasdiff.test.ts (29 tests | 1 failed) 4550ms
+     ✓ retains real version, raw IDs, raw JSON, original hashes and business exit status  382ms
+     ✓ returns PASS only from real empty valid breaking output  457ms
+     ✓ maps real removed-property finding target→candidate-missing  437ms
+     ✓ maps real removed-property finding upgrade-baseline→upgrade-target  352ms
+     ✓ preserves direction-dependent finding request-base→request-required  455ms
+     ✓ preserves direction-dependent finding enum-base→enum-revision  355ms
+     ✓ retains structural diff and distinguishes real empty diff  764ms
+     ✓ blocks missing tools without inventing empty findings 13ms
+     ✓ requires trusted pinned identity and rejects digest changes before version execution 49ms
+     ✓ blocks a mismatched tool version after preserving actual version evidence 280ms
+     ✓ rechecks mutated LoadedContract documents before any process including --version 9ms
+     ✓ rejects unsupported schema before even checking tool availability 6ms
+     × does not attribute changed supported documents or forged hashes to original source bytes 389ms
+     ✓ bounds real tool output and keeps truncated evidence without returning PASS 204ms
+     ✓ ignores inherited malicious oasdiff config environment  390ms
+     ✓ rejects unknown breaking JSON shape {} 0ms
+     ✓ rejects unknown breaking JSON shape null 0ms
+     ✓ rejects unknown breaking JSON shape [{"newField":true}] 0ms
+     ✓ rejects unknown breaking JSON shape [{"id":"response-property-type-changed","level":3}] 0ms
+     ✓ rejects unknown breaking JSON shape [] trailing 0ms
+     ✓ rejects unknown breaking JSON shape  0ms
+     ✓ rejects unknown breaking JSON shape [{"id":"response-property-type-changed","id":"response-required-property-removed","text":"duplicate ID","level":3,"operation":"GET","path":"/x","section":"paths"}] 0ms
+     ✓ preserves unknown IDs but cannot return PASS or an approvable mapped rule 0ms
+     ✓ rejects inconsistent exit/output pairs and tool-error exits 1ms
+     ✓ rejects unknown structural diff shape [] 0ms
+     ✓ rejects unknown structural diff shape null 0ms
+     ✓ rejects unknown structural diff shape {"unexpected":true} 0ms
+     ✓ rejects unknown structural diff shape {"paths":{"modified":[]}} 0ms
+     ✓ rejects unknown structural diff shape {"paths":{}} 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/contract/oasdiff.test.ts > SG020 real pinned oasdiff adapter > does not attribute changed supported documents or forged hashes to original source bytes
+AssertionError: expected 'PASS' to be 'BLOCKED' // Object.is equality
+
+Expected: "BLOCKED"
+Received: "PASS"
+
+ ❯ tests/contract/oasdiff.test.ts:83:28
+     81|     target.document!.info = { title: 'mutated after loading', version:…
+     82|     const changed = await new OasdiffAdapter(identity).breaking(base, …
+     83|     expect(changed.status).toBe('BLOCKED'); expect(changed.evidence).t…
+       |                            ^
+     84|     const forged = await fixture('candidate-correct'); forged.raw_hash…
+     85|     expect((await new OasdiffAdapter(identity).breaking(base, forged))…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 28 passed (29)
+   Start at  10:57:17
+   Duration  5.59s (transform 202ms, setup 0ms, import 592ms, tests 4.55s, environment 0ms)
+

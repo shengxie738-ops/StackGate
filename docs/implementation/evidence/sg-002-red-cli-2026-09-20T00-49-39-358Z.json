@@ -1,0 +1,17 @@
+{
+  "command": "node --test tests/bootstrap/cli.test.mjs",
+  "argv": [
+    "node",
+    "--test",
+    "tests/bootstrap/cli.test.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T00:49:39.358Z",
+  "finished_at": "2026-09-20T00:49:39.827Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-002-red-cli-2026-09-20T00-49-39-358Z.json",
+  "log_path": "docs/implementation/evidence/sg-002-red-cli-2026-09-20T00-49-39-358Z.log",
+  "signal": null,
+  "duration_ms": 469
+}

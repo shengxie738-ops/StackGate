@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-010",
+  "command": "node scripts/inspect-toolchain.mjs",
+  "argv": [
+    "node",
+    "scripts/inspect-toolchain.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:24:12.005Z",
+  "finished_at": "2026-09-20T01:24:14.464Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-010-tool-baseline-2026-09-20T01-24-12-005Z.json",
+  "log_path": "docs/implementation/evidence/sg-010-tool-baseline-2026-09-20T01-24-12-005Z.log",
+  "signal": null,
+  "duration_ms": 2459
+}

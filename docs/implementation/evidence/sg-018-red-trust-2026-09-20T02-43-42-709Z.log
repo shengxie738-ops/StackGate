@@ -1,0 +1,40 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/trust/review.test.ts (3 tests | 3 failed) 3602ms
+   × previews names only and never trusts without explicit reviewed authorization 905ms
+   × stores outside repository, binds scripts, arguments and origins, and does not become CI trust 844ms
+   × refuses repository-contained trust stores and copying trust into another checkout 1852ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/trust/review.test.ts > previews names only and never trusts without explicit reviewed authorization
+Error: SG018 not implemented
+ ❯ TrustService.review packages/core/src/services/trust-service.ts:1:138
+
+ ❯ tests/integration/trust/review.test.ts:9:196
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/integration/trust/review.test.ts > stores outside repository, binds scripts, arguments and origins, and does not become CI trust
+Error: SG018 not implemented
+ ❯ TrustService.review packages/core/src/services/trust-service.ts:1:138
+
+ ❯ tests/integration/trust/review.test.ts:10:162
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/integration/trust/review.test.ts > refuses repository-contained trust stores and copying trust into another checkout
+Error: SG018 not implemented
+ ❯ TrustService.review packages/core/src/services/trust-service.ts:1:138
+
+ ❯ tests/integration/trust/review.test.ts:11:272
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  10:43:44
+   Duration  4.07s (transform 62ms, setup 0ms, import 131ms, tests 3.60s, environment 0ms)
+

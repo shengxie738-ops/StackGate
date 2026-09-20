@@ -1,0 +1,63 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/ports.test.ts (27 tests | 5 failed) 10049ms
+   ✓ negotiates only the declared exact adapter version, platform and dialect 2ms
+   ✓ does not promote UNKNOWN capabilities 0ms
+   ✓ does not promote UNSUPPORTED capabilities 0ms
+   ✓ counts an identical fake event only once and preserves input objects 2ms
+   ✓ compares duplicate event objects independently of JSON key insertion order 0ms
+   ✓ rejects conflicting identities, noncontiguous sequence or mixed runs (0) 0ms
+   ✓ rejects conflicting identities, noncontiguous sequence or mixed runs (1) 0ms
+   ✓ rejects conflicting identities, noncontiguous sequence or mixed runs (2) 0ms
+   ✓ rejects conflicting identities, noncontiguous sequence or mixed runs (3) 0ms
+   ✓ rejects conflicting identities, noncontiguous sequence or mixed runs (4) 0ms
+   ✓ runs the AST checker and rejects domain IO  494ms
+   ✓ runs the AST checker and rejects domain dynamic IO  556ms
+   ✓ runs the AST checker and rejects domain time  588ms
+   ✓ runs the AST checker and rejects domain date constructor  509ms
+   ✓ runs the AST checker and rejects domain environment  532ms
+   × runs the AST checker and rejects domain console IO 503ms
+   × runs the AST checker and rejects domain require alias 731ms
+   × runs the AST checker and rejects domain indirect random 499ms
+   × runs the AST checker and rejects domain spread clock 521ms
+   ✓ runs the AST checker and rejects domain network  605ms
+   ✓ runs the AST checker and rejects test fake import  502ms
+   ✓ runs the AST checker and rejects reporter runner  486ms
+   ✓ runs the AST checker and rejects reporter execution  509ms
+   ✓ runs the AST checker and rejects reporter computed execution  672ms
+   × runs the AST checker and rejects reporter destructured execution 560ms
+   ✓ rejects IO reached indirectly through a domain helper  773ms
+   ✓ allows pure objects, type-only ports and words in comments or strings  1002ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects domain console IO
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects domain require alias
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects domain indirect random
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects domain spread clock
+ FAIL  tests/unit/ports.test.ts > runs the AST checker and rejects reporter destructured execution
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/unit/ports.test.ts:79:40
+     77| ])('runs the AST checker and rejects %s', async (_label, file, source)…
+     78|   const result = await checkFixture({ [file]: source });
+     79|   expect(result.status, result.stderr).toBe(1);
+       |                                        ^
+     80|   expect(result.stderr).toMatch(/boundary|forbidden/i);
+     81| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 22 passed (27)
+   Start at  09:18:27
+   Duration  10.64s (transform 93ms, setup 0ms, import 161ms, tests 10.05s, environment 0ms)
+

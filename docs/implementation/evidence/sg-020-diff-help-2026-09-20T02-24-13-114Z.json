@@ -1,0 +1,18 @@
+{
+  "task_id": "SG-020",
+  "command": "tools/bin/oasdiff-1.32.1/oasdiff.exe diff --help",
+  "argv": [
+    "tools/bin/oasdiff-1.32.1/oasdiff.exe",
+    "diff",
+    "--help"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:24:13.114Z",
+  "finished_at": "2026-09-20T02:24:13.194Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-020-diff-help-2026-09-20T02-24-13-114Z.json",
+  "log_path": "docs/implementation/evidence/sg-020-diff-help-2026-09-20T02-24-13-114Z.log",
+  "signal": null,
+  "duration_ms": 80
+}

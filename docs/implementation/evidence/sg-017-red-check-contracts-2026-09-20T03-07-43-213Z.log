@@ -1,0 +1,104 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/tasks/confirm.test.ts (10 tests | 1 failed | 9 skipped) 14351ms
+   ↓ does not treat a YAML CONFIRMED status as a confirmation record
+   × confirms exact input into an immutable revision and repeats idempotently 14349ms
+   ↓ rejects missing authorization, a changed target and mutated protected inputs
+   ↓ returns a null digest for missing target/check references
+   ↓ rejects changes during confirm and never seals a stale revision
+   ↓ rejects tampered immutable target and forces a new revision for changed task content
+   ↓ binds ignored protected inputs into the reviewed confirmation digest
+   ↓ rejects tampered task-derived preview fields and sealed local identity
+   ↓ rejects unsupported root-leading protected globs instead of omitting ignored files
+   ↓ rejects a required operation naming a service other than the target contract service
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/tasks/confirm.test.ts > confirms exact input into an immutable revision and repeats idempotently
+AssertionError: expected { files: [ { …(4) }, …(2) ], …(2) } to match object { check_contracts: { …(5) } }
+(7 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "check_contracts": {
+-     "contract": {
+-       "adapter": "openapi",
+-       "candidate_command": "export_api",
+-       "service": "api",
++   "files": [
++     {
++       "digest": "ebb95690dc8445285071592a04dbf28b66707c265bbef5fd1a3a4e486b5258fc",
++       "kind": "file",
++       "mode": "100644",
++       "relative_path": ".stackgate/tasks/performance.json",
+      },
+-     "e2e": {
+-       "adapter": "playwright",
+-       "command": "web_e2e",
+-       "require_real_backend": true,
+-       "required_test_ids": [
+-         "performance-summary",
++     {
++       "digest": "1a38de0d66d791dec4cc7ae6b3f9f2ae0aa3410ae7bbcb0c3bfd88cdf45aae8d",
++       "kind": "file",
++       "mode": "100644",
++       "relative_path": "contracts/openapi.json",
++     },
++     {
++       "digest": "3f62d9392cc8809938d491a29bfcedbd49ca39a725943c4c07863b39e0f0e16d",
++       "kind": "file",
++       "mode": "100644",
++       "relative_path": "tests/acceptance/performance.test.ts",
++     },
+    ],
++   "identity": {
++     "configuration_hash": "a8b04be87589d1ad2df6629bc5f1d30c5b33a6ec42eec2a1a38234b7dfcb5497",
++     "repo_id": "repo_7cd931f1d245a7d82bf778e533adfeb4c48452eb2ec935bc2140b852cbfca4e2",
++     "service_id": "api",
++     "worktree_id": "worktree_3df3a1cdc991e92aa3d4fc434b1db3057997d30140ddf9e312caa9ec9836d6ea",
+    },
+-     "runtime": {
+-       "adapter": "stackgate-probe",
+-       "command": "api_probe",
+-       "required_operations": [
+-         "GET /api/performance",
++   "patterns": [
++     ".stackgate/tasks/**",
++     "contracts/**",
++     "tests/acceptance/**",
++     ".stackgate/tasks/performance.json",
++     "contracts/openapi.json",
+    ],
+-     },
+-     "typecheck": {
+-       "adapter": "command",
+-       "command": "web_typecheck",
+-       "result_kind": "exit-code",
+-     },
+-     "unit": {
+-       "adapter": "junit",
+-       "command": "web_unit",
+-       "min_tests": 1,
+-     },
+-   },
+  }
+
+ ❯ tests/integration/tasks/confirm.test.ts:22:37
+     20|     expect(again.confirmation_ref).toBe(result.confirmation_ref);expec…
+     21|     const stored=await service.loadConfirmed('performance',1);expect(s…
+     22|     expect(stored.protected_inputs).toMatchObject({check_contracts:rep…
+       |                                     ^
+     23|     expect(stored.target_bytes).toEqual(await fs.readFile(path.join(re…
+     24|     expect(JSON.parse(await fs.readFile(repo.taskFile,'utf8')).status)…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 skipped (10)
+   Start at  11:07:45
+   Duration  16.99s (transform 681ms, setup 0ms, import 1.83s, tests 14.35s, environment 0ms)
+

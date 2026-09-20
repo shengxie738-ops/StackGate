@@ -1,0 +1,21 @@
+{
+  "task_id": "SG-001",
+  "command": "pnpm exec eslint scripts/record.mjs scripts/verify-tasks.mjs tests/bootstrap/ledger.test.mjs",
+  "argv": [
+    "pnpm",
+    "exec",
+    "eslint",
+    "scripts/record.mjs",
+    "scripts/verify-tasks.mjs",
+    "tests/bootstrap/ledger.test.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:06:07.938Z",
+  "finished_at": "2026-09-20T01:06:12.376Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-001-review-lint-2026-09-20T01-06-07-938Z.json",
+  "log_path": "docs/implementation/evidence/sg-001-review-lint-2026-09-20T01-06-07-938Z.log",
+  "signal": null,
+  "duration_ms": 4438
+}

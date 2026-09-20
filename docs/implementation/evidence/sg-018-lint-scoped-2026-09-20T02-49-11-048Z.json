@@ -1,0 +1,22 @@
+{
+  "task_id": "SG-018",
+  "command": "pnpm exec eslint packages/core/src/services/trust-service.ts packages/core/src/storage/user-trust-store.ts tests/integration/trust/review.test.ts apps/cli/src/commands/trust.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "eslint",
+    "packages/core/src/services/trust-service.ts",
+    "packages/core/src/storage/user-trust-store.ts",
+    "tests/integration/trust/review.test.ts",
+    "apps/cli/src/commands/trust.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:49:11.048Z",
+  "finished_at": "2026-09-20T02:49:15.522Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-018-lint-scoped-2026-09-20T02-49-11-048Z.json",
+  "log_path": "docs/implementation/evidence/sg-018-lint-scoped-2026-09-20T02-49-11-048Z.log",
+  "signal": null,
+  "duration_ms": 4474
+}

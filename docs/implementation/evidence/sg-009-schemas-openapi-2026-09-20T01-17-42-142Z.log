@@ -1,0 +1,19 @@
+$ node scripts/verify-schemas.mjs
+G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\util.js:174
+        throw new Error(msg);
+              ^
+
+Error: strict mode: property schemas matches pattern ^(schemas|responses|parameters|examples|requestBodies|headers|securitySchemes|links|callbacks|pathItems)$ (use allowMatchingProperties)
+    at checkStrictMode (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\util.js:174:15)
+    at checkMatchingProperties (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\vocabularies\applicator\patternProperties.js:45:48)
+    at validatePatternProperties (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\vocabularies\applicator\patternProperties.js:31:21)
+    at Object.code (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\vocabularies\applicator\patternProperties.js:27:9)
+    at keywordCode (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:464:13)
+    at G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:222:17
+    at CodeGen.code (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\codegen\index.js:439:13)
+    at CodeGen.block (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\codegen\index.js:568:18)
+    at iterateKeywords (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:219:9)
+    at groupKeywords (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:200:13)
+
+Node.js v24.11.1
+[ELIFECYCLE] Command failed with exit code 1.

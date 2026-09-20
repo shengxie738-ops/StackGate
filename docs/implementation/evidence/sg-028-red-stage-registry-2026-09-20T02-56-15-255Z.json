@@ -1,0 +1,18 @@
+{
+  "task_id": "SG-028",
+  "command": "node --test tests/bootstrap/stage.test.mjs",
+  "argv": [
+    "node",
+    "--test",
+    "tests/bootstrap/stage.test.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:56:15.255Z",
+  "finished_at": "2026-09-20T02:56:15.569Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-028-red-stage-registry-2026-09-20T02-56-15-255Z.json",
+  "log_path": "docs/implementation/evidence/sg-028-red-stage-registry-2026-09-20T02-56-15-255Z.log",
+  "signal": null,
+  "duration_ms": 314
+}

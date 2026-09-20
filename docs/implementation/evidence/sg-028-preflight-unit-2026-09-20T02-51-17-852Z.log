@@ -1,0 +1,83 @@
+$ node scripts/test-unit.mjs
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/storage/hash.test.ts (17 tests) 16ms
+ ✓ tests/unit/freshness.test.ts (46 tests) 15ms
+ ✓ tests/unit/gate/acceptance-boundaries.test.ts (11 tests) 18ms
+ ✓ tests/unit/config/merge.test.ts (3 tests) 13ms
+ ✓ tests/unit/gate/truth-table.test.ts (22 tests) 25ms
+ ✓ tests/unit/gate/exit-priority.test.ts (65 tests) 45ms
+ ✓ tests/unit/storage/paths.test.ts (27 tests) 402ms
+ ✓ tests/unit/storage/atomic-write.test.ts (6 tests) 431ms
+ ✓ tests/unit/impact/typescript.test.ts (6 tests) 43ms
+ ✓ tests/unit/openapi/safe-loader.test.ts (60 tests) 218ms
+ ✓ tests/unit/contracts/primitives.test.ts (13 tests) 172ms
+ ✓ tests/unit/impact/mappings.test.ts (6 tests) 30ms
+ ✓ tests/unit/contracts/run-schema.test.ts (24 tests) 264ms
+ ✓ tests/unit/config/parse.test.ts (7 tests) 135ms
+ ✓ tests/unit/fixtures.test.ts (10 tests) 1144ms
+   ✓ validates all OpenAPI documents against the retained official document schema and strict response schemas  1003ms
+ ✓ tests/unit/contracts/task-schema.test.ts (17 tests) 120ms
+ ✓ tests/unit/contracts/config-schema.test.ts (9 tests) 162ms
+ ✓ tests/unit/bootstrap.test.ts (5 tests) 3124ms
+   ✓ built help is executable without a TypeScript runtime  420ms
+   ✓ rejects unsupported arguments and combinations with exit 64  1153ms
+   ✓ prints package version  328ms
+   ✓ an empty test selection exits nonzero  1217ms
+ ✓ tests/unit/ports.test.ts (27 tests) 9541ms
+   ✓ runs the AST checker and rejects domain IO  1158ms
+   ✓ runs the AST checker and rejects domain dynamic IO  993ms
+   ✓ runs the AST checker and rejects domain time  752ms
+   ✓ runs the AST checker and rejects domain date constructor  507ms
+   ✓ runs the AST checker and rejects domain environment  492ms
+   ✓ runs the AST checker and rejects domain console IO  429ms
+   ✓ runs the AST checker and rejects domain require alias  430ms
+   ✓ runs the AST checker and rejects domain indirect random  427ms
+   ✓ runs the AST checker and rejects domain spread clock  446ms
+   ✓ runs the AST checker and rejects domain network  453ms
+   ✓ runs the AST checker and rejects test fake import  456ms
+   ✓ runs the AST checker and rejects reporter runner  469ms
+   ✓ runs the AST checker and rejects reporter execution  490ms
+   ✓ runs the AST checker and rejects reporter computed execution  491ms
+   ✓ runs the AST checker and rejects reporter destructured execution  512ms
+   ✓ rejects IO reached indirectly through a domain helper  504ms
+   ✓ allows pure objects, type-only ports and words in comments or strings  521ms
+
+ Test Files  19 passed (19)
+      Tests  381 passed (381)
+   Start at  10:51:19
+   Duration  11.39s (transform 3.85s, setup 0ms, import 19.22s, tests 15.92s, environment 6ms)
+
+✔ built CLI help exposes only implemented commands (207.6494ms)
+✔ unknown CLI option returns configuration error (204.1228ms)
+✔ plan has 100 unique sequential tasks and original dependencies (3.1443ms)
+✔ rejects duplicate ID (1.1087ms)
+✔ rejects missing dependency (1.0391ms)
+✔ rejects dependency cycle (1.4191ms)
+✔ rejects DONE without evidence (0.8803ms)
+✔ rejects illegal status (1.1127ms)
+✔ rejects early READY (0.9902ms)
+✔ rejects missing task (0.9465ms)
+✔ rejects absolute file path (1.1907ms)
+✔ rejects absolute evidence path (0.9548ms)
+✔ rejects traversal evidence path (0.8573ms)
+✔ rejects failed-only DONE (0.9203ms)
+✔ source is preserved byte-for-byte and matches the supplied SHA-256 (4.6197ms)
+✔ source inspection rejects missing or changed content (1.9807ms)
+✔ verify-tasks CLI returns nonzero and identifies the task with SG-999 dependency (130.2701ms)
+✔ DONE requires actual implementation files even with valid task evidence (2.5785ms)
+✔ DONE cannot borrow another task successful evidence (77.188ms)
+✔ evidence runner records task ownership and preserves a failed child exit code (212.9956ms)
+✔ negative cases do not mutate the shared plan baseline (1.2937ms)
+✔ M0 rejects removed, duplicate and arbitrary shell checks (1.5145ms)
+✔ unknown tools block any stage requiring them (1.1185ms)
+✔ a real failed child command propagates its exit and retains its identity (162.4495ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 622.9249

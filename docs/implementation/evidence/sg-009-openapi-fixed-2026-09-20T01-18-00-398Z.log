@@ -1,0 +1,9 @@
+file:///G:/StackGate/scripts/verify-openapi-fixtures.mjs:22
+    if (!validateDocument(document)) throw new Error(name + ': ' + JSON.stringify(validateDocument.errors));
+                                           ^
+
+Error: baseline.json: [{"instancePath":"/paths/~1api~1performance/get/responses/200/content/application~1json/schema","schemaPath":"#/unevaluatedProperties","keyword":"unevaluatedProperties","params":{"unevaluatedProperty":"type"},"message":"must NOT have unevaluated properties"},{"instancePath":"/paths/~1api~1performance/get/responses/200/content/application~1json/schema","schemaPath":"#/unevaluatedProperties","keyword":"unevaluatedProperties","params":{"unevaluatedProperty":"properties"},"message":"must NOT have unevaluated properties"},{"instancePath":"/paths/~1api~1performance/get/responses/200/content/application~1json/schema","schemaPath":"#/unevaluatedProperties","keyword":"unevaluatedProperties","params":{"unevaluatedProperty":"required"},"message":"must NOT have unevaluated properties"},{"instancePath":"/paths/~1api~1performance/get/responses/200/content/application~1json/schema","schemaPath":"#/unevaluatedProperties","keyword":"unevaluatedProperties","params":{"unevaluatedProperty":"additionalProperties"},"message":"must NOT have unevaluated properties"},{"instancePath":"/paths/~1api~1performance/get/responses/200","schemaPath":"#/if","keyword":"if","params":{"failingKeyword":"else"},"message":"must match \"else\" schema"}]
+    at verifyOpenapiFixtures (file:///G:/StackGate/scripts/verify-openapi-fixtures.mjs:22:44)
+    at async file:///G:/StackGate/scripts/verify-openapi-fixtures.mjs:31:81
+
+Node.js v24.11.1

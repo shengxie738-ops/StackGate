@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-002",
+  "command": "pnpm exec vitest run tests/unit/bootstrap.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/bootstrap.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:15:54.221Z",
+  "finished_at": "2026-09-20T01:15:58.254Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-002-green-declarations-2026-09-20T01-15-54-221Z.json",
+  "log_path": "docs/implementation/evidence/sg-002-green-declarations-2026-09-20T01-15-54-221Z.log",
+  "signal": null,
+  "duration_ms": 4033
+}

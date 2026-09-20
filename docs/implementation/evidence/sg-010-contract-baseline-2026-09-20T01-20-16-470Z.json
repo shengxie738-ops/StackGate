@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-010",
+  "command": "pnpm test:contract",
+  "argv": [
+    "pnpm",
+    "test:contract"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T01:20:16.470Z",
+  "finished_at": "2026-09-20T01:20:23.628Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-010-contract-baseline-2026-09-20T01-20-16-470Z.json",
+  "log_path": "docs/implementation/evidence/sg-010-contract-baseline-2026-09-20T01-20-16-470Z.log",
+  "signal": null,
+  "duration_ms": 7158
+}

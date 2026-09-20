@@ -1,0 +1,4 @@
+$ tsc --noEmit
+tests/unit/ports.test.ts(49,31): error TS2345: Argument of type 'RunEvent' is not assignable to parameter of type 'readonly RunEvent[]'.
+  Type '{ schema_version: "0.1"; event_id: string; run_id: string; seq: number; at: string; type: "run.started"; payload: { payload_version: "0.1"; plan_id: string; input_hash: string; }; }' is missing the following properties from type 'readonly RunEvent[]': length, concat, join, slice, and 25 more.
+[ELIFECYCLE] Command failed with exit code 2.

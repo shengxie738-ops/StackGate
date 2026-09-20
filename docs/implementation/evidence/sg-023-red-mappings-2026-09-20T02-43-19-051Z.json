@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-023",
+  "command": "pnpm exec vitest run tests/unit/impact/mappings.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/impact/mappings.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:43:19.051Z",
+  "finished_at": "2026-09-20T02:43:21.103Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-023-red-mappings-2026-09-20T02-43-19-051Z.json",
+  "log_path": "docs/implementation/evidence/sg-023-red-mappings-2026-09-20T02-43-19-051Z.log",
+  "signal": null,
+  "duration_ms": 2052
+}

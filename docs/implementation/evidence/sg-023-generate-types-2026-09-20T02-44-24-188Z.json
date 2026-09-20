@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-023",
+  "command": "pnpm generate:types",
+  "argv": [
+    "pnpm",
+    "generate:types"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:44:24.188Z",
+  "finished_at": "2026-09-20T02:44:25.358Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-023-generate-types-2026-09-20T02-44-24-188Z.json",
+  "log_path": "docs/implementation/evidence/sg-023-generate-types-2026-09-20T02-44-24-188Z.log",
+  "signal": null,
+  "duration_ms": 1170
+}

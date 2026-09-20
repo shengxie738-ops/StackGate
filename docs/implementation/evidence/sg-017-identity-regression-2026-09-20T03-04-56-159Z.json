@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-017",
+  "command": "pnpm exec vitest run tests/integration/tasks/confirm.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/tasks/confirm.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:04:56.159Z",
+  "finished_at": "2026-09-20T03:05:59.162Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-017-identity-regression-2026-09-20T03-04-56-159Z.json",
+  "log_path": "docs/implementation/evidence/sg-017-identity-regression-2026-09-20T03-04-56-159Z.log",
+  "signal": null,
+  "duration_ms": 63003
+}

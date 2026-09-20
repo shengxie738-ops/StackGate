@@ -1,0 +1,67 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/cli/static-workflow.test.ts (3 tests | 3 failed) 2921ms
+   × previews init without writes and applies only absent files preserving existing content 217ms
+   × task and trust machine previews implement required data fields without running code 1309ms
+   × scan returns breaking data with exit zero and never claims runtime or gate success 1394ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/cli/static-workflow.test.ts > previews init without writes and applies only absent files preserving existing content
+AssertionError: Unknown or unsupported command/arguments. Use --help.
+: expected 64 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 64
+
+ ❯ tests/integration/cli/static-workflow.test.ts:12:144
+     10| it('previews init without writes and applies only absent files preserv…
+     11|   const root=path.join(parent,'中文 项目');await fs.mkdir(root);await fs.w…
+     12|   const before=await fs.readdir(root),preview=runCli(root,'init','--pr…
+       |                                                                                                                                                ^
+     13|   const proposal=JSON.parse(preview.stdout).data;expect(proposal.files…
+     14|   const applied=runCli(root,'init','--preset','fastapi-react','--apply…
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/integration/cli/static-workflow.test.ts > task and trust machine previews implement required data fields without running code
+AssertionError: Unknown or unsupported command/arguments. Use --help.
+: expected 64 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 64
+
+ ❯ tests/integration/cli/static-workflow.test.ts:22:125
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/integration/cli/static-workflow.test.ts > scan returns breaking data with exit zero and never claims runtime or gate success
+
+AssertionError: Unknown or unsupported command/arguments. Use --help.
+: expected 64 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 64
+
+ ❯ tests/integration/cli/static-workflow.test.ts:31:118
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  10:52:42
+   Duration  3.56s (transform 102ms, setup 0ms, import 166ms, tests 2.92s, environment 1ms)
+

@@ -1,0 +1,255 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/config/init-safety.test.ts (6 tests | 1 failed | 5 skipped) 110ms
+   ↓ preserves an existing .stackgate.yml configuration without creating a competing yaml file
+   ↓ preserves an existing .stackgate.json configuration without creating a competing yaml file
+   ↓ rejects an existing .gitignore hard link before creating any generated files
+   ↓ rejects a real linked generated directory before writing the first configuration
+   × revalidates ignore-file identity before any apply write after a safe preview 108ms
+   ↓ appends only the displayed patch and preserves ordinary existing ignore bytes
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/config/init-safety.test.ts > revalidates ignore-file identity before any apply write after a safe preview
+AssertionError: promise resolved "{ files: [ { …(4) }, { …(4) } ], …(6) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "conflicts": [],
++   "files": [
++     {
++       "conflict": false,
++       "content": "{
++   \"schema_version\": \"0.1\",
++   \"project_id\": \"demo-stack\",
++   \"state_dir\": \".stackgate/state\",
++   \"workspaces\": {
++     \"web\": {
++       \"path\": \"apps/web\",
++       \"kind\": \"typescript\"
++     },
++     \"api\": {
++       \"path\": \"apps/api\",
++       \"kind\": \"fastapi\"
++     }
++   },
++   \"contracts\": {
++     \"api\": {
++       \"baseline_file\": \"contracts/openapi.json\",
++       \"target_file\": \"contracts/openapi.json\",
++       \"candidate_artifact\": \"candidate-openapi.json\",
++       \"version\": \"3.1\",
++       \"external_refs\": \"deny\"
++     }
++   },
++   \"commands\": {
++     \"web_typecheck\": {
++       \"workspace\": \"web\",
++       \"exec\": \"npm\",
++       \"args\": [
++         \"run\",
++         \"typecheck\"
++       ],
++       \"timeout_seconds\": 120
++     },
++     \"web_unit\": {
++       \"workspace\": \"web\",
++       \"exec\": \"npm\",
++       \"args\": [
++         \"run\",
++         \"test:stackgate\"
++       ],
++       \"timeout_seconds\": 180
++     },
++     \"export_api\": {
++       \"workspace\": \"api\",
++       \"exec\": \"python\",
++       \"args\": [
++         \"scripts/export_openapi.py\"
++       ],
++       \"timeout_seconds\": 60
++     },
++     \"api_probe\": {
++       \"workspace\": \"api\",
++       \"exec\": \"python\",
++       \"args\": [
++         \"scripts/probe_performance.py\"
++       ],
++       \"timeout_seconds\": 60
++     },
++     \"web_e2e\": {
++       \"workspace\": \"web\",
++       \"exec\": \"npm\",
++       \"args\": [
++         \"run\",
++         \"test:e2e:stackgate\"
++       ],
++       \"timeout_seconds\": 180
++     }
++   },
++   \"checks\": {
++     \"contract\": {
++       \"adapter\": \"openapi\",
++       \"service\": \"api\",
++       \"candidate_command\": \"export_api\"
++     },
++     \"typecheck\": {
++       \"adapter\": \"command\",
++       \"command\": \"web_typecheck\",
++       \"result_kind\": \"exit-code\"
++     },
++     \"unit\": {
++       \"adapter\": \"junit\",
++       \"command\": \"web_unit\",
++       \"min_tests\": 1
++     },
++     \"runtime\": {
++       \"adapter\": \"stackgate-probe\",
++       \"command\": \"api_probe\",
++       \"required_operations\": [
++         \"GET /api/performance\"
++       ]
++     },
++     \"e2e\": {
++       \"adapter\": \"playwright\",
++       \"command\": \"web_e2e\",
++       \"required_test_ids\": [
++         \"performance-summary\"
++       ],
++       \"require_real_backend\": true
++     }
++   },
++   \"profiles\": {
++     \"integration\": {
++       \"required_checks\": [
++         \"contract\",
++         \"typecheck\",
++         \"unit\",
++         \"runtime\",
++         \"e2e\"
++       ],
++       \"environment\": \"test\",
++       \"minimum_provenance\": \"OBSERVED\",
++       \"unknown_impact\": \"workspace-regression\",
++       \"flaky_policy\": \"incomplete\"
++     }
++   },
++   \"environments\": {
++     \"test\": {
++       \"mode\": \"attach\",
++       \"frontend_origin\": \"http://127.0.0.1:5173\",
++       \"backend_origin\": \"http://127.0.0.1:8000\",
++       \"health_path\": \"/health\",
++       \"provenance_file\": \".stackgate-runtime.json\"
++     }
++   },
++   \"security\": {
++     \"env_allowlist\": [
++       \"STACKGATE_TEST_TOKEN\"
++     ],
++     \"allow_origins\": [
++       \"http://127.0.0.1:5173\",
++       \"http://127.0.0.1:8000\"
++     ],
++     \"protected_inputs\": [
++       \".stackgate/tasks/**\",
++       \"contracts/**\",
++       \"tests/acceptance/**\"
++     ],
++     \"telemetry\": \"off\"
++   }
++ }
++ ",
++       "path": ".stackgate.yaml",
++       "sha256": "a2279b1ec93468a9945f1b6ce9f76b92280fb03c7458e634e6ed33090640c301",
++     },
++     {
++       "conflict": false,
++       "content": "{
++   \"schema_version\": \"0.1\",
++   \"task_id\": \"example\",
++   \"revision\": 1,
++   \"status\": \"DRAFT\",
++   \"goal\": \"TODO: review and replace this draft with the actual acceptance goal\",
++   \"target_contract\": \"contracts/openapi.json\",
++   \"required_operations\": [
++     \"GET /api/performance\"
++   ],
++   \"required_checks\": [
++     \"contract\",
++     \"typecheck\",
++     \"unit\",
++     \"runtime\",
++     \"e2e\"
++   ],
++   \"required_test_ids\": [
++     \"performance-summary\"
++   ],
++   \"allowed_change_paths\": [
++     \"apps/web/src/**\",
++     \"apps/api/app/**\"
++   ],
++   \"constraints\": {
++     \"preserve_target_contract\": true,
++     \"allow_test_deletion\": false,
++     \"require_backend_observation\": true,
++     \"allow_production_targets\": false
++   },
++   \"expected_behavior\": [
++     \"页面读取 data.performance.total_return\",
++     \"缺失数据时展示明确空状态，不显示 NaN\"
++   ],
++   \"compatibility\": {
++     \"mode\": \"preserve\",
++     \"approved_breaking_rules\": []
++   }
++ }
++ ",
++       "path": ".stackgate/tasks/example.json",
++       "sha256": "77ea116ef49bc373562bd041889deef058c5d505cf8e8fc76056c2d27efb9dcf",
++     },
++   ],
++   "gitignore_before": "do not append",
++   "gitignore_patch": "
++ # StackGate local evidence
++ .stackgate/state/
++ ",
++   "permissions": {
++     "executes": [],
++     "network": [],
++     "writes": [
++       ".stackgate.yaml",
++       ".stackgate/tasks/example.json",
++       ".gitignore",
++     ],
++   },
++   "runtime": "NOT_EXECUTED",
++   "written": [
++     ".stackgate.yaml",
++     ".stackgate/tasks/example.json",
++     ".gitignore",
++   ],
+  }
+
+ ❯ tests/unit/config/init-safety.test.ts:39:38
+     37|   await fs.unlink(path.join(root, '.gitignore'));
+     38|   await fs.link(path.join(root, 'user-file'), path.join(root, '.gitign…
+     39|   await expect(service.apply(preview)).rejects.toThrow(/link/i);
+       |                                      ^
+     40|   expect(await fs.readFile(path.join(root, 'user-file'), 'utf8')).toBe…
+     41|   await expect(fs.access(path.join(root, '.stackgate.yaml'))).rejects.…
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 skipped (6)
+   Start at  11:07:16
+   Duration  939ms (transform 144ms, setup 0ms, import 284ms, tests 110ms, environment 0ms)
+

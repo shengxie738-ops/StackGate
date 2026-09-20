@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/impact/typescript.test.ts (6 tests) 40ms
+ ✓ tests/unit/impact/mappings.test.ts (6 tests) 20ms
+
+ Test Files  2 passed (2)
+      Tests  12 passed (12)
+   Start at  10:47:45
+   Duration  2.00s (transform 560ms, setup 0ms, import 2.22s, tests 60ms, environment 0ms)
+

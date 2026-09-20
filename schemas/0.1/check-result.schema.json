@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/check-result.schema.json",
+  "title": "CheckResult",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "check_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "required": {
+      "type": "boolean"
+    },
+    "status": {
+      "$ref": "common.schema.json#/$defs/CheckStatus"
+    },
+    "result_kind": {
+      "$ref": "common.schema.json#/$defs/ResultKind"
+    },
+    "exit_code": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "expected_test_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "executed_test_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "discovered_tests": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "executed_tests": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "skipped_tests": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "flaky_tests": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "reasons": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/SafeId"
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^run_[A-Za-z0-9_-]+$"
+    },
+    "step_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "attempt_id": {
+      "type": "string",
+      "pattern": "^attempt_[A-Za-z0-9_-]+$"
+    },
+    "attempts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "attempt_id": {
+            "type": "string",
+            "pattern": "^attempt_[A-Za-z0-9_-]+$"
+          },
+          "started_at": {
+            "$ref": "common.schema.json#/$defs/UtcTimestamp"
+          },
+          "finished_at": {
+            "anyOf": [
+              {
+                "$ref": "common.schema.json#/$defs/UtcTimestamp"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "raw_exit_code": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "$ref": "common.schema.json#/$defs/CheckStatus"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/SafeId"
+            },
+            "uniqueItems": true,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "attempt_id",
+          "started_at",
+          "finished_at",
+          "raw_exit_code",
+          "status",
+          "evidence_refs"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "check_id",
+    "required",
+    "status",
+    "result_kind",
+    "exit_code",
+    "expected_test_ids",
+    "executed_test_ids",
+    "discovered_tests",
+    "executed_tests",
+    "skipped_tests",
+    "flaky_tests",
+    "reasons",
+    "evidence_refs",
+    "run_id",
+    "step_id",
+    "attempt_id",
+    "attempts"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,16 @@
+export type { CheckFact } from './generated/check-fact.js';
+export type { CheckResult } from './generated/check-result.js';
+export type { GateInput } from './generated/gate-input.js';
+export type { GateEvaluationDocument } from './generated/gate-evaluation.js';
+export type { CheckStep } from './generated/check-step.js';
+export type { CheckPlan } from './generated/plan.js';
+export type { Artifact } from './generated/artifact.js';
+export type { Finding } from './generated/finding.js';
+export type { InputManifest } from './generated/input-manifest.js';
+export type { EnvironmentManifest } from './generated/environment.js';
+export type { ProbeReport } from './generated/probe.js';
+export type { PlaywrightReport } from './generated/playwright-report.js';
+export type { RunManifest } from './generated/run.js';
+export type { RunEvent } from './generated/event.js';
+import type { GateEvaluationDocument } from './generated/gate-evaluation.js';
+export type GateEvaluation = Pick<GateEvaluationDocument, 'schema_version' | 'verdict' | 'freshness' | 'decision' | 'exit_code' | 'reasons'>;

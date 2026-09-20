@@ -1,0 +1,13 @@
+{
+  "name": "oasdiff",
+  "version": "1.32.1",
+  "platform": "win32-x64",
+  "source": "https://github.com/oasdiff/oasdiff/releases/download/v1.32.1/oasdiff_1.32.1_windows_amd64.tar.gz",
+  "checksums_source": "https://github.com/oasdiff/oasdiff/releases/download/v1.32.1/checksums.txt",
+  "archive_sha256": "4d0758b32d454e6011e59db93884af1ca27ae2b212d990f36738ea5efb5d7f28",
+  "executable_sha256": "cce550834cddfa7584a5cfde8deb2a6a57effcbc445f040f4f7ac37da47e8173",
+  "executable": "G:\\StackGate\\tools\\bin\\oasdiff-1.32.1\\oasdiff.exe",
+  "observed_version_output": "oasdiff version 1.32.1",
+  "prepared_at": "2026-09-20T02:23:56.4921796Z",
+  "capability_status": "UNVERIFIED"
+}

@@ -1,0 +1,19 @@
+{
+  "task_id": "SG-027",
+  "command": "node --input-type=module -e \"import fs from \\\"node:fs/promises\\\";import os from \\\"node:os\\\";import path from \\\"node:path\\\";const root=await fs.mkdtemp(path.join(os.tmpdir(),\\\"sg-filelink-probe-\\\"));try{await fs.writeFile(path.join(root,\\\"user-file\\\"),\\\"do not append\\\");try{await fs.symlink(path.join(root,\\\"user-file\\\"),path.join(root,\\\".gitignore\\\"),\\\"file\\\");console.log(\\\"Native file symlink creation is available; service assertion still required.\\\");}catch(error){if(error.code!==\\\"EPERM\\\")throw error;console.log(\\\"UNVERIFIED: native file symlink creation denied by host EPERM; actual hard-link and directory-junction checks are recorded separately.\\\");process.exitCode=2;}}finally{const relative=path.relative(os.tmpdir(),root);if(!relative.startsWith(\\\"sg-filelink-probe-\\\")||relative.includes(path.sep))throw Error(\\\"Unexpected cleanup path\\\");await fs.rm(root,{recursive:true,force:true});}\"",
+  "argv": [
+    "node",
+    "--input-type=module",
+    "-e",
+    "import fs from \"node:fs/promises\";import os from \"node:os\";import path from \"node:path\";const root=await fs.mkdtemp(path.join(os.tmpdir(),\"sg-filelink-probe-\"));try{await fs.writeFile(path.join(root,\"user-file\"),\"do not append\");try{await fs.symlink(path.join(root,\"user-file\"),path.join(root,\".gitignore\"),\"file\");console.log(\"Native file symlink creation is available; service assertion still required.\");}catch(error){if(error.code!==\"EPERM\")throw error;console.log(\"UNVERIFIED: native file symlink creation denied by host EPERM; actual hard-link and directory-junction checks are recorded separately.\");process.exitCode=2;}}finally{const relative=path.relative(os.tmpdir(),root);if(!relative.startsWith(\"sg-filelink-probe-\")||relative.includes(path.sep))throw Error(\"Unexpected cleanup path\");await fs.rm(root,{recursive:true,force:true});}"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T03:08:20.186Z",
+  "finished_at": "2026-09-20T03:08:20.289Z",
+  "exit_code": 2,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-027-native-filelink-capability-2026-09-20T03-08-20-186Z.json",
+  "log_path": "docs/implementation/evidence/sg-027-native-filelink-capability-2026-09-20T03-08-20-186Z.log",
+  "signal": null,
+  "duration_ms": 103
+}

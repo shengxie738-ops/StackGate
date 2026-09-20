@@ -1,0 +1,20 @@
+{
+  "task_id": "SG-017",
+  "command": "pnpm exec vitest run tests/integration/tasks/confirm.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/tasks/confirm.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T02:36:47.212Z",
+  "finished_at": "2026-09-20T02:37:50.993Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-017-green-confirm-2026-09-20T02-36-47-212Z.json",
+  "log_path": "docs/implementation/evidence/sg-017-green-confirm-2026-09-20T02-36-47-212Z.log",
+  "signal": null,
+  "duration_ms": 63781
+}

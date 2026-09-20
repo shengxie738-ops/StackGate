@@ -1,0 +1,36 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/trust/review.test.ts (9 tests | 1 failed | 8 skipped) 14640ms
+   × does not recognize mismatched grant IDs or permission scopes as trusted 14638ms
+   ↓ refuses a script whose bytes are excluded by the credential-input policy
+   ↓ renews an expired matching record and preserves unrelated or concurrently changed records
+   ↓ rejects external script arguments and binds ignored scripts outside workspaces
+   ↓ binds inline code as arguments without interpreting code fragments as paths
+   ↓ binds resolved tool identity without launching it
+   ↓ previews names only and never trusts without explicit reviewed authorization
+   ↓ stores outside repository, binds scripts, arguments and origins, and does not become CI trust
+   ↓ refuses repository-contained trust stores and copying trust into another checkout
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/trust/review.test.ts > does not recognize mismatched grant IDs or permission scopes as trusted
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/integration/trust/review.test.ts:9:602
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 skipped (9)
+   Start at  11:01:07
+   Duration  17.96s (transform 1.16s, setup 0ms, import 2.63s, tests 14.64s, environment 0ms)
+

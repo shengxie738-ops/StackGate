@@ -1,0 +1,398 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/event.schema.json",
+  "title": "RunEvent",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "0.1"
+        },
+        "event_id": {
+          "type": "string",
+          "pattern": "^event_[A-Za-z0-9_-]+$"
+        },
+        "run_id": {
+          "type": "string",
+          "pattern": "^run_[A-Za-z0-9_-]+$"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "at": {
+          "$ref": "common.schema.json#/$defs/UtcTimestamp"
+        },
+        "type": {
+          "const": "run.started"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "payload_version": {
+              "const": "0.1"
+            },
+            "plan_id": {
+              "type": "string",
+              "pattern": "^plan_[A-Za-z0-9_-]+$"
+            },
+            "input_hash": {
+              "$ref": "common.schema.json#/$defs/Sha256"
+            }
+          },
+          "required": [
+            "payload_version",
+            "plan_id",
+            "input_hash"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "event_id",
+        "run_id",
+        "seq",
+        "at",
+        "type",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "0.1"
+        },
+        "event_id": {
+          "type": "string",
+          "pattern": "^event_[A-Za-z0-9_-]+$"
+        },
+        "run_id": {
+          "type": "string",
+          "pattern": "^run_[A-Za-z0-9_-]+$"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "at": {
+          "$ref": "common.schema.json#/$defs/UtcTimestamp"
+        },
+        "type": {
+          "const": "check.started"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "payload_version": {
+              "const": "0.1"
+            },
+            "check_id": {
+              "$ref": "common.schema.json#/$defs/SafeId"
+            },
+            "step_id": {
+              "$ref": "common.schema.json#/$defs/SafeId"
+            },
+            "attempt_id": {
+              "type": "string",
+              "pattern": "^attempt_[A-Za-z0-9_-]+$"
+            }
+          },
+          "required": [
+            "payload_version",
+            "check_id",
+            "step_id",
+            "attempt_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "event_id",
+        "run_id",
+        "seq",
+        "at",
+        "type",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "0.1"
+        },
+        "event_id": {
+          "type": "string",
+          "pattern": "^event_[A-Za-z0-9_-]+$"
+        },
+        "run_id": {
+          "type": "string",
+          "pattern": "^run_[A-Za-z0-9_-]+$"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "at": {
+          "$ref": "common.schema.json#/$defs/UtcTimestamp"
+        },
+        "type": {
+          "const": "check.finished"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "payload_version": {
+              "const": "0.1"
+            },
+            "check_result": {
+              "$ref": "check-result.schema.json"
+            }
+          },
+          "required": [
+            "payload_version",
+            "check_result"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "event_id",
+        "run_id",
+        "seq",
+        "at",
+        "type",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "0.1"
+        },
+        "event_id": {
+          "type": "string",
+          "pattern": "^event_[A-Za-z0-9_-]+$"
+        },
+        "run_id": {
+          "type": "string",
+          "pattern": "^run_[A-Za-z0-9_-]+$"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "at": {
+          "$ref": "common.schema.json#/$defs/UtcTimestamp"
+        },
+        "type": {
+          "const": "artifact.saved"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "payload_version": {
+              "const": "0.1"
+            },
+            "artifact": {
+              "$ref": "artifact.schema.json"
+            }
+          },
+          "required": [
+            "payload_version",
+            "artifact"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "event_id",
+        "run_id",
+        "seq",
+        "at",
+        "type",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "0.1"
+        },
+        "event_id": {
+          "type": "string",
+          "pattern": "^event_[A-Za-z0-9_-]+$"
+        },
+        "run_id": {
+          "type": "string",
+          "pattern": "^run_[A-Za-z0-9_-]+$"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "at": {
+          "$ref": "common.schema.json#/$defs/UtcTimestamp"
+        },
+        "type": {
+          "const": "run.finalized"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "payload_version": {
+              "const": "0.1"
+            },
+            "phase": {
+              "type": "string",
+              "enum": [
+                "COMPLETED",
+                "CANCELED",
+                "ABORTED"
+              ]
+            },
+            "verdict": {
+              "$ref": "common.schema.json#/$defs/Verdict"
+            }
+          },
+          "required": [
+            "payload_version",
+            "phase",
+            "verdict"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "event_id",
+        "run_id",
+        "seq",
+        "at",
+        "type",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "0.1"
+        },
+        "event_id": {
+          "type": "string",
+          "pattern": "^event_[A-Za-z0-9_-]+$"
+        },
+        "run_id": {
+          "type": "string",
+          "pattern": "^run_[A-Za-z0-9_-]+$"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "at": {
+          "$ref": "common.schema.json#/$defs/UtcTimestamp"
+        },
+        "type": {
+          "const": "run.canceled"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "payload_version": {
+              "const": "0.1"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+            }
+          },
+          "required": [
+            "payload_version",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "event_id",
+        "run_id",
+        "seq",
+        "at",
+        "type",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "0.1"
+        },
+        "event_id": {
+          "type": "string",
+          "pattern": "^event_[A-Za-z0-9_-]+$"
+        },
+        "run_id": {
+          "type": "string",
+          "pattern": "^run_[A-Za-z0-9_-]+$"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "at": {
+          "$ref": "common.schema.json#/$defs/UtcTimestamp"
+        },
+        "type": {
+          "const": "run.aborted"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "payload_version": {
+              "const": "0.1"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+            }
+          },
+          "required": [
+            "payload_version",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "event_id",
+        "run_id",
+        "seq",
+        "at",
+        "type",
+        "payload"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

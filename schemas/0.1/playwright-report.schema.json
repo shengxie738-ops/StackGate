@@ -1,0 +1,310 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/playwright-report.schema.json",
+  "title": "PlaywrightReport",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "kind": {
+      "const": "stackgate-playwright"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^run_[A-Za-z0-9_-]+$"
+    },
+    "check_id": {
+      "$ref": "common.schema.json#/$defs/SafeId"
+    },
+    "attempt_id": {
+      "type": "string",
+      "pattern": "^attempt_[A-Za-z0-9_-]+$"
+    },
+    "started_at": {
+      "$ref": "common.schema.json#/$defs/UtcTimestamp"
+    },
+    "ended_at": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/UtcTimestamp"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "completed": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "failed",
+        "timedOut",
+        "skipped",
+        "interrupted"
+      ]
+    },
+    "inventory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "test_id": {
+            "$ref": "common.schema.json#/$defs/SafeId"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+          },
+          "file": {
+            "$ref": "common.schema.json#/$defs/RelativePath"
+          },
+          "line": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "annotations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "description"
+              ],
+              "additionalProperties": false
+            },
+            "uniqueItems": true,
+            "minItems": 0
+          },
+          "only": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "test_id",
+          "title",
+          "file",
+          "line",
+          "annotations",
+          "only"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "attempts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "test_id": {
+            "$ref": "common.schema.json#/$defs/SafeId"
+          },
+          "retry": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "expected_status": {
+            "type": "string",
+            "enum": [
+              "passed",
+              "failed",
+              "timedOut",
+              "skipped",
+              "interrupted"
+            ]
+          },
+          "actual_status": {
+            "type": "string",
+            "enum": [
+              "passed",
+              "failed",
+              "timedOut",
+              "skipped",
+              "interrupted"
+            ]
+          },
+          "duration_ms": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+                },
+                "relative_path": {
+                  "$ref": "common.schema.json#/$defs/RelativePath"
+                },
+                "media_type": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+                },
+                "sensitivity": {
+                  "type": "string",
+                  "enum": [
+                    "regular",
+                    "restricted"
+                  ]
+                }
+              },
+              "required": [
+                "name",
+                "relative_path",
+                "media_type",
+                "sensitivity"
+              ],
+              "additionalProperties": false
+            },
+            "uniqueItems": true,
+            "minItems": 0
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+            },
+            "uniqueItems": true,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "test_id",
+          "retry",
+          "expected_status",
+          "actual_status",
+          "duration_ms",
+          "attachments",
+          "errors"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "requests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "test_id": {
+            "$ref": "common.schema.json#/$defs/SafeId"
+          },
+          "request_id": {
+            "$ref": "common.schema.json#/$defs/SafeId"
+          },
+          "instance_id": {
+            "$ref": "common.schema.json#/$defs/SafeId"
+          },
+          "operation_key": {
+            "$ref": "common.schema.json#/$defs/OperationKey"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "status_code": {
+            "type": "integer",
+            "minimum": 100,
+            "maximum": 599
+          },
+          "backend_observation_ref": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+          }
+        },
+        "required": [
+          "test_id",
+          "request_id",
+          "instance_id",
+          "operation_key",
+          "url",
+          "status_code",
+          "backend_observation_ref"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "console": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "test_id": {
+            "$ref": "common.schema.json#/$defs/SafeId"
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "log",
+              "info",
+              "warning",
+              "error"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "redaction_state": {
+            "type": "string",
+            "enum": [
+              "REDACTED",
+              "NOT_REQUIRED"
+            ]
+          }
+        },
+        "required": [
+          "test_id",
+          "level",
+          "message",
+          "redaction_state"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "run_id",
+    "check_id",
+    "attempt_id",
+    "started_at",
+    "ended_at",
+    "completed",
+    "status",
+    "inventory",
+    "attempts",
+    "requests",
+    "console"
+  ],
+  "additionalProperties": false
+}

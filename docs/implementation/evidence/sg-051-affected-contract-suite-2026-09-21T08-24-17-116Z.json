@@ -1,0 +1,23 @@
+{
+  "task_id": "SG-051",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "aa7f19dd82b79a3a16afbf16f9baef4e19103725",
+    "branch": "V2",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+  },
+  "command": "pnpm test:contract",
+  "argv": [
+    "pnpm",
+    "test:contract"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-21T08:24:17.116Z",
+  "finished_at": "2026-09-21T08:24:28.804Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-051-affected-contract-suite-2026-09-21T08-24-17-116Z.json",
+  "log_path": "docs/implementation/evidence/sg-051-affected-contract-suite-2026-09-21T08-24-17-116Z.log",
+  "signal": null,
+  "duration_ms": 11688
+}

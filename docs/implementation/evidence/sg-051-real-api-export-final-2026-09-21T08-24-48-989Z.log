@@ -1,0 +1,15 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/demo/api.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 4667[2mms[22m[39m
+   [33m[2m✓[22m[39m serves the confirmed performance response from a real API process [33m 1083[2mms[22m[39m
+   [33m[2m✓[22m[39m exports the application contract into the injected attempt directory only [33m 874[2mms[22m[39m
+   [33m[2m✓[22m[39m ignores a stale candidate in the tree and refuses an unusable output target [33m 1102[2mms[22m[39m
+   [33m[2m✓[22m[39m fails as an import error instead of producing a compatible looking contract [33m 787[2mms[22m[39m
+   [33m[2m✓[22m[39m detects a real backend response type change against the confirmed target [33m 818[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m5 passed[39m[22m[90m (5)[39m
+[2m   Start at [22m 16:24:50
+[2m   Duration [22m 5.60s[2m (transform 151ms, setup 0ms, import 649ms, tests 4.67s, environment 0ms)[22m
+

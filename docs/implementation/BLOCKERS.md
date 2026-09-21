@@ -19,6 +19,10 @@ M1 完整 stage 已退出 0（`m1-stage-2026-09-20T03-18-54-891Z.json`），无�
 
 M1-R07 修复验收记录为 `m1-stage-2026-09-20T13-48-44-921Z.json`：591 项测试通过。M2 完整阶段出口 `pnpm verify:stage -- --stage M2` 已实际退出 0，13 项注册检查全为 0，独立覆盖 841 项（清单见 [M2 验收摘要](evidence/M2-summary.md) 与 `m2-stage-2026-09-20T18-52-53-834Z.json`）。阶段出口只认证执行器、证据、Gate、报告与交接；M3 的真实环境来源、浏览器与容器链路仍未验证，不构成全栈 MVP。
 
+M3 进行中（改动提交于 `V2` 分支，未合并 `main` 与 `V1`）：SG-051 已完成，`examples/contract-drift-demo/apps/api` 是真实 FastAPI 服务，可独立启动（uvicorn + 轮询 readiness）、跑自带 pytest 并由 `app.openapi()` 导出候选契约；Python 3.14.3 / FastAPI 0.138.1 / Pydantic 2.13.4 / uvicorn 0.49.0 的真实身份与实测能力已写入 `tools/compatibility-lock.json`。该锁条目记录的是已安装 `dist-info/RECORD` 的摘要，因为 Python 依赖是 pip 用户级安装、仓库内没有 Python 锁文件，复现需要同一解释器与固定版本。
+
+M3 尚未开始且本机当前不可运行的部分：Docker CLI 29.5.2 与 docker compose v5.1.4 存在，但 daemon 未运行（`docker info` 无法连接 `dockerDesktopLinuxEngine`），因此 SG-057/058/059/061 的真实 Compose 启动、动态端口绑定与资源清理无法实测；`@playwright/test` 未安装（本机仅有 ms-playwright 浏览器缓存），SG-053 的真实浏览器运行同样不可实测。两者在锁文件中仍为 `UNKNOWN`。相关任务需保持 BLOCKED/IMPLEMENTED_UNVERIFIED，不得以静态夹具替代，也不得据此声明 M3 能力。Windows CPython 需要命令环境内存在 `APPDATA` 才能看到用户级 site-packages，接入 Run 时必须在命令环境变量白名单中显式登记。
+
 未执行公开发布、远程 push/PR、生产部署或付费模型调用。本轮在 V1 分支创建了本地提交 `dca78d3`（未合并 `main`）；任务账本 `commit` 字段按仓库既有约定保留原值（100 项均为 null），提交身份记录在本文件与 [M2 验收摘要](evidence/M2-summary.md) 中，验证证据的 HEAD 见各记录 `repository` 字段。
 
 SG-037 的 pnpm 临时第三方源码副本 `.stackgate-saxes-patch/` 保留在本地：自动审批拒绝了删除该已核对路径的操作，仅返回 `blocked by policy`。未重试删除或移动。该生成副本与 node_modules 一样排除出自有源码 lint；正式声明修补保存在 `patches/saxes@6.0.0.patch`，由锁文件和 frozen install 验证。所有产品源码和必检仍保留。

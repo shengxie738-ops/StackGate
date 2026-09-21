@@ -268,6 +268,108 @@
       "evidence_refs": [
         "docs/implementation/evidence/sg-037-final-targeted-with-streams-2026-09-20T14-44-01-231Z.json"
       ]
+    },
+    {
+      "name": "python",
+      "version": "3.14.3",
+      "platform": "win32-x64",
+      "source": "F:\\python.exe",
+      "checksum_or_lock_integrity": "sha256:cce21c0e8710e304273e98ac4b2b0f5aceb639acbcd2343cbaa5c4e81619c45b",
+      "identity_basis": "sha256 of the interpreter executable that ran the sample",
+      "tested_capabilities": [
+        "executes the pinned uvicorn server and the export script as real child processes on win32"
+      ],
+      "status": "VERIFIED",
+      "verified_at": "2026-09-21T08:18:21.069Z",
+      "evidence_refs": [
+        "docs/implementation/evidence/sg-051-real-api-export-suite-2026-09-21T08-17-07-654Z.json",
+        "docs/implementation/evidence/sg-051-sample-pytest-suite-2026-09-21T08-17-56-231Z.json"
+      ]
+    },
+    {
+      "name": "fastapi",
+      "version": "0.138.1",
+      "platform": "win32-x64",
+      "source": "examples/contract-drift-demo/apps/api/pyproject.toml pinned; installed in the current user site-packages",
+      "checksum_or_lock_integrity": "sha256:5005a35828d7aeca2661349d4ab204bee0af6d7f812bf7b381dc16591ad1b6ea",
+      "identity_basis": "sha256 of the installed dist-info/RECORD that enumerates every installed file hash",
+      "tested_capabilities": [
+        "real GET /api/performance responses and app.openapi() export whose inline schema matches the confirmed target subset"
+      ],
+      "status": "VERIFIED",
+      "verified_at": "2026-09-21T08:18:21.069Z",
+      "evidence_refs": [
+        "docs/implementation/evidence/sg-051-real-api-export-suite-2026-09-21T08-17-07-654Z.json",
+        "docs/implementation/evidence/sg-051-sample-pytest-suite-2026-09-21T08-17-56-231Z.json"
+      ]
+    },
+    {
+      "name": "pydantic",
+      "version": "2.13.4",
+      "platform": "win32-x64",
+      "source": "examples/contract-drift-demo/apps/api/pyproject.toml pinned; installed in the current user site-packages",
+      "checksum_or_lock_integrity": "sha256:e46fee0f1a9bf3a1f51025f99171430ba81658189d4cf67f5c5c9499be97c682",
+      "identity_basis": "sha256 of the installed dist-info/RECORD that enumerates every installed file hash",
+      "tested_capabilities": [
+        "extra=forbid models exporting additionalProperties:false and required chains inside the tested subset"
+      ],
+      "status": "VERIFIED",
+      "verified_at": "2026-09-21T08:18:21.069Z",
+      "evidence_refs": [
+        "docs/implementation/evidence/sg-051-real-api-export-suite-2026-09-21T08-17-07-654Z.json",
+        "docs/implementation/evidence/sg-051-sample-pytest-suite-2026-09-21T08-17-56-231Z.json"
+      ]
+    },
+    {
+      "name": "uvicorn",
+      "version": "0.49.0",
+      "platform": "win32-x64",
+      "source": "examples/contract-drift-demo/apps/api/pyproject.toml pinned; installed in the current user site-packages",
+      "checksum_or_lock_integrity": "sha256:6046c18d3ffa7bd4f10b439c330e52c4534b19461b682a77f6723d2baa7a3d74",
+      "identity_basis": "sha256 of the installed dist-info/RECORD that enumerates every installed file hash",
+      "tested_capabilities": [
+        "serves the sample on an explicitly chosen loopback port with polled readiness"
+      ],
+      "status": "VERIFIED",
+      "verified_at": "2026-09-21T08:18:21.069Z",
+      "evidence_refs": [
+        "docs/implementation/evidence/sg-051-real-api-export-suite-2026-09-21T08-17-07-654Z.json",
+        "docs/implementation/evidence/sg-051-sample-pytest-suite-2026-09-21T08-17-56-231Z.json"
+      ]
+    },
+    {
+      "name": "httpx",
+      "version": "0.28.1",
+      "platform": "win32-x64",
+      "source": "examples/contract-drift-demo/apps/api/pyproject.toml pinned; installed in the current user site-packages",
+      "checksum_or_lock_integrity": "sha256:8584aac3370db18fcea6c548802c0618e020a9c66918b570ca4ef8a7b5288d5e",
+      "identity_basis": "sha256 of the installed dist-info/RECORD that enumerates every installed file hash",
+      "tested_capabilities": [
+        "supports fastapi.testclient used by the sample tests"
+      ],
+      "status": "VERIFIED",
+      "verified_at": "2026-09-21T08:18:21.069Z",
+      "evidence_refs": [
+        "docs/implementation/evidence/sg-051-real-api-export-suite-2026-09-21T08-17-07-654Z.json",
+        "docs/implementation/evidence/sg-051-sample-pytest-suite-2026-09-21T08-17-56-231Z.json"
+      ]
+    },
+    {
+      "name": "pytest",
+      "version": "8.4.2",
+      "platform": "win32-x64",
+      "source": "examples/contract-drift-demo/apps/api/pyproject.toml pinned; installed in the current user site-packages",
+      "checksum_or_lock_integrity": "sha256:ee20b96210a6f11a662c8ae5bbfc61a234ab6ebba420486dc7ecc71f69730d5f",
+      "identity_basis": "sha256 of the installed dist-info/RECORD that enumerates every installed file hash",
+      "tested_capabilities": [
+        "runs the sample test suite with -p no:cacheprovider and pythonpath from pyproject.toml"
+      ],
+      "status": "VERIFIED",
+      "verified_at": "2026-09-21T08:18:21.069Z",
+      "evidence_refs": [
+        "docs/implementation/evidence/sg-051-real-api-export-suite-2026-09-21T08-17-07-654Z.json",
+        "docs/implementation/evidence/sg-051-sample-pytest-suite-2026-09-21T08-17-56-231Z.json"
+      ]
     }
   ],
   "platform_matrix": [
@@ -287,6 +389,7 @@
   "limitations": [
     "Playwright/Compose integration capabilities remain UNKNOWN; oasdiff has only the explicit SG-020 Windows subset VERIFIED",
     "Ajv nested dynamic anchors unsupported: official OpenAPI document meta-schema uses a local static binding only in fixture checks; arbitrary response dynamic refs are NOT validated as supported",
-    "Windows local runner has task-level evidence; full M2 stage remains pending. Real browser, packaging, host loading, release and production deployment remain unverified."
+    "Windows local runner has task-level evidence; full M2 stage remains pending. Real browser, packaging, host loading, release and production deployment remain unverified.",
+    "Python stack identity is a pip install into the current user site-packages, not a repository lockfile: the recorded digest is the installed dist-info/RECORD, so reproducing it requires the same interpreter and pinned versions. Windows CPython needs APPDATA in a command environment to see that install, which the demo command declarations must allow."
   ]
 }

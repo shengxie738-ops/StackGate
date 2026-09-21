@@ -16903,12 +16903,170 @@
         "SG-038",
         "SG-050"
       ],
-      "status": "READY",
-      "actual_files": [],
-      "verification": [],
+      "status": "DONE",
+      "actual_files": [
+        "examples/contract-drift-demo/apps/api/app/main.py",
+        "examples/contract-drift-demo/apps/api/app/models.py",
+        "examples/contract-drift-demo/apps/api/app/__init__.py",
+        "examples/contract-drift-demo/apps/api/scripts/export_openapi.py",
+        "examples/contract-drift-demo/apps/api/tests/test_performance.py",
+        "examples/contract-drift-demo/apps/api/pyproject.toml",
+        "examples/contract-drift-demo/README.md",
+        "tests/integration/demo/api.test.ts",
+        "tools/compatibility-lock.json"
+      ],
+      "verification": [
+        {
+          "task_id": "SG-051",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "aa7f19dd82b79a3a16afbf16f9baef4e19103725",
+            "branch": "V2",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/demo/api.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/demo/api.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T08:17:07.654Z",
+          "finished_at": "2026-09-21T08:17:16.258Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-051-real-api-export-suite-2026-09-21T08-17-07-654Z.json",
+          "log_path": "docs/implementation/evidence/sg-051-real-api-export-suite-2026-09-21T08-17-07-654Z.log",
+          "signal": null,
+          "duration_ms": 8604
+        },
+        {
+          "task_id": "SG-051",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "aa7f19dd82b79a3a16afbf16f9baef4e19103725",
+            "branch": "V2",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "python -B -E -c \"import os,sys,pytest;os.chdir('examples/contract-drift-demo/apps/api');sys.argv=['pytest','-q'];sys.exit(pytest.main())\"",
+          "argv": [
+            "python",
+            "-B",
+            "-E",
+            "-c",
+            "import os,sys,pytest;os.chdir('examples/contract-drift-demo/apps/api');sys.argv=['pytest','-q'];sys.exit(pytest.main())"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T08:17:56.231Z",
+          "finished_at": "2026-09-21T08:17:59.532Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-051-sample-pytest-suite-2026-09-21T08-17-56-231Z.json",
+          "log_path": "docs/implementation/evidence/sg-051-sample-pytest-suite-2026-09-21T08-17-56-231Z.log",
+          "signal": null,
+          "duration_ms": 3301
+        },
+        {
+          "task_id": "SG-051",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "aa7f19dd82b79a3a16afbf16f9baef4e19103725",
+            "branch": "V2",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm lint",
+          "argv": [
+            "pnpm",
+            "lint"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T08:23:40.394Z",
+          "finished_at": "2026-09-21T08:23:45.400Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-051-lint-statics-green-2026-09-21T08-23-40-394Z.json",
+          "log_path": "docs/implementation/evidence/sg-051-lint-statics-green-2026-09-21T08-23-40-394Z.log",
+          "signal": null,
+          "duration_ms": 5006
+        },
+        {
+          "task_id": "SG-051",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "aa7f19dd82b79a3a16afbf16f9baef4e19103725",
+            "branch": "V2",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm test:unit",
+          "argv": [
+            "pnpm",
+            "test:unit"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T08:23:45.555Z",
+          "finished_at": "2026-09-21T08:24:16.973Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-051-affected-unit-contract-2026-09-21T08-23-45-555Z.json",
+          "log_path": "docs/implementation/evidence/sg-051-affected-unit-contract-2026-09-21T08-23-45-555Z.log",
+          "signal": null,
+          "duration_ms": 31418
+        },
+        {
+          "task_id": "SG-051",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "aa7f19dd82b79a3a16afbf16f9baef4e19103725",
+            "branch": "V2",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm test:contract",
+          "argv": [
+            "pnpm",
+            "test:contract"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T08:24:17.116Z",
+          "finished_at": "2026-09-21T08:24:28.804Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-051-affected-contract-suite-2026-09-21T08-24-17-116Z.json",
+          "log_path": "docs/implementation/evidence/sg-051-affected-contract-suite-2026-09-21T08-24-17-116Z.log",
+          "signal": null,
+          "duration_ms": 11688
+        },
+        {
+          "task_id": "SG-051",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "aa7f19dd82b79a3a16afbf16f9baef4e19103725",
+            "branch": "V2",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/demo/api.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/demo/api.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T08:24:48.989Z",
+          "finished_at": "2026-09-21T08:24:56.055Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-051-real-api-export-final-2026-09-21T08-24-48-989Z.json",
+          "log_path": "docs/implementation/evidence/sg-051-real-api-export-final-2026-09-21T08-24-48-989Z.log",
+          "signal": null,
+          "duration_ms": 7066
+        }
+      ],
       "commit": null,
       "blockers": [],
-      "next_action": "实施 SG-051"
+      "next_action": "SG-052 React 前端与 SG-054 HTTP probe 已解锁；浏览器与 Compose 仍未验证"
     },
     {
       "task_id": "SG-052",
@@ -16918,7 +17076,7 @@
         "SG-009",
         "SG-051"
       ],
-      "status": "NOT_STARTED",
+      "status": "READY",
       "actual_files": [],
       "verification": [],
       "commit": null,
@@ -16953,7 +17111,7 @@
         "SG-038",
         "SG-051"
       ],
-      "status": "NOT_STARTED",
+      "status": "READY",
       "actual_files": [],
       "verification": [],
       "commit": null,

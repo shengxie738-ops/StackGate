@@ -1,0 +1,24 @@
+{
+  "task_id": "SG-001",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "aa7f19dd82b79a3a16afbf16f9baef4e19103725",
+    "branch": "V2",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+  },
+  "command": "node -e process.exit(7)",
+  "argv": [
+    "node",
+    "-e",
+    "process.exit(7)"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-21T08:24:16.361Z",
+  "finished_at": "2026-09-21T08:24:16.683Z",
+  "exit_code": 7,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-001-review-runner-child-2026-09-21T08-24-16-361Z.json",
+  "log_path": "docs/implementation/evidence/sg-001-review-runner-child-2026-09-21T08-24-16-361Z.log",
+  "signal": null,
+  "duration_ms": 322
+}

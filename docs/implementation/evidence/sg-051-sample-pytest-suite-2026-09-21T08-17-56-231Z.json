@@ -1,0 +1,26 @@
+{
+  "task_id": "SG-051",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "aa7f19dd82b79a3a16afbf16f9baef4e19103725",
+    "branch": "V2",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+  },
+  "command": "python -B -E -c \"import os,sys,pytest;os.chdir('examples/contract-drift-demo/apps/api');sys.argv=['pytest','-q'];sys.exit(pytest.main())\"",
+  "argv": [
+    "python",
+    "-B",
+    "-E",
+    "-c",
+    "import os,sys,pytest;os.chdir('examples/contract-drift-demo/apps/api');sys.argv=['pytest','-q'];sys.exit(pytest.main())"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-21T08:17:56.231Z",
+  "finished_at": "2026-09-21T08:17:59.532Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-051-sample-pytest-suite-2026-09-21T08-17-56-231Z.json",
+  "log_path": "docs/implementation/evidence/sg-051-sample-pytest-suite-2026-09-21T08-17-56-231Z.log",
+  "signal": null,
+  "duration_ms": 3301
+}

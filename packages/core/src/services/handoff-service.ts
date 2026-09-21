@@ -1,5 +1,9 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
 import {validateSchema,type HandoffBundle} from '../../../contracts/src/index.js';
 import {GateService,type GateInspection} from './gate-service.js';
+import {ServiceError} from './service-error.js';
+import {parseStrictDocument} from './strict-document.js';
 import {canonicalJson} from '../storage/canonical-json.js';
 import {hashBytes} from '../storage/hash.js';
 import {safeRelativePath,safeText} from '../../../reporters/src/report-view.js';
@@ -22,10 +26,24 @@ export function buildHandoff(inspection:GateInspection,target:Target):HandoffBun
 }
 export interface HandoffCurrent {repo_id:string;worktree_id:string;task_id:string;task_revision:number;input_hash:string}
 export interface HandoffValidity {valid_for_current_inputs:boolean;freshness:'FRESH'|'STALE';task_revision_matches:boolean;reasons:string[]}
+/** Handoff files are content addressed, so the identity also names the derived artifact. */
+export const handoffRelativePaths=(bundle:HandoffBundle):{json:string;markdown:string}=>({json:`handoffs/${bundle.handoff_id}.json`,markdown:`handoffs/${bundle.handoff_id}.md`});
+const structureError=(message:string)=>new ServiceError(3,[{code:'REPORT_INVALID',rule_id:'SG-EVIDENCE-INTEGRITY',message,location:'',observed_facts:{},recommended_action:'Regenerate the handoff from a verified sealed run instead of editing historical facts.',source:'handoff-service'}]);
+/** A received bundle is external input: bounded, non-linking, and structurally validated before any identity comparison. */
+export async function readHandoffFile(file:string):Promise<HandoffBundle>{
+ const limit=65536,target=path.resolve(file);let observed;
+ try{observed=await fs.lstat(target);}catch{throw structureError('Handoff file is unavailable');}
+ if(!observed.isFile()||observed.isSymbolicLink()||observed.nlink!==1||observed.size>limit)throw structureError('Handoff must be a small ordinary unlinked file');
+ const bytes=await fs.readFile(target);if(bytes.length!==observed.size)throw structureError('Handoff file changed while reading');
+ const checked=validateSchema<HandoffBundle>('handoff',parseStrictDocument(bytes,'handoff',{maxBytes:limit}));
+ if(!checked.ok)throw structureError('Handoff bundle failed strict schema validation');
+ return checked.value;
+}
 export function validateHandoff(value:unknown,current:HandoffCurrent):HandoffValidity{
- const checked=validateSchema<HandoffBundle>('handoff',value);if(!checked.ok)throw Error('Handoff schema is invalid');const bundle=checked.value;
- if(Buffer.byteLength(JSON.stringify(bundle))>bundle.budget_bytes||digest(payload(bundle))!==bundle.facts_digest||bundle.handoff_id!=='handoff_'+bundle.facts_digest||bundle.entry!==entries[bundle.target])throw Error('Handoff integrity or wrapper is invalid');
+ const checked=validateSchema<HandoffBundle>('handoff',value);if(!checked.ok)throw structureError('Handoff bundle failed strict schema validation');const bundle=checked.value;
+ if(Buffer.byteLength(JSON.stringify(bundle))>bundle.budget_bytes||digest(payload(bundle))!==bundle.facts_digest||bundle.handoff_id!=='handoff_'+bundle.facts_digest||bundle.entry!==entries[bundle.target])throw structureError('Handoff digest, identity or target wrapper is invalid');
  const keys=['repo_id','worktree_id','task_id','task_revision','input_hash'] as const,reasons=keys.filter(key=>bundle.facts[key]!==current[key]).map(key=>key.toUpperCase()+'_MISMATCH');
  return {valid_for_current_inputs:reasons.length===0,freshness:reasons.length?'STALE':'FRESH',task_revision_matches:bundle.facts.task_revision===current.task_revision,reasons};
 }
-export class HandoffService {constructor(readonly root:string,readonly options:{trustStoreRoot?:string}={}){}async prepareHandoff(run_id:string,target:Target):Promise<HandoffBundle>{return buildHandoff(await new GateService(this.root,this.options).inspect(run_id),target);}}
+export class HandoffService {constructor(readonly root:string,readonly options:{trustStoreRoot?:string}={}){}async prepareHandoff(run_id:string,target:Target):Promise<HandoffBundle>{return buildHandoff(await new GateService(this.root,this.options).inspect(run_id),target);}
+ async publishHandoff(run_id:string,target:Target):Promise<{bundle:HandoffBundle;state_root:string}>{const inspection=await new GateService(this.root,this.options).inspect(run_id);return {bundle:buildHandoff(inspection,target),state_root:inspection.state_root};}}

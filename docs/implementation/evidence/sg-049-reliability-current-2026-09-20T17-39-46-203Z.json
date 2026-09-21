@@ -1,0 +1,28 @@
+{
+  "task_id": "SG-049",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+    "branch": "V1",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+  },
+  "command": "pnpm exec vitest run tests/integration/run/crash.test.ts tests/integration/run/concurrent-runs.test.ts tests/integration/run/finalization-race.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/run/crash.test.ts",
+    "tests/integration/run/concurrent-runs.test.ts",
+    "tests/integration/run/finalization-race.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T17:39:46.203Z",
+  "finished_at": "2026-09-20T17:43:47.684Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-049-reliability-current-2026-09-20T17-39-46-203Z.json",
+  "log_path": "docs/implementation/evidence/sg-049-reliability-current-2026-09-20T17-39-46-203Z.log",
+  "signal": null,
+  "duration_ms": 241481
+}

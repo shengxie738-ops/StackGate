@@ -30,6 +30,12 @@ export function validateStageManifest(manifest,requestedStage=manifest?.stage) {
   if(manifest.stage==='M2'&&!manifest.required_tools?.includes('saxes'))errors.push('Missing mandatory tool: saxes');
   return errors;
 }
+/** Execution is claimed only when the registered real-execution checks were actually observed passing. */
+export function stageRuntime(stage,result) {
+  if(stage!=='M2') return 'NOT_EXECUTED';
+  const ran=['integration','m2-runner','m2-evidence','m2-gate'];
+  return ran.every(id=>result.checks?.some(check=>check.id===id&&check.exit_code===0))?'EXECUTED':'NOT_EXECUTED';
+}
 export function validateToolRequirements(manifest,lock) {
   const errors=[];
   for(const name of manifest.required_tools??[]) {
@@ -77,7 +83,7 @@ async function main(argv) {
   const stamp=new Date().toISOString().replace(/[:.]/g,'-');
   const path='docs/implementation/evidence/'+stage.toLowerCase()+'-stage-'+stamp+'.json';
   await mkdir('docs/implementation/evidence',{recursive:true});
-  await writeFile(path,JSON.stringify({schema_version:'0.1',stage,platform:process.platform+'-'+process.arch,runtime:stage==='M2'?'EXECUTED':'NOT_EXECUTED',...result},null,2)+'\n');
+  await writeFile(path,JSON.stringify({schema_version:'0.1',stage,platform:process.platform+'-'+process.arch,runtime:stageRuntime(stage,result),...result},null,2)+'\n');
   console.log(stage+' stage exit='+result.exit_code+'; child command evidence: '+path);
   return result.exit_code;
 }

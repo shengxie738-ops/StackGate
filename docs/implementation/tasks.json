@@ -13060,9 +13060,15 @@
         "SG-031",
         "SG-039"
       ],
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "actual_files": [
-        "packages/core/src/services/gate-service.ts"
+        "packages/core/src/services/gate-service.ts",
+        "packages/core/src/services/command-provenance.ts",
+        "packages/core/src/services/run-evaluation.ts",
+        "packages/core/src/domain/evaluate-gate.ts",
+        "tests/integration/gate/current-state.test.ts",
+        "tests/unit/gate/command-provenance.test.ts",
+        "tests/unit/gate/plan-binding.test.ts"
       ],
       "verification": [
         {
@@ -13225,6 +13231,34 @@
             "branch": "V1",
             "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
           },
+          "command": "pnpm exec vitest run tests/integration/gate/current-state.test.ts -t \"failed evidence|local CI\"",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/gate/current-state.test.ts",
+            "-t",
+            "failed evidence|local CI"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:11:54.485Z",
+          "finished_at": "2026-09-20T15:15:11.365Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-tool-and-provenance-2026-09-20T15-11-54-485Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-tool-and-provenance-2026-09-20T15-11-54-485Z.log",
+          "signal": null,
+          "duration_ms": 196880
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
           "command": "pnpm typecheck",
           "argv": [
             "pnpm",
@@ -13239,11 +13273,664 @@
           "log_path": "docs/implementation/evidence/sg-040-typecheck-binding-2026-09-20T15-12-04-750Z.log",
           "signal": null,
           "duration_ms": 5714
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/gate/current-state.test.ts -t \"stores a missing\"",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/gate/current-state.test.ts",
+            "-t",
+            "stores a missing"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:13:47.708Z",
+          "finished_at": "2026-09-20T15:13:53.017Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-040-red-missing-evaluation-2026-09-20T15-13-47-708Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-red-missing-evaluation-2026-09-20T15-13-47-708Z.log",
+          "signal": null,
+          "duration_ms": 5309
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/gate/current-state.test.ts -t \"stores a missing\"",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/gate/current-state.test.ts",
+            "-t",
+            "stores a missing"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:14:12.128Z",
+          "finished_at": "2026-09-20T15:14:17.675Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-green-missing-evaluation-2026-09-20T15-14-12-128Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-green-missing-evaluation-2026-09-20T15-14-12-128Z.log",
+          "signal": null,
+          "duration_ms": 5547
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm lint",
+          "argv": [
+            "pnpm",
+            "lint"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:15:19.922Z",
+          "finished_at": "2026-09-20T15:15:24.400Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-lint-current-2026-09-20T15-15-19-922Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-lint-current-2026-09-20T15-15-19-922Z.log",
+          "signal": null,
+          "duration_ms": 4478
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm verify:boundaries",
+          "argv": [
+            "pnpm",
+            "verify:boundaries"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:15:25.076Z",
+          "finished_at": "2026-09-20T15:15:26.766Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-boundaries-current-2026-09-20T15-15-25-076Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-boundaries-current-2026-09-20T15-15-25-076Z.log",
+          "signal": null,
+          "duration_ms": 1690
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm verify:schemas",
+          "argv": [
+            "pnpm",
+            "verify:schemas"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:15:27.429Z",
+          "finished_at": "2026-09-20T15:15:29.328Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-schemas-current-2026-09-20T15-15-27-429Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-schemas-current-2026-09-20T15-15-27-429Z.log",
+          "signal": null,
+          "duration_ms": 1899
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/gate/current-state.test.ts tests/unit/gate/plan-binding.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/gate/current-state.test.ts",
+            "tests/unit/gate/plan-binding.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:15:48.317Z",
+          "finished_at": "2026-09-20T15:22:59.881Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-final-required-2026-09-20T15-15-48-317Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-final-required-2026-09-20T15-15-48-317Z.log",
+          "signal": null,
+          "duration_ms": 431564
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:15:58.513Z",
+          "finished_at": "2026-09-20T15:16:03.692Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-typecheck-final-2026-09-20T15-15-58-513Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-typecheck-final-2026-09-20T15-15-58-513Z.log",
+          "signal": null,
+          "duration_ms": 5179
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:16:04.399Z",
+          "finished_at": "2026-09-20T15:16:09.467Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-build-final-2026-09-20T15-16-04-399Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-build-final-2026-09-20T15-16-04-399Z.log",
+          "signal": null,
+          "duration_ms": 5068
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/gate/current-state.test.ts -t \"missing run|stores a missing\"",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/gate/current-state.test.ts",
+            "-t",
+            "missing run|stores a missing"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:17:20.770Z",
+          "finished_at": "2026-09-20T15:17:27.162Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-pure-missing-gate-2026-09-20T15-17-20-770Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-pure-missing-gate-2026-09-20T15-17-20-770Z.log",
+          "signal": null,
+          "duration_ms": 6392
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/gate/current-state.test.ts -t \"lifecycle prefixes\"",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/gate/current-state.test.ts",
+            "-t",
+            "lifecycle prefixes"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:23:10.276Z",
+          "finished_at": "2026-09-20T15:23:20.691Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-040-red-aborted-prefix-2026-09-20T15-23-10-276Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-red-aborted-prefix-2026-09-20T15-23-10-276Z.log",
+          "signal": null,
+          "duration_ms": 10415
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/gate/current-state.test.ts -t \"missing run|stores a missing|lifecycle prefixes\"",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/gate/current-state.test.ts",
+            "-t",
+            "missing run|stores a missing|lifecycle prefixes"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:23:56.621Z",
+          "finished_at": "2026-09-20T15:24:09.513Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-green-aborted-prefix-2026-09-20T15-23-56-621Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-green-aborted-prefix-2026-09-20T15-23-56-621Z.log",
+          "signal": null,
+          "duration_ms": 12892
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:24:06.836Z",
+          "finished_at": "2026-09-20T15:24:13.747Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-typecheck-complete-2026-09-20T15-24-06-836Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-typecheck-complete-2026-09-20T15-24-06-836Z.log",
+          "signal": null,
+          "duration_ms": 6911
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm lint",
+          "argv": [
+            "pnpm",
+            "lint"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:24:14.706Z",
+          "finished_at": "2026-09-20T15:24:20.586Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-lint-complete-2026-09-20T15-24-14-706Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-lint-complete-2026-09-20T15-24-14-706Z.log",
+          "signal": null,
+          "duration_ms": 5880
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:24:21.263Z",
+          "finished_at": "2026-09-20T15:24:26.876Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-build-complete-2026-09-20T15-24-21-263Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-build-complete-2026-09-20T15-24-21-263Z.log",
+          "signal": null,
+          "duration_ms": 5613
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/gate/command-provenance.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/gate/command-provenance.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:30:09.635Z",
+          "finished_at": "2026-09-20T15:30:11.884Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-040-red-command-provenance-2026-09-20T15-30-09-635Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-red-command-provenance-2026-09-20T15-30-09-635Z.log",
+          "signal": null,
+          "duration_ms": 2249
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/gate/command-provenance.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/gate/command-provenance.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:30:23.844Z",
+          "finished_at": "2026-09-20T15:30:26.144Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-040-red-observed-provenance-2026-09-20T15-30-23-844Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-red-observed-provenance-2026-09-20T15-30-23-844Z.log",
+          "signal": null,
+          "duration_ms": 2300
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/gate/command-provenance.test.ts tests/unit/gate/plan-binding.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/gate/command-provenance.test.ts",
+            "tests/unit/gate/plan-binding.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:31:00.057Z",
+          "finished_at": "2026-09-20T15:31:05.640Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-green-observed-provenance-2026-09-20T15-31-00-057Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-green-observed-provenance-2026-09-20T15-31-00-057Z.log",
+          "signal": null,
+          "duration_ms": 5583
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:31:11.933Z",
+          "finished_at": "2026-09-20T15:31:18.214Z",
+          "exit_code": 2,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-040-provenance-typecheck-2026-09-20T15-31-11-933Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-provenance-typecheck-2026-09-20T15-31-11-933Z.log",
+          "signal": null,
+          "duration_ms": 6281
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/gate/current-state.test.ts -t \"authenticates a real|keeps real failed\"",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/gate/current-state.test.ts",
+            "-t",
+            "authenticates a real|keeps real failed"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:31:26.051Z",
+          "finished_at": "2026-09-20T15:36:36.709Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-provenance-real-current-2026-09-20T15-31-26-051Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-provenance-real-current-2026-09-20T15-31-26-051Z.log",
+          "signal": null,
+          "duration_ms": 310658
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/gate/command-provenance.test.ts tests/unit/gate/plan-binding.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/gate/command-provenance.test.ts",
+            "tests/unit/gate/plan-binding.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:32:07.513Z",
+          "finished_at": "2026-09-20T15:32:13.036Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-strict-fact-provenance-2026-09-20T15-32-07-513Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-strict-fact-provenance-2026-09-20T15-32-07-513Z.log",
+          "signal": null,
+          "duration_ms": 5523
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:32:14.003Z",
+          "finished_at": "2026-09-20T15:32:21.057Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-provenance-typecheck-final-2026-09-20T15-32-14-003Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-provenance-typecheck-final-2026-09-20T15-32-14-003Z.log",
+          "signal": null,
+          "duration_ms": 7054
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm lint",
+          "argv": [
+            "pnpm",
+            "lint"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:32:21.850Z",
+          "finished_at": "2026-09-20T15:32:28.591Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-provenance-lint-final-2026-09-20T15-32-21-850Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-provenance-lint-final-2026-09-20T15-32-21-850Z.log",
+          "signal": null,
+          "duration_ms": 6741
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/gate/current-state.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/gate/current-state.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T17:03:52.285Z",
+          "finished_at": "2026-09-20T17:12:01.856Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-gate-full-file-post-provenance-2026-09-20T17-03-52-285Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-gate-full-file-post-provenance-2026-09-20T17-03-52-285Z.log",
+          "signal": null,
+          "duration_ms": 489571
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/gate/command-provenance.test.ts tests/unit/gate/plan-binding.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/gate/command-provenance.test.ts",
+            "tests/unit/gate/plan-binding.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T17:12:01.985Z",
+          "finished_at": "2026-09-20T17:12:06.400Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-provenance-unit-post-change-2026-09-20T17-12-01-985Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-provenance-unit-post-change-2026-09-20T17-12-01-985Z.log",
+          "signal": null,
+          "duration_ms": 4415
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T17:27:36.724Z",
+          "finished_at": "2026-09-20T17:27:41.842Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-statics-post-change-2026-09-20T17-27-36-724Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-statics-post-change-2026-09-20T17-27-36-724Z.log",
+          "signal": null,
+          "duration_ms": 5118
+        },
+        {
+          "task_id": "SG-040",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm lint",
+          "argv": [
+            "pnpm",
+            "lint"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T17:27:42.039Z",
+          "finished_at": "2026-09-20T17:27:47.075Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-040-lint-post-change-2026-09-20T17-27-42-039Z.json",
+          "log_path": "docs/implementation/evidence/sg-040-lint-post-change-2026-09-20T17-27-42-039Z.log",
+          "signal": null,
+          "duration_ms": 5036
         }
       ],
       "commit": null,
       "blockers": [],
-      "next_action": "认证封存 Run 并重新核验当前状态；等待真实 Gate 回归"
+      "next_action": "SG-041/042 报告已认证；等待 CLI 与交接依赖收口"
     },
     {
       "task_id": "SG-041",
@@ -13254,11 +13941,13 @@
         "SG-031",
         "SG-040"
       ],
-      "status": "IMPLEMENTED_UNVERIFIED",
+      "status": "DONE",
       "actual_files": [
         "packages/reporters/src/report-view.ts",
         "packages/reporters/src/json.ts",
-        "packages/reporters/src/terminal.ts"
+        "packages/reporters/src/terminal.ts",
+        "tests/unit/reports/json.test.ts",
+        "tests/unit/reports/terminal.test.ts"
       ],
       "verification": [
         {
@@ -13364,11 +14053,116 @@
           "log_path": "docs/implementation/evidence/sg-041-report-boundaries-2026-09-20T15-08-13-247Z.log",
           "signal": null,
           "duration_ms": 2440
+        },
+        {
+          "task_id": "SG-041",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:14:32.789Z",
+          "finished_at": "2026-09-20T15:14:38.646Z",
+          "exit_code": 2,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-041-final-report-typecheck-2026-09-20T15-14-32-789Z.json",
+          "log_path": "docs/implementation/evidence/sg-041-final-report-typecheck-2026-09-20T15-14-32-789Z.log",
+          "signal": null,
+          "duration_ms": 5857
+        },
+        {
+          "task_id": "SG-041",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/reports/json.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/reports/json.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:24:10.930Z",
+          "finished_at": "2026-09-20T15:24:14.001Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-041-red-incomplete-prefix-report-2026-09-20T15-24-10-930Z.json",
+          "log_path": "docs/implementation/evidence/sg-041-red-incomplete-prefix-report-2026-09-20T15-24-10-930Z.log",
+          "signal": null,
+          "duration_ms": 3071
+        },
+        {
+          "task_id": "SG-041",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/reports/json.test.ts tests/unit/reports/terminal.test.ts tests/unit/reports/markdown.test.ts tests/unit/reports/junit-output.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/reports/json.test.ts",
+            "tests/unit/reports/terminal.test.ts",
+            "tests/unit/reports/markdown.test.ts",
+            "tests/unit/reports/junit-output.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:25:46.957Z",
+          "finished_at": "2026-09-20T15:25:49.881Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-041-green-incomplete-prefix-report-2026-09-20T15-25-46-957Z.json",
+          "log_path": "docs/implementation/evidence/sg-041-green-incomplete-prefix-report-2026-09-20T15-25-46-957Z.log",
+          "signal": null,
+          "duration_ms": 2924
+        },
+        {
+          "task_id": "SG-041",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/reports/json.test.ts tests/unit/reports/terminal.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/reports/json.test.ts",
+            "tests/unit/reports/terminal.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T17:24:12.458Z",
+          "finished_at": "2026-09-20T17:24:14.685Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-041-reports-json-terminal-2026-09-20T17-24-12-458Z.json",
+          "log_path": "docs/implementation/evidence/sg-041-reports-json-terminal-2026-09-20T17-24-12-458Z.log",
+          "signal": null,
+          "duration_ms": 2227
         }
       ],
       "commit": null,
       "blockers": [],
-      "next_action": "独立报告测试已通过；等待 SG-039/040 集成验收"
+      "next_action": "SG-042 Markdown/JUnit 与四渲染器一致性已认证"
     },
     {
       "task_id": "SG-042",
@@ -13377,10 +14171,14 @@
       "dependencies": [
         "SG-041"
       ],
-      "status": "IMPLEMENTED_UNVERIFIED",
+      "status": "DONE",
       "actual_files": [
         "packages/reporters/src/markdown.ts",
-        "packages/reporters/src/junit-output.ts"
+        "packages/reporters/src/junit-output.ts",
+        "tests/unit/reports/markdown.test.ts",
+        "tests/unit/reports/junit-output.test.ts",
+        "tests/unit/reports/consistency.test.ts",
+        "docs/diagnostics/check-classification.md"
       ],
       "verification": [
         {
@@ -13436,11 +14234,39 @@
           "log_path": "docs/implementation/evidence/sg-042-green-markdown-junit-2026-09-20T15-08-08-796Z.log",
           "signal": null,
           "duration_ms": 3536
+        },
+        {
+          "task_id": "SG-042",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/reports/markdown.test.ts tests/unit/reports/junit-output.test.ts tests/unit/reports/consistency.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/reports/markdown.test.ts",
+            "tests/unit/reports/junit-output.test.ts",
+            "tests/unit/reports/consistency.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T17:24:14.870Z",
+          "finished_at": "2026-09-20T17:24:17.642Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-042-markdown-junit-consistency-2026-09-20T17-24-14-870Z.json",
+          "log_path": "docs/implementation/evidence/sg-042-markdown-junit-consistency-2026-09-20T17-24-14-870Z.log",
+          "signal": null,
+          "duration_ms": 2772
         }
       ],
       "commit": null,
       "blockers": [],
-      "next_action": "Markdown/JUnit 测试已通过；等待报告与 Gate 集成验收"
+      "next_action": "报告层完成；等待 CLI 与阶段出口"
     },
     {
       "task_id": "SG-043",
@@ -13453,9 +14279,13 @@
         "SG-041",
         "SG-042"
       ],
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "actual_files": [
-        "packages/core/src/services/handoff-service.ts"
+        "packages/core/src/services/handoff-service.ts",
+        "packages/reporters/src/handoff.ts",
+        "schemas/0.1/handoff.schema.json",
+        "tests/integration/handoff.test.ts",
+        "tests/integration/storage/completion.test.ts"
       ],
       "verification": [
         {
@@ -13508,11 +14338,293 @@
           "log_path": "docs/implementation/evidence/sg-043-generate-handoff-schema-2026-09-20T15-12-03-524Z.log",
           "signal": null,
           "duration_ms": 1641
+        },
+        {
+          "task_id": "SG-043",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/handoff.test.ts -t \"changes target|truncates optional\"",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/handoff.test.ts",
+            "-t",
+            "changes target|truncates optional"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:13:42.918Z",
+          "finished_at": "2026-09-20T15:13:48.110Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-043-green-handoff-contract-2026-09-20T15-13-42-918Z.json",
+          "log_path": "docs/implementation/evidence/sg-043-green-handoff-contract-2026-09-20T15-13-42-918Z.log",
+          "signal": null,
+          "duration_ms": 5192
+        },
+        {
+          "task_id": "SG-043",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/handoff.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/handoff.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:14:12.080Z",
+          "finished_at": "2026-09-20T15:15:44.568Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-043-real-sealed-handoff-2026-09-20T15-14-12-080Z.json",
+          "log_path": "docs/implementation/evidence/sg-043-real-sealed-handoff-2026-09-20T15-14-12-080Z.log",
+          "signal": null,
+          "duration_ms": 92488
+        },
+        {
+          "task_id": "SG-043",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:14:22.232Z",
+          "finished_at": "2026-09-20T15:14:27.882Z",
+          "exit_code": 2,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-043-typecheck-2026-09-20T15-14-22-232Z.json",
+          "log_path": "docs/implementation/evidence/sg-043-typecheck-2026-09-20T15-14-22-232Z.log",
+          "signal": null,
+          "duration_ms": 5650
+        },
+        {
+          "task_id": "SG-043",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/handoff.test.ts -t \"truncates optional\"",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/handoff.test.ts",
+            "-t",
+            "truncates optional"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:15:24.310Z",
+          "finished_at": "2026-09-20T15:15:29.616Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-043-red-markdown-budget-2026-09-20T15-15-24-310Z.json",
+          "log_path": "docs/implementation/evidence/sg-043-red-markdown-budget-2026-09-20T15-15-24-310Z.log",
+          "signal": null,
+          "duration_ms": 5306
+        },
+        {
+          "task_id": "SG-043",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/handoff.test.ts -t \"changes target|truncates optional\"",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/handoff.test.ts",
+            "-t",
+            "changes target|truncates optional"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:16:33.283Z",
+          "finished_at": "2026-09-20T15:16:40.298Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-043-final-handoff-budget-2026-09-20T15-16-33-283Z.json",
+          "log_path": "docs/implementation/evidence/sg-043-final-handoff-budget-2026-09-20T15-16-33-283Z.log",
+          "signal": null,
+          "duration_ms": 7015
+        },
+        {
+          "task_id": "SG-043",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:16:33.355Z",
+          "finished_at": "2026-09-20T15:16:40.001Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-043-final-typecheck-2026-09-20T15-16-33-355Z.json",
+          "log_path": "docs/implementation/evidence/sg-043-final-typecheck-2026-09-20T15-16-33-355Z.log",
+          "signal": null,
+          "duration_ms": 6646
+        },
+        {
+          "task_id": "SG-043",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm verify:schemas",
+          "argv": [
+            "pnpm",
+            "verify:schemas"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:16:33.416Z",
+          "finished_at": "2026-09-20T15:16:35.985Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-043-schemas-2026-09-20T15-16-33-416Z.json",
+          "log_path": "docs/implementation/evidence/sg-043-schemas-2026-09-20T15-16-33-416Z.log",
+          "signal": null,
+          "duration_ms": 2569
+        },
+        {
+          "task_id": "SG-043",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec eslint packages/core/src/services/handoff-service.ts packages/reporters/src/handoff.ts tests/integration/handoff.test.ts tests/contract/run-history.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "eslint",
+            "packages/core/src/services/handoff-service.ts",
+            "packages/reporters/src/handoff.ts",
+            "tests/integration/handoff.test.ts",
+            "tests/contract/run-history.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:16:33.441Z",
+          "finished_at": "2026-09-20T15:16:37.558Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-043-lint-boundaries-2026-09-20T15-16-33-441Z.json",
+          "log_path": "docs/implementation/evidence/sg-043-lint-boundaries-2026-09-20T15-16-33-441Z.log",
+          "signal": null,
+          "duration_ms": 4117
+        },
+        {
+          "task_id": "SG-043",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm verify:boundaries",
+          "argv": [
+            "pnpm",
+            "verify:boundaries"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:16:33.476Z",
+          "finished_at": "2026-09-20T15:16:35.786Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-043-boundaries-2026-09-20T15-16-33-476Z.json",
+          "log_path": "docs/implementation/evidence/sg-043-boundaries-2026-09-20T15-16-33-476Z.log",
+          "signal": null,
+          "duration_ms": 2310
+        },
+        {
+          "task_id": "SG-043",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/storage/completion.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/storage/completion.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T17:27:47.215Z",
+          "finished_at": "2026-09-20T17:27:51.404Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-043-sealed-write-immutable-2026-09-20T17-27-47-215Z.json",
+          "log_path": "docs/implementation/evidence/sg-043-sealed-write-immutable-2026-09-20T17-27-47-215Z.log",
+          "signal": null,
+          "duration_ms": 4189
+        },
+        {
+          "task_id": "SG-043",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/handoff.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/handoff.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T17:27:51.557Z",
+          "finished_at": "2026-09-20T17:29:49.457Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-043-handoff-sealed-current-2026-09-20T17-27-51-557Z.json",
+          "log_path": "docs/implementation/evidence/sg-043-handoff-sealed-current-2026-09-20T17-27-51-557Z.log",
+          "signal": null,
+          "duration_ms": 117900
         }
       ],
       "commit": null,
       "blockers": [],
-      "next_action": "完成严格交接 Schema、最小事实与真实封存集成测试"
+      "next_action": "CLI handoff --run/--validate 合同待最终记录"
     },
     {
       "task_id": "SG-044",
@@ -13526,10 +14638,13 @@
         "SG-042",
         "SG-043"
       ],
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "actual_files": [
         "apps/cli/src/commands/execution.ts",
-        "apps/cli/src/main.ts"
+        "apps/cli/src/main.ts",
+        "apps/cli/src/output.ts",
+        "apps/cli/src/arguments.ts",
+        "tests/integration/cli/m2.test.ts"
       ],
       "verification": [
         {
@@ -13559,11 +14674,361 @@
           "log_path": "docs/implementation/evidence/sg-044-red-cli-m2-dispatch-2026-09-20T15-11-23-465Z.log",
           "signal": null,
           "duration_ms": 4824
+        },
+        {
+          "task_id": "SG-044",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:13:58.900Z",
+          "finished_at": "2026-09-20T15:14:03.776Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-044-build-m2-cli-2026-09-20T15-13-58-900Z.json",
+          "log_path": "docs/implementation/evidence/sg-044-build-m2-cli-2026-09-20T15-13-58-900Z.log",
+          "signal": null,
+          "duration_ms": 4876
+        },
+        {
+          "task_id": "SG-044",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/cli/m2.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/cli/m2.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:14:22.544Z",
+          "finished_at": "2026-09-20T15:14:45.639Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-044-green-built-cli-workflow-2026-09-20T15-14-22-544Z.json",
+          "log_path": "docs/implementation/evidence/sg-044-green-built-cli-workflow-2026-09-20T15-14-22-544Z.log",
+          "signal": null,
+          "duration_ms": 23095
+        },
+        {
+          "task_id": "SG-044",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:15:50.536Z",
+          "finished_at": "2026-09-20T15:15:55.294Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-044-cli-typecheck-2026-09-20T15-15-50-536Z.json",
+          "log_path": "docs/implementation/evidence/sg-044-cli-typecheck-2026-09-20T15-15-50-536Z.log",
+          "signal": null,
+          "duration_ms": 4758
+        },
+        {
+          "task_id": "SG-044",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/trust/default-store.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/trust/default-store.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:16:44.664Z",
+          "finished_at": "2026-09-20T15:17:06.767Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-044-diagnose-default-trust-2026-09-20T15-16-44-664Z.json",
+          "log_path": "docs/implementation/evidence/sg-044-diagnose-default-trust-2026-09-20T15-16-44-664Z.log",
+          "signal": null,
+          "duration_ms": 22103
+        },
+        {
+          "task_id": "SG-044",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/trust/default-store.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/trust/default-store.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:19:36.148Z",
+          "finished_at": "2026-09-20T15:20:11.131Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-044-green-default-trust-2026-09-20T15-19-36-148Z.json",
+          "log_path": "docs/implementation/evidence/sg-044-green-default-trust-2026-09-20T15-19-36-148Z.log",
+          "signal": null,
+          "duration_ms": 34983
+        },
+        {
+          "task_id": "SG-044",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:20:02.505Z",
+          "finished_at": "2026-09-20T15:20:08.006Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-044-build-default-trust-2026-09-20T15-20-02-505Z.json",
+          "log_path": "docs/implementation/evidence/sg-044-build-default-trust-2026-09-20T15-20-02-505Z.log",
+          "signal": null,
+          "duration_ms": 5501
+        },
+        {
+          "task_id": "SG-044",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/cli/m2.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/cli/m2.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:20:50.503Z",
+          "finished_at": "2026-09-20T15:26:12.252Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-044-green-built-cli-fixed-trust-2026-09-20T15-20-50-503Z.json",
+          "log_path": "docs/implementation/evidence/sg-044-green-built-cli-fixed-trust-2026-09-20T15-20-50-503Z.log",
+          "signal": null,
+          "duration_ms": 321749
+        },
+        {
+          "task_id": "SG-044",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/storage/atomic-write.test.ts tests/integration/trust/review.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/storage/atomic-write.test.ts",
+            "tests/integration/trust/review.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:20:50.664Z",
+          "finished_at": "2026-09-20T15:24:18.644Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-044-trust-path-regression-2026-09-20T15-20-50-664Z.json",
+          "log_path": "docs/implementation/evidence/sg-044-trust-path-regression-2026-09-20T15-20-50-664Z.log",
+          "signal": null,
+          "duration_ms": 207980
+        },
+        {
+          "task_id": "SG-044",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/bootstrap.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/bootstrap.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:28:12.442Z",
+          "finished_at": "2026-09-20T15:28:16.827Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-044-green-bootstrap-m2-2026-09-20T15-28-12-442Z.json",
+          "log_path": "docs/implementation/evidence/sg-044-green-bootstrap-m2-2026-09-20T15-28-12-442Z.log",
+          "signal": null,
+          "duration_ms": 4385
+        },
+        {
+          "task_id": "SG-044",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/cli/m2.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/cli/m2.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:28:17.526Z",
+          "finished_at": "2026-09-20T15:31:24.304Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-044-complete-cli-workflow-2026-09-20T15-28-17-526Z.json",
+          "log_path": "docs/implementation/evidence/sg-044-complete-cli-workflow-2026-09-20T15-28-17-526Z.log",
+          "signal": null,
+          "duration_ms": 186778
+        },
+        {
+          "task_id": "SG-044",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T17:03:46.517Z",
+          "finished_at": "2026-09-20T17:03:52.046Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-044-build-cli-2026-09-20T17-03-46-517Z.json",
+          "log_path": "docs/implementation/evidence/sg-044-build-cli-2026-09-20T17-03-46-517Z.log",
+          "signal": null,
+          "duration_ms": 5529
+        },
+        {
+          "task_id": "SG-044",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T17:27:31.437Z",
+          "finished_at": "2026-09-20T17:27:36.583Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-044-build-cli-final-2026-09-20T17-27-31-437Z.json",
+          "log_path": "docs/implementation/evidence/sg-044-build-cli-final-2026-09-20T17-27-31-437Z.log",
+          "signal": null,
+          "duration_ms": 5146
+        },
+        {
+          "task_id": "SG-044",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/cli/m2.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/cli/m2.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T17:43:47.824Z",
+          "finished_at": "2026-09-20T17:51:28.234Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-044-cli-handoff-and-exit-codes-2026-09-20T17-43-47-824Z.json",
+          "log_path": "docs/implementation/evidence/sg-044-cli-handoff-and-exit-codes-2026-09-20T17-43-47-824Z.log",
+          "signal": null,
+          "duration_ms": 460410
+        },
+        {
+          "task_id": "SG-044",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/cli/m2.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/cli/m2.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T17:56:33.932Z",
+          "finished_at": "2026-09-20T18:04:42.749Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-044-cli-handoff-and-exit-codes-final-2026-09-20T17-56-33-932Z.json",
+          "log_path": "docs/implementation/evidence/sg-044-cli-handoff-and-exit-codes-final-2026-09-20T17-56-33-932Z.log",
+          "signal": null,
+          "duration_ms": 488817
         }
       ],
       "commit": null,
       "blockers": [],
-      "next_action": "接通构建后 CLI 并执行完整本地闭环"
+      "next_action": "报告/交接/清理已完成；准备阶段出口"
     },
     {
       "task_id": "SG-045",
@@ -13576,10 +15041,13 @@
         "SG-039",
         "SG-044"
       ],
-      "status": "IMPLEMENTED_UNVERIFIED",
+      "status": "DONE",
       "actual_files": [
         "packages/core/src/services/cleanup-service.ts",
-        "tests/integration/cleanup/process-resources.test.ts"
+        "tests/integration/cleanup/process-resources.test.ts",
+        "apps/cli/src/commands/execution.ts",
+        "tests/integration/run/concurrent-runs.test.ts",
+        "docs/diagnostics/recovery.md"
       ],
       "verification": [
         {
@@ -14022,11 +15490,88 @@
           "log_path": "docs/implementation/evidence/sg-045-final-lint-2026-09-20T15-08-07-034Z.log",
           "signal": null,
           "duration_ms": 6401
+        },
+        {
+          "task_id": "SG-045",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:26:41.281Z",
+          "finished_at": "2026-09-20T15:26:50.430Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-045-build-resource-doctor-2026-09-20T15-26-41-281Z.json",
+          "log_path": "docs/implementation/evidence/sg-045-build-resource-doctor-2026-09-20T15-26-41-281Z.log",
+          "signal": null,
+          "duration_ms": 9149
+        },
+        {
+          "task_id": "SG-045",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/run/concurrent-runs.test.ts -t \"two real CLI\"",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/run/concurrent-runs.test.ts",
+            "-t",
+            "two real CLI"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:31:50.888Z",
+          "finished_at": "2026-09-20T15:35:19.195Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-045-doctor-cli-readonly-2026-09-20T15-31-50-888Z.json",
+          "log_path": "docs/implementation/evidence/sg-045-doctor-cli-readonly-2026-09-20T15-31-50-888Z.log",
+          "signal": null,
+          "duration_ms": 208307
+        },
+        {
+          "task_id": "SG-045",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/cleanup/process-resources.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/cleanup/process-resources.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T17:29:49.591Z",
+          "finished_at": "2026-09-20T17:29:59.455Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-045-cleanup-resources-current-2026-09-20T17-29-49-591Z.json",
+          "log_path": "docs/implementation/evidence/sg-045-cleanup-resources-current-2026-09-20T17-29-49-591Z.log",
+          "signal": null,
+          "duration_ms": 9864
         }
       ],
       "commit": null,
       "blockers": [],
-      "next_action": "清理服务已验证；等待 Run/CLI 依赖验收后接入"
+      "next_action": "阶段出口待运行"
     },
     {
       "task_id": "SG-046",
@@ -14190,10 +15735,12 @@
         "SG-041",
         "SG-042"
       ],
-      "status": "IMPLEMENTED_UNVERIFIED",
+      "status": "DONE",
       "actual_files": [
         "packages/core/src/storage/schema-reader.ts",
-        "packages/core/src/storage/export-bundle.ts"
+        "packages/core/src/storage/export-bundle.ts",
+        "packages/core/src/domain/tool-provenance.ts",
+        "tests/contract/schema-compatibility.test.ts"
       ],
       "verification": [
         {
@@ -14455,11 +16002,91 @@
           "log_path": "docs/implementation/evidence/sg-047-boundaries-2026-09-20T15-04-07-666Z.log",
           "signal": null,
           "duration_ms": 2714
+        },
+        {
+          "task_id": "SG-047",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/run-evaluation.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/run-evaluation.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:19:31.010Z",
+          "finished_at": "2026-09-20T15:19:33.289Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-047-red-run-tool-consistency-2026-09-20T15-19-31-010Z.json",
+          "log_path": "docs/implementation/evidence/sg-047-red-run-tool-consistency-2026-09-20T15-19-31-010Z.log",
+          "signal": null,
+          "duration_ms": 2279
+        },
+        {
+          "task_id": "SG-047",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/run-evaluation.test.ts tests/contract/schema-compatibility.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/run-evaluation.test.ts",
+            "tests/contract/schema-compatibility.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:19:48.920Z",
+          "finished_at": "2026-09-20T15:19:53.417Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-047-green-run-tool-consistency-2026-09-20T15-19-48-920Z.json",
+          "log_path": "docs/implementation/evidence/sg-047-green-run-tool-consistency-2026-09-20T15-19-48-920Z.log",
+          "signal": null,
+          "duration_ms": 4497
+        },
+        {
+          "task_id": "SG-047",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/contract/schema-compatibility.test.ts tests/unit/run-evaluation.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/contract/schema-compatibility.test.ts",
+            "tests/unit/run-evaluation.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T17:29:59.635Z",
+          "finished_at": "2026-09-20T17:30:03.387Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-047-compat-export-provenance-2026-09-20T17-29-59-635Z.json",
+          "log_path": "docs/implementation/evidence/sg-047-compat-export-provenance-2026-09-20T17-29-59-635Z.log",
+          "signal": null,
+          "duration_ms": 3752
         }
       ],
       "commit": null,
       "blockers": [],
-      "next_action": "独立兼容与导出验证已通过；等待下游集成"
+      "next_action": "阶段出口待运行"
     },
     {
       "task_id": "SG-048",
@@ -14473,12 +16100,148 @@
         "SG-040",
         "SG-044"
       ],
-      "status": "NOT_STARTED",
-      "actual_files": [],
-      "verification": [],
+      "status": "DONE",
+      "actual_files": [
+        "tests/integration/runner/negative-matrix.test.ts",
+        "docs/diagnostics/check-classification.md",
+        "tests/support/process-fixtures/no-tests.mjs",
+        "tests/support/process-fixtures/missing-report.mjs",
+        "tests/support/process-fixtures/broken-report.mjs",
+        "tests/support/process-fixtures/contradictory-exit.mjs"
+      ],
+      "verification": [
+        {
+          "task_id": "SG-048",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/runner/negative-matrix.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/runner/negative-matrix.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:22:03.716Z",
+          "finished_at": "2026-09-20T15:27:09.954Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-048-real-negative-matrix-2026-09-20T15-22-03-716Z.json",
+          "log_path": "docs/implementation/evidence/sg-048-real-negative-matrix-2026-09-20T15-22-03-716Z.log",
+          "signal": null,
+          "duration_ms": 306238
+        },
+        {
+          "task_id": "SG-048",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:22:23.896Z",
+          "finished_at": "2026-09-20T15:22:31.092Z",
+          "exit_code": 2,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-048-typecheck-2026-09-20T15-22-23-896Z.json",
+          "log_path": "docs/implementation/evidence/sg-048-typecheck-2026-09-20T15-22-23-896Z.log",
+          "signal": null,
+          "duration_ms": 7196
+        },
+        {
+          "task_id": "SG-048",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec eslint tests/integration/runner/negative-matrix.test.ts tests/support/command-execution.ts tests/support/process-fixtures/no-tests.mjs tests/support/process-fixtures/missing-report.mjs tests/support/process-fixtures/broken-report.mjs tests/support/process-fixtures/contradictory-exit.mjs",
+          "argv": [
+            "pnpm",
+            "exec",
+            "eslint",
+            "tests/integration/runner/negative-matrix.test.ts",
+            "tests/support/command-execution.ts",
+            "tests/support/process-fixtures/no-tests.mjs",
+            "tests/support/process-fixtures/missing-report.mjs",
+            "tests/support/process-fixtures/broken-report.mjs",
+            "tests/support/process-fixtures/contradictory-exit.mjs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:22:23.921Z",
+          "finished_at": "2026-09-20T15:22:28.541Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-048-lint-2026-09-20T15-22-23-921Z.json",
+          "log_path": "docs/implementation/evidence/sg-048-lint-2026-09-20T15-22-23-921Z.log",
+          "signal": null,
+          "duration_ms": 4620
+        },
+        {
+          "task_id": "SG-048",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:24:03.037Z",
+          "finished_at": "2026-09-20T15:24:09.551Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-048-typecheck-fixed-2026-09-20T15-24-03-037Z.json",
+          "log_path": "docs/implementation/evidence/sg-048-typecheck-fixed-2026-09-20T15-24-03-037Z.log",
+          "signal": null,
+          "duration_ms": 6514
+        },
+        {
+          "task_id": "SG-048",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/runner/negative-matrix.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/runner/negative-matrix.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T17:35:29.895Z",
+          "finished_at": "2026-09-20T17:39:46.046Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-048-negative-matrix-current-2026-09-20T17-35-29-895Z.json",
+          "log_path": "docs/implementation/evidence/sg-048-negative-matrix-current-2026-09-20T17-35-29-895Z.log",
+          "signal": null,
+          "duration_ms": 256151
+        }
+      ],
       "commit": null,
       "blockers": [],
-      "next_action": "实施 SG-048"
+      "next_action": "阶段出口待运行"
     },
     {
       "task_id": "SG-049",
@@ -14491,14 +16254,484 @@
         "SG-039",
         "SG-045"
       ],
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "actual_files": [
-        "tests/integration/run/crash.test.ts"
+        "tests/integration/run/crash.test.ts",
+        "tests/integration/run/concurrent-runs.test.ts",
+        "tests/integration/run/finalization-race.test.ts",
+        "tests/integration/storage/completion.test.ts",
+        "docs/diagnostics/recovery.md"
       ],
-      "verification": [],
+      "verification": [
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/run/crash.test.ts tests/integration/run/concurrent-runs.test.ts tests/integration/run/finalization-race.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/run/crash.test.ts",
+            "tests/integration/run/concurrent-runs.test.ts",
+            "tests/integration/run/finalization-race.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:13:53.561Z",
+          "finished_at": "2026-09-20T15:14:03.022Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-049-initial-reliability-2026-09-20T15-13-53-561Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-initial-reliability-2026-09-20T15-13-53-561Z.log",
+          "signal": null,
+          "duration_ms": 9461
+        },
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/run/crash.test.ts tests/integration/run/concurrent-runs.test.ts tests/integration/run/finalization-race.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/run/crash.test.ts",
+            "tests/integration/run/concurrent-runs.test.ts",
+            "tests/integration/run/finalization-race.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:15:31.557Z",
+          "finished_at": "2026-09-20T15:15:45.156Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-049-expanded-crashes-2026-09-20T15-15-31-557Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-expanded-crashes-2026-09-20T15-15-31-557Z.log",
+          "signal": null,
+          "duration_ms": 13599
+        },
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/contract/run-history.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/contract/run-history.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:16:01.829Z",
+          "finished_at": "2026-09-20T15:16:04.395Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-049-red-previous-run-schema-2026-09-20T15-16-01-829Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-red-previous-run-schema-2026-09-20T15-16-01-829Z.log",
+          "signal": null,
+          "duration_ms": 2566
+        },
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm generate:types",
+          "argv": [
+            "pnpm",
+            "generate:types"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:16:05.166Z",
+          "finished_at": "2026-09-20T15:16:07.000Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-049-generate-previous-run-schema-2026-09-20T15-16-05-166Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-generate-previous-run-schema-2026-09-20T15-16-05-166Z.log",
+          "signal": null,
+          "duration_ms": 1834
+        },
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/contract/run-history.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/contract/run-history.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:16:33.311Z",
+          "finished_at": "2026-09-20T15:16:36.766Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-049-green-previous-run-schema-2026-09-20T15-16-33-311Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-green-previous-run-schema-2026-09-20T15-16-33-311Z.log",
+          "signal": null,
+          "duration_ms": 3455
+        },
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/run/concurrent-runs.test.ts -t \"two real CLI\"",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/run/concurrent-runs.test.ts",
+            "-t",
+            "two real CLI"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:16:38.868Z",
+          "finished_at": "2026-09-20T15:16:58.861Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-049-cli-concurrency-2026-09-20T15-16-38-868Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-cli-concurrency-2026-09-20T15-16-38-868Z.log",
+          "signal": null,
+          "duration_ms": 19993
+        },
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:17:14.011Z",
+          "finished_at": "2026-09-20T15:17:19.036Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-049-typecheck-2026-09-20T15-17-14-011Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-typecheck-2026-09-20T15-17-14-011Z.log",
+          "signal": null,
+          "duration_ms": 5025
+        },
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm lint",
+          "argv": [
+            "pnpm",
+            "lint"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:17:14.074Z",
+          "finished_at": "2026-09-20T15:17:18.810Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-049-lint-2026-09-20T15-17-14-074Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-lint-2026-09-20T15-17-14-074Z.log",
+          "signal": null,
+          "duration_ms": 4736
+        },
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/run/concurrent-runs.test.ts -t \"two real CLI\"",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/run/concurrent-runs.test.ts",
+            "-t",
+            "two real CLI"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:17:54.593Z",
+          "finished_at": "2026-09-20T15:18:10.661Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-049-cli-concurrency-diagnostic-2026-09-20T15-17-54-593Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-cli-concurrency-diagnostic-2026-09-20T15-17-54-593Z.log",
+          "signal": null,
+          "duration_ms": 16068
+        },
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/run/lifecycle.test.ts -t \"historical runs\"",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/run/lifecycle.test.ts",
+            "-t",
+            "historical runs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:18:52.614Z",
+          "finished_at": "2026-09-20T15:22:17.046Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-049-red-history-reference-2026-09-20T15-18-52-614Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-red-history-reference-2026-09-20T15-18-52-614Z.log",
+          "signal": null,
+          "duration_ms": 204432
+        },
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/run/concurrent-runs.test.ts -t \"two real CLI\"",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/run/concurrent-runs.test.ts",
+            "-t",
+            "two real CLI"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:20:25.437Z",
+          "finished_at": "2026-09-20T15:23:12.672Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-049-cli-concurrency-fixed-trust-2026-09-20T15-20-25-437Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-cli-concurrency-fixed-trust-2026-09-20T15-20-25-437Z.log",
+          "signal": null,
+          "duration_ms": 167235
+        },
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/run/lifecycle.test.ts -t \"historical runs\"",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/run/lifecycle.test.ts",
+            "-t",
+            "historical runs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:23:07.874Z",
+          "finished_at": "2026-09-20T15:26:35.068Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-049-green-history-reference-2026-09-20T15-23-07-874Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-green-history-reference-2026-09-20T15-23-07-874Z.log",
+          "signal": null,
+          "duration_ms": 207194
+        },
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:23:18.093Z",
+          "finished_at": "2026-09-20T15:23:24.757Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-049-build-history-cli-2026-09-20T15-23-18-093Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-build-history-cli-2026-09-20T15-23-18-093Z.log",
+          "signal": null,
+          "duration_ms": 6664
+        },
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/run/crash.test.ts tests/integration/run/concurrent-runs.test.ts tests/integration/run/finalization-race.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/run/crash.test.ts",
+            "tests/integration/run/concurrent-runs.test.ts",
+            "tests/integration/run/finalization-race.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:26:16.627Z",
+          "finished_at": "2026-09-20T15:29:26.323Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-049-final-reliability-2026-09-20T15-26-16-627Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-final-reliability-2026-09-20T15-26-16-627Z.log",
+          "signal": null,
+          "duration_ms": 189696
+        },
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:26:39.796Z",
+          "finished_at": "2026-09-20T15:26:48.924Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-049-final-typecheck-2026-09-20T15-26-39-796Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-final-typecheck-2026-09-20T15-26-39-796Z.log",
+          "signal": null,
+          "duration_ms": 9128
+        },
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm lint",
+          "argv": [
+            "pnpm",
+            "lint"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:26:39.810Z",
+          "finished_at": "2026-09-20T15:26:49.147Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-049-final-lint-2026-09-20T15-26-39-810Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-final-lint-2026-09-20T15-26-39-810Z.log",
+          "signal": null,
+          "duration_ms": 9337
+        },
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm test:unit",
+          "argv": [
+            "pnpm",
+            "test:unit"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:26:39.831Z",
+          "finished_at": "2026-09-20T15:27:00.971Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-049-unit-2026-09-20T15-26-39-831Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-unit-2026-09-20T15-26-39-831Z.log",
+          "signal": null,
+          "duration_ms": 21140
+        },
+        {
+          "task_id": "SG-049",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/run/crash.test.ts tests/integration/run/concurrent-runs.test.ts tests/integration/run/finalization-race.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/run/crash.test.ts",
+            "tests/integration/run/concurrent-runs.test.ts",
+            "tests/integration/run/finalization-race.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T17:39:46.203Z",
+          "finished_at": "2026-09-20T17:43:47.684Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-049-reliability-current-2026-09-20T17-39-46-203Z.json",
+          "log_path": "docs/implementation/evidence/sg-049-reliability-current-2026-09-20T17-39-46-203Z.log",
+          "signal": null,
+          "duration_ms": 241481
+        }
+      ],
       "commit": null,
       "blockers": [],
-      "next_action": "验证真实进程崩溃、并发运行与封存竞争"
+      "next_action": "SG-050 阶段出口"
     },
     {
       "task_id": "SG-050",
@@ -14516,12 +16749,148 @@
         "SG-048",
         "SG-049"
       ],
-      "status": "NOT_STARTED",
-      "actual_files": [],
-      "verification": [],
+      "status": "DONE",
+      "actual_files": [
+        "tests/fixtures/stages/M2.json",
+        "scripts/verify-stage.mjs",
+        "vitest.config.ts",
+        "tests/integration/stages/m2-local-flow.test.ts",
+        "tests/integration/stages/m1-audit-regressions.test.ts",
+        "docs/implementation/evidence/M2-summary.md",
+        "docs/diagnostics/check-classification.md",
+        "README.md",
+        "docs/COMPATIBILITY.md",
+        "docs/implementation/BLOCKERS.md"
+      ],
+      "verification": [
+        {
+          "task_id": "SG-050",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "node --test tests/bootstrap/stage.test.mjs",
+          "argv": [
+            "node",
+            "--test",
+            "tests/bootstrap/stage.test.mjs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:20:48.569Z",
+          "finished_at": "2026-09-20T15:20:49.573Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-050-red-m2-stage-registry-2026-09-20T15-20-48-569Z.json",
+          "log_path": "docs/implementation/evidence/sg-050-red-m2-stage-registry-2026-09-20T15-20-48-569Z.log",
+          "signal": null,
+          "duration_ms": 1004
+        },
+        {
+          "task_id": "SG-050",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "node --test tests/bootstrap/stage.test.mjs",
+          "argv": [
+            "node",
+            "--test",
+            "tests/bootstrap/stage.test.mjs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:22:02.291Z",
+          "finished_at": "2026-09-20T15:22:03.726Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-050-green-m2-stage-registry-2026-09-20T15-22-02-291Z.json",
+          "log_path": "docs/implementation/evidence/sg-050-green-m2-stage-registry-2026-09-20T15-22-02-291Z.log",
+          "signal": null,
+          "duration_ms": 1435
+        },
+        {
+          "task_id": "SG-050",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm install --frozen-lockfile",
+          "argv": [
+            "pnpm",
+            "install",
+            "--frozen-lockfile"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:28:59.807Z",
+          "finished_at": "2026-09-20T15:29:00.577Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-050-frozen-install-2026-09-20T15-28-59-807Z.json",
+          "log_path": "docs/implementation/evidence/sg-050-frozen-install-2026-09-20T15-28-59-807Z.log",
+          "signal": null,
+          "duration_ms": 770
+        },
+        {
+          "task_id": "SG-050",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/stages/m2-local-flow.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/stages/m2-local-flow.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T15:30:59.777Z",
+          "finished_at": "2026-09-20T15:36:09.168Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-050-real-m2-negative-flows-2026-09-20T15-30-59-777Z.json",
+          "log_path": "docs/implementation/evidence/sg-050-real-m2-negative-flows-2026-09-20T15-30-59-777Z.log",
+          "signal": null,
+          "duration_ms": 309391
+        },
+        {
+          "task_id": "SG-050",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm verify:stage -- --stage M2",
+          "argv": [
+            "pnpm",
+            "verify:stage",
+            "--",
+            "--stage",
+            "M2"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T18:06:18.967Z",
+          "finished_at": "2026-09-20T18:52:53.860Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-050-m2-stage-exit-2026-09-20T18-06-18-967Z.json",
+          "log_path": "docs/implementation/evidence/sg-050-m2-stage-exit-2026-09-20T18-06-18-967Z.log",
+          "signal": null,
+          "duration_ms": 2794893
+        }
+      ],
       "commit": null,
       "blockers": [],
-      "next_action": "实施 SG-050"
+      "next_action": "M3 从 SG-051 起按原 DAG 推进；真实环境来源、浏览器与 Compose 未验证"
     },
     {
       "task_id": "SG-051",
@@ -14534,7 +16903,7 @@
         "SG-038",
         "SG-050"
       ],
-      "status": "NOT_STARTED",
+      "status": "READY",
       "actual_files": [],
       "verification": [],
       "commit": null,

@@ -1,0 +1,27 @@
+{
+  "task_id": "SG-047",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+    "branch": "V1",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+  },
+  "command": "pnpm exec vitest run tests/contract/schema-compatibility.test.ts tests/unit/run-evaluation.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/contract/schema-compatibility.test.ts",
+    "tests/unit/run-evaluation.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T17:29:59.635Z",
+  "finished_at": "2026-09-20T17:30:03.387Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-047-compat-export-provenance-2026-09-20T17-29-59-635Z.json",
+  "log_path": "docs/implementation/evidence/sg-047-compat-export-provenance-2026-09-20T17-29-59-635Z.log",
+  "signal": null,
+  "duration_ms": 3752
+}

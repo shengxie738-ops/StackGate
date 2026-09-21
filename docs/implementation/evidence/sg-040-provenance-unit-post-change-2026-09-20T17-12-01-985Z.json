@@ -1,0 +1,27 @@
+{
+  "task_id": "SG-040",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+    "branch": "V1",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+  },
+  "command": "pnpm exec vitest run tests/unit/gate/command-provenance.test.ts tests/unit/gate/plan-binding.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/gate/command-provenance.test.ts",
+    "tests/unit/gate/plan-binding.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T17:12:01.985Z",
+  "finished_at": "2026-09-20T17:12:06.400Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-040-provenance-unit-post-change-2026-09-20T17-12-01-985Z.json",
+  "log_path": "docs/implementation/evidence/sg-040-provenance-unit-post-change-2026-09-20T17-12-01-985Z.log",
+  "signal": null,
+  "duration_ms": 4415
+}

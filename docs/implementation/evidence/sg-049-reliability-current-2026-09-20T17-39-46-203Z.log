@@ -1,0 +1,25 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/run/crash.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 11164[2mms[22m[39m
+   [33m[2m✓[22m[39m hard-killing the runner parent closes its private job lifeline and preserves unrelated service [33m 2957[2mms[22m[39m
+   [33m[2m✓[22m[39m a killed manifest temp writer preserves prior bytes and refuses unsafe lock recovery [33m 3961[2mms[22m[39m
+   [33m[2m✓[22m[39m a killed event temp writer cannot publish a partial event or silent completion [33m 467[2mms[22m[39m
+   [33m[2m✓[22m[39m hard exit after actual failed check persistence preserves the failure without sealing PASS [33m 1995[2mms[22m[39m
+   [33m[2m✓[22m[39m crashing before cleanup never removes sealed evidence [33m 850[2mms[22m[39m
+   [33m[2m✓[22m[39m crashing after cleanup never removes sealed evidence [33m 932[2mms[22m[39m
+ [32m✓[39m tests/integration/run/finalization-race.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 1816[2mms[22m[39m
+   [33m[2m✓[22m[39m two process finalization calls are idempotent and cannot replace terminal facts [33m 850[2mms[22m[39m
+   [33m[2m✓[22m[39m two process seals agree and post-seal manifest corruption never remains valid [33m 965[2mms[22m[39m
+ [32m✓[39m tests/integration/run/concurrent-runs.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 236477[2mms[22m[39m
+   [33m[2m✓[22m[39m cross-process identical event append is idempotent without duplicate sequence [33m 721[2mms[22m[39m
+   [33m[2m✓[22m[39m cross-process competing artifact bytes publish exactly one immutable winner [33m 703[2mms[22m[39m
+   [33m[2m✓[22m[39m two run IDs in one repository never share artifact directories [33m 626[2mms[22m[39m
+   [33m[2m✓[22m[39m a second process cannot acquire the same worktree resource and cannot reap a dead owner lock [33m 2336[2mms[22m[39m
+   [33m[2m✓[22m[39m two real CLI runs of one worktree have distinct IDs and only one may execute business commands [33m 232090[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[2m   Start at [22m 01:39:47
+[2m   Duration [22m 239.79s[2m (transform 1.13s, setup 0ms, import 4.77s, tests 249.46s, environment 0ms)[22m
+

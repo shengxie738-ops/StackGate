@@ -1,0 +1,16 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/gate/current-state.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 483610[2mms[22m[39m
+   [33m[2m✓[22m[39m missing run evidence remains unverified and cannot be allowed [33m 1513[2mms[22m[39m
+   [33m[2m✓[22m[39m stores a missing-run evaluation outside runs without inventing a run directory [33m 1412[2mms[22m[39m
+   [33m[2m✓[22m[39m retains actual unsealed lifecycle prefixes and distinguishes an aborted run from pending work [33m 2709[2mms[22m[39m
+   [33m[2m✓[22m[39m authenticates a real sealed run then reevaluates source, task, policy and evidence without changing historical facts [33m 239812[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps real failed evidence denied and detects changed executable bytes without launching that executable [33m 127849[2mms[22m[39m
+   [33m[2m✓[22m[39m does not turn local CI environment claims into required backend provenance [33m 110314[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m6 passed[39m[22m[90m (6)[39m
+[2m   Start at [22m 01:03:54
+[2m   Duration [22m 487.58s[2m (transform 975ms, setup 0ms, import 3.56s, tests 483.61s, environment 0ms)[22m
+

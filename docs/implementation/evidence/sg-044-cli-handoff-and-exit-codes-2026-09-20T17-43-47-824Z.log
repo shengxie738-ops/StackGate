@@ -1,0 +1,33 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [31m❯[39m tests/integration/cli/m2.test.ts [2m([22m[2m3 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[33m 456262[2mms[22m[39m
+   [33m[2m✓[22m[39m separates a failing real run exit from the read-only report exit at the CLI boundary [33m 167794[2mms[22m[39m
+   [33m[2m✓[22m[39m exposes strict M2 command argument validation in the built CLI [33m 3286[2mms[22m[39m
+[31m   [31m×[31m runs the built CLI through plan, real run, report, gate and stale reevaluation[39m[33m 285181[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m tests/integration/cli/m2.test.ts[2m > [22mruns the built CLI through plan, real run, report, gate and stale reevaluation
+[31m[1mAssertionError[22m: 
+{"schema_version":"0.1","ok":false,"operation":"handoff","runtime":"NOT_EXECUTED","exit_code":64,"diagnostics":[{"code":"CONFIG_INVALID","rule_id":"SG-POLICY-CONFIGURATION","message":"MULTILINE_IMPLICIT_KEY, MISSING_CHAR, MULTILINE_IMPLICIT_KEY, MISSING_CHAR, MULTILINE_IMPLICIT_KEY, MISSING_CHAR, MULTILINE_IMPLICIT_KEY, MISSING_CHAR, MULTILINE_IMPLICIT_KEY, MISSING_CHAR, MULTILINE_IMPLICIT_KEY, MISSING_CHAR, MISSING_CHAR","location":"","observed_facts":{},"recommended_action":"Correct the declared configuration; no business command was executed.","source":"handoff"}]}
+: expected 64 to be 3 // Object.is equality[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- 3[39m
+[31m+ 64[39m
+
+[36m [2m❯[22m invoke tests/integration/cli/m2.test.ts:[2m10:243[22m[39m
+
+[90m [2m❯[22m tests/integration/cli/m2.test.ts:[2m52:10[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m2 passed[39m[22m[90m (3)[39m
+[2m   Start at [22m 01:43:49
+[2m   Duration [22m 458.78s[2m (transform 667ms, setup 0ms, import 2.19s, tests 456.26s, environment 0ms)[22m
+

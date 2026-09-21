@@ -7,7 +7,10 @@ import {inspectRepository} from '../../../packages/adapter-git/src/repository.js
 import {GateService} from '../../../packages/core/src/services/gate-service.js';
 import {RunService} from '../../../packages/core/src/services/run-service.js';
 import {localRunProject} from '../../support/local-run-project.js';
-vi.setConfig({testTimeout:240000});
+// The sealed-run case performs a real execution plus eight independent full Gate
+// re-authentications (move plan, add input, change task, change policy, drop seal, tamper log).
+// This is a harness budget for that work volume; business command timeouts stay as configured.
+vi.setConfig({testTimeout:600000});
 it('missing run evidence remains unverified and cannot be allowed',async()=>{const repo=await localRunProject('pass',{confirmed:false});try{const gate=await new GateService(repo.root,{trustStoreRoot:repo.store}).inspect('run_missing');expect(gate.integrity).toBe('MISSING');expect(gate.evaluation).toMatchObject({decision:'DENY',exit_code:2});}finally{await repo.cleanup();}});
 it('stores a missing-run evaluation outside runs without inventing a run directory',async()=>{const repo=await localRunProject('pass',{confirmed:false});try{const gate=await new GateService(repo.root,{trustStoreRoot:repo.store}).evaluate('run_missing');expect(gate.evaluation.exit_code).toBe(2);expect(JSON.parse(await fs.readFile(gate.evaluation_path,'utf8')).decision).toBe('DENY');await expect(fs.lstat(path.join(repo.root,repo.config.state_dir,'runs','run_missing'))).rejects.toMatchObject({code:'ENOENT'});}finally{await repo.cleanup();}});
 it('retains actual unsealed lifecycle prefixes and distinguishes an aborted run from pending work',async()=>{

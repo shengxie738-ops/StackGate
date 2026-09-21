@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { validateStageManifest, validateToolRequirements, runRegisteredChecks } from '../../scripts/verify-stage.mjs';
+import { validateStageManifest, validateToolRequirements, runRegisteredChecks, stageRuntime } from '../../scripts/verify-stage.mjs';
 const manifest = {schema_version:'0.1',stage:'M0',checks:['source','tasks','schemas','boundaries','build','typecheck','unit','lint','contract'],required_tools:['node','pnpm','typescript','ajv','vitest','esbuild']};
 test('M1 requires every M0 check, actual integration checks and the real oasdiff capability',()=>{
   assert.ok(validateStageManifest(manifest,'M1').length,'a renamed M0 manifest must never satisfy a requested M1 stage');
@@ -29,6 +29,18 @@ test('unknown tools block any stage requiring them', () => {
   tools[0].status='UNKNOWN';
   assert.ok(validateToolRequirements(manifest,{tools}).some(error=>error.includes('node')));
   assert.ok(validateToolRequirements({...manifest,required_tools:['oasdiff']},{tools}).some(error=>error.includes('oasdiff')));
+});
+test('M2 declares EXECUTED only from the registered real-execution checks', () => {
+  const ok = (id) => ({ id, exit_code: 0 });
+  const ran = ['integration', 'm2-runner', 'm2-evidence', 'm2-gate'].map(ok);
+  assert.equal(stageRuntime('M1', { checks: ran }), 'NOT_EXECUTED');
+  assert.equal(stageRuntime('M2', { checks: ran }), 'EXECUTED');
+  for (const id of ['integration', 'm2-runner', 'm2-evidence', 'm2-gate']) {
+    const partial = ran.filter(item => item.id !== id);
+    assert.equal(stageRuntime('M2', { checks: partial }), 'NOT_EXECUTED', 'unrun ' + id + ' cannot claim execution');
+    assert.equal(stageRuntime('M2', { checks: [...partial, { id, exit_code: 1 }] }), 'NOT_EXECUTED', 'failing ' + id + ' cannot claim execution');
+  }
+  assert.equal(stageRuntime('M2', { checks: [] }), 'NOT_EXECUTED');
 });
 test('a real failed child command propagates its exit and retains its identity', async () => {
   const directory=await mkdtemp(join(tmpdir(),'stackgate-stage-'));

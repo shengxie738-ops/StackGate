@@ -1,0 +1,22 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/cleanup/process-resources.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 7136[2mms[22m[39m
+   [33m[2m✓[22m[39m defaults to a nonmutating plan and explicitly cleans only the owned terminal workspace [33m 661[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves ownerless resources [33m 531[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves foreign resources [33m 556[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves changed resources [33m 560[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves hash resources [33m 556[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves a user service and refuses stale PID lock ownership [33m 577[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects a directory junction and never touches its target [33m 567[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects hard-linked files and reports malformed or traversal run identifiers safely [33m 516[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves a replaced directory even when copied owner bytes and content match [33m 635[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves associated global locks without relying on current PID existence [33m 511[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps evidence readable when apply encounters changed or unverified ownership [33m 538[2mms[22m[39m
+   [33m[2m✓[22m[39m reports unverified process cleanup but never kills its historical PID [33m 798[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[2m   Start at [22m 01:29:51
+[2m   Duration [22m 8.31s[2m (transform 310ms, setup 0ms, import 844ms, tests 7.14s, environment 0ms)[22m
+

@@ -45,4 +45,10 @@ it('binds restricted context bytes and completion to the sealed manifest, retain
  await append('run.finalized',{payload_version:'0.1',phase:'COMPLETED',verdict:'INCOMPLETE'});
  expect(await store.seal({run_id:manifest.run_id,input_hash:manifest.input_hash,required_artifact_ids:manifest.artifact_refs})).toMatchObject({status:'SEALED'});
  expect((await store.verifyRun(manifest.run_id)).status).toBe('VALID');
+ const sealedEvents=(await store.readRun(manifest.run_id)).events.length;
+ expect(await store.append(event('run.finalized',{payload_version:'0.1',phase:'COMPLETED',verdict:'PASS'},++seq))).toMatchObject({status:'ERROR',diagnostics:[{code:'REPORT_INVALID',observed_facts:{error_code:'TARGET_EXISTS'}}]});
+ await expect(store.store(scope,{kind:'document',value:{kind:'run-completion',value:completion} as never})).rejects.toMatchObject({code:'TARGET_EXISTS'});
+ await expect(store.updateManifest({...manifest,phase:'RUNNING'},'0'.repeat(64))).rejects.toMatchObject({code:'TARGET_EXISTS'});
+ expect((await store.readRun(manifest.run_id)).events).toHaveLength(sealedEvents);
+ expect((await store.verifyRun(manifest.run_id)).status).toBe('VALID');
 }));

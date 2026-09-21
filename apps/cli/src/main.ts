@@ -9,12 +9,12 @@ import { initCommand } from './commands/init.js';
 import { taskCommand } from './commands/task.js';
 import { trustCommand } from './commands/trust.js';
 import { scanCommand } from './commands/scan.js';
-import {planCommand,runCommand,gateCommand,reportCommand,handoffCommand,cleanCommand} from './commands/execution.js';
+import {planCommand,runCommand,gateCommand,reportCommand,handoffCommand,handoffValidateCommand,cleanCommand} from './commands/execution.js';
 async function dispatch(argv: string[]): Promise<CommandResult> {
   if (argv.length === 0 || argv[0] === '--help') {
     parseArguments(argv.slice(1),[],['--json']);
     const help='StackGate 0.1\nUsage: stackgate --help | --version\n  doctor [--root PATH] [--json]\n  init --preset fastapi-react [--dry-run | --apply] [--root PATH] [--json]\n  task validate --file PATH [--root PATH] --json\n  task confirm --file PATH --confirm-digest SHA256 [--root PATH] --json\n  trust --review [--confirm-digest SHA256] [--root PATH] --json\n  scan [--base REF] [--task PATH] [--profile ID] [--root PATH] --json\nStatic operations never execute repository scripts.\n';
-    const allHelp=help+'  plan --task PATH --profile ID [--base REF] [--root PATH] --json\n  run --plan PLAN_ID [--root PATH] --json\n  gate --run RUN_ID [--strict] [--root PATH] --json\n  report --run RUN_ID --format json|terminal|markdown|junit [--output PATH] [--root PATH]\n  handoff --run RUN_ID --target codex|claude|manual [--output PATH] [--root PATH]\n  clean --run RUN_ID [--dry-run | --apply --confirm-digest SHA256] [--root PATH] --json\n';
+    const allHelp=help+'  plan --task PATH --profile ID [--base REF] [--root PATH] --json\n  run --plan PLAN_ID [--root PATH] --json\n  gate --run RUN_ID [--strict] [--root PATH] --json\n  report --run RUN_ID --format json|terminal|markdown|junit [--output PATH] [--root PATH]\n  handoff --run RUN_ID --target codex|claude|manual [--output PATH] [--root PATH]\n  handoff --validate PATH [--root PATH] --json\n  clean --run RUN_ID [--dry-run | --apply --confirm-digest SHA256] [--root PATH] --json\nHandoff accepts either --run or --validate, never both. Validation is readonly and never reruns checks.\n';
     return {data:{help:allHelp},text:allHelp,exit_code:0,diagnostics:[]};
   }
   if (argv[0] === '--version') {
@@ -28,7 +28,8 @@ async function dispatch(argv: string[]): Promise<CommandResult> {
       const o=parseArguments(argv.slice(1),['--root','--plan','--previous-run'],['--json']);if(typeof o['--plan']!=='string'||!/^plan_[a-f0-9]{64}$/.test(o['--plan'])||typeof o['--previous-run']==='string'&&!/^run_[A-Za-z0-9_-]+$/.test(o['--previous-run']))throw configurationError('run requires valid plan and optional previous run IDs');return runCommand(typeof o['--root']==='string'?o['--root']:process.cwd(),o['--plan'],typeof o['--previous-run']==='string'?o['--previous-run']:undefined);
     }
     if(['gate','report','handoff','clean'].includes(argv[0]??'')){
-      const command=argv[0]!,values=['--root','--run',...(command==='report'?['--format','--output']:command==='handoff'?['--target','--output']:command==='clean'?['--confirm-digest']:[])],flags=['--json',...(command==='gate'?['--strict']:command==='clean'?['--dry-run','--apply']:[])],o=parseArguments(argv.slice(1),values,flags),root=typeof o['--root']==='string'?o['--root']:process.cwd();
+      const command=argv[0]!,values=['--root','--run',...(command==='report'?['--format','--output']:command==='handoff'?['--target','--output','--validate']:command==='clean'?['--confirm-digest']:[])],flags=['--json',...(command==='gate'?['--strict']:command==='clean'?['--dry-run','--apply']:[])],o=parseArguments(argv.slice(1),values,flags),root=typeof o['--root']==='string'?o['--root']:process.cwd();
+      if(command==='handoff'&&typeof o['--validate']==='string'){if(typeof o['--run']==='string'||typeof o['--output']==='string')throw configurationError('handoff --validate is mutually exclusive with --run and writes nothing, so it cannot take --output');return handoffValidateCommand(root,o['--validate']);}
       if(typeof o['--run']!=='string'||!/^run_[A-Za-z0-9_-]+$/.test(o['--run']))throw configurationError('A valid --run is required');
       if(command==='gate')return gateCommand(root,o['--run']);
       if(command==='report'){const format=o['--format']??'terminal';if(!['json','terminal','markdown','junit'].includes(String(format)))throw configurationError('Unsupported report format');return reportCommand(root,o['--run'],format as 'json'|'terminal'|'markdown'|'junit',typeof o['--output']==='string'?o['--output']:undefined);}

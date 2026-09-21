@@ -1,0 +1,45 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/config/execution-inputs.test.ts (3 tests) 41ms
+ ✓ tests/integration/git/input-manifest.test.ts (16 tests) 29325ms
+     ✓ emits schema-valid SafeIds in a real captured manifest  1143ms
+     ✓ hashes final bytes B while keeping staged A and unstaged explanations  1223ms
+     ✓ includes untracked source and dependency locks in input hash  2288ms
+     ✓ retains tombstones for staged and unstaged deletions  1757ms
+     ✓ explicitly includes ignored build inputs and diagnoses missing required inputs  2486ms
+     ✓ excludes declared outputs and credential files with reasons  1791ms
+     ✓ blocks oversized files, LFS pointers and unresolved generated inputs  2506ms
+     ✓ blocks submodules and out-of-root directory links  2133ms
+     ✓ keeps documentation as input unless explicitly excluded  2082ms
+     ✓ respects nested ignore rules during safe directory enumeration  1611ms
+     ✓ does not run configured external diff or text conversion commands  1503ms
+     ✓ keeps task payload changes but excludes only StackGate state artifacts  2749ms
+     ✓ detects index entries whose object is missing  1359ms
+     ✓ hashes binary and CRLF bytes without normalizing them  1299ms
+     ✓ does not execute configured clean filters while computing dirty changes  1317ms
+     ✓ blocks CRLF LFS pointers and emulated symlink checkouts  2076ms
+ ✓ tests/integration/trust/input-scope.test.ts (7 tests) 44993ms
+   ✓ ignored dependencies and untracked generated caches do not alter trust or get recursively read  4653ms
+   ✓ tracked generated-looking source, untracked source, and dependency identities each change trust  17868ms
+   ✓ direct ignored dist script is retained without reading sibling generated files  7112ms
+   ✓ explicit ignored required files bind bytes and reject missing or secret-bearing inputs  8224ms
+   ✓ ordinary ignored .env bytes do not enter preview or change digest  5138ms
+   ✓ rejects command directory entry points whose concrete executed inputs are unknown  971ms
+   ✓ explicit command input through an escaping directory link is rejected  1024ms
+ ✓ tests/integration/trust/review.test.ts (9 tests) 83560ms
+   ✓ does not recognize mismatched grant IDs or permission scopes as trusted  14753ms
+   ✓ refuses a script whose bytes are excluded by the credential-input policy  3057ms
+   ✓ renews an expired matching record and preserves unrelated or concurrently changed records  19058ms
+   ✓ rejects external script arguments and binds ignored scripts outside workspaces  12200ms
+   ✓ binds inline code as arguments without interpreting code fragments as paths  2553ms
+   ✓ binds resolved tool identity without launching it  5978ms
+   ✓ previews names only and never trusts without explicit reviewed authorization  2346ms
+   ✓ stores outside repository, binds scripts, arguments and origins, and does not become CI trust  13317ms
+   ✓ refuses repository-contained trust stores and copying trust into another checkout  10294ms
+
+ Test Files  4 passed (4)
+      Tests  35 passed (35)
+   Start at  21:43:03
+   Duration  84.52s (transform 585ms, setup 0ms, import 2.30s, tests 157.92s, environment 0ms)
+

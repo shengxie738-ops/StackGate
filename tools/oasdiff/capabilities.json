@@ -1,0 +1,7 @@
+{
+  "name": "oasdiff",
+  "version": "1.32.1",
+  "platform": "win32-x64",
+  "expected_sha256": "cce550834cddfa7584a5cfde8deb2a6a57effcbc445f040f4f7ac37da47e8173",
+  "tested_capabilities": ["breaking-json", "diff-json", "external-refs-disabled"]
+}

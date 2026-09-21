@@ -1,0 +1,7 @@
+Progress: resolved 1, reused 1, downloaded 0, added 0
+Progress: resolved 239, reused 190, downloaded 0, added 0
+[WARN] 1 deprecated subdependencies found: glob@10.5.0
+Packages: -1
+-
+Progress: resolved 239, reused 190, downloaded 0, added 1, done
+

@@ -66,6 +66,18 @@
         "UNKNOWN"
       ]
     },
+    "retention": {
+      "type": "object",
+      "properties": {
+        "original_bytes": {"type": "integer", "minimum": 0},
+        "retained_bytes": {"type": "integer", "minimum": 0},
+        "truncated": {"type": "boolean"},
+        "reason": {"enum": [null, "ARTIFACT_BUDGET_EXCEEDED", "REDACTION_LINE_LIMIT"]},
+        "critical": {"type": "boolean"}
+      },
+      "required": ["original_bytes", "retained_bytes", "truncated", "reason", "critical"],
+      "additionalProperties": false
+    },
     "artifact_kind": {
       "type": "string",
       "enum": [

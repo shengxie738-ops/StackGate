@@ -1,0 +1,13 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/cli/m2.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 484358[2mms[22m[39m
+   [33m[2m✓[22m[39m separates a failing real run exit from the read-only report exit at the CLI boundary [33m 176981[2mms[22m[39m
+   [33m[2m✓[22m[39m exposes strict M2 command argument validation in the built CLI [33m 3408[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the built CLI through plan, real run, report, gate and stale reevaluation [33m 303967[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m   Start at [22m 01:56:35
+[2m   Duration [22m 486.92s[2m (transform 683ms, setup 0ms, import 2.24s, tests 484.36s, environment 0ms)[22m
+

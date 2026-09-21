@@ -1,0 +1,17 @@
+{
+  "task_id": "SG-028",
+  "command": "pnpm verify:tasks",
+  "argv": [
+    "pnpm",
+    "verify:tasks"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T13:31:16.787Z",
+  "finished_at": "2026-09-20T13:31:20.400Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-tasks-2026-09-20T13-31-16-787Z.json",
+  "log_path": "docs/implementation/evidence/sg-028-m1-r00-tasks-2026-09-20T13-31-16-787Z.log",
+  "signal": null,
+  "duration_ms": 3613
+}

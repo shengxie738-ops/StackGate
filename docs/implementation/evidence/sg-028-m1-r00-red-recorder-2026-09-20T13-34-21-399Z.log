@@ -1,0 +1,31 @@
+✖ audit records retain actual child failure and repository identity (66.1761ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 150.3982
+
+✖ failing tests:
+
+test at tests\bootstrap\audit-record.test.mjs:5:1
+✖ audit records retain actual child failure and repository identity (66.1761ms)
+  AssertionError [ERR_ASSERTION]: Usage: node scripts/record.mjs SG-001 label -- command args...
+  
+  
+  64 !== 7
+  
+      at TestContext.<anonymous> (file:///G:/StackGate/tests/bootstrap/audit-record.test.mjs:7:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 64,
+    expected: 7,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

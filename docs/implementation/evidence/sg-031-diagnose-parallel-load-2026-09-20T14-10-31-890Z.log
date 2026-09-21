@@ -1,0 +1,26 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/security/redaction.test.ts (6 tests) 3ms
+ ✓ tests/security/artifact-budget.test.ts (6 tests) 643ms
+ ✓ tests/integration/storage/store.test.ts (12 tests) 2881ms
+   ✓ creates independent runs and preserves immutable artifacts with checked bytes  422ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 1)  330ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 2)  319ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 3)  333ms
+ ✓ tests/integration/storage/integrity.test.ts (9 tests) 7827ms
+   ✓ seals immutable facts, supports identical repeat, and exposes verified readonly snapshots  993ms
+   ✓ detects modified sealed manifest.json without overwriting history  671ms
+   ✓ detects modified sealed events.jsonl without overwriting history  751ms
+   ✓ detects modified sealed artifact-index.json without overwriting history  1031ms
+   ✓ detects modified sealed document without overwriting history  1015ms
+   ✓ detects modified sealed artifact without overwriting history  1043ms
+   ✓ rejects missing required artifacts and preserves readable unsealed facts  786ms
+   ✓ rejects internally contradictory facts even when each document has a valid schema  759ms
+   ✓ refuses to seal undeclared orphan evidence or an incomplete event log  775ms
+
+ Test Files  4 passed (4)
+      Tests  33 passed (33)
+   Start at  22:10:33
+   Duration  8.78s (transform 529ms, setup 0ms, import 1.99s, tests 11.35s, environment 0ms)
+

@@ -1,0 +1,26 @@
+{
+  "task_id": "SG-048",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+    "branch": "V1",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+  },
+  "command": "pnpm exec vitest run tests/integration/runner/negative-matrix.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/runner/negative-matrix.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T17:35:29.895Z",
+  "finished_at": "2026-09-20T17:39:46.046Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-048-negative-matrix-current-2026-09-20T17-35-29-895Z.json",
+  "log_path": "docs/implementation/evidence/sg-048-negative-matrix-current-2026-09-20T17-35-29-895Z.log",
+  "signal": null,
+  "duration_ms": 256151
+}

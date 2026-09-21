@@ -1,0 +1,29 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/plan-service.test.ts (6 tests | 1 failed | 5 skipped) 10520ms
+   × persists a deterministic verified plan with exact ignored script bytes and required JUnit IDs 10519ms
+   ↓ rejects oversized plan files before allocating their contents
+   ↓ rejects unconfirmed task or unreviewed trust before persisting an executable plan
+   ↓ rechecks ignored script, policy and task identity, and rejects modified stored context
+   ↓ retains an explicitly required runtime check and marks unsupported local backend requirements blocked
+   ↓ keeps required e2e and an explicit environment dependency when M3 environment is unavailable
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/plan-service.test.ts > persists a deterministic verified plan with exact ignored script bytes and required JUnit IDs
+ServiceError: Invalid local trust record
+ ❯ configurationError packages/core/src/services/service-error.ts:6:10
+
+ ❯ TrustService.confirm packages/core/src/services/trust-service.ts:77:56
+ ❯ localPlanProject tests/support/local-plan-project.ts:26:47
+ ❯ tests/integration/plan-service.test.ts:10:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 skipped (6)
+   Start at  22:06:18
+   Duration  12.40s (transform 549ms, setup 0ms, import 1.64s, tests 10.52s, environment 0ms)
+

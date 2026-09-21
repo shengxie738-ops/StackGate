@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/stages/m1-audit-regressions.test.ts (1 test) 20941ms
+   ✓ relocated CLI combines confirmed task, bounded trust inputs, workspace fallback and honest static results  20940ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  21:43:34
+   Duration  21.33s (transform 62ms, setup 0ms, import 95ms, tests 20.94s, environment 0ms)
+

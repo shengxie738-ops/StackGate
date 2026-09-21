@@ -1,0 +1,38 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/handoff.test.ts (3 tests | 2 failed | 1 skipped) 5ms
+   × changes target wrapper only, preserves blocking facts, excludes prompt injection and validates current identity 4ms
+   × truncates optional indexes within budget without removing failures or gaps 1ms
+   ↓ reads a real sealed failed run without executing again or mutating its evidence
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/handoff.test.ts > changes target wrapper only, preserves blocking facts, excludes prompt injection and validates current identity
+Error: Handoff facts are not implemented
+ ❯ buildHandoff packages/core/src/services/handoff-service.ts:1:62
+      1| export function buildHandoff(..._args:unknown[]):never{throw Error('Ha…
+       |                                                              ^
+      2| export function validateHandoff(..._args:unknown[]):never{throw Error(…
+      3| export class HandoffService {constructor(..._args:unknown[]){}prepareH…
+ ❯ tests/integration/handoff.test.ts:13:33
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/integration/handoff.test.ts > truncates optional indexes within budget without removing failures or gaps
+Error: Handoff facts are not implemented
+ ❯ buildHandoff packages/core/src/services/handoff-service.ts:1:62
+      1| export function buildHandoff(..._args:unknown[]):never{throw Error('Ha…
+       |                                                              ^
+      2| export function validateHandoff(..._args:unknown[]):never{throw Error(…
+      3| export class HandoffService {constructor(..._args:unknown[]){}prepareH…
+ ❯ tests/integration/handoff.test.ts:24:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 skipped (3)
+   Start at  23:11:07
+   Duration  2.90s (transform 922ms, setup 0ms, import 2.51s, tests 5ms, environment 0ms)
+

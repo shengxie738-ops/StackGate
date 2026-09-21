@@ -1,0 +1,42 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/adapters/junit.test.ts (17 tests | 1 failed | 16 skipped) 1186ms
+   ↓ collects real report <testsuite><testcase name="one"/></testsuite> exit 0 as PASS
+   ↓ collects real report <testsuite tests="999"/> exit 0 as BLOCKED
+   ↓ collects real report null exit 0 as BLOCKED
+   × collects real report null exit 7 as ERROR 1185ms
+   ↓ collects real report <testsuite><testcase name="one"><skipped/></testcase></testsuite> exit 0 as BLOCKED
+   ↓ collects real report <testsuite><testcase name="one"><failure>bad</failure></testcase></testsuite> exit 0 as FAIL
+   ↓ collects real report <testsuite><testcase name="one"><failure/></testcase></testsuite> exit 7 as FAIL
+   ↓ collects real report <testsuite><testcase name="one"/></testsuite> exit 7 as ERROR
+   ↓ collects real report <testsuite> exit 0 as ERROR
+   ↓ collects real report <!DOCTYPE testsuite SYSTEM "file:///secret"><testsuite/> exit 0 as ERROR
+   ↓ collects real report <testsuite><testcase name="one"><flakyFailure/></testcase></testsuite> exit 0 as BLOCKED
+   ↓ requires declared IDs and minimum executed cases
+   ↓ refuses a prior report before executing and preserves user bytes
+   ↓ rejects a producer hard link to another report and preserves source bytes
+   ↓ collects only stored current-scope evidence and rejects tampered metadata
+   ↓ retains no credential messages in regular result facts
+   ↓ refuses a junction to a prior output directory before launching
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/adapters/junit.test.ts > collects real report null exit 7 as ERROR
+AssertionError: expected 'BLOCKED' to be 'ERROR' // Object.is equality
+
+Expected: "ERROR"
+Received: "BLOCKED"
+
+ ❯ tests/integration/adapters/junit.test.ts:25:177
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 16 skipped (17)
+   Start at  22:42:26
+   Duration  2.21s (transform 278ms, setup 0ms, import 728ms, tests 1.19s, environment 0ms)
+

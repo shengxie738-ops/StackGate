@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/run/lifecycle.test.ts (8 tests | 7 skipped) 71449ms
+   ✓ produces a sealed real command and JUnit run with complete lifecycle facts  71448ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 7 skipped (8)
+   Start at  23:04:29
+   Duration  74.05s (transform 796ms, setup 0ms, import 2.27s, tests 71.45s, environment 0ms)
+

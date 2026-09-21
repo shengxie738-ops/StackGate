@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/security/redaction.test.ts (5 tests) 3ms
+ ✓ tests/security/artifact-budget.test.ts (6 tests) 579ms
+
+ Test Files  2 passed (2)
+      Tests  11 passed (11)
+   Start at  22:08:09
+   Duration  1.49s (transform 258ms, setup 0ms, import 719ms, tests 582ms, environment 0ms)
+

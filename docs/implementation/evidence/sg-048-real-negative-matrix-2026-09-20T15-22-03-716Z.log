@@ -1,0 +1,36 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/runner/negative-matrix.test.ts (27 tests) 300505ms
+   ✓ command 0  2539ms
+   ✓ command nonzero  2655ms
+   ✓ spawn failure  2031ms
+   ✓ timeout  2653ms
+   ✓ cancel  2298ms
+   ✓ output overflow  2820ms
+   ✓ missing junit  2983ms
+   ✓ malformed junit  2776ms
+   ✓ zero junit  3061ms
+   ✓ skipped required  2905ms
+   ✓ evidence corrupt  164233ms
+   ✓ seal missing  16872ms
+   ✓ duplicate event  2069ms
+   ✓ stale input  16456ms
+   ✓ task revision changed  15568ms
+   ✓ policy changed  16151ms
+   ✓ tool binary changed  20105ms
+   ✓ missing environment provenance  3220ms
+   ✓ user canceled  1055ms
+   ✓ report reads failed run  2500ms
+   ✓ report FAIL with process zero  2483ms
+   ✓ process nonzero with PASS report  2456ms
+   ✓ missing required ID despite one executed case  2291ms
+   ✓ nonzero without trusted report  2143ms
+   ✓ flaky retry report does not satisfy required check  2190ms
+   ✓ baseline failure provenance never exempts the current failing required check  3931ms
+
+ Test Files  1 passed (1)
+      Tests  27 passed (27)
+   Start at  23:22:05
+   Duration  303.87s (transform 1.19s, setup 0ms, import 3.05s, tests 300.51s, environment 0ms)
+

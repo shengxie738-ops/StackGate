@@ -1,0 +1,22 @@
+$ node scripts/verify-schemas.mjs
+G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\vocabularies\core\ref.js:21
+            throw new ref_error_1.default(it.opts.uriResolver, baseId, $ref);
+                  ^
+
+MissingRefError: can't resolve reference diagnostic.schema.json from id https://stackgate.local/schemas/0.1/command-execution.schema.json
+    at Object.code (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\vocabularies\core\ref.js:21:19)
+    at keywordCode (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:464:13)
+    at G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:185:25
+    at CodeGen.code (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\codegen\index.js:439:13)
+    at CodeGen.block (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\codegen\index.js:568:18)
+    at schemaKeywords (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:185:13)
+    at typeAndKeywords (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:128:5)
+    at subSchemaObjCode (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:115:5)
+    at subschemaCode (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:91:13)
+    at KeywordCxt.subschema (G:\StackGate\node_modules\.pnpm\ajv@8.20.0\node_modules\ajv\dist\compile\validate\index.js:438:9) {
+  missingRef: 'https://stackgate.local/schemas/0.1/diagnostic.schema.json',
+  missingSchema: 'https://stackgate.local/schemas/0.1/diagnostic.schema.json'
+}
+
+Node.js v24.11.1
+[ELIFECYCLE] Command failed with exit code 1.

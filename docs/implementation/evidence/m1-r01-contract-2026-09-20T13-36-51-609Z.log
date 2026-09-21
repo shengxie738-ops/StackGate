@@ -1,0 +1,18 @@
+$ vitest run tests/contract
+
+ RUN  v4.0.18 G:/StackGate
+
+stdout | tests/contract/oasdiff.test.ts > SG020 real pinned oasdiff adapter > retains real version, raw IDs, raw JSON, original hashes and business exit status
+{"fixture":"type-change","status":"FAIL","evidence":[{"command":"version","argv":["--version"],"stdout":"oasdiff version 1.32.1\n","stderr":"","exit_code":0,"signal":null,"version":"1.32.1","executable_sha256":"sha256:cce550834cddfa7584a5cfde8deb2a6a57effcbc445f040f4f7ac37da47e8173"},{"command":"breaking","argv":["breaking","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-ubDTnE\\base.json","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-ubDTnE\\target.json","--format","json","--allow-external-refs=false","--config","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-ubDTnE\\oasdiff-config.json","--include-path-params","--auto-upgrade=false","--flatten-allof=false","--flatten-params=false","--fail-on","WARN"],"stdout":"[{\"id\":\"response-property-type-changed\",\"text\":\"the `data/performance/total_return` response's property `type` changed from `number` to `string` for status `200`\",\"level\":3,\"operation\":\"GET\",\"operationId\":\"getPerformance\",\"path\":\"/api/performance\",\"section\":\"paths\",\"fingerprint\":\"d4e087392f73\"}]\n","stderr":"","exit_code":1,"signal":null,"version":"1.32.1","executable_sha256":"sha256:cce550834cddfa7584a5cfde8deb2a6a57effcbc445f040f4f7ac37da47e8173","base_hash":"sha256:1a38de0d66d791dec4cc7ae6b3f9f2ae0aa3410ae7bbcb0c3bfd88cdf45aae8d","target_hash":"sha256:f5f78132329e73893ece7250514bd54906ed2db56e6a2215b261a0bff307f41d","audited_base_hash":"sha256:4fccf8fb30c0e712fcdfad06bd978906b22366af4532b8cd640c98061ad085bd","audited_target_hash":"sha256:a2527f9b8b2b416b0fd7292de08c7e1a9385819f41ed5ffb12132d46c67ab851"}]}
+
+ ✓ tests/contract/toolchain.test.ts (5 tests) 1603ms
+   ✓ runs real TypeScript program and compiler CLI diagnostics  931ms
+   ✓ build declarations are actually consumable with strict type checking  516ms
+ ✓ tests/contract/oasdiff.test.ts (31 tests) 1988ms
+     ✓ retains structural diff and distinguishes real empty diff  381ms
+
+ Test Files  2 passed (2)
+      Tests  36 passed (36)
+   Start at  21:36:52
+   Duration  2.68s (transform 297ms, setup 0ms, import 1.04s, tests 3.59s, environment 0ms)
+

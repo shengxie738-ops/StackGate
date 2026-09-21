@@ -10,16 +10,18 @@ import { inspectRepository } from './repository.js';
 import { fileInventory, matchesScope } from './file-inventory.js';
 import { changeSet } from './change-set.js';
 import { gitCommand, gitText, GitError } from './git-command.js';
-export interface InputScope { exclusions?: readonly {relative_path:string;reason:string}[]; include_ignored?: readonly string[]; max_file_bytes?: number; unresolved_inputs?: readonly string[] }
+export interface InputScope { exclusions?: readonly {relative_path:string;reason:string}[]; include_ignored?: readonly string[]; max_file_bytes?: number; unresolved_inputs?: readonly string[]; exclude_untracked_directory_names?: readonly string[]; required_files?: readonly string[] }
 export async function captureInputs(project: ProjectContext, baseline: Baseline, scope: InputScope = {}): Promise<InputManifest> {
   const repository = await inspectRepository(project.repo_root);
   const excluded = [{relative_path:'.git',reason:'Git internal state'}, {relative_path:'.stackgate/state',reason:'StackGate local state'}, ...(scope.exclusions ?? [])];
   const includeIgnored = [...(scope.include_ignored ?? [])];
+  if(scope.exclude_untracked_directory_names?.some(name=>!/^\.?[A-Za-z0-9_][A-Za-z0-9_.-]*$/.test(name)))throw new GitError('INVALID_SCOPE','Generated exclusions must be directory names');
+  for(const file of scope.required_files??[])await inspectPathWithin(repository.repo_root,file);
   for (const entry of [...excluded,...includeIgnored.map(relative_path => ({relative_path,reason:'explicit input'}))]) { if (!entry.reason.trim()) throw new GitError('INVALID_SCOPE','Exclusions need an explanation'); await inspectPathWithin(repository.repo_root,entry.relative_path); }
   const maxBytes = scope.max_file_bytes ?? 16 * 1024 * 1024;
   if (!Number.isSafeInteger(maxBytes) || maxBytes < 1) throw new GitError('INVALID_SCOPE','max_file_bytes must be a positive integer');
   const changes = await changeSet(repository.repo_root);
-  const inventory = await fileInventory(repository.repo_root,baseline.base_oid,includeIgnored,excluded.map(e => e.relative_path));
+  const inventory = await fileInventory(repository.repo_root,baseline.base_oid,includeIgnored,excluded.map(e => e.relative_path),scope);
   const files: InputManifest['files'] = [];
   const diagnostics: string[] = [];
   let completeness: InputManifest['completeness'] = 'COMPLETE';
@@ -61,6 +63,6 @@ export async function captureInputs(project: ProjectContext, baseline: Baseline,
   if (await gitText(repository.repo_root,['rev-parse','HEAD']) !== baseline.head_oid) incomplete('HEAD_CHANGED_SINCE_BASELINE','HEAD');
   const finalChanges = await changeSet(repository.repo_root);
   if (canonicalJson(finalChanges) !== canonicalJson(changes)) incomplete('INPUT_CHANGED_DURING_CAPTURE','index/worktree');
-  const hashInput = {files:files.map(file => ({relative_path:file.relative_path,kind:file.kind,digest:file.digest,mode:file.mode,...(file.kind === 'symlink' ? {link_target:file.link_target} : {})})),scope:{exclusions:scope.exclusions ?? [],include_ignored:includeIgnored},completeness,diagnostics};
+  const hashInput = {files:files.map(file => ({relative_path:file.relative_path,kind:file.kind,digest:file.digest,mode:file.mode,...(file.kind === 'symlink' ? {link_target:file.link_target} : {})})),scope:{exclusions:scope.exclusions ?? [],include_ignored:includeIgnored,...(scope.exclude_untracked_directory_names?{exclude_untracked_directory_names:scope.exclude_untracked_directory_names}:{}),...(scope.required_files?{required_files:scope.required_files}:{})},completeness,diagnostics};
   return {schema_version:'0.1',repo_id:repository.repo_id,worktree_id:repository.worktree_id,platform_id:repository.platform_id,base_oid:baseline.base_oid,head_oid:baseline.head_oid,target_tip_oid:baseline.target_tip_oid,git_object_format:baseline.git_object_format,files,exclusions:excluded,staged_changes:scopedChanges(changes.staged_changes),unstaged_changes:scopedChanges(changes.unstaged_changes),completeness,diagnostics,input_hash:hashBytes(Buffer.from(canonicalJson(hashInput)))};
 }

@@ -1,0 +1,54 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/security/artifact-budget.test.ts (6 tests | 3 failed) 515ms
+   ✓ reserves structure capacity and fails critical reports rather than truncating them 2ms
+   ✓ retains valid UTF-8 under truncation and reports exact bytes 0ms
+   ✓ ordinary evidence never receives unredacted logs; restricted binary remains excluded 244ms
+   × preserves valid structured JSON while redacting secret header keys recursively 108ms
+   × streamed raw counts and discarded long lines remain visible in stored metadata 60ms
+   × preserves sensitive XML original bytes only in restricted evidence 101ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/security/artifact-budget.test.ts > preserves valid structured JSON while redacting secret header keys recursively
+AssertionError: expected '{"headers":{"Authorization":"HEADER_C…' not to match /HEADER_CANARY|COOKIE_CANARY|SESSION_C…/
+
+- Expected: 
+/HEADER_CANARY|COOKIE_CANARY|SESSION_CANARY|DB_CANARY/
+
++ Received: 
+"{\"headers\":{\"Authorization\":\"HEADER_CANARY\",\"Cookie\":\"COOKIE_CANARY\",\"Set-Cookie\":\"SESSION_CANARY\"},\"password\":[REDACTED],\"safe\":42}"
+
+ ❯ tests/security/artifact-budget.test.ts:27:116
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/security/artifact-budget.test.ts > streamed raw counts and discarded long lines remain visible in stored metadata
+TypeError: stream.retention is not a function
+ ❯ tests/security/artifact-budget.test.ts:32:312
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/security/artifact-budget.test.ts > preserves sensitive XML original bytes only in restricted evidence
+AssertionError: expected 'regular' to be 'restricted' // Object.is equality
+
+Expected: "restricted"
+Received: "regular"
+
+ ❯ tests/security/artifact-budget.test.ts:38:31
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 3 passed (6)
+   Start at  22:07:09
+   Duration  1.48s (transform 226ms, setup 0ms, import 715ms, tests 515ms, environment 0ms)
+

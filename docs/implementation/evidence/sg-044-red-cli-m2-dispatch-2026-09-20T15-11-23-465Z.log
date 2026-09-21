@@ -1,0 +1,38 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/cli/m2.test.ts (2 tests | 1 failed | 1 skipped) 320ms
+   × exposes strict M2 command argument validation in the built CLI 319ms
+   ↓ runs the built CLI through plan, real run, report, gate and stale reevaluation
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/cli/m2.test.ts > exposes strict M2 command argument validation in the built CLI
+AssertionError: expected 'StackGate 0.1\nUsage: stackgate --hel…' to contain 'run --plan'
+
+- Expected
++ Received
+
+- run --plan
++ StackGate 0.1
++ Usage: stackgate --help | --version
++   doctor [--root PATH] [--json]
++   init --preset fastapi-react [--dry-run | --apply] [--root PATH] [--json]
++   task validate --file PATH [--root PATH] --json
++   task confirm --file PATH --confirm-digest SHA256 [--root PATH] --json
++   trust --review [--confirm-digest SHA256] [--root PATH] --json
++   scan [--base REF] [--task PATH] [--profile ID] [--root PATH] --json
++ Static operations never execute repository scripts.
++
+
+ ❯ tests/integration/cli/m2.test.ts:10:98
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 skipped (2)
+   Start at  23:11:25
+   Duration  2.67s (transform 715ms, setup 0ms, import 2.02s, tests 320ms, environment 0ms)
+

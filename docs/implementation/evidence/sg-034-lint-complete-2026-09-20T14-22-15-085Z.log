@@ -1,0 +1,11 @@
+$ eslint .
+
+G:\StackGate\packages\adapter-command\src\command-adapter.ts
+  4:17  error  '_step' is defined but never used     @typescript-eslint/no-unused-vars
+  4:33  error  '_context' is defined but never used  @typescript-eslint/no-unused-vars
+  5:16  error  '_step' is defined but never used     @typescript-eslint/no-unused-vars
+  5:32  error  '_context' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 4 problems (4 errors, 0 warnings)
+
+[ELIFECYCLE] Command failed with exit code 1.

@@ -1,0 +1,16 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/gate/plan-binding.test.ts (9 tests) 3ms
+ ✓ tests/integration/gate/current-state.test.ts (5 tests) 427257ms
+   ✓ missing run evidence remains unverified and cannot be allowed  944ms
+   ✓ stores a missing-run evaluation outside runs without inventing a run directory  933ms
+   ✓ authenticates a real sealed run then reevaluates source, task, policy and evidence without changing historical facts  139106ms
+   ✓ keeps real failed evidence denied and detects changed executable bytes without launching that executable  119071ms
+   ✓ does not turn local CI environment claims into required backend provenance  167201ms
+
+ Test Files  2 passed (2)
+      Tests  14 passed (14)
+   Start at  23:15:49
+   Duration  430.10s (transform 1.75s, setup 0ms, import 4.81s, tests 427.26s, environment 0ms)
+

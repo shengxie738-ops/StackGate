@@ -1,0 +1,32 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/cli/m2.test.ts (2 tests | 1 failed) 18822ms
+   ✓ exposes strict M2 command argument validation in the built CLI  1989ms
+   × runs the built CLI through plan, real run, report, gate and stale reevaluation 16832ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/cli/m2.test.ts > runs the built CLI through plan, real run, report, gate and stale reevaluation
+AssertionError: 
+{"schema_version":"0.1","ok":false,"operation":"trust","runtime":"NOT_EXECUTED","exit_code":3,"diagnostics":[{"code":"TOOL_FAILURE","rule_id":"SG-TOOL-CLI_FAILURE","message":"Unable to complete the operation safely.","location":"","observed_facts":{},"recommended_action":"Inspect the operation inputs and local environment; no success is inferred.","source":"cli"}]}
+: expected 3 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 3
+
+ ❯ invoke tests/integration/cli/m2.test.ts:8:243
+
+ ❯ tests/integration/cli/m2.test.ts:15:57
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  23:14:24
+   Duration  21.34s (transform 822ms, setup 0ms, import 2.17s, tests 18.82s, environment 0ms)
+

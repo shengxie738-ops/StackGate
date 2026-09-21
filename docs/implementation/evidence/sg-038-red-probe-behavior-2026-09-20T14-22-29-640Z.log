@@ -1,0 +1,157 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/contract/probe-envelope.test.ts (12 tests | 12 failed) 1895ms
+   × revalidates retained response bytes rather than accepting script schema_valid=true 188ms
+   × valid report claims remain blocked without authenticated backend provenance 186ms
+   × health-only report does not satisfy the required business operation 141ms
+   × rejects historical or mismatched report run_id 141ms
+   × rejects historical or mismatched report check_id 159ms
+   × rejects historical or mismatched report attempt_id 146ms
+   × rejects scope metadata mismatch and corrupt stored bytes 161ms
+   × rejects conflicting request identities and duplicate assertion identities 172ms
+   × retains incomplete markers, missing assertions and missing payload as explicit gaps 144ms
+   × honors missing report, cancellation and missing process completion 153ms
+   × refuses changed target identity and unsupported target schema 152ms
+   × failed assertions remain failures even without backend provenance 152ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 12 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/contract/probe-envelope.test.ts > revalidates retained response bytes rather than accepting script schema_valid=true
+Error: Probe collection is not implemented for runtime
+ ❯ collectProbe packages/core/src/services/adapters/probe-adapter.ts:9:95
+      7|  started_at:string;finished_at:string|null;raw_exit_code:number|null;
+      8| }
+      9| export async function collectProbe(request:ProbeCollectionRequest):Pro…
+       |                                                                                               ^
+     10| 
+ ❯ tests/contract/probe-envelope.test.ts:21:149
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+ FAIL  tests/contract/probe-envelope.test.ts > valid report claims remain blocked without authenticated backend provenance
+Error: Probe collection is not implemented for runtime
+ ❯ collectProbe packages/core/src/services/adapters/probe-adapter.ts:9:95
+      7|  started_at:string;finished_at:string|null;raw_exit_code:number|null;
+      8| }
+      9| export async function collectProbe(request:ProbeCollectionRequest):Pro…
+       |                                                                                               ^
+     10| 
+ ❯ tests/contract/probe-envelope.test.ts:24:43
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/12]⎯
+
+ FAIL  tests/contract/probe-envelope.test.ts > health-only report does not satisfy the required business operation
+Error: Probe collection is not implemented for runtime
+ ❯ collectProbe packages/core/src/services/adapters/probe-adapter.ts:9:95
+      7|  started_at:string;finished_at:string|null;raw_exit_code:number|null;
+      8| }
+      9| export async function collectProbe(request:ProbeCollectionRequest):Pro…
+       |                                                                                               ^
+     10| 
+ ❯ tests/contract/probe-envelope.test.ts:27:104
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/12]⎯
+
+ FAIL  tests/contract/probe-envelope.test.ts > rejects historical or mismatched report run_id
+ FAIL  tests/contract/probe-envelope.test.ts > rejects historical or mismatched report check_id
+ FAIL  tests/contract/probe-envelope.test.ts > rejects historical or mismatched report attempt_id
+Error: Probe collection is not implemented for runtime
+ ❯ collectProbe packages/core/src/services/adapters/probe-adapter.ts:9:95
+      7|  started_at:string;finished_at:string|null;raw_exit_code:number|null;
+      8| }
+      9| export async function collectProbe(request:ProbeCollectionRequest):Pro…
+       |                                                                                               ^
+     10| 
+ ❯ tests/contract/probe-envelope.test.ts:30:127
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/12]⎯
+
+ FAIL  tests/contract/probe-envelope.test.ts > rejects scope metadata mismatch and corrupt stored bytes
+Error: Probe collection is not implemented for runtime
+ ❯ collectProbe packages/core/src/services/adapters/probe-adapter.ts:9:95
+      7|  started_at:string;finished_at:string|null;raw_exit_code:number|null;
+      8| }
+      9| export async function collectProbe(request:ProbeCollectionRequest):Pro…
+       |                                                                                               ^
+     10| 
+ ❯ tests/contract/probe-envelope.test.ts:33:44
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/12]⎯
+
+ FAIL  tests/contract/probe-envelope.test.ts > rejects conflicting request identities and duplicate assertion identities
+Error: Probe collection is not implemented for runtime
+ ❯ collectProbe packages/core/src/services/adapters/probe-adapter.ts:9:95
+      7|  started_at:string;finished_at:string|null;raw_exit_code:number|null;
+      8| }
+      9| export async function collectProbe(request:ProbeCollectionRequest):Pro…
+       |                                                                                               ^
+     10| 
+ ❯ tests/contract/probe-envelope.test.ts:36:124
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/12]⎯
+
+ FAIL  tests/contract/probe-envelope.test.ts > retains incomplete markers, missing assertions and missing payload as explicit gaps
+Error: Probe collection is not implemented for runtime
+ ❯ collectProbe packages/core/src/services/adapters/probe-adapter.ts:9:95
+      7|  started_at:string;finished_at:string|null;raw_exit_code:number|null;
+      8| }
+      9| export async function collectProbe(request:ProbeCollectionRequest):Pro…
+       |                                                                                               ^
+     10| 
+ ❯ tests/contract/probe-envelope.test.ts:39:142
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/12]⎯
+
+ FAIL  tests/contract/probe-envelope.test.ts > honors missing report, cancellation and missing process completion
+Error: Probe collection is not implemented for runtime
+ ❯ collectProbe packages/core/src/services/adapters/probe-adapter.ts:9:95
+      7|  started_at:string;finished_at:string|null;raw_exit_code:number|null;
+      8| }
+      9| export async function collectProbe(request:ProbeCollectionRequest):Pro…
+       |                                                                                               ^
+     10| 
+ ❯ tests/contract/probe-envelope.test.ts:42:44
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/12]⎯
+
+ FAIL  tests/contract/probe-envelope.test.ts > refuses changed target identity and unsupported target schema
+Error: Probe collection is not implemented for runtime
+ ❯ collectProbe packages/core/src/services/adapters/probe-adapter.ts:9:95
+      7|  started_at:string;finished_at:string|null;raw_exit_code:number|null;
+      8| }
+      9| export async function collectProbe(request:ProbeCollectionRequest):Pro…
+       |                                                                                               ^
+     10| 
+ ❯ tests/contract/probe-envelope.test.ts:45:44
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/12]⎯
+
+ FAIL  tests/contract/probe-envelope.test.ts > failed assertions remain failures even without backend provenance
+Error: Probe collection is not implemented for runtime
+ ❯ collectProbe packages/core/src/services/adapters/probe-adapter.ts:9:95
+      7|  started_at:string;finished_at:string|null;raw_exit_code:number|null;
+      8| }
+      9| export async function collectProbe(request:ProbeCollectionRequest):Pro…
+       |                                                                                               ^
+     10| 
+ ❯ tests/contract/probe-envelope.test.ts:47:205
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/12]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  12 failed (12)
+   Start at  22:22:31
+   Duration  3.01s (transform 259ms, setup 0ms, import 817ms, tests 1.90s, environment 0ms)
+

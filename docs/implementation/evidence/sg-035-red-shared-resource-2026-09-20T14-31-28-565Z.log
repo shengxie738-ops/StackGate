@@ -1,0 +1,31 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/execution/scheduler.test.ts (4 tests | 1 failed | 3 skipped) 110ms
+   ↓ runs A to B/C to D with lexicographic starts and real independent concurrency
+   ↓ failure blocks only dependent branches and cancellation stops new steps
+   ↓ rejects invalid concurrency and never launches malformed DAGs
+   × serializes shared resources while independent resources progress 109ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/execution/scheduler.test.ts > serializes shared resources while independent resources progress
+AssertionError: expected 2 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ tests/unit/execution/scheduler.test.ts:14:672
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 skipped (4)
+   Start at  22:31:29
+   Duration  794ms (transform 147ms, setup 0ms, import 433ms, tests 110ms, environment 0ms)
+

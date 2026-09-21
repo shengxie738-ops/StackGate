@@ -1,0 +1,248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/handoff.schema.json",
+  "title": "HandoffBundle",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "handoff_id": {
+      "type": "string",
+      "pattern": "^handoff_[a-f0-9]{64}$"
+    },
+    "facts_digest": {
+      "$ref": "common.schema.json#/$defs/Sha256"
+    },
+    "target": {
+      "enum": [
+        "codex",
+        "claude",
+        "manual"
+      ]
+    },
+    "entry": {
+      "type": "string"
+    },
+    "facts": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "run_id": {
+          "type": "string",
+          "pattern": "^run_[A-Za-z0-9_-]+$"
+        },
+        "plan_id": {
+          "type": "string",
+          "pattern": "^plan_[A-Za-z0-9_-]+$"
+        },
+        "task_id": {
+          "$ref": "common.schema.json#/$defs/SafeId"
+        },
+        "task_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "repo_id": {
+          "type": "string"
+        },
+        "worktree_id": {
+          "type": "string"
+        },
+        "base_oid": {
+          "type": "string",
+          "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+        },
+        "input_hash": {
+          "$ref": "common.schema.json#/$defs/Sha256"
+        },
+        "plan_hash": {
+          "$ref": "common.schema.json#/$defs/Sha256"
+        },
+        "target_contract_hashes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "common.schema.json#/$defs/Sha256"
+          }
+        },
+        "decision": {
+          "$ref": "common.schema.json#/$defs/Decision"
+        },
+        "verdict": {
+          "$ref": "common.schema.json#/$defs/Verdict"
+        },
+        "freshness": {
+          "$ref": "common.schema.json#/$defs/Freshness"
+        },
+        "gate_reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "constraints": {
+          "$ref": "task.schema.json#/properties/constraints"
+        },
+        "allowed_change_paths": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/RelativePath"
+          }
+        },
+        "protected_inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/RelativePath"
+          }
+        },
+        "failed_facts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "check_id": {
+                "$ref": "common.schema.json#/$defs/SafeId"
+              },
+              "required": {
+                "type": "boolean"
+              },
+              "status": {
+                "$ref": "common.schema.json#/$defs/CheckStatus"
+              },
+              "reason_codes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "missing_test_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "check_id",
+              "required",
+              "status",
+              "reason_codes",
+              "missing_test_ids"
+            ]
+          }
+        },
+        "missing_checks": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/SafeId"
+          }
+        },
+        "coverage_gaps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "minimal_related_paths": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/RelativePath"
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "artifact_id": {
+                "type": "string"
+              },
+              "relative_path": {
+                "$ref": "common.schema.json#/$defs/RelativePath"
+              },
+              "digest": {
+                "$ref": "common.schema.json#/$defs/Sha256"
+              },
+              "size": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "artifact_id",
+              "relative_path",
+              "digest",
+              "size"
+            ]
+          }
+        },
+        "reproduction": {
+          "type": "string"
+        },
+        "next_verification": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "restrictions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "run_id",
+        "plan_id",
+        "task_id",
+        "task_revision",
+        "repo_id",
+        "worktree_id",
+        "base_oid",
+        "input_hash",
+        "plan_hash",
+        "target_contract_hashes",
+        "decision",
+        "verdict",
+        "freshness",
+        "gate_reasons",
+        "constraints",
+        "allowed_change_paths",
+        "protected_inputs",
+        "failed_facts",
+        "missing_checks",
+        "coverage_gaps",
+        "minimal_related_paths",
+        "evidence",
+        "reproduction",
+        "next_verification",
+        "restrictions"
+      ]
+    },
+    "truncated": {
+      "type": "boolean"
+    },
+    "omitted_items": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "budget_bytes": {
+      "const": 32768
+    }
+  },
+  "required": [
+    "schema_version",
+    "handoff_id",
+    "facts_digest",
+    "target",
+    "entry",
+    "facts",
+    "truncated",
+    "omitted_items",
+    "budget_bytes"
+  ]
+}

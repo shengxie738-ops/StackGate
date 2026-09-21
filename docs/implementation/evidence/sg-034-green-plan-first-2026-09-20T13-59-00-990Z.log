@@ -1,0 +1,14 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/plan/dag.test.ts (13 tests) 45ms
+ ✓ tests/integration/plan-service.test.ts (3 tests) 132830ms
+   ✓ persists a deterministic verified plan with exact ignored script bytes and required JUnit IDs  55158ms
+   ✓ rejects unconfirmed task or unreviewed trust before persisting an executable plan  17253ms
+   ✓ rechecks ignored script, policy and task identity, and rejects modified stored context  60416ms
+
+ Test Files  2 passed (2)
+      Tests  16 passed (16)
+   Start at  21:59:02
+   Duration  134.75s (transform 639ms, setup 0ms, import 2.20s, tests 132.87s, environment 0ms)
+

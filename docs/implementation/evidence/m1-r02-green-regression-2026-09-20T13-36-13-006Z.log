@@ -1,0 +1,15 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/impact/selection.test.ts (6 tests) 11ms
+ ✓ tests/unit/config/parse.test.ts (7 tests) 60ms
+ ✓ tests/unit/select-checks.test.ts (6 tests) 60ms
+ ✓ tests/integration/scan-workspace-regression.test.ts (2 tests) 9925ms
+   ✓ scan adds both workspace regressions and preserves task/profile checks and test IDs  8146ms
+   ✓ scan retains uncovered workspace gaps when only one regression set exists  1778ms
+
+ Test Files  4 passed (4)
+      Tests  21 passed (21)
+   Start at  21:36:14
+   Duration  11.63s (transform 723ms, setup 0ms, import 2.75s, tests 10.06s, environment 0ms)
+

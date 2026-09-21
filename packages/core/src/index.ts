@@ -27,8 +27,17 @@ export { TrustService, buildExecutionPreview } from './services/trust-service.js
 export { ContractService } from './services/contract-service.js';
 export { InitService } from './services/init-service.js';
 export { ScanService } from './services/scan-service.js';
+export { PlanService } from './services/plan-service.js';
+export { RunService } from './services/run-service.js';
+export type { RunExecutionOutcome, RunServiceOptions } from './services/run-service.js';
+export type { PlanRequest, StoredPlan, PlanInspection } from './services/plan-service.js';
+export { normalizePlanDag } from './domain/plan-dag.js';
+export { schedulePlan } from './execution/scheduler.js';
+export type { SchedulerOptions, SchedulerResult, SchedulerTransition } from './execution/scheduler.js';
 export { ServiceError } from './services/service-error.js';
 export { selectChecks } from './domain/select-checks.js';
 export { aggregateImpacts } from './domain/aggregate-impacts.js';
 export { detectAcceptanceDrift } from './domain/protected-input-drift.js';
 export { detectTestInventoryDrift } from './domain/test-inventory-drift.js';
+export { ParseCache } from './storage/parse-cache.js';
+export type { CacheIdentity, StaticParseEntry } from './storage/parse-cache.js';

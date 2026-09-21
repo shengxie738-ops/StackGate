@@ -1,0 +1,52 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/storage/store.test.ts (8 tests | 2 failed) 1444ms
+   ✓ creates independent runs and preserves immutable artifacts with checked bytes  402ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope  312ms
+   ✓ diagnoses truncated JSONL while retaining completed records and refusing further append 113ms
+   ✓ validates event documents and rejects illegal lifecycle or cross-run check results 156ms
+   ✓ rejects traversal, links, malformed documents and scope mismatch 142ms
+   ✓ requires explicit exact manifest CAS and immutable run identity 145ms
+   × preserves unrelated temp bytes when a parent is replaced during commit 24ms
+   × check completion preserves matching step identity and cannot finalize active attempts 150ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/storage/store.test.ts > preserves unrelated temp bytes when a parent is replaced during commit
+Error: ENOENT: no such file or directory, open 'C:\Users\17894\AppData\Local\Temp\stackgate-test-9rtErf\owned\.sg-tmp-43c45d06-05de-4ef3-acea-f81b4f1cbaf7'
+ ❯ tests/integration/storage/store.test.ts:63:111
+     61|   return link(source,target);
+     62|  });
+     63|  try{await expect(writeBytesAtomic(root,'owned/report.txt',Buffer.from…
+       |                                                                                                               ^
+     64| }));
+     65| it('check completion preserves matching step identity and cannot final…
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/integration/storage/store.test.ts > check completion preserves matching step identity and cannot finalize active attempts
+AssertionError: expected { status: 'APPENDED', …(2) } to match object { status: 'ERROR' }
+(2 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "status": "ERROR",
++   "status": "APPENDED",
+  }
+
+ ❯ tests/integration/storage/store.test.ts:68:214
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 6 passed (8)
+   Start at  21:54:44
+   Duration  2.25s (transform 207ms, setup 0ms, import 539ms, tests 1.44s, environment 0ms)
+

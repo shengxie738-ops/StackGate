@@ -1,0 +1,12 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/cli/m2.test.ts (2 tests) 182541ms
+   ✓ exposes strict M2 command argument validation in the built CLI  1845ms
+   ✓ runs the built CLI through plan, real run, report, gate and stale reevaluation  180694ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  23:28:19
+   Duration  185.16s (transform 737ms, setup 0ms, import 2.24s, tests 182.54s, environment 0ms)
+

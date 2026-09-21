@@ -1,0 +1,17 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/runner/process.test.ts (7 tests) 8872ms
+   ✓ preserves actual exit 0 and separate sanitized streams  1060ms
+   ✓ preserves actual exit 1 and separate sanitized streams  1058ms
+   ✓ preserves actual exit 7 and separate sanitized streams  1005ms
+   ✓ keeps exact Unicode argv and does not interpret shell syntax  1093ms
+   ✓ distinguishes timeout from cancellation and stops late writes  2230ms
+   ✓ bounds both huge stdout and stderr without pipe deadlock  1124ms
+   ✓ kills only its owned job including detached descendants and leaves unrelated process alive  1299ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  22:14:48
+   Duration  9.32s (transform 76ms, setup 0ms, import 180ms, tests 8.87s, environment 0ms)
+

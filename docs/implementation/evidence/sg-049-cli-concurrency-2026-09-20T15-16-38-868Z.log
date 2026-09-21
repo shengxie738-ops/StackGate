@@ -1,0 +1,32 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/run/concurrent-runs.test.ts (5 tests | 1 failed | 4 skipped) 15800ms
+   ↓ cross-process identical event append is idempotent without duplicate sequence
+   ↓ cross-process competing artifact bytes publish exactly one immutable winner
+   ↓ two run IDs in one repository never share artifact directories
+   ↓ a second process cannot acquire the same worktree resource and cannot reap a dead owner lock
+   × two real CLI runs of one worktree have distinct IDs and only one may execute business commands 15799ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/run/concurrent-runs.test.ts > two real CLI runs of one worktree have distinct IDs and only one may execute business commands
+AssertionError: expected 3 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 3
+
+ ❯ tests/integration/run/concurrent-runs.test.ts:28:183
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 skipped (5)
+   Start at  23:16:40
+   Duration  18.15s (transform 758ms, setup 0ms, import 2.01s, tests 15.80s, environment 0ms)
+

@@ -1,0 +1,13 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/gate/current-state.test.ts (6 tests | 3 skipped) 7192ms
+   ✓ missing run evidence remains unverified and cannot be allowed  1605ms
+   ✓ stores a missing-run evaluation outside runs without inventing a run directory  1601ms
+   ✓ retains actual unsealed lifecycle prefixes and distinguishes an aborted run from pending work  3984ms
+
+ Test Files  1 passed (1)
+      Tests  3 passed | 3 skipped (6)
+   Start at  23:23:58
+   Duration  10.44s (transform 1.04s, setup 0ms, import 2.92s, tests 7.19s, environment 0ms)
+

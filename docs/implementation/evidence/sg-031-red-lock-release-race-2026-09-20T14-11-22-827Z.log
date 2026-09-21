@@ -1,0 +1,37 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/storage/store.test.ts (13 tests | 1 failed | 12 skipped) 12ms
+   ↓ creates independent runs and preserves immutable artifacts with checked bytes
+   ↓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 1)
+   ↓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 2)
+   ↓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 3)
+   ↓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 4)
+   ↓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 5)
+   ↓ diagnoses truncated JSONL while retaining completed records and refusing further append
+   ↓ validates event documents and rejects illegal lifecycle or cross-run check results
+   ↓ rejects traversal, links, malformed documents and scope mismatch
+   ↓ requires explicit exact manifest CAS and immutable run identity
+   ↓ preserves unrelated temp bytes when a parent is replaced during commit
+   ↓ check completion preserves matching step identity and cannot finalize active attempts
+   × acquires safely when another owner releases its lock during path inspection 11ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/storage/store.test.ts > acquires safely when another owner releases its lock during path inspection
+AssertionError: promise rejected "Error: ENOENT: no such file or directory,… { …(4) }" instead of resolving
+ ❯ tests/integration/storage/store.test.ts:75:48
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+Caused by: Error: ENOENT: no such file or directory, realpath 'C:\Users\17894\AppData\Local\Temp\stackgate-test-C1Mp6Q\.write-lock'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { errno: -4058, code: 'ENOENT', syscall: 'realpath', path: 'C:\Users\17894\AppData\Local\Temp\stackgate-test-C1Mp6Q\.write-lock' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 skipped (13)
+   Start at  22:11:24
+   Duration  843ms (transform 215ms, setup 0ms, import 547ms, tests 12ms, environment 0ms)
+

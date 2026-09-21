@@ -1,15 +1,16 @@
-import type { Artifact, CheckPlan, CheckResult, Diagnostic, RunEvent, RunManifest } from '../../../contracts/src/index.js';
+import type { Artifact, CheckPlan, CheckResult, Diagnostic, RunEvent, RunManifest, InputManifest, EnvironmentManifest, Finding, PlanContext, RunCompletion } from '../../../contracts/src/index.js';
 export interface ArtifactWrite {
   name: string; media_type: string; bytes: Uint8Array;
   artifact_kind: NonNullable<Artifact['artifact_kind']>;
   sensitivity: Artifact['sensitivity']; redaction_state: Artifact['redaction_state'];
+  retention?: Artifact['retention'];
 }
 export interface RestrictedArtifactWriter {
   /** A run/check/attempt-scoped implementation enforces name containment and budget. */
   store(artifact: ArtifactWrite): Promise<Artifact>;
 }
 export interface RestrictedLogWriter { append(stream: 'stdout' | 'stderr' | 'diagnostic', text: string): Promise<void> }
-export type EvidenceDocument = { kind: 'plan'; value: CheckPlan } | { kind: 'run'; value: RunManifest } | { kind: 'check-result'; value: CheckResult };
+export type EvidenceDocument = { kind: 'plan'; value: CheckPlan } | { kind: 'run'; value: RunManifest } | { kind: 'check-result'; value: CheckResult } | {kind:'input-manifest';value:InputManifest} | {kind:'environment';value:EnvironmentManifest} | {kind:'finding';value:Finding} | {kind:'plan-context';value:PlanContext} | {kind:'run-completion';value:RunCompletion};
 export interface EvidenceScope { run_id: string; check_id: string | null; attempt_id: string | null }
 export type AppendResult = { status: 'APPENDED' | 'DUPLICATE'; event_id: string; seq: number } | { status: 'ERROR'; diagnostics: Diagnostic[] };
 export interface SealResult { status: 'SEALED' | 'BLOCKED' | 'ERROR'; manifest_hash: string | null; artifacts: Artifact[]; diagnostics: Diagnostic[] }

@@ -1,0 +1,31 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/security/redaction.test.ts (6 tests) 4ms
+ ✓ tests/security/artifact-budget.test.ts (6 tests) 830ms
+   ✓ ordinary evidence never receives unredacted logs; restricted binary remains excluded  361ms
+ ✓ tests/integration/storage/store.test.ts (13 tests) 3702ms
+   ✓ creates independent runs and preserves immutable artifacts with checked bytes  597ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 1)  413ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 2)  379ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 3)  385ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 4)  376ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 5)  431ms
+   ✓ check completion preserves matching step identity and cannot finalize active attempts  304ms
+ ✓ tests/integration/storage/integrity.test.ts (10 tests) 10856ms
+   ✓ seals immutable facts, supports identical repeat, and exposes verified readonly snapshots  1429ms
+   ✓ detects modified sealed manifest.json without overwriting history  1050ms
+   ✓ detects modified sealed events.jsonl without overwriting history  1042ms
+   ✓ detects modified sealed artifact-index.json without overwriting history  1255ms
+   ✓ detects modified sealed document without overwriting history  1198ms
+   ✓ detects modified sealed artifact without overwriting history  1122ms
+   ✓ rejects missing required artifacts and preserves readable unsealed facts  835ms
+   ✓ rejects internally contradictory facts even when each document has a valid schema  772ms
+   ✓ refuses to seal undeclared orphan evidence or an incomplete event log  730ms
+   ✓ retains failed retry documents alongside the final check without rewriting history  1420ms
+
+ Test Files  4 passed (4)
+      Tests  35 passed (35)
+   Start at  22:13:56
+   Duration  12.10s (transform 805ms, setup 0ms, import 2.59s, tests 15.39s, environment 0ms)
+

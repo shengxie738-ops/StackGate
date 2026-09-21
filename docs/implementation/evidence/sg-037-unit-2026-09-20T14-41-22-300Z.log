@@ -1,0 +1,111 @@
+$ node scripts/test-unit.mjs
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/storage/paths.test.ts (27 tests) 169ms
+ ✓ tests/unit/tool-registry.test.ts (4 tests) 215ms
+ ✓ tests/unit/gate/truth-table.test.ts (22 tests) 12ms
+ ✓ tests/unit/gate/exit-priority.test.ts (65 tests) 20ms
+ ✓ tests/unit/contracts/primitives.test.ts (13 tests) 117ms
+ ✓ tests/unit/openapi/safe-loader.test.ts (60 tests) 250ms
+ ✓ tests/unit/impact/typescript.test.ts (6 tests) 58ms
+ ✓ tests/unit/contracts/run-schema.test.ts (24 tests) 231ms
+ ✓ tests/unit/impact/mappings.test.ts (6 tests) 16ms
+ ✓ tests/unit/openapi/public-scan-report.test.ts (1 test) 4ms
+ ✓ tests/unit/impact/selection.test.ts (6 tests) 35ms
+ ✓ tests/unit/reports/junit-input.test.ts (13 tests) 13ms
+ ✓ tests/unit/openapi/three-way.test.ts (10 tests) 11ms
+ ✓ tests/unit/select-checks.test.ts (6 tests) 102ms
+ ✓ tests/unit/storage/atomic-write.test.ts (6 tests) 1346ms
+   ✓ preserves the old target and cleans its own temporary file after real rename fails  309ms
+   ✓ publishes at most one concurrent creation without clobbering the winner  305ms
+   ✓ a partial temporary write failure never replaces the old JSON  497ms
+ ✓ tests/unit/gate/acceptance-boundaries.test.ts (11 tests) 11ms
+ ✓ tests/unit/openapi/runtime-validator.test.ts (23 tests) 448ms
+ ✓ tests/unit/plan/dag.test.ts (13 tests) 97ms
+ ✓ tests/unit/freshness.test.ts (46 tests) 18ms
+ ✓ tests/unit/config/parse.test.ts (7 tests) 128ms
+ ✓ tests/unit/fixtures.test.ts (10 tests) 1001ms
+   ✓ validates all OpenAPI documents against the retained official document schema and strict response schemas  898ms
+ ✓ tests/unit/config/execution-inputs.test.ts (3 tests) 71ms
+ ✓ tests/unit/storage/hash.test.ts (17 tests) 9ms
+ ✓ tests/unit/contracts/task-schema.test.ts (17 tests) 91ms
+ ✓ tests/unit/contracts/config-schema.test.ts (9 tests) 113ms
+ ✓ tests/unit/config/merge.test.ts (3 tests) 6ms
+ ✓ tests/unit/policy/drift.test.ts (7 tests) 8ms
+ ✓ tests/unit/config/init-safety.test.ts (6 tests) 307ms
+ ✓ tests/unit/storage/cache.test.ts (5 tests) 1656ms
+   ✓ treats corruption as a miss, reparses and preserves unrelated files  738ms
+   ✓ bounds retained bytes and never follows a substituted cache link  502ms
+ ✓ tests/unit/bootstrap.test.ts (5 tests) 3349ms
+   ✓ built help is executable without a TypeScript runtime  507ms
+   ✓ rejects unsupported arguments and combinations with exit 64  1637ms
+   ✓ prints package version  379ms
+   ✓ an empty test selection exits nonzero  823ms
+ ✓ tests/unit/ports.test.ts (27 tests) 7019ms
+   ✓ runs the AST checker and rejects domain IO  600ms
+   ✓ runs the AST checker and rejects domain dynamic IO  701ms
+   ✓ runs the AST checker and rejects domain time  611ms
+   ✓ runs the AST checker and rejects domain date constructor  487ms
+   ✓ runs the AST checker and rejects domain environment  411ms
+   ✓ runs the AST checker and rejects domain console IO  405ms
+   ✓ runs the AST checker and rejects domain require alias  375ms
+   ✓ runs the AST checker and rejects domain indirect random  364ms
+   ✓ runs the AST checker and rejects domain spread clock  370ms
+   ✓ runs the AST checker and rejects domain network  328ms
+   ✓ runs the AST checker and rejects test fake import  348ms
+   ✓ runs the AST checker and rejects reporter runner  334ms
+   ✓ runs the AST checker and rejects reporter execution  310ms
+   ✓ runs the AST checker and rejects reporter computed execution  315ms
+   ✓ runs the AST checker and rejects reporter destructured execution  346ms
+   ✓ rejects IO reached indirectly through a domain helper  381ms
+   ✓ allows pure objects, type-only ports and words in comments or strings  325ms
+ ✓ tests/unit/runner/scheduler.test.ts (8 tests) 10635ms
+   ✓ runs A to B/C to D with lexicographic starts and real independent concurrency  1335ms
+   ✓ failure blocks only dependent branches and cancellation stops new steps  1312ms
+   ✓ serializes shared resources while independent resources progress  1824ms
+   ✓ does not invent a second result when finished event persistence fails  553ms
+   ✓ cancels or times out while another owner holds a resource without removing its lock  3569ms
+   ✓ excludes another whole run even when its workspace locks differ  1477ms
+   ✓ records queue waiting separately from actual execution duration  558ms
+
+ Test Files  32 passed (32)
+      Tests  486 passed (486)
+   Start at  22:41:23
+   Duration  12.82s (transform 4.01s, setup 0ms, import 23.46s, tests 27.57s, environment 5ms)
+
+✔ audit records retain actual child failure and repository identity (382.5195ms)
+✔ built CLI help exposes only implemented commands (304.5492ms)
+✔ unknown CLI option returns configuration error (268.2184ms)
+✔ plan has 100 unique sequential tasks and original dependencies (2.7113ms)
+✔ rejects duplicate ID (0.9079ms)
+✔ rejects missing dependency (1.0376ms)
+✔ rejects dependency cycle (1.4625ms)
+✔ rejects DONE without evidence (0.626ms)
+✔ rejects illegal status (0.8942ms)
+✔ rejects early READY (0.6691ms)
+✔ rejects missing task (0.6429ms)
+✔ rejects absolute file path (0.771ms)
+✔ rejects absolute evidence path (0.8062ms)
+✔ rejects traversal evidence path (0.5201ms)
+✔ rejects failed-only DONE (0.5317ms)
+✔ source is preserved byte-for-byte and matches the supplied SHA-256 (2.4118ms)
+✔ source inspection rejects missing or changed content (1.6442ms)
+✔ verify-tasks CLI returns nonzero and identifies the task with SG-999 dependency (82.5976ms)
+✔ DONE requires actual implementation files even with valid task evidence (1.5183ms)
+✔ DONE cannot borrow another task successful evidence (42.0907ms)
+✔ evidence runner records task ownership and preserves a failed child exit code (346.7154ms)
+✔ negative cases do not mutate the shared plan baseline (0.8234ms)
+✔ M1 requires every M0 check, actual integration checks and the real oasdiff capability (1.9482ms)
+✔ M0 rejects removed, duplicate and arbitrary shell checks (0.1593ms)
+✔ unknown tools block any stage requiring them (0.1726ms)
+✔ a real failed child command propagates its exit and retains its identity (94.7689ms)
+✔ missing source removes only previously packaged exact tool, preserving unrelated files (32.4795ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 672.7271

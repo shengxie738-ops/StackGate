@@ -1,0 +1,48 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/plan/dag.test.ts (11 tests | 2 failed) 40ms
+   × normalizes a DAG deterministically without mutating input and retains all required checks 2ms
+   ✓ rejects cycle plan ambiguity 1ms
+   ✓ rejects missing plan ambiguity 0ms
+   ✓ rejects duplicate-step plan ambiguity 0ms
+   ✓ rejects duplicate-check plan ambiguity 0ms
+   ✓ rejects empty plan ambiguity 0ms
+   ✓ rejects required-missing plan ambiguity 0ms
+   ✓ rejects required-optional plan ambiguity 0ms
+   ✓ rejects invalid-lock plan ambiguity 0ms
+   × accepts an explicitly local command/JUnit profile without external environment requirements 30ms
+   ✓ rejects local profile requirements or regression checks that silently require M3 runtime 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/plan/dag.test.ts > normalizes a DAG deterministically without mutating input and retains all required checks
+Error: Plan DAG not implemented
+ ❯ normalizePlanDag packages/core/src/domain/plan-dag.ts:2:115
+      1| import type { CheckStep } from '../../../contracts/src/index.js';
+      2| export function normalizePlanDag(_steps: readonly CheckStep[], _requir…
+       |                                                                                                                   ^
+      3| 
+ ❯ tests/unit/plan/dag.test.ts:10:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/unit/plan/dag.test.ts > accepts an explicitly local command/JUnit profile without external environment requirements
+ServiceError: must be string; must NOT have fewer than 1 properties
+ ❯ parseConfiguration packages/core/src/services/config-service.ts:11:23
+      9| export function parseConfiguration(bytes:Uint8Array,source:string):Pro…
+     10|   const result=validateProjectConfig(parseStrictDocument(bytes,source)…
+     11|   if(!result.ok)throw new ServiceError(64,result.diagnostics);
+       |                       ^
+     12|   const issues=resolveReferences(result.value);
+     13|   if(issues.length)throw new ServiceError(64,issues.flatMap(issue=>con…
+ ❯ tests/unit/plan/dag.test.ts:33:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 9 passed (11)
+   Start at  21:51:44
+   Duration  864ms (transform 141ms, setup 0ms, import 576ms, tests 40ms, environment 0ms)
+

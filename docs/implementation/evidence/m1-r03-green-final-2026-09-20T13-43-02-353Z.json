@@ -1,0 +1,29 @@
+{
+  "task_id": "M1-R03",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+    "branch": "V1",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+  },
+  "command": "pnpm exec vitest run tests/integration/trust/input-scope.test.ts tests/integration/trust/review.test.ts tests/unit/config/execution-inputs.test.ts tests/integration/git/input-manifest.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/trust/input-scope.test.ts",
+    "tests/integration/trust/review.test.ts",
+    "tests/unit/config/execution-inputs.test.ts",
+    "tests/integration/git/input-manifest.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T13:43:02.353Z",
+  "finished_at": "2026-09-20T13:44:28.055Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/m1-r03-green-final-2026-09-20T13-43-02-353Z.json",
+  "log_path": "docs/implementation/evidence/m1-r03-green-final-2026-09-20T13-43-02-353Z.log",
+  "signal": null,
+  "duration_ms": 85702
+}

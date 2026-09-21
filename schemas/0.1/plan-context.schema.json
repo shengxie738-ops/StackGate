@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/plan-context.schema.json",
+  "title": "PlanContext",
+  "type": "object",
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "task_file": {"$ref": "common.schema.json#/$defs/RelativePath"},
+    "base_ref": {"type": "string", "minLength": 1},
+    "profile": {"$ref": "common.schema.json#/$defs/SafeId"},
+    "config": {"$ref": "project-config.schema.json"},
+    "task": {"$ref": "task.schema.json"},
+    "input_manifest": {"$ref": "input-manifest.schema.json"},
+    "configuration_hash": {"$ref": "common.schema.json#/$defs/Sha256"},
+    "confirmation_digest": {"$ref": "common.schema.json#/$defs/Sha256"},
+    "execution_digest": {"$ref": "common.schema.json#/$defs/Sha256"},
+    "policy_hash": {"$ref": "common.schema.json#/$defs/Sha256"},
+    "toolchain_hash": {"$ref": "common.schema.json#/$defs/Sha256"},
+    "tool_versions": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}, "minProperties": 1},
+    "target_contract_hashes": {"type": "object", "propertyNames": {"$ref": "common.schema.json#/$defs/SafeId"}, "additionalProperties": {"$ref": "common.schema.json#/$defs/Sha256"}, "minProperties": 1},
+    "environment_requirements": {
+      "oneOf": [
+        {"type": "object", "properties": {"required": {"const": false}}, "required": ["required"], "additionalProperties": false},
+        {"type": "object", "properties": {"required": {"const": true}, "environment_id": {"$ref": "common.schema.json#/$defs/SafeId"}, "configuration": {"$ref": "project-config.schema.json#/properties/environments/additionalProperties"}, "minimum_provenance": {"$ref": "common.schema.json#/$defs/ProvenanceLevel"}}, "required": ["required", "environment_id", "configuration", "minimum_provenance"], "additionalProperties": false}
+      ]
+    },
+    "required_check_ids": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/SafeId"}, "uniqueItems": true, "minItems": 1},
+    "test_assignments": {"type": "object", "propertyNames": {"$ref": "common.schema.json#/$defs/SafeId"}, "additionalProperties": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/SafeId"}, "uniqueItems": true}},
+    "selection_sources": {"type": "object", "propertyNames": {"$ref": "common.schema.json#/$defs/SafeId"}, "additionalProperties": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1, "uniqueItems": true}},
+    "analysis_gaps": {"type": "array", "items": {"type": "object", "properties": {"workspace": {"type": "string"}, "reference": {"type": "string"}, "reason": {"type": "string"}, "origin": {"type": "string"}}, "required": ["workspace", "reference", "reason", "origin"], "additionalProperties": false}},
+    "workspace_resource_ids": {"type": "object", "propertyNames": {"$ref": "common.schema.json#/$defs/SafeId"}, "additionalProperties": {"$ref": "common.schema.json#/$defs/SafeId"}, "minProperties": 1},
+    "blockers": {"type": "array", "items": {"type": "object", "properties": {"code": {"$ref": "common.schema.json#/$defs/ReasonCode"}, "message": {"type": "string", "minLength": 1}, "check_id": {"anyOf": [{"$ref": "common.schema.json#/$defs/SafeId"}, {"type": "null"}]}}, "required": ["code", "message", "check_id"], "additionalProperties": false}}
+  },
+  "required": ["schema_version", "task_file", "base_ref", "profile", "config", "task", "input_manifest", "configuration_hash", "confirmation_digest", "execution_digest", "policy_hash", "toolchain_hash", "tool_versions", "target_contract_hashes", "environment_requirements", "required_check_ids", "test_assignments", "selection_sources", "analysis_gaps", "workspace_resource_ids", "blockers"],
+  "additionalProperties": false
+}

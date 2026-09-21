@@ -1,0 +1,19 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/plan/dag.test.ts (13 tests) 54ms
+ ✓ tests/unit/select-checks.test.ts (6 tests) 64ms
+ ✓ tests/integration/plan-service.test.ts (7 tests) 250342ms
+   ✓ persists a deterministic verified plan with exact ignored script bytes and required JUnit IDs  43610ms
+   ✓ rejects oversized plan files before allocating their contents  667ms
+   ✓ rejects unconfirmed task or unreviewed trust before persisting an executable plan  16096ms
+   ✓ rechecks ignored script, policy and task identity, and rejects modified stored context  54470ms
+   ✓ retains an explicitly required runtime check and marks unsupported local backend requirements blocked  55429ms
+   ✓ keeps required e2e and an explicit environment dependency when M3 environment is unavailable  35875ms
+   ✓ binds the raw bytes of ignored mappings used to select checks  44192ms
+
+ Test Files  3 passed (3)
+      Tests  26 passed (26)
+   Start at  22:21:59
+   Duration  252.33s (transform 818ms, setup 0ms, import 3.08s, tests 250.46s, environment 0ms)
+

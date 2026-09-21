@@ -1,0 +1,97 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/runner/process.test.ts (7 tests | 7 failed) 637ms
+   × preserves actual exit 0 and separate sanitized streams 88ms
+   × preserves actual exit 1 and separate sanitized streams 84ms
+   × preserves actual exit 7 and separate sanitized streams 106ms
+   × keeps exact Unicode argv and does not interpret shell syntax 78ms
+   × distinguishes timeout from cancellation and stops late writes 95ms
+   × bounds both huge stdout and stderr without pipe deadlock 87ms
+   × kills only its owned job including detached descendants and leaves unrelated process alive 97ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/runner/process.test.ts > preserves actual exit 0 and separate sanitized streams
+ FAIL  tests/integration/runner/process.test.ts > preserves actual exit 1 and separate sanitized streams
+ FAIL  tests/integration/runner/process.test.ts > preserves actual exit 7 and separate sanitized streams
+Error: SG033 not implemented
+ ❯ LocalRunner.run packages/runner-local/src/local-runner.ts:4:80
+      2| export class LocalRunner implements RunnerPort {
+      3|  constructor(readonly options:{max_output_bytes?:number}={}){}
+      4|  async run(..._args:Parameters<RunnerPort['run']>):Promise<RunnerResul…
+       |                                                                                ^
+      5| }
+      6| 
+ ❯ run tests/integration/runner/process.test.ts:13:105
+ ❯ tests/integration/runner/process.test.ts:16:17
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  tests/integration/runner/process.test.ts > keeps exact Unicode argv and does not interpret shell syntax
+Error: SG033 not implemented
+ ❯ LocalRunner.run packages/runner-local/src/local-runner.ts:4:80
+      2| export class LocalRunner implements RunnerPort {
+      3|  constructor(readonly options:{max_output_bytes?:number}={}){}
+      4|  async run(..._args:Parameters<RunnerPort['run']>):Promise<RunnerResul…
+       |                                                                                ^
+      5| }
+      6| 
+ ❯ run tests/integration/runner/process.test.ts:13:105
+ ❯ tests/integration/runner/process.test.ts:19:17
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  tests/integration/runner/process.test.ts > distinguishes timeout from cancellation and stops late writes
+Error: SG033 not implemented
+ ❯ LocalRunner.run packages/runner-local/src/local-runner.ts:4:80
+      2| export class LocalRunner implements RunnerPort {
+      3|  constructor(readonly options:{max_output_bytes?:number}={}){}
+      4|  async run(..._args:Parameters<RunnerPort['run']>):Promise<RunnerResul…
+       |                                                                                ^
+      5| }
+      6| 
+ ❯ run tests/integration/runner/process.test.ts:13:105
+ ❯ tests/integration/runner/process.test.ts:22:14
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  tests/integration/runner/process.test.ts > bounds both huge stdout and stderr without pipe deadlock
+Error: SG033 not implemented
+ ❯ LocalRunner.run packages/runner-local/src/local-runner.ts:4:80
+      2| export class LocalRunner implements RunnerPort {
+      3|  constructor(readonly options:{max_output_bytes?:number}={}){}
+      4|  async run(..._args:Parameters<RunnerPort['run']>):Promise<RunnerResul…
+       |                                                                                ^
+      5| }
+      6| 
+ ❯ run tests/integration/runner/process.test.ts:13:105
+ ❯ tests/integration/runner/process.test.ts:26:17
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  tests/integration/runner/process.test.ts > kills only its owned job including detached descendants and leaves unrelated process alive
+Error: SG033 not implemented
+ ❯ LocalRunner.run packages/runner-local/src/local-runner.ts:4:80
+      2| export class LocalRunner implements RunnerPort {
+      3|  constructor(readonly options:{max_output_bytes?:number}={}){}
+      4|  async run(..._args:Parameters<RunnerPort['run']>):Promise<RunnerResul…
+       |                                                                                ^
+      5| }
+      6| 
+ ❯ run tests/integration/runner/process.test.ts:13:105
+ ❯ tests/integration/runner/process.test.ts:31:21
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed (7)
+   Start at  22:04:13
+   Duration  1.11s (transform 68ms, setup 0ms, import 126ms, tests 637ms, environment 0ms)
+

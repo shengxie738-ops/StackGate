@@ -1,0 +1,23 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/cli/m2.test.ts (2 tests | 1 failed) 316550ms
+   ✓ exposes strict M2 command argument validation in the built CLI  2292ms
+   × runs the built CLI through plan, real run, report, gate and stale reevaluation 314257ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/cli/m2.test.ts > runs the built CLI through plan, real run, report, gate and stale reevaluation
+Error: Test timed out in 300000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/integration/cli/m2.test.ts:12:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  23:20:52
+   Duration  319.28s (transform 808ms, setup 0ms, import 2.26s, tests 316.55s, environment 0ms)
+

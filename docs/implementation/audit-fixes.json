@@ -1,0 +1,1906 @@
+{
+  "schema_version": "0.2",
+  "baseline_commit": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+  "source_plan": "StackGate_M1修复与M2可执行任务规划_v0.2.md",
+  "tasks": [
+    {
+      "task_id": "M1-R00",
+      "title": "固定审计基线与验证记录",
+      "dependencies": [],
+      "status": "DONE",
+      "actual_files": [
+        "docs/implementation/audit-m1-r00.md",
+        "scripts/record.mjs",
+        "tests/bootstrap/audit-record.test.mjs",
+        "scripts/test-unit.mjs",
+        "scripts/update-audit.mjs"
+      ],
+      "verification": [
+        {
+          "task_id": "SG-028",
+          "command": "pnpm install --frozen-lockfile",
+          "argv": [
+            "pnpm",
+            "install",
+            "--frozen-lockfile"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:28:28.353Z",
+          "finished_at": "2026-09-20T13:28:28.857Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-install-2026-09-20T13-28-28-353Z.json",
+          "log_path": "docs/implementation/evidence/sg-028-m1-r00-install-2026-09-20T13-28-28-353Z.log",
+          "signal": null,
+          "duration_ms": 504
+        },
+        {
+          "task_id": "SG-028",
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:28:28.923Z",
+          "finished_at": "2026-09-20T13:28:38.825Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-build-2026-09-20T13-28-28-923Z.json",
+          "log_path": "docs/implementation/evidence/sg-028-m1-r00-build-2026-09-20T13-28-28-923Z.log",
+          "signal": null,
+          "duration_ms": 9902
+        },
+        {
+          "task_id": "SG-028",
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:28:38.907Z",
+          "finished_at": "2026-09-20T13:28:43.546Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-typecheck-2026-09-20T13-28-38-907Z.json",
+          "log_path": "docs/implementation/evidence/sg-028-m1-r00-typecheck-2026-09-20T13-28-38-907Z.log",
+          "signal": null,
+          "duration_ms": 4639
+        },
+        {
+          "task_id": "SG-028",
+          "command": "pnpm lint",
+          "argv": [
+            "pnpm",
+            "lint"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:28:43.608Z",
+          "finished_at": "2026-09-20T13:29:01.075Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-lint-2026-09-20T13-28-43-608Z.json",
+          "log_path": "docs/implementation/evidence/sg-028-m1-r00-lint-2026-09-20T13-28-43-608Z.log",
+          "signal": null,
+          "duration_ms": 17467
+        },
+        {
+          "task_id": "SG-028",
+          "command": "pnpm test:unit",
+          "argv": [
+            "pnpm",
+            "test:unit"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:29:01.155Z",
+          "finished_at": "2026-09-20T13:29:13.672Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-unit-2026-09-20T13-29-01-155Z.json",
+          "log_path": "docs/implementation/evidence/sg-028-m1-r00-unit-2026-09-20T13-29-01-155Z.log",
+          "signal": null,
+          "duration_ms": 12517
+        },
+        {
+          "task_id": "SG-028",
+          "command": "pnpm test:contract",
+          "argv": [
+            "pnpm",
+            "test:contract"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:29:13.736Z",
+          "finished_at": "2026-09-20T13:29:19.051Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-contract-2026-09-20T13-29-13-736Z.json",
+          "log_path": "docs/implementation/evidence/sg-028-m1-r00-contract-2026-09-20T13-29-13-736Z.log",
+          "signal": null,
+          "duration_ms": 5315
+        },
+        {
+          "task_id": "SG-028",
+          "command": "pnpm test:integration",
+          "argv": [
+            "pnpm",
+            "test:integration"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:29:19.117Z",
+          "finished_at": "2026-09-20T13:31:12.640Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-integration-2026-09-20T13-29-19-117Z.json",
+          "log_path": "docs/implementation/evidence/sg-028-m1-r00-integration-2026-09-20T13-29-19-117Z.log",
+          "signal": null,
+          "duration_ms": 113523
+        },
+        {
+          "task_id": "SG-028",
+          "command": "pnpm verify:schemas",
+          "argv": [
+            "pnpm",
+            "verify:schemas"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:31:12.722Z",
+          "finished_at": "2026-09-20T13:31:15.468Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-schemas-2026-09-20T13-31-12-722Z.json",
+          "log_path": "docs/implementation/evidence/sg-028-m1-r00-schemas-2026-09-20T13-31-12-722Z.log",
+          "signal": null,
+          "duration_ms": 2746
+        },
+        {
+          "task_id": "SG-028",
+          "command": "pnpm verify:boundaries",
+          "argv": [
+            "pnpm",
+            "verify:boundaries"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:31:15.536Z",
+          "finished_at": "2026-09-20T13:31:16.697Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-boundaries-2026-09-20T13-31-15-536Z.json",
+          "log_path": "docs/implementation/evidence/sg-028-m1-r00-boundaries-2026-09-20T13-31-15-536Z.log",
+          "signal": null,
+          "duration_ms": 1161
+        },
+        {
+          "task_id": "SG-028",
+          "command": "pnpm verify:tasks",
+          "argv": [
+            "pnpm",
+            "verify:tasks"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:31:16.787Z",
+          "finished_at": "2026-09-20T13:31:20.400Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-tasks-2026-09-20T13-31-16-787Z.json",
+          "log_path": "docs/implementation/evidence/sg-028-m1-r00-tasks-2026-09-20T13-31-16-787Z.log",
+          "signal": null,
+          "duration_ms": 3613
+        },
+        {
+          "task_id": "SG-028",
+          "command": "pnpm verify:stage -- --stage M1",
+          "argv": [
+            "pnpm",
+            "verify:stage",
+            "--",
+            "--stage",
+            "M1"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:31:20.485Z",
+          "finished_at": "2026-09-20T13:33:40.689Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-stage-2026-09-20T13-31-20-485Z.json",
+          "log_path": "docs/implementation/evidence/sg-028-m1-r00-stage-2026-09-20T13-31-20-485Z.log",
+          "signal": null,
+          "duration_ms": 140204
+        },
+        {
+          "task_id": "SG-028",
+          "command": "node --test tests/bootstrap/audit-record.test.mjs",
+          "argv": [
+            "node",
+            "--test",
+            "tests/bootstrap/audit-record.test.mjs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:34:21.399Z",
+          "finished_at": "2026-09-20T13:34:21.607Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-red-recorder-2026-09-20T13-34-21-399Z.json",
+          "log_path": "docs/implementation/evidence/sg-028-m1-r00-red-recorder-2026-09-20T13-34-21-399Z.log",
+          "signal": null,
+          "duration_ms": 208
+        },
+        {
+          "task_id": "M1-R00",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "node --test tests/bootstrap/audit-record.test.mjs",
+          "argv": [
+            "node",
+            "--test",
+            "tests/bootstrap/audit-record.test.mjs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:34:40.314Z",
+          "finished_at": "2026-09-20T13:34:41.101Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r00-green-recorder-2026-09-20T13-34-40-314Z.json",
+          "log_path": "docs/implementation/evidence/m1-r00-green-recorder-2026-09-20T13-34-40-314Z.log",
+          "signal": null,
+          "duration_ms": 787
+        },
+        {
+          "task_id": "M1-R00",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "node -e process.exit(7)",
+          "argv": [
+            "node",
+            "-e",
+            "process.exit(7)"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:34:40.806Z",
+          "finished_at": "2026-09-20T13:34:41.070Z",
+          "exit_code": 7,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/m1-r00-recorder-counterexample-2026-09-20T13-34-40-806Z.json",
+          "log_path": "docs/implementation/evidence/m1-r00-recorder-counterexample-2026-09-20T13-34-40-806Z.log",
+          "signal": null,
+          "duration_ms": 264
+        },
+        {
+          "task_id": "M1-R00",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm verify:tasks",
+          "argv": [
+            "pnpm",
+            "verify:tasks"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:36:22.182Z",
+          "finished_at": "2026-09-20T13:36:23.017Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r00-verify-ledger-2026-09-20T13-36-22-182Z.json",
+          "log_path": "docs/implementation/evidence/m1-r00-verify-ledger-2026-09-20T13-36-22-182Z.log",
+          "signal": null,
+          "duration_ms": 835
+        }
+      ],
+      "blockers": [],
+      "next_action": "完成 M1-R01、R02、R03、R04 后进行联合回归"
+    },
+    {
+      "task_id": "M1-R01",
+      "title": "工具注册与可迁移 oasdiff",
+      "dependencies": [
+        "M1-R00"
+      ],
+      "status": "DONE",
+      "actual_files": [
+        "tools/oasdiff/capabilities.json",
+        "packages/core/src/services/tool-registry-service.ts",
+        "packages/adapter-oasdiff/src/resolve-tool.ts",
+        "packages/core/src/services/scan-service.ts",
+        "packages/core/src/services/trust-service.ts",
+        "scripts/build.mjs",
+        "scripts/package-tool.mjs",
+        "scripts/test-unit.mjs",
+        "tests/unit/tool-registry.test.ts",
+        "tests/integration/oasdiff-relocation.test.ts",
+        "tests/bootstrap/tool-package.test.mjs"
+      ],
+      "verification": [
+        {
+          "task_id": "M1-R01",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/tool-registry.test.ts tests/integration/oasdiff-relocation.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/tool-registry.test.ts",
+            "tests/integration/oasdiff-relocation.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:35:00.516Z",
+          "finished_at": "2026-09-20T13:35:06.905Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/m1-r01-red-tool-registry-2026-09-20T13-35-00-516Z.json",
+          "log_path": "docs/implementation/evidence/m1-r01-red-tool-registry-2026-09-20T13-35-00-516Z.log",
+          "signal": null,
+          "duration_ms": 6389
+        },
+        {
+          "task_id": "M1-R01",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:36:15.384Z",
+          "finished_at": "2026-09-20T13:36:18.362Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/m1-r01-build-2026-09-20T13-36-15-384Z.json",
+          "log_path": "docs/implementation/evidence/m1-r01-build-2026-09-20T13-36-15-384Z.log",
+          "signal": null,
+          "duration_ms": 2978
+        },
+        {
+          "task_id": "M1-R01",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/tool-registry.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/tool-registry.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:36:45.458Z",
+          "finished_at": "2026-09-20T13:36:47.147Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r01-green-tool-registry-2026-09-20T13-36-45-458Z.json",
+          "log_path": "docs/implementation/evidence/m1-r01-green-tool-registry-2026-09-20T13-36-45-458Z.log",
+          "signal": null,
+          "duration_ms": 1689
+        },
+        {
+          "task_id": "M1-R01",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm test:contract",
+          "argv": [
+            "pnpm",
+            "test:contract"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:36:51.609Z",
+          "finished_at": "2026-09-20T13:36:55.475Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r01-contract-2026-09-20T13-36-51-609Z.json",
+          "log_path": "docs/implementation/evidence/m1-r01-contract-2026-09-20T13-36-51-609Z.log",
+          "signal": null,
+          "duration_ms": 3866
+        },
+        {
+          "task_id": "M1-R01",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec eslint packages/core/src/services/tool-registry-service.ts packages/adapter-oasdiff/src/resolve-tool.ts tests/unit/tool-registry.test.ts tests/integration/oasdiff-relocation.test.ts scripts/build.mjs",
+          "argv": [
+            "pnpm",
+            "exec",
+            "eslint",
+            "packages/core/src/services/tool-registry-service.ts",
+            "packages/adapter-oasdiff/src/resolve-tool.ts",
+            "tests/unit/tool-registry.test.ts",
+            "tests/integration/oasdiff-relocation.test.ts",
+            "scripts/build.mjs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:37:10.861Z",
+          "finished_at": "2026-09-20T13:37:13.365Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r01-scoped-lint-2026-09-20T13-37-10-861Z.json",
+          "log_path": "docs/implementation/evidence/m1-r01-scoped-lint-2026-09-20T13-37-10-861Z.log",
+          "signal": null,
+          "duration_ms": 2504
+        },
+        {
+          "task_id": "M1-R01",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/oasdiff-relocation.test.ts tests/integration/cli/static-workflow.test.ts tests/integration/stages/m1.test.ts tests/integration/trust/review.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/oasdiff-relocation.test.ts",
+            "tests/integration/cli/static-workflow.test.ts",
+            "tests/integration/stages/m1.test.ts",
+            "tests/integration/trust/review.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:37:35.266Z",
+          "finished_at": "2026-09-20T13:38:56.173Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r01-relocation-regression-2026-09-20T13-37-35-266Z.json",
+          "log_path": "docs/implementation/evidence/m1-r01-relocation-regression-2026-09-20T13-37-35-266Z.log",
+          "signal": null,
+          "duration_ms": 80907
+        },
+        {
+          "task_id": "M1-R01",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:38:14.336Z",
+          "finished_at": "2026-09-20T13:38:17.872Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r01-final-build-2026-09-20T13-38-14-336Z.json",
+          "log_path": "docs/implementation/evidence/m1-r01-final-build-2026-09-20T13-38-14-336Z.log",
+          "signal": null,
+          "duration_ms": 3536
+        },
+        {
+          "task_id": "M1-R01",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/oasdiff-relocation.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/oasdiff-relocation.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:39:19.314Z",
+          "finished_at": "2026-09-20T13:39:26.760Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r01-relocation-final-2026-09-20T13-39-19-314Z.json",
+          "log_path": "docs/implementation/evidence/m1-r01-relocation-final-2026-09-20T13-39-19-314Z.log",
+          "signal": null,
+          "duration_ms": 7446
+        },
+        {
+          "task_id": "M1-R01",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "node --test tests/bootstrap/tool-package.test.mjs",
+          "argv": [
+            "node",
+            "--test",
+            "tests/bootstrap/tool-package.test.mjs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:41:05.725Z",
+          "finished_at": "2026-09-20T13:41:06.154Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/m1-r01-red-stale-package-2026-09-20T13-41-05-725Z.json",
+          "log_path": "docs/implementation/evidence/m1-r01-red-stale-package-2026-09-20T13-41-05-725Z.log",
+          "signal": null,
+          "duration_ms": 429
+        },
+        {
+          "task_id": "M1-R01",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "node --test tests/bootstrap/tool-package.test.mjs",
+          "argv": [
+            "node",
+            "--test",
+            "tests/bootstrap/tool-package.test.mjs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:41:41.470Z",
+          "finished_at": "2026-09-20T13:41:41.843Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r01-green-stale-package-2026-09-20T13-41-41-470Z.json",
+          "log_path": "docs/implementation/evidence/m1-r01-green-stale-package-2026-09-20T13-41-41-470Z.log",
+          "signal": null,
+          "duration_ms": 373
+        },
+        {
+          "task_id": "M1-R01",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:42:04.267Z",
+          "finished_at": "2026-09-20T13:42:07.843Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r01-build-package-fix-2026-09-20T13-42-04-267Z.json",
+          "log_path": "docs/implementation/evidence/m1-r01-build-package-fix-2026-09-20T13-42-04-267Z.log",
+          "signal": null,
+          "duration_ms": 3576
+        },
+        {
+          "task_id": "M1-R01",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec eslint scripts/package-tool.mjs scripts/build.mjs scripts/test-unit.mjs tests/bootstrap/tool-package.test.mjs",
+          "argv": [
+            "pnpm",
+            "exec",
+            "eslint",
+            "scripts/package-tool.mjs",
+            "scripts/build.mjs",
+            "scripts/test-unit.mjs",
+            "tests/bootstrap/tool-package.test.mjs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:42:30.051Z",
+          "finished_at": "2026-09-20T13:42:32.447Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r01-package-fix-lint-2026-09-20T13-42-30-051Z.json",
+          "log_path": "docs/implementation/evidence/m1-r01-package-fix-lint-2026-09-20T13-42-30-051Z.log",
+          "signal": null,
+          "duration_ms": 2396
+        }
+      ],
+      "blockers": [],
+      "next_action": "等待 M1-R03 后完成联合回归和完整 M1 出口"
+    },
+    {
+      "task_id": "M1-R02",
+      "title": "确认绑定的 workspace regression",
+      "dependencies": [
+        "M1-R00"
+      ],
+      "status": "DONE",
+      "actual_files": [
+        "schemas/0.1/project-config.schema.json",
+        "packages/contracts/src/generated/project-config.ts",
+        "packages/core/src/domain/resolve-references.ts",
+        "packages/core/src/domain/select-checks.ts",
+        "packages/core/src/services/selection-policy.ts",
+        "packages/core/src/services/scan-service.ts",
+        "tests/unit/select-checks.test.ts",
+        "tests/integration/scan-workspace-regression.test.ts"
+      ],
+      "verification": [
+        {
+          "task_id": "M1-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/select-checks.test.ts tests/integration/scan-workspace-regression.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/select-checks.test.ts",
+            "tests/integration/scan-workspace-regression.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:35:01.255Z",
+          "finished_at": "2026-09-20T13:35:05.588Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/m1-r02-red-regression-2026-09-20T13-35-01-255Z.json",
+          "log_path": "docs/implementation/evidence/m1-r02-red-regression-2026-09-20T13-35-01-255Z.log",
+          "signal": null,
+          "duration_ms": 4333
+        },
+        {
+          "task_id": "M1-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm generate:types",
+          "argv": [
+            "pnpm",
+            "generate:types"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:36:01.201Z",
+          "finished_at": "2026-09-20T13:36:02.203Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r02-generate-types-2026-09-20T13-36-01-201Z.json",
+          "log_path": "docs/implementation/evidence/m1-r02-generate-types-2026-09-20T13-36-01-201Z.log",
+          "signal": null,
+          "duration_ms": 1002
+        },
+        {
+          "task_id": "M1-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/select-checks.test.ts tests/integration/scan-workspace-regression.test.ts tests/unit/impact/selection.test.ts tests/unit/config/parse.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/select-checks.test.ts",
+            "tests/integration/scan-workspace-regression.test.ts",
+            "tests/unit/impact/selection.test.ts",
+            "tests/unit/config/parse.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:36:13.006Z",
+          "finished_at": "2026-09-20T13:36:26.029Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r02-green-regression-2026-09-20T13-36-13-006Z.json",
+          "log_path": "docs/implementation/evidence/m1-r02-green-regression-2026-09-20T13-36-13-006Z.log",
+          "signal": null,
+          "duration_ms": 13023
+        },
+        {
+          "task_id": "M1-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm verify:schemas",
+          "argv": [
+            "pnpm",
+            "verify:schemas"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:36:29.753Z",
+          "finished_at": "2026-09-20T13:36:31.092Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r02-schemas-2026-09-20T13-36-29-753Z.json",
+          "log_path": "docs/implementation/evidence/m1-r02-schemas-2026-09-20T13-36-29-753Z.log",
+          "signal": null,
+          "duration_ms": 1339
+        },
+        {
+          "task_id": "M1-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:36:31.640Z",
+          "finished_at": "2026-09-20T13:36:34.304Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/m1-r02-build-2026-09-20T13-36-31-640Z.json",
+          "log_path": "docs/implementation/evidence/m1-r02-build-2026-09-20T13-36-31-640Z.log",
+          "signal": null,
+          "duration_ms": 2664
+        },
+        {
+          "task_id": "M1-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:37:20.229Z",
+          "finished_at": "2026-09-20T13:37:23.468Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r02-build-final-2026-09-20T13-37-20-229Z.json",
+          "log_path": "docs/implementation/evidence/m1-r02-build-final-2026-09-20T13-37-20-229Z.log",
+          "signal": null,
+          "duration_ms": 3239
+        }
+      ],
+      "blockers": [],
+      "next_action": "继续 M1-R03 执行输入范围修复；其他修复并行验证"
+    },
+    {
+      "task_id": "M1-R03",
+      "title": "最小可验证执行输入范围",
+      "dependencies": [
+        "M1-R00",
+        "M1-R02"
+      ],
+      "status": "DONE",
+      "actual_files": [
+        "packages/core/src/services/execution-input-scope.ts",
+        "packages/core/src/services/trust-service.ts",
+        "packages/adapter-git/src/file-inventory.ts",
+        "packages/adapter-git/src/input-manifest.ts",
+        "schemas/0.1/project-config.schema.json",
+        "packages/contracts/src/generated/project-config.ts",
+        "tests/integration/trust/input-scope.test.ts",
+        "tests/unit/config/execution-inputs.test.ts"
+      ],
+      "verification": [
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/trust/input-scope.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/trust/input-scope.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:38:40.438Z",
+          "finished_at": "2026-09-20T13:39:12.015Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-red-input-scope-2026-09-20T13-38-40-438Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-red-input-scope-2026-09-20T13-38-40-438Z.log",
+          "signal": null,
+          "duration_ms": 31577
+        },
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm generate:types",
+          "argv": [
+            "pnpm",
+            "generate:types"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:40:54.312Z",
+          "finished_at": "2026-09-20T13:40:55.368Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-generate-types-2026-09-20T13-40-54-312Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-generate-types-2026-09-20T13-40-54-312Z.log",
+          "signal": null,
+          "duration_ms": 1056
+        },
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/trust/input-scope.test.ts tests/integration/trust/review.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/trust/input-scope.test.ts",
+            "tests/integration/trust/review.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:40:55.933Z",
+          "finished_at": "2026-09-20T13:42:17.826Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-green-input-scope-2026-09-20T13-40-55-933Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-green-input-scope-2026-09-20T13-40-55-933Z.log",
+          "signal": null,
+          "duration_ms": 81893
+        },
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:41:24.325Z",
+          "finished_at": "2026-09-20T13:41:28.048Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-typecheck-2026-09-20T13-41-24-325Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-typecheck-2026-09-20T13-41-24-325Z.log",
+          "signal": null,
+          "duration_ms": 3723
+        },
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/config/execution-inputs.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/config/execution-inputs.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:41:44.090Z",
+          "finished_at": "2026-09-20T13:41:46.391Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-red-concrete-inputs-2026-09-20T13-41-44-090Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-red-concrete-inputs-2026-09-20T13-41-44-090Z.log",
+          "signal": null,
+          "duration_ms": 2301
+        },
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/trust/input-scope.test.ts -t \"directory entry|explicit ignored required\"",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/trust/input-scope.test.ts",
+            "-t",
+            "directory entry|explicit ignored required"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:42:27.687Z",
+          "finished_at": "2026-09-20T13:42:37.444Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-red-directory-command-2026-09-20T13-42-27-687Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-red-directory-command-2026-09-20T13-42-27-687Z.log",
+          "signal": null,
+          "duration_ms": 9757
+        },
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/trust/input-scope.test.ts tests/integration/trust/review.test.ts tests/unit/config/execution-inputs.test.ts tests/integration/git/input-manifest.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/trust/input-scope.test.ts",
+            "tests/integration/trust/review.test.ts",
+            "tests/unit/config/execution-inputs.test.ts",
+            "tests/integration/git/input-manifest.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:43:02.353Z",
+          "finished_at": "2026-09-20T13:44:28.055Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-green-final-2026-09-20T13-43-02-353Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-green-final-2026-09-20T13-43-02-353Z.log",
+          "signal": null,
+          "duration_ms": 85702
+        },
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:43:18.689Z",
+          "finished_at": "2026-09-20T13:43:23.130Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-build-2026-09-20T13-43-18-689Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-build-2026-09-20T13-43-18-689Z.log",
+          "signal": null,
+          "duration_ms": 4441
+        },
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/config/execution-inputs.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/config/execution-inputs.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:44:21.631Z",
+          "finished_at": "2026-09-20T13:44:23.804Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-red-concrete-inputs-corrected-2026-09-20T13-44-21-631Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-red-concrete-inputs-corrected-2026-09-20T13-44-21-631Z.log",
+          "signal": null,
+          "duration_ms": 2173
+        },
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm generate:types",
+          "argv": [
+            "pnpm",
+            "generate:types"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:44:36.782Z",
+          "finished_at": "2026-09-20T13:44:37.788Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-generate-concrete-types-2026-09-20T13-44-36-782Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-generate-concrete-types-2026-09-20T13-44-36-782Z.log",
+          "signal": null,
+          "duration_ms": 1006
+        },
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/config/execution-inputs.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/config/execution-inputs.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:44:38.234Z",
+          "finished_at": "2026-09-20T13:44:40.222Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-green-concrete-inputs-2026-09-20T13-44-38-234Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-green-concrete-inputs-2026-09-20T13-44-38-234Z.log",
+          "signal": null,
+          "duration_ms": 1988
+        },
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:44:40.762Z",
+          "finished_at": "2026-09-20T13:44:43.842Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-typecheck-final-2026-09-20T13-44-40-762Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-typecheck-final-2026-09-20T13-44-40-762Z.log",
+          "signal": null,
+          "duration_ms": 3080
+        },
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm generate:types",
+          "argv": [
+            "pnpm",
+            "generate:types"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:44:55.295Z",
+          "finished_at": "2026-09-20T13:44:56.280Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-generate-final-2026-09-20T13-44-55-295Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-generate-final-2026-09-20T13-44-55-295Z.log",
+          "signal": null,
+          "duration_ms": 985
+        },
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/config/execution-inputs.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/config/execution-inputs.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:44:56.811Z",
+          "finished_at": "2026-09-20T13:44:58.787Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-green-concrete-final-2026-09-20T13-44-56-811Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-green-concrete-final-2026-09-20T13-44-56-811Z.log",
+          "signal": null,
+          "duration_ms": 1976
+        },
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm verify:schemas",
+          "argv": [
+            "pnpm",
+            "verify:schemas"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:45:10.613Z",
+          "finished_at": "2026-09-20T13:45:12.197Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-schemas-final-2026-09-20T13-45-10-613Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-schemas-final-2026-09-20T13-45-10-613Z.log",
+          "signal": null,
+          "duration_ms": 1584
+        },
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm verify:boundaries",
+          "argv": [
+            "pnpm",
+            "verify:boundaries"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:45:10.623Z",
+          "finished_at": "2026-09-20T13:45:11.958Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-boundaries-2026-09-20T13-45-10-623Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-boundaries-2026-09-20T13-45-10-623Z.log",
+          "signal": null,
+          "duration_ms": 1335
+        },
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm lint",
+          "argv": [
+            "pnpm",
+            "lint"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:45:10.623Z",
+          "finished_at": "2026-09-20T13:45:13.939Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-lint-2026-09-20T13-45-10-623Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-lint-2026-09-20T13-45-10-623Z.log",
+          "signal": null,
+          "duration_ms": 3316
+        },
+        {
+          "task_id": "M1-R03",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:45:14.491Z",
+          "finished_at": "2026-09-20T13:45:17.812Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r03-build-final-2026-09-20T13-45-14-491Z.json",
+          "log_path": "docs/implementation/evidence/m1-r03-build-final-2026-09-20T13-45-14-491Z.log",
+          "signal": null,
+          "duration_ms": 3321
+        }
+      ],
+      "blockers": [],
+      "next_action": "完成联合回归与接口冻结，然后运行完整 M1-R07 验收"
+    },
+    {
+      "task_id": "M1-R04",
+      "title": "统一 CLI JSON envelope",
+      "dependencies": [
+        "M1-R00"
+      ],
+      "status": "DONE",
+      "actual_files": [
+        "apps/cli/src/output.ts",
+        "apps/cli/src/main.ts",
+        "apps/cli/src/commands/doctor.ts",
+        "apps/cli/src/commands/init.ts",
+        "apps/cli/src/commands/task.ts",
+        "apps/cli/src/commands/trust.ts",
+        "apps/cli/src/commands/scan.ts",
+        "schemas/0.1/common.schema.json",
+        "tests/integration/cli/json-envelope.test.ts",
+        "tests/integration/cli/doctor.test.ts"
+      ],
+      "verification": [
+        {
+          "task_id": "M1-R04",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/cli/json-envelope.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/cli/json-envelope.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:35:00.201Z",
+          "finished_at": "2026-09-20T13:35:03.678Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/m1-r04-red-envelope-2026-09-20T13-35-00-201Z.json",
+          "log_path": "docs/implementation/evidence/m1-r04-red-envelope-2026-09-20T13-35-00-201Z.log",
+          "signal": null,
+          "duration_ms": 3477
+        },
+        {
+          "task_id": "M1-R04",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:36:10.957Z",
+          "finished_at": "2026-09-20T13:36:13.867Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/m1-r04-build-envelope-2026-09-20T13-36-10-957Z.json",
+          "log_path": "docs/implementation/evidence/m1-r04-build-envelope-2026-09-20T13-36-10-957Z.log",
+          "signal": null,
+          "duration_ms": 2910
+        },
+        {
+          "task_id": "M1-R04",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm generate:types",
+          "argv": [
+            "pnpm",
+            "generate:types"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:37:03.711Z",
+          "finished_at": "2026-09-20T13:37:04.712Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r04-generate-reason-code-2026-09-20T13-37-03-711Z.json",
+          "log_path": "docs/implementation/evidence/m1-r04-generate-reason-code-2026-09-20T13-37-03-711Z.log",
+          "signal": null,
+          "duration_ms": 1001
+        },
+        {
+          "task_id": "M1-R04",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:37:11.882Z",
+          "finished_at": "2026-09-20T13:37:15.338Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r04-build-envelope-final-2026-09-20T13-37-11-882Z.json",
+          "log_path": "docs/implementation/evidence/m1-r04-build-envelope-final-2026-09-20T13-37-11-882Z.log",
+          "signal": null,
+          "duration_ms": 3456
+        },
+        {
+          "task_id": "M1-R04",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/cli/json-envelope.test.ts tests/integration/cli/doctor.test.ts tests/integration/cli/static-workflow.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/cli/json-envelope.test.ts",
+            "tests/integration/cli/doctor.test.ts",
+            "tests/integration/cli/static-workflow.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:37:31.663Z",
+          "finished_at": "2026-09-20T13:37:50.667Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r04-green-envelope-2026-09-20T13-37-31-663Z.json",
+          "log_path": "docs/implementation/evidence/m1-r04-green-envelope-2026-09-20T13-37-31-663Z.log",
+          "signal": null,
+          "duration_ms": 19004
+        },
+        {
+          "task_id": "M1-R04",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:37:47.933Z",
+          "finished_at": "2026-09-20T13:37:53.251Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r04-typecheck-2026-09-20T13-37-47-933Z.json",
+          "log_path": "docs/implementation/evidence/m1-r04-typecheck-2026-09-20T13-37-47-933Z.log",
+          "signal": null,
+          "duration_ms": 5318
+        },
+        {
+          "task_id": "M1-R04",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm lint",
+          "argv": [
+            "pnpm",
+            "lint"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:37:47.948Z",
+          "finished_at": "2026-09-20T13:37:53.008Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r04-lint-2026-09-20T13-37-47-948Z.json",
+          "log_path": "docs/implementation/evidence/m1-r04-lint-2026-09-20T13-37-47-948Z.log",
+          "signal": null,
+          "duration_ms": 5060
+        },
+        {
+          "task_id": "M1-R04",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm verify:schemas",
+          "argv": [
+            "pnpm",
+            "verify:schemas"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:37:47.980Z",
+          "finished_at": "2026-09-20T13:37:50.246Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r04-schema-regression-2026-09-20T13-37-47-980Z.json",
+          "log_path": "docs/implementation/evidence/m1-r04-schema-regression-2026-09-20T13-37-47-980Z.log",
+          "signal": null,
+          "duration_ms": 2266
+        },
+        {
+          "task_id": "M1-R04",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/bootstrap.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/bootstrap.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:38:05.884Z",
+          "finished_at": "2026-09-20T13:38:09.534Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r04-cli-bootstrap-2026-09-20T13-38-05-884Z.json",
+          "log_path": "docs/implementation/evidence/m1-r04-cli-bootstrap-2026-09-20T13-38-05-884Z.log",
+          "signal": null,
+          "duration_ms": 3650
+        },
+        {
+          "task_id": "M1-R04",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "node --test tests/bootstrap/cli.test.mjs",
+          "argv": [
+            "node",
+            "--test",
+            "tests/bootstrap/cli.test.mjs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:38:05.910Z",
+          "finished_at": "2026-09-20T13:38:06.895Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r04-cli-native-2026-09-20T13-38-05-910Z.json",
+          "log_path": "docs/implementation/evidence/m1-r04-cli-native-2026-09-20T13-38-05-910Z.log",
+          "signal": null,
+          "duration_ms": 985
+        }
+      ],
+      "blockers": [],
+      "next_action": "等待 M1-R01/R03 集成回归；随后联合验收 M1-R05"
+    },
+    {
+      "task_id": "M1-R05",
+      "title": "M1 审计联合回归",
+      "dependencies": [
+        "M1-R01",
+        "M1-R02",
+        "M1-R03",
+        "M1-R04"
+      ],
+      "status": "DONE",
+      "actual_files": [
+        "tests/integration/stages/m1-audit-regressions.test.ts"
+      ],
+      "verification": [
+        {
+          "task_id": "M1-R05",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/stages/m1-audit-regressions.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/stages/m1-audit-regressions.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:43:32.943Z",
+          "finished_at": "2026-09-20T13:43:55.708Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r05-combined-audit-regressions-2026-09-20T13-43-32-943Z.json",
+          "log_path": "docs/implementation/evidence/m1-r05-combined-audit-regressions-2026-09-20T13-43-32-943Z.log",
+          "signal": null,
+          "duration_ms": 22765
+        },
+        {
+          "task_id": "M1-R05",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:43:46.790Z",
+          "finished_at": "2026-09-20T13:43:51.023Z",
+          "exit_code": 2,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/m1-r05-test-typecheck-2026-09-20T13-43-46-790Z.json",
+          "log_path": "docs/implementation/evidence/m1-r05-test-typecheck-2026-09-20T13-43-46-790Z.log",
+          "signal": null,
+          "duration_ms": 4233
+        },
+        {
+          "task_id": "M1-R05",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec eslint tests/integration/stages/m1-audit-regressions.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "eslint",
+            "tests/integration/stages/m1-audit-regressions.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:44:10.350Z",
+          "finished_at": "2026-09-20T13:44:12.873Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r05-test-lint-2026-09-20T13-44-10-350Z.json",
+          "log_path": "docs/implementation/evidence/m1-r05-test-lint-2026-09-20T13-44-10-350Z.log",
+          "signal": null,
+          "duration_ms": 2523
+        },
+        {
+          "task_id": "M1-R05",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:45:36.694Z",
+          "finished_at": "2026-09-20T13:45:39.829Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r05-test-typecheck-final-2026-09-20T13-45-36-694Z.json",
+          "log_path": "docs/implementation/evidence/m1-r05-test-typecheck-final-2026-09-20T13-45-36-694Z.log",
+          "signal": null,
+          "duration_ms": 3135
+        },
+        {
+          "task_id": "M1-R05",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/integration/stages/m1-audit-regressions.test.ts tests/integration/stages/m1.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/stages/m1-audit-regressions.test.ts",
+            "tests/integration/stages/m1.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:45:48.672Z",
+          "finished_at": "2026-09-20T13:46:10.048Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r05-final-stage-regressions-2026-09-20T13-45-48-672Z.json",
+          "log_path": "docs/implementation/evidence/m1-r05-final-stage-regressions-2026-09-20T13-45-48-672Z.log",
+          "signal": null,
+          "duration_ms": 21376
+        }
+      ],
+      "blockers": [],
+      "next_action": "M1-R06 接口冻结完成后执行完整 M1-R07 出口"
+    },
+    {
+      "task_id": "M1-R06",
+      "title": "冻结 M2 执行合同",
+      "dependencies": [
+        "M1-R05"
+      ],
+      "status": "DONE",
+      "actual_files": [
+        "docs/adr/ADR-011-m2-execution-contracts.md",
+        "tests/unit/ports.test.ts"
+      ],
+      "verification": [
+        {
+          "task_id": "M1-R06",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm verify:schemas",
+          "argv": [
+            "pnpm",
+            "verify:schemas"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:39:56.753Z",
+          "finished_at": "2026-09-20T13:39:58.120Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r06-contracts-schema-2026-09-20T13-39-56-753Z.json",
+          "log_path": "docs/implementation/evidence/m1-r06-contracts-schema-2026-09-20T13-39-56-753Z.log",
+          "signal": null,
+          "duration_ms": 1367
+        },
+        {
+          "task_id": "M1-R06",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm verify:boundaries",
+          "argv": [
+            "pnpm",
+            "verify:boundaries"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:40:28.892Z",
+          "finished_at": "2026-09-20T13:40:29.990Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r06-contracts-boundaries-2026-09-20T13-40-28-892Z.json",
+          "log_path": "docs/implementation/evidence/m1-r06-contracts-boundaries-2026-09-20T13-40-28-892Z.log",
+          "signal": null,
+          "duration_ms": 1098
+        },
+        {
+          "task_id": "M1-R06",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:40:30.531Z",
+          "finished_at": "2026-09-20T13:40:33.565Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r06-contracts-typecheck-2026-09-20T13-40-30-531Z.json",
+          "log_path": "docs/implementation/evidence/m1-r06-contracts-typecheck-2026-09-20T13-40-30-531Z.log",
+          "signal": null,
+          "duration_ms": 3034
+        },
+        {
+          "task_id": "M1-R06",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm exec vitest run tests/unit/ports.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/ports.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:40:52.658Z",
+          "finished_at": "2026-09-20T13:40:59.638Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r06-port-counterexamples-2026-09-20T13-40-52-658Z.json",
+          "log_path": "docs/implementation/evidence/m1-r06-port-counterexamples-2026-09-20T13-40-52-658Z.log",
+          "signal": null,
+          "duration_ms": 6980
+        }
+      ],
+      "blockers": [],
+      "next_action": "执行 M1-R07 完整阶段检查；未通过前不开始 M2 实现"
+    },
+    {
+      "task_id": "M1-R07",
+      "title": "M1 修复阶段验收",
+      "dependencies": [
+        "M1-R05",
+        "M1-R06"
+      ],
+      "status": "DONE",
+      "actual_files": [
+        "docs/implementation/evidence/M1-audit-summary.md",
+        "README.md",
+        "docs/implementation/BLOCKERS.md"
+      ],
+      "verification": [
+        {
+          "task_id": "M1-R07",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm verify:stage -- --stage M1",
+          "argv": [
+            "pnpm",
+            "verify:stage",
+            "--",
+            "--stage",
+            "M1"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:46:48.536Z",
+          "finished_at": "2026-09-20T13:48:44.956Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r07-full-stage-2026-09-20T13-46-48-536Z.json",
+          "log_path": "docs/implementation/evidence/m1-r07-full-stage-2026-09-20T13-46-48-536Z.log",
+          "signal": null,
+          "duration_ms": 116420
+        },
+        {
+          "task_id": "M1-R07",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "node dist/cli.mjs --help",
+          "argv": [
+            "node",
+            "dist/cli.mjs",
+            "--help"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:48:02.595Z",
+          "finished_at": "2026-09-20T13:48:03.132Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r07-cli-help-2026-09-20T13-48-02-595Z.json",
+          "log_path": "docs/implementation/evidence/m1-r07-cli-help-2026-09-20T13-48-02-595Z.log",
+          "signal": null,
+          "duration_ms": 537
+        },
+        {
+          "task_id": "M1-R07",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "node dist/cli.mjs unknown --json",
+          "argv": [
+            "node",
+            "dist/cli.mjs",
+            "unknown",
+            "--json"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T13:48:03.731Z",
+          "finished_at": "2026-09-20T13:48:04.255Z",
+          "exit_code": 64,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/m1-r07-cli-unknown-json-2026-09-20T13-48-03-731Z.json",
+          "log_path": "docs/implementation/evidence/m1-r07-cli-unknown-json-2026-09-20T13-48-03-731Z.log",
+          "signal": null,
+          "duration_ms": 524
+        },
+        {
+          "task_id": "M1-R07",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+            "branch": "V1",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+          },
+          "command": "pnpm verify:tasks",
+          "argv": [
+            "pnpm",
+            "verify:tasks"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-20T14:12:57.003Z",
+          "finished_at": "2026-09-20T14:12:57.956Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/m1-r07-post-audit-source-ledger-2026-09-20T14-12-57-003Z.json",
+          "log_path": "docs/implementation/evidence/m1-r07-post-audit-source-ledger-2026-09-20T14-12-57-003Z.log",
+          "signal": null,
+          "duration_ms": 953
+        }
+      ],
+      "blockers": [],
+      "next_action": "M1 审计已验收；继续 M2 执行与证据链任务"
+    }
+  ]
+}

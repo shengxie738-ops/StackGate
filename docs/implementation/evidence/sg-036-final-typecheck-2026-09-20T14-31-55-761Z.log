@@ -1,0 +1,5 @@
+$ tsc --noEmit
+packages/core/src/execution/scheduler.ts(14,178): error TS2345: Argument of type '"CANCELED"' is not assignable to parameter of type 'ReasonCode'.
+packages/core/src/execution/scheduler.ts(17,61): error TS2345: Argument of type '"CANCELED"' is not assignable to parameter of type 'ReasonCode'.
+packages/core/src/execution/scheduler.ts(18,97): error TS2345: Argument of type '"REQUIRED_CHECK_MISSING"' is not assignable to parameter of type 'ReasonCode'.
+[ELIFECYCLE] Command failed with exit code 2.

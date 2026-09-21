@@ -1,0 +1,4 @@
+$ tsc --noEmit
+packages/core/src/storage/file-evidence-store.ts(96,9): error TS2322: Type '[]' is not assignable to type '[{ relative_path: string; digest: string; size: number; }, { relative_path: string; digest: string; size: number; }, { relative_path: string; digest: string; size: number; }, ...{ relative_path: string; digest: string; size: number; }[]]'.
+  Source has 0 element(s) but target requires 3.
+[ELIFECYCLE] Command failed with exit code 2.

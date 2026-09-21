@@ -1,0 +1,23 @@
+{
+  "task_id": "SG-044",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+    "branch": "V1",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+  },
+  "command": "pnpm build",
+  "argv": [
+    "pnpm",
+    "build"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T17:03:46.517Z",
+  "finished_at": "2026-09-20T17:03:52.046Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-044-build-cli-2026-09-20T17-03-46-517Z.json",
+  "log_path": "docs/implementation/evidence/sg-044-build-cli-2026-09-20T17-03-46-517Z.log",
+  "signal": null,
+  "duration_ms": 5529
+}

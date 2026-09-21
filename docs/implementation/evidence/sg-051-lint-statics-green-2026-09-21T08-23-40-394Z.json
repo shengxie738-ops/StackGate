@@ -1,0 +1,23 @@
+{
+  "task_id": "SG-051",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "aa7f19dd82b79a3a16afbf16f9baef4e19103725",
+    "branch": "V2",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+  },
+  "command": "pnpm lint",
+  "argv": [
+    "pnpm",
+    "lint"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-21T08:23:40.394Z",
+  "finished_at": "2026-09-21T08:23:45.400Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-051-lint-statics-green-2026-09-21T08-23-40-394Z.json",
+  "log_path": "docs/implementation/evidence/sg-051-lint-statics-green-2026-09-21T08-23-40-394Z.log",
+  "signal": null,
+  "duration_ms": 5006
+}

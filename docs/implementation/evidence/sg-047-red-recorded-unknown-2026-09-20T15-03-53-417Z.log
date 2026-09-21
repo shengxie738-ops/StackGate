@@ -1,0 +1,39 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/contract/schema-compatibility.test.ts (4 tests | 1 failed | 3 skipped) 8ms
+   ↓ rejects unsupported versions, undeclared fields, invalid UTF8 and duplicate JSON keys
+   ↓ preserves declared extensions and converts supported older optional-retention views without changing source bytes
+   × requires explicit exact core and command versions and never assumes UNKNOWN or latest succeeds 7ms
+   ↓ exports only verified safe artifacts to a new directory, preserving exact sealed source bytes
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/contract/schema-compatibility.test.ts > requires explicit exact core and command versions and never assumes UNKNOWN or latest succeeds
+AssertionError: expected { complete: true, …(2) } to match object { complete: false }
+(8 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "complete": false,
++   "complete": true,
+  }
+
+ ❯ tests/contract/schema-compatibility.test.ts:32:84
+     30|  for(const value of ['UNKNOWN','latest','unknown-but-assumed',''])expe…
+     31|  expect(inspectToolProvenance(versions,['missing'])).toMatchObject({co…
+     32|  expect(inspectToolProvenance({...versions,command_auxiliary:'UNKNOWN'…
+       |                                                                                    ^
+     33| });
+     34| it('exports only verified safe artifacts to a new directory, preservin…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 skipped (4)
+   Start at  23:03:55
+   Duration  1.21s (transform 297ms, setup 0ms, import 862ms, tests 8ms, environment 0ms)
+

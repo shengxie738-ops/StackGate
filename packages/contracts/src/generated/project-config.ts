@@ -74,9 +74,15 @@ export interface ProjectConfig {
        * @minItems 1
        */
       required_checks: [string, ...string[]];
-      environment: string;
+      environment: string | null;
       minimum_provenance: "DECLARED" | "OBSERVED" | "CONTROLLED";
       unknown_impact: "workspace-regression" | "incomplete";
+      workspace_regression?: {
+        /**
+         * @minItems 1
+         */
+        [k: string]: [string, ...string[]];
+      };
       flaky_policy: "incomplete";
     };
   };
@@ -101,6 +107,7 @@ export interface ProjectConfig {
         };
   };
   security: {
+    required_ignored_inputs?: string[];
     /**
      * @minItems 0
      */
@@ -126,6 +133,9 @@ export interface ProjectConfig {
   };
   extensions?: {
     stackgate_v0_1?: {
+      check_dependencies?: {
+        [k: string]: string[];
+      };
       environment_bindings?: {
         [k: string]: {
           [k: string]: {

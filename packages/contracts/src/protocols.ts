@@ -12,5 +12,7 @@ export type { ProbeReport } from './generated/probe.js';
 export type { PlaywrightReport } from './generated/playwright-report.js';
 export type { RunManifest } from './generated/run.js';
 export type { RunEvent } from './generated/event.js';
+export type { RunSeal } from './generated/run-seal.js';
+export type { RunCompletion } from './generated/run-completion.js';
 import type { GateEvaluationDocument } from './generated/gate-evaluation.js';
 export type GateEvaluation = Pick<GateEvaluationDocument, 'schema_version' | 'verdict' | 'freshness' | 'decision' | 'exit_code' | 'reasons'>;

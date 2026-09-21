@@ -1,0 +1,63 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/adapters/command.test.ts (6 tests | 5 failed) 333ms
+   × collects actual exit 0 with immutable command evidence 78ms
+   × collects actual exit 1 with immutable command evidence 47ms
+   × collects actual exit 7 with immutable command evidence 49ms
+   × does not promote missing evidence or a canceled process into PASS 53ms
+   × preserves timeout and launch failure without pretending a normal nonzero assertion 56ms
+   ✓ rejects using the exit-code adapter for a declared test collector 50ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/adapters/command.test.ts > collects actual exit 0 with immutable command evidence
+ FAIL  tests/integration/adapters/command.test.ts > collects actual exit 1 with immutable command evidence
+ FAIL  tests/integration/adapters/command.test.ts > collects actual exit 7 with immutable command evidence
+Error: Command execution evidence is not implemented
+ ❯ CommandAdapter.execute packages/adapter-command/src/command-adapter.ts:4:90
+      2| import type {ExecutionContext,CollectionContext} from '../../core/src/…
+      3| export class CommandAdapter {
+      4|  async *execute(_step:CheckStep,_context:ExecutionContext):AsyncIterab…
+       |                                                                                          ^
+      5|  async collect(_step:CheckStep,_context:CollectionContext):Promise<Che…
+      6| }
+ ❯ tests/integration/adapters/command.test.ts:9:34
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/integration/adapters/command.test.ts > does not promote missing evidence or a canceled process into PASS
+Error: Command execution collection is not implemented
+ ❯ CommandAdapter.collect packages/adapter-command/src/command-adapter.ts:5:87
+      3| export class CommandAdapter {
+      4|  async *execute(_step:CheckStep,_context:ExecutionContext):AsyncIterab…
+      5|  async collect(_step:CheckStep,_context:CollectionContext):Promise<Che…
+       |                                                                                       ^
+      6| }
+      7| 
+ ❯ tests/integration/adapters/command.test.ts:16:24
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/integration/adapters/command.test.ts > preserves timeout and launch failure without pretending a normal nonzero assertion
+Error: Command execution evidence is not implemented
+ ❯ CommandAdapter.execute packages/adapter-command/src/command-adapter.ts:4:90
+      2| import type {ExecutionContext,CollectionContext} from '../../core/src/…
+      3| export class CommandAdapter {
+      4|  async *execute(_step:CheckStep,_context:ExecutionContext):AsyncIterab…
+       |                                                                                          ^
+      5|  async collect(_step:CheckStep,_context:CollectionContext):Promise<Che…
+      6| }
+ ❯ tests/integration/adapters/command.test.ts:22:18
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 1 passed (6)
+   Start at  22:21:18
+   Duration  1.39s (transform 252ms, setup 0ms, import 813ms, tests 333ms, environment 0ms)
+

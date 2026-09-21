@@ -1,0 +1,54 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/storage/completion.test.ts (3 tests) 1104ms
+   ✓ binds restricted context bytes and completion to the sealed manifest, retaining old event compatibility  866ms
+ ❯ tests/integration/storage/store.test.ts (13 tests | 1 failed) 3228ms
+   ✓ creates independent runs and preserves immutable artifacts with checked bytes  601ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 1)  411ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 2)  335ms
+   × serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 3) 254ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 4)  357ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 5)  330ms
+   ✓ diagnoses truncated JSONL while retaining completed records and refusing further append 121ms
+   ✓ validates event documents and rejects illegal lifecycle or cross-run check results 177ms
+   ✓ rejects traversal, links, malformed documents and scope mismatch 145ms
+   ✓ requires explicit exact manifest CAS and immutable run identity 189ms
+   ✓ preserves unrelated temp bytes when a parent is replaced during commit 28ms
+   ✓ check completion preserves matching step identity and cannot finalize active attempts 244ms
+   ✓ acquires safely when another owner releases its lock during path inspection 34ms
+ ✓ tests/integration/storage/integrity.test.ts (10 tests) 8636ms
+   ✓ seals immutable facts, supports identical repeat, and exposes verified readonly snapshots  1358ms
+   ✓ detects modified sealed manifest.json without overwriting history  857ms
+   ✓ detects modified sealed events.jsonl without overwriting history  910ms
+   ✓ detects modified sealed artifact-index.json without overwriting history  926ms
+   ✓ detects modified sealed document without overwriting history  836ms
+   ✓ detects modified sealed artifact without overwriting history  871ms
+   ✓ rejects missing required artifacts and preserves readable unsealed facts  620ms
+   ✓ rejects internally contradictory facts even when each document has a valid schema  569ms
+   ✓ refuses to seal undeclared orphan evidence or an incomplete event log  601ms
+   ✓ retains failed retry documents alongside the final check without rewriting history  1086ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 25 passed (26)
+   Start at  22:51:24
+   Duration  9.76s (transform 637ms, setup 0ms, import 2.10s, tests 12.97s, environment 0ms)
+
+ FAIL  tests/integration/storage/store.test.ts > serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 3)
+AssertionError: [{"status":"APPENDED","event_id":"event_start","seq":1},{"status":"ERROR","diagnostics":[{"code":"REPORT_INVALID","rule_id":"SG-EVIDENCE-INTEGRITY","message":"Path escapes the allowed root","location":"","observed_facts":{"error_code":"UNSAFE_PATH"},"recommended_action":"Preserve existing evidence; diagnose or create a new run.","source":"evidence-store"}]},{"status":"DUPLICATE","event_id":"event_start","seq":1},{"status":"DUPLICATE","event_id":"event_start","seq":1},{"status":"DUPLICATE","event_id":"event_start","seq":1},{"status":"DUPLICATE","event_id":"event_start","seq":1},{"status":"DUPLICATE","event_id":"event_start","seq":1},{"status":"DUPLICATE","event_id":"event_start","seq":1}]: expected [ { status: 'DUPLICATE', …(2) }, …(5) ] to have a length of 7 but got 6
+
+- Expected
++ Received
+
+- 7
++ 6
+
+ ❯ tests/integration/storage/store.test.ts:24:241
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

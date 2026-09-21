@@ -1,0 +1,25 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/fixtures/local-run-project.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/fixtures/local-run-project.test.ts [ tests/integration/fixtures/local-run-project.test.ts ]
+Error: Cannot find module '../../support/local-run-project.js' imported from 'G:/StackGate/tests/integration/fixtures/local-run-project.test.ts'
+ ❯ tests/integration/fixtures/local-run-project.test.ts:5:1
+      3| import path from 'node:path';
+      4| import {spawnSync} from 'node:child_process';
+      5| import {localRunProject} from '../../support/local-run-project.js';
+       | ^
+      6| vi.setConfig({testTimeout:60000});
+      7| it('builds a confirmed trusted local fixture whose actual assertion em…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  22:35:21
+   Duration  370ms (transform 24ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

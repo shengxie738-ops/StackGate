@@ -1,0 +1,12 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/bootstrap.test.ts (5 tests) 1938ms
+   ✓ rejects unsupported arguments and combinations with exit 64  775ms
+   ✓ an empty test selection exits nonzero  644ms
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  21:38:07
+   Duration  2.24s (transform 20ms, setup 0ms, import 42ms, tests 1.94s, environment 0ms)
+

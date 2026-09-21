@@ -1,0 +1,10 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/config/execution-inputs.test.ts (3 tests) 37ms
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  21:44:57
+   Duration  786ms (transform 151ms, setup 0ms, import 499ms, tests 37ms, environment 0ms)
+

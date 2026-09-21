@@ -1,0 +1,19 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"https://stackgate.local/schemas/0.1/run-seal.schema.json",
+ "title":"RunSeal","type":"object",
+ "properties":{
+  "schema_version":{"const":"0.1"},
+  "run_id":{"type":"string","pattern":"^run_[A-Za-z0-9_-]+$"},
+  "input_hash":{"$ref":"common.schema.json#/$defs/Sha256"},
+  "sealed_at":{"$ref":"common.schema.json#/$defs/UtcTimestamp"},
+  "manifest_hash":{"$ref":"common.schema.json#/$defs/Sha256"},
+  "event_log_digest":{"$ref":"common.schema.json#/$defs/Sha256"},
+  "artifact_index_digest":{"$ref":"common.schema.json#/$defs/Sha256"},
+  "required_artifact_ids":{"type":"array","items":{"$ref":"common.schema.json#/$defs/SafeId"},"uniqueItems":true},
+  "artifacts":{"type":"array","items":{"$ref":"artifact.schema.json"},"uniqueItems":true},
+  "files":{"type":"array","items":{"type":"object","properties":{"relative_path":{"$ref":"common.schema.json#/$defs/RelativePath"},"digest":{"$ref":"common.schema.json#/$defs/Sha256"},"size":{"type":"integer","minimum":0}},"required":["relative_path","digest","size"],"additionalProperties":false},"minItems":3,"uniqueItems":true}
+ },
+ "required":["schema_version","run_id","input_hash","sealed_at","manifest_hash","event_log_digest","artifact_index_digest","required_artifact_ids","artifacts","files"],
+ "additionalProperties":false
+}

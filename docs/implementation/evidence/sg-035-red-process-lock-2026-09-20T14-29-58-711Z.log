@@ -1,0 +1,22 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/scheduler/resource-lock.test.ts (1 test | 1 failed) 41ms
+   × serializes an actual other Node process and refuses release after creation identity substitution 40ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/scheduler/resource-lock.test.ts > serializes an actual other Node process and refuses release after creation identity substitution
+Error: Resource ownership locking is not implemented
+ ❯ acquireResources packages/core/src/execution/resource-lock.ts:3:151
+
+ ❯ tests/integration/scheduler/resource-lock.test.ts:13:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  22:29:59
+   Duration  424ms (transform 39ms, setup 0ms, import 95ms, tests 41ms, environment 0ms)
+

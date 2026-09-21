@@ -1,0 +1,19 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/storage/integrity.test.ts (9 tests) 8783ms
+   ✓ seals immutable facts, supports identical repeat, and exposes verified readonly snapshots  1060ms
+   ✓ detects modified sealed manifest.json without overwriting history  759ms
+   ✓ detects modified sealed events.jsonl without overwriting history  996ms
+   ✓ detects modified sealed artifact-index.json without overwriting history  1147ms
+   ✓ detects modified sealed document without overwriting history  1193ms
+   ✓ detects modified sealed artifact without overwriting history  1190ms
+   ✓ rejects missing required artifacts and preserves readable unsealed facts  845ms
+   ✓ rejects internally contradictory facts even when each document has a valid schema  783ms
+   ✓ refuses to seal undeclared orphan evidence or an incomplete event log  808ms
+
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  22:05:37
+   Duration  9.68s (transform 211ms, setup 0ms, import 601ms, tests 8.78s, environment 0ms)
+

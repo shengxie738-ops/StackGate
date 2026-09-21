@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/scheduler/resource-lock.test.ts (1 test) 4081ms
+   ✓ serializes an actual other Node process and refuses release after creation identity substitution  4080ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  22:30:50
+   Duration  5.03s (transform 210ms, setup 0ms, import 668ms, tests 4.08s, environment 0ms)
+

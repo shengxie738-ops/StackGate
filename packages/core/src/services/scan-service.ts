@@ -6,7 +6,7 @@ import {resolveBaseline} from '../../../adapter-git/src/baseline.js';
 import {gitCommand} from '../../../adapter-git/src/git-command.js';
 import {captureInputs} from '../../../adapter-git/src/input-manifest.js';
 import {loadContract} from '../../../adapter-oasdiff/src/load-contract.js';
-import {OasdiffAdapter} from '../../../adapter-oasdiff/src/tool.js';
+import {RegisteredOasdiffAdapter} from '../../../adapter-oasdiff/src/resolve-tool.js';
 import {loadMappings} from '../../../adapter-typescript/src/explicit-mappings.js';
 import {emptyImpactGraph} from '../../../adapter-typescript/src/impact-graph.js';
 import {analyzeTypeScript,type TypeScriptSource} from '../../../adapter-typescript/src/program.js';
@@ -21,19 +21,19 @@ import {loadConfiguration} from './config-service.js';
 import {configNames} from './project-service.js';
 import {parseStrictDocument} from './strict-document.js';
 import {configurationError,ServiceError} from './service-error.js';
-import {ContractService} from './contract-service.js';
+import {ContractService,type ContractCompatibilityTool} from './contract-service.js';
 import {TaskService,protectedPrefix} from './task-service.js';
 import {publicContractAssessment} from './public-scan-report.js';
-import installation from '../../../../tools/oasdiff/installation.json';
+import {selectionPolicyFor} from './selection-policy.js';
 const digest=(value:unknown)=>hashBytes(Buffer.from(canonicalJson(value)));
 export interface ScanOptions {base?:string;task?:string;profile?:string}
 export class ScanService {
-  constructor(readonly root:string,readonly adapter=new OasdiffAdapter({trusted:true,executable:installation.executable,expected_sha256:installation.executable_sha256,expected_version:installation.version})){}
+  constructor(readonly root:string,readonly adapter:ContractCompatibilityTool=new RegisteredOasdiffAdapter()){}
   async scan(options:ScanOptions={}){
     const diagnostics:Diagnostic[]=[];const names:string[]=[];
     for(const name of configNames)try{await fs.access(await resolveWithin(this.root,name));names.push(name);}catch(error){if((error as NodeJS.ErrnoException).code!=='ENOENT')throw error;}
     if(names.length!==1)throw configurationError('Exactly one project configuration required');
-    const config=await loadConfiguration(path.join(this.root,names[0]!),this.root),profile=config.profiles[options.profile??Object.keys(config.profiles)[0]!];if(!profile)throw configurationError('Unknown scan profile');
+    const config=await loadConfiguration(path.join(this.root,names[0]!),this.root),{profile,selection_policy,policy_hash}=selectionPolicyFor(config,options.profile??Object.keys(config.profiles)[0]!);
     let task:TaskPayload|null=null,confirmed:Awaited<ReturnType<TaskService['loadConfirmed']>>|null=null;
     if(options.task){const relative=path.relative(path.resolve(this.root),path.resolve(this.root,options.task)).replaceAll(path.sep,'/');const result=validateSchema<TaskPayload>('task',parseStrictDocument(await fs.readFile(await resolveWithin(this.root,relative)),relative));if(!result.ok)throw new ServiceError(64,result.diagnostics);task=result.value;
       try{confirmed=await new TaskService(this.root).loadConfirmed(task.task_id,task.revision);}catch(error){if((error as NodeJS.ErrnoException).code!=='ENOENT')diagnostics.push(...(error instanceof ServiceError?error.diagnostics:configurationError('Confirmation cannot be safely loaded').diagnostics));}
@@ -73,7 +73,7 @@ export class ScanService {
     const staticGraph=analyzeTypeScript({files:sources,operation_keys,changed_paths:[...input_manifest.staged_changes,...input_manifest.unstaged_changes,...input_manifest.files.filter(f=>!f.tracked).map(f=>f.relative_path)]});
     const impacts=aggregateImpacts([explicit,staticGraph],changed_operations);
     if(!mappingsBytes)impacts.unresolved.push({kind:'scope',reference:mappingsFile,workspace:'*',origin:'scan',reason:'No explicit consumer mapping; static parsing cannot prove complete coverage'});
-    const selection=selectChecks(task??{required_checks:[],required_test_ids:[]},{required_set:profile.required_checks,optional_failure_policy:'incomplete'},impacts,Object.keys(config.checks));
-    return {runtime:'NOT_EXECUTED',candidate_export:'NOT_EXECUTED',baseline,input_manifest,contracts,impacts,selection,acceptance_drift,coverage_gaps:[...selection.coverage_gaps,...acceptance_drift.filter(f=>f.decision==='DENY').map(f=>({code:f.code,reason:f.message,reference:f.reference})),...input_manifest.diagnostics.map(reason=>({code:'INPUT_SCOPE_INCOMPLETE',reason})),{code:'RUNTIME_NOT_EXECUTED',reason:'Candidate export, runtime probes and test inventories require a later authorized run'}],diagnostics};
+    const selection=selectChecks(task??{required_checks:[],required_test_ids:[]},selection_policy,impacts,Object.keys(config.checks));
+    return {runtime:'NOT_EXECUTED',candidate_export:'NOT_EXECUTED',baseline,input_manifest,contracts,impacts,selection,policy_hash,acceptance_drift,coverage_gaps:[...selection.coverage_gaps,...acceptance_drift.filter(f=>f.decision==='DENY').map(f=>({code:f.code,reason:f.message,reference:f.reference})),...input_manifest.diagnostics.map(reason=>({code:'INPUT_SCOPE_INCOMPLETE',reason})),{code:'RUNTIME_NOT_EXECUTED',reason:'Candidate export, runtime probes and test inventories require a later authorized run'}],diagnostics};
   }
 }

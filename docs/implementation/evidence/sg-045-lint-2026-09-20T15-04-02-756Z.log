@@ -1,0 +1,15 @@
+$ eslint .
+
+G:\StackGate\packages\reporters\src\json.ts
+  1:28  error  '_view' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\StackGate\packages\reporters\src\report-view.ts
+  3:33  error  '_source' is defined but never used      @typescript-eslint/no-unused-vars
+  3:54  error  '_evaluation' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\StackGate\packages\reporters\src\terminal.ts
+  1:32  error  '_view' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 4 problems (4 errors, 0 warnings)
+
+[ELIFECYCLE] Command failed with exit code 1.

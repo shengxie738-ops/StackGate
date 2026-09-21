@@ -1,0 +1,40 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/plan-service.test.ts (6 tests | 1 failed | 5 skipped) 28214ms
+   × persists a deterministic verified plan with exact ignored script bytes and required JUnit IDs 28214ms
+   ↓ rejects oversized plan files before allocating their contents
+   ↓ rejects unconfirmed task or unreviewed trust before persisting an executable plan
+   ↓ rechecks ignored script, policy and task identity, and rejects modified stored context
+   ↓ retains an explicitly required runtime check and marks unsupported local backend requirements blocked
+   ↓ keeps required e2e and an explicit environment dependency when M3 environment is unavailable
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/plan-service.test.ts > persists a deterministic verified plan with exact ignored script bytes and required JUnit IDs
+AssertionError: expected [ 'workspace_63e3a42fcd0c2bc3' ] to deeply equal [ 'workspace_bde1489624c3f4f8' ]
+
+- Expected
++ Received
+
+  [
+-   "workspace_bde1489624c3f4f8",
++   "workspace_63e3a42fcd0c2bc3",
+  ]
+
+ ❯ tests/integration/plan-service.test.ts:18:80
+     16|     expect(plan.steps.find(step => step.check_id === 'smoke')!.expecte…
+     17|     expect(plan.steps.find(step => step.check_id === 'unit')!.expected…
+     18|     expect(plan.steps.find(step => step.check_id === 'smoke')!.resourc…
+       |                                                                                ^
+     19|     expect(await service.create({task: f.taskFile, profile: 'local'}))…
+     20|     const loaded = await service.load(plan.plan_id) as {plan: CheckPla…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 skipped (6)
+   Start at  22:09:15
+   Duration  30.32s (transform 579ms, setup 0ms, import 1.87s, tests 28.21s, environment 0ms)
+

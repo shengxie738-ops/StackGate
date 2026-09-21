@@ -1,0 +1,18 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/run/lifecycle.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 721140[2mms[22m[39m
+   [33m[2m✓[22m[39m produces a sealed real command and JUnit run with complete lifecycle facts [33m 98333[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects stale preflight without starting any business command [33m 53852[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps failed historical runs immutable when repeated [33m 147065[2mms[22m[39m
+   [33m[2m✓[22m[39m retains the original input identity and reports mutation during execution as stale [33m 92348[2mms[22m[39m
+   [33m[2m✓[22m[39m retains canceled required checks without launching a new process [33m 78094[2mms[22m[39m
+   [33m[2m✓[22m[39m never allows a run when an event consumer fails after a completed check [33m 63170[2mms[22m[39m
+   [33m[2m✓[22m[39m detects source changes in the final event callback before returning current approval [33m 94302[2mms[22m[39m
+   [33m[2m✓[22m[39m cancels during completion persistence without converting cancellation into a tool error [33m 93973[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m8 passed[39m[22m[90m (8)[39m
+[2m   Start at [22m 01:12:08
+[2m   Duration [22m 724.05s[2m (transform 829ms, setup 0ms, import 2.59s, tests 721.14s, environment 0ms)[22m
+

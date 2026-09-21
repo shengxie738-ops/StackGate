@@ -1,0 +1,32 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/execution/scheduler.test.ts (3 tests | 2 failed) 15ms
+   × runs A to B/C to D with lexicographic starts and real independent concurrency 7ms
+   × failure blocks only dependent branches and cancellation stops new steps 3ms
+   ✓ rejects invalid concurrency and never launches malformed DAGs 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/execution/scheduler.test.ts > runs A to B/C to D with lexicographic starts and real independent concurrency
+Error: Scheduler is not implemented
+ ❯ schedulePlan packages/core/src/execution/scheduler.ts:5:166
+
+ ❯ tests/unit/execution/scheduler.test.ts:11:273
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/unit/execution/scheduler.test.ts > failure blocks only dependent branches and cancellation stops new steps
+Error: Scheduler is not implemented
+ ❯ schedulePlan packages/core/src/execution/scheduler.ts:5:166
+
+ ❯ tests/unit/execution/scheduler.test.ts:12:273
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed (3)
+   Start at  22:28:24
+   Duration  373ms (transform 37ms, setup 0ms, import 78ms, tests 15ms, environment 0ms)
+

@@ -1,0 +1,10 @@
+$ tsc --noEmit
+node_modules/.pnpm/saxes@6.0.0_patch_hash=1c67_f0e372931785c0379b2d8d783bde1042/node_modules/saxes/saxes.d.ts(100,41): error TS2344: Type 'O' does not satisfy the constraint 'SaxesOptions'.
+  Type 'O' is not assignable to type 'CommonOptions'.
+node_modules/.pnpm/saxes@6.0.0_patch_hash=1c67_f0e372931785c0379b2d8d783bde1042/node_modules/saxes/saxes.d.ts(101,35): error TS2344: Type 'O' does not satisfy the constraint 'SaxesOptions'.
+  Type 'O' is not assignable to type 'CommonOptions'.
+node_modules/.pnpm/saxes@6.0.0_patch_hash=1c67_f0e372931785c0379b2d8d783bde1042/node_modules/saxes/saxes.d.ts(102,31): error TS2344: Type 'O' does not satisfy the constraint 'SaxesOptions'.
+  Type 'O' is not assignable to type 'CommonOptions'.
+node_modules/.pnpm/saxes@6.0.0_patch_hash=1c67_f0e372931785c0379b2d8d783bde1042/node_modules/saxes/saxes.d.ts(103,33): error TS2344: Type 'O' does not satisfy the constraint 'SaxesOptions'.
+  Type 'O' is not assignable to type 'CommonOptions'.
+[ELIFECYCLE] Command failed with exit code 2.

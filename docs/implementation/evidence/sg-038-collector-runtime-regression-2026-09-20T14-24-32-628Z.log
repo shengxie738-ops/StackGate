@@ -1,0 +1,13 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/openapi/runtime-validator.test.ts (23 tests) 432ms
+ ✓ tests/contract/probe-envelope.test.ts (16 tests) 3807ms
+   ✓ revalidates retained response bytes rather than accepting script schema_valid=true  334ms
+   ✓ health-only report does not satisfy the required business operation  309ms
+
+ Test Files  2 passed (2)
+      Tests  39 passed (39)
+   Start at  22:24:34
+   Duration  5.40s (transform 492ms, setup 0ms, import 1.84s, tests 4.24s, environment 0ms)
+

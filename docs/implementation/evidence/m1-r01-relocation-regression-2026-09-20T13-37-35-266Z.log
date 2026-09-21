@@ -1,0 +1,29 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/oasdiff-relocation.test.ts (1 test) 7876ms
+   ✓ copied built CLI uses only its relocated verified native tool  7875ms
+ ✓ tests/integration/cli/static-workflow.test.ts (3 tests) 19063ms
+   ✓ previews init without writes and applies only absent files preserving existing content  987ms
+   ✓ task and trust machine previews implement required data fields without running code  15424ms
+   ✓ scan returns breaking data with exit zero and never claims runtime or gate success  2648ms
+ ✓ tests/integration/stages/m1.test.ts (3 tests) 24207ms
+   ✓ keeps changed unsupported workspace sources visible even with an explicit mapping file  3305ms
+   ✓ all M1 entrypoints leave postinstall, JavaScript and Python sentinels unexecuted  15664ms
+   ✓ reports no baseline, untracked Chinese consumers, changed target and unknown schema honestly  5237ms
+ ✓ tests/integration/trust/review.test.ts (9 tests) 78408ms
+   ✓ does not recognize mismatched grant IDs or permission scopes as trusted  16260ms
+   ✓ refuses a script whose bytes are excluded by the credential-input policy  2688ms
+   ✓ renews an expired matching record and preserves unrelated or concurrently changed records  16754ms
+   ✓ rejects external script arguments and binds ignored scripts outside workspaces  9895ms
+   ✓ binds inline code as arguments without interpreting code fragments as paths  2213ms
+   ✓ binds resolved tool identity without launching it  5734ms
+   ✓ previews names only and never trusts without explicit reviewed authorization  2273ms
+   ✓ stores outside repository, binds scripts, arguments and origins, and does not become CI trust  12527ms
+   ✓ refuses repository-contained trust stores and copying trust into another checkout  10059ms
+
+ Test Files  4 passed (4)
+      Tests  16 passed (16)
+   Start at  21:37:36
+   Duration  79.58s (transform 402ms, setup 0ms, import 1.07s, tests 129.55s, environment 0ms)
+

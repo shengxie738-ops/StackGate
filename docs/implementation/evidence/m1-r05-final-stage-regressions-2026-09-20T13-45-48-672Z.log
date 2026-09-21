@@ -1,0 +1,15 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/stages/m1-audit-regressions.test.ts (1 test) 19515ms
+   ✓ relocated CLI combines confirmed task, bounded trust inputs, workspace fallback and honest static results  19514ms
+ ✓ tests/integration/stages/m1.test.ts (3 tests) 19819ms
+   ✓ keeps changed unsupported workspace sources visible even with an explicit mapping file  2561ms
+   ✓ all M1 entrypoints leave postinstall, JavaScript and Python sentinels unexecuted  12388ms
+   ✓ reports no baseline, untracked Chinese consumers, changed target and unknown schema honestly  4869ms
+
+ Test Files  2 passed (2)
+      Tests  4 passed (4)
+   Start at  21:45:49
+   Duration  20.16s (transform 57ms, setup 0ms, import 152ms, tests 39.33s, environment 0ms)
+

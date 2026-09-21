@@ -1,0 +1,28 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/runner/scheduler.test.ts (8 tests | 1 failed | 7 skipped) 740ms
+   ↓ runs A to B/C to D with lexicographic starts and real independent concurrency
+   ↓ failure blocks only dependent branches and cancellation stops new steps
+   ↓ rejects invalid concurrency and never launches malformed DAGs
+   ↓ serializes shared resources while independent resources progress
+   ↓ does not invent a second result when finished event persistence fails
+   ↓ cancels or times out while another owner holds a resource without removing its lock
+   ↓ excludes another whole run even when its workspace locks differ
+   × records queue waiting separately from actual execution duration 739ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/runner/scheduler.test.ts > records queue waiting separately from actual execution duration
+TypeError: actual value must be number or bigint, received "undefined"
+ ❯ tests/unit/runner/scheduler.test.ts:19:585
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 skipped (8)
+   Start at  22:37:15
+   Duration  1.58s (transform 216ms, setup 0ms, import 579ms, tests 740ms, environment 0ms)
+

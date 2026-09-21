@@ -1,0 +1,18 @@
+{
+  "task_id": "SG-028",
+  "command": "node --test tests/bootstrap/audit-record.test.mjs",
+  "argv": [
+    "node",
+    "--test",
+    "tests/bootstrap/audit-record.test.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T13:34:21.399Z",
+  "finished_at": "2026-09-20T13:34:21.607Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-028-m1-r00-red-recorder-2026-09-20T13-34-21-399Z.json",
+  "log_path": "docs/implementation/evidence/sg-028-m1-r00-red-recorder-2026-09-20T13-34-21-399Z.log",
+  "signal": null,
+  "duration_ms": 208
+}

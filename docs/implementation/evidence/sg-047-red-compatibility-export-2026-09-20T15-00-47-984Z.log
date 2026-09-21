@@ -1,0 +1,25 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/contract/schema-compatibility.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/contract/schema-compatibility.test.ts [ tests/contract/schema-compatibility.test.ts ]
+Error: Cannot find module '../../packages/core/src/storage/schema-reader.js' imported from 'G:/StackGate/tests/contract/schema-compatibility.test.ts'
+ ❯ tests/contract/schema-compatibility.test.ts:4:1
+      2| import fs from 'node:fs/promises';
+      3| import path from 'node:path';
+      4| import {readVersionedDocument} from '../../packages/core/src/storage/s…
+       | ^
+      5| import {exportBundle,writeExportBundle} from '../../packages/core/src/…
+      6| import {inspectToolProvenance} from '../../packages/core/src/domain/to…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  23:00:49
+   Duration  432ms (transform 34ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

@@ -14,7 +14,7 @@ it('inspects a Chinese project without running postinstall, Python imports or wr
   await writeFile(join(root,'main.py'),'open("PYTHON_EXECUTED", "w").write("bad")\n');
   const before=(await readdir(root)).sort();
   const result=doctor(root);expect(result.status,result.stderr).toBe(0);
-  const report=JSON.parse(result.stdout);
+  const report=JSON.parse(result.stdout).data;
   expect(report.runtime).toBe('NOT_EXECUTED');expect(report.capabilities).toContain('typescript');expect(report.capabilities).toContain('fastapi');
   expect(report.missing).toContain('OPENAPI_TARGET');expect(report).not.toHaveProperty('decision');expect(report).not.toHaveProperty('verdict');
   expect(report.tools.docker.status).toBe('UNVERIFIED');
@@ -25,16 +25,16 @@ it('returns precise invalid-config diagnostics and never scans a parent manifest
   await writeFile(join(parent,'package.json'),'{"dependencies":{"react":"1"}}');
   const root=join(parent,'child');await mkdir(root);await writeFile(join(root,'.stackgate.yaml'),'schema_version: "0.1"\nunknown: true\n');
   const result=doctor(root);expect(result.status).toBe(64);
-  const report=JSON.parse(result.stdout);expect(report.diagnostics.some((d:{code:string;location:string})=>d.code==='CONFIG_INVALID'&&d.location.includes('unknown'))).toBe(true);
+  const report=JSON.parse(result.stdout).data;expect(report.diagnostics.some((d:{code:string;location:string})=>d.code==='CONFIG_INVALID'&&d.location.includes('unknown'))).toBe(true);
   expect(report.capabilities).not.toContain('typescript');expect((await readdir(root))).toEqual(['.stackgate.yaml']);
 }));
 it('reports conflicting configuration files rather than choosing one',async()=>withTestDirectory(async root=>{
   await writeFile(join(root,'.stackgate.yaml'),'schema_version: "0.1"');await writeFile(join(root,'.stackgate.yml'),'schema_version: "0.1"');
-  const result=doctor(root);expect(result.status).toBe(64);expect(JSON.parse(result.stdout).conflicts).toContain('MULTIPLE_CONFIG_FILES');
+  const result=doctor(root);expect(result.status).toBe(64);expect(JSON.parse(result.stdout).data.conflicts).toContain('MULTIPLE_CONFIG_FILES');
 }));
 it('reports declared commands/workspaces missing without executing them',async()=>withTestDirectory(async root=>{
   const config=structuredClone(configFixture);config.commands.web_unit.exec='missing-stackgate-command-123';
   await writeFile(join(root,'.stackgate.yaml'),JSON.stringify(config));
-  const result=doctor(root);expect(result.status).toBe(0);const report=JSON.parse(result.stdout);
+  const result=doctor(root);expect(result.status).toBe(0);const report=JSON.parse(result.stdout).data;
   expect(report.missing).toContain('COMMAND:web_unit');expect(report.missing).toContain('WORKSPACE:web');
 }));

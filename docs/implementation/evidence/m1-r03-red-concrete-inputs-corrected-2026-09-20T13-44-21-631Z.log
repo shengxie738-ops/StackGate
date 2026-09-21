@@ -1,0 +1,23 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/config/execution-inputs.test.ts (3 tests | 1 failed) 44ms
+   × requires unique concrete relative ignored input paths: {"inputs":["apps/web/*.json"]} 38ms
+   ✓ requires unique concrete relative ignored input paths: {"inputs":["apps/web/fixture.json","apps/web/fixture.json"]} 3ms
+   ✓ requires unique concrete relative ignored input paths: {"inputs":["../outside.json"]} 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/config/execution-inputs.test.ts > requires unique concrete relative ignored input paths: {"inputs":["apps/web/*.json"]}
+AssertionError: expected function to throw an error, but it didn't
+ ❯ tests/unit/config/execution-inputs.test.ts:7:92
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  21:44:22
+   Duration  883ms (transform 161ms, setup 0ms, import 582ms, tests 44ms, environment 0ms)
+

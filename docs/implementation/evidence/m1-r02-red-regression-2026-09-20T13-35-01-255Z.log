@@ -1,0 +1,86 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/select-checks.test.ts (6 tests | 2 failed) 56ms
+   × accepts workspace regression while preserving explicit profile requirements 34ms
+   ✓ rejects unknown or ambiguous regression references: {"missing":["unit"]} 3ms
+   ✓ rejects unknown or ambiguous regression references: {"web":["missing"]} 3ms
+   ✓ rejects unknown or ambiguous regression references: {"web":["unit","unit"]} 3ms
+   ✓ rejects unknown or ambiguous regression references: {"web":[]} 2ms
+   × wildcard impact requires coverage for every configured workspace 10ms
+ ❯ tests/integration/scan-workspace-regression.test.ts (2 tests | 2 failed) 1288ms
+   × scan adds both workspace regressions and preserves task/profile checks and test IDs 655ms
+   × scan retains uncovered workspace gaps when only one regression set exists 632ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/scan-workspace-regression.test.ts > scan adds both workspace regressions and preserves task/profile checks and test IDs
+AssertionError: [{"code":"CONFIG_INVALID","rule_id":"SG-POLICY-INVALID_STRUCTURE","message":"must NOT have additional properties","location":"/profiles/integration/workspace_regression","observed_facts":{"keyword":"additionalProperties","additionalProperty":"workspace_regression"},"recommended_action":"Correct the field against the versioned schema; validation never modifies inputs.","source":"project-config"}]: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/integration/scan-workspace-regression.test.ts:17:64
+     15|     await fs.writeFile(repo.taskFile, JSON.stringify(repo.task));
+     16|     const service = new TaskService(repo.root), preview = await servic…
+     17|     expect(preview.valid, JSON.stringify(preview.diagnostics)).toBe(tr…
+       |                                                                ^
+     18|     await service.confirm(repo.taskFile, preview.confirmation_digest!,…
+     19|     const result = await new ScanService(repo.root).scan({ task: repo.…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/integration/scan-workspace-regression.test.ts > scan retains uncovered workspace gaps when only one regression set exists
+ServiceError: must NOT have additional properties
+ ❯ parseConfiguration packages/core/src/services/config-service.ts:11:23
+      9| export function parseConfiguration(bytes:Uint8Array,source:string):Pro…
+     10|   const result=validateProjectConfig(parseStrictDocument(bytes,source)…
+     11|   if(!result.ok)throw new ServiceError(64,result.diagnostics);
+       |                       ^
+     12|   const issues=resolveReferences(result.value);
+     13|   if(issues.length)throw new ServiceError(64,issues.flatMap(issue=>con…
+ ❯ loadConfiguration packages/core/src/services/config-service.ts:19:10
+ ❯ ScanService.scan packages/core/src/services/scan-service.ts:36:18
+ ❯ tests/integration/scan-workspace-regression.test.ts:38:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/unit/select-checks.test.ts > accepts workspace regression while preserving explicit profile requirements
+ServiceError: must NOT have additional properties
+ ❯ parseConfiguration packages/core/src/services/config-service.ts:11:23
+      9| export function parseConfiguration(bytes:Uint8Array,source:string):Pro…
+     10|   const result=validateProjectConfig(parseStrictDocument(bytes,source)…
+     11|   if(!result.ok)throw new ServiceError(64,result.diagnostics);
+       |                       ^
+     12|   const issues=resolveReferences(result.value);
+     13|   if(issues.length)throw new ServiceError(64,issues.flatMap(issue=>con…
+ ❯ parse tests/unit/select-checks.test.ts:7:35
+ ❯ tests/unit/select-checks.test.ts:11:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/unit/select-checks.test.ts > wildcard impact requires coverage for every configured workspace
+AssertionError: expected 'READY' to be 'INCOMPLETE' // Object.is equality
+
+Expected: "INCOMPLETE"
+Received: "READY"
+
+ ❯ tests/unit/select-checks.test.ts:23:25
+     21|   expect(result.required_set).toEqual(['e2e', 'typecheck', 'unit']);
+     22|   expect(result.selected_tests).toEqual([{ id: 'required-flow', source…
+     23|   expect(result.status).toBe('INCOMPLETE');
+       |                         ^
+     24|   expect(result.coverage_gaps).toContainEqual(expect.objectContaining(…
+     25| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  4 failed | 4 passed (8)
+   Start at  21:35:02
+   Duration  2.96s (transform 585ms, setup 0ms, import 2.00s, tests 1.34s, environment 0ms)
+

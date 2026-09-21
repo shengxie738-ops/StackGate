@@ -1,0 +1,3 @@
+$ tsc --noEmit
+packages/runner-local/src/local-runner.ts(11,126): error TS2322: Type '"SG-RUNNER-PROCESS"' is not assignable to type '`SG-CONTRACT-${string}` | `SG-CONSUMER-${string}` | `SG-RUNTIME-${string}` | `SG-EVIDENCE-${string}` | `SG-POLICY-${string}` | `SG-ENV-${string}` | `SG-TOOL-${string}`'.
+[ELIFECYCLE] Command failed with exit code 2.

@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/reports/terminal.test.ts (1 test) 5ms
+ ✓ tests/unit/reports/json.test.ts (2 tests) 7ms
+
+ Test Files  2 passed (2)
+      Tests  3 passed (3)
+   Start at  23:06:22
+   Duration  600ms (transform 142ms, setup 0ms, import 319ms, tests 12ms, environment 0ms)
+

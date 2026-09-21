@@ -1,0 +1,10 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/plan/dag.test.ts (12 tests) 53ms
+
+ Test Files  1 passed (1)
+      Tests  12 passed (12)
+   Start at  21:53:40
+   Duration  998ms (transform 171ms, setup 0ms, import 649ms, tests 53ms, environment 0ms)
+

@@ -1,6 +1,6 @@
 import type { ImpactGraph, ImpactGap, ImpactSelection } from '../../../adapter-typescript/src/impact-graph.js';
 export interface SelectionTask { required_checks: readonly string[]; required_test_ids: readonly string[] }
-export interface SelectionPolicy { required_set: readonly string[]; workspace_regression?: Readonly<Record<string, readonly string[]>>; optional_failure_policy: 'fail' | 'incomplete' }
+export interface SelectionPolicy { required_set: readonly string[]; workspace_regression?: Readonly<Record<string, readonly string[]>>; workspace_ids?: readonly string[]; optional_failure_policy: 'fail' | 'incomplete' }
 export interface CoverageGap { workspace: string; reference: string; reason: string; origin: string }
 export interface SelectionResult {
   required_set: string[]; selected_checks: ImpactSelection[]; selected_tests: ImpactSelection[];
@@ -23,7 +23,7 @@ export function selectChecks(task:SelectionTask,policy:SelectionPolicy,impacts:I
     for(const id of association.test_ids)add(tests,id,association.operation_key);
   }
   for(const gap of impacts.unresolved){
-    const workspaces=gap.workspace==='*'?Object.keys(policy.workspace_regression??{}):[gap.workspace];
+    const workspaces=gap.workspace==='*'?[...new Set(policy.workspace_ids??Object.keys(policy.workspace_regression??{}))].sort():[gap.workspace];
     if(!workspaces.length)coverage_gaps.push({workspace:gap.workspace,reference:gap.reference,origin:gap.origin,reason:'No confirmed workspace regression set'});
     for(const workspace of workspaces){
       const regression=policy.workspace_regression?.[workspace];

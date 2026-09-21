@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/run/concurrent-runs.test.ts (5 tests | 4 skipped) 203359ms
+   ✓ two real CLI runs of one worktree have distinct IDs and only one may execute business commands  203358ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 4 skipped (5)
+   Start at  23:31:52
+   Duration  206.21s (transform 926ms, setup 0ms, import 2.46s, tests 203.36s, environment 0ms)
+

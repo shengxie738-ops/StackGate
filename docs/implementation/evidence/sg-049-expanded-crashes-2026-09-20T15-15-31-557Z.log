@@ -1,0 +1,24 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/run/finalization-race.test.ts (2 tests) 1793ms
+   ✓ two process finalization calls are idempotent and cannot replace terminal facts  879ms
+   ✓ two process seals agree and post-seal manifest corruption never remains valid  913ms
+ ✓ tests/integration/run/concurrent-runs.test.ts (4 tests) 3992ms
+   ✓ cross-process identical event append is idempotent without duplicate sequence  602ms
+   ✓ cross-process competing artifact bytes publish exactly one immutable winner  586ms
+   ✓ two run IDs in one repository never share artifact directories  560ms
+   ✓ a second process cannot acquire the same worktree resource and cannot reap a dead owner lock  2243ms
+ ✓ tests/integration/run/crash.test.ts (6 tests) 10642ms
+   ✓ hard-killing the runner parent closes its private job lifeline and preserves unrelated service  2726ms
+   ✓ a killed manifest temp writer preserves prior bytes and refuses unsafe lock recovery  3777ms
+   ✓ a killed event temp writer cannot publish a partial event or silent completion  443ms
+   ✓ hard exit after actual failed check persistence preserves the failure without sealing PASS  1850ms
+   ✓ crashing before cleanup never removes sealed evidence  898ms
+   ✓ crashing after cleanup never removes sealed evidence  946ms
+
+ Test Files  3 passed (3)
+      Tests  12 passed (12)
+   Start at  23:15:33
+   Duration  12.08s (transform 813ms, setup 0ms, import 2.67s, tests 16.43s, environment 3ms)
+

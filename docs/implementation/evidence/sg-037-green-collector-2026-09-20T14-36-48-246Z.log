@@ -1,0 +1,22 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/reports/junit-input.test.ts (11 tests) 7ms
+ ✓ tests/integration/adapters/junit.test.ts (12 tests) 15439ms
+   ✓ collects real report <testsuite><testcase name="one"/></testsuite> exit 0 as PASS  1349ms
+   ✓ collects real report <testsuite tests="999"/> exit 0 as BLOCKED  1361ms
+   ✓ collects real report null exit 0 as BLOCKED  1308ms
+   ✓ collects real report <testsuite><testcase name="one"><skipped/></testcase></testsuite> exit 0 as BLOCKED  1330ms
+   ✓ collects real report <testsuite><testcase name="one"><failure>bad</failure></testcase></testsuite> exit 0 as FAIL  1307ms
+   ✓ collects real report <testsuite><testcase name="one"><failure/></testcase></testsuite> exit 7 as FAIL  1337ms
+   ✓ collects real report <testsuite><testcase name="one"/></testsuite> exit 7 as ERROR  1392ms
+   ✓ collects real report <testsuite> exit 0 as ERROR  1516ms
+   ✓ collects real report <!DOCTYPE testsuite SYSTEM "file:///secret"><testsuite/> exit 0 as ERROR  1714ms
+   ✓ collects real report <testsuite><testcase name="one"><flakyFailure/></testcase></testsuite> exit 0 as BLOCKED  1430ms
+   ✓ requires declared IDs and minimum executed cases  1313ms
+
+ Test Files  2 passed (2)
+      Tests  23 passed (23)
+   Start at  22:36:49
+   Duration  16.44s (transform 275ms, setup 0ms, import 781ms, tests 15.45s, environment 0ms)
+

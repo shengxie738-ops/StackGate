@@ -89,7 +89,7 @@
           "exec": {
             "type": "string",
             "minLength": 1,
-            "pattern": "^[A-Za-z0-9_./\\\\:-]+$"
+            "pattern": "^[^\\u0000-\\u001f\\u007f<>\"|?*]+$"
           },
           "args": {
             "type": "array",
@@ -262,7 +262,7 @@
             "minItems": 1
           },
           "environment": {
-            "$ref": "common.schema.json#/$defs/SafeId"
+            "anyOf": [{ "$ref": "common.schema.json#/$defs/SafeId" }, { "type": "null" }]
           },
           "minimum_provenance": {
             "$ref": "common.schema.json#/$defs/ProvenanceLevel"
@@ -273,6 +273,16 @@
               "workspace-regression",
               "incomplete"
             ]
+          },
+          "workspace_regression": {
+            "type": "object",
+            "propertyNames": { "$ref": "common.schema.json#/$defs/SafeId" },
+            "additionalProperties": {
+              "type": "array",
+              "items": { "$ref": "common.schema.json#/$defs/SafeId" },
+              "uniqueItems": true,
+              "minItems": 1
+            }
           },
           "flaky_policy": {
             "const": "incomplete"
@@ -364,11 +374,16 @@
           }
         ]
       },
-      "minProperties": 1
+      "minProperties": 0
     },
     "security": {
       "type": "object",
       "properties": {
+        "required_ignored_inputs": {
+          "type": "array",
+          "items": { "$ref": "common.schema.json#/$defs/RelativePath", "type": "string", "pattern": "^[^*?\\[\\]{}]+$" },
+          "uniqueItems": true
+        },
         "env_allowlist": {
           "type": "array",
           "items": {
@@ -436,6 +451,15 @@
         "stackgate_v0_1": {
           "type": "object",
           "properties": {
+            "check_dependencies": {
+              "type": "object",
+              "propertyNames": { "$ref": "common.schema.json#/$defs/SafeId" },
+              "additionalProperties": {
+                "type": "array",
+                "items": { "$ref": "common.schema.json#/$defs/SafeId" },
+                "uniqueItems": true
+              }
+            },
             "environment_bindings": {
               "type": "object",
               "propertyNames": {

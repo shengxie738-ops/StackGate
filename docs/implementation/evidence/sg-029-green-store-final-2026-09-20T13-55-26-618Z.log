@@ -1,0 +1,14 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/storage/paths.test.ts (27 tests) 77ms
+ ✓ tests/unit/storage/atomic-write.test.ts (6 tests) 126ms
+ ✓ tests/integration/storage/store.test.ts (8 tests) 1395ms
+   ✓ creates independent runs and preserves immutable artifacts with checked bytes  365ms
+   ✓ serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope  321ms
+
+ Test Files  3 passed (3)
+      Tests  41 passed (41)
+   Start at  21:55:27
+   Duration  2.20s (transform 325ms, setup 0ms, import 766ms, tests 1.60s, environment 0ms)
+

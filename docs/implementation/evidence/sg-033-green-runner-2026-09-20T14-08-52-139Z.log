@@ -1,0 +1,28 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/runner/process.test.ts (7 tests | 1 failed) 8719ms
+   ✓ preserves actual exit 0 and separate sanitized streams  1235ms
+   ✓ preserves actual exit 1 and separate sanitized streams  997ms
+   ✓ preserves actual exit 7 and separate sanitized streams  991ms
+   ✓ keeps exact Unicode argv and does not interpret shell syntax  1013ms
+   ✓ distinguishes timeout from cancellation and stops late writes  2189ms
+   ✓ bounds both huge stdout and stderr without pipe deadlock  1051ms
+   × kills only its owned job including detached descendants and leaves unrelated process alive 1240ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/runner/process.test.ts > kills only its owned job including detached descendants and leaves unrelated process alive
+Error: ENOENT: no such file or directory, open 'C:\Users\17894\AppData\Local\Temp\stackgate-test-oZmJEb\descendant-ticks'
+ ❯ tests/integration/runner/process.test.ts:32:63
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 passed (7)
+   Start at  22:08:53
+   Duration  9.14s (transform 64ms, setup 0ms, import 159ms, tests 8.72s, environment 0ms)
+

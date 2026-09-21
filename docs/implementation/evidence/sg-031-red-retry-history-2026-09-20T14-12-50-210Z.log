@@ -1,0 +1,35 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/storage/integrity.test.ts (10 tests | 1 failed | 9 skipped) 1128ms
+   ↓ seals immutable facts, supports identical repeat, and exposes verified readonly snapshots
+   ↓ detects modified sealed manifest.json without overwriting history
+   ↓ detects modified sealed events.jsonl without overwriting history
+   ↓ detects modified sealed artifact-index.json without overwriting history
+   ↓ detects modified sealed document without overwriting history
+   ↓ detects modified sealed artifact without overwriting history
+   ↓ rejects missing required artifacts and preserves readable unsealed facts
+   ↓ rejects internally contradictory facts even when each document has a valid schema
+   ↓ refuses to seal undeclared orphan evidence or an incomplete event log
+   × retains failed retry documents alongside the final check without rewriting history 1127ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/storage/integrity.test.ts > retains failed retry documents alongside the final check without rewriting history
+AssertionError: expected 'ERROR' to be 'SEALED' // Object.is equality
+
+Expected: "SEALED"
+Received: "ERROR"
+
+ ❯ tests/integration/storage/integrity.test.ts:51:206
+
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 skipped (10)
+   Start at  22:12:51
+   Duration  2.15s (transform 274ms, setup 0ms, import 713ms, tests 1.13s, environment 0ms)
+

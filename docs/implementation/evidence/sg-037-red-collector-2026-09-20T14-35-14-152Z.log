@@ -1,0 +1,63 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/unit/reports/junit-input.test.ts (11 tests) 8ms
+ ❯ tests/integration/adapters/junit.test.ts (12 tests | 11 failed) 725ms
+   × collects real report <testsuite><testcase name="one"/></testsuite> exit 0 as PASS 101ms
+   × collects real report <testsuite tests="999"/> exit 0 as BLOCKED 59ms
+   × collects real report null exit 0 as BLOCKED 53ms
+   × collects real report <testsuite><testcase name="one"><skipped/></testcase></testsuite> exit 0 as BLOCKED 56ms
+   × collects real report <testsuite><testcase name="one"><failure>bad</failure></testcase></testsuite> exit 0 as FAIL 65ms
+   × collects real report <testsuite><testcase name="one"><failure/></testcase></testsuite> exit 7 as FAIL 59ms
+   × collects real report <testsuite><testcase name="one"/></testsuite> exit 7 as ERROR 55ms
+   × collects real report <testsuite> exit 0 as ERROR 53ms
+   × collects real report <!DOCTYPE testsuite SYSTEM "file:///secret"><testsuite/> exit 0 as ERROR 50ms
+   × collects real report <testsuite><testcase name="one"><flakyFailure/></testcase></testsuite> exit 0 as BLOCKED 53ms
+   × requires declared IDs and minimum executed cases 63ms
+   ✓ refuses a prior report before executing and preserves user bytes 58ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/adapters/junit.test.ts > collects real report <testsuite><testcase name="one"/></testsuite> exit 0 as PASS
+ FAIL  tests/integration/adapters/junit.test.ts > collects real report <testsuite tests="999"/> exit 0 as BLOCKED
+ FAIL  tests/integration/adapters/junit.test.ts > collects real report null exit 0 as BLOCKED
+ FAIL  tests/integration/adapters/junit.test.ts > collects real report <testsuite><testcase name="one"><skipped/></testcase></testsuite> exit 0 as BLOCKED
+ FAIL  tests/integration/adapters/junit.test.ts > collects real report <testsuite><testcase name="one"><failure>bad</failure></testcase></testsuite> exit 0 as FAIL
+ FAIL  tests/integration/adapters/junit.test.ts > collects real report <testsuite><testcase name="one"><failure/></testcase></testsuite> exit 7 as FAIL
+ FAIL  tests/integration/adapters/junit.test.ts > collects real report <testsuite><testcase name="one"/></testsuite> exit 7 as ERROR
+ FAIL  tests/integration/adapters/junit.test.ts > collects real report <testsuite> exit 0 as ERROR
+ FAIL  tests/integration/adapters/junit.test.ts > collects real report <!DOCTYPE testsuite SYSTEM "file:///secret"><testsuite/> exit 0 as ERROR
+ FAIL  tests/integration/adapters/junit.test.ts > collects real report <testsuite><testcase name="one"><flakyFailure/></testcase></testsuite> exit 0 as BLOCKED
+Error: Not implemented
+ ❯ JunitAdapter.execute packages/adapter-junit/src/junit-adapter.ts:5:90
+      3| import {emptyCheck} from '../../adapter-command/src/command-adapter.js…
+      4| export class JunitAdapter {
+      5|  async *execute(_step:CheckStep,_context:ExecutionContext):AsyncIterab…
+       |                                                                                          ^
+      6|  async collect(step:CheckStep,context:CollectionContext):Promise<Check…
+      7| }
+ ❯ tests/integration/adapters/junit.test.ts:23:107
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+ FAIL  tests/integration/adapters/junit.test.ts > requires declared IDs and minimum executed cases
+Error: Not implemented
+ ❯ JunitAdapter.execute packages/adapter-junit/src/junit-adapter.ts:5:90
+      3| import {emptyCheck} from '../../adapter-command/src/command-adapter.js…
+      4| export class JunitAdapter {
+      5|  async *execute(_step:CheckStep,_context:ExecutionContext):AsyncIterab…
+       |                                                                                          ^
+      6|  async collect(step:CheckStep,context:CollectionContext):Promise<Check…
+      7| }
+ ❯ tests/integration/adapters/junit.test.ts:28:146
+ ❯ withTestDirectory tests/support/test-paths.ts:7:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/11]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  11 failed | 12 passed (23)
+   Start at  22:35:15
+   Duration  1.94s (transform 327ms, setup 0ms, import 976ms, tests 733ms, environment 0ms)
+

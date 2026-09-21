@@ -1,0 +1,28 @@
+{
+  "task_id": "SG-043",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
+    "branch": "V1",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+  },
+  "command": "pnpm exec vitest run tests/integration/handoff.test.ts -t \"changes target|truncates optional\"",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/handoff.test.ts",
+    "-t",
+    "changes target|truncates optional"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T15:13:42.918Z",
+  "finished_at": "2026-09-20T15:13:48.110Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-043-green-handoff-contract-2026-09-20T15-13-42-918Z.json",
+  "log_path": "docs/implementation/evidence/sg-043-green-handoff-contract-2026-09-20T15-13-42-918Z.log",
+  "signal": null,
+  "duration_ms": 5192
+}

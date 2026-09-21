@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/storage/store.test.ts (6 tests) 1105ms
+   ✓ creates independent runs and preserves immutable artifacts with checked bytes  357ms
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  21:53:50
+   Duration  1.91s (transform 192ms, setup 0ms, import 526ms, tests 1.11s, environment 0ms)
+

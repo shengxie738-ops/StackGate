@@ -1,0 +1,69 @@
+$ eslint .
+
+G:\StackGate\.stackgate-saxes-patch\saxes.d.ts
+  308:59  error  The `{}` ("empty object") type allows any non-nullish value, including literals like `0` and `""`.
+- If that's what you want, disable this lint rule with an inline comment or configure the 'allowObjectTypes' rule option.
+- If you want a type meaning "any object", you probably want `object` instead.
+- If you want a type meaning "any value", you probably want `unknown` instead  @typescript-eslint/no-empty-object-type
+
+G:\StackGate\.stackgate-saxes-patch\saxes.js
+     4:13  error    A `require()` style import is forbidden                                                                                                                @typescript-eslint/no-require-imports
+     5:13  error    A `require()` style import is forbidden                                                                                                                @typescript-eslint/no-require-imports
+     6:15  error    A `require()` style import is forbidden                                                                                                                @typescript-eslint/no-require-imports
+    20:5   warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-explicit-any' or '@typescript-eslint/no-unsafe-assignment')
+    26:5   warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-explicit-any' or '@typescript-eslint/no-unsafe-assignment')
+   186:1   error    Definition for rule '@typescript-eslint/ban-types' was not found                                                                                       @typescript-eslint/ban-types
+   208:13  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/unbound-method')
+   210:13  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/unbound-method')
+   212:13  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-explicit-any' or '@typescript-eslint/no-unsafe-assignment')
+   224:13  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/unbound-method')
+   226:13  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/unbound-method')
+   235:13  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/unbound-method')
+   341:9   error    Expected an assignment or function call and instead saw an expression                                                                                  @typescript-eslint/no-unused-expressions
+   378:9   warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-explicit-any' or '@typescript-eslint/no-unsafe-member-access')
+   387:9   warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-explicit-any' or '@typescript-eslint/no-unsafe-member-access')
+   484:13  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-explicit-any' or '@typescript-eslint/no-unsafe-argument')
+   670:9   warning  Unused eslint-disable directive (no problems were reported from 'no-constant-condition')
+   697:9   warning  Unused eslint-disable directive (no problems were reported from 'no-constant-condition')
+   727:9   warning  Unused eslint-disable directive (no problems were reported from 'no-constant-condition')
+   749:9   warning  Unused eslint-disable directive (no problems were reported from 'no-constant-condition')
+   759:9   warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/unbound-method')
+   818:17  error    Expected an assignment or function call and instead saw an expression                                                                                  @typescript-eslint/no-unused-expressions
+   956:9   warning  Unused eslint-disable directive (no problems were reported from 'no-labels' or 'no-restricted-syntax')
+   958:9   warning  Unused eslint-disable directive (no problems were reported from 'no-constant-condition')
+   981:21  warning  Unused eslint-disable directive (no problems were reported from 'no-labels')
+   986:21  warning  Unused eslint-disable directive (no problems were reported from 'no-labels')
+  1069:13  error    Expected an assignment or function call and instead saw an expression                                                                                  @typescript-eslint/no-unused-expressions
+  1110:17  error    Expected an assignment or function call and instead saw an expression                                                                                  @typescript-eslint/no-unused-expressions
+  1147:9   warning  Unused eslint-disable directive (no problems were reported from 'no-constant-condition')
+  1202:13  error    Expected an assignment or function call and instead saw an expression                                                                                  @typescript-eslint/no-unused-expressions
+  1382:13  error    Expected an assignment or function call and instead saw an expression                                                                                  @typescript-eslint/no-unused-expressions
+  1409:9   error    Expected an assignment or function call and instead saw an expression                                                                                  @typescript-eslint/no-unused-expressions
+  1518:9   warning  Unused eslint-disable directive (no problems were reported from 'no-constant-condition')
+  1635:9   warning  Unused eslint-disable directive (no problems were reported from 'no-labels' or 'no-restricted-syntax')
+  1637:9   warning  Unused eslint-disable directive (no problems were reported from 'no-constant-condition')
+  1654:21  warning  Unused eslint-disable directive (no problems were reported from 'no-labels')
+  1664:21  warning  Unused eslint-disable directive (no problems were reported from 'no-labels')
+  1697:21  warning  Unused eslint-disable directive (no problems were reported from 'no-labels')
+  1713:9   warning  Unused eslint-disable directive (no problems were reported from 'no-labels' or 'no-restricted-syntax')
+  1715:9   warning  Unused eslint-disable directive (no problems were reported from 'no-constant-condition')
+  1732:21  warning  Unused eslint-disable directive (no problems were reported from 'no-labels')
+  1742:21  warning  Unused eslint-disable directive (no problems were reported from 'no-labels')
+  1754:21  warning  Unused eslint-disable directive (no problems were reported from 'no-labels')
+  1782:9   error    Expected an assignment or function call and instead saw an expression                                                                                  @typescript-eslint/no-unused-expressions
+  1801:9   error    Expected an assignment or function call and instead saw an expression                                                                                  @typescript-eslint/no-unused-expressions
+  1824:13  error    Expected an assignment or function call and instead saw an expression                                                                                  @typescript-eslint/no-unused-expressions
+  1828:9   error    Expected an assignment or function call and instead saw an expression                                                                                  @typescript-eslint/no-unused-expressions
+  1934:9   warning  Unused eslint-disable directive (no problems were reported from 'prefer-destructuring')
+  1957:9   error    Expected an assignment or function call and instead saw an expression                                                                                  @typescript-eslint/no-unused-expressions
+  1975:9   error    Expected an assignment or function call and instead saw an expression                                                                                  @typescript-eslint/no-unused-expressions
+  1976:9   error    Expected an assignment or function call and instead saw an expression                                                                                  @typescript-eslint/no-unused-expressions
+  2005:13  error    Expected an assignment or function call and instead saw an expression                                                                                  @typescript-eslint/no-unused-expressions
+
+G:\StackGate\packages\adapter-junit\src\junit-adapter.ts
+  6:9  error  'emptyCheck' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 54 problems (21 errors, 33 warnings)
+  0 errors and 33 warnings potentially fixable with the `--fix` option.
+
+[ELIFECYCLE] Command failed with exit code 1.

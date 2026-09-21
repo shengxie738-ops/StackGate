@@ -1,0 +1,26 @@
+{
+  "task_id": "SG-050",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "a90a06610f29ead1f3baa9715750161b5ffbd926",
+    "branch": "V1",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3"
+  },
+  "command": "pnpm verify:stage -- --stage M2",
+  "argv": [
+    "pnpm",
+    "verify:stage",
+    "--",
+    "--stage",
+    "M2"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-20T18:06:18.967Z",
+  "finished_at": "2026-09-20T18:52:53.860Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-050-m2-stage-exit-2026-09-20T18-06-18-967Z.json",
+  "log_path": "docs/implementation/evidence/sg-050-m2-stage-exit-2026-09-20T18-06-18-967Z.log",
+  "signal": null,
+  "duration_ms": 2794893
+}

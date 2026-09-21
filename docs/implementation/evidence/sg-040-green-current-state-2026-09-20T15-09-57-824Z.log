@@ -1,0 +1,12 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/gate/current-state.test.ts (2 tests) 172800ms
+   ✓ missing run evidence remains unverified and cannot be allowed  1134ms
+   ✓ authenticates a real sealed run then reevaluates source, task, policy and evidence without changing historical facts  171665ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  23:09:59
+   Duration  175.80s (transform 959ms, setup 0ms, import 2.62s, tests 172.80s, environment 0ms)
+

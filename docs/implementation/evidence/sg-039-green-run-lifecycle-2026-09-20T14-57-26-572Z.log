@@ -1,0 +1,40 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/run/lifecycle.test.ts (5 tests | 1 failed) 342720ms
+   × produces a sealed real command and JUnit run with complete lifecycle facts 58328ms
+   ✓ rejects stale preflight without starting any business command  41631ms
+   ✓ keeps failed historical runs immutable when repeated  100050ms
+   ✓ retains the original input identity and reports mutation during execution as stale  71541ms
+   ✓ retains canceled required checks without launching a new process  71166ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/run/lifecycle.test.ts > produces a sealed real command and JUnit run with complete lifecycle facts
+AssertionError: expected { schema_version: '0.1', …(5) } to match object { verdict: 'PASS', …(3) }
+(2 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "decision": "ALLOW",
+-   "exit_code": 0,
++   "decision": "DENY",
++   "exit_code": 3,
+    "freshness": "FRESH",
+-   "verdict": "PASS",
++   "verdict": "ERROR",
+  }
+
+ ❯ tests/integration/run/lifecycle.test.ts:11:26
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  22:57:27
+   Duration  345.49s (transform 847ms, setup 0ms, import 2.47s, tests 342.72s, environment 0ms)
+

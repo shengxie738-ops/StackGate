@@ -1,0 +1,10 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/contract/run-history.test.ts (1 test) 41ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  23:16:35
+   Duration  1.31s (transform 225ms, setup 0ms, import 799ms, tests 41ms, environment 0ms)
+

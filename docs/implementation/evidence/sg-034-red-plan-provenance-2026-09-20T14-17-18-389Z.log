@@ -1,0 +1,42 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/integration/plan-service.test.ts (7 tests | 1 failed | 6 skipped) 37424ms
+   × persists a deterministic verified plan with exact ignored script bytes and required JUnit IDs 37423ms
+   ↓ rejects oversized plan files before allocating their contents
+   ↓ rejects unconfirmed task or unreviewed trust before persisting an executable plan
+   ↓ rechecks ignored script, policy and task identity, and rejects modified stored context
+   ↓ retains an explicitly required runtime check and marks unsupported local backend requirements blocked
+   ↓ keeps required e2e and an explicit environment dependency when M3 environment is unavailable
+   ↓ binds the raw bytes of ignored mappings used to select checks
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/plan-service.test.ts > persists a deterministic verified plan with exact ignored script bytes and required JUnit IDs
+AssertionError: expected undefined to deeply equal [ 'workspace-regression:api', …(1) ]
+
+- Expected: 
+[
+  "workspace-regression:api",
+  "workspace-regression:web",
+]
+
++ Received: 
+undefined
+
+ ❯ tests/integration/plan-service.test.ts:23:114
+     21|     expect(loaded.context.environment_requirements).toEqual({required:…
+     22|     expect(loaded.context.blockers).toEqual([]);
+     23|     expect((loaded.context as unknown as {selection_sources: Record<st…
+       |                                                                                                                  ^
+     24|     expect((loaded.context as unknown as {analysis_gaps: unknown[]}).a…
+     25|     expect(loaded.context.input_manifest.files).toContainEqual(expect.…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 skipped (7)
+   Start at  22:17:19
+   Duration  39.92s (transform 771ms, setup 0ms, import 2.11s, tests 37.42s, environment 0ms)
+

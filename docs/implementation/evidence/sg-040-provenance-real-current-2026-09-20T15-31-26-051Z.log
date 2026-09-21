@@ -1,0 +1,12 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ✓ tests/integration/gate/current-state.test.ts (6 tests | 4 skipped) 305661ms
+   ✓ authenticates a real sealed run then reevaluates source, task, policy and evidence without changing historical facts  190083ms
+   ✓ keeps real failed evidence denied and detects changed executable bytes without launching that executable  115575ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed | 4 skipped (6)
+   Start at  23:31:27
+   Duration  308.83s (transform 1.08s, setup 0ms, import 2.79s, tests 305.66s, environment 0ms)
+

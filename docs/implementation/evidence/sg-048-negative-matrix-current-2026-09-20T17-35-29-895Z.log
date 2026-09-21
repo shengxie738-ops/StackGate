@@ -1,0 +1,36 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/runner/negative-matrix.test.ts [2m([22m[2m27 tests[22m[2m)[22m[33m 234012[2mms[22m[39m
+   [33m[2m✓[22m[39m command 0 [33m 2169[2mms[22m[39m
+   [33m[2m✓[22m[39m command nonzero [33m 1996[2mms[22m[39m
+   [33m[2m✓[22m[39m spawn failure [33m 1647[2mms[22m[39m
+   [33m[2m✓[22m[39m timeout [33m 2122[2mms[22m[39m
+   [33m[2m✓[22m[39m cancel [33m 2080[2mms[22m[39m
+   [33m[2m✓[22m[39m output overflow [33m 1990[2mms[22m[39m
+   [33m[2m✓[22m[39m missing junit [33m 1979[2mms[22m[39m
+   [33m[2m✓[22m[39m malformed junit [33m 2132[2mms[22m[39m
+   [33m[2m✓[22m[39m zero junit [33m 2148[2mms[22m[39m
+   [33m[2m✓[22m[39m skipped required [33m 2170[2mms[22m[39m
+   [33m[2m✓[22m[39m evidence corrupt [33m 118875[2mms[22m[39m
+   [33m[2m✓[22m[39m seal missing [33m 16975[2mms[22m[39m
+   [33m[2m✓[22m[39m duplicate event [33m 2043[2mms[22m[39m
+   [33m[2m✓[22m[39m stale input [33m 13249[2mms[22m[39m
+   [33m[2m✓[22m[39m task revision changed [33m 13776[2mms[22m[39m
+   [33m[2m✓[22m[39m policy changed [33m 14018[2mms[22m[39m
+   [33m[2m✓[22m[39m tool binary changed [33m 14510[2mms[22m[39m
+   [33m[2m✓[22m[39m missing environment provenance [33m 2124[2mms[22m[39m
+   [33m[2m✓[22m[39m user canceled [33m 778[2mms[22m[39m
+   [33m[2m✓[22m[39m report reads failed run [33m 2073[2mms[22m[39m
+   [33m[2m✓[22m[39m report FAIL with process zero [33m 2174[2mms[22m[39m
+   [33m[2m✓[22m[39m process nonzero with PASS report [33m 2263[2mms[22m[39m
+   [33m[2m✓[22m[39m missing required ID despite one executed case [33m 2319[2mms[22m[39m
+   [33m[2m✓[22m[39m nonzero without trusted report [33m 2033[2mms[22m[39m
+   [33m[2m✓[22m[39m flaky retry report does not satisfy required check [33m 2222[2mms[22m[39m
+   [33m[2m✓[22m[39m baseline failure provenance never exempts the current failing required check [33m 4087[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m27 passed[39m[22m[90m (27)[39m
+[2m   Start at [22m 01:35:38
+[2m   Duration [22m 247.15s[2m (transform 3.90s, setup 0ms, import 11.17s, tests 234.01s, environment 0ms)[22m
+

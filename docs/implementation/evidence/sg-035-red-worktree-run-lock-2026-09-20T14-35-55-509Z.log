@@ -1,0 +1,57 @@
+
+ RUN  v4.0.18 G:/StackGate
+
+ ❯ tests/unit/execution/scheduler.test.ts (7 tests | 1 failed | 6 skipped) 1348ms
+   ↓ runs A to B/C to D with lexicographic starts and real independent concurrency
+   ↓ failure blocks only dependent branches and cancellation stops new steps
+   ↓ rejects invalid concurrency and never launches malformed DAGs
+   ↓ serializes shared resources while independent resources progress
+   ↓ does not invent a second result when finished event persistence fails
+   ↓ cancels or times out while another owner holds a resource without removing its lock
+   × excludes another whole run even when its workspace locks differ 1347ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/execution/scheduler.test.ts > excludes another whole run even when its workspace locks differ
+AssertionError: expected [ { schema_version: '0.1', …(17) } ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "attempt_id": "attempt_test",
++     "attempts": [],
++     "check_id": "b",
++     "discovered_tests": 0,
++     "evidence_refs": [
++       "evidence",
++     ],
++     "executed_test_ids": [],
++     "executed_tests": 0,
++     "exit_code": 0,
++     "expected_test_ids": [],
++     "flaky_tests": 0,
++     "reasons": [],
++     "required": true,
++     "result_kind": "exit-code",
++     "run_id": "run_test",
++     "schema_version": "0.1",
++     "skipped_tests": 0,
++     "status": "PASS",
++     "step_id": "b",
++   },
++ ]
+
+ ❯ tests/unit/execution/scheduler.test.ts:18:869
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 skipped (7)
+   Start at  22:35:56
+   Duration  2.27s (transform 229ms, setup 0ms, import 619ms, tests 1.35s, environment 0ms)
+

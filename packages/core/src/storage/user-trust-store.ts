@@ -27,7 +27,10 @@ export class UserTrustStore {
       const scope=(value:TrustRecord)=>{const permissions:Record<string,unknown>={...value};delete permissions.granted_at;delete permissions.expires_at;return canonicalJson(permissions);};
       if(!observed||observed.byte_hash!==previous.byte_hash||scope(observed.record)!==scope(record)||Date.parse(observed.record.expires_at)>Date.now())throw new Error('Only the exact expired matching local trust grant can be renewed');
     }
-    const ancestor=await this.checkLocation();if(ancestor!==this.root)await ensureDirectoryWithin(ancestor,path.relative(ancestor,this.root).replaceAll(path.sep,'/'));const destination=await resolveWithin(this.root,record.trust_id+'.json');await writeJsonAtomic(destination,record,{root:this.root,...(previous?{expectedHash:previous.byte_hash}:{})});return destination;
+    const ancestor=await this.checkLocation();if(ancestor!==this.root)await ensureDirectoryWithin(ancestor,path.relative(ancestor,this.root).replaceAll(path.sep,'/'));const relative=record.trust_id+'.json',destination=await resolveWithin(this.root,relative);
+    // OS-virtualized platform directories can resolve to a different canonical parent.
+    // Keep the validated relative name anchored to the same explicit root for atomic resolution.
+    await writeJsonAtomic(relative,record,{root:this.root,...(previous?{expectedHash:previous.byte_hash}:{})});return destination;
   }
   reference(id:string){return path.join(this.root,'trust_'+id+'.json');}
 }

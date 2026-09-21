@@ -4,3 +4,4 @@ dist/
 *.tgz
 coverage/
 *.tsbuildinfo
+.stackgate-saxes-patch/

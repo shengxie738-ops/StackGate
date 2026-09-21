@@ -10,8 +10,8 @@ M1 完整 stage 已退出 0（`m1-stage-2026-09-20T03-18-54-891Z.json`），无�
 - WSL2/Linux、Linux CI、macOS、T01—T27 端到端验收、实际 FastAPI/React 链路、打包和宿主加载均未运行。相关任务保持未完成。
 - Ajv 嵌套动态锚点存在已知限制。SG-019/022 明确拒绝动态引用、未知 format、复杂组合；不会通过降级 OpenAPI 版本或强制转换负载绕过。详见 ../COMPATIBILITY.md。
 - Git 从已观测的固定可信安装位置发现，不使用候选仓库 PATH。M1-R01 已将 oasdiff 改为安装目录相对解析，并验证中文、空格路径迁移及缺失/损坏工具反例；其他平台、离线发行和升级仍未验证。
-- 根仓库已有 M1 提交 `a651054` 与其上的 M2 检查点提交 `a90a066`。M1 Git 验收使用实际初始化、提交与 linked worktree 的独立临时仓库，未为验收修改用户 Git 历史。本轮 M2 改动仍在工作区内，未创建提交、未推送。
-- 证据可追溯性限制：`scripts/record.mjs` 的 `worktree_digest` 只哈希工作树根路径字符串，`repository.head` 只记录当时 HEAD；两者都不能证明被验证文件的具体字节，因此记录不等于可复现快照。本轮所有 M2 重跑记录在 `a90a066` 之上的未提交改动上产生。
+- 根仓库已有 M1 提交 `a651054` 与其上的 M2 检查点提交 `a90a066`。M1 Git 验收使用实际初始化、提交与 linked worktree 的独立临时仓库，未为验收修改用户 Git 历史。M2 收口改动已提交为 V1 分支的 `dca78d3`，未合并进 `main`、未推送。
+- 证据可追溯性限制：`scripts/record.mjs` 的 `worktree_digest` 只哈希工作树根路径字符串，`repository.head` 只记录当时 HEAD；两者都不能证明被验证文件的具体字节，因此记录不等于可复现快照。本轮所有 M2 重跑记录先于 `dca78d3` 产生，其 `repository.head` 记为当时的 `a90a066`。
 - 进程执行来源认证（Job Object、内核创建身份、owner token）仅在 `win32-*` 平台成立；Gate 在非 win32 平台不会把这些字段视为已验证事实，其他平台的执行器未实现也未验证。
 - 本地确认/授权是同一用户身份下的审查记录，不是 OS 沙箱或防同身份恶意进程的签名系统。M2 已用真实本地夹具子进程完成执行器、证据、Gate、报告与交接认证，但尚未验证真实产品的 Probe、浏览器或容器链路；静态扫描返回 0 不代表 Gate ALLOW。
 
@@ -19,6 +19,6 @@ M1 完整 stage 已退出 0（`m1-stage-2026-09-20T03-18-54-891Z.json`），无�
 
 M1-R07 修复验收记录为 `m1-stage-2026-09-20T13-48-44-921Z.json`：591 项测试通过。M2 完整阶段出口 `pnpm verify:stage -- --stage M2` 已实际退出 0，13 项注册检查全为 0，独立覆盖 841 项（清单见 [M2 验收摘要](evidence/M2-summary.md) 与 `m2-stage-2026-09-20T18-52-53-834Z.json`）。阶段出口只认证执行器、证据、Gate、报告与交接；M3 的真实环境来源、浏览器与容器链路仍未验证，不构成全栈 MVP。
 
-未执行公开发布、远程 push/PR、生产部署或付费模型调用。本轮未创建提交；历史任务 commit 字段保留原记录，当前 HEAD 见验证证据中的 repository 字段。
+未执行公开发布、远程 push/PR、生产部署或付费模型调用。本轮在 V1 分支创建了本地提交 `dca78d3`（未合并 `main`）；任务账本 `commit` 字段按仓库既有约定保留原值（100 项均为 null），提交身份记录在本文件与 [M2 验收摘要](evidence/M2-summary.md) 中，验证证据的 HEAD 见各记录 `repository` 字段。
 
 SG-037 的 pnpm 临时第三方源码副本 `.stackgate-saxes-patch/` 保留在本地：自动审批拒绝了删除该已核对路径的操作，仅返回 `blocked by policy`。未重试删除或移动。该生成副本与 node_modules 一样排除出自有源码 lint；正式声明修补保存在 `patches/saxes@6.0.0.patch`，由锁文件和 frozen install 验证。所有产品源码和必检仍保留。

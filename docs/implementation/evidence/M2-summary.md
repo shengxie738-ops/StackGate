@@ -1,6 +1,6 @@
 # M2 acceptance summary
 
-阶段：M2（SG-029—SG-050）。基线提交 `a90a066`；本轮改动在其工作区内，未提交、未推送。
+阶段：M2（SG-029—SG-050）。基线提交 `a90a066`；本轮收口改动已提交为 V1 分支 `dca78d3`，未合并 `main`、未推送。
 M2 只覆盖执行器、证据、Gate、报告与交接。M2 完成不等于 StackGate MVP 完成：真实后端来源、
 浏览器、Compose 与 FastAPI/React 链路仍属 M3，本文件不声明其可用。
 

@@ -1,13 +1,26 @@
 import { spawn, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { captureVerificationInputs } from './verification-inputs.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const [taskId, label, separator, command, ...args] = process.argv.slice(2);
-if (!/^(SG-\d{3}|M1-R0[0-7])$/.test(taskId ?? '') || !/^[a-z0-9-]+$/i.test(label ?? '') || separator !== '--' || !command) {
-  console.error('Usage: node scripts/record.mjs SG-001 label -- command args...');
+const AUDIT_LEDGER = 'docs/implementation/audit-m3-fixes.json';
+function allowedTaskId(value) {
+  if (/^SG-\d{3}$/.test(value) && Number(value.slice(3)) >= 1 && Number(value.slice(3)) <= 100) return true;
+  if (/^M1-R0[0-7]$/.test(value)) return true;
+  if (/^AUD-\d{3}$/.test(value)) {
+    try {
+      const ledger = JSON.parse(readFileSync(path.join(root, AUDIT_LEDGER), 'utf8'));
+      return (ledger.tasks ?? []).some(task => task.task_id === value);
+    } catch { return false; }
+  }
+  return false;
+}
+if (!allowedTaskId(taskId ?? '') || !/^[a-z0-9-]+$/i.test(label ?? '') || separator !== '--' || !command) {
+  console.error('Usage: node scripts/record.mjs SG-001|AUD-000 label -- command args...');
   process.exit(64);
 }
 const startedAt = new Date().toISOString();
@@ -19,7 +32,9 @@ function repositoryIdentity() {
   const valid=head.status===0&&top.status===0;
   return {identity_status:valid?'VERIFIED':'UNVERIFIED',head:valid?head.stdout.trim():null,
     branch:branch.status===0?branch.stdout.trim():null,
-    worktree_digest:valid?createHash('sha256').update(top.stdout.trim().replaceAll('\\','/')).digest('hex'):null};
+    repo_path_id:valid?createHash('sha256').update(top.stdout.trim().replaceAll('\\','/')).digest('hex'):null,
+    worktree_digest:valid?createHash('sha256').update(top.stdout.trim().replaceAll('\\','/')).digest('hex'):null,
+    worktree_digest_semantics:'LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT'};
 }
 const repository=repositoryIdentity();
 const stem = `${taskId.toLowerCase()}-${label}-${startedAt.replace(/[:.]/g, '-')}`;
@@ -47,10 +62,22 @@ function resolveCommand(name, argv) {
 let output = '';
 let child;
 let recorded = false;
-function record(exitCode, signal = null) {
+async function record(exitCode, signal = null) {
   if (recorded) return;
   recorded = true;
   const finishedAt = new Date().toISOString();
+  const sourceAfter = await captureVerificationInputs(root);
+  const manifest = (name, snapshot) => {
+    const relative = `docs/implementation/evidence/${name}.json`;
+    writeFileSync(path.join(root, relative), `${JSON.stringify(snapshot, null, 2)}\n`);
+    return { manifest_path: relative, content_hash: snapshot.content_hash, completeness: snapshot.completeness, file_count: snapshot.file_count, incomplete_reasons: snapshot.incomplete_reasons };
+  };
+  const sourceBeforeRef = manifest(`${stem}-source-before`, sourceBefore);
+  const sourceAfterRef = manifest(`${stem}-source-after`, sourceAfter);
+  const sourceChangedDuringVerification = sourceBefore.content_hash !== sourceAfter.content_hash;
+  const attributable = exitCode === 0
+    && sourceBefore.completeness === 'COMPLETE' && sourceAfter.completeness === 'COMPLETE'
+    && !sourceChangedDuringVerification;
   const result = {
     task_id: taskId,
     repository,
@@ -58,19 +85,24 @@ function record(exitCode, signal = null) {
     argv: [command, ...args], cwd_relative: '.', started_at: startedAt, finished_at: finishedAt,
     exit_code: exitCode, result: exitCode === 0 ? 'PASSED' : 'FAILED', evidence_path: evidencePath,
     log_path: logPath, signal, duration_ms: Date.parse(finishedAt) - Date.parse(startedAt),
+    source_before: sourceBeforeRef, source_after: sourceAfterRef,
+    source_changed_during_verification: sourceChangedDuringVerification,
+    verification_attributable: attributable,
+    content_hash: attributable ? sourceAfter.content_hash : null,
   };
   writeFileSync(path.join(root, logPath), output);
   writeFileSync(path.join(root, evidencePath), `${JSON.stringify(result, null, 2)}\n`);
-  console.error(`Evidence: ${evidencePath}; exit_code=${exitCode}`);
+  console.error(`Evidence: ${evidencePath}; exit_code=${exitCode}; source=${sourceAfter.content_hash ?? 'INCOMPLETE'}; attributable=${attributable}`);
   process.exitCode = exitCode;
 }
+const sourceBefore = await captureVerificationInputs(root);
 try {
   const [executable, argv] = resolveCommand(command, args);
   child = spawn(executable, argv, { cwd: root, shell: false, stdio: ['inherit', 'pipe', 'pipe'], windowsHide: true });
   child.stdout.on('data', chunk => { output += chunk.toString(); process.stdout.write(chunk); });
   child.stderr.on('data', chunk => { output += chunk.toString(); process.stderr.write(chunk); });
-  child.on('error', error => { output += `${error.stack}\n`; console.error(error.message); record(3); });
-  child.on('close', (code, signal) => record(code ?? 3, signal));
+  child.on('error', async error => { output += `${error.stack}\n`; console.error(error.message); await record(3); });
+  child.on('close', async (code, signal) => await record(code ?? 3, signal));
 } catch (error) {
-  output += `${error.stack}\n`; console.error(error.message); record(3);
+  output += `${error.stack}\n`; console.error(error.message); await record(3);
 }

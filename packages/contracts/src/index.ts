@@ -12,3 +12,8 @@ export type { ConsumerMappings } from './generated/mappings.js';
 export type { PlanContext } from './generated/plan-context.js';
 export type { CommandExecution } from './generated/command-execution.js';
 export type { HandoffBundle } from './generated/handoff.js';
+export type { EnvironmentFinalization } from './generated/environment-finalization.js';
+export type { EnvironmentCleanup } from './generated/environment-cleanup.js';
+export type { EnvironmentAssessment } from './generated/environment-assessment.js';
+export type { BackendObservation } from './generated/backend-observation.js';
+export type { ProbeDeclaration } from './generated/probe-declaration.js';

@@ -1,0 +1,9 @@
+{
+  "content_hash": null,
+  "completeness": "INCOMPLETE",
+  "incomplete_reasons": [
+    "GIT_ENUMERATION_FAILED"
+  ],
+  "files": [],
+  "exclusions": []
+}

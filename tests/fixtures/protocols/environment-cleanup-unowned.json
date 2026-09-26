@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.1",
+  "run_id": "run_m3_contract_demo",
+  "cleaned_at": "2026-09-21T10:09:00.000Z",
+  "status": "CLEANED",
+  "trigger": "COMPLETED",
+  "resources": [
+    {
+      "resource_type": "container",
+      "native_id": "c0ffee1234",
+      "owner_token": "owner_m3_demo",
+      "run_id": "run_other_project",
+      "created_by_stackgate": true,
+      "cleanup_status": "CLEANED",
+      "ownership_basis": "label stackgate.run_id plus owner token"
+    }
+  ],
+  "evidence_refs": ["art_environment_prepare"],
+  "force_deleted": true,
+  "reasons": []
+}

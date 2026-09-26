@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1",
+  "run_id": "run_m3_contract_demo",
+  "check_id": "runtime_probe",
+  "attempt_id": "attempt_m3_demo",
+  "request_id": "request_performance_1",
+  "instance_id": "instance_backend_1",
+  "operation_key": "api:GET /api/performance",
+  "status_code": 200,
+  "media_type": "application/json",
+  "started_at": "2026-09-21T10:04:01.000Z",
+  "finished_at": "2026-09-21T10:04:01.250Z",
+  "response_bytes": 132,
+  "response_digest": "2222222222222222222222222222222222222222222222222222222222222222",
+  "digest_input_form": "UNCOMPRESSED_UTF8_BODY_BYTES",
+  "observation_path": "observations/backend/request_performance_1.json",
+  "excluded_fields": ["Authorization", "Cookie", "Set-Cookie"]
+}

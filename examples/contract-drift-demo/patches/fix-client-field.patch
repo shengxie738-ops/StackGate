@@ -1,0 +1,67 @@
+diff --git a/apps/web/src/api/performance.ts b/apps/web/src/api/performance.ts
+--- a/apps/web/src/api/performance.ts
++++ b/apps/web/src/api/performance.ts
+@@ -1,9 +1,8 @@
+ /**
+- * Legacy consumer of the performance endpoint.
++ * Consumer of the performance endpoint, reading the confirmed target shape.
+  *
+- * It reads `data.totalReturn`, which is the pre-rename shape. The FastAPI service answers with
+- * `data.performance.total_return`, so this module is the injected fault for the demo; the reviewed
+- * fix patch in ../../patches changes the reader below and nothing else about the acceptance goal.
++ * Applied by ../../patches/fix-client-field.patch on top of the legacy reader. The acceptance goal
++ * (12.34% from the running service) is unchanged by this patch.
+  */
+ export interface PerformanceSummary {
+   totalReturn: number | null;
+@@ -33,11 +32,11 @@ export async function fetchPerformance(fetchImpl: typeof fetch, apiOrigin: strin
+     | { totalReturn?: unknown; performance?: { total_return?: unknown; period?: unknown } }
+     | undefined;
+   if (data === undefined) throw new PerformanceDataError('data', 'Response is missing the data object');
+-  const legacy = data.totalReturn;
+-  if (legacy === null) return { totalReturn: null, period: null };
+-  const totalReturn = requireFiniteNumber(legacy, 'data.totalReturn');
++  const current = data.performance?.total_return;
++  if (current === null) return { totalReturn: null, period: null };
++  const totalReturn = requireFiniteNumber(current, 'data.performance.total_return');
+   if (!Number.isFinite(totalReturn)) {
+-    throw new PerformanceDataError('data.totalReturn', 'Response is missing the legacy field data.totalReturn');
++    throw new PerformanceDataError('data.performance.total_return', 'Response is missing the field data.performance.total_return');
+   }
+   return { totalReturn, period: typeof data.performance?.period === 'string' ? data.performance.period : null };
+ }
+diff --git a/apps/web/tests/performance.test.tsx b/apps/web/tests/performance.test.tsx
+--- a/apps/web/tests/performance.test.tsx
++++ b/apps/web/tests/performance.test.tsx
+@@ -4,11 +4,11 @@ import { PerformancePage, formatTotalReturn } from '../src/pages/PerformancePage
+ 
+ /**
+  * Fixtures for the application's own unit tests. Browser acceptance (T01/T02) must never use these;
+- * it reads the running FastAPI service instead. `legacy-mock` matches the pre-rename shape the
+- * unpatched consumer reads, `target-response` matches what the service actually returns today.
++ * it reads the running FastAPI service instead. Both names carry the confirmed target shape after
++ * ../../patches/fix-client-field.patch; the acceptance assertion below stays identical.
+  */
+ const fixtures = {
+-  'legacy-mock': { data: { totalReturn: 0.1234 } },
++  'legacy-mock': { data: { performance: { total_return: 0.1234, period: '2026-Q3' } } },
+   'target-response': { data: { performance: { total_return: 0.1234, period: '2026-Q3' } } },
+ } as const;
+ 
+@@ -32,14 +32,14 @@ it('displays the confirmed acceptance value 12.34%', async () => {
+ });
+ 
+ it('reports an explicit error instead of coercing a non-numeric return', async () => {
+-  render(<PerformancePage fetchImpl={stubFetch({ data: { totalReturn: '0.1234' } })} apiOrigin={origin} />);
++  render(<PerformancePage fetchImpl={stubFetch({ data: { performance: { total_return: '0.1234' } } })} apiOrigin={origin} />);
+   const error = await screen.findByTestId('performance-error', {}, { timeout: 2000 });
+   expect(error.textContent).toContain('finite number');
+   expect(screen.queryByTestId('total-return')).toBeNull();
+ });
+ 
+ it('keeps a declared null payload as an empty state rather than zero percent', async () => {
+-  render(<PerformancePage fetchImpl={stubFetch({ data: { totalReturn: null } })} apiOrigin={origin} />);
++  render(<PerformancePage fetchImpl={stubFetch({ data: { performance: { total_return: null } } })} apiOrigin={origin} />);
+   const empty = await screen.findByTestId('performance-empty', {}, { timeout: 2000 });
+   expect(empty.textContent).toBe('No performance data');
+ });

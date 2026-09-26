@@ -4,7 +4,7 @@ const filename='docs/implementation/audit-fixes.json';
 const ledger=JSON.parse(readFileSync(filename,'utf8'));
 const task=ledger.tasks.find(t=>t.task_id===id);
 if(!task||!['IN_PROGRESS','IMPLEMENTED_UNVERIFIED','DONE','BLOCKED'].includes(status)||!next)throw Error('Invalid audit update');
-const records=readdirSync('docs/implementation/evidence').filter(f=>f.startsWith(id.toLowerCase()+'-')&&f.endsWith('.json')).map(f=>JSON.parse(readFileSync('docs/implementation/evidence/'+f,'utf8')));
+const records=readdirSync('docs/implementation/evidence').filter(f=>f.startsWith(id.toLowerCase()+'-')&&f.endsWith('.json')).map(f=>JSON.parse(readFileSync('docs/implementation/evidence/'+f,'utf8'))).filter(r=>r.task_id===id&&typeof r.command==='string'&&r.command.length>0);
 task.verification=[...new Map([...task.verification,...records].map(r=>[r.evidence_path,r])).values()].sort((a,b)=>a.started_at.localeCompare(b.started_at));
 task.actual_files=[...new Set([...task.actual_files,...files])];
 for(const file of task.actual_files)if(!existsSync(file))throw Error('Missing actual file '+file);

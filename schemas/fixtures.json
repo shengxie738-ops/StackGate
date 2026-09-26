@@ -93,5 +93,55 @@
     "schema": "task",
     "path": "tests/fixtures/tasks/approved-upgrade.json",
     "valid": true
+  },
+  {
+    "schema": "environment-finalization",
+    "path": "tests/fixtures/protocols/environment-finalization.json",
+    "valid": true
+  },
+  {
+    "schema": "environment-finalization",
+    "path": "tests/fixtures/protocols/environment-finalization-wrong-phase.json",
+    "valid": false
+  },
+  {
+    "schema": "environment-cleanup",
+    "path": "tests/fixtures/protocols/environment-cleanup.json",
+    "valid": true
+  },
+  {
+    "schema": "environment-cleanup",
+    "path": "tests/fixtures/protocols/environment-cleanup-unowned.json",
+    "valid": false
+  },
+  {
+    "schema": "environment-assessment",
+    "path": "tests/fixtures/protocols/environment-assessment.json",
+    "valid": true
+  },
+  {
+    "schema": "environment-assessment",
+    "path": "tests/fixtures/protocols/environment-assessment-unreferenced.json",
+    "valid": false
+  },
+  {
+    "schema": "backend-observation",
+    "path": "tests/fixtures/protocols/backend-observation.json",
+    "valid": true
+  },
+  {
+    "schema": "backend-observation",
+    "path": "tests/fixtures/protocols/backend-observation-incomplete.json",
+    "valid": false
+  },
+  {
+    "schema": "probe-declaration",
+    "path": "tests/fixtures/protocols/probe-declaration.json",
+    "valid": true
+  },
+  {
+    "schema": "probe-declaration",
+    "path": "tests/fixtures/protocols/probe-declaration-unsafe.json",
+    "valid": false
   }
 ]

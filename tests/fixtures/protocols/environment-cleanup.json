@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1",
+  "run_id": "run_m3_contract_demo",
+  "cleaned_at": "2026-09-21T10:09:00.000Z",
+  "status": "CLEANED",
+  "trigger": "COMPLETED",
+  "resources": [
+    {
+      "resource_type": "container",
+      "native_id": "c0ffee1234",
+      "owner_token": "owner_m3_demo",
+      "run_id": "run_m3_contract_demo",
+      "created_by_stackgate": true,
+      "cleanup_status": "CLEANED",
+      "ownership_basis": "label stackgate.run_id plus owner token"
+    },
+    {
+      "resource_type": "process",
+      "native_id": "pid-4242",
+      "owner_token": "owner_user_service",
+      "run_id": "run_m3_contract_demo",
+      "created_by_stackgate": false,
+      "cleanup_status": "PRESERVED",
+      "ownership_basis": "attach ledger entry created_by_stackgate false"
+    }
+  ],
+  "evidence_refs": ["art_environment_prepare"],
+  "reasons": []
+}

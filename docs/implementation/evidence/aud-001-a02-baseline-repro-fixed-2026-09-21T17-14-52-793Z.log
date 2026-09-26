@@ -1,0 +1,38 @@
+{
+  "recorder_exit_codes": [
+    0,
+    0
+  ],
+  "legacy_repository_identity_before": {
+    "identity_status": "VERIFIED",
+    "head": "3d9625484adce17d73fb5b212c2b49abc70882f1",
+    "branch": "master",
+    "repo_path_id": "b4014b3b03b3d31049ebccd8c2a4d8ba93221282162587e41483b5c7577f0968",
+    "worktree_digest": "b4014b3b03b3d31049ebccd8c2a4d8ba93221282162587e41483b5c7577f0968",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "legacy_repository_identity_after": {
+    "identity_status": "VERIFIED",
+    "head": "3d9625484adce17d73fb5b212c2b49abc70882f1",
+    "branch": "master",
+    "repo_path_id": "b4014b3b03b3d31049ebccd8c2a4d8ba93221282162587e41483b5c7577f0968",
+    "worktree_digest": "b4014b3b03b3d31049ebccd8c2a4d8ba93221282162587e41483b5c7577f0968",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "legacy_identity_unchanged_across_two_different_sources": true,
+  "independent_content_sha256_before": {
+    "apps/api/main.py": "585c93666fcb046b7b264d3fa73202aa2a38254ae82a4b3ba19e873c2d5a9886",
+    "apps/web/extra.ts": null
+  },
+  "independent_content_sha256_after": {
+    "apps/api/main.py": "a8f6c52a868fef0dec10e74fb630ae705603aa4fa5e1f29cf6d25df64c770d9b",
+    "apps/web/extra.ts": "dfb8cba1be1d89dd4634a9c2b0cb57ee57a1f54ba504b3be4c7108d45a63d07b"
+  },
+  "tracked_source_changed": true,
+  "untracked_file_added": "apps/web/extra.ts",
+  "new_source_content_hash_before": "sha256:4da760f601e394021eb3d7451a89a8d1ab9499e34964e9f21e13da87e19b8bed",
+  "new_source_content_hash_after": "sha256:ff47edd50cb46d5d175cb1d044b09b0b49167f4c651f857863b509f81a60f428",
+  "new_source_content_hash_changed": true,
+  "conclusion": "AUDIT_BASE_CONFIRMED: legacy fields cannot distinguish the two verified sources while the new content hash does"
+}
+docs/implementation/evidence/a02-baseline-2026-09-21T17-14-59-902Z.json; exit_code=0

@@ -1,0 +1,48 @@
+{
+  "task_id": "SG-054",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+    "branch": "V2",
+    "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "command": "python -B -E -c \"import ast,sys\\nfor f in sys.argv[1:]:\\n    ast.parse(open(f, encoding='utf-8').read(), f)\\nprint('parsed', len(sys.argv)-1, 'modules')\" presets/fastapi-react/scripts/probe_helpers.py presets/fastapi-react/scripts/stackgate_observation.py examples/contract-drift-demo/apps/api/scripts/probe_performance.py",
+  "argv": [
+    "python",
+    "-B",
+    "-E",
+    "-c",
+    "import ast,sys\nfor f in sys.argv[1:]:\n    ast.parse(open(f, encoding='utf-8').read(), f)\nprint('parsed', len(sys.argv)-1, 'modules')",
+    "presets/fastapi-react/scripts/probe_helpers.py",
+    "presets/fastapi-react/scripts/stackgate_observation.py",
+    "examples/contract-drift-demo/apps/api/scripts/probe_performance.py"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-21T18:36:56.060Z",
+  "finished_at": "2026-09-21T18:36:58.330Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-054-python-syntax-check-2026-09-21T18-36-56-060Z.json",
+  "log_path": "docs/implementation/evidence/sg-054-python-syntax-check-2026-09-21T18-36-56-060Z.log",
+  "signal": null,
+  "duration_ms": 2270,
+  "source_before": {
+    "manifest_path": "docs/implementation/evidence/sg-054-python-syntax-check-2026-09-21T18-36-56-060Z-source-before.json",
+    "content_hash": "sha256:fa50d3a3e0e7dfec9675e3b74efd169f2a892f58558d5dba741036d39e4e9fd7",
+    "completeness": "COMPLETE",
+    "file_count": 2123,
+    "incomplete_reasons": []
+  },
+  "source_after": {
+    "manifest_path": "docs/implementation/evidence/sg-054-python-syntax-check-2026-09-21T18-36-56-060Z-source-after.json",
+    "content_hash": "sha256:fa50d3a3e0e7dfec9675e3b74efd169f2a892f58558d5dba741036d39e4e9fd7",
+    "completeness": "COMPLETE",
+    "file_count": 2123,
+    "incomplete_reasons": []
+  },
+  "source_changed_during_verification": false,
+  "verification_attributable": true,
+  "content_hash": "sha256:fa50d3a3e0e7dfec9675e3b74efd169f2a892f58558d5dba741036d39e4e9fd7"
+}

@@ -1,0 +1,43 @@
+{
+  "task_id": "M1-R00",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+    "branch": "V2",
+    "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "command": "node -e process.exit(7)",
+  "argv": [
+    "node",
+    "-e",
+    "process.exit(7)"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-21T17:38:19.080Z",
+  "finished_at": "2026-09-21T17:38:21.893Z",
+  "exit_code": 7,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/m1-r00-recorder-counterexample-2026-09-21T17-38-19-080Z.json",
+  "log_path": "docs/implementation/evidence/m1-r00-recorder-counterexample-2026-09-21T17-38-19-080Z.log",
+  "signal": null,
+  "duration_ms": 2813,
+  "source_before": {
+    "manifest_path": "docs/implementation/evidence/m1-r00-recorder-counterexample-2026-09-21T17-38-19-080Z-source-before.json",
+    "content_hash": "sha256:85dfc10678a11ed9ea9ff8b89ac94f471e57205b6939a491d095443ccc582bf8",
+    "completeness": "COMPLETE",
+    "file_count": 2101,
+    "incomplete_reasons": []
+  },
+  "source_after": {
+    "manifest_path": "docs/implementation/evidence/m1-r00-recorder-counterexample-2026-09-21T17-38-19-080Z-source-after.json",
+    "content_hash": "sha256:85dfc10678a11ed9ea9ff8b89ac94f471e57205b6939a491d095443ccc582bf8",
+    "completeness": "COMPLETE",
+    "file_count": 2101,
+    "incomplete_reasons": []
+  },
+  "source_changed_during_verification": false,
+  "verification_attributable": false,
+  "content_hash": null
+}

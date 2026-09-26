@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.1",
+  "run_id": "run_m3_contract_demo",
+  "phase": "prepare",
+  "observed_at": "2026-09-21T10:05:00.000Z",
+  "provenance": "OBSERVED",
+  "instance_id": "instance_backend_1",
+  "input_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+  "data_revision": "seed-2026-09-21-a",
+  "frontend_origin": "http://127.0.0.1:5173",
+  "backend_origin": "http://127.0.0.1:8123",
+  "requests_observed": 1,
+  "instance_changed": false,
+  "evidence_refs": ["art_environment_prepare"],
+  "reasons": []
+}

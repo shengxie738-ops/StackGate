@@ -1,0 +1,19 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/demo/api.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 5573[2mms[22m[39m
+   [33m[2m✓[22m[39m serves the confirmed performance response from a real API process [33m 1447[2mms[22m[39m
+   [33m[2m✓[22m[39m exports the application contract into the injected attempt directory only [33m 934[2mms[22m[39m
+   [33m[2m✓[22m[39m ignores a stale candidate in the tree and refuses an unusable output target [33m 1261[2mms[22m[39m
+   [33m[2m✓[22m[39m fails as an import error instead of producing a compatible looking contract [33m 934[2mms[22m[39m
+   [33m[2m✓[22m[39m detects a real backend response type change against the confirmed target [33m 996[2mms[22m[39m
+ [32m✓[39m tests/integration/demo/web-fixtures.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 26686[2mms[22m[39m
+   [33m[2m✓[22m[39m lets the broken consumer pass with its own legacy mock and fail against the real response shape [33m 11662[2mms[22m[39m
+   [33m[2m✓[22m[39m satisfies the acceptance value after the reviewed patch and keeps the page contract untouched [33m 5061[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps the declared empty, invalid and transport states green in both client modes [33m 9960[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m9 passed[39m[22m[90m (9)[39m
+[2m   Start at [22m 01:57:51
+[2m   Duration [22m 27.14s[2m (transform 170ms, setup 0ms, import 778ms, tests 32.26s, environment 0ms)[22m
+

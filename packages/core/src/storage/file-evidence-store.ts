@@ -59,6 +59,7 @@ export class FileEvidenceStore implements EvidenceStore {
     if(document.kind==='check-result'&&(document.value.check_id!==scope.check_id||document.value.attempt_id!==scope.attempt_id))throw new StorageError('INVALID_JSON','Check result identity mismatches scope');
     if(document.kind==='run'&&canonicalJson(document.value)!==canonicalJson(manifest))throw new StorageError('INVALID_JSON','Run document differs from current manifest');
     if(document.kind==='plan-context'&&'plan_'+hashBytes(Buffer.from(canonicalJson(document.value)))!==manifest.plan_id||document.kind==='run-completion'&&document.value.plan_id!==manifest.plan_id)throw new StorageError('INVALID_JSON','Context or completion differs from run plan identity');
+    if(['environment','environment-finalization','environment-cleanup','environment-assessment','backend-observation'].includes(document.kind)&&'run_id' in document.value&&document.value.run_id!==manifest.run_id)throw new StorageError('INVALID_JSON','Environment or observation document differs from run identity');
     const suffix=document.kind==='finding'?'-'+document.value.finding_id:'';
     value={name:document.kind+suffix+'.json',bytes:jsonBytes(document.value),media_type:'application/json',artifact_kind:'report',sensitivity:'regular',redaction_state:'NOT_REQUIRED'};kind='documents';
     if(document.kind==='plan-context'){value.sensitivity='restricted';value.redaction_state='UNREDACTED';}

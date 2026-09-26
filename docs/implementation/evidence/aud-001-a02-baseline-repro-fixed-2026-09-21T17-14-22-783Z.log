@@ -1,0 +1,11 @@
+file:///G:/StackGate/tests/bootstrap/a02-baseline-repro.mjs:63
+  exit_code: a02_confirmed && new_content_hash_changed ? 0 : 1,
+                              ^
+
+ReferenceError: new_content_hash_changed is not defined
+    at file:///G:/StackGate/tests/bootstrap/a02-baseline-repro.mjs:63:31
+    at ModuleJob.run (node:internal/modules/esm/module_job:377:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:671:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.11.1

@@ -1,0 +1,40 @@
+{
+  "task_id": "AUD-001",
+  "label": "a02-worktree-digest-baseline",
+  "captured_by": "tests/bootstrap/a02-baseline-repro.mjs",
+  "started_at": "2026-09-21T16:59:46.658Z",
+  "finished_at": "2026-09-21T16:59:46.658Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "reproduction": {
+    "recorder_exit_codes": [
+      0,
+      0
+    ],
+    "repository_identity_before": {
+      "identity_status": "VERIFIED",
+      "head": "5bc27e072a7c5349909fcf9068257b474813774f",
+      "branch": "master",
+      "worktree_digest": "bf8d7632d26a583db684feb85af6b1737681014d44e8046c5d68fa49cf22e995"
+    },
+    "repository_identity_after": {
+      "identity_status": "VERIFIED",
+      "head": "5bc27e072a7c5349909fcf9068257b474813774f",
+      "branch": "master",
+      "worktree_digest": "bf8d7632d26a583db684feb85af6b1737681014d44e8046c5d68fa49cf22e995"
+    },
+    "worktree_digest_and_head_unchanged": true,
+    "independent_content_sha256_before": {
+      "apps/api/main.py": "585c93666fcb046b7b264d3fa73202aa2a38254ae82a4b3ba19e873c2d5a9886",
+      "apps/web/extra.ts": null
+    },
+    "independent_content_sha256_after": {
+      "apps/api/main.py": "a8f6c52a868fef0dec10e74fb630ae705603aa4fa5e1f29cf6d25df64c770d9b",
+      "apps/web/extra.ts": "dfb8cba1be1d89dd4634a9c2b0cb57ee57a1f54ba504b3be4c7108d45a63d07b"
+    },
+    "tracked_source_changed": true,
+    "untracked_file_added": "apps/web/extra.ts",
+    "conclusion": "AUDIT_BASE_CONFIRMED: recorder identity fields cannot distinguish two different verified sources"
+  },
+  "temp_repo": "C:\\Users\\17894\\AppData\\Local\\Temp\\aud-001-a02-mubhq7u0-489ycd"
+}

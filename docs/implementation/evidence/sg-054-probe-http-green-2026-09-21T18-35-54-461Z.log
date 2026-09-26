@@ -1,0 +1,15 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/probe/http.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 5410[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a declared operation against a listener that is not there [33m 2461[2mms[22m[39m
+   [33m[2m✓[22m[39m records a real successful probe and lets the core recompute the same assertions [33m 434[2mms[22m[39m
+   [33m[2m✓[22m[39m does not promote a self-reported schema_valid over a recomputed type mismatch [33m 702[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a redirect instead of following it to another origin [33m 426[2mms[22m[39m
+   [33m[2m✓[22m[39m stops at the declared response budget and at the deadline instead of buffering [33m 1094[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m6 passed[39m[22m[90m (6)[39m
+[2m   Start at [22m 02:36:19
+[2m   Duration [22m 6.90s[2m (transform 284ms, setup 0ms, import 1.09s, tests 5.41s, environment 0ms)[22m
+

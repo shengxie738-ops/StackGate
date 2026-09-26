@@ -1,0 +1,36 @@
+{
+  "before": {
+    "legacy_repository": {
+      "identity_status": "VERIFIED",
+      "head": "3d9625484adce17d73fb5b212c2b49abc70882f1",
+      "branch": "master",
+      "repo_path_id": "b4014b3b03b3d31049ebccd8c2a4d8ba93221282162587e41483b5c7577f0968",
+      "worktree_digest": "b4014b3b03b3d31049ebccd8c2a4d8ba93221282162587e41483b5c7577f0968",
+      "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+    },
+    "exit_code": 0,
+    "content_hash": "sha256:4da760f601e394021eb3d7451a89a8d1ab9499e34964e9f21e13da87e19b8bed",
+    "verification_attributable": true,
+    "independent_sha256": {
+      "apps/api/main.py": "585c93666fcb046b7b264d3fa73202aa2a38254ae82a4b3ba19e873c2d5a9886",
+      "apps/web/extra.ts": null
+    }
+  },
+  "after": {
+    "legacy_repository": {
+      "identity_status": "VERIFIED",
+      "head": "3d9625484adce17d73fb5b212c2b49abc70882f1",
+      "branch": "master",
+      "repo_path_id": "b4014b3b03b3d31049ebccd8c2a4d8ba93221282162587e41483b5c7577f0968",
+      "worktree_digest": "b4014b3b03b3d31049ebccd8c2a4d8ba93221282162587e41483b5c7577f0968",
+      "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+    },
+    "exit_code": 0,
+    "content_hash": "sha256:ff47edd50cb46d5d175cb1d044b09b0b49167f4c651f857863b509f81a60f428",
+    "verification_attributable": true,
+    "independent_sha256": {
+      "apps/api/main.py": "a8f6c52a868fef0dec10e74fb630ae705603aa4fa5e1f29cf6d25df64c770d9b",
+      "apps/web/extra.ts": "dfb8cba1be1d89dd4634a9c2b0cb57ee57a1f54ba504b3be4c7108d45a63d07b"
+    }
+  }
+}

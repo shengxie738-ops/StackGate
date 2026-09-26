@@ -20,7 +20,7 @@ export async function knownInputChanged(root:string,context:PlanContext):Promise
  }
  return false;
 }
-export function evaluateRunFacts(context:PlanContext,checks:CheckResult[],completion:Pick<RunCompletion,'post_task_confirmed'|'post_trust_valid'|'canceled'|'fatal_error'>,integrity:'VALID'|'INVALID'|'UNVERIFIED',freshness:GateEvaluation['freshness']):GateEvaluation{
+export function evaluateRunFacts(context:PlanContext,checks:CheckResult[],completion:Pick<RunCompletion,'post_task_confirmed'|'post_trust_valid'|'canceled'|'fatal_error'>,integrity:'VALID'|'INVALID'|'UNVERIFIED',freshness:GateEvaluation['freshness'],extra_reasons:string[]=[]):GateEvaluation{
  const denialCodes=new Set(['CONTRACT_MISMATCH','PROTECTED_INPUT_CHANGED','POLICY_WEAKEN_ATTEMPT']);
  const globalGaps=context.blockers.filter(b=>b.check_id===null&&!denialCodes.has(b.code));
  const tools=context.required_check_ids.flatMap(id=>{const check=context.config.checks[id];return check?[check.adapter==='openapi'?check.candidate_command:check.command]:[];});
@@ -32,5 +32,5 @@ export function evaluateRunFacts(context:PlanContext,checks:CheckResult[],comple
   acceptance_inputs_approved:!context.blockers.some(b=>b.code==='PROTECTED_INPUT_CHANGED'),canceled:completion.canceled,fatal_error:completion.fatal_error,
   deterministic_denials:context.blockers.filter(b=>denialCodes.has(b.code)).map(b=>b.code),
  });
- return {...result,reasons:[...new Set([...result.reasons,...globalGaps.map(b=>b.code),...unknown.map(name=>'UNKNOWN_REQUIRED_TOOL:'+name)])]};
+ return {...result,reasons:[...new Set([...result.reasons,...globalGaps.map(b=>b.code),...unknown.map(name=>'UNKNOWN_REQUIRED_TOOL:'+name),...extra_reasons])]};
 }

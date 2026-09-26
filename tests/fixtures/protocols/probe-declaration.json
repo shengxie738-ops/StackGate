@@ -1,0 +1,15 @@
+{
+  "schema_version": "0.1",
+  "declaration_id": "performance_probe",
+  "operation_key": "api:GET /api/performance",
+  "expected_status": 200,
+  "expected_media_type": "application/json",
+  "deadline_ms": 5000,
+  "max_response_bytes": 1048576,
+  "follow_redirects": false,
+  "assertions": [
+    { "assertion_id": "total_return_type", "pointer": "/data/performance/total_return", "operator": "type", "expected": "number" },
+    { "assertion_id": "total_return_value", "pointer": "/data/performance/total_return", "operator": "equals", "expected": 0.1234 },
+    { "assertion_id": "period_present", "pointer": "/data/performance/period", "operator": "exists" }
+  ]
+}

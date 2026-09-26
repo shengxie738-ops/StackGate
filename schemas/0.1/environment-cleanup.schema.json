@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/environment-cleanup.schema.json",
+  "title": "EnvironmentCleanup",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "run_id": { "type": "string", "pattern": "^run_[A-Za-z0-9_-]+$" },
+    "cleaned_at": { "$ref": "common.schema.json#/$defs/UtcTimestamp" },
+    "status": { "type": "string", "enum": ["CLEANED", "PARTIAL", "PRESERVED", "FAILED", "UNKNOWN"] },
+    "trigger": { "type": "string", "enum": ["COMPLETED", "FAILED", "CANCELED", "ERROR"] },
+    "resources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "resource_type": { "type": "string", "enum": ["process", "container", "network", "volume"] },
+          "native_id": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
+          "owner_token": { "$ref": "common.schema.json#/$defs/SafeId" },
+          "run_id": { "type": "string", "pattern": "^run_[A-Za-z0-9_-]+$" },
+          "created_by_stackgate": { "type": "boolean" },
+          "cleanup_status": { "type": "string", "enum": ["PENDING", "CLEANED", "PRESERVED", "FAILED", "UNKNOWN"] },
+          "ownership_basis": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" }
+        },
+        "required": ["resource_type", "native_id", "owner_token", "run_id", "created_by_stackgate", "cleanup_status", "ownership_basis"],
+        "additionalProperties": false
+      },
+      "uniqueItems": true,
+      "minItems": 0
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "reasons": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
+      "uniqueItems": true,
+      "minItems": 0
+    }
+  },
+  "required": ["schema_version", "run_id", "cleaned_at", "status", "trigger", "resources", "evidence_refs", "reasons"],
+  "additionalProperties": false
+}

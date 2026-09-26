@@ -1,0 +1,13 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/demo/web-fixtures.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 26345[2mms[22m[39m
+   [33m[2m✓[22m[39m lets the broken consumer pass with its own legacy mock and fail against the real response shape [33m 11048[2mms[22m[39m
+   [33m[2m✓[22m[39m satisfies the acceptance value after the reviewed patch and keeps the page contract untouched [33m 5386[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps the declared empty, invalid and transport states green in both client modes [33m 9909[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m   Start at [22m 01:57:19
+[2m   Duration [22m 26.80s[2m (transform 30ms, setup 0ms, import 69ms, tests 26.34s, environment 0ms)[22m
+

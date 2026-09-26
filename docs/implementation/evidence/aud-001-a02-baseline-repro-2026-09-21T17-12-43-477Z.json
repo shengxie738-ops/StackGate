@@ -1,0 +1,42 @@
+{
+  "task_id": "AUD-001",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+    "branch": "V2",
+    "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "command": "node tests/bootstrap/a02-baseline-repro.mjs",
+  "argv": [
+    "node",
+    "tests/bootstrap/a02-baseline-repro.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-21T17:12:43.477Z",
+  "finished_at": "2026-09-21T17:12:46.534Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/aud-001-a02-baseline-repro-2026-09-21T17-12-43-477Z.json",
+  "log_path": "docs/implementation/evidence/aud-001-a02-baseline-repro-2026-09-21T17-12-43-477Z.log",
+  "signal": null,
+  "duration_ms": 3057,
+  "source_before": {
+    "manifest_path": "docs/implementation/evidence/aud-001-a02-baseline-repro-2026-09-21T17-12-43-477Z-source-before.json",
+    "content_hash": "sha256:8b7ffa53a4def4422447c7864bb0db36f5b42686a1a731d64c6b51abaa241af6",
+    "completeness": "COMPLETE",
+    "file_count": 2076,
+    "incomplete_reasons": []
+  },
+  "source_after": {
+    "manifest_path": "docs/implementation/evidence/aud-001-a02-baseline-repro-2026-09-21T17-12-43-477Z-source-after.json",
+    "content_hash": "sha256:8b7ffa53a4def4422447c7864bb0db36f5b42686a1a731d64c6b51abaa241af6",
+    "completeness": "COMPLETE",
+    "file_count": 2076,
+    "incomplete_reasons": []
+  },
+  "source_changed_during_verification": false,
+  "verification_attributable": false,
+  "content_hash": null
+}

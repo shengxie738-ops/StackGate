@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1",
+  "run_id": "run_m3_contract_demo",
+  "input_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+  "required_by_task": true,
+  "data_revision": "seed-2026-09-21-a",
+  "provenance": "OBSERVED",
+  "satisfied": false,
+  "prepare_ref": "art_environment_prepare",
+  "finalization_ref": "art_environment_finalize",
+  "cleanup_ref": "art_environment_cleanup",
+  "observation_refs": ["art_backend_observation_1", "art_environment_cleanup", "art_environment_finalize", "art_environment_prepare"],
+  "reasons": ["ENV_PROVENANCE_INSUFFICIENT"]
+}

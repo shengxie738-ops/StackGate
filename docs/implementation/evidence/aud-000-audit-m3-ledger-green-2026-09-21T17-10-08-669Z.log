@@ -1,0 +1,17 @@
+✔ current audit ledger validates with all five audit task ids (3.4439ms)
+✔ duplicate audit task ids are rejected (0.4268ms)
+✔ unknown status values are rejected (0.2109ms)
+✔ DONE without a passing verification is rejected (0.6774ms)
+✔ DONE without actual files is rejected (0.1544ms)
+✔ evidence that belongs to another task id is rejected (0.5357ms)
+✔ relative paths escaping the repository are rejected (0.187ms)
+✔ dependency cycles are rejected (0.1524ms)
+✔ BLOCKED without a recorded blocker is rejected (0.1348ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 111.7799

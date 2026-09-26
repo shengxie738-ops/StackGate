@@ -1,0 +1,25 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+[90mstdout[2m | tests/contract/oasdiff.test.ts[2m > [22m[2mSG020 real pinned oasdiff adapter[2m > [22m[2mretains real version, raw IDs, raw JSON, original hashes and business exit status
+[22m[39m{"fixture":"type-change","status":"FAIL","evidence":[{"command":"version","argv":["--version"],"stdout":"oasdiff version 1.32.1\n","stderr":"","exit_code":0,"signal":null,"version":"1.32.1","executable_sha256":"sha256:cce550834cddfa7584a5cfde8deb2a6a57effcbc445f040f4f7ac37da47e8173"},{"command":"breaking","argv":["breaking","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-ETnHFl\\base.json","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-ETnHFl\\target.json","--format","json","--allow-external-refs=false","--config","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-ETnHFl\\oasdiff-config.json","--include-path-params","--auto-upgrade=false","--flatten-allof=false","--flatten-params=false","--fail-on","WARN"],"stdout":"[{\"id\":\"response-property-type-changed\",\"text\":\"the `data/performance/total_return` response's property `type` changed from `number` to `string` for status `200`\",\"level\":3,\"operation\":\"GET\",\"operationId\":\"getPerformance\",\"path\":\"/api/performance\",\"section\":\"paths\",\"fingerprint\":\"d4e087392f73\"}]\n","stderr":"","exit_code":1,"signal":null,"version":"1.32.1","executable_sha256":"sha256:cce550834cddfa7584a5cfde8deb2a6a57effcbc445f040f4f7ac37da47e8173","base_hash":"sha256:1a38de0d66d791dec4cc7ae6b3f9f2ae0aa3410ae7bbcb0c3bfd88cdf45aae8d","target_hash":"sha256:f5f78132329e73893ece7250514bd54906ed2db56e6a2215b261a0bff307f41d","audited_base_hash":"sha256:4fccf8fb30c0e712fcdfad06bd978906b22366af4532b8cd640c98061ad085bd","audited_target_hash":"sha256:a2527f9b8b2b416b0fd7292de08c7e1a9385819f41ed5ffb12132d46c67ab851"}]}
+
+ [32m✓[39m tests/contract/oasdiff.test.ts [2m([22m[2m31 tests[22m[2m)[22m[33m 3131[2mms[22m[39m
+     [33m[2m✓[22m[39m returns PASS only from real empty valid breaking output [33m 409[2mms[22m[39m
+     [33m[2m✓[22m[39m preserves direction-dependent finding request-base→request-required [33m 432[2mms[22m[39m
+     [33m[2m✓[22m[39m retains structural diff and distinguishes real empty diff [33m 506[2mms[22m[39m
+ [32m✓[39m tests/contract/probe-envelope.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 4015[2mms[22m[39m
+   [33m[2m✓[22m[39m revalidates retained response bytes rather than accepting script schema_valid=true [33m 338[2mms[22m[39m
+ [32m✓[39m tests/contract/toolchain.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 2594[2mms[22m[39m
+   [33m[2m✓[22m[39m runs real TypeScript program and compiler CLI diagnostics [33m 1497[2mms[22m[39m
+   [33m[2m✓[22m[39m build declarations are actually consumable with strict type checking [33m 876[2mms[22m[39m
+ [32m✓[39m tests/contract/schema-compatibility.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 1307[2mms[22m[39m
+   [33m[2m✓[22m[39m exports only verified safe artifacts to a new directory, preserving exact sealed source bytes [33m 1199[2mms[22m[39m
+ [32m✓[39m tests/contract/run-history.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 31[2mms[22m[39m
+ [32m✓[39m tests/contract/m3-runtime-contracts.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 62[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m6 passed[39m[22m[90m (6)[39m
+[2m      Tests [22m [1m[32m71 passed[39m[22m[90m (71)[39m
+[2m   Start at [22m 01:40:58
+[2m   Duration [22m 8.97s[2m (transform 826ms, setup 0ms, import 4.21s, tests 11.14s, environment 1ms)[22m
+

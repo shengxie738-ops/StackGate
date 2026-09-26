@@ -64,26 +64,33 @@ export class GateService {
    if(match.some(value=>!value))throw Error('Run identity differs from its sealed plan, context or completion');
    if(completion.post_freshness==='FRESH'&&(completion.post_context_hash!==contextIdentity(context)||completion.post_input_hash!==plan.input_hash))throw Error('Completion freshness contradicts its observed identities');
    const bindings=validateCheckPlanBinding(plan,facts.checks);if(bindings.length){facts.diagnostics.push(...bindings);throw Error('Check evidence differs from fixed plan requirements');}
-   const current=await new PlanService(this.root,this.options).inspectStored({plan,context});
-   const capture=current.freshness==='FRESH'?await new TrustService(this.root,this.options.trustStoreRoot?{storeRoot:this.options.trustStoreRoot}:{}).capture():null;
-   const matchingPreview=capture?.execution_digest===context.execution_digest?capture.execution_preview:null;
+   const observeCurrent=async()=>{
+    const inspection=await new PlanService(this.root,this.options).inspectStored({plan,context});
+    const capture=inspection.freshness==='FRESH'?await new TrustService(this.root,this.options.trustStoreRoot?{storeRoot:this.options.trustStoreRoot}:{}).capture():null;
+    return {inspection,capture,preview:capture?.execution_digest===context.execution_digest?capture.execution_preview:null};
+   };
+   const firstObservation=await observeCurrent();
    for(const check of facts.checks){
     const step=plan.steps.find(s=>s.check_id===check.check_id)!;if(!['command','junit'].includes(step.adapter_id)||!check.attempts.length)continue;
     const collection={run_id,check_id:check.check_id,attempt_id:check.attempt_id,expected_artifacts:step.expected_artifacts,evidence:store,signal:new AbortController().signal,artifacts:facts.artifacts.filter(a=>a.check_id===check.check_id&&a.attempt_id===check.attempt_id)};
     const observed=await readCommandExecution(step,collection);if(observed.status!=='FOUND')throw Error('Observed command evidence is missing or invalid');
-    const executable_digest=matchingPreview?.tools[step.command_id!]?.invocation?.identity.digest;
+    const executable_digest=firstObservation.preview?.tools[step.command_id!]?.invocation?.identity.digest;
     const provenanceErrors=validateCommandProvenance(observed.fact.result,{command_id:step.command_id!,authorization_hash:context.execution_digest,platform_id:context.input_manifest.platform_id,...(executable_digest?{executable_digest}:{})});
     if(provenanceErrors.length){facts.diagnostics.push(...provenanceErrors);throw Error('Observed execution provenance cannot be authenticated');}
     const adapter=step.adapter_id==='command'?new CommandAdapter(context.config.commands):new JunitAdapter(context.config.commands),recollected=await adapter.collect(step,collection);
     if(canonicalJson(recollected)!==canonicalJson(check))throw Error('Stored check claims differ from independently recollected evidence');
    }
-   let freshness=capture&&!matchingPreview?'STALE' as const:current.freshness;
+   const identityOf=(observation:typeof firstObservation)=>canonicalJson({freshness:observation.inspection.freshness,context:observation.inspection.current?contextIdentity(observation.inspection.current):null,execution:observation.capture?.execution_digest??null,task_confirmed:observation.inspection.task_confirmed,trust_valid:observation.inspection.trust_valid});
+   const finalObservation=await observeCurrent();
+   const driftedDuringAuthentication=identityOf(firstObservation)!==identityOf(finalObservation);
+   let freshness=finalObservation.capture&&!finalObservation.preview?'STALE' as const:finalObservation.inspection.freshness;
    if(freshness==='UNVERIFIED'&&await knownInputChanged(this.root,context))freshness='STALE';
+   if(driftedDuringAuthentication&&freshness==='FRESH')freshness='STALE';
    if(completion.post_freshness==='STALE'||completion.post_input_hash!==null&&completion.post_input_hash!==plan.input_hash)freshness='STALE';else if(completion.post_freshness==='UNVERIFIED'&&freshness!=='STALE')freshness='UNVERIFIED';
-   facts.diagnostics.push(...current.diagnostics);
+   facts.diagnostics.push(...finalObservation.inspection.diagnostics);
    const provenance=inspectToolProvenance(context.tool_versions,plan.steps.flatMap(step=>step.command_id?[step.command_id]:[]));facts.diagnostics.push(...provenance.diagnostics);
    const policyContext={...context,blockers:[...context.blockers,...provenance.diagnostics.map(item=>({code:item.code,message:item.message,check_id:null}))]};
-   const evaluation=evaluateRunFacts(policyContext,facts.checks,{post_task_confirmed:completion.post_task_confirmed&&current.task_confirmed,post_trust_valid:completion.post_trust_valid&&current.trust_valid,canceled:manifest.canceled||manifest.phase==='CANCELED'||completion.canceled,fatal_error:manifest.phase==='ABORTED'||completion.fatal_error},integrity.status==='VALID'?'VALID':'UNVERIFIED',freshness);
+   const evaluation=evaluateRunFacts(policyContext,facts.checks,{post_task_confirmed:completion.post_task_confirmed&&firstObservation.inspection.task_confirmed&&finalObservation.inspection.task_confirmed,post_trust_valid:completion.post_trust_valid&&firstObservation.inspection.trust_valid&&finalObservation.inspection.trust_valid,canceled:manifest.canceled||manifest.phase==='CANCELED'||completion.canceled,fatal_error:manifest.phase==='ABORTED'||completion.fatal_error},integrity.status==='VALID'?'VALID':'UNVERIFIED',freshness,driftedDuringAuthentication?['INPUT_CHANGED_DURING_AUTHENTICATION']:[]);
    const final=await store.verifyRun(run_id);if(final.status==='INVALID'||final.status==='VALID'&&integrity.status==='VALID'&&canonicalJson(final.seal)!==canonicalJson(integrity.seal))throw Error('Sealed run changed during Gate authentication');
    if(final.status!=='VALID'&&integrity.status==='VALID'){facts.integrity=final.status;return unavailable(false);}
    return finish(evaluation);

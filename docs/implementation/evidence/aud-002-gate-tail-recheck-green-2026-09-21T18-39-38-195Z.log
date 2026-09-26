@@ -1,0 +1,21 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/gate/during-evaluation-change.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 627633[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps a normal sealed run allowed when the collector only observes, without changing inputs [33m 164236[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses to certify a protected input that changed during evidence re-collection [33m 151714[2mms[22m[39m
+   [33m[2m✓[22m[39m reports an unobservable current input as unverified instead of a tampered history [33m 144007[2mms[22m[39m
+   [33m[2m✓[22m[39m leaves the sealed run bytes untouched while authenticating [33m 167673[2mms[22m[39m
+ [32m✓[39m tests/integration/gate/current-state.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 743663[2mms[22m[39m
+   [33m[2m✓[22m[39m missing run evidence remains unverified and cannot be allowed [33m 1405[2mms[22m[39m
+   [33m[2m✓[22m[39m stores a missing-run evaluation outside runs without inventing a run directory [33m 1611[2mms[22m[39m
+   [33m[2m✓[22m[39m retains actual unsealed lifecycle prefixes and distinguishes an aborted run from pending work [33m 3058[2mms[22m[39m
+   [33m[2m✓[22m[39m authenticates a real sealed run then reevaluates source, task, policy and evidence without changing historical facts [33m 373831[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps real failed evidence denied and detects changed executable bytes without launching that executable [33m 207338[2mms[22m[39m
+   [33m[2m✓[22m[39m does not turn local CI environment claims into required backend provenance [33m 156417[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m10 passed[39m[22m[90m (10)[39m
+[2m   Start at [22m 02:39:41
+[2m   Duration [22m 747.72s[2m (transform 2.05s, setup 0ms, import 7.14s, tests 1371.30s, environment 0ms)[22m
+

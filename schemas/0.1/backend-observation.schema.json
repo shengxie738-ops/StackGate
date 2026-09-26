@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/backend-observation.schema.json",
+  "title": "BackendObservation",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "run_id": { "type": "string", "pattern": "^run_[A-Za-z0-9_-]+$" },
+    "check_id": { "$ref": "common.schema.json#/$defs/SafeId" },
+    "attempt_id": { "type": "string", "pattern": "^attempt_[A-Za-z0-9_-]+$" },
+    "request_id": { "$ref": "common.schema.json#/$defs/SafeId" },
+    "instance_id": { "$ref": "common.schema.json#/$defs/SafeId" },
+    "operation_key": { "$ref": "common.schema.json#/$defs/OperationKey" },
+    "status_code": { "type": "integer", "minimum": 100, "maximum": 599 },
+    "media_type": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
+    "started_at": { "$ref": "common.schema.json#/$defs/UtcTimestamp" },
+    "finished_at": { "$ref": "common.schema.json#/$defs/UtcTimestamp" },
+    "response_bytes": { "type": "integer", "minimum": 0 },
+    "response_digest": { "$ref": "common.schema.json#/$defs/Sha256" },
+    "digest_input_form": { "const": "UNCOMPRESSED_UTF8_BODY_BYTES" },
+    "observation_path": { "$ref": "common.schema.json#/$defs/RelativePath" },
+    "excluded_fields": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["Authorization", "Cookie", "Set-Cookie"] },
+      "uniqueItems": true,
+      "minItems": 3
+    }
+  },
+  "required": ["schema_version", "run_id", "check_id", "attempt_id", "request_id", "instance_id", "operation_key", "status_code", "media_type", "started_at", "finished_at", "response_bytes", "response_digest", "digest_input_form", "observation_path", "excluded_fields"],
+  "additionalProperties": false
+}

@@ -2,6 +2,11 @@
 
 | Entry | Responsibility | Boundary |
 | --- | --- | --- |
+| `packages/core/src/services/adapter-registry.ts` | Single `RuntimeAdapterRegistry` shared by plan capability, Run execution and Gate re-collection | Only reviewed built-in factories; uninstalled adapters return null and never appear in `supportedIds()`; AUD-003 |
+| `packages/core/src/services/environment-assessment.ts` | Derive the environment verdict from prepare/finalize/cleanup and backend observations | `satisfied` is an output only; unauthenticated references, DECLARED provenance, instance switch, unconfirmed data revision or unobserved required operation make it false; AUD-003 |
+| `schemas/0.1/{environment-finalization,environment-cleanup,environment-assessment,backend-observation,probe-declaration}.schema.json` | Append-only environment facts, observation identity binding, declarative probe assertions | Four environment documents never overwrite each other; `observation_refs` and `evidence_refs` require citations; probe assertions restricted to JSON Pointer operators and redirect following stays false |
+| `scripts/verify-audit-m3.mjs` + `scripts/update-audit-m3.mjs` | Validate and update `docs/implementation/audit-m3-fixes.json` | AUD ids only, DONE needs passing evidence and DONE dependencies; recorder whitelist cross-checks the same ledger |
+| `scripts/verification-inputs.mjs` + `scripts/record.mjs` | Capture pre/post source manifests with per-file digests and a content hash | Legacy `worktree_digest` kept as path identity; INCOMPLETE snapshots never yield an attributable verification; evidence output excluded from its own snapshot |
 | `scripts/verify-source.mjs` | Compare original and retained bytes; enforce supplied requirement SHA-256 | Read-only source verification |
 | `scripts/verify-tasks.mjs` | Validate all 100 task records, immutable index, dependencies and evidence links | Development task ledger; no product Gate decision |
 | `scripts/record.mjs` | Execute local verification command and save timestamps, exit code and log | Development-only subprocess evidence; no implicit shell |

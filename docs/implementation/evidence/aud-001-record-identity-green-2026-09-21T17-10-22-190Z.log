@@ -1,0 +1,19 @@
+✔ same HEAD with modified tracked source yields a different content hash (2602.1655ms)
+✔ adding, editing and removing untracked inputs changes the content hash (4156.241ms)
+✔ staged and unstaged states for the same path are distinguished (2879.3227ms)
+✔ raw bytes distinguish CRLF and UTF-8 content without normalisation (2547.243ms)
+✔ a path containing whitespace yields exactly one enumerated entry (1734.9813ms)
+✔ writing only verification evidence does not invalidate the snapshot (2110.5885ms)
+✔ caches are excluded but tracked sources and lockfiles are captured (3045.8527ms)
+✔ over-budget inputs are reported as incomplete instead of silently skipped (1529.3513ms)
+✔ staged deletions are reported as missing inputs, not as absent source (1715.3037ms)
+✔ recorder keeps the raw exit code but refuses attribution when source changed mid-verification (7548.833ms)
+✔ recorder rejects task ids that are not in the ledgers (5114.0852ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 35405.7752

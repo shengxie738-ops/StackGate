@@ -1,0 +1,46 @@
+{
+  "task_id": "AUD-002",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+    "branch": "V2",
+    "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "command": "pnpm exec vitest run tests/integration/gate/during-evaluation-change.test.ts tests/integration/gate/current-state.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/gate/during-evaluation-change.test.ts",
+    "tests/integration/gate/current-state.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-21T18:39:38.195Z",
+  "finished_at": "2026-09-21T18:52:09.793Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/aud-002-gate-tail-recheck-green-2026-09-21T18-39-38-195Z.json",
+  "log_path": "docs/implementation/evidence/aud-002-gate-tail-recheck-green-2026-09-21T18-39-38-195Z.log",
+  "signal": null,
+  "duration_ms": 751598,
+  "source_before": {
+    "manifest_path": "docs/implementation/evidence/aud-002-gate-tail-recheck-green-2026-09-21T18-39-38-195Z-source-before.json",
+    "content_hash": "sha256:07e5c3b74b8a70c415b3af1965c854d9032c74fb2c2d2e4de1e399212c4a604a",
+    "completeness": "COMPLETE",
+    "file_count": 2123,
+    "incomplete_reasons": []
+  },
+  "source_after": {
+    "manifest_path": "docs/implementation/evidence/aud-002-gate-tail-recheck-green-2026-09-21T18-39-38-195Z-source-after.json",
+    "content_hash": "sha256:d35ef3417a0ea5a6741d193e48d5aec31c1d78ca2e0efa9f2f5136db650bc47c",
+    "completeness": "COMPLETE",
+    "file_count": 2125,
+    "incomplete_reasons": []
+  },
+  "source_changed_during_verification": true,
+  "verification_attributable": false,
+  "content_hash": null
+}

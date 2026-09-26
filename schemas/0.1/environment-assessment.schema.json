@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/environment-assessment.schema.json",
+  "title": "EnvironmentAssessment",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "run_id": { "type": "string", "pattern": "^run_[A-Za-z0-9_-]+$" },
+    "input_hash": { "$ref": "common.schema.json#/$defs/Sha256" },
+    "required_by_task": { "type": "boolean" },
+    "data_revision": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
+    "provenance": { "$ref": "common.schema.json#/$defs/ProvenanceLevel" },
+    "satisfied": { "type": "boolean" },
+    "prepare_ref": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
+    "finalization_ref": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
+    "cleanup_ref": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
+    "observation_refs": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "reasons": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
+      "uniqueItems": true,
+      "minItems": 0
+    }
+  },
+  "required": ["schema_version", "run_id", "input_hash", "required_by_task", "data_revision", "provenance", "satisfied", "prepare_ref", "finalization_ref", "cleanup_ref", "observation_refs", "reasons"],
+  "additionalProperties": false
+}

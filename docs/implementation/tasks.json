@@ -17076,12 +17076,244 @@
         "SG-009",
         "SG-051"
       ],
-      "status": "READY",
-      "actual_files": [],
-      "verification": [],
+      "status": "DONE",
+      "actual_files": [
+        "examples/contract-drift-demo/apps/web/package.json",
+        "examples/contract-drift-demo/pnpm-workspace.yaml",
+        "examples/contract-drift-demo/apps/web/vite.config.ts",
+        "examples/contract-drift-demo/apps/web/tsconfig.json",
+        "examples/contract-drift-demo/apps/web/index.html",
+        "examples/contract-drift-demo/apps/web/src/env.d.ts",
+        "examples/contract-drift-demo/apps/web/src/main.tsx",
+        "examples/contract-drift-demo/apps/web/src/api/performance.ts",
+        "examples/contract-drift-demo/apps/web/src/pages/PerformancePage.tsx",
+        "examples/contract-drift-demo/apps/web/tests/performance.test.tsx",
+        "examples/contract-drift-demo/patches/fix-client-field.patch",
+        "examples/contract-drift-demo/scripts/make-fix-patch.mjs",
+        "tests/integration/demo/web-fixtures.test.ts",
+        "scripts/update-compatibility-lock.mjs"
+      ],
+      "verification": [
+        {
+          "task_id": "SG-052",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm exec vitest run tests/integration/demo/web-fixtures.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/demo/web-fixtures.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:57:17.160Z",
+          "finished_at": "2026-09-21T17:57:46.812Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-052-web-fixtures-green-2026-09-21T17-57-17-160Z.json",
+          "log_path": "docs/implementation/evidence/sg-052-web-fixtures-green-2026-09-21T17-57-17-160Z.log",
+          "signal": null,
+          "duration_ms": 29652,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-052-web-fixtures-green-2026-09-21T17-57-17-160Z-source-before.json",
+            "content_hash": "sha256:0d02310402273e0f3d357986daf800d16253431548393bdd6d1b80e35d68654d",
+            "completeness": "COMPLETE",
+            "file_count": 2115,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-052-web-fixtures-green-2026-09-21T17-57-17-160Z-source-after.json",
+            "content_hash": "sha256:0d02310402273e0f3d357986daf800d16253431548393bdd6d1b80e35d68654d",
+            "completeness": "COMPLETE",
+            "file_count": 2115,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:0d02310402273e0f3d357986daf800d16253431548393bdd6d1b80e35d68654d"
+        },
+        {
+          "task_id": "SG-052",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm exec vitest run tests/integration/demo",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/demo"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:57:48.330Z",
+          "finished_at": "2026-09-21T17:58:18.365Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-052-demo-suite-regression-2026-09-21T17-57-48-330Z.json",
+          "log_path": "docs/implementation/evidence/sg-052-demo-suite-regression-2026-09-21T17-57-48-330Z.log",
+          "signal": null,
+          "duration_ms": 30035,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-052-demo-suite-regression-2026-09-21T17-57-48-330Z-source-before.json",
+            "content_hash": "sha256:0d02310402273e0f3d357986daf800d16253431548393bdd6d1b80e35d68654d",
+            "completeness": "COMPLETE",
+            "file_count": 2115,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-052-demo-suite-regression-2026-09-21T17-57-48-330Z-source-after.json",
+            "content_hash": "sha256:0d02310402273e0f3d357986daf800d16253431548393bdd6d1b80e35d68654d",
+            "completeness": "COMPLETE",
+            "file_count": 2115,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:0d02310402273e0f3d357986daf800d16253431548393bdd6d1b80e35d68654d"
+        },
+        {
+          "task_id": "SG-052",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm test:unit",
+          "argv": [
+            "pnpm",
+            "test:unit"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:58:22.147Z",
+          "finished_at": "2026-09-21T17:59:16.758Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-052-unit-and-lint-green-2026-09-21T17-58-22-147Z.json",
+          "log_path": "docs/implementation/evidence/sg-052-unit-and-lint-green-2026-09-21T17-58-22-147Z.log",
+          "signal": null,
+          "duration_ms": 54611,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-052-unit-and-lint-green-2026-09-21T17-58-22-147Z-source-before.json",
+            "content_hash": "sha256:0d02310402273e0f3d357986daf800d16253431548393bdd6d1b80e35d68654d",
+            "completeness": "COMPLETE",
+            "file_count": 2115,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-052-unit-and-lint-green-2026-09-21T17-58-22-147Z-source-after.json",
+            "content_hash": "sha256:0d02310402273e0f3d357986daf800d16253431548393bdd6d1b80e35d68654d",
+            "completeness": "COMPLETE",
+            "file_count": 2115,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:0d02310402273e0f3d357986daf800d16253431548393bdd6d1b80e35d68654d"
+        },
+        {
+          "task_id": "SG-052",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm build",
+          "argv": [
+            "pnpm",
+            "build"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:59:18.332Z",
+          "finished_at": "2026-09-21T17:59:24.872Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-052-typecheck-build-lint-2026-09-21T17-59-18-332Z.json",
+          "log_path": "docs/implementation/evidence/sg-052-typecheck-build-lint-2026-09-21T17-59-18-332Z.log",
+          "signal": null,
+          "duration_ms": 6540,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-052-typecheck-build-lint-2026-09-21T17-59-18-332Z-source-before.json",
+            "content_hash": "sha256:0d02310402273e0f3d357986daf800d16253431548393bdd6d1b80e35d68654d",
+            "completeness": "COMPLETE",
+            "file_count": 2115,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-052-typecheck-build-lint-2026-09-21T17-59-18-332Z-source-after.json",
+            "content_hash": "sha256:0d02310402273e0f3d357986daf800d16253431548393bdd6d1b80e35d68654d",
+            "completeness": "COMPLETE",
+            "file_count": 2115,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:0d02310402273e0f3d357986daf800d16253431548393bdd6d1b80e35d68654d"
+        },
+        {
+          "task_id": "SG-052",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm lint",
+          "argv": [
+            "pnpm",
+            "lint"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:59:26.545Z",
+          "finished_at": "2026-09-21T17:59:32.642Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-052-lint-green-2026-09-21T17-59-26-545Z.json",
+          "log_path": "docs/implementation/evidence/sg-052-lint-green-2026-09-21T17-59-26-545Z.log",
+          "signal": null,
+          "duration_ms": 6097,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-052-lint-green-2026-09-21T17-59-26-545Z-source-before.json",
+            "content_hash": "sha256:0d02310402273e0f3d357986daf800d16253431548393bdd6d1b80e35d68654d",
+            "completeness": "COMPLETE",
+            "file_count": 2115,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-052-lint-green-2026-09-21T17-59-26-545Z-source-after.json",
+            "content_hash": "sha256:0d02310402273e0f3d357986daf800d16253431548393bdd6d1b80e35d68654d",
+            "completeness": "COMPLETE",
+            "file_count": 2115,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:0d02310402273e0f3d357986daf800d16253431548393bdd6d1b80e35d68654d"
+        }
+      ],
       "commit": null,
       "blockers": [],
-      "next_action": "实施 SG-052"
+      "next_action": "Implement SG-053 Playwright reporter and SG-055 backend observation; the sample client and its reviewed fix patch are verified."
     },
     {
       "task_id": "SG-053",
@@ -17094,7 +17326,7 @@
         "SG-038",
         "SG-052"
       ],
-      "status": "NOT_STARTED",
+      "status": "READY",
       "actual_files": [],
       "verification": [],
       "commit": null,
@@ -17111,12 +17343,204 @@
         "SG-038",
         "SG-051"
       ],
-      "status": "READY",
-      "actual_files": [],
-      "verification": [],
+      "status": "DONE",
+      "actual_files": [
+        "presets/fastapi-react/scripts/probe_helpers.py",
+        "examples/contract-drift-demo/apps/api/scripts/probe_performance.py",
+        "examples/contract-drift-demo/probes/performance.json",
+        "packages/core/src/services/http-policy.ts",
+        "packages/core/src/services/probe-assertions.ts",
+        "tests/integration/probe/http.test.ts",
+        "schemas/0.1/probe-declaration.schema.json"
+      ],
+      "verification": [
+        {
+          "task_id": "SG-054",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm exec vitest run tests/integration/probe/http.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/probe/http.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T18:35:54.461Z",
+          "finished_at": "2026-09-21T18:36:26.158Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-054-probe-http-green-2026-09-21T18-35-54-461Z.json",
+          "log_path": "docs/implementation/evidence/sg-054-probe-http-green-2026-09-21T18-35-54-461Z.log",
+          "signal": null,
+          "duration_ms": 31697,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-054-probe-http-green-2026-09-21T18-35-54-461Z-source-before.json",
+            "content_hash": "sha256:43f2dadd8f1520afee764662af4fee0afe9005e9963029e6b2c80c0ba19a972b",
+            "completeness": "COMPLETE",
+            "file_count": 2126,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-054-probe-http-green-2026-09-21T18-35-54-461Z-source-after.json",
+            "content_hash": "sha256:43f2dadd8f1520afee764662af4fee0afe9005e9963029e6b2c80c0ba19a972b",
+            "completeness": "COMPLETE",
+            "file_count": 2126,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:43f2dadd8f1520afee764662af4fee0afe9005e9963029e6b2c80c0ba19a972b"
+        },
+        {
+          "task_id": "SG-054",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm verify:schemas",
+          "argv": [
+            "pnpm",
+            "verify:schemas"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T18:36:28.032Z",
+          "finished_at": "2026-09-21T18:36:34.741Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-054-probe-declaration-schema-2026-09-21T18-36-28-032Z.json",
+          "log_path": "docs/implementation/evidence/sg-054-probe-declaration-schema-2026-09-21T18-36-28-032Z.log",
+          "signal": null,
+          "duration_ms": 6709,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-054-probe-declaration-schema-2026-09-21T18-36-28-032Z-source-before.json",
+            "content_hash": "sha256:43f2dadd8f1520afee764662af4fee0afe9005e9963029e6b2c80c0ba19a972b",
+            "completeness": "COMPLETE",
+            "file_count": 2126,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-054-probe-declaration-schema-2026-09-21T18-36-28-032Z-source-after.json",
+            "content_hash": "sha256:43f2dadd8f1520afee764662af4fee0afe9005e9963029e6b2c80c0ba19a972b",
+            "completeness": "COMPLETE",
+            "file_count": 2126,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:43f2dadd8f1520afee764662af4fee0afe9005e9963029e6b2c80c0ba19a972b"
+        },
+        {
+          "task_id": "SG-054",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "python -B -E -m py_compile presets/fastapi-react/scripts/probe_helpers.py presets/fastapi-react/scripts/stackgate_observation.py examples/contract-drift-demo/apps/api/scripts/probe_performance.py",
+          "argv": [
+            "python",
+            "-B",
+            "-E",
+            "-m",
+            "py_compile",
+            "presets/fastapi-react/scripts/probe_helpers.py",
+            "presets/fastapi-react/scripts/stackgate_observation.py",
+            "examples/contract-drift-demo/apps/api/scripts/probe_performance.py"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T18:36:36.490Z",
+          "finished_at": "2026-09-21T18:36:38.911Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-054-python-modules-compile-2026-09-21T18-36-36-490Z.json",
+          "log_path": "docs/implementation/evidence/sg-054-python-modules-compile-2026-09-21T18-36-36-490Z.log",
+          "signal": null,
+          "duration_ms": 2421,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-054-python-modules-compile-2026-09-21T18-36-36-490Z-source-before.json",
+            "content_hash": "sha256:43f2dadd8f1520afee764662af4fee0afe9005e9963029e6b2c80c0ba19a972b",
+            "completeness": "COMPLETE",
+            "file_count": 2126,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-054-python-modules-compile-2026-09-21T18-36-36-490Z-source-after.json",
+            "content_hash": "sha256:dfe99f4aee6348adbf0447bce8361855f1436417b0825dde3c6bc8103c3db7f2",
+            "completeness": "COMPLETE",
+            "file_count": 2126,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": true,
+          "verification_attributable": false,
+          "content_hash": null
+        },
+        {
+          "task_id": "SG-054",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "python -B -E -c \"import ast,sys\\nfor f in sys.argv[1:]:\\n    ast.parse(open(f, encoding='utf-8').read(), f)\\nprint('parsed', len(sys.argv)-1, 'modules')\" presets/fastapi-react/scripts/probe_helpers.py presets/fastapi-react/scripts/stackgate_observation.py examples/contract-drift-demo/apps/api/scripts/probe_performance.py",
+          "argv": [
+            "python",
+            "-B",
+            "-E",
+            "-c",
+            "import ast,sys\nfor f in sys.argv[1:]:\n    ast.parse(open(f, encoding='utf-8').read(), f)\nprint('parsed', len(sys.argv)-1, 'modules')",
+            "presets/fastapi-react/scripts/probe_helpers.py",
+            "presets/fastapi-react/scripts/stackgate_observation.py",
+            "examples/contract-drift-demo/apps/api/scripts/probe_performance.py"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T18:36:56.060Z",
+          "finished_at": "2026-09-21T18:36:58.330Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-054-python-syntax-check-2026-09-21T18-36-56-060Z.json",
+          "log_path": "docs/implementation/evidence/sg-054-python-syntax-check-2026-09-21T18-36-56-060Z.log",
+          "signal": null,
+          "duration_ms": 2270,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-054-python-syntax-check-2026-09-21T18-36-56-060Z-source-before.json",
+            "content_hash": "sha256:fa50d3a3e0e7dfec9675e3b74efd169f2a892f58558d5dba741036d39e4e9fd7",
+            "completeness": "COMPLETE",
+            "file_count": 2123,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-054-python-syntax-check-2026-09-21T18-36-56-060Z-source-after.json",
+            "content_hash": "sha256:fa50d3a3e0e7dfec9675e3b74efd169f2a892f58558d5dba741036d39e4e9fd7",
+            "completeness": "COMPLETE",
+            "file_count": 2123,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:fa50d3a3e0e7dfec9675e3b74efd169f2a892f58558d5dba741036d39e4e9fd7"
+        }
+      ],
       "commit": null,
       "blockers": [],
-      "next_action": "实施 SG-054"
+      "next_action": "Wire the probe into a real Run in SG-062; the bounded HTTP helper, declaration schema and core recomputation are verified."
     },
     {
       "task_id": "SG-055",
@@ -17127,7 +17551,7 @@
         "SG-051",
         "SG-054"
       ],
-      "status": "NOT_STARTED",
+      "status": "READY",
       "actual_files": [],
       "verification": [],
       "commit": null,
@@ -17969,6 +18393,12 @@
     "ledger": "docs/implementation/audit-fixes.json",
     "baseline_commit": "a651054b987a160f54bf43e7e1e9bc8dec84b625",
     "current": "M1-R07",
+    "status": "DONE"
+  },
+  "audit_m3_fixes": {
+    "ledger": "docs/implementation/audit-m3-fixes.json",
+    "audit_baseline": "17ea7adf10bab9961b96cf3edca255b112bf146b",
+    "current": "AUD-003",
     "status": "DONE"
   }
 }

@@ -1,0 +1,833 @@
+{
+  "schema_version": "0.1",
+  "audit_baseline": "17ea7adf10bab9961b96cf3edca255b112bf146b",
+  "source_plan": "docs/plans/StackGate_Next_Steps_M3_Completion_v0.3.md",
+  "companion_audit": "docs/plans/StackGate_Main_Audit_17ea7ad.md",
+  "baseline_availability": "AUDIT_BASE_UNAVAILABLE",
+  "local_head_at_entry": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+  "tasks": [
+    {
+      "task_id": "AUD-000",
+      "title": "锁定实际交付范围并重建基线",
+      "dependencies": [],
+      "status": "DONE",
+      "actual_files": [
+        "docs/implementation/audit-m3-fixes.json",
+        "docs/implementation/M3-entry-audit.md",
+        "scripts/verify-audit-m3.mjs",
+        "tests/bootstrap/audit-m3-ledger.test.mjs",
+        "scripts/update-task.mjs"
+      ],
+      "verification": [
+        {
+          "task_id": "AUD-000",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "node --test tests/bootstrap/audit-m3-ledger.test.mjs",
+          "argv": [
+            "node",
+            "--test",
+            "tests/bootstrap/audit-m3-ledger.test.mjs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:10:08.669Z",
+          "finished_at": "2026-09-21T17:10:11.047Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-000-audit-m3-ledger-green-2026-09-21T17-10-08-669Z.json",
+          "log_path": "docs/implementation/evidence/aud-000-audit-m3-ledger-green-2026-09-21T17-10-08-669Z.log",
+          "signal": null,
+          "duration_ms": 2378,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-000-audit-m3-ledger-green-2026-09-21T17-10-08-669Z-source-before.json",
+            "content_hash": "sha256:adae582bbb58144836831644ca9672210c0e5792bbb06a83e258cf507a8cc245",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-000-audit-m3-ledger-green-2026-09-21T17-10-08-669Z-source-after.json",
+            "content_hash": "sha256:adae582bbb58144836831644ca9672210c0e5792bbb06a83e258cf507a8cc245",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:adae582bbb58144836831644ca9672210c0e5792bbb06a83e258cf507a8cc245"
+        },
+        {
+          "task_id": "AUD-000",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "node scripts/verify-audit-m3.mjs",
+          "argv": [
+            "node",
+            "scripts/verify-audit-m3.mjs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:10:13.168Z",
+          "finished_at": "2026-09-21T17:10:15.214Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-000-verify-audit-m3-cli-2026-09-21T17-10-13-168Z.json",
+          "log_path": "docs/implementation/evidence/aud-000-verify-audit-m3-cli-2026-09-21T17-10-13-168Z.log",
+          "signal": null,
+          "duration_ms": 2046,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-000-verify-audit-m3-cli-2026-09-21T17-10-13-168Z-source-before.json",
+            "content_hash": "sha256:adae582bbb58144836831644ca9672210c0e5792bbb06a83e258cf507a8cc245",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-000-verify-audit-m3-cli-2026-09-21T17-10-13-168Z-source-after.json",
+            "content_hash": "sha256:adae582bbb58144836831644ca9672210c0e5792bbb06a83e258cf507a8cc245",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:adae582bbb58144836831644ca9672210c0e5792bbb06a83e258cf507a8cc245"
+        },
+        {
+          "task_id": "AUD-000",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm verify:tasks",
+          "argv": [
+            "pnpm",
+            "verify:tasks"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:10:17.016Z",
+          "finished_at": "2026-09-21T17:10:20.125Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-000-m2-baseline-verify-tasks-2026-09-21T17-10-17-016Z.json",
+          "log_path": "docs/implementation/evidence/aud-000-m2-baseline-verify-tasks-2026-09-21T17-10-17-016Z.log",
+          "signal": null,
+          "duration_ms": 3109,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-000-m2-baseline-verify-tasks-2026-09-21T17-10-17-016Z-source-before.json",
+            "content_hash": "sha256:adae582bbb58144836831644ca9672210c0e5792bbb06a83e258cf507a8cc245",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-000-m2-baseline-verify-tasks-2026-09-21T17-10-17-016Z-source-after.json",
+            "content_hash": "sha256:adae582bbb58144836831644ca9672210c0e5792bbb06a83e258cf507a8cc245",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:adae582bbb58144836831644ca9672210c0e5792bbb06a83e258cf507a8cc245"
+        },
+        {
+          "task_id": "AUD-000",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm exec eslint scripts/verification-inputs.mjs scripts/record.mjs scripts/verify-audit-m3.mjs scripts/update-audit-m3.mjs tests/bootstrap",
+          "argv": [
+            "pnpm",
+            "exec",
+            "eslint",
+            "scripts/verification-inputs.mjs",
+            "scripts/record.mjs",
+            "scripts/verify-audit-m3.mjs",
+            "scripts/update-audit-m3.mjs",
+            "tests/bootstrap"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:12:48.373Z",
+          "finished_at": "2026-09-21T17:12:53.998Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-000-eslint-new-harness-2026-09-21T17-12-48-373Z.json",
+          "log_path": "docs/implementation/evidence/aud-000-eslint-new-harness-2026-09-21T17-12-48-373Z.log",
+          "signal": null,
+          "duration_ms": 5625,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-000-eslint-new-harness-2026-09-21T17-12-48-373Z-source-before.json",
+            "content_hash": "sha256:8b7ffa53a4def4422447c7864bb0db36f5b42686a1a731d64c6b51abaa241af6",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-000-eslint-new-harness-2026-09-21T17-12-48-373Z-source-after.json",
+            "content_hash": "sha256:8b7ffa53a4def4422447c7864bb0db36f5b42686a1a731d64c6b51abaa241af6",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:8b7ffa53a4def4422447c7864bb0db36f5b42686a1a731d64c6b51abaa241af6"
+        }
+      ],
+      "blockers": [],
+      "next_action": "Proceed to AUD-002 and AUD-003; SG-052 and SG-054 are unblocked."
+    },
+    {
+      "task_id": "AUD-001",
+      "title": "修复开发证据源码身份，保留旧记录",
+      "dependencies": [
+        "AUD-000"
+      ],
+      "status": "DONE",
+      "actual_files": [
+        "tests/bootstrap/a02-baseline-repro.mjs",
+        "tests/bootstrap/record-identity.test.mjs",
+        "scripts/record.mjs",
+        "scripts/verification-inputs.mjs",
+        "scripts/update-audit-m3.mjs",
+        "scripts/test-unit.mjs"
+      ],
+      "verification": [
+        {
+          "task_id": "AUD-001",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "F:\\node.exe -e process.exit(0)",
+          "argv": [
+            "F:\\node.exe",
+            "-e",
+            "process.exit(0)"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:03:22.118Z",
+          "finished_at": "2026-09-21T17:03:23.716Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-001-whitelist-probe-2026-09-21T17-03-22-118Z.json",
+          "log_path": "docs/implementation/evidence/aud-001-whitelist-probe-2026-09-21T17-03-22-118Z.log",
+          "signal": null,
+          "duration_ms": 1598,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-001-whitelist-probe-2026-09-21T17-03-22-118Z-source-before.json",
+            "content_hash": null,
+            "completeness": "INCOMPLETE",
+            "incomplete_reasons": [
+              "GIT_ENUMERATION_FAILED"
+            ]
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-001-whitelist-probe-2026-09-21T17-03-22-118Z-source-after.json",
+            "content_hash": null,
+            "completeness": "INCOMPLETE",
+            "incomplete_reasons": [
+              "GIT_ENUMERATION_FAILED"
+            ]
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": false,
+          "content_hash": null
+        },
+        {
+          "task_id": "AUD-001",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "F:\\node.exe -e process.exit(0)",
+          "argv": [
+            "F:\\node.exe",
+            "-e",
+            "process.exit(0)"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:04:42.226Z",
+          "finished_at": "2026-09-21T17:04:49.775Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-001-whitelist-probe-2026-09-21T17-04-42-226Z.json",
+          "log_path": "docs/implementation/evidence/aud-001-whitelist-probe-2026-09-21T17-04-42-226Z.log",
+          "signal": null,
+          "duration_ms": 7549,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-001-whitelist-probe-2026-09-21T17-04-42-226Z-source-before.json",
+            "content_hash": "sha256:9ef4d57324574a661707d65330060b362368ad875ebcf024c2c9f471b6d3f0e1",
+            "completeness": "COMPLETE",
+            "file_count": 2075,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-001-whitelist-probe-2026-09-21T17-04-42-226Z-source-after.json",
+            "content_hash": "sha256:9ef4d57324574a661707d65330060b362368ad875ebcf024c2c9f471b6d3f0e1",
+            "completeness": "COMPLETE",
+            "file_count": 2075,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:9ef4d57324574a661707d65330060b362368ad875ebcf024c2c9f471b6d3f0e1"
+        },
+        {
+          "task_id": "AUD-001",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "node --test tests/bootstrap/record-identity.test.mjs",
+          "argv": [
+            "node",
+            "--test",
+            "tests/bootstrap/record-identity.test.mjs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:10:22.190Z",
+          "finished_at": "2026-09-21T17:10:59.671Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-001-record-identity-green-2026-09-21T17-10-22-190Z.json",
+          "log_path": "docs/implementation/evidence/aud-001-record-identity-green-2026-09-21T17-10-22-190Z.log",
+          "signal": null,
+          "duration_ms": 37481,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-001-record-identity-green-2026-09-21T17-10-22-190Z-source-before.json",
+            "content_hash": "sha256:adae582bbb58144836831644ca9672210c0e5792bbb06a83e258cf507a8cc245",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-001-record-identity-green-2026-09-21T17-10-22-190Z-source-after.json",
+            "content_hash": "sha256:adae582bbb58144836831644ca9672210c0e5792bbb06a83e258cf507a8cc245",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:adae582bbb58144836831644ca9672210c0e5792bbb06a83e258cf507a8cc245"
+        },
+        {
+          "task_id": "AUD-001",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "node --test tests/bootstrap/ledger.test.mjs",
+          "argv": [
+            "node",
+            "--test",
+            "tests/bootstrap/ledger.test.mjs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:11:01.446Z",
+          "finished_at": "2026-09-21T17:11:07.511Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-001-bootstrap-ledger-regression-2026-09-21T17-11-01-446Z.json",
+          "log_path": "docs/implementation/evidence/aud-001-bootstrap-ledger-regression-2026-09-21T17-11-01-446Z.log",
+          "signal": null,
+          "duration_ms": 6065,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-001-bootstrap-ledger-regression-2026-09-21T17-11-01-446Z-source-before.json",
+            "content_hash": "sha256:adae582bbb58144836831644ca9672210c0e5792bbb06a83e258cf507a8cc245",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-001-bootstrap-ledger-regression-2026-09-21T17-11-01-446Z-source-after.json",
+            "content_hash": "sha256:adae582bbb58144836831644ca9672210c0e5792bbb06a83e258cf507a8cc245",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:adae582bbb58144836831644ca9672210c0e5792bbb06a83e258cf507a8cc245"
+        },
+        {
+          "task_id": "AUD-001",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm test:unit",
+          "argv": [
+            "pnpm",
+            "test:unit"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:11:35.242Z",
+          "finished_at": "2026-09-21T17:12:41.595Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-001-unit-regression-with-new-groups-2026-09-21T17-11-35-242Z.json",
+          "log_path": "docs/implementation/evidence/aud-001-unit-regression-with-new-groups-2026-09-21T17-11-35-242Z.log",
+          "signal": null,
+          "duration_ms": 66353,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-001-unit-regression-with-new-groups-2026-09-21T17-11-35-242Z-source-before.json",
+            "content_hash": "sha256:8b7ffa53a4def4422447c7864bb0db36f5b42686a1a731d64c6b51abaa241af6",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-001-unit-regression-with-new-groups-2026-09-21T17-11-35-242Z-source-after.json",
+            "content_hash": "sha256:8b7ffa53a4def4422447c7864bb0db36f5b42686a1a731d64c6b51abaa241af6",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:8b7ffa53a4def4422447c7864bb0db36f5b42686a1a731d64c6b51abaa241af6"
+        },
+        {
+          "task_id": "AUD-001",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "node tests/bootstrap/a02-baseline-repro.mjs",
+          "argv": [
+            "node",
+            "tests/bootstrap/a02-baseline-repro.mjs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:12:43.477Z",
+          "finished_at": "2026-09-21T17:12:46.534Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/aud-001-a02-baseline-repro-2026-09-21T17-12-43-477Z.json",
+          "log_path": "docs/implementation/evidence/aud-001-a02-baseline-repro-2026-09-21T17-12-43-477Z.log",
+          "signal": null,
+          "duration_ms": 3057,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-001-a02-baseline-repro-2026-09-21T17-12-43-477Z-source-before.json",
+            "content_hash": "sha256:8b7ffa53a4def4422447c7864bb0db36f5b42686a1a731d64c6b51abaa241af6",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-001-a02-baseline-repro-2026-09-21T17-12-43-477Z-source-after.json",
+            "content_hash": "sha256:8b7ffa53a4def4422447c7864bb0db36f5b42686a1a731d64c6b51abaa241af6",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": false,
+          "content_hash": null
+        },
+        {
+          "task_id": "AUD-001",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "node tests/bootstrap/a02-baseline-repro.mjs",
+          "argv": [
+            "node",
+            "tests/bootstrap/a02-baseline-repro.mjs"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:13:44.460Z",
+          "finished_at": "2026-09-21T17:13:51.645Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/aud-001-a02-baseline-repro-fixed-2026-09-21T17-13-44-460Z.json",
+          "log_path": "docs/implementation/evidence/aud-001-a02-baseline-repro-fixed-2026-09-21T17-13-44-460Z.log",
+          "signal": null,
+          "duration_ms": 7185,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-001-a02-baseline-repro-fixed-2026-09-21T17-13-44-460Z-source-before.json",
+            "content_hash": "sha256:9b277353adde81bf533217fbe42edb2ed252bd43541dcace26f3e3ecf39852bb",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-001-a02-baseline-repro-fixed-2026-09-21T17-13-44-460Z-source-after.json",
+            "content_hash": "sha256:9b277353adde81bf533217fbe42edb2ed252bd43541dcace26f3e3ecf39852bb",
+            "completeness": "COMPLETE",
+            "file_count": 2076,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": false,
+          "content_hash": null
+        }
+      ],
+      "blockers": [],
+      "next_action": "Advance AUD-002 Gate mid-evaluation counterexample and AUD-003 protocol freeze."
+    },
+    {
+      "task_id": "AUD-002",
+      "title": "复现 Gate 认证中途变更，再决定最小修复",
+      "dependencies": [
+        "AUD-001"
+      ],
+      "status": "NOT_STARTED",
+      "actual_files": [],
+      "verification": [],
+      "blockers": [],
+      "next_action": "Write tests/integration/gate/during-evaluation-change.test.ts against a real sealed run."
+    },
+    {
+      "task_id": "AUD-003",
+      "title": "冻结 M3 事实协议与统一适配器接入",
+      "dependencies": [
+        "AUD-001"
+      ],
+      "status": "DONE",
+      "actual_files": [
+        "docs/adr/ADR-012-m3-evidence-runtime.md",
+        "packages/core/src/services/adapter-registry.ts",
+        "packages/core/src/services/environment-assessment.ts",
+        "packages/core/src/services/probe-assertions.ts",
+        "packages/core/src/services/http-policy.ts",
+        "schemas/0.1/environment-finalization.schema.json",
+        "schemas/0.1/environment-cleanup.schema.json",
+        "schemas/0.1/environment-assessment.schema.json",
+        "schemas/0.1/backend-observation.schema.json",
+        "schemas/0.1/probe-declaration.schema.json",
+        "schemas/fixtures.json",
+        "packages/contracts/src/index.ts",
+        "packages/core/src/ports/evidence.ts",
+        "packages/core/src/storage/file-evidence-store.ts",
+        "tests/contract/m3-runtime-contracts.test.ts"
+      ],
+      "verification": [
+        {
+          "task_id": "AUD-003",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm exec vitest run tests/contract/m3-runtime-contracts.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/contract/m3-runtime-contracts.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:40:48.820Z",
+          "finished_at": "2026-09-21T17:40:53.435Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-003-m3-runtime-contracts-green-2026-09-21T17-40-48-820Z.json",
+          "log_path": "docs/implementation/evidence/aud-003-m3-runtime-contracts-green-2026-09-21T17-40-48-820Z.log",
+          "signal": null,
+          "duration_ms": 4615,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-003-m3-runtime-contracts-green-2026-09-21T17-40-48-820Z-source-before.json",
+            "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9",
+            "completeness": "COMPLETE",
+            "file_count": 2101,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-003-m3-runtime-contracts-green-2026-09-21T17-40-48-820Z-source-after.json",
+            "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9",
+            "completeness": "COMPLETE",
+            "file_count": 2101,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9"
+        },
+        {
+          "task_id": "AUD-003",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm exec vitest run tests/contract",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/contract"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:40:55.021Z",
+          "finished_at": "2026-09-21T17:41:07.583Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-003-contract-suites-green-2026-09-21T17-40-55-021Z.json",
+          "log_path": "docs/implementation/evidence/aud-003-contract-suites-green-2026-09-21T17-40-55-021Z.log",
+          "signal": null,
+          "duration_ms": 12562,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-003-contract-suites-green-2026-09-21T17-40-55-021Z-source-before.json",
+            "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9",
+            "completeness": "COMPLETE",
+            "file_count": 2101,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-003-contract-suites-green-2026-09-21T17-40-55-021Z-source-after.json",
+            "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9",
+            "completeness": "COMPLETE",
+            "file_count": 2101,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9"
+        },
+        {
+          "task_id": "AUD-003",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm verify:schemas",
+          "argv": [
+            "pnpm",
+            "verify:schemas"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:41:09.619Z",
+          "finished_at": "2026-09-21T17:41:13.588Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-003-schemas-generated-types-2026-09-21T17-41-09-619Z.json",
+          "log_path": "docs/implementation/evidence/aud-003-schemas-generated-types-2026-09-21T17-41-09-619Z.log",
+          "signal": null,
+          "duration_ms": 3969,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-003-schemas-generated-types-2026-09-21T17-41-09-619Z-source-before.json",
+            "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9",
+            "completeness": "COMPLETE",
+            "file_count": 2101,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-003-schemas-generated-types-2026-09-21T17-41-09-619Z-source-after.json",
+            "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9",
+            "completeness": "COMPLETE",
+            "file_count": 2101,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9"
+        },
+        {
+          "task_id": "AUD-003",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:41:15.723Z",
+          "finished_at": "2026-09-21T17:41:23.491Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-003-typecheck-boundaries-green-2026-09-21T17-41-15-723Z.json",
+          "log_path": "docs/implementation/evidence/aud-003-typecheck-boundaries-green-2026-09-21T17-41-15-723Z.log",
+          "signal": null,
+          "duration_ms": 7768,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-003-typecheck-boundaries-green-2026-09-21T17-41-15-723Z-source-before.json",
+            "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9",
+            "completeness": "COMPLETE",
+            "file_count": 2101,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-003-typecheck-boundaries-green-2026-09-21T17-41-15-723Z-source-after.json",
+            "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9",
+            "completeness": "COMPLETE",
+            "file_count": 2101,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9"
+        },
+        {
+          "task_id": "AUD-003",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm verify:boundaries",
+          "argv": [
+            "pnpm",
+            "verify:boundaries"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:41:25.306Z",
+          "finished_at": "2026-09-21T17:41:29.172Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-003-boundaries-green-2026-09-21T17-41-25-306Z.json",
+          "log_path": "docs/implementation/evidence/aud-003-boundaries-green-2026-09-21T17-41-25-306Z.log",
+          "signal": null,
+          "duration_ms": 3866,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-003-boundaries-green-2026-09-21T17-41-25-306Z-source-before.json",
+            "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9",
+            "completeness": "COMPLETE",
+            "file_count": 2101,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-003-boundaries-green-2026-09-21T17-41-25-306Z-source-after.json",
+            "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9",
+            "completeness": "COMPLETE",
+            "file_count": 2101,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9"
+        },
+        {
+          "task_id": "AUD-003",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "c31b4e0e2e4ca2943363855e6099d2f24920a4e8",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm test:unit",
+          "argv": [
+            "pnpm",
+            "test:unit"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-21T17:41:31.014Z",
+          "finished_at": "2026-09-21T17:42:40.155Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-003-unit-regression-green-2026-09-21T17-41-31-014Z.json",
+          "log_path": "docs/implementation/evidence/aud-003-unit-regression-green-2026-09-21T17-41-31-014Z.log",
+          "signal": null,
+          "duration_ms": 69141,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-003-unit-regression-green-2026-09-21T17-41-31-014Z-source-before.json",
+            "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9",
+            "completeness": "COMPLETE",
+            "file_count": 2101,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-003-unit-regression-green-2026-09-21T17-41-31-014Z-source-after.json",
+            "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9",
+            "completeness": "COMPLETE",
+            "file_count": 2101,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:a7d825d478441b5fb196c3b23831f2d3aee4225b767a09f4fd2327d9df6406f9"
+        }
+      ],
+      "blockers": [],
+      "next_action": "Start SG-053 and SG-055 against the frozen protocol; Run/Gate registry wiring lands in SG-062."
+    },
+    {
+      "task_id": "AUD-004",
+      "title": "补齐 Linux 受控 Runner 能力，禁止平台假通过",
+      "dependencies": [
+        "AUD-003"
+      ],
+      "status": "NOT_STARTED",
+      "actual_files": [],
+      "verification": [],
+      "blockers": [],
+      "next_action": "Probe Linux capability availability before implementing the controlled runner path."
+    }
+  ]
+}

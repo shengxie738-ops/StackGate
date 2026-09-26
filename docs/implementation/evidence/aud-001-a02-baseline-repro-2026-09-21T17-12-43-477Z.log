@@ -1,0 +1,12 @@
+file:///G:/StackGate/tests/bootstrap/a02-baseline-repro.mjs:24
+  const rel = result.stderr.match(/Evidence: (\S+\.json)/)[1];
+                                                          ^
+
+TypeError: Cannot read properties of null (reading '1')
+    at runRecorder (file:///G:/StackGate/tests/bootstrap/a02-baseline-repro.mjs:24:59)
+    at file:///G:/StackGate/tests/bootstrap/a02-baseline-repro.mjs:48:16
+    at ModuleJob.run (node:internal/modules/esm/module_job:377:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:671:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.11.1

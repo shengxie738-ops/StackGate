@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackgate.local/schemas/0.1/probe-declaration.schema.json",
+  "title": "ProbeDeclaration",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "declaration_id": { "$ref": "common.schema.json#/$defs/SafeId" },
+    "operation_key": { "$ref": "common.schema.json#/$defs/OperationKey" },
+    "expected_status": { "type": "integer", "minimum": 100, "maximum": 599 },
+    "expected_media_type": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
+    "deadline_ms": { "type": "integer", "minimum": 1, "maximum": 60000 },
+    "max_response_bytes": { "type": "integer", "minimum": 1, "maximum": 1048576 },
+    "follow_redirects": { "const": false },
+    "assertions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "assertion_id": { "$ref": "common.schema.json#/$defs/SafeId" },
+          "pointer": { "type": "string", "pattern": "^/(?:[^/\\u0000-\\u001f\\u007f]|~[01])+(?:/(?:[^/\\u0000-\\u001f\\u007f]|~[01])+)*$" },
+          "operator": { "type": "string", "enum": ["exists", "type", "equals", "number_lt", "number_lte", "number_gt", "number_gte"] },
+          "expected": { "anyOf": [ { "type": "string" }, { "type": "number" }, { "type": "boolean" }, { "type": "null" } ] }
+        },
+        "required": ["assertion_id", "pointer", "operator"],
+        "additionalProperties": false
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    }
+  },
+  "required": ["schema_version", "declaration_id", "operation_key", "expected_status", "deadline_ms", "max_response_bytes", "follow_redirects", "assertions"],
+  "additionalProperties": false
+}

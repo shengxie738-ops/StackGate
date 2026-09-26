@@ -1,0 +1,12 @@
+{
+  "schema_version": "0.1",
+  "declaration_id": "performance_probe",
+  "operation_key": "api:GET /api/performance",
+  "expected_status": 200,
+  "deadline_ms": 5000,
+  "max_response_bytes": 1048576,
+  "follow_redirects": true,
+  "assertions": [
+    { "assertion_id": "total_return_value", "pointer": "data/performance/total_return", "operator": "javascript", "expected": "globalThis.eval(response)" }
+  ]
+}

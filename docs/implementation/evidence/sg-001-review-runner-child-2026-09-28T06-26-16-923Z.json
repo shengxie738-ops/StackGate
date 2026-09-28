@@ -1,0 +1,43 @@
+{
+  "task_id": "SG-001",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "2791cf5f221d6f917101079332f4231c6a450fa7",
+    "branch": "V2",
+    "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "command": "node -e process.exit(7)",
+  "argv": [
+    "node",
+    "-e",
+    "process.exit(7)"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-28T06:26:16.923Z",
+  "finished_at": "2026-09-28T06:26:21.278Z",
+  "exit_code": 7,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/sg-001-review-runner-child-2026-09-28T06-26-16-923Z.json",
+  "log_path": "docs/implementation/evidence/sg-001-review-runner-child-2026-09-28T06-26-16-923Z.log",
+  "signal": null,
+  "duration_ms": 4355,
+  "source_before": {
+    "manifest_path": "docs/implementation/evidence/sg-001-review-runner-child-2026-09-28T06-26-16-923Z-source-before.json",
+    "content_hash": "sha256:8383ab6e5c53fe66b1ce8747b39e0a6d8f1013932afa690f72389502349e1ea7",
+    "completeness": "COMPLETE",
+    "file_count": 2346,
+    "incomplete_reasons": []
+  },
+  "source_after": {
+    "manifest_path": "docs/implementation/evidence/sg-001-review-runner-child-2026-09-28T06-26-16-923Z-source-after.json",
+    "content_hash": "sha256:8383ab6e5c53fe66b1ce8747b39e0a6d8f1013932afa690f72389502349e1ea7",
+    "completeness": "COMPLETE",
+    "file_count": 2346,
+    "incomplete_reasons": []
+  },
+  "source_changed_during_verification": false,
+  "verification_attributable": false,
+  "content_hash": null
+}

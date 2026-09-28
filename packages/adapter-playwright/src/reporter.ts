@@ -1,6 +1,6 @@
-import { mkdirSync, renameSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import { assertNoCompletedReport, reporterIdentity, stableTestId, UNANNOTATED_TEST_ID } from './inventory.js';
+import { readFileSync } from 'node:fs';
+import { assertNoCompletedReport, atomicWriteJson, reporterIdentity, stableTestId, UNANNOTATED_TEST_ID } from './inventory.js';
 
 /**
  * Collects the real Playwright run into the versioned `playwright-report` protocol.
@@ -26,6 +26,7 @@ export default class StackGateReporter {
   private consoleLines: {test_id: string; level: 'log' | 'info' | 'warning' | 'error'; message: string; redaction_state: 'REDACTED' | 'NOT_REQUIRED'}[] = [];
   private failures = 0;
   private interrupted = false;
+  private unwritable = false;
   private diagnostics: string[] = [];
 
   constructor(options: ReporterOptions = {}) {
@@ -36,9 +37,12 @@ export default class StackGateReporter {
       try {
         assertNoCompletedReport(this.directory, this.reportFile);
       } catch (error) {
-        this.diagnostics.push(`PRE_EXISTING_REPORT:${(error as Error).message}`);
+        // Anything already on the target path makes this reporter a non-writer for the whole run.
+        this.unwritable = true;
+        this.diagnostics.push(`WRITE_REFUSED:${(error as Error).message}`);
       }
     } else {
+      this.unwritable = true;
       this.diagnostics.push(`IDENTITY_REJECTED:${'error' in this.identity ? this.identity.error : 'unknown'}`);
     }
   }
@@ -89,7 +93,7 @@ export default class StackGateReporter {
       const output = result.attachments?.find(item => item.name === 'stackgate-requests');
       if (output?.path) {
         try {
-          const parsed = JSON.parse(require('node:fs').readFileSync(output.path, 'utf8'));
+          const parsed = JSON.parse(readFileSync(output.path, 'utf8'));
           if (Array.isArray(parsed)) this.requests = [...this.requests, ...parsed];
         } catch (error) {
           this.diagnostics.push(`REQUEST_COLLECTION_FAILED:${(error as Error).message}`);
@@ -107,22 +111,30 @@ export default class StackGateReporter {
 
   onEnd(result: {status?: string}) {
     try {
-      const document = this.build(result.status);
       if (!this.directory) return;
-      mkdirSync(this.directory, {recursive: true});
-      const target = path.join(this.directory, this.reportFile);
-      const temporary = path.join(this.directory, `.${this.reportFile}.partial`);
-      writeFileSync(temporary, `${JSON.stringify(document, null, 2)}\n`, 'utf8');
-      renameSync(temporary, target);
+      if (this.unwritable) {
+        this.diagnostics.push('ONEND_SKIPPED:reporter is not a writer for this attempt');
+        this.writeOwnDiagnostics();
+        return;
+      }
+      atomicWriteJson(this.directory, this.reportFile, this.build(result.status));
     } catch (error) {
       this.diagnostics.push(`ONEND_FAILED:${(error as Error).message}`);
-      try {
-        if (this.directory) {
-          mkdirSync(this.directory, {recursive: true});
-          writeFileSync(path.join(this.directory, 'playwright-reporter-error.json'),
-            `${JSON.stringify({schema_version: '0.1', diagnostics: this.diagnostics}, null, 2)}\n`, 'utf8');
-        }
-      } catch { /* the collector still has to see a missing completed report */ }
+      this.writeOwnDiagnostics();
+    }
+  }
+
+  /** Diagnostics go to their own never-replaced artifact so a losing reporter cannot damage another's bytes. */
+  private writeOwnDiagnostics(): void {
+    if (!this.directory) return;
+    try {
+      atomicWriteJson(this.directory, 'playwright-reporter-error.json', {
+        schema_version: '0.1',
+        kind: 'stackgate-playwright-reporter-error',
+        diagnostics: this.diagnostics.map(message => redact(message)),
+      });
+    } catch {
+      process.stderr.write(`stackgate reporter could not record diagnostics: ${this.diagnostics.join(' | ')}\n`);
     }
   }
 

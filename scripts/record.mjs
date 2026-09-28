@@ -8,19 +8,22 @@ import { captureVerificationInputs } from './verification-inputs.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const [taskId, label, separator, command, ...args] = process.argv.slice(2);
 const AUDIT_LEDGER = 'docs/implementation/audit-m3-fixes.json';
+const V2_LEDGER = 'docs/implementation/audit-v2-fixes.json';
+function registeredIn(ledgerFile, value) {
+  try {
+    const ledger = JSON.parse(readFileSync(path.join(root, ledgerFile), 'utf8'));
+    return (ledger.tasks ?? []).some(task => task.task_id === value);
+  } catch { return false; }
+}
 function allowedTaskId(value) {
   if (/^SG-\d{3}$/.test(value) && Number(value.slice(3)) >= 1 && Number(value.slice(3)) <= 100) return true;
   if (/^M1-R0[0-7]$/.test(value)) return true;
-  if (/^AUD-\d{3}$/.test(value)) {
-    try {
-      const ledger = JSON.parse(readFileSync(path.join(root, AUDIT_LEDGER), 'utf8'));
-      return (ledger.tasks ?? []).some(task => task.task_id === value);
-    } catch { return false; }
-  }
-  return false;
+  if (/^AUD-\d{3}$/.test(value)) return registeredIn(AUDIT_LEDGER, value);
+  // V2 repair ids are admitted only by exact registration in the ledger, never by the shape alone.
+  return registeredIn(V2_LEDGER, value);
 }
 if (!allowedTaskId(taskId ?? '') || !/^[a-z0-9-]+$/i.test(label ?? '') || separator !== '--' || !command) {
-  console.error('Usage: node scripts/record.mjs SG-001|AUD-000 label -- command args...');
+  console.error('Usage: node scripts/record.mjs SG-001|AUD-000|V2-R00 label -- command args...');
   process.exit(64);
 }
 const startedAt = new Date().toISOString();

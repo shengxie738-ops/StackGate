@@ -1,0 +1,6 @@
+inventory exports: STACKGATE_ID_ANNOTATION, UNANNOTATED_TEST_ID, atomicWriteJson, completedReportExists, reporterIdentity, stableTestId
+assertNoCompletedReport exported: undefined
+before="{\"completed\":true,\"marker\":\"keep\"}\n"
+after ="{\n  \"completed\": false,\n  \"marker\": \"clobbered\"\n}\n"
+OVERWRITE_CONFIRMED: atomicWriteJson replaced an existing completed report
+RED_EXIT=1

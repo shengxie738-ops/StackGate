@@ -1,0 +1,40 @@
+# V2-R00 section 1.1 workspace verification (run from G:/StackGate)
+$ date -u
+Mon Sep 28 05:54:58 UTC 2026
+$ git status --short
+?? docs/implementation/evidence/v2-r00-build-red-2026-09-28T05-52-00-000Z.log
+?? docs/implementation/evidence/v2-r00-m3-validator-attributable-gap-INVALID-probe1-inconclusive-2026-09-28T06-00-00-000Z.json
+?? docs/implementation/evidence/v2-r00-m3-validator-attributable-gap-INVALID-probe1-inconclusive-2026-09-28T06-00-00-000Z.log
+?? docs/implementation/evidence/v2-r00-m3-validator-attributable-gap-red-2026-09-28T06-02-00-000Z.log
+?? docs/implementation/evidence/v2-r00-recorder-rejects-v2-ids-red-2026-09-28T06-00-30-000Z.log
+?? docs/implementation/evidence/v2-r00-reporter-esm-import-red-2026-09-28T05-56-00-000Z.log
+?? docs/implementation/evidence/v2-r00-target-tests-baseline-2026-09-28T05-57-00-000Z.log
+?? docs/implementation/evidence/v2-r00-typecheck-red-2026-09-28T05-50-00-000Z.log
+?? docs/implementation/evidence/v2-r00-workspace-verification-2026-09-28T06-04-00-000Z.log
+?? docs/plans/StackGate_V2_Audit_2791cf5.md
+?? docs/plans/StackGate_V2_Execution_Plan_v0.4.md
+$ git branch --show-current
+V2
+$ git rev-parse HEAD
+2791cf5f221d6f917101079332f4231c6a450fa7
+$ git cat-file -e 2791cf5f221d6f917101079332f4231c6a450fa7^{commit} ; echo EXIT=$?
+EXIT=0
+$ git diff --name-status 2791cf5f221d6f917101079332f4231c6a450fa7 -- packages apps scripts schemas tests examples presets docs/implementation
+(empty above = no committed-path drift from the audit baseline)
+$ node --version
+v24.11.1
+$ pnpm --version
+11.2.2
+$ git ls-files --others --exclude-standard
+docs/implementation/evidence/v2-r00-build-red-2026-09-28T05-52-00-000Z.log
+docs/implementation/evidence/v2-r00-m3-validator-attributable-gap-INVALID-probe1-inconclusive-2026-09-28T06-00-00-000Z.json
+docs/implementation/evidence/v2-r00-m3-validator-attributable-gap-INVALID-probe1-inconclusive-2026-09-28T06-00-00-000Z.log
+docs/implementation/evidence/v2-r00-m3-validator-attributable-gap-red-2026-09-28T06-02-00-000Z.log
+docs/implementation/evidence/v2-r00-recorder-rejects-v2-ids-red-2026-09-28T06-00-30-000Z.log
+docs/implementation/evidence/v2-r00-reporter-esm-import-red-2026-09-28T05-56-00-000Z.log
+docs/implementation/evidence/v2-r00-target-tests-baseline-2026-09-28T05-57-00-000Z.log
+docs/implementation/evidence/v2-r00-typecheck-red-2026-09-28T05-50-00-000Z.log
+docs/implementation/evidence/v2-r00-workspace-verification-2026-09-28T06-04-00-000Z.log
+docs/plans/StackGate_V2_Audit_2791cf5.md
+docs/plans/StackGate_V2_Execution_Plan_v0.4.md
+CAPTURE_EXIT=0

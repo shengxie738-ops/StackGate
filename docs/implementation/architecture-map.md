@@ -22,7 +22,7 @@
 | `tests/fixtures/contracts/` | Baseline/target/candidate and separately approved upgrade examples | Failure candidates do not modify protected target |
 | `tests/fixtures/gate/` | Literal PASS/FAIL/INCOMPLETE/ERROR/STALE expected outcomes | Fixture data, not executed product evidence |
 | `tests/contract/toolchain.test.ts` | Actual external tool contracts | Executes real compiler, bundler and validators |
-| `scripts/verify-stage.mjs` | M0/M1 registered checks with actual child exits/logs and requested-stage binding | M1 requires integration and real oasdiff; M2+ explicitly unimplemented |
+| `scripts/verify-stage.mjs` | M0/M1/M2 registered checks with actual child exits/logs and requested-stage binding | M1 requires integration and real oasdiff; M2 registers the executor/evidence/gate/report/handoff loop; M3+ explicitly unimplemented |
 | `tools/compatibility-lock.json` | Observed versions, integrity and evidence references | Unknown integration capabilities remain UNKNOWN |
 | `packages/adapter-git/src/` | Actual baseline/worktree inspection and tracked/staged/dirty/untracked byte manifest | No fetch, hooks, filters, external diff or repository shell execution; explicit incomplete scope |
 | `packages/adapter-oasdiff/src/` | Strict OpenAPI load/ref/capability checks, pinned real tool, directional Ajv validation | No external references, unknown rules or coercion; schema validation is not business validation |

@@ -10,11 +10,20 @@
 
 M3 审计任务：AUD-003 DONE；详见 [audit-m3-fixes.json](audit-m3-fixes.json) 与 [M3 入口审计](M3-entry-audit.md)。
 
-下一步：Wire the probe into a real Run in SG-062; the bounded HTTP helper, declaration schema and core recomputation are verified.
+V2 审计修复任务：V2-R00 DONE、V2-R01 DONE（V2-R02—V2-R07 NOT_STARTED）；详见 [audit-v2-fixes.json](audit-v2-fixes.json) 与 [V2 审计基线](V2-audit-baseline.md)。基线 `2791cf5f221d6f917101079332f4231c6a450fa7` 与本地 HEAD 相同，记录时根 `pnpm typecheck` 退出 2、`pnpm build` 退出 1，这是当时的真实状态，不沿用 M2 的绿色记录。
+
+下一步：V2-R02 —— 把已确认 declaration 的 service/method/path 与实际 HTTP 请求逐字段绑定，使错误 path、空声明和 fragment 在产生任何网络流量之前被拒绝。
 
 ## 最近真实验证
 
-- pnpm exec vitest run tests/integration/probe/http.test.ts → 0 (PASSED); [evidence](evidence/sg-054-probe-http-green-2026-09-21T18-35-54-461Z.json)
+- pnpm lint → 0 (PASSED)，此前在 `2791cf5` 上因 `packages/adapter-playwright/src/reporter.ts` 的 `require('node:fs')` 退出 1；同一轮失败记录仍保留在 V2-R01 台账中; [evidence](evidence/v2-r01-repo-lint-green-2026-09-28T06-24-45-890Z.json)
+- pnpm test:unit → 0 (PASSED)，41 个 Vitest 单元文件与 63 项 bootstrap 测试全通过，含新增 `tests/bootstrap/v2-ledger.test.mjs` 与 `tests/bootstrap/reporter-dist.test.mjs`; [evidence](evidence/v2-r01-unit-and-bootstrap-suite-final-2026-09-28T06-25-34-886Z.json)
+- pnpm build → 0 (PASSED)，`dist/playwright-reporter.mjs` 首次真实产出; [evidence](evidence/v2-r01-root-build-final-2026-09-28T06-24-31-654Z.json)
+- pnpm typecheck → 0 (PASSED); [evidence](evidence/v2-r01-root-typecheck-final-2026-09-28T06-24-18-040Z.json)
+- pnpm exec vitest run tests/unit/v2/reporter-storage.test.ts tests/contract/playwright-reporter.test.ts → 0 (PASSED)，13 项; [evidence](evidence/v2-r01-storage-and-reporter-tests-final-2026-09-28T06-25-19-215Z.json)
+- pnpm test:contract → 0 (PASSED)，7 个文件; [evidence](evidence/v2-r01-contract-suite-2026-09-28T06-20-42-018Z.json)
+- node --test tests/bootstrap/v2-ledger.test.mjs → 0 (PASSED); [evidence](evidence/v2-r00-ledger-test-2026-09-28T05-59-41-376Z.json)
+- pnpm verify:source → 0 (PASSED); [evidence](evidence/v2-r00-verify-source-2026-09-28T06-00-13-849Z.json)
 - pnpm verify:schemas → 0 (PASSED); [evidence](evidence/sg-054-probe-declaration-schema-2026-09-21T18-36-28-032Z.json)
 - python -B -E -m py_compile presets/fastapi-react/scripts/probe_helpers.py presets/fastapi-react/scripts/stackgate_observation.py examples/contract-drift-demo/apps/api/scripts/probe_performance.py → 0 (PASSED); [evidence](evidence/sg-054-python-modules-compile-2026-09-21T18-36-36-490Z.json)
 - python -B -E -c "import ast,sys\nfor f in sys.argv[1:]:\n    ast.parse(open(f, encoding='utf-8').read(), f)\nprint('parsed', len(sys.argv)-1, 'modules')" presets/fastapi-react/scripts/probe_helpers.py presets/fastapi-react/scripts/stackgate_observation.py examples/contract-drift-demo/apps/api/scripts/probe_performance.py → 0 (PASSED); [evidence](evidence/sg-054-python-syntax-check-2026-09-21T18-36-56-060Z.json)

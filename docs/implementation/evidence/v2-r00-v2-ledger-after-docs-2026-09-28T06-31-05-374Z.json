@@ -1,0 +1,42 @@
+{
+  "task_id": "V2-R00",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "2791cf5f221d6f917101079332f4231c6a450fa7",
+    "branch": "V2",
+    "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "command": "node scripts/verify-v2-audit.mjs",
+  "argv": [
+    "node",
+    "scripts/verify-v2-audit.mjs"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-28T06:31:05.374Z",
+  "finished_at": "2026-09-28T06:31:07.433Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/v2-r00-v2-ledger-after-docs-2026-09-28T06-31-05-374Z.json",
+  "log_path": "docs/implementation/evidence/v2-r00-v2-ledger-after-docs-2026-09-28T06-31-05-374Z.log",
+  "signal": null,
+  "duration_ms": 2059,
+  "source_before": {
+    "manifest_path": "docs/implementation/evidence/v2-r00-v2-ledger-after-docs-2026-09-28T06-31-05-374Z-source-before.json",
+    "content_hash": "sha256:ea6027438a9095754fba0ec7443aa4d095b234635a967c5d28a471eb373a81a1",
+    "completeness": "COMPLETE",
+    "file_count": 2346,
+    "incomplete_reasons": []
+  },
+  "source_after": {
+    "manifest_path": "docs/implementation/evidence/v2-r00-v2-ledger-after-docs-2026-09-28T06-31-05-374Z-source-after.json",
+    "content_hash": "sha256:ea6027438a9095754fba0ec7443aa4d095b234635a967c5d28a471eb373a81a1",
+    "completeness": "COMPLETE",
+    "file_count": 2346,
+    "incomplete_reasons": []
+  },
+  "source_changed_during_verification": false,
+  "verification_attributable": true,
+  "content_hash": "sha256:ea6027438a9095754fba0ec7443aa4d095b234635a967c5d28a471eb373a81a1"
+}

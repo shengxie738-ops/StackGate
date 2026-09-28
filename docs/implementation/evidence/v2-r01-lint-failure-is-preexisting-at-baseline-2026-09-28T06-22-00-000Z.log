@@ -1,0 +1,11 @@
+# lint of the BASELINE blob (2791cf5) via stdin, same path so the same config applies
+
+G:\StackGate\packages\adapter-playwright\src\reporter.ts
+  92:37  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+✖ 1 problem (1 error, 0 warnings)
+
+BASELINE_LINT_EXIT=1
+
+# baseline line containing the require():
+92:          const parsed = JSON.parse(require('node:fs').readFileSync(output.path, 'utf8'));

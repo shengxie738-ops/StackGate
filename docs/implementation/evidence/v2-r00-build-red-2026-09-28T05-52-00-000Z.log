@@ -1,0 +1,21 @@
+packages/adapter-playwright/src/reporter.ts(3,10): error TS2305: Module '"./inventory.js"' has no exported member 'assertNoCompletedReport'.
+node:internal/errors:985
+  const err = new Error(message);
+              ^
+
+Error: Command failed: F:\node.exe node_modules/typescript/bin/tsc --project tsconfig.build.json
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:925:11)
+    at execFileSync (node:child_process:961:15)
+    at file:///G:/StackGate/scripts/build.mjs:6:1 {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 32360,
+  stdout: null,
+  stderr: null
+}
+
+Node.js v24.11.1
+BUILD_EXIT=1

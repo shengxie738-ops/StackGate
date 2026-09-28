@@ -1,0 +1,18 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/contract/m3-runtime-contracts.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 133[2mms[22m[39m
+ [32m✓[39m tests/integration/probe/http.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 6388[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a declared operation against a listener that is not there [33m 2793[2mms[22m[39m
+   [33m[2m✓[22m[39m sends zero requests when the target origin is not one of the authorized bindings [33m 345[2mms[22m[39m
+   [33m[2m✓[22m[39m records a real successful probe and lets the core recompute the same assertions [33m 519[2mms[22m[39m
+   [33m[2m✓[22m[39m does not promote a self-reported schema_valid over a recomputed type mismatch [33m 616[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a redirect instead of following it to another origin [33m 526[2mms[22m[39m
+   [33m[2m✓[22m[39m stops at the declared response budget and at the deadline instead of buffering [33m 1585[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m20 passed[39m[22m[90m (20)[39m
+[2m   Start at [22m 13:51:58
+[2m   Duration [22m 13.10s[2m (transform 1.37s, setup 0ms, import 10.38s, tests 6.52s, environment 1ms)[22m
+
+TARGET_TEST_EXIT=0

@@ -1,0 +1,20 @@
+✔ the plan assertion fragment holds for a minimal ledger and its broken variants (4.4841ms)
+✔ the shipped v2 ledger validates and carries exactly eight repair tasks (0.9702ms)
+✔ only the eight registered ids are accepted, V2-R99 is not (1.2309ms)
+✔ a missing repair task is rejected (0.5779ms)
+✔ unknown dependencies, cycles and premature DONE are rejected (3.1318ms)
+✔ illegal status and relative path escapes are rejected (1.0702ms)
+✔ DONE cannot be closed by evidence that is not attributable to one source snapshot (0.2766ms)
+✔ a PASSED record taken while the source drifted is rejected (1.2651ms)
+✔ evidence that belongs to another task id is rejected (0.2674ms)
+✔ BLOCKED without a recorded blocker is rejected (0.6878ms)
+✔ the pre-existing M3 validator still closes DONE on non-attributable evidence (1ms)
+✔ the recorder accepts only ids registered in the v2 ledger (203.8847ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 350.5021

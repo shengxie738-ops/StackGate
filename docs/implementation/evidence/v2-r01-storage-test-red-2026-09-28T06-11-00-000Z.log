@@ -1,0 +1,36 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [31m❯[39m tests/unit/v2/reporter-storage.test.ts [2m([22m[2m0 test[22m[2m)[22m
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Suites 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m tests/unit/v2/reporter-storage.test.ts[2m [ tests/unit/v2/reporter-storage.test.ts ][22m
+[31m[1mError[22m: Transform failed with 1 error:
+G:/StackGate/tests/unit/v2/reporter-storage.test.ts:49:4: ERROR: Unexpected "else"[39m
+  Plugin: [35mvite:esbuild[39m
+  File: [36mG:/StackGate/tests/unit/v2/reporter-storage.test.ts[39m:49:4
+[33m  
+  [33mUnexpected "else"[33m
+  47 |    } catch {
+  48 |      // Symboling linking may be refused by the platform; the hard-link case above already pins the link rule.
+  49 |    } else {
+     |      ^
+  50 |      expect(() => assertNoCompletedReport(directory)).toThrow(/REPORT_TARGET_IS_A_LINK/);
+  51 |      expect(() => atomicWriteJson(directory, reportName, {completed: true})).toThrow(/REPORT_TARGET_IS_A_LINK/);
+  [39m
+[90m [2m❯[22m failureErrorWithLog node_modules/.pnpm/esbuild@0.28.2/node_modules/esbuild/lib/main.js:[2m1752:15[22m[39m
+[90m [2m❯[22m node_modules/.pnpm/esbuild@0.28.2/node_modules/esbuild/lib/main.js:[2m1019:50[22m[39m
+[90m [2m❯[22m responseCallbacks.<computed> node_modules/.pnpm/esbuild@0.28.2/node_modules/esbuild/lib/main.js:[2m886:9[22m[39m
+[90m [2m❯[22m handleIncomingPacket node_modules/.pnpm/esbuild@0.28.2/node_modules/esbuild/lib/main.js:[2m941:12[22m[39m
+[90m [2m❯[22m Socket.readFromStdout node_modules/.pnpm/esbuild@0.28.2/node_modules/esbuild/lib/main.js:[2m864:7[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [2mno tests[22m
+[2m   Start at [22m 14:09:48
+[2m   Duration [22m 379ms[2m (transform 0ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)[22m
+
+STORAGE_TEST_EXIT=1

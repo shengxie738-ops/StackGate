@@ -1,0 +1,44 @@
+{
+  "task_id": "V2-R01",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "2791cf5f221d6f917101079332f4231c6a450fa7",
+    "branch": "V2",
+    "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "command": "node --input-type=module -e \"import('./dist/playwright-reporter.mjs').then(m=>{if(typeof m.default!=='function')process.exitCode=1})\"",
+  "argv": [
+    "node",
+    "--input-type=module",
+    "-e",
+    "import('./dist/playwright-reporter.mjs').then(m=>{if(typeof m.default!=='function')process.exitCode=1})"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-28T06:18:51.789Z",
+  "finished_at": "2026-09-28T06:18:54.778Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/v2-r01-built-esm-load-2026-09-28T06-18-51-789Z.json",
+  "log_path": "docs/implementation/evidence/v2-r01-built-esm-load-2026-09-28T06-18-51-789Z.log",
+  "signal": null,
+  "duration_ms": 2989,
+  "source_before": {
+    "manifest_path": "docs/implementation/evidence/v2-r01-built-esm-load-2026-09-28T06-18-51-789Z-source-before.json",
+    "content_hash": "sha256:073aed9bb1e6bea0a3017c202614aecf9bf044a62b3c1c93639f1fb195a1503a",
+    "completeness": "COMPLETE",
+    "file_count": 2346,
+    "incomplete_reasons": []
+  },
+  "source_after": {
+    "manifest_path": "docs/implementation/evidence/v2-r01-built-esm-load-2026-09-28T06-18-51-789Z-source-after.json",
+    "content_hash": "sha256:073aed9bb1e6bea0a3017c202614aecf9bf044a62b3c1c93639f1fb195a1503a",
+    "completeness": "COMPLETE",
+    "file_count": 2346,
+    "incomplete_reasons": []
+  },
+  "source_changed_during_verification": false,
+  "verification_attributable": true,
+  "content_hash": "sha256:073aed9bb1e6bea0a3017c202614aecf9bf044a62b3c1c93639f1fb195a1503a"
+}

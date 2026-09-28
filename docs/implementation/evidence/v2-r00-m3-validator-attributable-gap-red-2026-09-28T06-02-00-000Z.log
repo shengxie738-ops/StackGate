@@ -1,0 +1,3 @@
+AUDIT_M3_VALIDATOR_ERRORS=[]
+GAP_CONFIRMED: non-attributable DONE is accepted by the M3 validator
+GAP_EXIT=1

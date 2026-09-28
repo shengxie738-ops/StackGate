@@ -1,0 +1,153 @@
+$ node scripts/test-unit.mjs
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/unit/ports.test.ts [2m([22m[2m27 tests[22m[2m)[22m[33m 10971[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain IO [33m 471[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain dynamic IO [33m 461[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain time [33m 448[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain date constructor [33m 478[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain environment [33m 510[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain console IO [33m 687[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain require alias [33m 859[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain indirect random [33m 912[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain spread clock [33m 859[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain network [33m 685[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects test fake import [33m 621[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects reporter runner [33m 603[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects reporter execution [33m 553[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects reporter computed execution [33m 677[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects reporter destructured execution [33m 686[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects IO reached indirectly through a domain helper [33m 701[2mms[22m[39m
+   [33m[2m✓[22m[39m allows pure objects, type-only ports and words in comments or strings [33m 752[2mms[22m[39m
+ [32m✓[39m tests/unit/bootstrap.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 3828[2mms[22m[39m
+   [33m[2m✓[22m[39m built help is executable without a TypeScript runtime [33m 546[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects unsupported arguments and combinations with exit 64 [33m 1208[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects the implemented run command when its required plan is missing [33m 582[2mms[22m[39m
+   [33m[2m✓[22m[39m prints package version [33m 455[2mms[22m[39m
+   [33m[2m✓[22m[39m an empty test selection exits nonzero [33m 1032[2mms[22m[39m
+ [32m✓[39m tests/unit/storage/cache.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 996[2mms[22m[39m
+   [33m[2m✓[22m[39m bounds retained bytes and never follows a substituted cache link [33m 477[2mms[22m[39m
+ [32m✓[39m tests/unit/v2/reporter-storage.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 568[2mms[22m[39m
+ [32m✓[39m tests/unit/runner/scheduler.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 18007[2mms[22m[39m
+   [33m[2m✓[22m[39m runs A to B/C to D with lexicographic starts and real independent concurrency [33m 992[2mms[22m[39m
+   [33m[2m✓[22m[39m failure blocks only dependent branches and cancellation stops new steps [33m 2186[2mms[22m[39m
+   [33m[2m✓[22m[39m serializes shared resources while independent resources progress [33m 3534[2mms[22m[39m
+   [33m[2m✓[22m[39m does not invent a second result when finished event persistence fails [33m 925[2mms[22m[39m
+   [33m[2m✓[22m[39m cancels or times out while another owner holds a resource without removing its lock [33m 6915[2mms[22m[39m
+   [33m[2m✓[22m[39m excludes another whole run even when its workspace locks differ [33m 2516[2mms[22m[39m
+   [33m[2m✓[22m[39m records queue waiting separately from actual execution duration [33m 926[2mms[22m[39m
+ [32m✓[39m tests/unit/fixtures.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 598[2mms[22m[39m
+   [33m[2m✓[22m[39m validates all OpenAPI documents against the retained official document schema and strict response schemas [33m 508[2mms[22m[39m
+ [32m✓[39m tests/unit/openapi/runtime-validator.test.ts [2m([22m[2m23 tests[22m[2m)[22m[33m 372[2mms[22m[39m
+ [32m✓[39m tests/unit/storage/atomic-write.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 176[2mms[22m[39m
+ [32m✓[39m tests/unit/config/init-safety.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 235[2mms[22m[39m
+ [32m✓[39m tests/unit/tool-registry.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 188[2mms[22m[39m
+ [32m✓[39m tests/unit/contracts/run-schema.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 130[2mms[22m[39m
+ [32m✓[39m tests/unit/storage/paths.test.ts [2m([22m[2m27 tests[22m[2m)[22m[32m 127[2mms[22m[39m
+ [32m✓[39m tests/unit/config/parse.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 140[2mms[22m[39m
+ [32m✓[39m tests/unit/select-checks.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 131[2mms[22m[39m
+ [32m✓[39m tests/unit/openapi/safe-loader.test.ts [2m([22m[2m60 tests[22m[2m)[22m[32m 159[2mms[22m[39m
+ [32m✓[39m tests/unit/contracts/config-schema.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 180[2mms[22m[39m
+ [32m✓[39m tests/unit/contracts/primitives.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 163[2mms[22m[39m
+ [32m✓[39m tests/unit/contracts/task-schema.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 133[2mms[22m[39m
+ [32m✓[39m tests/unit/config/execution-inputs.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 122[2mms[22m[39m
+ [32m✓[39m tests/unit/plan/dag.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 104[2mms[22m[39m
+ [32m✓[39m tests/unit/gate/command-provenance.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+ [32m✓[39m tests/unit/impact/selection.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m tests/unit/impact/typescript.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+ [32m✓[39m tests/unit/gate/exit-priority.test.ts [2m([22m[2m65 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m tests/unit/reports/junit-input.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m tests/unit/impact/mappings.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m tests/unit/reports/consistency.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m tests/unit/gate/truth-table.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m tests/unit/reports/junit-output.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m tests/unit/gate/acceptance-boundaries.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m tests/unit/reports/json.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m tests/unit/openapi/three-way.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m tests/unit/policy/drift.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m tests/unit/freshness.test.ts [2m([22m[2m46 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m tests/unit/config/merge.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m tests/unit/storage/hash.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m tests/unit/reports/markdown.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m tests/unit/reports/terminal.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m tests/unit/run-evaluation.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m tests/unit/openapi/public-scan-report.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m tests/unit/gate/plan-binding.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m41 passed[39m[22m[90m (41)[39m
+[2m      Tests [22m [1m[32m525 passed[39m[22m[90m (525)[39m
+[2m   Start at [22m 14:25:38
+[2m   Duration [22m 37.74s[2m (transform 2.46s, setup 0ms, import 16.87s, tests 37.55s, environment 6ms)[22m
+
+✔ current audit ledger validates with all five audit task ids (20.3769ms)
+✔ duplicate audit task ids are rejected (0.3739ms)
+✔ unknown status values are rejected (0.2094ms)
+✔ DONE without a passing verification is rejected (0.8828ms)
+✔ DONE without actual files is rejected (0.2954ms)
+✔ evidence that belongs to another task id is rejected (0.8407ms)
+✔ relative paths escaping the repository are rejected (0.2508ms)
+✔ dependency cycles are rejected (0.1976ms)
+✔ BLOCKED without a recorded blocker is rejected (0.1729ms)
+✔ audit records retain actual child failure and repository identity (8851.4385ms)
+✔ built CLI help exposes only implemented commands (672.8074ms)
+✔ unknown CLI option returns configuration error (762.4016ms)
+✔ plan has 100 unique sequential tasks and original dependencies (6.4538ms)
+✔ rejects duplicate ID (2.2301ms)
+✔ rejects missing dependency (3.1941ms)
+✔ rejects dependency cycle (1.5424ms)
+✔ rejects DONE without evidence (1.1626ms)
+✔ rejects illegal status (1.2827ms)
+✔ rejects early READY (1.4821ms)
+✔ rejects missing task (3.4142ms)
+✔ rejects absolute file path (1.4864ms)
+✔ rejects absolute evidence path (1.2947ms)
+✔ rejects traversal evidence path (0.9774ms)
+✔ rejects failed-only DONE (1.0715ms)
+✔ source is preserved byte-for-byte and matches the supplied SHA-256 (4.0641ms)
+✔ source inspection rejects missing or changed content (2.5719ms)
+✔ verify-tasks CLI returns nonzero and identifies the task with SG-999 dependency (173.9842ms)
+✔ DONE requires actual implementation files even with valid task evidence (2.9034ms)
+✔ DONE cannot borrow another task successful evidence (81.6895ms)
+✔ evidence runner records task ownership and preserves a failed child exit code (8521.3219ms)
+✔ negative cases do not mutate the shared plan baseline (2.0956ms)
+✔ same HEAD with modified tracked source yields a different content hash (3129.9954ms)
+✔ adding, editing and removing untracked inputs changes the content hash (4425.7642ms)
+✔ staged and unstaged states for the same path are distinguished (2214.9471ms)
+✔ raw bytes distinguish CRLF and UTF-8 content without normalisation (2422.9246ms)
+✔ a path containing whitespace yields exactly one enumerated entry (1612.8248ms)
+✔ writing only verification evidence does not invalidate the snapshot (2255.5663ms)
+✔ caches are excluded but tracked sources and lockfiles are captured (2861.8043ms)
+✔ over-budget inputs are reported as incomplete instead of silently skipped (1830.2836ms)
+✔ staged deletions are reported as missing inputs, not as absent source (2024.7203ms)
+✔ recorder keeps the raw exit code but refuses attribution when source changed mid-verification (7067.4746ms)
+✔ recorder rejects task ids that are not in the ledgers (6717.4273ms)
+✔ the built reporter entry loads as ESM and keeps its export contract (14.2263ms)
+✔ the built reporter still refuses to replace an existing attempt report (72.2039ms)
+✔ M1 requires every M0 check, actual integration checks and the real oasdiff capability (4.1499ms)
+✔ M2 registers every execution, evidence and Gate check without allowing omissions (0.5261ms)
+✔ M0 rejects removed, duplicate and arbitrary shell checks (0.2113ms)
+✔ unknown tools block any stage requiring them (0.3235ms)
+✔ M2 declares EXECUTED only from the registered real-execution checks (0.4026ms)
+✔ a real failed child command propagates its exit and retains its identity (211.8571ms)
+✔ missing source removes only previously packaged exact tool, preserving unrelated files (55.9516ms)
+✔ the plan assertion fragment holds for a minimal ledger and its broken variants (7.3805ms)
+✔ the shipped v2 ledger validates and carries exactly eight repair tasks (8.0037ms)
+✔ only the eight registered ids are accepted, V2-R99 is not (2.2999ms)
+✔ a missing repair task is rejected (1.3127ms)
+✔ unknown dependencies, cycles and premature DONE are rejected (4.7855ms)
+✔ illegal status and relative path escapes are rejected (1.622ms)
+✔ DONE cannot be closed by evidence that is not attributable to one source snapshot (0.4991ms)
+✔ a PASSED record taken while the source drifted is rejected (0.4299ms)
+✔ evidence that belongs to another task id is rejected (0.4655ms)
+✔ BLOCKED without a recorded blocker is rejected (1.2163ms)
+✔ the pre-existing M3 validator still closes DONE on non-attributable evidence (1.6094ms)
+✔ the recorder accepts only ids registered in the v2 ledger (358.4207ms)
+ℹ tests 63
+ℹ suites 0
+ℹ pass 63
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 37200.0614

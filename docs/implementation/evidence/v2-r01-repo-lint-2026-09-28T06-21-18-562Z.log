@@ -1,0 +1,8 @@
+$ eslint .
+
+G:\StackGate\packages\adapter-playwright\src\reporter.ts
+  95:37  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+✖ 1 problem (1 error, 0 warnings)
+
+[ELIFECYCLE] Command failed with exit code 1.

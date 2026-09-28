@@ -1,0 +1,3 @@
+IMPORT_FAILED
+SyntaxError: The requested module './inventory.js' does not provide an export named 'assertNoCompletedReport'
+ESM_IMPORT_EXIT=1

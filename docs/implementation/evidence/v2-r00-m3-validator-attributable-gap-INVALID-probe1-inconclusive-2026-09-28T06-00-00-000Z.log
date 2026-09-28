@@ -1,0 +1,3 @@
+AUDIT_M3_VALIDATOR_ERRORS=["missing audit task AUD-001","missing audit task AUD-002","missing audit task AUD-003","missing audit task AUD-004"]
+GAP_ABSENT: the M3 validator already rejects it
+GAP_EXIT=0

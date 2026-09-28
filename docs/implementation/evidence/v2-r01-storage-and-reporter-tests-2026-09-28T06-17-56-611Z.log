@@ -1,0 +1,14 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+stackgate reporter could not record diagnostics: WRITE_REFUSED:UNSAFE_NAME:nested/playwright.json | ONEND_SKIPPED:reporter is not a writer for this attempt
+stackgate reporter could not record diagnostics: WRITE_REFUSED:UNSAFE_NAME:.hidden.json | ONEND_SKIPPED:reporter is not a writer for this attempt
+ [32m✓[39m tests/contract/playwright-reporter.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 111[2mms[22m[39m
+ [32m✓[39m tests/unit/v2/reporter-storage.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 714[2mms[22m[39m
+   [33m[2m✓[22m[39m lets exactly one of six concurrent reporters commit the same attempt [33m 381[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[2m   Start at [22m 14:17:59
+[2m   Duration [22m 1.30s[2m (transform 172ms, setup 0ms, import 371ms, tests 825ms, environment 0ms)[22m
+

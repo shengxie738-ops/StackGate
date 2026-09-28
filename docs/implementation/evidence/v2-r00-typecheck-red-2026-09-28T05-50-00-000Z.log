@@ -1,0 +1,2 @@
+packages/adapter-playwright/src/reporter.ts(3,10): error TS2305: Module '"./inventory.js"' has no exported member 'assertNoCompletedReport'.
+EXIT=2

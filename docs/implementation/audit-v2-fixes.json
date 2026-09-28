@@ -870,11 +870,715 @@
       "dependencies": [
         "V2-R00"
       ],
-      "status": "NOT_STARTED",
-      "actual_files": [],
-      "verification": [],
+      "status": "DONE",
+      "actual_files": [
+        ".gitignore",
+        "packages/core/src/services/http-policy.ts",
+        "packages/core/src/services/operation-authorization.ts",
+        "presets/fastapi-react/scripts/probe_helpers.py",
+        "examples/contract-drift-demo/apps/api/scripts/probe_performance.py",
+        "tests/fixtures/v2-regressions/http-policy.json",
+        "tests/unit/v2/http-authorization.test.ts",
+        "tests/integration/probe/http.test.ts",
+        "tests/support/v2_http_policy_cases.py",
+        "docs/implementation/V2-audit-baseline.md"
+      ],
+      "verification": [
+        {
+          "task_id": "V2-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "ef8d7cc3a695f4c9e777e3cfc1c18aa0c59e5c92",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm exec vitest run tests/unit/v2/http-authorization.test.ts tests/integration/probe/http.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/v2/http-authorization.test.ts",
+            "tests/integration/probe/http.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-28T07:07:42.069Z",
+          "finished_at": "2026-09-28T07:07:52.591Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r02-http-authorization-and-probe-suites-2026-09-28T07-07-42-069Z.json",
+          "log_path": "docs/implementation/evidence/v2-r02-http-authorization-and-probe-suites-2026-09-28T07-07-42-069Z.log",
+          "signal": null,
+          "duration_ms": 10522,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-http-authorization-and-probe-suites-2026-09-28T07-07-42-069Z-source-before.json",
+            "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-http-authorization-and-probe-suites-2026-09-28T07-07-42-069Z-source-after.json",
+            "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58"
+        },
+        {
+          "task_id": "V2-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "ef8d7cc3a695f4c9e777e3cfc1c18aa0c59e5c92",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-28T07:07:55.650Z",
+          "finished_at": "2026-09-28T07:08:04.815Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r02-root-typecheck-2026-09-28T07-07-55-650Z.json",
+          "log_path": "docs/implementation/evidence/v2-r02-root-typecheck-2026-09-28T07-07-55-650Z.log",
+          "signal": null,
+          "duration_ms": 9165,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-root-typecheck-2026-09-28T07-07-55-650Z-source-before.json",
+            "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-root-typecheck-2026-09-28T07-07-55-650Z-source-after.json",
+            "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58"
+        },
+        {
+          "task_id": "V2-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "ef8d7cc3a695f4c9e777e3cfc1c18aa0c59e5c92",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm verify:schemas",
+          "argv": [
+            "pnpm",
+            "verify:schemas"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-28T07:08:07.429Z",
+          "finished_at": "2026-09-28T07:08:14.435Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r02-verify-schemas-2026-09-28T07-08-07-429Z.json",
+          "log_path": "docs/implementation/evidence/v2-r02-verify-schemas-2026-09-28T07-08-07-429Z.log",
+          "signal": null,
+          "duration_ms": 7006,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-verify-schemas-2026-09-28T07-08-07-429Z-source-before.json",
+            "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-verify-schemas-2026-09-28T07-08-07-429Z-source-after.json",
+            "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58"
+        },
+        {
+          "task_id": "V2-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "ef8d7cc3a695f4c9e777e3cfc1c18aa0c59e5c92",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "python -B -E -m py_compile presets/fastapi-react/scripts/probe_helpers.py examples/contract-drift-demo/apps/api/scripts/probe_performance.py tests/support/v2_http_policy_cases.py",
+          "argv": [
+            "python",
+            "-B",
+            "-E",
+            "-m",
+            "py_compile",
+            "presets/fastapi-react/scripts/probe_helpers.py",
+            "examples/contract-drift-demo/apps/api/scripts/probe_performance.py",
+            "tests/support/v2_http_policy_cases.py"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-28T07:08:30.958Z",
+          "finished_at": "2026-09-28T07:08:32.783Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r02-python-modules-compile-2026-09-28T07-08-30-958Z.json",
+          "log_path": "docs/implementation/evidence/v2-r02-python-modules-compile-2026-09-28T07-08-30-958Z.log",
+          "signal": null,
+          "duration_ms": 1825,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-python-modules-compile-2026-09-28T07-08-30-958Z-source-before.json",
+            "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-python-modules-compile-2026-09-28T07-08-30-958Z-source-after.json",
+            "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58"
+        },
+        {
+          "task_id": "V2-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "ef8d7cc3a695f4c9e777e3cfc1c18aa0c59e5c92",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm lint",
+          "argv": [
+            "pnpm",
+            "lint"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-28T07:08:35.154Z",
+          "finished_at": "2026-09-28T07:08:43.158Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r02-repo-lint-2026-09-28T07-08-35-154Z.json",
+          "log_path": "docs/implementation/evidence/v2-r02-repo-lint-2026-09-28T07-08-35-154Z.log",
+          "signal": null,
+          "duration_ms": 8004,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-repo-lint-2026-09-28T07-08-35-154Z-source-before.json",
+            "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-repo-lint-2026-09-28T07-08-35-154Z-source-after.json",
+            "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58"
+        },
+        {
+          "task_id": "V2-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "ef8d7cc3a695f4c9e777e3cfc1c18aa0c59e5c92",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm test:unit",
+          "argv": [
+            "pnpm",
+            "test:unit"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-28T07:09:12.758Z",
+          "finished_at": "2026-09-28T07:10:17.403Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r02-unit-and-bootstrap-suite-2026-09-28T07-09-12-758Z.json",
+          "log_path": "docs/implementation/evidence/v2-r02-unit-and-bootstrap-suite-2026-09-28T07-09-12-758Z.log",
+          "signal": null,
+          "duration_ms": 64645,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-unit-and-bootstrap-suite-2026-09-28T07-09-12-758Z-source-before.json",
+            "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-unit-and-bootstrap-suite-2026-09-28T07-09-12-758Z-source-after.json",
+            "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58"
+        },
+        {
+          "task_id": "V2-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "ef8d7cc3a695f4c9e777e3cfc1c18aa0c59e5c92",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm test:contract",
+          "argv": [
+            "pnpm",
+            "test:contract"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-28T07:10:20.407Z",
+          "finished_at": "2026-09-28T07:10:33.970Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r02-contract-suite-2026-09-28T07-10-20-407Z.json",
+          "log_path": "docs/implementation/evidence/v2-r02-contract-suite-2026-09-28T07-10-20-407Z.log",
+          "signal": null,
+          "duration_ms": 13563,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-contract-suite-2026-09-28T07-10-20-407Z-source-before.json",
+            "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-contract-suite-2026-09-28T07-10-20-407Z-source-after.json",
+            "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58"
+        },
+        {
+          "task_id": "V2-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "ef8d7cc3a695f4c9e777e3cfc1c18aa0c59e5c92",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm verify:boundaries",
+          "argv": [
+            "pnpm",
+            "verify:boundaries"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-28T07:10:36.496Z",
+          "finished_at": "2026-09-28T07:10:39.732Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r02-verify-boundaries-and-tasks-2026-09-28T07-10-36-496Z.json",
+          "log_path": "docs/implementation/evidence/v2-r02-verify-boundaries-and-tasks-2026-09-28T07-10-36-496Z.log",
+          "signal": null,
+          "duration_ms": 3236,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-verify-boundaries-and-tasks-2026-09-28T07-10-36-496Z-source-before.json",
+            "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-verify-boundaries-and-tasks-2026-09-28T07-10-36-496Z-source-after.json",
+            "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58"
+        },
+        {
+          "task_id": "V2-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "ef8d7cc3a695f4c9e777e3cfc1c18aa0c59e5c92",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm exec vitest run tests/unit/v2/http-authorization.test.ts tests/integration/probe/http.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/unit/v2/http-authorization.test.ts",
+            "tests/integration/probe/http.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-28T07:13:05.679Z",
+          "finished_at": "2026-09-28T07:13:16.391Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r02-http-authorization-and-probe-suites-final-2026-09-28T07-13-05-679Z.json",
+          "log_path": "docs/implementation/evidence/v2-r02-http-authorization-and-probe-suites-final-2026-09-28T07-13-05-679Z.log",
+          "signal": null,
+          "duration_ms": 10712,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-http-authorization-and-probe-suites-final-2026-09-28T07-13-05-679Z-source-before.json",
+            "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-http-authorization-and-probe-suites-final-2026-09-28T07-13-05-679Z-source-after.json",
+            "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b"
+        },
+        {
+          "task_id": "V2-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "ef8d7cc3a695f4c9e777e3cfc1c18aa0c59e5c92",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-28T07:13:19.072Z",
+          "finished_at": "2026-09-28T07:13:26.870Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r02-root-typecheck-final-2026-09-28T07-13-19-072Z.json",
+          "log_path": "docs/implementation/evidence/v2-r02-root-typecheck-final-2026-09-28T07-13-19-072Z.log",
+          "signal": null,
+          "duration_ms": 7798,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-root-typecheck-final-2026-09-28T07-13-19-072Z-source-before.json",
+            "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-root-typecheck-final-2026-09-28T07-13-19-072Z-source-after.json",
+            "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b"
+        },
+        {
+          "task_id": "V2-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "ef8d7cc3a695f4c9e777e3cfc1c18aa0c59e5c92",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "python -B -E -m py_compile presets/fastapi-react/scripts/probe_helpers.py examples/contract-drift-demo/apps/api/scripts/probe_performance.py tests/support/v2_http_policy_cases.py",
+          "argv": [
+            "python",
+            "-B",
+            "-E",
+            "-m",
+            "py_compile",
+            "presets/fastapi-react/scripts/probe_helpers.py",
+            "examples/contract-drift-demo/apps/api/scripts/probe_performance.py",
+            "tests/support/v2_http_policy_cases.py"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-28T07:13:29.319Z",
+          "finished_at": "2026-09-28T07:13:31.483Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r02-python-modules-compile-final-2026-09-28T07-13-29-319Z.json",
+          "log_path": "docs/implementation/evidence/v2-r02-python-modules-compile-final-2026-09-28T07-13-29-319Z.log",
+          "signal": null,
+          "duration_ms": 2164,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-python-modules-compile-final-2026-09-28T07-13-29-319Z-source-before.json",
+            "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-python-modules-compile-final-2026-09-28T07-13-29-319Z-source-after.json",
+            "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b"
+        },
+        {
+          "task_id": "V2-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "ef8d7cc3a695f4c9e777e3cfc1c18aa0c59e5c92",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm verify:schemas",
+          "argv": [
+            "pnpm",
+            "verify:schemas"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-28T07:13:47.835Z",
+          "finished_at": "2026-09-28T07:13:51.241Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r02-verify-schemas-final-2026-09-28T07-13-47-835Z.json",
+          "log_path": "docs/implementation/evidence/v2-r02-verify-schemas-final-2026-09-28T07-13-47-835Z.log",
+          "signal": null,
+          "duration_ms": 3406,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-verify-schemas-final-2026-09-28T07-13-47-835Z-source-before.json",
+            "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-verify-schemas-final-2026-09-28T07-13-47-835Z-source-after.json",
+            "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b"
+        },
+        {
+          "task_id": "V2-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "ef8d7cc3a695f4c9e777e3cfc1c18aa0c59e5c92",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm lint",
+          "argv": [
+            "pnpm",
+            "lint"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-28T07:13:53.754Z",
+          "finished_at": "2026-09-28T07:14:01.083Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r02-repo-lint-final-2026-09-28T07-13-53-754Z.json",
+          "log_path": "docs/implementation/evidence/v2-r02-repo-lint-final-2026-09-28T07-13-53-754Z.log",
+          "signal": null,
+          "duration_ms": 7329,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-repo-lint-final-2026-09-28T07-13-53-754Z-source-before.json",
+            "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-repo-lint-final-2026-09-28T07-13-53-754Z-source-after.json",
+            "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b"
+        },
+        {
+          "task_id": "V2-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "ef8d7cc3a695f4c9e777e3cfc1c18aa0c59e5c92",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm verify:boundaries",
+          "argv": [
+            "pnpm",
+            "verify:boundaries"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-28T07:14:03.550Z",
+          "finished_at": "2026-09-28T07:14:07.133Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r02-verify-boundaries-final-2026-09-28T07-14-03-550Z.json",
+          "log_path": "docs/implementation/evidence/v2-r02-verify-boundaries-final-2026-09-28T07-14-03-550Z.log",
+          "signal": null,
+          "duration_ms": 3583,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-verify-boundaries-final-2026-09-28T07-14-03-550Z-source-before.json",
+            "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-verify-boundaries-final-2026-09-28T07-14-03-550Z-source-after.json",
+            "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b"
+        },
+        {
+          "task_id": "V2-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "ef8d7cc3a695f4c9e777e3cfc1c18aa0c59e5c92",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm test:unit",
+          "argv": [
+            "pnpm",
+            "test:unit"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-28T07:14:35.076Z",
+          "finished_at": "2026-09-28T07:15:35.189Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r02-unit-and-bootstrap-suite-final-2026-09-28T07-14-35-076Z.json",
+          "log_path": "docs/implementation/evidence/v2-r02-unit-and-bootstrap-suite-final-2026-09-28T07-14-35-076Z.log",
+          "signal": null,
+          "duration_ms": 60113,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-unit-and-bootstrap-suite-final-2026-09-28T07-14-35-076Z-source-before.json",
+            "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-unit-and-bootstrap-suite-final-2026-09-28T07-14-35-076Z-source-after.json",
+            "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b"
+        },
+        {
+          "task_id": "V2-R02",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "ef8d7cc3a695f4c9e777e3cfc1c18aa0c59e5c92",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm test:contract",
+          "argv": [
+            "pnpm",
+            "test:contract"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-09-28T07:15:37.871Z",
+          "finished_at": "2026-09-28T07:15:50.634Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r02-contract-suite-final-2026-09-28T07-15-37-871Z.json",
+          "log_path": "docs/implementation/evidence/v2-r02-contract-suite-final-2026-09-28T07-15-37-871Z.log",
+          "signal": null,
+          "duration_ms": 12763,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-contract-suite-final-2026-09-28T07-15-37-871Z-source-before.json",
+            "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r02-contract-suite-final-2026-09-28T07-15-37-871Z-source-after.json",
+            "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b",
+            "completeness": "COMPLETE",
+            "file_count": 2470,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:de925f1b2033fba4714e4d2c8af2f4e7327d83fc75863ccf84cea9b1f67e891b"
+        }
+      ],
       "blockers": [],
-      "next_action": "Build the three existing counterexamples before touching http-policy.ts."
+      "next_action": "V2-R03: absolute request deadline, no implicit proxy and bounded response writes in the probe helper."
     },
     {
       "task_id": "V2-R03",

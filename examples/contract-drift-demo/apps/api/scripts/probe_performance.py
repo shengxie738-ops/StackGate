@@ -23,6 +23,20 @@ def main() -> int:
     declaration_path = os.environ.get("STACKGATE_PROBE_DECLARATION", "")
     origin = os.environ.get("STACKGATE_API_ORIGIN", "")
     allowed = [item for item in os.environ.get("STACKGATE_ALLOWED_ORIGINS", "").split(",") if item]
+    # A confirmed run binds each declared service to one origin. Without it the origin only has to be on
+    # the allowlist, which is how the sample keeps working; the binding is what stops a request for one
+    # service being sent to a different service that shares the allowlist.
+    service_origins_raw = os.environ.get("STACKGATE_SERVICE_ORIGINS", "")
+    service_origins = None
+    if service_origins_raw:
+        try:
+            service_origins = json.loads(service_origins_raw)
+        except json.JSONDecodeError:
+            print("STACKGATE_SERVICE_ORIGINS must be a JSON object of service to origin", file=sys.stderr)
+            return 64
+        if not isinstance(service_origins, dict):
+            print("STACKGATE_SERVICE_ORIGINS must be a JSON object of service to origin", file=sys.stderr)
+            return 64
     identity = {
         "run_id": os.environ.get("STACKGATE_RUN_ID", ""),
         "check_id": os.environ.get("STACKGATE_CHECK_ID", ""),
@@ -44,8 +58,11 @@ def main() -> int:
             operation_key=declaration["operation_key"],
             allowed_origins=allowed,
             identity=identity,
-            deadline_ms=int(declaration.get("deadline_ms", helpers.DEFAULT_DEADLINE_MS)),
-            max_response_bytes=int(declaration.get("max_response_bytes", helpers.MAX_RESPONSE_BYTES)),
+            # Passed through uncoerced on purpose: a fraction, NaN, Infinity or a numeric string must be
+            # rejected as an invalid budget, not quietly turned into a workable integer.
+            deadline_ms=declaration.get("deadline_ms", helpers.DEFAULT_DEADLINE_MS),
+            max_response_bytes=declaration.get("max_response_bytes", helpers.MAX_RESPONSE_BYTES),
+            service_origins=service_origins,
         )
     except helpers.ProbeError as error:
         helpers.write_json(os.path.join(output_dir, "probe-error.json"),
@@ -101,6 +118,7 @@ def main() -> int:
         "request_id": record["request_id"],
         "operation_key": record["operation_key"],
         "origin": origin,
+        "request_target": record["request_target"],
         "started_at": record["started_at"],
         "finished_at": record["finished_at"],
         "status_code": record["status_code"],

@@ -1,3 +1,5 @@
+import { isPositiveSafeInteger, operationFromDeclaration, pathRuleViolation } from './operation-authorization.js';
+
 export interface HttpRequestPolicy {
   deadline_ms: number;
   max_response_bytes: number;
@@ -57,25 +59,49 @@ export interface RequestAuthorizationInput {
   method: string;
   path: string;
   declared_operation_key: string | null;
+  /**
+   * Confirmed service to origin bindings for this run. When present, the service named by the
+   * declaration must be bound to exactly this origin, so being on the allowlist is not enough to
+   * reach a different service that happens to share the allowlist.
+   */
+  service_origins?: Readonly<Record<string, string>>;
 }
 
 export type RequestDecision = { allowed: true } | { allowed: false; reason: string };
 
-/** A loopback host is not automatically a safe target: the origin must be one of the confirmed bindings. */
+/**
+ * A loopback host is not automatically a safe target: the origin must be one of the confirmed bindings,
+ * and the request must be the operation the confirmed declaration actually names, field by field.
+ */
 export function authorizeRequest(input: RequestAuthorizationInput): RequestDecision {
   const normalized = normalizeOrigin(input.origin);
   if (!normalized.ok) return { allowed: false, reason: normalized.reason };
-  if (!input.policy.allowed_origins.includes(normalized.value.origin)) return { allowed: false, reason: 'ORIGIN_NOT_AUTHORIZED' };
+  const origin = normalized.value.origin;
+  if (!input.policy.allowed_origins.some(entry => {
+    const candidate = normalizeOrigin(entry);
+    return candidate.ok && candidate.value.origin === origin;
+  })) return { allowed: false, reason: 'ORIGIN_NOT_AUTHORIZED' };
   const method = input.method.toUpperCase();
   if (!input.policy.allowed_methods.includes(method)) return { allowed: false, reason: 'METHOD_NOT_AUTHORIZED' };
-  if (input.declared_operation_key !== null && !input.declared_operation_key.startsWith(`:${method} `)
-    && !new RegExp(`^[A-Za-z][A-Za-z0-9_-]*:${method} `).test(input.declared_operation_key)) {
-    return { allowed: false, reason: 'OPERATION_METHOD_MISMATCH' };
+  const declaration = operationFromDeclaration(input.declared_operation_key);
+  if (!declaration.ok) return { allowed: false, reason: declaration.reason };
+  if (input.service_origins !== undefined) {
+    const binding = input.service_origins[declaration.value.service_id];
+    if (binding === undefined) return { allowed: false, reason: 'SERVICE_ORIGIN_MISSING' };
+    const normalizedBinding = normalizeOrigin(binding);
+    if (!normalizedBinding.ok) return { allowed: false, reason: 'SERVICE_ORIGIN_UNPARSEABLE' };
+    if (normalizedBinding.value.origin !== origin) return { allowed: false, reason: 'SERVICE_ORIGIN_MISMATCH' };
   }
-  if (!input.path.startsWith('/') || input.path.includes('//')) return { allowed: false, reason: 'PATH_INVALID' };
-  if (/[?\u0000-\u001f\u007f]/.test(input.path)) return { allowed: false, reason: 'PATH_QUERY_OR_CONTROL_CHARS_FORBIDDEN' };
-  if (input.policy.max_response_bytes < 1 || input.policy.max_response_bytes > 1024 * 1024) return { allowed: false, reason: 'RESPONSE_BUDGET_OUT_OF_RANGE' };
-  if (input.policy.deadline_ms < 1 || input.policy.deadline_ms > 60000) return { allowed: false, reason: 'DEADLINE_OUT_OF_RANGE' };
+  if (declaration.value.method !== method) return { allowed: false, reason: 'OPERATION_METHOD_MISMATCH' };
+  const requested = pathRuleViolation(input.path);
+  if (requested) return { allowed: false, reason: requested };
+  const declared = pathRuleViolation(declaration.value.path);
+  if (declared) return { allowed: false, reason: declared };
+  if (input.path !== declaration.value.path) return { allowed: false, reason: 'OPERATION_PATH_MISMATCH' };
+  if (!isPositiveSafeInteger(input.policy.max_response_bytes, 1024 * 1024)) {
+    return { allowed: false, reason: 'RESPONSE_BUDGET_OUT_OF_RANGE' };
+  }
+  if (!isPositiveSafeInteger(input.policy.deadline_ms, 60000)) return { allowed: false, reason: 'DEADLINE_OUT_OF_RANGE' };
   return { allowed: true };
 }
 

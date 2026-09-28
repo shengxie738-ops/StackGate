@@ -1,0 +1,18 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/unit/v2/http-authorization.test.ts [2m([22m[2m54 tests[22m[2m)[22m[33m 415[2mms[22m[39m
+   [33m[2m✓[22m[39m reports the same decision and reason from the Python probe helper for every fixture case [33m 403[2mms[22m[39m
+ [32m✓[39m tests/integration/probe/http.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 5384[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a declared operation against a listener that is not there [33m 2483[2mms[22m[39m
+   [33m[2m✓[22m[39m records a real successful probe and lets the core recompute the same assertions [33m 387[2mms[22m[39m
+   [33m[2m✓[22m[39m does not promote a self-reported schema_valid over a recomputed type mismatch [33m 367[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a redirect instead of following it to another origin [33m 399[2mms[22m[39m
+   [33m[2m✓[22m[39m stops at the declared response budget and at the deadline instead of buffering [33m 976[2mms[22m[39m
+   [33m[2m✓[22m[39m observes exactly the declared method and path on the wire [33m 329[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m62 passed[39m[22m[90m (62)[39m
+[2m   Start at [22m 15:07:45
+[2m   Duration [22m 6.77s[2m (transform 385ms, setup 0ms, import 1.14s, tests 5.80s, environment 0ms)[22m
+

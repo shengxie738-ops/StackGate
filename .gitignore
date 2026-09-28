@@ -5,3 +5,4 @@ dist/
 coverage/
 *.tsbuildinfo
 .stackgate-saxes-patch/
+__pycache__/

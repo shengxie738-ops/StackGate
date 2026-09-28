@@ -1,0 +1,5 @@
+different_path: expected_allowed=false observed={"allowed":false,"reason":"OPERATION_PATH_MISMATCH"}
+no_declaration: expected_allowed=false observed={"allowed":false,"reason":"DECLARATION_MISSING"}
+fragment: expected_allowed=false observed={"allowed":false,"reason":"PATH_FRAGMENT_FORBIDDEN"}
+WRONGLY_ALLOWED=none
+GREEN_EXIT=0

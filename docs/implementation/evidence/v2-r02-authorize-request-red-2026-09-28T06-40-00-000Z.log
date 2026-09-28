@@ -1,0 +1,5 @@
+different_path: expected_allowed=false observed={"allowed":true}
+no_declaration: expected_allowed=false observed={"allowed":true}
+fragment: expected_allowed=false observed={"allowed":true}
+WRONGLY_ALLOWED=different_path, no_declaration, fragment
+RED_EXIT=1

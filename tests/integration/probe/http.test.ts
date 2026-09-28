@@ -9,6 +9,7 @@ import type {AddressInfo} from 'node:net';
 import type {ProbeDeclaration} from '../../../packages/contracts/src/index.js';
 import {validateSchema} from '../../../packages/contracts/src/index.js';
 import {evaluateDeclaration} from '../../../packages/core/src/services/probe-assertions.js';
+import {parseDeclaredOperation} from '../../../packages/core/src/services/operation-authorization.js';
 import {withTestDirectory} from '../../support/test-paths.js';
 
 // SG-054: every case drives a real loopback listener and records what actually happened. Unauthorized
@@ -211,6 +212,110 @@ it('stops at the declared response budget and at the deadline instead of bufferi
       });
       expect(run.code).toBe(2);
       expect(await errorReason(stalled)).toBe('DEADLINE_EXCEEDED');
+    });
+  });
+});
+
+// V2-R02: an origin that is merely on the allowlist is not the service's origin, and the operation that
+// reaches the wire must be the one the confirmed declaration names, observed from the server side.
+it('sends zero requests to either listener when the service binding does not match the target', async () => {
+  await withTestDirectory(async root => {
+    const output = path.join(root, 'attempt');
+    const payload = {data: {performance: {total_return: 0.1234, period: '2026-Q3'}}};
+    const first = {count: 0};
+    const second = {count: 0};
+    const servers = [http.createServer((request, response) => {
+      first.count++;
+      jsonHandler(payload)(request, response);
+    }), http.createServer((request, response) => {
+      second.count++;
+      jsonHandler(payload)(request, response);
+    })];
+    for (const server of servers) server.on('connection', socket => server.once('close', () => socket.destroy()));
+    await Promise.all(servers.map(server => new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve))));
+    try {
+      const boundPort = (servers[0]!.address() as AddressInfo).port;
+      const otherPort = (servers[1]!.address() as AddressInfo).port;
+      const bound = `http://127.0.0.1:${boundPort}`;
+      const other = `http://127.0.0.1:${otherPort}`;
+      const run = await runProbe(output, {
+        STACKGATE_API_ORIGIN: other,
+        STACKGATE_ALLOWED_ORIGINS: `${bound},${other}`,
+        STACKGATE_SERVICE_ORIGINS: JSON.stringify({api: bound}),
+      });
+      expect(run.code, run.stderr).toBe(2);
+      expect(await errorReason(output)).toBe('SERVICE_ORIGIN_MISMATCH');
+      expect(first.count, 'the bound service must not be contacted for a request aimed elsewhere').toBe(0);
+      expect(second.count, 'an unbound service must not be reached just because it is allowlisted').toBe(0);
+      expect(await fs.readFile(path.join(output, 'probe.json')).catch(() => null)).toBeNull();
+    } finally {
+      for (const server of servers) {
+        server.closeAllConnections();
+        await new Promise<void>(resolve => server.close(() => resolve()));
+      }
+    }
+  });
+});
+
+it('observes exactly the declared method and path on the wire', async () => {
+  await withTestDirectory(async root => {
+    const output = path.join(root, 'attempt');
+    const observed: {method: string; target: string}[] = [];
+    const payload = {data: {performance: {total_return: 0.1234, period: '2026-Q3'}}};
+    await withListener((request, response) => {
+      observed.push({method: String(request.method), target: String(request.url)});
+      jsonHandler(payload)(request, response);
+    }, async port => {
+      const run = await runProbe(output, {
+        STACKGATE_API_ORIGIN: `http://127.0.0.1:${port}`, STACKGATE_ALLOWED_ORIGINS: `http://127.0.0.1:${port}`,
+        STACKGATE_SERVICE_ORIGINS: JSON.stringify({api: `http://127.0.0.1:${port}`}),
+      });
+      expect(run.code, run.stderr).toBe(0);
+      const declared = parseDeclaredOperation(confirmed.operation_key);
+      expect(observed).toEqual([{method: declared.method, target: declared.path}]);
+      const raw = JSON.parse(await fs.readFile(path.join(output, 'probe-raw.json'), 'utf8'));
+      expect(raw.request_target).toBe(`http://127.0.0.1:${port}${declared.path}`);
+    });
+  });
+});
+
+// A budget that is not a positive safe integer is a refused request, not something to coerce. Passing it
+// through the real entry point matters: the previous int() conversion turned a fraction into a working
+// deadline and a string into an unhandled traceback that left no diagnosable artifact at all.
+it('refuses a non-integer resource budget through the real probe entry point', async () => {
+  await withTestDirectory(async root => {
+    const values: Record<string, unknown>[] = [{deadline_ms: '5000'}, {deadline_ms: 12.5}, {max_response_bytes: true},
+      {max_response_bytes: 1024.5}, {deadline_ms: 0}];
+    for (const [index, overrides] of values.entries()) {
+      const output = path.join(root, `attempt-${index}`);
+      const file = await overrideDeclaration(root, overrides);
+      const expected = 'deadline_ms' in overrides ? 'DEADLINE_OUT_OF_RANGE' : 'RESPONSE_BUDGET_OUT_OF_RANGE';
+      await withListener(jsonHandler({data: {performance: {total_return: 0.1234, period: '2026-Q3'}}}), async (port, state) => {
+        const run = await runProbe(output, {
+          STACKGATE_API_ORIGIN: `http://127.0.0.1:${port}`, STACKGATE_ALLOWED_ORIGINS: `http://127.0.0.1:${port}`,
+          STACKGATE_PROBE_DECLARATION: file,
+        });
+        expect(run.code, `${JSON.stringify(overrides)}: ${run.stderr}`).toBe(2);
+        expect(await errorReason(output), JSON.stringify(overrides)).toBe(expected);
+        expect(state.count, `a refused budget must not reach the server for ${JSON.stringify(overrides)}`).toBe(0);
+        expect(await fs.readFile(path.join(output, 'probe.json')).catch(() => null)).toBeNull();
+      });
+    }
+  });
+});
+
+it('refuses a path that only differs by a fragment before anything reaches the server', async () => {
+  await withTestDirectory(async root => {
+    const output = path.join(root, 'attempt');
+    const file = await overrideDeclaration(root, {operation_key: 'api:GET /api/performance#printed'});
+    await withListener(jsonHandler({data: {performance: {total_return: 0.1234, period: '2026-Q3'}}}), async (port, state) => {
+      const run = await runProbe(output, {
+        STACKGATE_API_ORIGIN: `http://127.0.0.1:${port}`, STACKGATE_ALLOWED_ORIGINS: `http://127.0.0.1:${port}`,
+        STACKGATE_PROBE_DECLARATION: file,
+      });
+      expect(run.code, run.stderr).toBe(2);
+      expect(await errorReason(output)).toBe('PATH_FRAGMENT_FORBIDDEN');
+      expect(state.count, 'a fragment never reaches the wire, so the server must see nothing').toBe(0);
     });
   });
 });

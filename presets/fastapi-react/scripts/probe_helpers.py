@@ -13,6 +13,7 @@ import re
 import socket
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 
 MAX_RESPONSE_BYTES = 1024 * 1024
@@ -20,8 +21,11 @@ DEFAULT_DEADLINE_MS = 5000
 SAFE_ID = re.compile(r"^[A-Za-z][A-Za-z0-9_-]{0,127}$")
 ATTEMPT_ID = re.compile(r"^attempt_[A-Za-z0-9_-]+$")
 RUN_ID = re.compile(r"^run_[A-Za-z0-9_-]+$")
-ORIGIN = re.compile(r"^https?://(\[[0-9A-Fa-f:]+\]|[A-Za-z0-9.-]+)(:[0-9]{1,5})?$")
 IDENTITY_HEADER = "X-Stackgate-Request-Id"
+METHODS = ("GET", "PUT", "POST", "DELETE", "OPTIONS", "HEAD", "PATCH", "TRACE")
+LOOPBACK_HOSTS = ("127.0.0.1", "localhost", "[::1]")
+CONTROL_OR_DEL = re.compile(r"[\x00-\x1f\x7f]")
+WHITESPACE = re.compile(r"\s")
 
 
 class ProbeError(Exception):
@@ -48,15 +52,142 @@ def validate_identity(identity: dict) -> None:
         raise ProbeError("IDENTITY_INVALID", "request_id")
 
 
+def parse_operation_key(operation_key: str) -> dict:
+    """Validate the operation key grammar only, matching `OperationKey` in the shared schema.
+
+    A key can be grammatically valid and still unsupported for the first release (`api:GET /a#b`);
+    that is decided by `path_rule_violation`, never by quietly editing the path into something else.
+    """
+    if not isinstance(operation_key, str) or ":" not in operation_key:
+        raise ProbeError("OPERATION_KEY_INVALID", str(operation_key))
+    service, rest = operation_key.split(":", 1)
+    if " " not in rest:
+        raise ProbeError("OPERATION_KEY_INVALID", operation_key)
+    method, path = rest.split(" ", 1)
+    if not SAFE_ID.match(service) or method not in METHODS:
+        raise ProbeError("OPERATION_KEY_INVALID", operation_key)
+    if not path.startswith("/") or CONTROL_OR_DEL.search(path) or WHITESPACE.search(path):
+        raise ProbeError("OPERATION_KEY_INVALID", operation_key)
+    return {"service_id": service, "method": method, "path": path}
+
+
 def split_operation(operation_key: str) -> tuple[str, str]:
     """An operation key is `<service>:<METHOD> <path>`, e.g. `api:GET /api/performance`."""
-    if ":" not in operation_key:
-        raise ProbeError("OPERATION_KEY_INVALID", operation_key)
-    service, rest = operation_key.split(":", 1)
-    parts = rest.split(" ", 1)
-    if len(parts) != 2 or not parts[1].startswith("/"):
-        raise ProbeError("OPERATION_KEY_INVALID", operation_key)
-    return parts[0], parts[1]
+    parsed = parse_operation_key(operation_key)
+    return parsed["method"], parsed["path"]
+
+
+def path_rule_violation(path: str):
+    """The first release sends an exact literal path only; anything ambiguous is refused by name."""
+    if not isinstance(path, str) or len(path) == 0 or path[0] != "/":
+        return "PATH_INVALID"
+    if CONTROL_OR_DEL.search(path) or WHITESPACE.search(path):
+        return "PATH_CONTROL_CHARS_FORBIDDEN"
+    if "?" in path:
+        return "PATH_QUERY_FORBIDDEN"
+    if "#" in path:
+        return "PATH_FRAGMENT_FORBIDDEN"
+    if "\\" in path:
+        return "PATH_BACKSLASH_FORBIDDEN"
+    if "%" in path:
+        return "PATH_ENCODING_UNSUPPORTED"
+    if "{" in path or "}" in path:
+        return "PATH_TEMPLATE_UNSUPPORTED"
+    if "//" in path:
+        return "PATH_DUPLICATE_SEPARATOR_FORBIDDEN"
+    if any(segment in (".", "..") for segment in path.split("/")):
+        return "PATH_AMBIGUOUS_SEGMENT_FORBIDDEN"
+    return None
+
+
+def normalize_origin(raw):
+    """Return (normalized, None) or (None, reason). Mirrors normalizeOrigin in packages/core exactly."""
+    if not isinstance(raw, str) or raw == "":
+        return None, "ORIGIN_EMPTY"
+    if CONTROL_OR_DEL.search(raw) or WHITESPACE.search(raw):
+        return None, "ORIGIN_CONTROL_CHARS"
+    parts = urllib.parse.urlsplit(raw)
+    scheme = (parts.scheme or "").lower()
+    if not parts.netloc:
+        return None, "ORIGIN_UNPARSEABLE"
+    if scheme not in ("http", "https"):
+        return None, "ORIGIN_SCHEME_FORBIDDEN"
+    if parts.username is not None or parts.password is not None:
+        return None, "ORIGIN_USERINFO_FORBIDDEN"
+    host = (parts.hostname or "").lower()
+    if not host:
+        return None, "ORIGIN_UNPARSEABLE"
+    if parts.path not in ("", "/"):
+        return None, "ORIGIN_PATH_NOT_ALLOWED"
+    if parts.query or parts.fragment:
+        return None, "ORIGIN_QUERY_NOT_ALLOWED"
+    try:
+        port = parts.port
+    except ValueError:
+        return None, "ORIGIN_PORT_INVALID"
+    if port is not None and (port < 1 or port > 65535):
+        return None, "ORIGIN_PORT_INVALID"
+    if port == (443 if scheme == "https" else 80):
+        port = None
+    serialized = "%s://%s%s" % (scheme, host, "" if port is None else ":%d" % port)
+    return {"origin": serialized, "host": host, "port": port, "loopback": host in LOOPBACK_HOSTS}, None
+
+
+def _same_origin(candidate, target: str) -> bool:
+    """An allowlist entry that cannot be parsed simply never matches; it is not an error of its own."""
+    normalized, reason = normalize_origin(candidate)
+    return reason is None and normalized["origin"] == target
+
+
+def is_positive_safe_integer(value, maximum: int) -> bool:
+    """Positive safe integers only: NaN, infinities, fractions, booleans and strings never become a budget."""
+    if isinstance(value, bool) or not isinstance(value, int):
+        return False
+    return 1 <= value <= maximum
+
+
+def authorize_request(*, origin: str, method: str, path: str, declared_operation_key,
+                      allowed_origins, allowed_methods=("GET",), deadline_ms: int = DEFAULT_DEADLINE_MS,
+                      max_response_bytes: int = MAX_RESPONSE_BYTES, service_origins=None) -> dict:
+    """Mirror of authorizeRequest in packages/core/src/services/http-policy.ts, including rule order."""
+    resolved, reason = normalize_origin(origin)
+    if reason:
+        return {"allowed": False, "reason": reason}
+    if not any(_same_origin(entry, resolved["origin"]) for entry in (allowed_origins or [])):
+        return {"allowed": False, "reason": "ORIGIN_NOT_AUTHORIZED"}
+    upper = (method or "").upper()
+    if upper not in allowed_methods:
+        return {"allowed": False, "reason": "METHOD_NOT_AUTHORIZED"}
+    if declared_operation_key is None:
+        return {"allowed": False, "reason": "DECLARATION_MISSING"}
+    try:
+        declared = parse_operation_key(declared_operation_key)
+    except ProbeError:
+        return {"allowed": False, "reason": "OPERATION_KEY_INVALID"}
+    if service_origins is not None:
+        binding = service_origins.get(declared["service_id"])
+        if binding is None:
+            return {"allowed": False, "reason": "SERVICE_ORIGIN_MISSING"}
+        bound, binding_reason = normalize_origin(binding)
+        if binding_reason:
+            return {"allowed": False, "reason": "SERVICE_ORIGIN_UNPARSEABLE"}
+        if bound["origin"] != resolved["origin"]:
+            return {"allowed": False, "reason": "SERVICE_ORIGIN_MISMATCH"}
+    if declared["method"] != upper:
+        return {"allowed": False, "reason": "OPERATION_METHOD_MISMATCH"}
+    violation = path_rule_violation(path)
+    if violation:
+        return {"allowed": False, "reason": violation}
+    violation = path_rule_violation(declared["path"])
+    if violation:
+        return {"allowed": False, "reason": violation}
+    if path != declared["path"]:
+        return {"allowed": False, "reason": "OPERATION_PATH_MISMATCH"}
+    if not is_positive_safe_integer(max_response_bytes, MAX_RESPONSE_BYTES):
+        return {"allowed": False, "reason": "RESPONSE_BUDGET_OUT_OF_RANGE"}
+    if not is_positive_safe_integer(deadline_ms, 60000):
+        return {"allowed": False, "reason": "DEADLINE_OUT_OF_RANGE"}
+    return {"allowed": True, "reason": None}
 
 
 class _RejectRedirects(urllib.request.HTTPRedirectHandler):
@@ -66,22 +197,30 @@ class _RejectRedirects(urllib.request.HTTPRedirectHandler):
 
 def perform_request(*, origin: str, operation_key: str, allowed_origins: list[str],
                     identity: dict, deadline_ms: int = DEFAULT_DEADLINE_MS,
-                    max_response_bytes: int = MAX_RESPONSE_BYTES) -> dict:
-    """Execute exactly one declared GET and return the raw facts of that attempt."""
-    if not ORIGIN.match(origin):
-        raise ProbeError("ORIGIN_INVALID", origin)
-    if origin not in allowed_origins:
-        raise ProbeError("ORIGIN_NOT_AUTHORIZED", origin)
-    if max_response_bytes < 1 or max_response_bytes > MAX_RESPONSE_BYTES:
-        raise ProbeError("RESPONSE_BUDGET_OUT_OF_RANGE", str(max_response_bytes))
-    if deadline_ms < 1 or deadline_ms > 60000:
-        raise ProbeError("DEADLINE_OUT_OF_RANGE", str(deadline_ms))
+                    max_response_bytes: int = MAX_RESPONSE_BYTES,
+                    service_origins: dict | None = None) -> dict:
+    """Execute exactly one declared GET and return the raw facts of that attempt.
+
+    Nothing reaches the network until `authorize_request` has agreed, field by field, that the caller's
+    origin, method and path are the ones the confirmed declaration names. The URL is then built from the
+    declaration itself, so a caller cannot supply a second, different target alongside it.
+    """
+    # The caller never supplies a path of its own: the wire path can only be the declared one, so a
+    # second, different target cannot be smuggled in beside the declaration. An unparseable key still
+    # reaches authorize_request in the same rule position as the TypeScript side.
+    try:
+        requested_path = parse_operation_key(operation_key)["path"]
+    except ProbeError:
+        requested_path = ""
+    decision = authorize_request(origin=origin, method="GET", path=requested_path,
+                                declared_operation_key=operation_key, allowed_origins=allowed_origins,
+                                deadline_ms=deadline_ms, max_response_bytes=max_response_bytes,
+                                service_origins=service_origins)
+    if not decision["allowed"]:
+        raise ProbeError(decision["reason"], origin if decision["reason"].startswith("ORIGIN") else operation_key)
     validate_identity(identity)
-    method, path = split_operation(operation_key)
-    if method != "GET":
-        raise ProbeError("METHOD_NOT_AUTHORIZED", method)
-    if "?" in path or any(ord(char) < 0x20 or ord(char) == 0x7F for char in path):
-        raise ProbeError("PATH_INVALID", path)
+    declared = parse_operation_key(operation_key)
+    method, path = declared["method"], declared["path"]
 
     opener = urllib.request.build_opener(_RejectRedirects())
     request = urllib.request.Request(origin + path, method="GET")
@@ -125,6 +264,9 @@ def perform_request(*, origin: str, operation_key: str, allowed_origins: list[st
         "response_digest": "sha256:" + hashlib.sha256(payload["body"]).hexdigest(),
         "request_id": identity["request_id"],
         "operation_key": operation_key,
+        # The literal URL handed to the opener. A listener records what it actually received; this only
+        # proves what the helper intended to address, so the two can be compared instead of assumed equal.
+        "request_target": request.full_url,
     })
     return payload
 

@@ -1,0 +1,42 @@
+{
+  "task_id": "V2-R02",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "ef8d7cc3a695f4c9e777e3cfc1c18aa0c59e5c92",
+    "branch": "V2",
+    "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "command": "pnpm lint",
+  "argv": [
+    "pnpm",
+    "lint"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-28T07:08:35.154Z",
+  "finished_at": "2026-09-28T07:08:43.158Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/v2-r02-repo-lint-2026-09-28T07-08-35-154Z.json",
+  "log_path": "docs/implementation/evidence/v2-r02-repo-lint-2026-09-28T07-08-35-154Z.log",
+  "signal": null,
+  "duration_ms": 8004,
+  "source_before": {
+    "manifest_path": "docs/implementation/evidence/v2-r02-repo-lint-2026-09-28T07-08-35-154Z-source-before.json",
+    "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+    "completeness": "COMPLETE",
+    "file_count": 2470,
+    "incomplete_reasons": []
+  },
+  "source_after": {
+    "manifest_path": "docs/implementation/evidence/v2-r02-repo-lint-2026-09-28T07-08-35-154Z-source-after.json",
+    "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58",
+    "completeness": "COMPLETE",
+    "file_count": 2470,
+    "incomplete_reasons": []
+  },
+  "source_changed_during_verification": false,
+  "verification_attributable": true,
+  "content_hash": "sha256:549bf618a34aa1a457408afabb69f0644e33d1682cf2f6af92a1df9976444d58"
+}

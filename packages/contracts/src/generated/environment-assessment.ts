@@ -8,13 +8,14 @@ export interface EnvironmentAssessment {
   data_revision: string;
   provenance: "DECLARED" | "OBSERVED" | "CONTROLLED";
   satisfied: boolean;
-  prepare_ref: string;
-  finalization_ref: string;
-  cleanup_ref: string;
+  environment_required?: boolean;
+  prepare_ref: string | null;
+  finalization_ref: string | null;
+  cleanup_ref: string | null;
   /**
-   * @minItems 1
+   * @minItems 0
    */
-  observation_refs: [string, ...string[]];
+  observation_refs: string[];
   /**
    * @minItems 0
    */

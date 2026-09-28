@@ -1,0 +1,4 @@
+[head] drip: completed after 12617.7 ms on a 100 ms deadline (status=200, bytes=608)
+[head] proxy: authorized target hits=0 unapproved proxy hits=1
+V2F05_STILL_PRESENT=TOTAL_DEADLINE_NOT_ABSOLUTE,IMPLICIT_PROXY_CHANGED_ROUTE,AUTHORIZED_TARGET_NOT_USED
+head EXIT=1

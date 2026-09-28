@@ -1,7 +1,15 @@
 """Bounded HTTP probe helpers for the FastAPI/React preset.
 
-Stdlib only. The helper never evaluates response content, never follows redirects, never reads
-credentials from the environment, and refuses any operation that is not declared and authorized.
+Stdlib only. The helper never evaluates response content, never follows redirects, refuses any operation that
+is not declared and authorized, and refuses any route it did not choose: `ProxyHandler({})` means neither an
+environment variable nor a system proxy setting can send the declared request somewhere else.
+
+The deadline is absolute. It is computed from a monotonic clock when the request starts and it covers process
+start, name resolution, connect, response headers and response body. Because a blocking read cannot be
+interrupted from inside the same process, the request itself runs in a private one-shot worker
+(`probe_worker.py`) that the parent may terminate; the parent then waits for the handle it created and refuses
+to report success until that wait proves the worker is gone. The outer Runner timeout stays a second line of
+defense rather than a substitute for this deadline.
 """
 
 from __future__ import annotations
@@ -11,6 +19,9 @@ import json
 import os
 import re
 import socket
+import struct
+import subprocess
+import sys
 import time
 import urllib.error
 import urllib.parse
@@ -26,15 +37,61 @@ METHODS = ("GET", "PUT", "POST", "DELETE", "OPTIONS", "HEAD", "PATCH", "TRACE")
 LOOPBACK_HOSTS = ("127.0.0.1", "localhost", "[::1]")
 CONTROL_OR_DEL = re.compile(r"[\x00-\x1f\x7f]")
 WHITESPACE = re.compile(r"\s")
+# The frame is [4-byte metadata length][metadata JSON][4-byte body length][body]. Every length is checked
+# against a cap before it is trusted, so a confused worker cannot make the parent allocate freely.
+FRAME_HEADER_BYTES = 4
+MAX_METADATA_BYTES = 64 * 1024
+MAX_REQUEST_FRAME_BYTES = 16 * 1024
+MAX_FRAME_BYTES = 2 * FRAME_HEADER_BYTES + MAX_METADATA_BYTES + MAX_RESPONSE_BYTES
+WORKER_SCRIPT = "probe_worker.py"
+# Only what the interpreter needs. No proxy variable and nothing that could name a credential is forwarded.
+WORKER_ENV_ALLOWLIST = ("SYSTEMROOT", "WINDIR", "PATH", "PATHEXT", "COMSPEC", "SYSTEMDRIVE", "TEMP", "TMP", "TMPDIR")
+# Inside the worker the same rule is applied a second time: whatever the parent handed over is filtered again,
+# so an active virtual environment or a proxy in the caller's environment cannot decide what the one request
+# imports or where it goes. Nothing here is a value - only names are ever compared or reported.
+WORKER_NEUTRAL_ENV_ALLOWLIST = ("SYSTEMROOT", "WINDIR", "PATH", "PATHEXT", "COMSPEC", "SYSTEMDRIVE",
+                                "TEMP", "TMP", "TMPDIR", "HOME", "LANG", "LC_ALL", "TZ")
+# Anything that could name a proxy, a credential or an interpreter choice is not allowed to survive into the
+# process that performs the request.
+PRIVILEGE_BEARING_NAME = re.compile(
+    r"proxy|credential|token|secret|password|authorization|cookie|api[-_]?key|python|virtual|-_?env", re.IGNORECASE)
+# Both reclamation points wait on the handle this process created - `subprocess.wait`, reached through
+# `communicate()`, and after a deadline through `kill()` plus a bounded final wait. That wait is platform
+# independent: on Windows it is a wait on the process handle, on POSIX a waitpid on the child. It is not
+# `taskkill`, not a name match and not a signal sent to a process group.
+REAP_MECHANISM = "subprocess.wait on the handle this process created"
+REAP_TIMEOUT_SECONDS = 5.0
+# How long the parent waits for the output pipes to reach end of file after the handle has already reported
+# an exit. A child that started its own interpreter would keep the write end open, so this is bounded: the
+# parent must never trade the request deadline for an unbounded cleanup wait.
+PIPE_DRAIN_TIMEOUT_SECONDS = 2.0
+# The templates that ship this helper never compress a response; anything else is refused rather than decoded
+# and then reported as if it were the bytes that arrived on the wire.
+SUPPORTED_CONTENT_ENCODINGS = ("", "identity")
+# The unified classification every caller and every branch shares: a request outcome is always one of these,
+# whether it arrived as an exception, an HTTP error status or a malformed worker answer.
+REQUEST_ERROR_CODES = ("DEADLINE_EXCEEDED", "CONNECT_FAILED", "RESPONSE_OVER_BUDGET", "REDIRECT_REFUSED",
+                       "CONTENT_ENCODING_UNSUPPORTED", "WORKER_PROTOCOL_ERROR", "WORKER_NOT_RECLAIMED",
+                       "WORKER_SPAWN_FAILED", "WORKER_CRASHED", "WORKER_IDENTITY_MISMATCH",
+                       "FRAME_OVER_BUDGET")
+# A worker that declines its work order says so with one of these; nothing was sent when it does.
+REFUSAL_ERROR_CODES = ("WORKER_REJECTED", "WORKER_ORIGIN_UNAUTHORIZED", "WORKER_URL_ESCAPE", "WORKER_PATH_RULE",
+                       "WORKER_NOT_PROVEN")
 
 
 class ProbeError(Exception):
-    """Carries a machine-readable reason so the collector can classify failures precisely."""
+    """Carries a machine-readable reason so the collector can classify failures precisely.
 
-    def __init__(self, code: str, detail: str = "") -> None:
+    `facts` carries what actually happened around the failure - for a request failure, the fate of the private
+    worker - without changing the positional `code`/`detail` contract the callers already rely on.
+    """
+
+    def __init__(self, code: str, detail: str = "", facts: dict | None = None) -> None:
         super().__init__(f"{code}: {detail}" if detail else code)
         self.code = code
         self.detail = detail
+        self.facts = dict(facts) if facts else {}
+
 
 
 def _utc(value: float) -> str:
@@ -195,6 +252,308 @@ class _RejectRedirects(urllib.request.HTTPRedirectHandler):
         raise urllib.error.HTTPError(newurl, code, "redirect refused by policy", headers, fp)
 
 
+def frame(metadata: dict, body: bytes = b"", max_body: int = MAX_RESPONSE_BYTES) -> bytes:
+    """Serialize one bounded message. A frame that would exceed its cap is refused, never truncated."""
+    encoded = json.dumps(metadata, ensure_ascii=False, separators=(",", ":"), sort_keys=True).encode("utf-8")
+    if len(encoded) > MAX_METADATA_BYTES:
+        raise ProbeError("FRAME_OVER_BUDGET", "metadata %d" % len(encoded))
+    if len(body) > max_body:
+        raise ProbeError("FRAME_OVER_BUDGET", "body %d" % len(body))
+    return (struct.pack(">I", len(encoded)) + encoded
+            + struct.pack(">I", len(body)) + body)
+
+
+def _read_one_frame(data: bytes, offset: int, *, max_body: int, label: str) -> tuple[dict, bytes, int]:
+    header = FRAME_HEADER_BYTES
+    if len(data) < offset + header:
+        raise ProbeError("FRAME_TRUNCATED", "header")
+    metadata_length = struct.unpack(">I", data[offset:offset + header])[0]
+    if metadata_length > MAX_METADATA_BYTES:
+        raise ProbeError("WORKER_PROTOCOL_ERROR", "%s metadata %d" % (label, metadata_length))
+    body_field = offset + header + metadata_length
+    if len(data) < body_field + header:
+        raise ProbeError("FRAME_TRUNCATED", "metadata")
+    try:
+        metadata = json.loads(data[offset + header:body_field].decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ProbeError("WORKER_PROTOCOL_ERROR", "%s metadata: %s" % (label, error)) from error
+    if not isinstance(metadata, dict):
+        raise ProbeError("WORKER_PROTOCOL_ERROR", "%s metadata is not an object" % label)
+    body_length = struct.unpack(">I", data[body_field:body_field + header])[0]
+    if body_length > max_body:
+        # A body length the reader was never granted is the sender breaking the protocol. It is not the
+        # upstream condition RESPONSE_OVER_BUDGET, which only a real read past the budget may report.
+        raise ProbeError("WORKER_PROTOCOL_ERROR", "%s body %d over cap %d" % (label, body_length, max_body))
+    end = body_field + header + body_length
+    if len(data) < end:
+        raise ProbeError("FRAME_TRUNCATED", "body")
+    return metadata, data[body_field + header:end], end
+
+
+def unframe(data: bytes, *, max_body: int = MAX_RESPONSE_BYTES, label: str = "worker") -> tuple[dict, bytes]:
+    """Parse exactly one frame from a buffer that must hold nothing else."""
+    if len(data) > MAX_FRAME_BYTES:
+        raise ProbeError("WORKER_PROTOCOL_ERROR", "%s output %d bytes" % (label, len(data)))
+    if not data:
+        raise ProbeError("WORKER_PROTOCOL_ERROR", "%s sent no frame" % label)
+    try:
+        metadata, body, end = _read_one_frame(data, 0, max_body=max_body, label=label)
+    except ProbeError as error:
+        if error.code == "FRAME_TRUNCATED":
+            raise ProbeError("WORKER_PROTOCOL_ERROR", "%s %s" % (label, error.detail)) from error
+        raise
+    if end != len(data):
+        raise ProbeError("WORKER_PROTOCOL_ERROR", "%s trailing bytes" % label)
+    return metadata, body
+
+
+def _worker_environment() -> dict:
+    """The worker's environment: an allowlist, so nothing inherited can carry a proxy or a credential."""
+    allowed = {name.upper() for name in WORKER_ENV_ALLOWLIST}
+    resolved: dict[str, str] = {}
+    for key, value in os.environ.items():
+        name = key.upper()
+        if name in allowed and value:
+            resolved[name] = value
+    return resolved
+
+
+def _worker_executable() -> str:
+    """The interpreter for the one request, preferring the real binary over a virtual-environment launcher.
+
+    A venv's `python.exe` can be a stub that starts the base interpreter as its own child, which would leave
+    the handle we wait on pointing at something other than the process holding the socket. `sys._base_executable`
+    is the interpreter that stub re-executes, so waiting on it is waiting on the reader itself. Measured on this
+    machine: from inside the venv stub the base path yields one process whose pid the interpreter reports as its
+    own, while the stub path yields two.
+    """
+    base = str(getattr(sys, "_base_executable", "") or "")
+    if base and os.path.isfile(base):
+        return base
+    return sys.executable
+
+
+def _neutralize_environment() -> list:
+    """Drop every variable the worker was not given a reason to have. Returns the names removed.
+
+    An active virtual environment works through `*_HOME`, `*_PATH` and `*_PREVIEW` style variables and through
+    the interpreter that was started; a proxy or a credential arrives the same way. Removing them here is the
+    second layer - the parent already built a deliberately small environment - and the removal list is what the
+    caller reports, so "nothing was inherited" is something a reader can check rather than take on faith.
+    """
+    keep = {name.upper() for name in WORKER_NEUTRAL_ENV_ALLOWLIST}
+    removed = []
+    for name in sorted(os.environ, key=str.upper):
+        if name.upper() in keep:
+            continue
+        removed.append(name.lower())
+        try:
+            del os.environ[name]
+        except KeyError:  # another thread, or a platform that will not forget it
+            pass
+    return removed
+
+
+def _neutralize_privileges(facts: dict) -> None:
+    """What this process can still do, recorded honestly instead of claimed uniformly.
+
+    `umask` exists on both platforms. Supplementary-group release does not: on Windows there is no
+    `os.getgroups`, and POSIX-only calls are reported as unsupported rather than pretended with.
+    """
+    try:
+        os.umask(0o077)
+        facts["umask_set"] = True
+    except OSError as error:
+        facts["umask_set"] = False
+        facts["umask_error"] = str(error)
+    release = getattr(os, "getgroups", None)
+    if release is None:
+        facts["groups_release"] = "unsupported"
+        return
+    try:
+        groups = release()
+        setgroups = getattr(os, "setgroups", None)
+        if setgroups is None:
+            facts["groups_release"] = "unsupported"
+            return
+        setgroups([] if not groups else groups[:0])
+        facts["groups_release"] = "released" if not release() else "partial"
+    except OSError as error:
+        # A non-root process cannot drop groups it was not given; that is recorded, not hidden.
+        facts["groups_release"] = "refused"
+        facts["groups_error"] = str(error)
+
+
+def run_privileged(request: dict, facts: dict) -> tuple[dict, bytes]:
+    """Perform the one request from a process that kept nothing, recording what it dropped first.
+
+    The request does not start until the neutralisation reported here has happened; the record is what lets a
+    reader see that it did.
+    """
+    _neutralize_privileges(facts)
+    facts["removed_environment_variables"] = _neutralize_environment()
+    facts["environment_variables"] = sorted(name.lower() for name in os.environ)
+    return execute_request(request)
+
+
+def _launch_proofs(script: str, executable: str, environment: dict, request_frame: bytes) -> dict:
+    """Everything that must hold before a private worker exists at all.
+
+    If one of these is false, no process is created to find out what happens: the failure is reported with the
+    proof that is missing rather than as a cleanup claim about a worker that never ran.
+    """
+    return {
+        "worker_script_present": os.path.isfile(script),
+        "interpreter_present": os.path.isfile(executable),
+        "request_frame_within_cap": len(request_frame) <= MAX_REQUEST_FRAME_BYTES,
+        "environment_within_allowlist": all(name.upper() in WORKER_ENV_ALLOWLIST for name in environment),
+        "environment_present": bool(environment),
+    }
+
+
+def _env_projection() -> dict:
+    """What this process can still be influenced by, as names only.
+
+    An active virtual environment selects itself through `*_HOME`, `*_PATH` and `*_PREVIEW` variables, a proxy
+    through `*_proxy`, a credential through anything that names one. A reader of the artifact can check the
+    projection is empty instead of trusting a sentence in a docstring; no value is ever recorded.
+    """
+    names = sorted(name.lower() for name in os.environ)
+    return {
+        "environment_names": names,
+        "environment_interpretable": [name for name in names if PRIVILEGE_BEARING_NAME.search(name)],
+        "prefix": sys.prefix,
+        "base_prefix": sys.base_prefix,
+    }
+
+
+def _terminate_and_reap(process: subprocess.Popen, facts: dict) -> None:
+    """Terminate only the process this call created, then prove it is gone.
+
+    Two independent checks, in the order that cannot hang. `wait()` is the deterministic one: it is a wait on
+    the handle this process created, on Windows for a process handle and on POSIX for the child pid, and it
+    stops the moment the kernel records the exit. The pipe drain is the reachability one: end of file arrives
+    only when every holder of the write end has let go, so it is what shows a launcher whose real interpreter
+    kept running - it would still hold the socket the request reads through. Neither is assumed; if either
+    fails this is a tool/resource error rather than a cleanup that was taken on faith.
+    """
+    facts["killed"] = True
+    try:
+        process.stdin.close()
+    except OSError:
+        pass  # the request frame already reached end of file
+    try:
+        process.kill()
+    except OSError as error:  # already gone, or the handle refuses the request; either way we still wait
+        facts["kill_error"] = str(error)
+    started = time.monotonic()
+    try:
+        process.wait(timeout=REAP_TIMEOUT_SECONDS)
+    except subprocess.TimeoutExpired:
+        facts["reap_ms"] = int((time.monotonic() - started) * 1000)
+        facts["worker_exit_code"] = process.poll()
+        facts["pipes_closed"] = False
+        facts["reclaimed"] = False
+        raise ProbeError("WORKER_NOT_RECLAIMED", "pid %s never reported an exit status" % process.pid, facts)
+    facts["reap_ms"] = int((time.monotonic() - started) * 1000)
+    facts["worker_exit_code"] = process.poll()
+    facts["handle_reaped"] = True
+    closed = True
+    try:
+        process.communicate(timeout=PIPE_DRAIN_TIMEOUT_SECONDS)
+    except subprocess.TimeoutExpired:
+        closed = False
+    facts["pipes_closed"] = closed
+    facts["reap_mechanism"] = REAP_MECHANISM
+    # Both halves have to hold before anything is called reclaimed.
+    facts["reclaimed"] = closed
+    if not closed:
+        raise ProbeError("WORKER_NOT_RECLAIMED",
+                         "pid %s exited but something still holds its output pipes" % process.pid, facts)
+
+
+def _run_worker(payload: dict, *, deadline_ms: int, deadline_at: float, facts: dict) -> tuple[dict, bytes]:
+    """Ask the private worker for exactly one request and hold the absolute monotonic deadline over it."""
+    script = os.path.join(os.path.dirname(os.path.abspath(__file__)), WORKER_SCRIPT)
+    request_frame = frame(payload, max_body=MAX_REQUEST_FRAME_BYTES)
+    executable = _worker_executable()
+    environment = _worker_environment()
+    facts["worker_executable"] = executable
+    proofs = _launch_proofs(script, executable, environment, request_frame)
+    facts["launch_proofs"] = proofs
+    if not all(proofs.values()):
+        # Something about this launch cannot be proven beforehand, so no process is started to find out.
+        raise ProbeError("WORKER_NOT_PROVEN", json.dumps(proofs, sort_keys=True), facts)
+    try:
+        process = subprocess.Popen([executable, "-B", "-E", script], stdin=subprocess.PIPE,
+                                   stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=os.path.dirname(script),
+                                   env=environment, close_fds=True)
+    except OSError as error:
+        raise ProbeError("WORKER_SPAWN_FAILED", str(error), facts) from error
+    facts["worker_pid"] = process.pid
+    facts["spawned"] = True
+    try:
+        # The worker is given the budget that is left, never the whole deadline again: this call and the
+        # socket timeouts inside the child share one absolute reference taken before the child existed.
+        stdout, stderr = process.communicate(input=request_frame,
+                                             timeout=max(0.001, deadline_at - time.monotonic()))
+    except subprocess.TimeoutExpired:
+        try:
+            _terminate_and_reap(process, facts)
+        except ProbeError as unclean:
+            unclean.facts["deadline_ms"] = deadline_ms
+            raise
+        facts["deadline_ms"] = deadline_ms
+        raise ProbeError("DEADLINE_EXCEEDED", str(deadline_ms), facts) from None
+    facts["worker_exit_code"] = process.poll()
+    facts["handle_reaped"] = process.returncode is not None
+    # `communicate()` only returns once both pipes reached end of file, so the pipe half of the proof is
+    # already satisfied here; the exit status still has to come from the handle we created.
+    facts["pipes_closed"] = True
+    facts["killed"] = False
+    facts["deadline_ms"] = deadline_ms
+    facts["worker_stderr"] = _text(stderr)[:200]
+    facts["reclaimed"] = facts["handle_reaped"]
+    if not facts["reclaimed"]:
+        # communicate() returned but the handle will not report an exit status: nothing can be claimed about
+        # this worker being finished, so this is a tool/resource failure.
+        raise ProbeError("WORKER_NOT_RECLAIMED", str(process.pid), facts)
+    facts["reap_mechanism"] = REAP_MECHANISM
+    if time.monotonic() > deadline_at:
+        # An answer that arrives after the absolute deadline is not an answer inside budget.
+        raise ProbeError("DEADLINE_EXCEEDED", str(deadline_ms), facts)
+    if not stdout:
+        raise ProbeError("WORKER_PROTOCOL_ERROR", "empty answer, exit %s: %s"
+                         % (process.returncode, _text(stderr)[:200]), facts)
+    metadata, body = unframe(stdout, max_body=payload["max_response_bytes"])
+    if metadata.get("ok") is not True:
+        code = str(metadata.get("code") or "WORKER_PROTOCOL_ERROR")
+        if code not in REQUEST_ERROR_CODES + REFUSAL_ERROR_CODES:
+            code = "WORKER_PROTOCOL_ERROR"
+        facts["worker_neutralized"] = metadata.get("neutralized")
+        raise ProbeError(code, str(metadata.get("detail") or ""), facts)
+    # The reader must be the process this parent created and may terminate. A pid that does not match - a
+    # launcher stub that re-executed into another interpreter, say - makes every claim about cancellation
+    # meaningless, so it is refused here rather than recorded as a detail.
+    reader = metadata.get("reader_pid")
+    if reader != process.pid:
+        facts["worker_reader_pid"] = reader
+        raise ProbeError("WORKER_IDENTITY_MISMATCH", "reader %s is not the spawned %s" % (reader, process.pid), facts)
+    facts["worker_reader_pid"] = reader
+    facts["worker_prefix"] = metadata.get("prefix")
+    facts["worker_base_prefix"] = metadata.get("base_prefix")
+    facts["worker_environment_names"] = metadata.get("environment_names")
+    facts["worker_environment_interpretable"] = metadata.get("environment_interpretable")
+    facts["worker_neutralized"] = metadata.get("neutralized")
+    return metadata, body
+
+
+def _text(data) -> str:
+    if isinstance(data, bytes):
+        return data.decode("utf-8", "replace")
+    return "" if data is None else str(data)
+
+
 def perform_request(*, origin: str, operation_key: str, allowed_origins: list[str],
                     identity: dict, deadline_ms: int = DEFAULT_DEADLINE_MS,
                     max_response_bytes: int = MAX_RESPONSE_BYTES,
@@ -204,7 +563,15 @@ def perform_request(*, origin: str, operation_key: str, allowed_origins: list[st
     Nothing reaches the network until `authorize_request` has agreed, field by field, that the caller's
     origin, method and path are the ones the confirmed declaration names. The URL is then built from the
     declaration itself, so a caller cannot supply a second, different target alongside it.
+
+    The request is performed by a private worker process under one absolute monotonic `deadline_ms` that
+    covers process start, name resolution, connect, headers and body. Every fact the caller already read is
+    still returned; `worker` is added next to them.
     """
+    facts: dict = {"worker_pid": None, "spawned": False, "killed": False, "reclaimed": False,
+                   "handle_reaped": False, "pipes_closed": False, "worker_exit_code": None,
+                   "reap_mechanism": None, "worker_executable": None, "launch_proofs": None,
+                   "deadline_ms": deadline_ms}
     # The caller never supplies a path of its own: the wire path can only be the declared one, so a
     # second, different target cannot be smuggled in beside the declaration. An unparseable key still
     # reaches authorize_request in the same rule position as the TypeScript side.
@@ -217,73 +584,168 @@ def perform_request(*, origin: str, operation_key: str, allowed_origins: list[st
                                 deadline_ms=deadline_ms, max_response_bytes=max_response_bytes,
                                 service_origins=service_origins)
     if not decision["allowed"]:
-        raise ProbeError(decision["reason"], origin if decision["reason"].startswith("ORIGIN") else operation_key)
+        raise ProbeError(decision["reason"],
+                         origin if decision["reason"].startswith("ORIGIN") else operation_key, facts)
     validate_identity(identity)
     declared = parse_operation_key(operation_key)
     method, path = declared["method"], declared["path"]
-
-    opener = urllib.request.build_opener(_RejectRedirects())
-    request = urllib.request.Request(origin + path, method="GET")
-    request.add_header("Accept", "application/json")
-    request.add_header(IDENTITY_HEADER, identity["request_id"])
-    request.add_header("X-Stackgate-Run-Id", identity["run_id"])
-    request.add_header("X-Stackgate-Check-Id", identity["check_id"])
-    request.add_header("X-Stackgate-Attempt-Id", identity["attempt_id"])
+    target = origin + path
+    # The same five headers, in the same order, as the request the preset emitted before the worker existed:
+    # reordering them would change the wire bytes a listener compares against the declaration. They travel as
+    # pairs because a frame encodes objects with sorted keys.
+    headers = [
+        ["Accept", "application/json"],
+        [IDENTITY_HEADER, identity["request_id"]],
+        ["X-Stackgate-Run-Id", identity["run_id"]],
+        ["X-Stackgate-Check-Id", identity["check_id"]],
+        ["X-Stackgate-Attempt-Id", identity["attempt_id"]],
+    ]
+    payload = {"url": target, "origin": origin, "path": path, "method": method, "headers": headers,
+               "max_response_bytes": max_response_bytes, "budget_ms": deadline_ms}
 
     started = time.time()
     started_at = _utc(started)
-    deadline = started + deadline_ms / 1000.0
+    # One monotonic reference for the whole request, taken before the worker exists: everything after this
+    # point, start-up included, has to fit inside it.
+    clock = time.monotonic()
+    deadline_at = clock + deadline_ms / 1000.0
     try:
-        with opener.open(request, timeout=max(0.05, deadline - time.time())) as response:
-            body = _read_bounded(response, max_response_bytes)
-            payload = {
-                "status_code": int(response.status),
-                "media_type": response.headers.get("Content-Type", "").split(";")[0].strip(),
-                "body": body,
-                "instance_id": (response.headers.get("X-Stackgate-Instance-Id") or "").strip(),
-                "observed_request_id": (response.headers.get(IDENTITY_HEADER) or "").strip(),
-            }
-    except urllib.error.HTTPError as error:
-        if error.code in (301, 302, 303, 307, 308):
-            raise ProbeError("REDIRECT_REFUSED", str(error.code)) from error
-        body = _read_bounded(error, max_response_bytes)
-        payload = {
-            "status_code": int(error.code),
-            "media_type": (error.headers.get("Content-Type", "") if error.headers else "").split(";")[0].strip(),
-            "body": body,
-            "instance_id": (error.headers.get("X-Stackgate-Instance-Id", "") if error.headers else "").strip(),
-            "observed_request_id": (error.headers.get(IDENTITY_HEADER, "") if error.headers else "").strip(),
-        }
-    except urllib.error.URLError as error:
-        raise ProbeError("CONNECT_FAILED", str(error.reason)) from error
-    except socket.timeout as error:
-        raise ProbeError("DEADLINE_EXCEEDED", str(deadline_ms)) from error
-    payload.update({
+        metadata, body = _run_worker(payload, deadline_ms=deadline_ms, deadline_at=deadline_at, facts=facts)
+    except ProbeError as error:
+        error.facts.setdefault("deadline_ms", deadline_ms)
+        error.facts.setdefault("elapsed_ms", int((time.monotonic() - clock) * 1000))
+        raise
+    facts["elapsed_ms"] = int((time.monotonic() - clock) * 1000)
+    if metadata.get("request_target") != target:
+        raise ProbeError("WORKER_IDENTITY_MISMATCH", str(metadata.get("request_target")), facts)
+    digest = "sha256:" + hashlib.sha256(body).hexdigest()
+    if metadata.get("response_digest") not in (None, digest):
+        raise ProbeError("WORKER_IDENTITY_MISMATCH", "response digest", facts)
+    payload_out = {
+        "status_code": int(metadata["status_code"]),
+        "media_type": str(metadata["media_type"]),
+        "body": body,
+        "instance_id": str(metadata["instance_id"]),
+        "observed_request_id": str(metadata["observed_request_id"]),
         "started_at": started_at,
         "finished_at": _utc(time.time()),
-        "response_digest": "sha256:" + hashlib.sha256(payload["body"]).hexdigest(),
+        "response_digest": digest,
         "request_id": identity["request_id"],
         "operation_key": operation_key,
         # The literal URL handed to the opener. A listener records what it actually received; this only
         # proves what the helper intended to address, so the two can be compared instead of assumed equal.
-        "request_target": request.full_url,
-    })
-    return payload
+        "request_target": str(metadata["request_target"]),
+        "deadline_ms": deadline_ms,
+        "response_bytes": len(body),
+        "worker": facts,
+    }
+    return payload_out
 
 
-def _read_bounded(source, max_bytes: int) -> bytes:
+def _read_bounded(source, max_bytes: int, deadline: float | None = None) -> bytes:
+    """Read at most `max_bytes`, asking for no more than the remaining budget plus one byte.
+
+    This bounds how much a single read can bring in and how many bytes can be collected; the absolute wall
+    clock bound is the parent's, which terminates the worker. Checking the clock here is a second layer, not
+    the mechanism.
+    """
     read = getattr(source, "read", None)
     if read is None:
         return b""
     collected = bytearray()
     while True:
-        chunk = read(65536)
+        if deadline is not None and time.monotonic() >= deadline:
+            raise ProbeError("DEADLINE_EXCEEDED", "body read")
+        remaining = max_bytes - len(collected) + 1
+        chunk = read(min(65536, remaining))
         if not chunk:
             break
         collected.extend(chunk)
         if len(collected) > max_bytes:
             raise ProbeError("RESPONSE_OVER_BUDGET", str(len(collected)))
     return bytes(collected)
+
+
+def _headers_of(source_headers, identity_header: str) -> dict:
+    """The four response facts a collector can compare with the request that was actually sent."""
+    def header(name: str) -> str:
+        if source_headers is None:
+            return ""
+        return (source_headers.get(name) or "").strip()
+
+    return {
+        "media_type": header("Content-Type").split(";")[0].strip(),
+        "instance_id": header("X-Stackgate-Instance-Id"),
+        "observed_request_id": header(identity_header),
+    }
+
+
+def _refuse_encoding(headers) -> str:
+    """The templates never compress a response, so an encoding we would have to decode is refused by name.
+
+    Decompressing and then hashing the result would report bytes that never existed on the wire.
+    """
+    encoding = ((headers.get("Content-Encoding") if headers is not None else None) or "").strip().lower()
+    if encoding not in SUPPORTED_CONTENT_ENCODINGS:
+        raise ProbeError("CONTENT_ENCODING_UNSUPPORTED", encoding)
+    return encoding
+
+
+def execute_request(payload: dict) -> tuple[dict, bytes]:
+    """Perform the single request the parent already authorized. Only the private worker calls this.
+
+    `ProxyHandler({})` is the reason this exists separately from the parent: `build_opener` otherwise installs
+    the default proxy handler, which discovers `http_proxy`/`https_proxy` and the system proxy configuration
+    and would send the declared request - with any proxy credential the environment names - to an address no
+    declaration ever mentioned. The budget is the one the parent computed from its monotonic clock, so the
+    socket timeout and every read get what is left of it, never a fresh copy.
+    """
+    max_bytes = payload["max_response_bytes"]
+    deadline = time.monotonic() + payload["budget_ms"] / 1000.0
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), _RejectRedirects())
+    request = urllib.request.Request(payload["url"], method=payload["method"])
+    for name, value in payload["headers"]:
+        request.add_header(name, value)
+    try:
+        with opener.open(request, timeout=max(0.001, deadline - time.monotonic())) as response:
+            _refuse_encoding(response.headers)
+            body = _read_bounded(response, max_bytes, deadline)
+            facts = _headers_of(response.headers, IDENTITY_HEADER)
+            status = int(response.status)
+    except urllib.error.HTTPError as error:
+        if error.code in (301, 302, 303, 307, 308):
+            raise ProbeError("REDIRECT_REFUSED", str(error.code)) from error
+        _refuse_encoding(error.headers)
+        body = _read_bounded(error, max_bytes, deadline)
+        facts = _headers_of(error.headers, IDENTITY_HEADER)
+        status = int(error.code)
+    except urllib.error.URLError as error:
+        # A route that was refused and a route that ran out of budget are different failures; the default
+        # proxy used to hide the second inside the first.
+        if isinstance(getattr(error, "reason", None), (socket.timeout, TimeoutError)):
+            raise ProbeError("DEADLINE_EXCEEDED", str(payload["budget_ms"])) from error
+        raise ProbeError("CONNECT_FAILED", str(error.reason)) from error
+    except socket.timeout as error:
+        raise ProbeError("DEADLINE_EXCEEDED", str(payload["budget_ms"])) from error
+    metadata = {
+        "ok": True,
+        "status_code": status,
+        "media_type": facts["media_type"],
+        "instance_id": facts["instance_id"],
+        "observed_request_id": facts["observed_request_id"],
+        # What this process actually handed to the opener. The parent compares it with the URL it authorized
+        # before spawning, so a worker that drifted to another route is a failure rather than a fact.
+        "request_target": request.full_url,
+        "response_digest": "sha256:" + hashlib.sha256(body).hexdigest(),
+        # The reader identifies itself: the parent compares this pid with the handle it is allowed to
+        # terminate, so "we killed the process that was reading" is a checked fact and not a guess about
+        # whether this interpreter re-executed into some other process. The projection says the same thing
+        # about imports and privileges: variable names only, never their values.
+        "reader_pid": os.getpid(),
+    }
+    metadata.update(_env_projection())
+    return metadata, body
+
 
 
 def resolve_pointer(document, pointer: str):
@@ -338,10 +800,65 @@ def evaluate_assertion(document, assertion: dict) -> bool:
     return bool(compare(value, expected))
 
 
+def _commit(path: str, data: bytes) -> None:
+    """Put `data` at `path` without ever replacing bytes that are already there.
+
+    The partial file is flushed and synced, then linked into place: `os.link` fails with `FileExistsError` when
+    the target exists, which is the exclusive commit an evidence chain needs. A filesystem without hard links
+    falls back to an exclusive create - the no-replace rule survives there, only the atomicity does not.
+    """
+    directory = os.path.dirname(path)
+    try:
+        if directory:
+            os.makedirs(directory, exist_ok=True)
+    except OSError as error:
+        # The artifact root could not be resolved at all - a parent that is a file, an unmapped drive. That is
+        # a storage failure, distinct from a launch parameter that was never usable in the first place.
+        raise ProbeError("ARTIFACT_COMMIT_FAILED", "%s: %s" % (path, error)) from error
+    temporary = "%s.partial.%d" % (path, os.getpid())
+    try:
+        with open(temporary, "wb") as handle:
+            handle.write(data)
+            handle.flush()
+            os.fsync(handle.fileno())
+        try:
+            os.link(temporary, path)
+            return
+        except FileExistsError as error:
+            raise ProbeError("ARTIFACT_EXISTS", path) from error
+        except OSError as error:
+            # ERROR_FILE_EXISTS (80) is the other way a volume reports the same rule. Anything else - a
+            # filesystem with no hard links at all - falls through to the exclusive create below.
+            if getattr(error, "winerror", None) == 80:
+                raise ProbeError("ARTIFACT_EXISTS", path) from error
+        try:
+            descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL)
+        except FileExistsError as error:
+            raise ProbeError("ARTIFACT_EXISTS", path) from error
+        except OSError as error:
+            raise ProbeError("ARTIFACT_COMMIT_FAILED", "%s: %s" % (path, error)) from error
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(data)
+            handle.flush()
+            os.fsync(handle.fileno())
+    except ProbeError:
+        raise
+    except OSError as error:
+        raise ProbeError("ARTIFACT_COMMIT_FAILED", "%s: %s" % (path, error)) from error
+    finally:
+        try:
+            os.unlink(temporary)
+        except OSError:
+            pass
+
+
+def write_bytes(path: str, data: bytes) -> None:
+    """Record raw response bytes as they arrived; a previous attempt's file is never replaced."""
+    _commit(path, bytes(data))
+
+
 def write_json(path: str, value) -> None:
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    temporary = path + ".partial"
-    with open(temporary, "w", encoding="utf-8", newline="\n") as handle:
-        json.dump(value, handle, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
-        handle.write("\n")
-    os.replace(temporary, path)
+    """Commit one diagnostic document exclusively, preserving any bytes an earlier attempt left behind."""
+    encoded = (json.dumps(value, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n").encode("utf-8")
+    _commit(path, encoded)
+

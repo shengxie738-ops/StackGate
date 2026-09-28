@@ -1,0 +1,3 @@
+drip: refused after 105.9 ms with DEADLINE_EXCEEDED
+proxy: authorized target hits=1 unapproved proxy hits=0
+V2F05_STILL_PRESENT=none

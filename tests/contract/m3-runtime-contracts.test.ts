@@ -4,35 +4,79 @@ import type {
   BackendObservation, EnvironmentAssessment, EnvironmentCleanup, EnvironmentFinalization, EnvironmentManifest, PlanContext,
 } from '../../packages/contracts/src/index.js';
 import {validateSchema} from '../../packages/contracts/src/index.js';
-import {assessEnvironment, assessmentReferencesAuthentic, type EnvironmentAssessmentInput} from '../../packages/core/src/services/environment-assessment.js';
+import {
+  assessEnvironment, assessmentReferencesAuthentic,
+  type ConfirmedEnvironmentRequirements, type EnvironmentAssessmentInput,
+} from '../../packages/core/src/services/environment-assessment.js';
 import {builtinAdapterFactories, createRuntimeAdapterRegistry} from '../../packages/core/src/services/adapter-registry.js';
 
 const read = (name: string) => JSON.parse(readFileSync(`tests/fixtures/protocols/${name}.json`, 'utf8'));
 const context = { config: { commands: { smoke: { exec: 'node', args: [] } } } } as unknown as PlanContext;
 
+/** The identity the core records for the resources it created in this run. */
+const CREATION_IDENTITY = 'stackgate-v2-contract-worker';
+const RESOURCE_CREATED_AT = ['2026-09-21T10:01:00.000Z', '2026-09-21T10:02:00.000Z'];
+
+/**
+ * The confirmed requirement set for the contract demo: an attached environment, one backend observation and an
+ * OBSERVED floor. V2-R05 replaced the loose per-field booleans on the input with this object.
+ */
+function confirmedRequirements(prepare: EnvironmentManifest, observation: BackendObservation): ConfirmedEnvironmentRequirements {
+  return {
+    required_by_profile: true,
+    required_by_task: true,
+    requires_backend_observation: true,
+    minimum_provenance: 'OBSERVED',
+    expected_data_revision: prepare.data_revision,
+    expected_origins: { frontend: prepare.frontend_origin ?? null, backend: prepare.backend_origin ?? null },
+    required_operations: [observation.operation_key],
+  };
+}
+
 function baseInput(overrides: Partial<EnvironmentAssessmentInput> = {}): EnvironmentAssessmentInput {
   const prepare = { ...read('environment'), run_id: 'run_m3_contract_demo' } as EnvironmentManifest;
-  const finalization = { ...read('environment-finalization'), run_id: prepare.run_id, instance_id: prepare.instance_id, input_hash: prepare.input_hash, data_revision: prepare.data_revision, provenance: prepare.provenance } as EnvironmentFinalization;
-  const cleanup = { ...read('environment-cleanup'), run_id: prepare.run_id, resources: (read('environment-cleanup').resources ?? []).map((resource: { run_id: string }) => ({ ...resource, run_id: prepare.run_id })) } as EnvironmentCleanup;
-  const observation = { ...read('backend-observation'), run_id: prepare.run_id, instance_id: prepare.instance_id ?? 'instance_backend_1' } as BackendObservation;
+  const finalization = { ...read('environment-finalization'), run_id: prepare.run_id, instance_id: prepare.instance_id, input_hash: prepare.input_hash, data_revision: prepare.data_revision, provenance: prepare.provenance, frontend_origin: prepare.frontend_origin, backend_origin: prepare.backend_origin } as EnvironmentFinalization;
+  const observed = { ...read('backend-observation'), run_id: prepare.run_id, instance_id: prepare.instance_id ?? 'instance_backend_1' } as BackendObservation;
+  // The prepare ledger and the cleanup report correspond item by item in both directions.
+  const reported = (read('environment-cleanup').resources as Record<string, unknown>[]).map((resource, index) => ({
+    ...resource,
+    run_id: prepare.run_id,
+    creation_identity: CREATION_IDENTITY,
+    created_at: RESOURCE_CREATED_AT[index] ?? RESOURCE_CREATED_AT[0],
+  }));
+  const ledger = (read('environment-cleanup').resources as Record<string, unknown>[]).map((resource, index) => ({
+    run_id: prepare.run_id,
+    owner_token: resource.owner_token,
+    resource_type: resource.resource_type,
+    native_id: resource.native_id,
+    created_at: RESOURCE_CREATED_AT[index] ?? RESOURCE_CREATED_AT[0],
+    creation_identity: CREATION_IDENTITY,
+    created_by_stackgate: resource.created_by_stackgate,
+    cleanup_status: resource.cleanup_status,
+  })) as EnvironmentManifest['resources'];
+  const cleanup = { ...read('environment-cleanup'), run_id: prepare.run_id, resources: reported } as unknown as EnvironmentCleanup;
   return {
     run_id: 'run_m3_contract_demo',
     expected_input_hash: prepare.input_hash,
-    required_by_task: true,
-    requires_backend_observation: true,
-    expected_data_revision: prepare.data_revision,
-    required_operations: [observation.operation_key],
-    prepare: { ...prepare, provenance: finalization.provenance },
+    requirements: confirmedRequirements(prepare, observed),
+    run_window: { started_at: '2026-09-21T10:00:00.000Z', finished_at: '2026-09-21T10:15:00.000Z' },
+    prepare: { ...prepare, provenance: finalization.provenance, resources: ledger },
     finalization,
     cleanup,
-    observations: [observation],
-    authenticated_refs: ['art_environment_prepare', 'art_environment_finalize', 'art_environment_cleanup', observation.request_id],
-    authenticated_digests: { [observation.request_id]: observation.response_digest },
+    observations: [observed],
+    authenticated_refs: ['art_environment_prepare', 'art_environment_finalize', 'art_environment_cleanup', observed.request_id],
+    authenticated_digests: { [observed.request_id]: observed.response_digest },
     prepare_ref: 'art_environment_prepare',
     finalization_ref: 'art_environment_finalize',
     cleanup_ref: 'art_environment_cleanup',
     ...overrides,
   };
+}
+
+/** Same input with its confirmed requirements patched, leaving every other assertion untouched. */
+function requiring(patch: Partial<ConfirmedEnvironmentRequirements>): EnvironmentAssessmentInput {
+  const input = baseInput();
+  return { ...input, requirements: { ...input.requirements, ...patch } };
 }
 
 it('reports only installed adapters as supported and returns null for the rest', () => {
@@ -103,7 +147,7 @@ it('treats a declared-only provenance and an unconfirmed data revision as unsati
   expect(declared.satisfied).toBe(false);
   expect(declared.reasons).toContain('ENV_PROVENANCE_INSUFFICIENT');
   expect(declared.provenance).toBe('DECLARED');
-  const revisionless = assessEnvironment(baseInput({ expected_data_revision: null }));
+  const revisionless = assessEnvironment(requiring({ expected_data_revision: null }));
   expect(revisionless.satisfied).toBe(false);
   expect(revisionless.reasons).toContain('ENV_DATA_REVISION_UNCONFIRMED');
 });
@@ -124,23 +168,138 @@ it('detects instance switching, digest disagreement and required operations neve
   expect(forgedDigest.satisfied).toBe(false);
   expect(forgedDigest.reasons).toContain('ENV_BACKEND_OBSERVATION_DIGEST');
 
-  const unobserved = assessEnvironment({ ...input, required_operations: ['api:GET /api/never-called'] });
+  const unobserved = assessEnvironment({ ...input, requirements: { ...input.requirements, required_operations: ['api:GET /api/never-called'] } });
   expect(unobserved.satisfied).toBe(false);
   expect(unobserved.reasons).toContain('ENV_REQUIRED_OPERATION_UNOBSERVED');
 });
 
-it('keeps a purely local profile without environment requirements satisfied, but records the scope', () => {
+it('records a genuinely environment-free profile without fabricating citation refs', () => {
+  const noRequirements: ConfirmedEnvironmentRequirements = {
+    required_by_profile: false, required_by_task: false, requires_backend_observation: false,
+    minimum_provenance: 'DECLARED', expected_data_revision: null,
+    expected_origins: { frontend: null, backend: null }, required_operations: [],
+  };
   const local = assessEnvironment({
-    ...baseInput(), required_by_task: false, prepare: null, finalization: null, cleanup: null,
-    observations: [], prepare_ref: null, finalization_ref: null, cleanup_ref: null, authenticated_refs: [],
+    ...baseInput(), requirements: noRequirements, prepare: null, finalization: null, cleanup: null,
+    observations: [], prepare_ref: null, finalization_ref: null, cleanup_ref: null, run_window: null, authenticated_refs: [],
   });
   expect(local.satisfied).toBe(true);
   expect(local.reasons).toEqual(['NO_ENVIRONMENT_REQUIRED']);
+  expect(local.environment_required).toBe(false);
+  expect(local.prepare_ref).toBeNull();
+  expect(local.finalization_ref).toBeNull();
+  expect(local.cleanup_ref).toBeNull();
+  expect(local.observation_refs).toEqual([]);
+  expect(validateSchema('environment-assessment', local).ok).toBe(true);
+  expect(assessmentReferencesAuthentic(local, [])).toBe(true);
   const requiredButEmpty = assessEnvironment({
-    ...baseInput(), required_by_task: true, prepare: null, finalization: null, cleanup: null,
+    ...baseInput(), prepare: null, finalization: null, cleanup: null,
     observations: [], prepare_ref: null, finalization_ref: null, cleanup_ref: null,
   });
   expect(requiredButEmpty.satisfied).toBe(false);
+});
+
+it('refuses to treat a backend observation demand as a no-environment shortcut', () => {
+  // V2-F02: the removed shortcut returned satisfied:true here even though backend observation was required.
+  const contradictory: ConfirmedEnvironmentRequirements = {
+    ...baseInput().requirements, required_by_profile: false, required_by_task: false,
+  };
+  expect(() => assessEnvironment({
+    ...baseInput(), requirements: contradictory, prepare: null, finalization: null, cleanup: null,
+    observations: [], prepare_ref: null, finalization_ref: null, cleanup_ref: null, authenticated_refs: [],
+  })).toThrow(/contradictory/);
+  // The same contradictory requirement set is refused even when no environment document is in use at all.
+  const stillContradictory = assessEnvironment({
+    ...baseInput(), requirements: { ...contradictory, requires_backend_observation: false, minimum_provenance: 'DECLARED', expected_data_revision: null, required_operations: [], expected_origins: { frontend: null, backend: null } },
+    prepare: null, finalization: null, cleanup: null, observations: [],
+    prepare_ref: null, finalization_ref: null, cleanup_ref: null, authenticated_refs: [],
+  });
+  expect(stillContradictory.satisfied).toBe(true);
+});
+
+it('refuses every non-READY prepare status, including a CLEANED snapshot that overwrote READY', () => {
+  const observed: Record<string, { satisfied: boolean; reasons: string[] }> = {};
+  for (const status of ['BLOCKED', 'ERROR', 'UNKNOWN', 'CLEANED'] as const) {
+    const input = baseInput();
+    input.prepare = { ...input.prepare!, status };
+    expect(input.prepare.status).toBe(status);
+    const assessment = assessEnvironment(input);
+    observed[status] = { satisfied: assessment.satisfied, reasons: assessment.reasons };
+    expect(assessment.satisfied).toBe(false);
+  }
+  expect(observed.BLOCKED!.reasons).toContain('ENV_PREPARE_NOT_READY');
+  expect(observed.ERROR!.reasons).toContain('ENV_PREPARE_NOT_READY');
+  expect(observed.UNKNOWN!.reasons).toContain('ENV_PREPARE_NOT_READY');
+  expect(observed.CLEANED!.reasons).toContain('ENV_PREPARE_HISTORY_OVERWRITTEN');
+});
+
+it('takes the weakest provenance level and compares it against the confirmed minimum', () => {
+  const mixed = baseInput({
+    prepare: { ...(baseInput().prepare as EnvironmentManifest), provenance: 'OBSERVED' },
+    finalization: { ...(baseInput().finalization as EnvironmentFinalization), provenance: 'CONTROLLED' },
+  });
+  const atObserved = assessEnvironment(mixed);
+  expect(atObserved.provenance).toBe('OBSERVED');
+  expect(atObserved.satisfied).toBe(true);
+  expect(atObserved.reasons).toEqual([]);
+  const atControlled = assessEnvironment({ ...mixed, requirements: { ...mixed.requirements, minimum_provenance: 'CONTROLLED' } });
+  expect(atControlled.provenance).toBe('OBSERVED');
+  expect(atControlled.satisfied).toBe(false);
+  expect(atControlled.reasons).toContain('ENV_PROVENANCE_INSUFFICIENT');
+  // A run whose documents both self-report CONTROLLED is still not certified by the application alone.
+  const selfClaimed = baseInput({
+    prepare: { ...(baseInput().prepare as EnvironmentManifest), provenance: 'CONTROLLED' },
+    finalization: { ...(baseInput().finalization as EnvironmentFinalization), provenance: 'CONTROLLED' },
+  });
+  const claimed = assessEnvironment({ ...selfClaimed, requirements: { ...selfClaimed.requirements, minimum_provenance: 'CONTROLLED' } });
+  expect(claimed.satisfied).toBe(false);
+  expect(claimed.provenance).toBe('OBSERVED');
+  expect(claimed.reasons).toContain('ENV_PROVENANCE_NOT_CERTIFIED');
+});
+
+it('cross-checks the prepare resource ledger against the cleanup report in both directions', () => {
+  const refusal = (mutate: (input: EnvironmentAssessmentInput) => EnvironmentAssessmentInput, reason: string) => {
+    const assessment = assessEnvironment(mutate(baseInput()));
+    expect(assessment.satisfied, reason).toBe(false);
+    expect(assessment.reasons, reason).toContain(reason);
+  };
+  const owned = (input: EnvironmentAssessmentInput) => input.cleanup!.resources.find(resource => resource.created_by_stackgate)!;
+  const withCleanupResources = (input: EnvironmentAssessmentInput, resources: EnvironmentCleanup['resources']) => ({
+    ...input, cleanup: { ...input.cleanup!, resources },
+  });
+
+  refusal(input => withCleanupResources(input, input.cleanup!.resources.map(resource => resource.created_by_stackgate
+    ? { ...resource, cleanup_status: 'FAILED' as const } : resource)), 'ENV_CLEANUP_FAILED');
+  refusal(input => withCleanupResources(input, input.cleanup!.resources.map(resource => resource.created_by_stackgate
+    ? { ...resource, cleanup_status: 'UNKNOWN' as const } : resource)), 'ENV_CLEANUP_UNVERIFIED');
+  refusal(input => withCleanupResources(input, input.cleanup!.resources.map(resource => resource.created_by_stackgate
+    ? { ...resource, cleanup_status: 'PENDING' as const } : resource)), 'ENV_CLEANUP_INCOMPLETE');
+  refusal(input => ({ ...input, cleanup: { ...input.cleanup!, status: 'PARTIAL' as const } }), 'ENV_CLEANUP_INCOMPLETE');
+  refusal(input => withCleanupResources(input, [...input.cleanup!.resources, {
+    ...owned(input), native_id: 'deadbeef01', cleanup_status: 'CLEANED' as const,
+  }]), 'ENV_CLEANUP_RESOURCE_UNMATCHED');
+  refusal(input => withCleanupResources(input, input.cleanup!.resources.map(resource => resource.created_by_stackgate
+    ? { ...resource, cleanup_status: 'PRESERVED' as const } : resource)), 'ENV_CLEANUP_INCOMPLETE');
+  refusal(input => withCleanupResources(input, input.cleanup!.resources.map(resource => resource.created_by_stackgate
+    ? resource : { ...resource, cleanup_status: 'CLEANED' as const })), 'ENV_CLEANUP_PRESERVED_BOUNDARY');
+  refusal(input => withCleanupResources(input, input.cleanup!.resources.map(resource => ({ ...resource, owner_token: 'owner_other_run' }))), 'ENV_CLEANUP_RESOURCE_IDENTITY_MISMATCH');
+  refusal(input => withCleanupResources(input, input.cleanup!.resources.map(resource => ({ ...resource, creation_identity: 'someone-else-created-it' }))), 'ENV_CLEANUP_RESOURCE_IDENTITY_MISMATCH');
+  refusal(input => ({ ...input, cleanup: { ...input.cleanup!, resources: input.cleanup!.resources.map(resource => ({ ...resource, run_id: 'run_other_project' })) } }), 'ENV_CLEANUP_RESOURCE_SCOPE');
+  refusal(input => ({ ...input, prepare: { ...input.prepare!, resources: input.prepare!.resources.map(resource => ({ ...resource, run_id: 'run_other_project' })) } }), 'ENV_RESOURCE_SCOPE_MISMATCH');
+
+  // Direction 1: the ledger records an owned resource the cleanup report never mentions.
+  refusal(input => ({
+    ...input,
+    cleanup: { ...input.cleanup!, resources: input.cleanup!.resources.filter(resource => !resource.created_by_stackgate) },
+  }), 'ENV_CLEANUP_RESOURCE_UNREPORTED');
+  // Direction 2: the cleanup report mentions a resource the ledger never recorded.
+  refusal(input => ({ ...input, prepare: { ...input.prepare!, resources: input.prepare!.resources.slice(1) } }), 'ENV_CLEANUP_RESOURCE_UNMATCHED');
+  // An owned entry that omits its creation identity cannot be certified item by item.
+  refusal(input => withCleanupResources(input, input.cleanup!.resources.map(resource => {
+    const { creation_identity: _omitted, ...rest } = resource;
+    void _omitted;
+    return rest;
+  })), 'ENV_CLEANUP_IDENTITY_UNREPORTED');
 });
 
 it('rejects environment documents that overwrite history or omit citation structure', () => {

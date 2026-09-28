@@ -11,14 +11,15 @@
     "data_revision": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
     "provenance": { "$ref": "common.schema.json#/$defs/ProvenanceLevel" },
     "satisfied": { "type": "boolean" },
-    "prepare_ref": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
-    "finalization_ref": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
-    "cleanup_ref": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
+    "environment_required": { "type": "boolean" },
+    "prepare_ref": { "anyOf": [ { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" }, { "type": "null" } ] },
+    "finalization_ref": { "anyOf": [ { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" }, { "type": "null" } ] },
+    "cleanup_ref": { "anyOf": [ { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" }, { "type": "null" } ] },
     "observation_refs": {
       "type": "array",
       "items": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
       "uniqueItems": true,
-      "minItems": 1
+      "minItems": 0
     },
     "reasons": {
       "type": "array",
@@ -28,5 +29,29 @@
     }
   },
   "required": ["schema_version", "run_id", "input_hash", "required_by_task", "data_revision", "provenance", "satisfied", "prepare_ref", "finalization_ref", "cleanup_ref", "observation_refs", "reasons"],
-  "additionalProperties": false
+  "additionalProperties": false,
+  "if": { "properties": { "satisfied": { "const": true } } },
+  "then": {
+    "anyOf": [
+      {
+        "required": ["prepare_ref", "finalization_ref", "cleanup_ref", "observation_refs"],
+        "properties": {
+          "prepare_ref": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
+          "finalization_ref": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
+          "cleanup_ref": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" },
+          "observation_refs": { "type": "array", "items": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" }, "uniqueItems": true, "minItems": 1 }
+        }
+      },
+      {
+        "required": ["environment_required"],
+        "properties": {
+          "environment_required": { "const": false },
+          "prepare_ref": { "type": "null" },
+          "finalization_ref": { "type": "null" },
+          "cleanup_ref": { "type": "null" },
+          "observation_refs": { "type": "array", "items": { "type": "string", "minLength": 1, "pattern": "^[^\\u0000-\\u001f\\u007f]+$" }, "uniqueItems": true, "maxItems": 0 }
+        }
+      }
+    ]
+  }
 }

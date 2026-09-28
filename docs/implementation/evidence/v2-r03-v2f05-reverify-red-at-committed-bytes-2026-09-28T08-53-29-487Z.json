@@ -1,0 +1,45 @@
+{
+  "task_id": "V2-R03",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "d2917a087c7a435f9c4f1a984425e15e0d0d35e6",
+    "branch": "V2",
+    "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "command": "python -B -E tests/support/v2_f05_reverify.py head",
+  "argv": [
+    "python",
+    "-B",
+    "-E",
+    "tests/support/v2_f05_reverify.py",
+    "head"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-09-28T08:53:29.487Z",
+  "finished_at": "2026-09-28T08:53:44.495Z",
+  "exit_code": 1,
+  "result": "FAILED",
+  "evidence_path": "docs/implementation/evidence/v2-r03-v2f05-reverify-red-at-committed-bytes-2026-09-28T08-53-29-487Z.json",
+  "log_path": "docs/implementation/evidence/v2-r03-v2f05-reverify-red-at-committed-bytes-2026-09-28T08-53-29-487Z.log",
+  "signal": null,
+  "duration_ms": 15008,
+  "source_before": {
+    "manifest_path": "docs/implementation/evidence/v2-r03-v2f05-reverify-red-at-committed-bytes-2026-09-28T08-53-29-487Z-source-before.json",
+    "content_hash": "sha256:be37ca17d4bc1d4688337e5e2dec85b3e8d58488d943dfbc9214e6857a6d6496",
+    "completeness": "COMPLETE",
+    "file_count": 2566,
+    "incomplete_reasons": []
+  },
+  "source_after": {
+    "manifest_path": "docs/implementation/evidence/v2-r03-v2f05-reverify-red-at-committed-bytes-2026-09-28T08-53-29-487Z-source-after.json",
+    "content_hash": "sha256:be37ca17d4bc1d4688337e5e2dec85b3e8d58488d943dfbc9214e6857a6d6496",
+    "completeness": "COMPLETE",
+    "file_count": 2566,
+    "incomplete_reasons": []
+  },
+  "source_changed_during_verification": false,
+  "verification_attributable": false,
+  "content_hash": null
+}

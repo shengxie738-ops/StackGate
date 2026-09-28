@@ -16,6 +16,8 @@ export interface EnvironmentCleanup {
     run_id: string;
     created_by_stackgate: boolean;
     cleanup_status: "PENDING" | "CLEANED" | "PRESERVED" | "FAILED" | "UNKNOWN";
+    creation_identity?: string;
+    created_at?: string;
     ownership_basis: string;
   }[];
   /**

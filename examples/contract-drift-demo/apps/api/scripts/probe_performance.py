@@ -18,6 +18,54 @@ sys.path.insert(0, str(PRESETS))
 import probe_helpers as helpers  # noqa: E402
 
 
+def _commit(output_dir: str, name: str, document) -> int | None:
+    """Write one artifact exclusively. A blocked commit is an evidence error, never a silent overwrite."""
+    try:
+        helpers.write_json(os.path.join(output_dir, name), document)
+    except helpers.ProbeError as error:
+        print(f"{error.code}: {error.detail}", file=sys.stderr)
+        return 3
+    return None
+
+
+def _worker_document(identity: dict, facts: dict, reason: str | None, completed: bool) -> dict:
+    """What happened to the private one-request worker, kept apart from the request facts themselves."""
+    return {
+        "schema_version": "0.1",
+        "kind": "stackgate-probe-worker",
+        "run_id": identity["run_id"],
+        "check_id": identity["check_id"],
+        "attempt_id": identity["attempt_id"],
+        "request_id": identity["request_id"],
+        "reason": reason,
+        "request_completed": completed,
+        "worker_pid": facts.get("worker_pid"),
+        "spawned": bool(facts.get("spawned", False)),
+        "worker_executable": facts.get("worker_executable"),
+        "worker_reader_pid": facts.get("worker_reader_pid"),
+        # What the reader could still be influenced by, and what it gave up before sending anything. Names and
+        # booleans only - never a value - so the artifact can be published with the rest of the evidence.
+        "worker_prefix": facts.get("worker_prefix"),
+        "worker_base_prefix": facts.get("worker_base_prefix"),
+        "worker_environment_names": facts.get("worker_environment_names"),
+        "worker_environment_interpretable": facts.get("worker_environment_interpretable"),
+        # Absent, not empty, when the worker was terminated before it could answer: the record is the reader's
+        # own and this process cannot reconstruct it from the outside.
+        "worker_neutralized": facts.get("worker_neutralized"),
+        "launch_proofs": facts.get("launch_proofs"),
+        "killed": bool(facts.get("killed", False)),
+        "reclaimed": bool(facts.get("reclaimed", False)),
+        "handle_reaped": bool(facts.get("handle_reaped", False)),
+        "pipes_closed": bool(facts.get("pipes_closed", False)),
+        "reap_mechanism": facts.get("reap_mechanism"),
+        "worker_exit_code": facts.get("worker_exit_code"),
+        "deadline_ms": facts.get("deadline_ms"),
+        "elapsed_ms": facts.get("elapsed_ms"),
+        "reap_ms": facts.get("reap_ms"),
+        "worker_stderr": facts.get("worker_stderr", ""),
+    }
+
+
 def main() -> int:
     output_dir = os.environ.get("STACKGATE_OUTPUT_DIR", "")
     declaration_path = os.environ.get("STACKGATE_PROBE_DECLARATION", "")
@@ -44,8 +92,11 @@ def main() -> int:
         "request_id": os.environ.get("STACKGATE_REQUEST_ID", "request_performance_1"),
     }
     if not output_dir or not os.path.isabs(output_dir):
+        # A relative or missing output directory is a launch-configuration error: nothing ran, so this is the
+        # reserved 64, not the 2 a refused request reports. Both exit codes stay distinguishable from the
+        # assertion outcomes in section 5.
         print("absolute STACKGATE_OUTPUT_DIR is required", file=sys.stderr)
-        return 2
+        return 64
     if not declaration_path or not os.path.isfile(declaration_path):
         print("STACKGATE_PROBE_DECLARATION must point at a confirmed declaration file", file=sys.stderr)
         return 2
@@ -65,15 +116,27 @@ def main() -> int:
             service_origins=service_origins,
         )
     except helpers.ProbeError as error:
-        helpers.write_json(os.path.join(output_dir, "probe-error.json"),
-                           {"schema_version": "0.1", "reason": error.code, "detail": error.detail, **identity})
+        # A request-level failure produces diagnostics and nothing else: no report, no raw facts document and
+        # no response file a later reader could mistake for a completed attempt. An existing artifact from a
+        # previous attempt keeps its bytes; the blocked commit is an evidence error.
+        blocked = _commit(output_dir, "probe-error.json",
+                          {"schema_version": "0.1", "reason": error.code, "detail": error.detail, **identity})
+        if blocked:
+            return blocked
+        blocked = _commit(output_dir, "probe-worker.json", _worker_document(identity, error.facts, error.code, False))
+        if blocked:
+            return blocked
         print(f"{error.code}: {error.detail}", file=sys.stderr)
         return 2
 
+    worker_facts = dict(record.get("worker") or {})
+    worker_facts.setdefault("deadline_ms", record.get("deadline_ms"))
     body_path = os.path.join(output_dir, "responses", f"{record['request_id']}.json")
-    os.makedirs(os.path.dirname(body_path), exist_ok=True)
-    with open(body_path, "wb") as handle:
-        handle.write(record["body"])
+    try:
+        helpers.write_bytes(body_path, record["body"])
+    except helpers.ProbeError as error:
+        print(f"{error.code}: {error.detail}", file=sys.stderr)
+        return 3
 
     try:
         parsed = json.loads(record["body"].decode("utf-8"))
@@ -109,8 +172,7 @@ def main() -> int:
             "backend_observation_ref": f"responses/{os.path.basename(body_path)}",
         }],
     }
-    helpers.write_json(os.path.join(output_dir, "probe.json"), report)
-    helpers.write_json(os.path.join(output_dir, "probe-raw.json"), {
+    blocked = _commit(output_dir, "probe-raw.json", {
         "schema_version": "0.1",
         "run_id": identity["run_id"],
         "check_id": identity["check_id"],
@@ -128,6 +190,17 @@ def main() -> int:
         "observed_request_id": record["observed_request_id"],
         "instance_id": record["instance_id"],
     })
+    if blocked:
+        return blocked
+    blocked = _commit(output_dir, "probe-worker.json", _worker_document(identity, worker_facts, None, True))
+    if blocked:
+        return blocked
+    # The completed success report commits last. Until every other artifact is on disk there is nothing here a
+    # later reader could mistake for a finished attempt, and a blocked commit leaves the previous attempt's
+    # report untouched rather than a half-written one.
+    blocked = _commit(output_dir, "probe.json", report)
+    if blocked:
+        return blocked
     print(json.dumps({"status_code": record["status_code"], "assertions": self_assertions}, separators=(",", ":")))
     return 0 if all(item["passed"] for item in self_assertions) and status_ok and media_ok else 1
 

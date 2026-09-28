@@ -18404,7 +18404,7 @@
   "audit_v2_fixes": {
     "ledger": "docs/implementation/audit-v2-fixes.json",
     "baseline_sha": "2791cf5f221d6f917101079332f4231c6a450fa7",
-    "current": "V2-R02",
+    "current": "V2-R05",
     "status": "DONE"
   }
 }

@@ -10,12 +10,20 @@
 
 M3 审计任务：AUD-003 DONE；详见 [audit-m3-fixes.json](audit-m3-fixes.json) 与 [M3 入口审计](M3-entry-audit.md)。
 
-V2 审计修复任务：V2-R00 DONE、V2-R01 DONE、V2-R02 DONE（V2-R03—V2-R07 NOT_STARTED）；详见 [audit-v2-fixes.json](audit-v2-fixes.json) 与 [V2 审计基线](V2-audit-baseline.md)。基线 `2791cf5f221d6f917101079332f4231c6a450fa7` 与本地 HEAD 相同，记录时根 `pnpm typecheck` 退出 2、`pnpm build` 退出 1，这是当时的真实状态，不沿用 M2 的绿色记录。
+V2 审计修复任务：V2-R00、V2-R01、V2-R02、V2-R03、V2-R05 DONE；V2-R04、V2-R06、V2-R07 未完成。详见 [audit-v2-fixes.json](audit-v2-fixes.json) 与 [V2 审计基线](V2-audit-baseline.md)。基线 `2791cf5f221d6f917101079332f4231c6a450fa7` 与当时的本地 HEAD 相同，记录时根 `pnpm typecheck` 退出 2、`pnpm build` 退出 1，这是当时的真实状态，不沿用 M2 的绿色记录。
 
-下一步：V2-R03 —— 在 probe helper 中实施单调时钟绝对请求期限、显式禁用系统与环境代理、有界响应写入与私有工作进程回收；现有 `http.test.ts` 只测"监听器完全不响应"，测不出持续小包下的总期限。
+下一步：V2-R04 —— 统一 JSON Pointer 自有属性、`~0/~1` 转义、空键、数组规范下标与非有限数字语义，并让 TS 与 Python 在同一份夹具上输出等价的通过/拒绝结果。
 
 ## 最近真实验证
 
+- python tests/support/v2_f05_reverify.py head → **1**（同一脚本回到已提交字节复现 V2-F05：100ms 期限在 12617.7ms 后返回 200/608 bytes；未授权代理命中 1、已授权目标命中 0）; [evidence](evidence/v2-r03-v2f05-reverify-red-at-committed-bytes-2026-09-28T08-53-29-487Z.json)
+- python tests/support/v2_f05_reverify.py worktree → 0（两条场景同处翻转：109.4ms 得 `DEADLINE_EXCEEDED`；代理命中 0、目标命中 1）; [evidence](evidence/v2-r03-v2f05-reverify-green-worktree-2026-09-28T08-53-47-250Z.json)
+- pnpm exec vitest run tests/integration/probe/deadline-proxy.test.ts tests/integration/probe/http.test.ts → 0 (PASSED)，10 + 10 项，全部真实回环监听器与真实 Python 子进程; [evidence](evidence/v2-r03-deadline-proxy-and-probe-suites-2026-09-28T08-48-23-893Z.json)
+- pnpm exec vitest run tests/unit/v2/environment-assessment.test.ts tests/contract/m3-runtime-contracts.test.ts → 0 (PASSED)，15 + 18 项; [evidence](evidence/v2-r05-environment-assessment-suites-2026-09-28T08-48-53-366Z.json)
+- pnpm verify:schemas（`pnpm generate:types` 之后）→ 0 (PASSED)，34 schemas / 29 fixtures / 生成类型无漂移; [evidence](evidence/v2-r05-generated-types-and-schemas-2026-09-28T08-49-52-821Z.json)
+- pnpm test:unit → 0 (PASSED)，43 个单元文件 594 项 + 63 项 bootstrap; [evidence](evidence/v2-r05-unit-suite-2026-09-28T08-49-59-515Z.json)
+- pnpm test:contract → 0 (PASSED)，7 个文件 81 项; [evidence](evidence/v2-r05-boundaries-and-contracts-2026-09-28T08-51-35-228Z.json)
+- pnpm typecheck → 0 (PASSED); [evidence](evidence/v2-r05-root-typecheck-2026-09-28T08-53-52-827Z.json)
 - pnpm exec vitest run tests/unit/v2/http-authorization.test.ts tests/integration/probe/http.test.ts → 0 (PASSED)，54 + 10 项，含两个独立回环 listener 的零访问与 wire method/path 核对; [evidence](evidence/v2-r02-http-authorization-and-probe-suites-final-2026-09-28T07-13-05-679Z.json)
 - python -B -E -m py_compile presets/.../probe_helpers.py examples/.../probe_performance.py tests/support/v2_http_policy_cases.py → 0 (PASSED); [evidence](evidence/v2-r02-python-modules-compile-final-2026-09-28T07-13-29-319Z.json)
 - pnpm typecheck → 0 (PASSED); [evidence](evidence/v2-r02-root-typecheck-final-2026-09-28T07-13-19-072Z.json)

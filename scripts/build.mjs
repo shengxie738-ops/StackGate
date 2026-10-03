@@ -21,6 +21,7 @@ for (const dir of ['schemas', 'presets', 'integrations']) {
 await cp('schemas', 'dist/types/schemas', { recursive: true });
 await mkdir('dist/runner-local',{recursive:true});
 for(const file of ['windows-job.ps1','windows-job.cs'])await cp('packages/runner-local/src/'+file,'dist/runner-local/'+file);
+await cp('packages/runner-local/src/linux/attest-launch.sh','dist/runner-local/attest-launch.sh');
 const capability=JSON.parse(await readFile('tools/oasdiff/capabilities.json','utf8'));
 if(capability.platform===process.platform+'-'+process.arch){
   const tool=`tools/bin/oasdiff-${capability.version}/oasdiff${process.platform==='win32'?'.exe':''}`;

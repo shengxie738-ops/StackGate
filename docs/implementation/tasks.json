@@ -18902,8 +18902,8 @@
   "audit_m3_fixes": {
     "ledger": "docs/implementation/audit-m3-fixes.json",
     "audit_baseline": "17ea7adf10bab9961b96cf3edca255b112bf146b",
-    "current": "AUD-003",
-    "status": "DONE"
+    "current": "AUD-004",
+    "status": "BLOCKED"
   },
   "audit_v2_fixes": {
     "ledger": "docs/implementation/audit-v2-fixes.json",

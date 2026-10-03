@@ -8,7 +8,7 @@
 
 审计修复：M1-R07 DONE；详见 [audit-fixes.json](audit-fixes.json) 与 [M1 修复验收](evidence/M1-audit-summary.md)。
 
-M3 审计任务：AUD-003 DONE；详见 [audit-m3-fixes.json](audit-m3-fixes.json) 与 [M3 入口审计](M3-entry-audit.md)。
+M3 审计任务：AUD-003 DONE；AUD-004 BLOCKED（Linux 侧代码与本宿主内核语义均已实测，产品代码尚未在 Linux 执行，详见 [Linux/WSL 受控执行能力](../compatibility/linux.md)）；详见 [audit-m3-fixes.json](audit-m3-fixes.json) 与 [M3 入口审计](M3-entry-audit.md)。
 
 V2 审计修复任务：V2-R07 DONE；详见 [audit-v2-fixes.json](audit-v2-fixes.json) 与 [V2 审计基线](V2-audit-baseline.md)。
 

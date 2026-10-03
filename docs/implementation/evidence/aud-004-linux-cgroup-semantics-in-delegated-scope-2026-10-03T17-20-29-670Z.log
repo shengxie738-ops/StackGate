@@ -1,0 +1,29 @@
+Running as unit: run-r1adde721c0f64847a3bd5ff81cf52420.scope; invocation ID: d682bd3ad15244f29a0eb5946ad92f27
+supervisor_cgroup=0::/user.slice/user-1000.slice/user@1000.service/app.slice/run-r1adde721c0f64847a3bd5ff81cf52420.scope
+root_owner=1000 755
+root_subtree_control=
+run_dir_owner=1000 644
+run_kill_owner=1000 200
+run_freeze_owner=1000 644
+run_initial_members=[]
+attach_member_found=1
+target_cgroup=/user.slice/user-1000.slice/user@1000.service/app.slice/run-r1adde721c0f64847a3bd5ff81cf52420.scope/stackgate-aud004-run
+run_members=[6866 6869 6870 ]
+supervisor_still_outside=/user.slice/user-1000.slice/user@1000.service/app.slice/run-r1adde721c0f64847a3bd5ff81cf52420.scope
+freeze_write=ok
+heartbeat_growth_while_frozen=5
+members_while_frozen=[6866 6869 6870 ]
+thaw_write=ok
+heartbeat_resumed=6
+stray_members=[6897 6900 6904 ]
+rmdir_with_members=refused
+stray_target_cgroup_now=/user.slice/user-1000.slice/user@1000.service/app.slice/run-r1adde721c0f64847a3bd5ff81cf52420.scope/stackgate-aud004-stray
+kill_all_write=ok
+members_after_kill=[]
+cat: /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/run-r1adde721c0f64847a3bd5ff81cf52420.scope/stackgate-aud004-run/pids.current: No such file or directory
+pids_current_after_kill=
+nr_descendants=0
+0
+run_rmdir_after_empty=ok
+leftover_aud004_dirs=[stackgate-aud004-stray ]
+done

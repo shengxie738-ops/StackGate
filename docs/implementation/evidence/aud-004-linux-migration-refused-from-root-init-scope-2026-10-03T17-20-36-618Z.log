@@ -1,0 +1,75 @@
+{
+  "attempts": {
+    "child_cgroup_after": "0::/init.scope\n",
+    "members_after": [],
+    "own_child": {
+      "errno": 13,
+      "error": "Permission denied",
+      "file": "stackgate-aud004-attach-21cb35f46d3b42beb760abdcd4273c3d",
+      "target_pid": 6978,
+      "written": false
+    },
+    "self": {
+      "errno": 13,
+      "error": "Permission denied",
+      "file": "stackgate-aud004-attach-21cb35f46d3b42beb760abdcd4273c3d",
+      "target_pid": 6974,
+      "written": false
+    },
+    "self_cgroup_after": "0::/init.scope",
+    "shell_selfattach": {
+      "returncode": 0,
+      "stderr_tail": [
+        "/bin/sh: 2: printf: printf: I/O error",
+        "+ echo rc=1",
+        "+ cat /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/stackgate-aud004-attach-21cb35f46d3b42beb760abdcd4273c3d/cgroup.procs",
+        "+ cat /proc/self/cgroup"
+      ],
+      "stdout_tail": [
+        "rc=1",
+        "0::/init.scope"
+      ]
+    }
+  },
+  "cleanup": {
+    "procs_left": "",
+    "rmdir": "removed"
+  },
+  "host": {
+    "capabilities": "0000000000000000",
+    "kernel": "6.6.114.1-microsoft-standard-WSL2",
+    "self_cgroup": "0::/init.scope",
+    "uid": 1000
+  },
+  "leftover": [],
+  "run_dir_type_before_attach": "domain\n",
+  "sibling_observability": {
+    "/sys/fs/cgroup/user.slice/user-1000.slice": {
+      "exists": true,
+      "subtree_control": "cpu memory pids\n",
+      "type": "domain\n",
+      "writable": false
+    },
+    "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice": {
+      "exists": true,
+      "subtree_control": "memory pids\n",
+      "type": "domain\n",
+      "writable": true
+    }
+  },
+  "types": {
+    "base": "domain\n",
+    "base_procs": "",
+    "init_scope_procs": [
+      1,
+      2,
+      11,
+      335,
+      6836,
+      6967,
+      6968,
+      6974
+    ],
+    "init_scope_type": "domain\n"
+  }
+}

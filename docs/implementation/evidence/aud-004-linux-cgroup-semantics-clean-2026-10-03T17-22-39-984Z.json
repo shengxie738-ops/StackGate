@@ -1,0 +1,45 @@
+{
+  "task_id": "AUD-004",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "11551e6ccf1dc890519fd433c66a7cc97175a889",
+    "branch": "V2",
+    "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "command": "wsl.exe -e sh -c \"tr -d '\\\\015' < /mnt/g/StackGate/tests/support/aud004_scope_probe.sh > /tmp/sgprobe.sh && systemd-run --user --scope --collect -- timeout 100 sh /tmp/sgprobe.sh; tr -d '\\\\015' < /mnt/g/StackGate/tests/support/aud004_cleanup.sh > /tmp/sgclean.sh && sh /tmp/sgclean.sh\"",
+  "argv": [
+    "wsl.exe",
+    "-e",
+    "sh",
+    "-c",
+    "tr -d '\\015' < /mnt/g/StackGate/tests/support/aud004_scope_probe.sh > /tmp/sgprobe.sh && systemd-run --user --scope --collect -- timeout 100 sh /tmp/sgprobe.sh; tr -d '\\015' < /mnt/g/StackGate/tests/support/aud004_cleanup.sh > /tmp/sgclean.sh && sh /tmp/sgclean.sh"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-10-03T17:22:39.984Z",
+  "finished_at": "2026-10-03T17:22:44.582Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/aud-004-linux-cgroup-semantics-clean-2026-10-03T17-22-39-984Z.json",
+  "log_path": "docs/implementation/evidence/aud-004-linux-cgroup-semantics-clean-2026-10-03T17-22-39-984Z.log",
+  "signal": null,
+  "duration_ms": 4598,
+  "source_before": {
+    "manifest_path": "docs/implementation/evidence/aud-004-linux-cgroup-semantics-clean-2026-10-03T17-22-39-984Z-source-before.json",
+    "content_hash": "sha256:db912fced1c4ecee8e561ab4629be357f64a994fbf66ccb07a195794216086e9",
+    "completeness": "COMPLETE",
+    "file_count": 2936,
+    "incomplete_reasons": []
+  },
+  "source_after": {
+    "manifest_path": "docs/implementation/evidence/aud-004-linux-cgroup-semantics-clean-2026-10-03T17-22-39-984Z-source-after.json",
+    "content_hash": "sha256:db912fced1c4ecee8e561ab4629be357f64a994fbf66ccb07a195794216086e9",
+    "completeness": "COMPLETE",
+    "file_count": 2936,
+    "incomplete_reasons": []
+  },
+  "source_changed_during_verification": false,
+  "verification_attributable": true,
+  "content_hash": "sha256:db912fced1c4ecee8e561ab4629be357f64a994fbf66ccb07a195794216086e9"
+}

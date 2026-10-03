@@ -1,0 +1,45 @@
+{
+  "task_id": "AUD-004",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "11551e6ccf1dc890519fd433c66a7cc97175a889",
+    "branch": "V2",
+    "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "command": "pnpm exec vitest run tests/integration/runner/process.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/runner/process.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-10-03T17:22:59.441Z",
+  "finished_at": "2026-10-03T17:23:17.785Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/aud-004-windows-runner-regression-preserved-2026-10-03T17-22-59-441Z.json",
+  "log_path": "docs/implementation/evidence/aud-004-windows-runner-regression-preserved-2026-10-03T17-22-59-441Z.log",
+  "signal": null,
+  "duration_ms": 18344,
+  "source_before": {
+    "manifest_path": "docs/implementation/evidence/aud-004-windows-runner-regression-preserved-2026-10-03T17-22-59-441Z-source-before.json",
+    "content_hash": "sha256:db912fced1c4ecee8e561ab4629be357f64a994fbf66ccb07a195794216086e9",
+    "completeness": "COMPLETE",
+    "file_count": 2936,
+    "incomplete_reasons": []
+  },
+  "source_after": {
+    "manifest_path": "docs/implementation/evidence/aud-004-windows-runner-regression-preserved-2026-10-03T17-22-59-441Z-source-after.json",
+    "content_hash": "sha256:db912fced1c4ecee8e561ab4629be357f64a994fbf66ccb07a195794216086e9",
+    "completeness": "COMPLETE",
+    "file_count": 2936,
+    "incomplete_reasons": []
+  },
+  "source_changed_during_verification": false,
+  "verification_attributable": true,
+  "content_hash": "sha256:db912fced1c4ecee8e561ab4629be357f64a994fbf66ccb07a195794216086e9"
+}

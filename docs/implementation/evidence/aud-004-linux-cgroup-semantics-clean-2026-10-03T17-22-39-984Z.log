@@ -1,0 +1,36 @@
+Running as unit: run-r3f40444dd119429899e27571e2a9a1b5.scope; invocation ID: ef96852c929b4e51b0e72c6007c77657
+supervisor_cgroup=0::/user.slice/user-1000.slice/user@1000.service/app.slice/run-r3f40444dd119429899e27571e2a9a1b5.scope
+root_owner=1000 755
+root_subtree_control=
+run_dir_owner=1000 644
+run_kill_owner=1000 200
+run_freeze_owner=1000 644
+run_initial_members=[]
+attach_member_found=1
+target_cgroup=/user.slice/user-1000.slice/user@1000.service/app.slice/run-r3f40444dd119429899e27571e2a9a1b5.scope/stackgate-aud004-run
+run_members=[480 483 484 ]
+supervisor_still_outside=/user.slice/user-1000.slice/user@1000.service/app.slice/run-r3f40444dd119429899e27571e2a9a1b5.scope
+freeze_write=ok
+heartbeat_growth_while_frozen=0
+members_while_frozen=[480 483 484 ]
+thaw_write=ok
+heartbeat_resumed=3
+stray_members=[503 506 509 ]
+rmdir_with_members=refused
+stray_target_cgroup_now=/user.slice/user-1000.slice/user@1000.service/app.slice/run-r3f40444dd119429899e27571e2a9a1b5.scope/stackgate-aud004-stray
+stray_kill_all=ok
+/tmp/sgprobe.sh: 93: cannot open /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/run-r3f40444dd119429899e27571e2a9a1b5.scope/stackgate-aud004-stray/cgroup.procs: No such file
+stray_members_left=[]
+stray_removed=yes
+kill_all_write=ok
+members_after_kill=[]
+cat: /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/run-r3f40444dd119429899e27571e2a9a1b5.scope/stackgate-aud004-run/pids.current: No such file or directory
+pids_current_after_kill=
+nr_descendants=0
+0
+run_rmdir_after_empty=ok
+leftover_aud004_dirs=[]
+done
+found=[]
+sleep_loops=[]
+remaining_aud004=[]

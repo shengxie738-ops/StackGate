@@ -823,11 +823,426 @@
       "dependencies": [
         "AUD-003"
       ],
-      "status": "NOT_STARTED",
-      "actual_files": [],
-      "verification": [],
-      "blockers": [],
-      "next_action": "Probe Linux capability availability before implementing the controlled runner path."
+      "status": "BLOCKED",
+      "actual_files": [
+        "packages/runner-local/src/linux/cgroup.ts",
+        "packages/runner-local/src/linux/provenance.ts",
+        "packages/runner-local/src/linux/runner.ts",
+        "packages/runner-local/src/linux/attest-launch.sh",
+        "tests/compatibility/linux-runner.test.ts",
+        "docs/compatibility/linux.md",
+        "tests/support/aud004_cgroup_probe.py",
+        "tests/support/aud004_attach_probe.py",
+        "tests/support/aud004_scope_probe.sh",
+        "tests/support/aud004_cleanup.sh",
+        "scripts/build.mjs",
+        ".gitattributes"
+      ],
+      "verification": [
+        {
+          "task_id": "AUD-004",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "11551e6ccf1dc890519fd433c66a7cc97175a889",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "wsl.exe -e sh -c \"tr -d '\\\\015' < /mnt/g/StackGate/tests/support/aud004_scope_probe.sh > /tmp/sgprobe.sh && systemd-run --user --scope --collect -- timeout 100 sh /tmp/sgprobe.sh\"",
+          "argv": [
+            "wsl.exe",
+            "-e",
+            "sh",
+            "-c",
+            "tr -d '\\015' < /mnt/g/StackGate/tests/support/aud004_scope_probe.sh > /tmp/sgprobe.sh && systemd-run --user --scope --collect -- timeout 100 sh /tmp/sgprobe.sh"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T17:20:29.670Z",
+          "finished_at": "2026-10-03T17:20:34.380Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-004-linux-cgroup-semantics-in-delegated-scope-2026-10-03T17-20-29-670Z.json",
+          "log_path": "docs/implementation/evidence/aud-004-linux-cgroup-semantics-in-delegated-scope-2026-10-03T17-20-29-670Z.log",
+          "signal": null,
+          "duration_ms": 4710,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-004-linux-cgroup-semantics-in-delegated-scope-2026-10-03T17-20-29-670Z-source-before.json",
+            "content_hash": "sha256:db0ee4fd44d7058c909102c2d30aca3954ab3acd385d6c8abec3a0eb8d7b71e9",
+            "completeness": "COMPLETE",
+            "file_count": 2935,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-004-linux-cgroup-semantics-in-delegated-scope-2026-10-03T17-20-29-670Z-source-after.json",
+            "content_hash": "sha256:db0ee4fd44d7058c909102c2d30aca3954ab3acd385d6c8abec3a0eb8d7b71e9",
+            "completeness": "COMPLETE",
+            "file_count": 2935,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:db0ee4fd44d7058c909102c2d30aca3954ab3acd385d6c8abec3a0eb8d7b71e9"
+        },
+        {
+          "task_id": "AUD-004",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "11551e6ccf1dc890519fd433c66a7cc97175a889",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "wsl.exe -e python3 -B tests/support/aud004_attach_probe.py",
+          "argv": [
+            "wsl.exe",
+            "-e",
+            "python3",
+            "-B",
+            "tests/support/aud004_attach_probe.py"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T17:20:36.618Z",
+          "finished_at": "2026-10-03T17:20:38.825Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-004-linux-migration-refused-from-root-init-scope-2026-10-03T17-20-36-618Z.json",
+          "log_path": "docs/implementation/evidence/aud-004-linux-migration-refused-from-root-init-scope-2026-10-03T17-20-36-618Z.log",
+          "signal": null,
+          "duration_ms": 2207,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-004-linux-migration-refused-from-root-init-scope-2026-10-03T17-20-36-618Z-source-before.json",
+            "content_hash": "sha256:db0ee4fd44d7058c909102c2d30aca3954ab3acd385d6c8abec3a0eb8d7b71e9",
+            "completeness": "COMPLETE",
+            "file_count": 2935,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-004-linux-migration-refused-from-root-init-scope-2026-10-03T17-20-36-618Z-source-after.json",
+            "content_hash": "sha256:db0ee4fd44d7058c909102c2d30aca3954ab3acd385d6c8abec3a0eb8d7b71e9",
+            "completeness": "COMPLETE",
+            "file_count": 2935,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:db0ee4fd44d7058c909102c2d30aca3954ab3acd385d6c8abec3a0eb8d7b71e9"
+        },
+        {
+          "task_id": "AUD-004",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "11551e6ccf1dc890519fd433c66a7cc97175a889",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "wsl.exe -e sh -c \"tr -d '\\\\015' < /mnt/g/StackGate/tests/support/aud004_scope_probe.sh > /tmp/sgprobe.sh && systemd-run --user --scope --collect -- timeout 100 sh /tmp/sgprobe.sh\"",
+          "argv": [
+            "wsl.exe",
+            "-e",
+            "sh",
+            "-c",
+            "tr -d '\\015' < /mnt/g/StackGate/tests/support/aud004_scope_probe.sh > /tmp/sgprobe.sh && systemd-run --user --scope --collect -- timeout 100 sh /tmp/sgprobe.sh"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T17:20:56.594Z",
+          "finished_at": "2026-10-03T17:21:03.229Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-004-linux-cgroup-semantics-no-leftover-2026-10-03T17-20-56-594Z.json",
+          "log_path": "docs/implementation/evidence/aud-004-linux-cgroup-semantics-no-leftover-2026-10-03T17-20-56-594Z.log",
+          "signal": null,
+          "duration_ms": 6635,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-004-linux-cgroup-semantics-no-leftover-2026-10-03T17-20-56-594Z-source-before.json",
+            "content_hash": "sha256:3716888fc5c5ff5b283e01e9d8d4f602ceadb1ac24375297aa280313e2e0f953",
+            "completeness": "COMPLETE",
+            "file_count": 2935,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-004-linux-cgroup-semantics-no-leftover-2026-10-03T17-20-56-594Z-source-after.json",
+            "content_hash": "sha256:3716888fc5c5ff5b283e01e9d8d4f602ceadb1ac24375297aa280313e2e0f953",
+            "completeness": "COMPLETE",
+            "file_count": 2935,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:3716888fc5c5ff5b283e01e9d8d4f602ceadb1ac24375297aa280313e2e0f953"
+        },
+        {
+          "task_id": "AUD-004",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "11551e6ccf1dc890519fd433c66a7cc97175a889",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "wsl.exe -e sh -c \"tr -d '\\\\015' < /mnt/g/StackGate/tests/support/aud004_scope_probe.sh > /tmp/sgprobe.sh && systemd-run --user --scope --collect -- timeout 100 sh /tmp/sgprobe.sh; tr -d '\\\\015' < /mnt/g/StackGate/tests/support/aud004_cleanup.sh > /tmp/sgclean.sh && sh /tmp/sgclean.sh\"",
+          "argv": [
+            "wsl.exe",
+            "-e",
+            "sh",
+            "-c",
+            "tr -d '\\015' < /mnt/g/StackGate/tests/support/aud004_scope_probe.sh > /tmp/sgprobe.sh && systemd-run --user --scope --collect -- timeout 100 sh /tmp/sgprobe.sh; tr -d '\\015' < /mnt/g/StackGate/tests/support/aud004_cleanup.sh > /tmp/sgclean.sh && sh /tmp/sgclean.sh"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T17:22:39.984Z",
+          "finished_at": "2026-10-03T17:22:44.582Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-004-linux-cgroup-semantics-clean-2026-10-03T17-22-39-984Z.json",
+          "log_path": "docs/implementation/evidence/aud-004-linux-cgroup-semantics-clean-2026-10-03T17-22-39-984Z.log",
+          "signal": null,
+          "duration_ms": 4598,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-004-linux-cgroup-semantics-clean-2026-10-03T17-22-39-984Z-source-before.json",
+            "content_hash": "sha256:db912fced1c4ecee8e561ab4629be357f64a994fbf66ccb07a195794216086e9",
+            "completeness": "COMPLETE",
+            "file_count": 2936,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-004-linux-cgroup-semantics-clean-2026-10-03T17-22-39-984Z-source-after.json",
+            "content_hash": "sha256:db912fced1c4ecee8e561ab4629be357f64a994fbf66ccb07a195794216086e9",
+            "completeness": "COMPLETE",
+            "file_count": 2936,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:db912fced1c4ecee8e561ab4629be357f64a994fbf66ccb07a195794216086e9"
+        },
+        {
+          "task_id": "AUD-004",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "11551e6ccf1dc890519fd433c66a7cc97175a889",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm exec vitest run tests/compatibility/linux-runner.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/compatibility/linux-runner.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T17:22:53.450Z",
+          "finished_at": "2026-10-03T17:22:57.661Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-004-linux-runner-refusal-on-win32-2026-10-03T17-22-53-450Z.json",
+          "log_path": "docs/implementation/evidence/aud-004-linux-runner-refusal-on-win32-2026-10-03T17-22-53-450Z.log",
+          "signal": null,
+          "duration_ms": 4211,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-004-linux-runner-refusal-on-win32-2026-10-03T17-22-53-450Z-source-before.json",
+            "content_hash": "sha256:db912fced1c4ecee8e561ab4629be357f64a994fbf66ccb07a195794216086e9",
+            "completeness": "COMPLETE",
+            "file_count": 2936,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-004-linux-runner-refusal-on-win32-2026-10-03T17-22-53-450Z-source-after.json",
+            "content_hash": "sha256:db912fced1c4ecee8e561ab4629be357f64a994fbf66ccb07a195794216086e9",
+            "completeness": "COMPLETE",
+            "file_count": 2936,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:db912fced1c4ecee8e561ab4629be357f64a994fbf66ccb07a195794216086e9"
+        },
+        {
+          "task_id": "AUD-004",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "11551e6ccf1dc890519fd433c66a7cc97175a889",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm exec vitest run tests/integration/runner/process.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/runner/process.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T17:22:59.441Z",
+          "finished_at": "2026-10-03T17:23:17.785Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-004-windows-runner-regression-preserved-2026-10-03T17-22-59-441Z.json",
+          "log_path": "docs/implementation/evidence/aud-004-windows-runner-regression-preserved-2026-10-03T17-22-59-441Z.log",
+          "signal": null,
+          "duration_ms": 18344,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-004-windows-runner-regression-preserved-2026-10-03T17-22-59-441Z-source-before.json",
+            "content_hash": "sha256:db912fced1c4ecee8e561ab4629be357f64a994fbf66ccb07a195794216086e9",
+            "completeness": "COMPLETE",
+            "file_count": 2936,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-004-windows-runner-regression-preserved-2026-10-03T17-22-59-441Z-source-after.json",
+            "content_hash": "sha256:db912fced1c4ecee8e561ab4629be357f64a994fbf66ccb07a195794216086e9",
+            "completeness": "COMPLETE",
+            "file_count": 2936,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:db912fced1c4ecee8e561ab4629be357f64a994fbf66ccb07a195794216086e9"
+        },
+        {
+          "task_id": "AUD-004",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "11551e6ccf1dc890519fd433c66a7cc97175a889",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T17:25:07.733Z",
+          "finished_at": "2026-10-03T17:25:13.964Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-004-root-typecheck-2026-10-03T17-25-07-733Z.json",
+          "log_path": "docs/implementation/evidence/aud-004-root-typecheck-2026-10-03T17-25-07-733Z.log",
+          "signal": null,
+          "duration_ms": 6231,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-004-root-typecheck-2026-10-03T17-25-07-733Z-source-before.json",
+            "content_hash": "sha256:ba21b0137eac3a58975f59b2371419508d6f04c993f4953365e9f18cb6f5b544",
+            "completeness": "COMPLETE",
+            "file_count": 2937,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-004-root-typecheck-2026-10-03T17-25-07-733Z-source-after.json",
+            "content_hash": "sha256:ba21b0137eac3a58975f59b2371419508d6f04c993f4953365e9f18cb6f5b544",
+            "completeness": "COMPLETE",
+            "file_count": 2937,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:ba21b0137eac3a58975f59b2371419508d6f04c993f4953365e9f18cb6f5b544"
+        },
+        {
+          "task_id": "AUD-004",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "11551e6ccf1dc890519fd433c66a7cc97175a889",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm lint",
+          "argv": [
+            "pnpm",
+            "lint"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T17:25:15.789Z",
+          "finished_at": "2026-10-03T17:25:21.256Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-004-root-lint-2026-10-03T17-25-15-789Z.json",
+          "log_path": "docs/implementation/evidence/aud-004-root-lint-2026-10-03T17-25-15-789Z.log",
+          "signal": null,
+          "duration_ms": 5467,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-004-root-lint-2026-10-03T17-25-15-789Z-source-before.json",
+            "content_hash": "sha256:ba21b0137eac3a58975f59b2371419508d6f04c993f4953365e9f18cb6f5b544",
+            "completeness": "COMPLETE",
+            "file_count": 2937,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-004-root-lint-2026-10-03T17-25-15-789Z-source-after.json",
+            "content_hash": "sha256:ba21b0137eac3a58975f59b2371419508d6f04c993f4953365e9f18cb6f5b544",
+            "completeness": "COMPLETE",
+            "file_count": 2937,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:ba21b0137eac3a58975f59b2371419508d6f04c993f4953365e9f18cb6f5b544"
+        },
+        {
+          "task_id": "AUD-004",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "11551e6ccf1dc890519fd433c66a7cc97175a889",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm verify:boundaries",
+          "argv": [
+            "pnpm",
+            "verify:boundaries"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T17:25:23.189Z",
+          "finished_at": "2026-10-03T17:25:26.072Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/aud-004-module-boundaries-2026-10-03T17-25-23-189Z.json",
+          "log_path": "docs/implementation/evidence/aud-004-module-boundaries-2026-10-03T17-25-23-189Z.log",
+          "signal": null,
+          "duration_ms": 2883,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/aud-004-module-boundaries-2026-10-03T17-25-23-189Z-source-before.json",
+            "content_hash": "sha256:ba21b0137eac3a58975f59b2371419508d6f04c993f4953365e9f18cb6f5b544",
+            "completeness": "COMPLETE",
+            "file_count": 2937,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/aud-004-module-boundaries-2026-10-03T17-25-23-189Z-source-after.json",
+            "content_hash": "sha256:ba21b0137eac3a58975f59b2371419508d6f04c993f4953365e9f18cb6f5b544",
+            "completeness": "COMPLETE",
+            "file_count": 2937,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:ba21b0137eac3a58975f59b2371419508d6f04c993f4953365e9f18cb6f5b544"
+        }
+      ],
+      "blockers": [
+        "Linux guest has no Node runtime: the guest only provides /usr/bin/python3, so tests/compatibility/linux-runner.test.ts cannot be executed on Linux and the product code under packages/runner-local/src/linux/ has never run there.",
+        "The plan's isolation assertions are therefore unexecuted: detachedDescendant.aliveAfterCancel=false, unrelatedProcess.aliveAfterCancel=true and provenance.cleanup=VERIFIED were only reached through their refusal branch on win32, where no process is started at all.",
+        "Host preparation needs an unprivileged Node 24.11.1 inside the WSL2 guest plus a systemd user scope (systemd-run --user --scope). A plain wsl -e bash session sits in root-owned /init.scope and is correctly reported as MIGRATION_REFUSED, so it cannot exercise the DELEGATED branch.",
+        "Privilege escalation is not a fix and was not used: wsl -u root, sudo, docker run --privileged and pulling a node image are each rejected in docs/compatibility/linux.md section 8."
+      ],
+      "next_action": "Install an unprivileged Node 24.11.1 in the WSL2 guest and run tests/compatibility/linux-runner.test.ts through systemd-run --user --scope; until the DELEGATED branch really executes, the Linux attribution, cancel and reclaim claims stay unverified."
     }
   ]
 }

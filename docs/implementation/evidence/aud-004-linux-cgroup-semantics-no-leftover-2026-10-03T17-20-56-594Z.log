@@ -1,0 +1,30 @@
+Running as unit: run-r8d1f58ceea044cbebe880a3daf828ae9.scope; invocation ID: 877ffd4c6ac94bd09d6eb3b34954b1ae
+supervisor_cgroup=0::/user.slice/user-1000.slice/user@1000.service/app.slice/run-r8d1f58ceea044cbebe880a3daf828ae9.scope
+root_owner=1000 755
+root_subtree_control=
+run_dir_owner=1000 644
+run_kill_owner=1000 200
+run_freeze_owner=1000 644
+run_initial_members=[]
+attach_member_found=1
+target_cgroup=/user.slice/user-1000.slice/user@1000.service/app.slice/run-r8d1f58ceea044cbebe880a3daf828ae9.scope/stackgate-aud004-run
+run_members=[7219 7222 7223 ]
+supervisor_still_outside=/user.slice/user-1000.slice/user@1000.service/app.slice/run-r8d1f58ceea044cbebe880a3daf828ae9.scope
+freeze_write=ok
+heartbeat_growth_while_frozen=10
+members_while_frozen=[7219 7222 7223 ]
+thaw_write=ok
+heartbeat_resumed=9
+stray_members=[7260 7263 7268 ]
+rmdir_with_members=refused
+stray_target_cgroup_now=/user.slice/user-1000.slice/user@1000.service/app.slice/run-r8d1f58ceea044cbebe880a3daf828ae9.scope/stackgate-aud004-stray
+stray_removed=no
+kill_all_write=ok
+members_after_kill=[]
+cat: /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/run-r8d1f58ceea044cbebe880a3daf828ae9.scope/stackgate-aud004-run/pids.current: No such file or directory
+pids_current_after_kill=
+nr_descendants=0
+0
+run_rmdir_after_empty=ok
+leftover_aud004_dirs=[stackgate-aud004-stray ]
+done

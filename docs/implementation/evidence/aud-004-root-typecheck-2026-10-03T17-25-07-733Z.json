@@ -1,0 +1,42 @@
+{
+  "task_id": "AUD-004",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "11551e6ccf1dc890519fd433c66a7cc97175a889",
+    "branch": "V2",
+    "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "command": "pnpm typecheck",
+  "argv": [
+    "pnpm",
+    "typecheck"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-10-03T17:25:07.733Z",
+  "finished_at": "2026-10-03T17:25:13.964Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/aud-004-root-typecheck-2026-10-03T17-25-07-733Z.json",
+  "log_path": "docs/implementation/evidence/aud-004-root-typecheck-2026-10-03T17-25-07-733Z.log",
+  "signal": null,
+  "duration_ms": 6231,
+  "source_before": {
+    "manifest_path": "docs/implementation/evidence/aud-004-root-typecheck-2026-10-03T17-25-07-733Z-source-before.json",
+    "content_hash": "sha256:ba21b0137eac3a58975f59b2371419508d6f04c993f4953365e9f18cb6f5b544",
+    "completeness": "COMPLETE",
+    "file_count": 2937,
+    "incomplete_reasons": []
+  },
+  "source_after": {
+    "manifest_path": "docs/implementation/evidence/aud-004-root-typecheck-2026-10-03T17-25-07-733Z-source-after.json",
+    "content_hash": "sha256:ba21b0137eac3a58975f59b2371419508d6f04c993f4953365e9f18cb6f5b544",
+    "completeness": "COMPLETE",
+    "file_count": 2937,
+    "incomplete_reasons": []
+  },
+  "source_changed_during_verification": false,
+  "verification_attributable": true,
+  "content_hash": "sha256:ba21b0137eac3a58975f59b2371419508d6f04c993f4953365e9f18cb6f5b544"
+}

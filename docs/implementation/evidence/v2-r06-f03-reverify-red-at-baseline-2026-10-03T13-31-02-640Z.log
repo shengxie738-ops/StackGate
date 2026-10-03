@@ -1,0 +1,4 @@
+[head] satisfied=false observation_refs=["art_environment_cleanup","art_environment_finalization","art_environment_prepare","request_performance_1"]
+[head] REQUEST_ID=request_performance_1 stored observation artifact=art_backend_observation_document distinct=true
+[head] refs_cite_request_id=true stored_artifact_cited=false
+V2F03_STILL_PRESENT=yes

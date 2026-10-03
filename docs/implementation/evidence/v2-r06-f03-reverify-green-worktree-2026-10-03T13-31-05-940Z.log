@@ -1,0 +1,4 @@
+[worktree] satisfied=false observation_refs=["art_backend_observation_document","art_environment_cleanup","art_environment_finalization","art_environment_prepare","art_response_body"]
+[worktree] REQUEST_ID=request_performance_1 stored observation artifact=art_backend_observation_document distinct=true
+[worktree] refs_cite_request_id=false stored_artifact_cited=true
+V2F03_STILL_PRESENT=none

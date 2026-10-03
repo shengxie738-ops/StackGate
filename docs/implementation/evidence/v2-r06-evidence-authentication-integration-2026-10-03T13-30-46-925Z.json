@@ -1,0 +1,45 @@
+{
+  "task_id": "V2-R06",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "b8fe2be091a36f874aafbab7f98b595590b35c35",
+    "branch": "V2",
+    "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "command": "pnpm exec vitest run tests/integration/environment/evidence-authentication.test.ts",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/integration/environment/evidence-authentication.test.ts"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-10-03T13:30:46.925Z",
+  "finished_at": "2026-10-03T13:31:00.651Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/v2-r06-evidence-authentication-integration-2026-10-03T13-30-46-925Z.json",
+  "log_path": "docs/implementation/evidence/v2-r06-evidence-authentication-integration-2026-10-03T13-30-46-925Z.log",
+  "signal": null,
+  "duration_ms": 13726,
+  "source_before": {
+    "manifest_path": "docs/implementation/evidence/v2-r06-evidence-authentication-integration-2026-10-03T13-30-46-925Z-source-before.json",
+    "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+    "completeness": "COMPLETE",
+    "file_count": 2677,
+    "incomplete_reasons": []
+  },
+  "source_after": {
+    "manifest_path": "docs/implementation/evidence/v2-r06-evidence-authentication-integration-2026-10-03T13-30-46-925Z-source-after.json",
+    "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+    "completeness": "COMPLETE",
+    "file_count": 2677,
+    "incomplete_reasons": []
+  },
+  "source_changed_during_verification": false,
+  "verification_attributable": true,
+  "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d"
+}

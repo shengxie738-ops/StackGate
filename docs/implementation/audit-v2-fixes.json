@@ -2569,11 +2569,449 @@
         "V2-R04",
         "V2-R05"
       ],
-      "status": "NOT_STARTED",
-      "actual_files": [],
-      "verification": [],
+      "status": "DONE",
+      "actual_files": [
+        "packages/core/src/services/authenticate-environment-evidence.ts",
+        "packages/core/src/services/environment-assessment.ts",
+        "tests/integration/environment/evidence-authentication.test.ts",
+        "tests/support/v2_f03_reverify.mjs",
+        "tests/contract/m3-runtime-contracts.test.ts",
+        "tests/unit/v2/environment-assessment.test.ts",
+        "docs/adr/ADR-013-v2-authentication-contracts.md"
+      ],
+      "verification": [
+        {
+          "task_id": "V2-R06",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "b8fe2be091a36f874aafbab7f98b595590b35c35",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm exec vitest run tests/integration/environment/evidence-authentication.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/environment/evidence-authentication.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T13:30:46.925Z",
+          "finished_at": "2026-10-03T13:31:00.651Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r06-evidence-authentication-integration-2026-10-03T13-30-46-925Z.json",
+          "log_path": "docs/implementation/evidence/v2-r06-evidence-authentication-integration-2026-10-03T13-30-46-925Z.log",
+          "signal": null,
+          "duration_ms": 13726,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-evidence-authentication-integration-2026-10-03T13-30-46-925Z-source-before.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-evidence-authentication-integration-2026-10-03T13-30-46-925Z-source-after.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d"
+        },
+        {
+          "task_id": "V2-R06",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "b8fe2be091a36f874aafbab7f98b595590b35c35",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "node tests/support/v2_f03_reverify.mjs head",
+          "argv": [
+            "node",
+            "tests/support/v2_f03_reverify.mjs",
+            "head"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T13:31:02.640Z",
+          "finished_at": "2026-10-03T13:31:04.340Z",
+          "exit_code": 1,
+          "result": "FAILED",
+          "evidence_path": "docs/implementation/evidence/v2-r06-f03-reverify-red-at-baseline-2026-10-03T13-31-02-640Z.json",
+          "log_path": "docs/implementation/evidence/v2-r06-f03-reverify-red-at-baseline-2026-10-03T13-31-02-640Z.log",
+          "signal": null,
+          "duration_ms": 1700,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-f03-reverify-red-at-baseline-2026-10-03T13-31-02-640Z-source-before.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-f03-reverify-red-at-baseline-2026-10-03T13-31-02-640Z-source-after.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": false,
+          "content_hash": null
+        },
+        {
+          "task_id": "V2-R06",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "b8fe2be091a36f874aafbab7f98b595590b35c35",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "node tests/support/v2_f03_reverify.mjs worktree",
+          "argv": [
+            "node",
+            "tests/support/v2_f03_reverify.mjs",
+            "worktree"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T13:31:05.940Z",
+          "finished_at": "2026-10-03T13:31:07.679Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r06-f03-reverify-green-worktree-2026-10-03T13-31-05-940Z.json",
+          "log_path": "docs/implementation/evidence/v2-r06-f03-reverify-green-worktree-2026-10-03T13-31-05-940Z.log",
+          "signal": null,
+          "duration_ms": 1739,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-f03-reverify-green-worktree-2026-10-03T13-31-05-940Z-source-before.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-f03-reverify-green-worktree-2026-10-03T13-31-05-940Z-source-after.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d"
+        },
+        {
+          "task_id": "V2-R06",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "b8fe2be091a36f874aafbab7f98b595590b35c35",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T13:31:09.552Z",
+          "finished_at": "2026-10-03T13:31:15.373Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r06-root-typecheck-2026-10-03T13-31-09-552Z.json",
+          "log_path": "docs/implementation/evidence/v2-r06-root-typecheck-2026-10-03T13-31-09-552Z.log",
+          "signal": null,
+          "duration_ms": 5821,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-root-typecheck-2026-10-03T13-31-09-552Z-source-before.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-root-typecheck-2026-10-03T13-31-09-552Z-source-after.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d"
+        },
+        {
+          "task_id": "V2-R06",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "b8fe2be091a36f874aafbab7f98b595590b35c35",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm verify:schemas",
+          "argv": [
+            "pnpm",
+            "verify:schemas"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T13:31:17.359Z",
+          "finished_at": "2026-10-03T13:31:20.413Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r06-verify-schemas-2026-10-03T13-31-17-359Z.json",
+          "log_path": "docs/implementation/evidence/v2-r06-verify-schemas-2026-10-03T13-31-17-359Z.log",
+          "signal": null,
+          "duration_ms": 3054,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-verify-schemas-2026-10-03T13-31-17-359Z-source-before.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-verify-schemas-2026-10-03T13-31-17-359Z-source-after.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d"
+        },
+        {
+          "task_id": "V2-R06",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "b8fe2be091a36f874aafbab7f98b595590b35c35",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm test:contract",
+          "argv": [
+            "pnpm",
+            "test:contract"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T13:31:51.447Z",
+          "finished_at": "2026-10-03T13:32:00.898Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r06-contract-suite-2026-10-03T13-31-51-447Z.json",
+          "log_path": "docs/implementation/evidence/v2-r06-contract-suite-2026-10-03T13-31-51-447Z.log",
+          "signal": null,
+          "duration_ms": 9451,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-contract-suite-2026-10-03T13-31-51-447Z-source-before.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-contract-suite-2026-10-03T13-31-51-447Z-source-after.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d"
+        },
+        {
+          "task_id": "V2-R06",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "b8fe2be091a36f874aafbab7f98b595590b35c35",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm test:unit",
+          "argv": [
+            "pnpm",
+            "test:unit"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T13:32:02.858Z",
+          "finished_at": "2026-10-03T13:32:51.538Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r06-unit-suite-2026-10-03T13-32-02-858Z.json",
+          "log_path": "docs/implementation/evidence/v2-r06-unit-suite-2026-10-03T13-32-02-858Z.log",
+          "signal": null,
+          "duration_ms": 48680,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-unit-suite-2026-10-03T13-32-02-858Z-source-before.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-unit-suite-2026-10-03T13-32-02-858Z-source-after.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d"
+        },
+        {
+          "task_id": "V2-R06",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "b8fe2be091a36f874aafbab7f98b595590b35c35",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm verify:boundaries",
+          "argv": [
+            "pnpm",
+            "verify:boundaries"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T13:32:53.388Z",
+          "finished_at": "2026-10-03T13:32:56.292Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r06-verify-boundaries-2026-10-03T13-32-53-388Z.json",
+          "log_path": "docs/implementation/evidence/v2-r06-verify-boundaries-2026-10-03T13-32-53-388Z.log",
+          "signal": null,
+          "duration_ms": 2904,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-verify-boundaries-2026-10-03T13-32-53-388Z-source-before.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-verify-boundaries-2026-10-03T13-32-53-388Z-source-after.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d"
+        },
+        {
+          "task_id": "V2-R06",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "b8fe2be091a36f874aafbab7f98b595590b35c35",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm lint",
+          "argv": [
+            "pnpm",
+            "lint"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T13:32:58.389Z",
+          "finished_at": "2026-10-03T13:33:04.038Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r06-repo-lint-2026-10-03T13-32-58-389Z.json",
+          "log_path": "docs/implementation/evidence/v2-r06-repo-lint-2026-10-03T13-32-58-389Z.log",
+          "signal": null,
+          "duration_ms": 5649,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-repo-lint-2026-10-03T13-32-58-389Z-source-before.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-repo-lint-2026-10-03T13-32-58-389Z-source-after.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d"
+        },
+        {
+          "task_id": "V2-R06",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "b8fe2be091a36f874aafbab7f98b595590b35c35",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm exec vitest run tests/integration/probe tests/integration/gate",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/probe",
+            "tests/integration/gate"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T13:33:05.944Z",
+          "finished_at": "2026-10-03T13:42:43.777Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/v2-r06-probe-and-gate-regression-2026-10-03T13-33-05-944Z.json",
+          "log_path": "docs/implementation/evidence/v2-r06-probe-and-gate-regression-2026-10-03T13-33-05-944Z.log",
+          "signal": null,
+          "duration_ms": 577833,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-probe-and-gate-regression-2026-10-03T13-33-05-944Z-source-before.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/v2-r06-probe-and-gate-regression-2026-10-03T13-33-05-944Z-source-after.json",
+            "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d",
+            "completeness": "COMPLETE",
+            "file_count": 2677,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:9f3cf84caf9f54f7624841e37938479cd66db57b5953ffae5f812dda8560f61d"
+        }
+      ],
       "blockers": [],
-      "next_action": "Authenticate evidence from a real FileEvidenceStore run."
+      "next_action": "V2-R07: repair-batch regression and capability alignment at the B1 exit."
     },
     {
       "task_id": "V2-R07",

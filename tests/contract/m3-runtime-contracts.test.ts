@@ -18,6 +18,15 @@ const CREATION_IDENTITY = 'stackgate-v2-contract-worker';
 const RESOURCE_CREATED_AT = ['2026-09-21T10:01:00.000Z', '2026-09-21T10:02:00.000Z'];
 
 /**
+ * The artifact ids this run's index holds for the observed request. V2-R06 replaced `observation.request_id`
+ * here: an HTTP request id is not an artifact id, and this contract fixture used to hand one in as if it were,
+ * which manufactured the very condition the audit calls a defect (V2-F03). The real-store proof of the same
+ * rule lives in `tests/integration/environment/evidence-authentication.test.ts`.
+ */
+const OBSERVATION_ARTIFACT_ID = 'artifact_v2_r06_backend_observation';
+const RESPONSE_ARTIFACT_ID = 'artifact_v2_r06_response_body';
+
+/**
  * The confirmed requirement set for the contract demo: an attached environment, one backend observation and an
  * OBSERVED floor. V2-R05 replaced the loose per-field booleans on the input with this object.
  */
@@ -63,8 +72,11 @@ function baseInput(overrides: Partial<EnvironmentAssessmentInput> = {}): Environ
     prepare: { ...prepare, provenance: finalization.provenance, resources: ledger },
     finalization,
     cleanup,
-    observations: [observed],
-    authenticated_refs: ['art_environment_prepare', 'art_environment_finalize', 'art_environment_cleanup', observed.request_id],
+    observations: [{ observation: observed, artifact_ids: [OBSERVATION_ARTIFACT_ID, RESPONSE_ARTIFACT_ID] }],
+    authenticated_refs: [
+      'art_environment_prepare', 'art_environment_finalize', 'art_environment_cleanup',
+      OBSERVATION_ARTIFACT_ID, RESPONSE_ARTIFACT_ID,
+    ],
     authenticated_digests: { [observed.request_id]: observed.response_digest },
     prepare_ref: 'art_environment_prepare',
     finalization_ref: 'art_environment_finalize',
@@ -119,15 +131,29 @@ it('derives a satisfied environment only from fully authenticated observations',
   expect(assessment.satisfied).toBe(true);
   expect(assessment.reasons).toEqual([]);
   expect(assessment.observation_refs.length).toBeGreaterThan(1);
+  // V2-F03: the request identity is never a citation, and both cited ids are stored artifact ids.
+  expect(assessment.observation_refs).not.toContain(baseInput().observations[0]!.observation.request_id);
+  expect(assessment.observation_refs).toContain(OBSERVATION_ARTIFACT_ID);
+  expect(assessment.observation_refs).toContain(RESPONSE_ARTIFACT_ID);
   expect(assessmentReferencesAuthentic(assessment, baseInput().authenticated_refs)).toBe(true);
   expect(validateSchema('environment-assessment', assessment).ok).toBe(true);
 });
 
 it('refuses an assessment that cites references the core never authenticated', () => {
-  const assessment = assessEnvironment(baseInput({ authenticated_refs: ['art_environment_prepare'] }));
+  const assessment = assessEnvironment(baseInput({
+    authenticated_refs: ['art_environment_prepare'],
+    observations: [{ observation: baseInput().observations[0]!.observation, artifact_ids: ['art_environment_prepare'] }],
+  }));
   expect(assessment.satisfied).toBe(false);
   expect(assessment.reasons).toContain('ENV_REFERENCE_UNAUTHENTICATED');
   expect(assessmentReferencesAuthentic(assessment, ['art_environment_prepare'])).toBe(false);
+});
+
+it('refuses an observation whose citation was never bound to a stored artifact', () => {
+  const assessment = assessEnvironment(baseInput({ observations: [{ observation: baseInput().observations[0]!.observation, artifact_ids: [] }] }));
+  expect(assessment.satisfied).toBe(false);
+  expect(assessment.reasons).toContain('ENV_OBSERVATION_REFERENCE_UNBOUND');
+  expect(assessment.observation_refs).not.toContain(baseInput().observations[0]!.observation.request_id);
 });
 
 it('cannot be flipped to satisfied by an externally supplied boolean', () => {
@@ -163,7 +189,7 @@ it('detects instance switching, digest disagreement and required operations neve
 
   const forgedDigest = assessEnvironment({
     ...input,
-    authenticated_digests: { [(input.observations[0] as BackendObservation).request_id]: '3'.repeat(64) },
+    authenticated_digests: { [input.observations[0]!.observation.request_id]: '3'.repeat(64) },
   });
   expect(forgedDigest.satisfied).toBe(false);
   expect(forgedDigest.reasons).toContain('ENV_BACKEND_OBSERVATION_DIGEST');

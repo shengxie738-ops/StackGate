@@ -10,12 +10,17 @@
 
 M3 审计任务：AUD-003 DONE；详见 [audit-m3-fixes.json](audit-m3-fixes.json) 与 [M3 入口审计](M3-entry-audit.md)。
 
-V2 审计修复任务：V2-R00、V2-R01、V2-R02、V2-R03、V2-R04、V2-R05 DONE；V2-R06、V2-R07 未完成。详见 [audit-v2-fixes.json](audit-v2-fixes.json) 与 [V2 审计基线](V2-audit-baseline.md)。基线 `2791cf5f221d6f917101079332f4231c6a450fa7` 与当时的本地 HEAD 相同，记录时根 `pnpm typecheck` 退出 2、`pnpm build` 退出 1，这是当时的真实状态，不沿用 M2 的绿色记录。
+V2 审计修复任务：V2-R00、V2-R01、V2-R02、V2-R03、V2-R04、V2-R05、V2-R06 DONE；仅 V2-R07（修复批次回归与能力状态对齐）未完成。详见 [audit-v2-fixes.json](audit-v2-fixes.json) 与 [V2 审计基线](V2-audit-baseline.md)。基线 `2791cf5f221d6f917101079332f4231c6a450fa7` 与当时的本地 HEAD 相同，记录时根 `pnpm typecheck` 退出 2、`pnpm build` 退出 1，这是当时的真实状态，不沿用 M2 的绿色记录。
 
-下一步：V2-R06 —— 用真实 `FileEvidenceStore` 与本 Run 索引重取 prepare/finalization/cleanup/observation/body，建立 `AuthenticatedEnvironmentFacts`，消除 `request_id` 冒充 artifact 引用；注意 digest 边界：`probe_helpers.py` 写入 `sha256:<hex>`，而 `backend-observation.schema.json` 要求裸 64 位十六进制，只能在边界严格识别并转换。
+下一步：V2-R07 —— 按受影响范围复跑全部新增单测/合同/HTTP/环境测试，复验 AUD-001/002 的既有反例，在锁定 Windows 环境分别跑根与示例 web 的 typecheck/build/test，逐项记录关闭依据与仍未具备的能力，之后才允许进入 SG-053 的运行证明。
 
 ## 最近真实验证
 
+- node tests/support/v2_f03_reverify.mjs head → **1**（`2791cf5` 的 `observation_refs` 里确实出现 HTTP 请求身份 `request_performance_1`，它不存在于任何索引项）; [evidence](evidence/v2-r06-f03-reverify-red-at-baseline-2026-10-03T13-31-02-640Z.json)
+- node tests/support/v2_f03_reverify.mjs worktree → 0（引用改为 `art_backend_observation_document` 与 `art_response_body`，不再出现 request id；两侧 id 天然不同）; [evidence](evidence/v2-r06-f03-reverify-green-worktree-2026-10-03T13-31-05-940Z.json)
+- pnpm exec vitest run tests/integration/environment/evidence-authentication.test.ts → 0 (PASSED)，17 项，真实 FileEvidenceStore + 临时 state 根，含未索引路径零读取、跨 Run、跨 attempt 重放、字节/摘要不符、截断 body、缺任一生命周期文档、自报 CONTROLLED/satisfied 不升级、核心无 I/O 且此路径无网络与业务命令; [evidence](evidence/v2-r06-evidence-authentication-integration-2026-10-03T13-30-46-925Z.json)
+- pnpm test:unit → 0 (PASSED)，44 文件 738 项；pnpm test:contract → 0 (PASSED)，8 文件 218 项; [evidence](evidence/v2-r06-unit-suite-2026-10-03T13-32-02-858Z.json)
+- pnpm typecheck → 0、pnpm lint → 0、pnpm verify:schemas → 0（生成类型无漂移）、pnpm verify:boundaries → 0（167 个产品源文件）; [evidence](evidence/v2-r06-verify-boundaries-2026-10-03T13-32-53-388Z.json)
 - node tests/support/v2_f06_reverify.mjs head → **1**（对已提交字节复现 V2-F06：`{}` 上 `/constructor`、`/__proto__`、`/toString` 的 exists 全为 true，`Infinity` 满足 `type:number`，`/a/01` 命中数组越界下标，共 5 处错误接受）; [evidence](evidence/v2-r04-f06-reverify-red-at-committed-bytes-2026-10-03T11-44-17-918Z.json)
 - node tests/support/v2_f06_reverify.mjs worktree → 0（同上全部拒绝且理由各异：`POINTER_NOT_FOUND`/`TYPE_MISMATCH`/`POINTER_INDEX_INVALID`；而自有 `constructor` 成员与规范下标 `/a/1` 仍正常读取，证明不是关键词黑名单）; [evidence](evidence/v2-r04-f06-reverify-green-worktree-2026-10-03T11-44-21-097Z.json)
 - pnpm exec vitest run tests/contract/probe-assertions-parity.test.ts tests/unit/v2/probe-assertions.test.ts → 0 (PASSED)，136 项跨语言对照（97 assertion + 38 parse + 1 覆盖守卫），两侧逐行相等且各自等于夹具期望; [evidence](evidence/v2-r04-parity-and-assertion-suites-2026-10-03T11-43-28-927Z.json)

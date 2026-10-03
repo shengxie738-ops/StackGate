@@ -1,8 +1,8 @@
 # ADR-013：V2 认证契约与环境要求确认
 
-**状态：** 接受（V2-R05 落地环境与要求确认部分；V2-R06 追加证据认证工厂部分）
+**状态：** 接受（V2-R05 落地环境与要求确认部分；V2-R06 落地证据认证工厂与真实引用部分）
 **日期：** 2026-09-28
-**关联：** `docs/plans/StackGate_V2_Execution_Plan_v0.4.md` 第 1.2、2.4、2.6、4 节与 V2-R05/V2-R06 任务卡；`docs/plans/StackGate_V2_Audit_2791cf5.md` 第 6 节（V2-F02）、第 7 节（V2-F03）；ADR-012 第 2、3 节
+**关联：** `docs/plans/StackGate_V2_Execution_Plan_v0.4.md` 第 1.2、2.4、2.5、2.6、4 节与 V2-R05/V2-R06 任务卡；`docs/plans/StackGate_V2_Audit_2791cf5.md` 第 6 节（V2-F02）、第 7 节（V2-F03）；ADR-012 第 2、3、5 节
 **基线：** 分支 `V2`，V2-R00—V2-R02 已提交后的工作树
 
 ## 背景
@@ -44,13 +44,49 @@
 
 `assessmentReferencesAuthentic(assessment, authenticated_refs)` 的签名保持不变。V2-R06 将其降级为补充检查。
 
-## 尚未在本 ADR 覆盖（V2-R06）
+## V2-R06 落地：证据认证工厂与真实 artifact 引用
 
-`packages/core/src/services/authenticate-environment-evidence.ts` 将新增 `EvidenceDocumentRef`、`ExpectedRequest`、`AuthenticatedEnvironmentFacts` 与 `authenticateEnvironmentEvidence(...)` 工厂，用 `EvidenceReader.read` 按本 Run 索引重取真实 artifact 字节，校验 run/check/attempt/文档种类/相对路径/size/digest/时间与请求身份后，把**真实 artifact 引用**喂给本函数的 `prepare_ref`、`finalization_ref`、`cleanup_ref`、`authenticated_refs` 与 `authenticated_digests`，并提供 CONTROLLED 所需的执行上下文证明。V2-F03 的另一半仍留在 R06：当前 `observation.request_id` 仍被写入 `observation_refs`（`tests/contract/m3-runtime-contracts.test.ts` 的 `baseInput` 也把 `request_id` 放进 `authenticated_refs`，人工制造了 request/artifact 同 id 的条件），真实存储打通前不得据此宣称引用已认证。
+**代码：** `packages/core/src/services/authenticate-environment-evidence.ts`；输入类型变更在 `environment-assessment.ts`；集成证明在 `tests/integration/environment/evidence-authentication.test.ts`（真实 `FileEvidenceStore` + OS 临时 state root），调用点适配在 `tests/contract/m3-runtime-contracts.test.ts` 与 `tests/unit/v2/environment-assessment.test.ts`。
+
+### 7. 工厂导出的名称与形状（第 2.4 节固定名）
+
+`EvidenceDocumentRef {artifact_id, relative_path, digest}`、`ExpectedRequest {run_id, check_id, attempt_id, request_id, operation_key, instance_id, status_code, media_type, response_ref, observation_ref}`、`AuthenticatedEnvironmentFacts`、`authenticateEnvironmentEvidence({run_id, input_hash, requirements, prepare_ref, finalization_ref, cleanup_ref, requests, reader, artifact_index})` 都按第 2.4 节命名。返回判别联合 `{ok:true, facts} | {ok:false, diagnostics: Diagnostic[]}`；任何一步失败都产出一条 `Diagnostic`（`rule_id` 为 `SG-EVIDENCE-<原因>`，`observed_facts.reason` 携带机器可读原因），不存在“部分 facts”。
+
+工厂参数比第 2.4 节的列表多出 `run_window: {started_at, finished_at} | null`：本次运行的时间区间属于 RunManifest，而 `manifest.json` 不是索引内的 artifact，按“未索引路径一律拒绝读取”的规则工厂不能自己去取它，所以由调用方（未来的 SG-062 接线处）传入。传 null 时工厂不做区间判断，`assessEnvironment` 依旧给出 `ENV_RUN_WINDOW_UNAVAILABLE`，V2-R05 的规则没有被放宽。
+
+`AuthenticatedEnvironmentFacts` 只由该工厂构造：它带一个含私有成员的品牌类型 `AuthenticatedFactsIssuer`，对象字面量在 `pnpm typecheck` 下无法赋值（集成测试用 `@ts-expect-error` 钉住这一点）。品牌只防开发误用，不是安全边界，也不证明环境来源的独立性。
+
+### 8. 校验顺序与“只读索引里的东西”
+
+实现顺序（记录在模块头注释里）：先用 `validateSchema('artifact', …)` 重建并校验本 Run 索引，丢弃非法项与别的 Run 的项；然后对每个引用做**读取前**的 preflight——摘要形式、路径必须落在本 Run 自己的 `documents/` 或 `artifacts/` 目录、文档 kind 对应的固定路径、索引存在性、`artifact_id` 与 `digest` 与索引一致、check/attempt 作用域、1 MiB 读取预算；越界形式（`..`、`.`、空段、绝对路径、盘符、反斜杠、`manifest.json`、`events.jsonl`、`seal.json`、`restricted/`）一律拒绝且**不发起读取**。随后才用索引 entry 自己的 `relative_path/expected_digest/max_bytes=size` 通过 `EvidenceReader.read` 回读，再逐一核对回读 artifact 与索引 entry 完全一致（integrity）、字节数与索引 size 相同、`hashBytes(重新读到的字节)` 与索引摘要相同；然后严格 JSON 解析并按 kind 做 `validateSchema`。最后按 run+check+attempt+request+instance 连接请求，比较 operation/status/media/timing 与**从原始响应字节重算的摘要**，并要求观察文档自报的 `observation_path` 就是该请求在索引里的 observation 路径。
+
+期望操作只来自 `requirements.required_operations`：要求里有而 `requests` 里没有的操作直接得到 `EVIDENCE_REQUIRED_OPERATION_NOT_EXPECTED`，工厂不会把观察到的操作反向补成要求。重复 request id、同一份证据被两个请求引用、跨 attempt 的重放 body 都是拒绝项。
+
+### 9. `sha256:` 前缀只在边界转换一次（第 2.5 节）
+
+`presets/fastapi-react/scripts/probe_helpers.py` 写出的 `response_digest` 是 `"sha256:"+hex`，而存储侧 `Artifact.digest` 与 `BackendObservation.response_digest` 必须是 `common.schema.json#/$defs/Sha256` 的裸 64 位小写十六进制。工厂的 `boundaryDigest()` 严格识别这两种形式之一：裸形直接采用，`sha256:`+裸形去掉前缀，其它（大写、空白、双重前缀、非 hex）产生 `EVIDENCE_DIGEST_FORM_INVALID`。前缀只允许出现在**调用方传入的引用字符串与观察摘要字符串**上；索引 entry 或已存文档里出现前缀会被 `validateSchema('artifact'/'backend-observation')` 拒绝，因此不会有两套字符串含义在同一层同时成立，也不会因为历史上带过前缀就把现有 artifact 全部判为非法。
+
+### 10. `assessEnvironment` 的输入变化与引用规则
+
+`EnvironmentAssessmentInput.observations` 由 `readonly BackendObservation[]` 改为 `readonly AuthenticatedObservation[]`，其中 `{observation, artifact_ids}` 的 `artifact_ids` 必须是核心已认证并回取过的 artifact id。`observation_refs` 因此**只可能**装真实 artifact id：`refs.add(observation.request_id)` 已删除，改成把 `artifact_ids` 中出现在 `authenticated_refs` 里的项加入集合；空绑定给 `ENV_OBSERVATION_REFERENCE_UNBOUND`，绑定但未被认证给 `ENV_REFERENCE_UNAUTHENTICATED`。纯函数依旧无 I/O，READY/来源上限/运行区间/清理台账规则与 V2-R05 相同；操作覆盖仍以“字节已认证”为门，绑定只决定可以引用谁。
+
+`assessmentReferencesAuthentic` 保持签名不变并降级为补充检查：它只能确认“引用的都是给定存储 artifact”，不能授予成功——集成测试里自报 CONTROLLED 的被拒评估同时满足 `assessmentReferencesAuthentic(...) === true` 与 `satisfied === false`。
+
+### 11. 旧 0.1 证据的兼容读取与仍未覆盖部分
+
+`assessEnvironment` 的输入是代码内类型，不是持久化协议：本次没有改动 `schemas/0.1/**`（`pnpm verify:schemas` 与 `pnpm generate:types` 均无漂移），新增诊断码沿用既有 `ReasonCode` 取值（`REPORT_INVALID`、`MISSING_REPORT`、`POLICY_WEAKEN_ATTEMPT`、`ARTIFACT_BUDGET_EXCEEDED`、`INPUT_STALE`、`CONFIG_INVALID`），未扩充共享枚举。旧的 `environment-assessment` 文档继续通过 schema 校验并可读取；其 `none`/`missing` 占位引用在 `assessmentReferencesAuthentic` 下依旧得不到信任（除非核心给出的列表里真有这些 id），集成测试保留了这一反例。`BackendObservation.observation_path` 现在必须等于该请求 observation artifact 的实际索引路径，因此旧观察里指向未索引位置的 `observation_path` 会在工厂里被 `EVIDENCE_REQUEST_NOT_CONNECTED` 拒绝，而不是被当作等价事实——这是读取更严格的方向，不改变任何已封存字节。
+
+CONTROLLED 所需的执行上下文证明**不由本 ADR 的工厂提供**：回读成功只证明内容与索引一致，认证上限保持 `OBSERVED`，需要 CONTROLLED 的 profile 在 SG-056/058/060 落地前必然被拒。本任务也未把工厂接进真实 Run——`assessEnvironment` 与 `authenticateEnvironmentEvidence` 目前没有生产调用方，接线属于 SG-062。
+
+## V2-R06 之前的未覆盖记录（历史）
+
+V2-R05 提交时本节写的是“真实存储打通前不得据此宣称引用已认证”，并指出 `tests/contract/m3-runtime-contracts.test.ts` 的 `baseInput` 把 `observation.request_id` 放进 `authenticated_refs`，人工制造了 request/artifact 同 id 的条件。该条件已由上面的第 10 节替换：`baseInput` 现在使用与 request id 不同的 artifact id 常量，真实存储贯通由集成测试承担。
 
 ## 后果
 
 - 环境结论现在要求：READY、来源等级、实例与 origin 连续性、数据版本、运行时间区间、证据引用与资源收尾全部独立成立；缺任一项即不满足。
 - 无环境 profile 不再需要伪造成交文档；`environment_required:false` 是唯一合法的零引用形状。
 - 需要 CONTROLLED 门槛的 profile 在 V2-R06 之前必然被拒，这是有意的：不得由应用自报升级来源等级。
-- 契约与单元测试位置：`tests/contract/m3-runtime-contracts.test.ts`（复用 `baseInput`）与 `tests/unit/v2/environment-assessment.test.ts`（自建夹具）。
+- 契约与单元测试位置：`tests/contract/m3-runtime-contracts.test.ts`（复用 `baseInput`）与 `tests/unit/v2/environment-assessment.test.ts`（自建夹具）；V2-R06 的真实存储贯通在 `tests/integration/environment/evidence-authentication.test.ts`。
+- V2-R06 之后，环境结论的证据引用必须是本 Run 索引里可重取的 artifact：把 HTTP request id 当作引用、引用未索引路径、跨 Run/跨 attempt 取证据、字节与摘要不一致、观察自报 `satisfied`/`CONTROLLED` 都在工厂层被拒，纯函数继续只做语义推导。
+- 工厂读取成功仍不等于环境来源独立：它只证明“内容与索引一致”。CONTROLLED 与真实 Run 接线分别留给 SG-056/058/060 与 SG-062。

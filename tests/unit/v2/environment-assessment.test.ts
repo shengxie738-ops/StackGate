@@ -22,6 +22,9 @@ const INSTANCE = 'instance_v2_unit';
 const REVISION = 'seed-v2-unit-1';
 const OPERATION = 'api:GET /api/performance';
 const REQUEST_ID = 'request_v2_unit_1';
+// V2-R06: the stored artifacts behind the observation are distinct identities from the HTTP request id.
+const OBSERVATION_ARTIFACT_ID = 'art_v2_observation';
+const RESPONSE_ARTIFACT_ID = 'art_v2_response_body';
 const PREPARE_REF = 'art_v2_prepare';
 const FINALIZE_REF = 'art_v2_finalize';
 const CLEANUP_REF = 'art_v2_cleanup';
@@ -121,8 +124,9 @@ function noEnvironmentRequirements(): ConfirmedEnvironmentRequirements {
 function baseInput(overrides: Partial<EnvironmentAssessmentInput> = {}): EnvironmentAssessmentInput {
   return {
     run_id: RUN, expected_input_hash: INPUT_HASH, requirements: requirements(), run_window: WINDOW,
-    prepare: prepareDoc(), finalization: finalizationDoc(), cleanup: cleanupDoc(), observations: [observationDoc()],
-    authenticated_refs: [PREPARE_REF, FINALIZE_REF, CLEANUP_REF, REQUEST_ID],
+    prepare: prepareDoc(), finalization: finalizationDoc(), cleanup: cleanupDoc(),
+    observations: [{ observation: observationDoc(), artifact_ids: [OBSERVATION_ARTIFACT_ID, RESPONSE_ARTIFACT_ID] }],
+    authenticated_refs: [PREPARE_REF, FINALIZE_REF, CLEANUP_REF, OBSERVATION_ARTIFACT_ID, RESPONSE_ARTIFACT_ID],
     authenticated_digests: { [REQUEST_ID]: RESPONSE_DIGEST },
     prepare_ref: PREPARE_REF, finalization_ref: FINALIZE_REF, cleanup_ref: CLEANUP_REF, ...overrides,
   };
@@ -165,13 +169,17 @@ it('accepts the happy path and writes schema-valid documents on both sides', () 
   expect(validateSchema('environment', input.prepare!).ok).toBe(true);
   expect(validateSchema('environment-finalization', input.finalization!).ok).toBe(true);
   expect(validateSchema('environment-cleanup', input.cleanup!).ok).toBe(true);
-  expect(validateSchema('backend-observation', input.observations[0]!).ok).toBe(true);
+  expect(validateSchema('backend-observation', input.observations[0]!.observation).ok).toBe(true);
   const assessment = assessEnvironment(input);
   expect(assessment.satisfied).toBe(true);
   expect(assessment.reasons).toEqual([]);
   expect(assessment.provenance).toBe('OBSERVED');
   expect(assessment.environment_required).toBe(true);
   expect(assessment.observation_refs).toContain(PREPARE_REF);
+  // V2-F03: an HTTP request id is not an artifact id and can never be cited as evidence.
+  expect(assessment.observation_refs).toContain(OBSERVATION_ARTIFACT_ID);
+  expect(assessment.observation_refs).toContain(RESPONSE_ARTIFACT_ID);
+  expect(assessment.observation_refs).not.toContain(REQUEST_ID);
   expect(validateSchema('environment-assessment', assessment).ok).toBe(true);
   expect(assessmentReferencesAuthentic(assessment, input.authenticated_refs)).toBe(true);
 });
@@ -373,8 +381,8 @@ it('keeps backend observation demands, digests and operation coverage decisive',
     expect(assessment.reasons, reason).toContain(reason);
   };
   refusal({ observations: [] }, 'ENV_BACKEND_OBSERVATION_MISSING');
-  refusal({ observations: [observationDoc({ run_id: 'run_other_project' })] }, 'ENV_BACKEND_OBSERVATION_SCOPE');
-  refusal({ observations: [observationDoc({ instance_id: 'instance_other_service' })] }, 'ENV_INSTANCE_MISMATCH');
+  refusal({ observations: [{ observation: observationDoc({ run_id: 'run_other_project' }), artifact_ids: [OBSERVATION_ARTIFACT_ID, RESPONSE_ARTIFACT_ID] }] }, 'ENV_BACKEND_OBSERVATION_SCOPE');
+  refusal({ observations: [{ observation: observationDoc({ instance_id: 'instance_other_service' }), artifact_ids: [OBSERVATION_ARTIFACT_ID, RESPONSE_ARTIFACT_ID] }] }, 'ENV_INSTANCE_MISMATCH');
   refusal({ authenticated_digests: {} }, 'ENV_BACKEND_OBSERVATION_BYTES_MISSING');
   refusal({ authenticated_digests: { [REQUEST_ID]: '3'.repeat(64) } }, 'ENV_BACKEND_OBSERVATION_DIGEST');
   refusal({ requirements: requirements({ required_operations: [OPERATION, 'api:GET /api/never-called'] }) }, 'ENV_REQUIRED_OPERATION_UNOBSERVED');

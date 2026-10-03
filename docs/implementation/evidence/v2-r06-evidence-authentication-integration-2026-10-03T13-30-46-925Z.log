@@ -1,0 +1,26 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/environment/evidence-authentication.test.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 9474[2mms[22m[39m
+   [33m[2m✓[22m[39m authenticates a real run and cites stored artifact ids, not request ids [33m 496[2mms[22m[39m
+   [33m[2m✓[22m[39m accepts the probe layer's sha256-prefixed digest only at the boundary [33m 439[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a request id cited where a stored artifact id belongs [33m 368[2mms[22m[39m
+   [33m[2m✓[22m[39m reads nothing for a path this run's index does not hold [33m 434[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses paths outside the run's own evidence tree instead of reading them [33m 855[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses evidence that belongs to another run [33m 906[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses evidence replayed from another attempt [33m 697[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses tampered bytes whose index digest no longer matches the file [33m 442[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a truncated response body and a truncated retention record [33m 878[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses when any lifecycle document is missing [33m 1046[2mms[22m[39m
+   [33m[2m✓[22m[39m checks the stored document kind and structure instead of trusting the writer [33m 495[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps expected operations in the requirements, never in what the observation reports [33m 610[2mms[22m[39m
+   [33m[2m✓[22m[39m grants no success to self-reported CONTROLLED provenance or a satisfied flag [33m 527[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps the pure core free of I/O and this path free of network and command execution [33m 439[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a legacy assessment whose placeholder references resolve to nothing [33m 429[2mms[22m[39m
+   [33m[2m✓[22m[39m documents that the pure function alone cannot tell a request id from an artifact id [33m 408[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m17 passed[39m[22m[90m (17)[39m
+[2m   Start at [22m 21:30:49
+[2m   Duration [22m 10.99s[2m (transform 302ms, setup 0ms, import 1.24s, tests 9.47s, environment 0ms)[22m
+

@@ -10,8 +10,9 @@ const LEVEL_RANK: Readonly<Record<ProvenanceLevel, number>> = { DECLARED: 0, OBS
 
 /**
  * The strongest level this pure function can certify from the environment documents alone. A document that
- * self-reports `CONTROLLED` only states a claim: CONTROLLED needs an execution-context attestation, which
- * V2-R06 supplies through authenticated facts. Self-reported CONTROLLED is therefore capped, never upgraded.
+ * self-reports `CONTROLLED` only states a claim: CONTROLLED needs an execution-context attestation from an
+ * independently started and observed environment (SG-056/058/060), which re-reading stored bytes does not
+ * provide. Self-reported CONTROLLED is therefore capped, never upgraded.
  */
 const CORE_CERTIFIABLE_CEILING: ProvenanceLevel = 'OBSERVED';
 
@@ -38,6 +39,18 @@ export interface RunTimeRange {
   finished_at: string;
 }
 
+/**
+ * One backend observation together with the artifact ids this run's index holds for it. An HTTP request id is
+ * not an artifact id (V2-F03), so a citation can only ever come from the stored evidence, never from the
+ * identity the request carried. `authenticateEnvironmentEvidence` produces these; a caller that cannot name
+ * stored ids gets `ENV_OBSERVATION_REFERENCE_UNBOUND` instead of a self-made reference.
+ */
+export interface AuthenticatedObservation {
+  observation: BackendObservation;
+  /** Artifact ids the core re-fetched and hashed in this run: observation document plus raw response body. */
+  artifact_ids: readonly string[];
+}
+
 export interface EnvironmentAssessmentInput {
   run_id: string;
   expected_input_hash: string;
@@ -47,7 +60,7 @@ export interface EnvironmentAssessmentInput {
   prepare: EnvironmentManifest | null;
   finalization: EnvironmentFinalization | null;
   cleanup: EnvironmentCleanup | null;
-  observations: readonly BackendObservation[];
+  observations: readonly AuthenticatedObservation[];
   /** Artifact ids whose bytes the core authenticated in this run. Unlisted references cannot count. */
   authenticated_refs: readonly string[];
   /** Digests the core recomputed from authenticated response bytes, keyed by request_id. */
@@ -190,15 +203,21 @@ export function assessEnvironment(input: EnvironmentAssessmentInput): Environmen
   function observeRequests(prepare: EnvironmentManifest | null): void {
     if (input.requirements.requires_backend_observation && input.observations.length === 0) reasons.add('ENV_BACKEND_OBSERVATION_MISSING');
     const seen = new Set<string>();
-    for (const observation of input.observations) {
+    for (const { observation, artifact_ids } of input.observations) {
       if (observation.run_id !== input.run_id) reasons.add('ENV_BACKEND_OBSERVATION_SCOPE');
       if (observation.instance_id !== prepare?.instance_id) reasons.add('ENV_INSTANCE_MISMATCH');
       const recomputed = input.authenticated_digests[observation.request_id];
       if (recomputed === undefined) reasons.add('ENV_BACKEND_OBSERVATION_BYTES_MISSING');
       else if (recomputed !== observation.response_digest) reasons.add('ENV_BACKEND_OBSERVATION_DIGEST');
       else {
+        // Operation coverage stays gated on authenticated bytes, exactly as V2-R05 had it; the binding below
+        // only decides which references the verdict may cite.
         seen.add(observation.operation_key);
-        refs.add(observation.request_id);
+        if (artifact_ids.length === 0) reasons.add('ENV_OBSERVATION_REFERENCE_UNBOUND');
+        else for (const artifact_id of artifact_ids) {
+          if (!authenticated.has(artifact_id)) reasons.add('ENV_REFERENCE_UNAUTHENTICATED');
+          else refs.add(artifact_id);
+        }
       }
     }
     for (const operation of input.requirements.required_operations) if (!seen.has(operation)) reasons.add('ENV_REQUIRED_OPERATION_UNOBSERVED');
@@ -318,8 +337,10 @@ function contradictoryRequirements(requirements: ConfirmedEnvironmentRequirement
 /**
  * True only when every cited reference resolves to core-authenticated bytes for this run. An assessment that
  * cites nothing is authentic only when the core itself recorded it as needing no environment. The old
- * unconditional `none` exemption is gone: a placeholder now has to appear in `authenticated_refs`, which only
- * V2-R06's factory fills, and it fills it with real artifact ids. Supplementary check until then.
+ * unconditional `none` exemption is gone: a placeholder now has to appear in `authenticated_refs`, and since
+ * V2-R06 that list is filled by `authenticateEnvironmentEvidence` with real artifact ids it re-fetched and
+ * re-hashed from this run's index. Supplementary only: this check never grants success, it just confirms that
+ * what `assessEnvironment` cited is stored evidence, so a refusal from the pure function still stands.
  */
 export function assessmentReferencesAuthentic(assessment: EnvironmentAssessment, authenticated_refs: readonly string[]): boolean {
   const authenticated = new Set(authenticated_refs);

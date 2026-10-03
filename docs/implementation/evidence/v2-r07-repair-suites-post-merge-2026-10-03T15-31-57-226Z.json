@@ -1,0 +1,49 @@
+{
+  "task_id": "V2-R07",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "09e13313110cd695fb4792893792a17782ed9757",
+    "branch": "V2",
+    "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "command": "pnpm exec vitest run tests/unit/v2 tests/security/compose-preflight.test.ts tests/integration/environment tests/integration/stages/v2-repair-baseline.test.ts tests/contract",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "tests/unit/v2",
+    "tests/security/compose-preflight.test.ts",
+    "tests/integration/environment",
+    "tests/integration/stages/v2-repair-baseline.test.ts",
+    "tests/contract"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-10-03T15:31:57.226Z",
+  "finished_at": "2026-10-03T15:32:20.085Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/v2-r07-repair-suites-post-merge-2026-10-03T15-31-57-226Z.json",
+  "log_path": "docs/implementation/evidence/v2-r07-repair-suites-post-merge-2026-10-03T15-31-57-226Z.log",
+  "signal": null,
+  "duration_ms": 22859,
+  "source_before": {
+    "manifest_path": "docs/implementation/evidence/v2-r07-repair-suites-post-merge-2026-10-03T15-31-57-226Z-source-before.json",
+    "content_hash": "sha256:925d30595ec2021e6caefd9074b71a295395a3a51d683d223646a7b8980c1ae5",
+    "completeness": "COMPLETE",
+    "file_count": 2800,
+    "incomplete_reasons": []
+  },
+  "source_after": {
+    "manifest_path": "docs/implementation/evidence/v2-r07-repair-suites-post-merge-2026-10-03T15-31-57-226Z-source-after.json",
+    "content_hash": "sha256:925d30595ec2021e6caefd9074b71a295395a3a51d683d223646a7b8980c1ae5",
+    "completeness": "COMPLETE",
+    "file_count": 2800,
+    "incomplete_reasons": []
+  },
+  "source_changed_during_verification": false,
+  "verification_attributable": true,
+  "content_hash": "sha256:925d30595ec2021e6caefd9074b71a295395a3a51d683d223646a7b8980c1ae5"
+}

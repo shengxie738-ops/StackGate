@@ -17551,12 +17551,157 @@
         "SG-051",
         "SG-054"
       ],
-      "status": "READY",
-      "actual_files": [],
-      "verification": [],
+      "status": "DONE",
+      "actual_files": [
+        "presets/fastapi-react/scripts/stackgate_observation.py",
+        "examples/contract-drift-demo/apps/api/scripts/launch_test_api.py",
+        "examples/contract-drift-demo/apps/api/tests/test_observation.py",
+        "tests/integration/environment/observation.test.ts"
+      ],
+      "verification": [
+        {
+          "task_id": "SG-055",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "09e13313110cd695fb4792893792a17782ed9757",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "python -B -E -m pytest examples/contract-drift-demo/apps/api/tests -q",
+          "argv": [
+            "python",
+            "-B",
+            "-E",
+            "-m",
+            "pytest",
+            "examples/contract-drift-demo/apps/api/tests",
+            "-q"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T15:26:42.743Z",
+          "finished_at": "2026-10-03T15:27:12.134Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-055-api-observation-pytest-2026-10-03T15-26-42-743Z.json",
+          "log_path": "docs/implementation/evidence/sg-055-api-observation-pytest-2026-10-03T15-26-42-743Z.log",
+          "signal": null,
+          "duration_ms": 29391,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-055-api-observation-pytest-2026-10-03T15-26-42-743Z-source-before.json",
+            "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b",
+            "completeness": "COMPLETE",
+            "file_count": 2800,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-055-api-observation-pytest-2026-10-03T15-26-42-743Z-source-after.json",
+            "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b",
+            "completeness": "COMPLETE",
+            "file_count": 2800,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b"
+        },
+        {
+          "task_id": "SG-055",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "09e13313110cd695fb4792893792a17782ed9757",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm exec vitest run tests/integration/environment/observation.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/environment/observation.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T15:27:14.327Z",
+          "finished_at": "2026-10-03T15:27:23.120Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-055-observation-integration-test-2026-10-03T15-27-14-327Z.json",
+          "log_path": "docs/implementation/evidence/sg-055-observation-integration-test-2026-10-03T15-27-14-327Z.log",
+          "signal": null,
+          "duration_ms": 8793,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-055-observation-integration-test-2026-10-03T15-27-14-327Z-source-before.json",
+            "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b",
+            "completeness": "COMPLETE",
+            "file_count": 2800,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-055-observation-integration-test-2026-10-03T15-27-14-327Z-source-after.json",
+            "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b",
+            "completeness": "COMPLETE",
+            "file_count": 2800,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b"
+        },
+        {
+          "task_id": "SG-055",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "09e13313110cd695fb4792893792a17782ed9757",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "python -B -E -m py_compile presets/fastapi-react/scripts/stackgate_observation.py examples/contract-drift-demo/apps/api/scripts/launch_test_api.py",
+          "argv": [
+            "python",
+            "-B",
+            "-E",
+            "-m",
+            "py_compile",
+            "presets/fastapi-react/scripts/stackgate_observation.py",
+            "examples/contract-drift-demo/apps/api/scripts/launch_test_api.py"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T15:27:25.114Z",
+          "finished_at": "2026-10-03T15:27:26.904Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-055-observation-python-compile-2026-10-03T15-27-25-114Z.json",
+          "log_path": "docs/implementation/evidence/sg-055-observation-python-compile-2026-10-03T15-27-25-114Z.log",
+          "signal": null,
+          "duration_ms": 1790,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-055-observation-python-compile-2026-10-03T15-27-25-114Z-source-before.json",
+            "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b",
+            "completeness": "COMPLETE",
+            "file_count": 2800,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-055-observation-python-compile-2026-10-03T15-27-25-114Z-source-after.json",
+            "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b",
+            "completeness": "COMPLETE",
+            "file_count": 2800,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b"
+        }
+      ],
       "commit": null,
       "blockers": [],
-      "next_action": "实施 SG-055"
+      "next_action": "SG-056: attach environment provenance over the observed backend facts."
     },
     {
       "task_id": "SG-056",
@@ -17569,7 +17714,7 @@
         "SG-051",
         "SG-055"
       ],
-      "status": "NOT_STARTED",
+      "status": "READY",
       "actual_files": [],
       "verification": [],
       "commit": null,
@@ -17586,12 +17731,148 @@
         "SG-032",
         "SG-055"
       ],
-      "status": "NOT_STARTED",
-      "actual_files": [],
-      "verification": [],
+      "status": "DONE",
+      "actual_files": [
+        "packages/adapter-compose/src/config.ts",
+        "packages/adapter-compose/src/preflight.ts",
+        "packages/adapter-compose/src/target-bindings.ts",
+        "examples/contract-drift-demo/compose.test.yaml",
+        "tests/security/compose-preflight.test.ts"
+      ],
+      "verification": [
+        {
+          "task_id": "SG-057",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "09e13313110cd695fb4792893792a17782ed9757",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm exec vitest run tests/security/compose-preflight.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/security/compose-preflight.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T15:27:28.586Z",
+          "finished_at": "2026-10-03T15:27:33.064Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-057-compose-preflight-test-2026-10-03T15-27-28-586Z.json",
+          "log_path": "docs/implementation/evidence/sg-057-compose-preflight-test-2026-10-03T15-27-28-586Z.log",
+          "signal": null,
+          "duration_ms": 4478,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-057-compose-preflight-test-2026-10-03T15-27-28-586Z-source-before.json",
+            "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b",
+            "completeness": "COMPLETE",
+            "file_count": 2800,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-057-compose-preflight-test-2026-10-03T15-27-28-586Z-source-after.json",
+            "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b",
+            "completeness": "COMPLETE",
+            "file_count": 2800,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b"
+        },
+        {
+          "task_id": "SG-057",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "09e13313110cd695fb4792893792a17782ed9757",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T15:27:35.066Z",
+          "finished_at": "2026-10-03T15:27:40.601Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-057-root-typecheck-2026-10-03T15-27-35-066Z.json",
+          "log_path": "docs/implementation/evidence/sg-057-root-typecheck-2026-10-03T15-27-35-066Z.log",
+          "signal": null,
+          "duration_ms": 5535,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-057-root-typecheck-2026-10-03T15-27-35-066Z-source-before.json",
+            "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b",
+            "completeness": "COMPLETE",
+            "file_count": 2800,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-057-root-typecheck-2026-10-03T15-27-35-066Z-source-after.json",
+            "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b",
+            "completeness": "COMPLETE",
+            "file_count": 2800,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b"
+        },
+        {
+          "task_id": "SG-057",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "09e13313110cd695fb4792893792a17782ed9757",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm verify:boundaries",
+          "argv": [
+            "pnpm",
+            "verify:boundaries"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T15:27:42.700Z",
+          "finished_at": "2026-10-03T15:27:45.520Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-057-verify-boundaries-2026-10-03T15-27-42-700Z.json",
+          "log_path": "docs/implementation/evidence/sg-057-verify-boundaries-2026-10-03T15-27-42-700Z.log",
+          "signal": null,
+          "duration_ms": 2820,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-057-verify-boundaries-2026-10-03T15-27-42-700Z-source-before.json",
+            "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b",
+            "completeness": "COMPLETE",
+            "file_count": 2800,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-057-verify-boundaries-2026-10-03T15-27-42-700Z-source-after.json",
+            "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b",
+            "completeness": "COMPLETE",
+            "file_count": 2800,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:008437a758766b48388022f5ee1c7eab9957614246562ba3bce727dff9481e1b"
+        }
+      ],
       "commit": null,
       "blockers": [],
-      "next_action": "实施 SG-057"
+      "next_action": "SG-058: own-resource compose start with dynamic ports and provenance snapshots."
     },
     {
       "task_id": "SG-058",
@@ -17604,7 +17885,7 @@
         "SG-039",
         "SG-057"
       ],
-      "status": "NOT_STARTED",
+      "status": "READY",
       "actual_files": [],
       "verification": [],
       "commit": null,
@@ -18404,7 +18685,7 @@
   "audit_v2_fixes": {
     "ledger": "docs/implementation/audit-v2-fixes.json",
     "baseline_sha": "2791cf5f221d6f917101079332f4231c6a450fa7",
-    "current": "V2-R06",
+    "current": "V2-R07",
     "status": "DONE"
   }
 }

@@ -1,0 +1,78 @@
+# SG-057 test-only Compose document.
+#
+# StackGate parses this file as configuration evidence. Nothing in this task brings it up:
+# no `docker compose up/down/create/build/pull` is ever run against it, and the repository
+# keeps the user's existing Docker resources untouched.
+#
+# Safety properties encoded here, each of which `preflightCompose` checks:
+#   - no `container_name`: container identity must stay project-prefixed so the run owns it;
+#   - no top-level `name` and no `name:` on networks/volumes: no fixed global resource names;
+#   - no fixed published host port: `ports` declares `target` plus `host_ip: 127.0.0.1` only,
+#     so the host port is allocated dynamically and never leaves the loopback interface;
+#   - bind sources are inside the repository and read-only; the single writable bind source is
+#     the run output directory (./output), which must be declared by the effective policy and is
+#     created by the task that owns the run directory, not by this fixture and not by Docker here;
+#   - images are pinned by tag; the one network is internal and declared in this document;
+#   - `restart: "no"` means nothing can outlive the run;
+#   - no privileged flag, no host network/pid/ipc, no device or volume passthrough.
+services:
+  api:
+    image: python:3.12-slim
+    command: ["python", "-m", "http.server", "8080"]
+    networks: ["testnet"]
+    ports:
+      - host_ip: 127.0.0.1
+        target: 8080
+        protocol: tcp
+    read_only: true
+    tmpfs: ["/tmp"]
+    volumes:
+      - type: bind
+        source: ./apps/api
+        target: /srv/api
+        read_only: true
+      - type: bind
+        source: ./output
+        target: /srv/output
+        read_only: false
+      - type: volume
+        source: api-output
+        target: /srv/artifacts
+    environment:
+      APP_ENV: test
+      # Interpolated from the environment StackGate supplies. The value carries credentials,
+      # so the preflight keeps it as a restricted reference and never copies it into
+      # diagnostics, reports or the resource plan.
+      DATABASE_URL: ${STACKGATE_TEST_DATABASE_URL}
+    depends_on: ["db"]
+    security_opt: ["no-new-privileges:true"]
+    restart: "no"
+    cap_drop: ["ALL"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://127.0.0.1:8080/').read()"]
+      interval: 2s
+      timeout: 1s
+      retries: 3
+  db:
+    image: postgres:16.4-alpine3.20
+    networks: ["testnet"]
+    environment:
+      POSTGRES_DB: stackgate_test
+      # Interpolated from the environment StackGate supplies. Whatever its shape, a service
+      # environment value is never echoed into diagnostics, reports or the resource plan; the
+      # credential-detection rule additionally marks the api DATABASE_URL as restricted.
+      POSTGRES_PASSWORD: ${STACKGATE_TEST_DB_PASSWORD}
+    volumes:
+      - type: volume
+        source: db-data
+        target: /var/lib/postgresql/data
+    restart: "no"
+    security_opt: ["no-new-privileges:true"]
+
+networks:
+  testnet:
+    internal: true
+
+volumes:
+  api-output: {}
+  db-data: {}

@@ -1,0 +1,645 @@
+$ node scripts/verify-stage.mjs "--" "--stage" "M2"
+Stage check: node scripts/verify-source.mjs
+{
+  "sources": [
+    {
+      "original": "StackGate_功能与架构设计_v0.1.md",
+      "retained": "docs/specs/stackgate-v0.1.md",
+      "sha256": "56b349eda55673090dee2c611baa250b90f1afa5a3f85a0e78c670fa553af8a9",
+      "expected_sha256": "56b349eda55673090dee2c611baa250b90f1afa5a3f85a0e78c670fa553af8a9",
+      "bytes": 73743
+    },
+    {
+      "original": "StackGate_Codex可执行开发任务规划_v0.1.md",
+      "retained": "docs/plans/2026-09-18-stackgate-v0.1-execution.md",
+      "sha256": "faca196c04dd4a420046415e1bce49411f2fc3e42d54c70859647da904133e17",
+      "expected_sha256": null,
+      "bytes": 335286
+    }
+  ],
+  "errors": []
+}
+Stage check: node scripts/verify-tasks.mjs
+Validated 100 tasks, dependencies, states, files and recorded evidence.
+Stage check: node scripts/verify-schemas.mjs
+Validated 7 OpenAPI documents and strict fixture response schemas (no network at verification time)
+Validated 34 schemas, 29 fixtures, generated type drift: none
+Stage check: node scripts/verify-boundaries.mjs
+Verified module boundaries for 167 product source files using the TypeScript AST.
+Stage check: node scripts/build.mjs
+Built: cli, contracts, core, playwright-reporter
+Stage check: node node_modules/typescript/bin/tsc --noEmit
+Stage check: node scripts/test-unit.mjs
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/unit/ports.test.ts [2m([22m[2m27 tests[22m[2m)[22m[33m 5528[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain IO [33m 313[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain dynamic IO [33m 330[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain time [33m 318[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain date constructor [33m 358[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain environment [33m 364[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain console IO [33m 323[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain require alias [33m 321[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain indirect random [33m 311[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain spread clock [33m 314[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects domain network [33m 318[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects test fake import [33m 304[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects reporter runner [33m 312[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects reporter execution [33m 321[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects reporter computed execution [33m 326[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the AST checker and rejects reporter destructured execution [33m 320[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects IO reached indirectly through a domain helper [33m 331[2mms[22m[39m
+   [33m[2m✓[22m[39m allows pure objects, type-only ports and words in comments or strings [33m 340[2mms[22m[39m
+ [32m✓[39m tests/unit/bootstrap.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 1996[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects unsupported arguments and combinations with exit 64 [33m 550[2mms[22m[39m
+   [33m[2m✓[22m[39m an empty test selection exits nonzero [33m 604[2mms[22m[39m
+ [32m✓[39m tests/unit/storage/cache.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 582[2mms[22m[39m
+ [32m✓[39m tests/unit/fixtures.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 396[2mms[22m[39m
+   [33m[2m✓[22m[39m validates all OpenAPI documents against the retained official document schema and strict response schemas [33m 335[2mms[22m[39m
+ [32m✓[39m tests/unit/v2/reporter-storage.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 447[2mms[22m[39m
+ [32m✓[39m tests/unit/runner/scheduler.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 9837[2mms[22m[39m
+   [33m[2m✓[22m[39m runs A to B/C to D with lexicographic starts and real independent concurrency [33m 757[2mms[22m[39m
+   [33m[2m✓[22m[39m failure blocks only dependent branches and cancellation stops new steps [33m 1048[2mms[22m[39m
+   [33m[2m✓[22m[39m serializes shared resources while independent resources progress [33m 1638[2mms[22m[39m
+   [33m[2m✓[22m[39m does not invent a second result when finished event persistence fails [33m 522[2mms[22m[39m
+   [33m[2m✓[22m[39m cancels or times out while another owner holds a resource without removing its lock [33m 3597[2mms[22m[39m
+   [33m[2m✓[22m[39m excludes another whole run even when its workspace locks differ [33m 1641[2mms[22m[39m
+   [33m[2m✓[22m[39m records queue waiting separately from actual execution duration [33m 628[2mms[22m[39m
+ [32m✓[39m tests/unit/v2/http-authorization.test.ts [2m([22m[2m54 tests[22m[2m)[22m[32m 216[2mms[22m[39m
+ [32m✓[39m tests/unit/openapi/runtime-validator.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 268[2mms[22m[39m
+ [32m✓[39m tests/unit/tool-registry.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 141[2mms[22m[39m
+ [32m✓[39m tests/unit/storage/atomic-write.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 135[2mms[22m[39m
+ [32m✓[39m tests/unit/config/init-safety.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 182[2mms[22m[39m
+ [32m✓[39m tests/unit/contracts/run-schema.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 98[2mms[22m[39m
+ [32m✓[39m tests/unit/storage/paths.test.ts [2m([22m[2m27 tests[22m[2m)[22m[32m 83[2mms[22m[39m
+ [32m✓[39m tests/unit/config/parse.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 68[2mms[22m[39m
+ [32m✓[39m tests/unit/openapi/safe-loader.test.ts [2m([22m[2m60 tests[22m[2m)[22m[32m 67[2mms[22m[39m
+ [32m✓[39m tests/unit/contracts/config-schema.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 66[2mms[22m[39m
+ [32m✓[39m tests/unit/select-checks.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 58[2mms[22m[39m
+ [32m✓[39m tests/unit/contracts/primitives.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 59[2mms[22m[39m
+ [32m✓[39m tests/unit/contracts/task-schema.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 56[2mms[22m[39m
+ [32m✓[39m tests/unit/plan/dag.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 50[2mms[22m[39m
+ [32m✓[39m tests/unit/v2/environment-assessment.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 41[2mms[22m[39m
+ [32m✓[39m tests/unit/config/execution-inputs.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 43[2mms[22m[39m
+ [32m✓[39m tests/unit/v2/probe-assertions.test.ts [2m([22m[2m144 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+ [32m✓[39m tests/unit/gate/command-provenance.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+ [32m✓[39m tests/unit/impact/selection.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m tests/unit/impact/typescript.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m tests/unit/gate/exit-priority.test.ts [2m([22m[2m65 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m tests/unit/impact/mappings.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m tests/unit/reports/junit-input.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m tests/unit/reports/consistency.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m tests/unit/gate/truth-table.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m tests/unit/reports/json.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m tests/unit/gate/acceptance-boundaries.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m tests/unit/storage/hash.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m tests/unit/openapi/three-way.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m tests/unit/policy/drift.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m tests/unit/reports/junit-output.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m tests/unit/freshness.test.ts [2m([22m[2m46 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m tests/unit/reports/markdown.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m tests/unit/config/merge.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m tests/unit/run-evaluation.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m tests/unit/reports/terminal.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m tests/unit/openapi/public-scan-report.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m tests/unit/gate/plan-binding.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m44 passed[39m[22m[90m (44)[39m
+[2m      Tests [22m [1m[32m738 passed[39m[22m[90m (738)[39m
+[2m   Start at [22m 21:58:16
+[2m   Duration [22m 21.95s[2m (transform 1.66s, setup 0ms, import 10.67s, tests 20.58s, environment 4ms)[22m
+
+✔ current audit ledger validates with all five audit task ids (13.4715ms)
+✔ duplicate audit task ids are rejected (0.2141ms)
+✔ unknown status values are rejected (0.1084ms)
+✔ DONE without a passing verification is rejected (0.4799ms)
+✔ DONE without actual files is rejected (0.1379ms)
+✔ evidence that belongs to another task id is rejected (0.4331ms)
+✔ relative paths escaping the repository are rejected (0.1565ms)
+✔ dependency cycles are rejected (0.1178ms)
+✔ BLOCKED without a recorded blocker is rejected (0.1006ms)
+✔ audit records retain actual child failure and repository identity (4794.7775ms)
+✔ built CLI help exposes only implemented commands (346.6889ms)
+✔ unknown CLI option returns configuration error (319.3443ms)
+✔ plan has 100 unique sequential tasks and original dependencies (2.7997ms)
+✔ rejects duplicate ID (1.1259ms)
+✔ rejects missing dependency (1.2546ms)
+✔ rejects dependency cycle (0.6612ms)
+✔ rejects DONE without evidence (0.6279ms)
+✔ rejects illegal status (0.6932ms)
+✔ rejects early READY (0.6465ms)
+✔ rejects missing task (0.8986ms)
+✔ rejects absolute file path (0.6293ms)
+✔ rejects absolute evidence path (0.6855ms)
+✔ rejects traversal evidence path (0.5729ms)
+✔ rejects failed-only DONE (0.8713ms)
+✔ source is preserved byte-for-byte and matches the supplied SHA-256 (2.0774ms)
+✔ source inspection rejects missing or changed content (1.3659ms)
+✔ verify-tasks CLI returns nonzero and identifies the task with SG-999 dependency (99.3064ms)
+✔ DONE requires actual implementation files even with valid task evidence (1.2598ms)
+✔ DONE cannot borrow another task successful evidence (39.8529ms)
+✔ evidence runner records task ownership and preserves a failed child exit code (4613.76ms)
+✔ negative cases do not mutate the shared plan baseline (1.4051ms)
+✔ same HEAD with modified tracked source yields a different content hash (2220.8175ms)
+✔ adding, editing and removing untracked inputs changes the content hash (2623.9452ms)
+✔ staged and unstaged states for the same path are distinguished (1878.6261ms)
+✔ raw bytes distinguish CRLF and UTF-8 content without normalisation (1473.1932ms)
+✔ a path containing whitespace yields exactly one enumerated entry (1085.9159ms)
+✔ writing only verification evidence does not invalidate the snapshot (1633.353ms)
+✔ caches are excluded but tracked sources and lockfiles are captured (2152.9552ms)
+✔ over-budget inputs are reported as incomplete instead of silently skipped (1058.18ms)
+✔ staged deletions are reported as missing inputs, not as absent source (1151.9835ms)
+✔ recorder keeps the raw exit code but refuses attribution when source changed mid-verification (4970.8651ms)
+✔ recorder rejects task ids that are not in the ledgers (4585.4992ms)
+✔ the built reporter entry loads as ESM and keeps its export contract (6.6343ms)
+✔ the built reporter still refuses to replace an existing attempt report (42.2416ms)
+✔ M1 requires every M0 check, actual integration checks and the real oasdiff capability (3.1277ms)
+✔ M2 registers every execution, evidence and Gate check without allowing omissions (0.371ms)
+✔ M0 rejects removed, duplicate and arbitrary shell checks (0.2532ms)
+✔ unknown tools block any stage requiring them (0.2914ms)
+✔ M2 declares EXECUTED only from the registered real-execution checks (0.3502ms)
+✔ a real failed child command propagates its exit and retains its identity (120.4907ms)
+✔ missing source removes only previously packaged exact tool, preserving unrelated files (29.7356ms)
+✔ the plan assertion fragment holds for a minimal ledger and its broken variants (3.0385ms)
+✔ the shipped v2 ledger validates and carries exactly eight repair tasks (31.3937ms)
+✔ only the eight registered ids are accepted, V2-R99 is not (1.1159ms)
+✔ a missing repair task is rejected (0.603ms)
+✔ unknown dependencies, cycles and premature DONE are rejected (1.5371ms)
+✔ illegal status and relative path escapes are rejected (0.6562ms)
+✔ DONE cannot be closed by evidence that is not attributable to one source snapshot (0.1803ms)
+✔ a PASSED record taken while the source drifted is rejected (0.1848ms)
+✔ evidence that belongs to another task id is rejected (0.2435ms)
+✔ BLOCKED without a recorded blocker is rejected (0.5721ms)
+✔ the pre-existing M3 validator still closes DONE on non-attributable evidence (0.732ms)
+✔ the recorder accepts only ids registered in the v2 ledger (150.9898ms)
+ℹ tests 63
+ℹ suites 0
+ℹ pass 63
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 25268.4645
+Stage check: node node_modules/eslint/bin/eslint.js .
+Stage check: node node_modules/vitest/vitest.mjs run tests/contract
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+[90mstdout[2m | tests/contract/oasdiff.test.ts[2m > [22m[2mSG020 real pinned oasdiff adapter[2m > [22m[2mretains real version, raw IDs, raw JSON, original hashes and business exit status
+[22m[39m{"fixture":"type-change","status":"FAIL","evidence":[{"command":"version","argv":["--version"],"stdout":"oasdiff version 1.32.1\n","stderr":"","exit_code":0,"signal":null,"version":"1.32.1","executable_sha256":"sha256:cce550834cddfa7584a5cfde8deb2a6a57effcbc445f040f4f7ac37da47e8173"},{"command":"breaking","argv":["breaking","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-QFmzMH\\base.json","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-QFmzMH\\target.json","--format","json","--allow-external-refs=false","--config","C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-oasdiff-QFmzMH\\oasdiff-config.json","--include-path-params","--auto-upgrade=false","--flatten-allof=false","--flatten-params=false","--fail-on","WARN"],"stdout":"[{\"id\":\"response-property-type-changed\",\"text\":\"the `data/performance/total_return` response's property `type` changed from `number` to `string` for status `200`\",\"level\":3,\"operation\":\"GET\",\"operationId\":\"getPerformance\",\"path\":\"/api/performance\",\"section\":\"paths\",\"fingerprint\":\"d4e087392f73\"}]\n","stderr":"","exit_code":1,"signal":null,"version":"1.32.1","executable_sha256":"sha256:cce550834cddfa7584a5cfde8deb2a6a57effcbc445f040f4f7ac37da47e8173","base_hash":"sha256:1a38de0d66d791dec4cc7ae6b3f9f2ae0aa3410ae7bbcb0c3bfd88cdf45aae8d","target_hash":"sha256:f5f78132329e73893ece7250514bd54906ed2db56e6a2215b261a0bff307f41d","audited_base_hash":"sha256:4fccf8fb30c0e712fcdfad06bd978906b22366af4532b8cd640c98061ad085bd","audited_target_hash":"sha256:a2527f9b8b2b416b0fd7292de08c7e1a9385819f41ed5ffb12132d46c67ab851"}]}
+
+ [32m✓[39m tests/contract/oasdiff.test.ts [2m([22m[2m31 tests[22m[2m)[22m[33m 2318[2mms[22m[39m
+     [33m[2m✓[22m[39m retains structural diff and distinguishes real empty diff [33m 521[2mms[22m[39m
+ [32m✓[39m tests/contract/probe-envelope.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 3106[2mms[22m[39m
+ [32m✓[39m tests/contract/toolchain.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 1912[2mms[22m[39m
+   [33m[2m✓[22m[39m runs real TypeScript program and compiler CLI diagnostics [33m 1047[2mms[22m[39m
+   [33m[2m✓[22m[39m build declarations are actually consumable with strict type checking [33m 640[2mms[22m[39m
+ [32m✓[39m tests/contract/schema-compatibility.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 1027[2mms[22m[39m
+   [33m[2m✓[22m[39m exports only verified safe artifacts to a new directory, preserving exact sealed source bytes [33m 957[2mms[22m[39m
+stackgate reporter could not record diagnostics: WRITE_REFUSED:UNSAFE_NAME:nested/playwright.json | ONEND_SKIPPED:reporter is not a writer for this attempt
+stackgate reporter could not record diagnostics: WRITE_REFUSED:UNSAFE_NAME:.hidden.json | ONEND_SKIPPED:reporter is not a writer for this attempt
+ [32m✓[39m tests/contract/playwright-reporter.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 78[2mms[22m[39m
+ [32m✓[39m tests/contract/m3-runtime-contracts.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 93[2mms[22m[39m
+ [32m✓[39m tests/contract/run-history.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m tests/contract/probe-assertions-parity.test.ts [2m([22m[2m136 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m8 passed[39m[22m[90m (8)[39m
+[2m      Tests [22m [1m[32m218 passed[39m[22m[90m (218)[39m
+[2m   Start at [22m 21:59:07
+[2m   Duration [22m 7.83s[2m (transform 685ms, setup 0ms, import 4.11s, tests 8.58s, environment 1ms)[22m
+
+Stage check: node node_modules/vitest/vitest.mjs run tests/integration
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/gate/current-state.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 488333[2mms[22m[39m
+   [33m[2m✓[22m[39m missing run evidence remains unverified and cannot be allowed [33m 1233[2mms[22m[39m
+   [33m[2m✓[22m[39m stores a missing-run evaluation outside runs without inventing a run directory [33m 1296[2mms[22m[39m
+   [33m[2m✓[22m[39m retains actual unsealed lifecycle prefixes and distinguishes an aborted run from pending work [33m 2174[2mms[22m[39m
+   [33m[2m✓[22m[39m authenticates a real sealed run then reevaluates source, task, policy and evidence without changing historical facts [33m 257866[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps real failed evidence denied and detects changed executable bytes without launching that executable [33m 121460[2mms[22m[39m
+   [33m[2m✓[22m[39m does not turn local CI environment claims into required backend provenance [33m 104299[2mms[22m[39m
+ [32m✓[39m tests/integration/cli/m2.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 552225[2mms[22m[39m
+   [33m[2m✓[22m[39m separates a failing real run exit from the read-only report exit at the CLI boundary [33m 206729[2mms[22m[39m
+   [33m[2m✓[22m[39m exposes strict M2 command argument validation in the built CLI [33m 2892[2mms[22m[39m
+   [33m[2m✓[22m[39m runs the built CLI through plan, real run, report, gate and stale reevaluation [33m 342603[2mms[22m[39m
+ [32m✓[39m tests/integration/gate/during-evaluation-change.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 438246[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps a normal sealed run allowed when the collector only observes, without changing inputs [33m 116480[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses to certify a protected input that changed during evidence re-collection [33m 108340[2mms[22m[39m
+   [33m[2m✓[22m[39m reports an unobservable current input as unverified instead of a tampered history [33m 104305[2mms[22m[39m
+   [33m[2m✓[22m[39m leaves the sealed run bytes untouched while authenticating [33m 109119[2mms[22m[39m
+ [32m✓[39m tests/integration/run/lifecycle.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 668329[2mms[22m[39m
+   [33m[2m✓[22m[39m produces a sealed real command and JUnit run with complete lifecycle facts [33m 95382[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects stale preflight without starting any business command [33m 48848[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps failed historical runs immutable when repeated [33m 136370[2mms[22m[39m
+   [33m[2m✓[22m[39m retains the original input identity and reports mutation during execution as stale [33m 90499[2mms[22m[39m
+   [33m[2m✓[22m[39m retains canceled required checks without launching a new process [33m 70130[2mms[22m[39m
+   [33m[2m✓[22m[39m never allows a run when an event consumer fails after a completed check [33m 53992[2mms[22m[39m
+   [33m[2m✓[22m[39m detects source changes in the final event callback before returning current approval [33m 96158[2mms[22m[39m
+   [33m[2m✓[22m[39m cancels during completion persistence without converting cancellation into a tool error [33m 76945[2mms[22m[39m
+ [32m✓[39m tests/integration/stages/m2-local-flow.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 286478[2mms[22m[39m
+   [33m[2m✓[22m[39m M2 real zero JUnit run remains sealed but cannot be allowed [33m 117655[2mms[22m[39m
+   [33m[2m✓[22m[39m M2 real missing JUnit run remains sealed but cannot be allowed [33m 96692[2mms[22m[39m
+   [33m[2m✓[22m[39m M2 caller cancellation after the business process starts preserves denying sealed evidence [33m 72129[2mms[22m[39m
+ [32m✓[39m tests/integration/plan-service.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 241792[2mms[22m[39m
+   [33m[2m✓[22m[39m persists a deterministic verified plan with exact ignored script bytes and required JUnit IDs [33m 44729[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects oversized plan files before allocating their contents [33m 681[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects unconfirmed task or unreviewed trust before persisting an executable plan [33m 15526[2mms[22m[39m
+   [33m[2m✓[22m[39m rechecks ignored script, policy and task identity, and rejects modified stored context [33m 56611[2mms[22m[39m
+   [33m[2m✓[22m[39m retains an explicitly required runtime check and marks unsupported local backend requirements blocked [33m 40163[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps required e2e and an explicit environment dependency when M3 environment is unavailable [33m 35283[2mms[22m[39m
+   [33m[2m✓[22m[39m binds the raw bytes of ignored mappings used to select checks [33m 48794[2mms[22m[39m
+ [32m✓[39m tests/integration/runner/negative-matrix.test.ts [2m([22m[2m27 tests[22m[2m)[22m[33m 293135[2mms[22m[39m
+   [33m[2m✓[22m[39m command 0 [33m 1750[2mms[22m[39m
+   [33m[2m✓[22m[39m command nonzero [33m 1897[2mms[22m[39m
+   [33m[2m✓[22m[39m spawn failure [33m 1577[2mms[22m[39m
+   [33m[2m✓[22m[39m timeout [33m 1941[2mms[22m[39m
+   [33m[2m✓[22m[39m cancel [33m 1929[2mms[22m[39m
+   [33m[2m✓[22m[39m output overflow [33m 2094[2mms[22m[39m
+   [33m[2m✓[22m[39m missing junit [33m 1870[2mms[22m[39m
+   [33m[2m✓[22m[39m malformed junit [33m 2164[2mms[22m[39m
+   [33m[2m✓[22m[39m zero junit [33m 2044[2mms[22m[39m
+   [33m[2m✓[22m[39m skipped required [33m 2116[2mms[22m[39m
+   [33m[2m✓[22m[39m evidence corrupt [33m 119338[2mms[22m[39m
+   [33m[2m✓[22m[39m seal missing [33m 30128[2mms[22m[39m
+   [33m[2m✓[22m[39m duplicate event [33m 1990[2mms[22m[39m
+   [33m[2m✓[22m[39m stale input [33m 28607[2mms[22m[39m
+   [33m[2m✓[22m[39m task revision changed [33m 26473[2mms[22m[39m
+   [33m[2m✓[22m[39m policy changed [33m 24798[2mms[22m[39m
+   [33m[2m✓[22m[39m tool binary changed [33m 23900[2mms[22m[39m
+   [33m[2m✓[22m[39m missing environment provenance [33m 1835[2mms[22m[39m
+   [33m[2m✓[22m[39m user canceled [33m 862[2mms[22m[39m
+   [33m[2m✓[22m[39m report reads failed run [33m 1935[2mms[22m[39m
+   [33m[2m✓[22m[39m report FAIL with process zero [33m 2105[2mms[22m[39m
+   [33m[2m✓[22m[39m process nonzero with PASS report [33m 2152[2mms[22m[39m
+   [33m[2m✓[22m[39m missing required ID despite one executed case [33m 2101[2mms[22m[39m
+   [33m[2m✓[22m[39m nonzero without trusted report [33m 1808[2mms[22m[39m
+   [33m[2m✓[22m[39m flaky retry report does not satisfy required check [33m 2014[2mms[22m[39m
+   [33m[2m✓[22m[39m baseline failure provenance never exempts the current failing required check [33m 3645[2mms[22m[39m
+ [32m✓[39m tests/integration/run/concurrent-runs.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 252050[2mms[22m[39m
+   [33m[2m✓[22m[39m cross-process identical event append is idempotent without duplicate sequence [33m 514[2mms[22m[39m
+   [33m[2m✓[22m[39m cross-process competing artifact bytes publish exactly one immutable winner [33m 536[2mms[22m[39m
+   [33m[2m✓[22m[39m two run IDs in one repository never share artifact directories [33m 584[2mms[22m[39m
+   [33m[2m✓[22m[39m a second process cannot acquire the same worktree resource and cannot reap a dead owner lock [33m 2231[2mms[22m[39m
+   [33m[2m✓[22m[39m two real CLI runs of one worktree have distinct IDs and only one may execute business commands [33m 248183[2mms[22m[39m
+ [32m✓[39m tests/integration/trust/review.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 125504[2mms[22m[39m
+   [33m[2m✓[22m[39m does not recognize mismatched grant IDs or permission scopes as trusted [33m 22112[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a script whose bytes are excluded by the credential-input policy [33m 4098[2mms[22m[39m
+   [33m[2m✓[22m[39m renews an expired matching record and preserves unrelated or concurrently changed records [33m 26494[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects external script arguments and binds ignored scripts outside workspaces [33m 16819[2mms[22m[39m
+   [33m[2m✓[22m[39m binds inline code as arguments without interpreting code fragments as paths [33m 3760[2mms[22m[39m
+   [33m[2m✓[22m[39m binds resolved tool identity without launching it [33m 9806[2mms[22m[39m
+   [33m[2m✓[22m[39m previews names only and never trusts without explicit reviewed authorization [33m 4134[2mms[22m[39m
+   [33m[2m✓[22m[39m stores outside repository, binds scripts, arguments and origins, and does not become CI trust [33m 21693[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses repository-contained trust stores and copying trust into another checkout [33m 16583[2mms[22m[39m
+ [32m✓[39m tests/integration/demo/web-fixtures.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 22030[2mms[22m[39m
+   [33m[2m✓[22m[39m lets the broken consumer pass with its own legacy mock and fail against the real response shape [33m 9463[2mms[22m[39m
+   [33m[2m✓[22m[39m satisfies the acceptance value after the reviewed patch and keeps the page contract untouched [33m 4426[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps the declared empty, invalid and transport states green in both client modes [33m 8139[2mms[22m[39m
+ [32m✓[39m tests/integration/handoff.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 110249[2mms[22m[39m
+   [33m[2m✓[22m[39m truncates optional indexes within budget without removing failures or gaps [33m 638[2mms[22m[39m
+   [33m[2m✓[22m[39m reads a real sealed failed run without executing again or mutating its evidence [33m 109584[2mms[22m[39m
+ [32m✓[39m tests/integration/trust/input-scope.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 56624[2mms[22m[39m
+   [33m[2m✓[22m[39m ignored dependencies and untracked generated caches do not alter trust or get recursively read [33m 6828[2mms[22m[39m
+   [33m[2m✓[22m[39m tracked generated-looking source, untracked source, and dependency identities each change trust [33m 23753[2mms[22m[39m
+   [33m[2m✓[22m[39m direct ignored dist script is retained without reading sibling generated files [33m 8388[2mms[22m[39m
+   [33m[2m✓[22m[39m explicit ignored required files bind bytes and reject missing or secret-bearing inputs [33m 9879[2mms[22m[39m
+   [33m[2m✓[22m[39m ordinary ignored .env bytes do not enter preview or change digest [33m 5655[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects command directory entry points whose concrete executed inputs are unknown [33m 1066[2mms[22m[39m
+   [33m[2m✓[22m[39m explicit command input through an escaping directory link is rejected [33m 1052[2mms[22m[39m
+ [32m✓[39m tests/integration/tasks/confirm.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 38498[2mms[22m[39m
+   [33m[2m✓[22m[39m does not treat a YAML CONFIRMED status as a confirmation record [33m 1894[2mms[22m[39m
+   [33m[2m✓[22m[39m confirms exact input into an immutable revision and repeats idempotently [33m 5687[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects missing authorization, a changed target and mutated protected inputs [33m 5064[2mms[22m[39m
+   [33m[2m✓[22m[39m returns a null digest for missing target/check references [33m 674[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects changes during confirm and never seals a stale revision [33m 4427[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects tampered immutable target and forces a new revision for changed task content [33m 7107[2mms[22m[39m
+   [33m[2m✓[22m[39m binds ignored protected inputs into the reviewed confirmation digest [33m 4954[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects tampered task-derived preview fields and sealed local identity [33m 6948[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects unsupported root-leading protected globs instead of omitting ignored files [33m 1076[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects a required operation naming a service other than the target contract service [33m 666[2mms[22m[39m
+ [32m✓[39m tests/integration/git/input-manifest.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 31429[2mms[22m[39m
+     [33m[2m✓[22m[39m emits schema-valid SafeIds in a real captured manifest [33m 1303[2mms[22m[39m
+     [33m[2m✓[22m[39m hashes final bytes B while keeping staged A and unstaged explanations [33m 1388[2mms[22m[39m
+     [33m[2m✓[22m[39m includes untracked source and dependency locks in input hash [33m 2537[2mms[22m[39m
+     [33m[2m✓[22m[39m retains tombstones for staged and unstaged deletions [33m 1796[2mms[22m[39m
+     [33m[2m✓[22m[39m explicitly includes ignored build inputs and diagnoses missing required inputs [33m 2428[2mms[22m[39m
+     [33m[2m✓[22m[39m excludes declared outputs and credential files with reasons [33m 1852[2mms[22m[39m
+     [33m[2m✓[22m[39m blocks oversized files, LFS pointers and unresolved generated inputs [33m 2880[2mms[22m[39m
+     [33m[2m✓[22m[39m blocks submodules and out-of-root directory links [33m 2223[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps documentation as input unless explicitly excluded [33m 2199[2mms[22m[39m
+     [33m[2m✓[22m[39m respects nested ignore rules during safe directory enumeration [33m 2101[2mms[22m[39m
+     [33m[2m✓[22m[39m does not run configured external diff or text conversion commands [33m 1967[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps task payload changes but excludes only StackGate state artifacts [33m 2790[2mms[22m[39m
+     [33m[2m✓[22m[39m detects index entries whose object is missing [33m 1313[2mms[22m[39m
+     [33m[2m✓[22m[39m hashes binary and CRLF bytes without normalizing them [33m 1292[2mms[22m[39m
+     [33m[2m✓[22m[39m does not execute configured clean filters while computing dirty changes [33m 1337[2mms[22m[39m
+     [33m[2m✓[22m[39m blocks CRLF LFS pointers and emulated symlink checkouts [33m 2022[2mms[22m[39m
+ [32m✓[39m tests/integration/stages/m1.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 24179[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps changed unsupported workspace sources visible even with an explicit mapping file [33m 2519[2mms[22m[39m
+   [33m[2m✓[22m[39m all M1 entrypoints leave postinstall, JavaScript and Python sentinels unexecuted [33m 14833[2mms[22m[39m
+   [33m[2m✓[22m[39m reports no baseline, untracked Chinese consumers, changed target and unknown schema honestly [33m 6826[2mms[22m[39m
+ [32m✓[39m tests/integration/stages/m1-audit-regressions.test.ts [2m([22m[2m1 test[22m[2m)[22m[33m 22973[2mms[22m[39m
+   [33m[2m✓[22m[39m relocated CLI combines confirmed task, bounded trust inputs, workspace fallback and honest static results [33m 22972[2mms[22m[39m
+ [32m✓[39m tests/integration/trust/default-store.test.ts [2m([22m[2m1 test[22m[2m)[22m[33m 18805[2mms[22m[39m
+   [33m[2m✓[22m[39m creates a real grant in the default external platform trust store [33m 18804[2mms[22m[39m
+ [32m✓[39m tests/integration/adapters/junit.test.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 21328[2mms[22m[39m
+   [33m[2m✓[22m[39m collects real report <testsuite><testcase name="one"/></testsuite> exit 0 as PASS [33m 1487[2mms[22m[39m
+   [33m[2m✓[22m[39m collects real report <testsuite tests="999"/> exit 0 as BLOCKED [33m 1277[2mms[22m[39m
+   [33m[2m✓[22m[39m collects real report null exit 0 as BLOCKED [33m 1408[2mms[22m[39m
+   [33m[2m✓[22m[39m collects real report null exit 7 as ERROR [33m 1408[2mms[22m[39m
+   [33m[2m✓[22m[39m collects real report <testsuite><testcase name="one"><skipped/></testcase></testsuite> exit 0 as BLOCKED [33m 1484[2mms[22m[39m
+   [33m[2m✓[22m[39m collects real report <testsuite><testcase name="one"><failure>bad</failure></testcase></testsuite> exit 0 as FAIL [33m 1439[2mms[22m[39m
+   [33m[2m✓[22m[39m collects real report <testsuite><testcase name="one"><failure/></testcase></testsuite> exit 7 as FAIL [33m 1444[2mms[22m[39m
+   [33m[2m✓[22m[39m collects real report <testsuite><testcase name="one"/></testsuite> exit 7 as ERROR [33m 1426[2mms[22m[39m
+   [33m[2m✓[22m[39m collects real report <testsuite> exit 0 as ERROR [33m 1426[2mms[22m[39m
+   [33m[2m✓[22m[39m collects real report <!DOCTYPE testsuite SYSTEM "file:///secret"><testsuite/> exit 0 as ERROR [33m 1528[2mms[22m[39m
+   [33m[2m✓[22m[39m collects real report <testsuite><testcase name="one"><flakyFailure/></testcase></testsuite> exit 0 as BLOCKED [33m 1382[2mms[22m[39m
+   [33m[2m✓[22m[39m requires declared IDs and minimum executed cases [33m 1372[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects a producer hard link to another report and preserves source bytes [33m 1261[2mms[22m[39m
+   [33m[2m✓[22m[39m collects only stored current-scope evidence and rejects tampered metadata [33m 1436[2mms[22m[39m
+   [33m[2m✓[22m[39m retains no credential messages in regular result facts [33m 1410[2mms[22m[39m
+ [32m✓[39m tests/integration/fixtures/local-run-project.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 14678[2mms[22m[39m
+   [33m[2m✓[22m[39m builds a confirmed trusted local fixture whose actual assertion emits stable JUnit [33m 13998[2mms[22m[39m
+   [33m[2m✓[22m[39m failure fixture reports a real mismatching calculation with process exit one [33m 679[2mms[22m[39m
+ [32m✓[39m tests/integration/cli/static-workflow.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 15006[2mms[22m[39m
+   [33m[2m✓[22m[39m previews init without writes and applies only absent files preserving existing content [33m 872[2mms[22m[39m
+   [33m[2m✓[22m[39m task and trust machine previews implement required data fields without running code [33m 11814[2mms[22m[39m
+   [33m[2m✓[22m[39m scan returns breaking data with exit zero and never claims runtime or gate success [33m 2319[2mms[22m[39m
+ [32m✓[39m tests/integration/scan-workspace-regression.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 10654[2mms[22m[39m
+   [33m[2m✓[22m[39m scan adds both workspace regressions and preserves task/profile checks and test IDs [33m 8627[2mms[22m[39m
+   [33m[2m✓[22m[39m scan retains uncovered workspace gaps when only one regression set exists [33m 2026[2mms[22m[39m
+ [32m✓[39m tests/integration/runner/process.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 15420[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves actual exit 0 and separate sanitized streams [33m 1117[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves actual exit 1 and separate sanitized streams [33m 1045[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves actual exit 7 and separate sanitized streams [33m 1041[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps exact Unicode argv and does not interpret shell syntax [33m 1088[2mms[22m[39m
+   [33m[2m✓[22m[39m distinguishes timeout from cancellation and stops late writes [33m 2375[2mms[22m[39m
+   [33m[2m✓[22m[39m bounds both huge stdout and stderr without pipe deadlock [33m 1148[2mms[22m[39m
+   [33m[2m✓[22m[39m kills only its owned job including detached descendants on cancel and leaves unrelated process alive [33m 1345[2mms[22m[39m
+   [33m[2m✓[22m[39m kills only its owned job including detached descendants on timeout and leaves unrelated process alive [33m 1736[2mms[22m[39m
+   [33m[2m✓[22m[39m records actual native spawn failure without inventing an exit code [33m 830[2mms[22m[39m
+   [33m[2m✓[22m[39m awaits output callbacks with bounded backpressure and retains all lines [33m 1068[2mms[22m[39m
+   [33m[2m✓[22m[39m treats failed evidence callbacks as errors and still cleans the owned job [33m 1088[2mms[22m[39m
+   [33m[2m✓[22m[39m records separate original and retained bytes for stdout and stderr after redaction [33m 1068[2mms[22m[39m
+ [32m✓[39m tests/integration/adapters/command.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 10585[2mms[22m[39m
+   [33m[2m✓[22m[39m collects actual exit 0 with immutable command evidence [33m 1218[2mms[22m[39m
+   [33m[2m✓[22m[39m collects actual exit 1 with immutable command evidence [33m 1163[2mms[22m[39m
+   [33m[2m✓[22m[39m collects actual exit 7 with immutable command evidence [33m 1232[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves timeout without pretending a normal nonzero assertion [33m 1328[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects supplied artifact metadata that differs from the verified store index [33m 1238[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects contradictory runner facts: secondary-evidence [33m 1333[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects contradictory runner facts: signal [33m 1237[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects contradictory runner facts: diagnostic [33m 1244[2mms[22m[39m
+ [32m✓[39m tests/integration/oasdiff-relocation.test.ts [2m([22m[2m1 test[22m[2m)[22m[33m 6925[2mms[22m[39m
+   [33m[2m✓[22m[39m copied built CLI uses only its relocated verified native tool [33m 6924[2mms[22m[39m
+ [32m✓[39m tests/integration/git/baseline.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 8292[2mms[22m[39m
+     [33m[2m✓[22m[39m pins actual merge base and advancing target with detached HEAD [33m 1190[2mms[22m[39m
+     [33m[2m✓[22m[39m rejects missing refs and option-like refs [33m 903[2mms[22m[39m
+     [33m[2m✓[22m[39m treats leading dash directory as path and hashes local identities [33m 842[2mms[22m[39m
+     [33m[2m✓[22m[39m fails explicitly when shallow history cannot establish a common ancestor [33m 1692[2mms[22m[39m
+     [33m[2m✓[22m[39m rejects unresolved merges [33m 1501[2mms[22m[39m
+     [33m[2m✓[22m[39m disables repository fsmonitor and ignores hostile inherited Git environment [33m 740[2mms[22m[39m
+     [33m[2m✓[22m[39m reports nonrepository distinctly [33m 341[2mms[22m[39m
+     [33m[2m✓[22m[39m does not choose arbitrarily between multiple merge bases [33m 1080[2mms[22m[39m
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mends a 100 ms total deadline against a 20 ms drip instead of completing the body
+[22m[39mV2-R03 slow-drip deadline_ms=100: {"code":2,"stdout":"","stderr":"DEADLINE_EXCEEDED: 100\r\n","elapsed_ms":328,"reason":"DEADLINE_EXCEEDED","completed":false,"has_report":false,"worker_pid":12388,"worker_reclaimed":true,"worker_killed":true,"worker_alive_after":false,"spawned":true,"pipes_closed":true,"reap_mechanism":"subprocess.wait on the handle this process created","reader_is_spawned_handle":null,"requests_at_exit":0,"requests_after_settle":0,"drip_bytes_sent":0,"server_closed":false,"fingerprints_at_exit":["probe-error.json","probe-worker.json"],"fingerprints_after_settle":["probe-error.json","probe-worker.json"]}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mterminates and reclaims the worker mid-request, with nothing reading afterwards
+[22m[39mV2-R03 terminate-and-reap deadline_ms=1: {"code":2,"stdout":"","stderr":"DEADLINE_EXCEEDED: 1\r\n","elapsed_ms":220,"reason":"DEADLINE_EXCEEDED","completed":false,"has_report":false,"worker_pid":40132,"worker_reclaimed":true,"worker_killed":true,"worker_alive_after":false,"spawned":true,"pipes_closed":true,"reap_mechanism":"subprocess.wait on the handle this process created","reader_is_spawned_handle":null,"requests_at_exit":0,"requests_after_settle":0,"drip_bytes_sent":0,"server_closed":false,"fingerprints_at_exit":["probe-error.json","probe-worker.json"],"fingerprints_after_settle":["probe-error.json","probe-worker.json"]}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mcancels a read that is already in progress, mid-body
+[22m[39mV2-R03 mid-body cancel deadline_ms=900: {"code":2,"stdout":"","stderr":"DEADLINE_EXCEEDED: 900\r\n","elapsed_ms":1099,"reason":"DEADLINE_EXCEEDED","completed":false,"has_report":false,"worker_pid":39200,"worker_reclaimed":true,"worker_killed":true,"worker_alive_after":false,"spawned":true,"pipes_closed":true,"reap_mechanism":"subprocess.wait on the handle this process created","reader_is_spawned_handle":null,"requests_at_exit":1,"requests_after_settle":1,"drip_bytes_sent":22,"server_closed":true,"fingerprints_at_exit":["probe-error.json","probe-worker.json"],"fingerprints_after_settle":["probe-error.json","probe-worker.json"]}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mhits the total deadline when the server never sends a status line
+[22m[39mV2-R03 withheld status line: {"code":2,"stdout":"","stderr":"DEADLINE_EXCEEDED: 700\r\n","elapsed_ms":909,"reason":"DEADLINE_EXCEEDED","requestLine":"GET /api/performance HTTP/1.1"}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mbounds an oversized error-response body and writes no success artifact
+[22m[39mV2-R03 oversized 500 body: {"code":2,"stdout":"","stderr":"RESPONSE_OVER_BUDGET: 33\r\n","elapsed_ms":414,"reason":"RESPONSE_OVER_BUDGET","files":["probe-error.json","probe-worker.json"],"requests":1,"bytesReceived":312}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mrefuses an unsupported Content-Encoding instead of re-serializing the body
+[22m[39mV2-R03 unsupported content-encoding: {"code":2,"stdout":"","stderr":"CONTENT_ENCODING_UNSUPPORTED: gzip\r\n","elapsed_ms":416,"reason":"CONTENT_ENCODING_UNSUPPORTED","requestLine":"GET /api/performance HTTP/1.1"}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2msends zero requests to an environment proxy and keeps the authorized origin as the route
+[22m[39mV2-R03 environment proxy: {"code":0,"elapsed_ms":425,"proxyRequests":0,"proxyRequestLine":"","targetRequestLine":"GET /api/performance HTTP/1.1","targetBytesReceived":312,"reason":null}
+
+ [32m✓[39m tests/integration/cleanup/process-resources.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 8231[2mms[22m[39m
+   [33m[2m✓[22m[39m defaults to a nonmutating plan and explicitly cleans only the owned terminal workspace [33m 692[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves ownerless resources [33m 601[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves foreign resources [33m 544[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves changed resources [33m 594[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves hash resources [33m 799[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves a user service and refuses stale PID lock ownership [33m 717[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects a directory junction and never touches its target [33m 686[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects hard-linked files and reports malformed or traversal run identifiers safely [33m 661[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves a replaced directory even when copied owner bytes and content match [33m 839[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves associated global locks without relying on current PID existence [33m 531[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps evidence readable when apply encounters changed or unverified ownership [33m 712[2mms[22m[39m
+   [33m[2m✓[22m[39m reports unverified process cleanup but never kills its historical PID [33m 746[2mms[22m[39m
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mkeeps existing artifact bytes instead of overwriting a previous attempt
+[22m[39mV2-R03 no-replace on probe-error.json: {"code":3,"stdout":"","stderr":"ARTIFACT_EXISTS: C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-test-BFkPa3\\attempt-failure\\probe-error.json\r\n","elapsed_ms":2470,"preserved":"{\"sentinel\":\"from-the-previous-attempt\"}\n"}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mkeeps existing artifact bytes instead of overwriting a previous attempt
+[22m[39mV2-R03 no-replace on probe.json: {"code":3,"stdout":"","stderr":"ARTIFACT_EXISTS: C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-test-BFkPa3\\attempt-success\\probe.json\r\n","elapsed_ms":476,"preserved":41}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mholds the frame, escape, isolation and no-spawn boundaries when driven directly
+[22m[39mV2-R03 support-module cases: {"bounded":{"over_budget_is_classified_after_the_first_byte_past":{"code":"RESPONSE_OVER_BUDGET","detail":"101","launch_proofs":null,"raised":true,"spawned":null,"worker_pid":null},"per_read_never_exc elapsed_ms [33m593[39m
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mseparates an unusable launch parameter from an artifact that cannot be committed
+[22m[39mV2-R03 launch parameter errors: {"relative":{"code":64,"stdout":"","stderr":"absolute STACKGATE_OUTPUT_DIR is required\r\n","elapsed_ms":190},"empty":{"code":64,"stdout":"","stderr":"absolute STACKGATE_OUTPUT_DIR is required\r\n","elapsed_ms":173}}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mseparates an unusable launch parameter from an artifact that cannot be committed
+[22m[39mV2-R03 unresolvable artifact root: {"code":3,"stdout":"","stderr":"ARTIFACT_COMMIT_FAILED: C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-test-8KNp3g\\afile\\attempt\\responses\\request_v2_r03_1.json: [WinError 3] ϵͳ�Ҳ���ָ����·����: 'C:\\\\Users\\\\17894\\\\AppData\\\\Local\\\\Temp\\\\stackgate-test-8KNp3g\\\\afile\\\\attempt'\r\n","elapsed_ms":480}
+
+ [32m✓[39m tests/integration/probe/deadline-proxy.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 9668[2mms[22m[39m
+   [33m[2m✓[22m[39m ends a 100 ms total deadline against a 20 ms drip instead of completing the body [33m 796[2mms[22m[39m
+   [33m[2m✓[22m[39m terminates and reclaims the worker mid-request, with nothing reading afterwards [33m 665[2mms[22m[39m
+   [33m[2m✓[22m[39m cancels a read that is already in progress, mid-body [33m 1530[2mms[22m[39m
+   [33m[2m✓[22m[39m hits the total deadline when the server never sends a status line [33m 945[2mms[22m[39m
+   [33m[2m✓[22m[39m bounds an oversized error-response body and writes no success artifact [33m 426[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses an unsupported Content-Encoding instead of re-serializing the body [33m 429[2mms[22m[39m
+   [33m[2m✓[22m[39m sends zero requests to an environment proxy and keeps the authorized origin as the route [33m 456[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps existing artifact bytes instead of overwriting a previous attempt [33m 2971[2mms[22m[39m
+   [33m[2m✓[22m[39m holds the frame, escape, isolation and no-spawn boundaries when driven directly [33m 594[2mms[22m[39m
+   [33m[2m✓[22m[39m separates an unusable launch parameter from an artifact that cannot be committed [33m 854[2mms[22m[39m
+ [32m✓[39m tests/integration/run/crash.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 9516[2mms[22m[39m
+   [33m[2m✓[22m[39m hard-killing the runner parent closes its private job lifeline and preserves unrelated service [33m 2113[2mms[22m[39m
+   [33m[2m✓[22m[39m a killed manifest temp writer preserves prior bytes and refuses unsafe lock recovery [33m 3582[2mms[22m[39m
+   [33m[2m✓[22m[39m a killed event temp writer cannot publish a partial event or silent completion [33m 368[2mms[22m[39m
+   [33m[2m✓[22m[39m hard exit after actual failed check persistence preserves the failure without sealing PASS [33m 1577[2mms[22m[39m
+   [33m[2m✓[22m[39m crashing before cleanup never removes sealed evidence [33m 898[2mms[22m[39m
+   [33m[2m✓[22m[39m crashing after cleanup never removes sealed evidence [33m 976[2mms[22m[39m
+ [32m✓[39m tests/integration/storage/integrity.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 9078[2mms[22m[39m
+   [33m[2m✓[22m[39m seals immutable facts, supports identical repeat, and exposes verified readonly snapshots [33m 938[2mms[22m[39m
+   [33m[2m✓[22m[39m detects modified sealed manifest.json without overwriting history [33m 707[2mms[22m[39m
+   [33m[2m✓[22m[39m detects modified sealed events.jsonl without overwriting history [33m 655[2mms[22m[39m
+   [33m[2m✓[22m[39m detects modified sealed artifact-index.json without overwriting history [33m 945[2mms[22m[39m
+   [33m[2m✓[22m[39m detects modified sealed document without overwriting history [33m 1121[2mms[22m[39m
+   [33m[2m✓[22m[39m detects modified sealed artifact without overwriting history [33m 1076[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects missing required artifacts and preserves readable unsealed facts [33m 859[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects internally contradictory facts even when each document has a valid schema [33m 707[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses to seal undeclared orphan evidence or an incomplete event log [33m 710[2mms[22m[39m
+   [33m[2m✓[22m[39m retains failed retry documents alongside the final check without rewriting history [33m 1357[2mms[22m[39m
+ [32m✓[39m tests/integration/demo/api.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 3936[2mms[22m[39m
+   [33m[2m✓[22m[39m serves the confirmed performance response from a real API process [33m 1070[2mms[22m[39m
+   [33m[2m✓[22m[39m exports the application contract into the injected attempt directory only [33m 643[2mms[22m[39m
+   [33m[2m✓[22m[39m ignores a stale candidate in the tree and refuses an unusable output target [33m 936[2mms[22m[39m
+   [33m[2m✓[22m[39m fails as an import error instead of producing a compatible looking contract [33m 653[2mms[22m[39m
+   [33m[2m✓[22m[39m detects a real backend response type change against the confirmed target [33m 633[2mms[22m[39m
+ [32m✓[39m tests/integration/environment/evidence-authentication.test.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 9250[2mms[22m[39m
+   [33m[2m✓[22m[39m authenticates a real run and cites stored artifact ids, not request ids [33m 453[2mms[22m[39m
+   [33m[2m✓[22m[39m accepts the probe layer's sha256-prefixed digest only at the boundary [33m 423[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a request id cited where a stored artifact id belongs [33m 387[2mms[22m[39m
+   [33m[2m✓[22m[39m reads nothing for a path this run's index does not hold [33m 355[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses paths outside the run's own evidence tree instead of reading them [33m 647[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses evidence that belongs to another run [33m 920[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses evidence replayed from another attempt [33m 773[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses tampered bytes whose index digest no longer matches the file [33m 532[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a truncated response body and a truncated retention record [33m 890[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses when any lifecycle document is missing [33m 999[2mms[22m[39m
+   [33m[2m✓[22m[39m checks the stored document kind and structure instead of trusting the writer [33m 474[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps expected operations in the requirements, never in what the observation reports [33m 497[2mms[22m[39m
+   [33m[2m✓[22m[39m grants no success to self-reported CONTROLLED provenance or a satisfied flag [33m 422[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps the pure core free of I/O and this path free of network and command execution [33m 515[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a legacy assessment whose placeholder references resolve to nothing [33m 524[2mms[22m[39m
+   [33m[2m✓[22m[39m documents that the pure function alone cannot tell a request id from an artifact id [33m 436[2mms[22m[39m
+ [32m✓[39m tests/integration/git/target-advance.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 3138[2mms[22m[39m
+   [33m[2m✓[22m[39m sees target advancement while preserving detached candidate identity and never fetching [33m 1382[2mms[22m[39m
+   [33m[2m✓[22m[39m invalidates untracked source changes at the same Git HEAD [33m 1755[2mms[22m[39m
+ [32m✓[39m tests/integration/probe/http.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 7142[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a declared operation against a listener that is not there [33m 2492[2mms[22m[39m
+   [33m[2m✓[22m[39m records a real successful probe and lets the core recompute the same assertions [33m 510[2mms[22m[39m
+   [33m[2m✓[22m[39m does not promote a self-reported schema_valid over a recomputed type mismatch [33m 494[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a redirect instead of following it to another origin [33m 467[2mms[22m[39m
+   [33m[2m✓[22m[39m stops at the declared response budget and at the deadline instead of buffering [33m 1008[2mms[22m[39m
+   [33m[2m✓[22m[39m observes exactly the declared method and path on the wire [33m 476[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a non-integer resource budget through the real probe entry point [33m 1070[2mms[22m[39m
+ [32m✓[39m tests/integration/cli/json-envelope.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 2780[2mms[22m[39m
+   [33m[2m✓[22m[39m unknown command and malformed arguments produce one JSON document with exit 64 [33m 806[2mms[22m[39m
+   [33m[2m✓[22m[39m configuration diagnostics have uniform envelope and retain doctor details [33m 335[2mms[22m[39m
+   [33m[2m✓[22m[39m success carries structured data and does not invent a Gate decision [33m 313[2mms[22m[39m
+   [33m[2m✓[22m[39m help and version honor JSON mode while plain help stays readable [33m 780[2mms[22m[39m
+ [32m✓[39m tests/integration/stages/v2-repair-baseline.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 4865[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves a parameter error as exit 64 in both the envelope and the process [33m 1370[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps scan a static operation that reports NOT_EXECUTED and touches nothing [33m 2704[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses to certify an M3 stage exit and rejects a malformed stage request [33m 498[2mms[22m[39m
+ [32m✓[39m tests/integration/cli/doctor.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 1799[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects semantically missing check references in otherwise valid configuration [33m 347[2mms[22m[39m
+   [33m[2m✓[22m[39m inspects a Chinese project without running postinstall, Python imports or writing state [33m 320[2mms[22m[39m
+   [33m[2m✓[22m[39m returns precise invalid-config diagnostics and never scans a parent manifest [33m 344[2mms[22m[39m
+   [33m[2m✓[22m[39m reports conflicting configuration files rather than choosing one [33m 334[2mms[22m[39m
+   [33m[2m✓[22m[39m reports declared commands/workspaces missing without executing them [33m 453[2mms[22m[39m
+ [32m✓[39m tests/integration/storage/store.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 3140[2mms[22m[39m
+   [33m[2m✓[22m[39m creates independent runs and preserves immutable artifacts with checked bytes [33m 400[2mms[22m[39m
+   [33m[2m✓[22m[39m serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 1) [33m 381[2mms[22m[39m
+   [33m[2m✓[22m[39m serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 2) [33m 333[2mms[22m[39m
+   [33m[2m✓[22m[39m serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 3) [33m 366[2mms[22m[39m
+   [33m[2m✓[22m[39m serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 4) [33m 336[2mms[22m[39m
+   [33m[2m✓[22m[39m serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 5) [33m 351[2mms[22m[39m
+ [32m✓[39m tests/integration/contracts/three-way.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 1558[2mms[22m[39m
+     [33m[2m✓[22m[39m rejects absent target behavior independently of mutual breaking checks [33m 571[2mms[22m[39m
+     [33m[2m✓[22m[39m requires real confirmation hashes and grants no approval to a draft [33m 399[2mms[22m[39m
+     [33m[2m✓[22m[39m blocks target byte drift despite equal behavior and separates export errors [33m 370[2mms[22m[39m
+ [32m✓[39m tests/integration/runner/locks.test.ts [2m([22m[2m1 test[22m[2m)[22m[33m 3023[2mms[22m[39m
+   [33m[2m✓[22m[39m serializes an actual other Node process and refuses release after creation identity substitution [33m 3022[2mms[22m[39m
+ [32m✓[39m tests/integration/run/finalization-race.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 1384[2mms[22m[39m
+   [33m[2m✓[22m[39m two process finalization calls are idempotent and cannot replace terminal facts [33m 643[2mms[22m[39m
+   [33m[2m✓[22m[39m two process seals agree and post-seal manifest corruption never remains valid [33m 740[2mms[22m[39m
+ [32m✓[39m tests/integration/storage/completion.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 964[2mms[22m[39m
+   [33m[2m✓[22m[39m binds restricted context bytes and completion to the sealed manifest, retaining old event compatibility [33m 763[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m41 passed[39m[22m[90m (41)[39m
+[2m      Tests [22m [1m[32m292 passed[39m[22m[90m (292)[39m
+[2m   Start at [22m 21:59:16
+[2m   Duration [22m 1941.48s[2m (transform 2.19s, setup 0ms, import 18.71s, tests 3853.24s, environment 3ms)[22m
+
+Stage check: node node_modules/vitest/vitest.mjs run tests/integration/runner/process.test.ts tests/compatibility/command-resolver.test.ts
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/runner/process.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 15941[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves actual exit 0 and separate sanitized streams [33m 1062[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves actual exit 1 and separate sanitized streams [33m 1076[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves actual exit 7 and separate sanitized streams [33m 1111[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps exact Unicode argv and does not interpret shell syntax [33m 1079[2mms[22m[39m
+   [33m[2m✓[22m[39m distinguishes timeout from cancellation and stops late writes [33m 2404[2mms[22m[39m
+   [33m[2m✓[22m[39m bounds both huge stdout and stderr without pipe deadlock [33m 1234[2mms[22m[39m
+   [33m[2m✓[22m[39m kills only its owned job including detached descendants on cancel and leaves unrelated process alive [33m 1462[2mms[22m[39m
+   [33m[2m✓[22m[39m kills only its owned job including detached descendants on timeout and leaves unrelated process alive [33m 1718[2mms[22m[39m
+   [33m[2m✓[22m[39m records actual native spawn failure without inventing an exit code [33m 871[2mms[22m[39m
+   [33m[2m✓[22m[39m awaits output callbacks with bounded backpressure and retains all lines [33m 1225[2mms[22m[39m
+   [33m[2m✓[22m[39m treats failed evidence callbacks as errors and still cleans the owned job [33m 1149[2mms[22m[39m
+   [33m[2m✓[22m[39m records separate original and retained bytes for stdout and stderr after redaction [33m 1078[2mms[22m[39m
+ [32m✓[39m tests/compatibility/command-resolver.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 64465[2mms[22m[39m
+   [33m[2m✓[22m[39m requires current explicit grant then preserves Unicode and shell metacharacters as argv [33m 14648[2mms[22m[39m
+   [33m[2m✓[22m[39m resolves reviewed npm.cmd to Node and fixed JS entry, then runs actual npm script without shell fallback [33m 9440[2mms[22m[39m
+   [33m[2m✓[22m[39m blocks unknown batch commands and repository PATH tool substitution [33m 747[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects output outside exact run scope and origins outside the reviewed permission [33m 16002[2mms[22m[39m
+   [33m[2m✓[22m[39m resolves the actually installed pnpm wrapper and binds its CRLF wrapper bytes and JavaScript entry [33m 549[2mms[22m[39m
+   [33m[2m✓[22m[39m executes a reviewed native binary from an installation path containing spaces and Chinese [33m 13700[2mms[22m[39m
+   [33m[2m✓[22m[39m invalidates the grant when a reviewed wrapper JavaScript entry changes [33m 9375[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m23 passed[39m[22m[90m (23)[39m
+[2m   Start at [22m 22:31:38
+[2m   Duration [22m 66.90s[2m (transform 450ms, setup 0ms, import 2.37s, tests 80.41s, environment 0ms)[22m
+
+Stage check: node node_modules/vitest/vitest.mjs run tests/integration/storage tests/security tests/contract/schema-compatibility.test.ts
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/storage/store.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 3089[2mms[22m[39m
+   [33m[2m✓[22m[39m creates independent runs and preserves immutable artifacts with checked bytes [33m 437[2mms[22m[39m
+   [33m[2m✓[22m[39m serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 1) [33m 348[2mms[22m[39m
+   [33m[2m✓[22m[39m serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 2) [33m 315[2mms[22m[39m
+   [33m[2m✓[22m[39m serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 3) [33m 353[2mms[22m[39m
+   [33m[2m✓[22m[39m serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 4) [33m 317[2mms[22m[39m
+   [33m[2m✓[22m[39m serializes duplicate parallel events and rejects conflicting IDs, gaps, rollback and foreign scope (round 5) [33m 369[2mms[22m[39m
+ [32m✓[39m tests/contract/schema-compatibility.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 771[2mms[22m[39m
+   [33m[2m✓[22m[39m exports only verified safe artifacts to a new directory, preserving exact sealed source bytes [33m 714[2mms[22m[39m
+ [32m✓[39m tests/integration/storage/completion.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 1020[2mms[22m[39m
+   [33m[2m✓[22m[39m binds restricted context bytes and completion to the sealed manifest, retaining old event compatibility [33m 811[2mms[22m[39m
+ [32m✓[39m tests/security/artifact-budget.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 561[2mms[22m[39m
+ [32m✓[39m tests/security/redaction.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m tests/integration/storage/integrity.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 9226[2mms[22m[39m
+   [33m[2m✓[22m[39m seals immutable facts, supports identical repeat, and exposes verified readonly snapshots [33m 980[2mms[22m[39m
+   [33m[2m✓[22m[39m detects modified sealed manifest.json without overwriting history [33m 689[2mms[22m[39m
+   [33m[2m✓[22m[39m detects modified sealed events.jsonl without overwriting history [33m 808[2mms[22m[39m
+   [33m[2m✓[22m[39m detects modified sealed artifact-index.json without overwriting history [33m 1061[2mms[22m[39m
+   [33m[2m✓[22m[39m detects modified sealed document without overwriting history [33m 1150[2mms[22m[39m
+   [33m[2m✓[22m[39m detects modified sealed artifact without overwriting history [33m 1214[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects missing required artifacts and preserves readable unsealed facts [33m 758[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects internally contradictory facts even when each document has a valid schema [33m 678[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses to seal undeclared orphan evidence or an incomplete event log [33m 699[2mms[22m[39m
+   [33m[2m✓[22m[39m retains failed retry documents alongside the final check without rewriting history [33m 1188[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m6 passed[39m[22m[90m (6)[39m
+[2m      Tests [22m [1m[32m42 passed[39m[22m[90m (42)[39m
+[2m   Start at [22m 22:32:46
+[2m   Duration [22m 10.30s[2m (transform 488ms, setup 0ms, import 2.77s, tests 14.67s, environment 0ms)[22m
+
+Stage check: node node_modules/vitest/vitest.mjs run tests/integration/gate tests/unit/run-evaluation.test.ts
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/gate/during-evaluation-change.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 412385[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps a normal sealed run allowed when the collector only observes, without changing inputs [33m 107100[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses to certify a protected input that changed during evidence re-collection [33m 104136[2mms[22m[39m
+   [33m[2m✓[22m[39m reports an unobservable current input as unverified instead of a tampered history [33m 105128[2mms[22m[39m
+   [33m[2m✓[22m[39m leaves the sealed run bytes untouched while authenticating [33m 96019[2mms[22m[39m
+ [32m✓[39m tests/unit/run-evaluation.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m tests/integration/gate/current-state.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 477004[2mms[22m[39m
+   [33m[2m✓[22m[39m missing run evidence remains unverified and cannot be allowed [33m 921[2mms[22m[39m
+   [33m[2m✓[22m[39m stores a missing-run evaluation outside runs without inventing a run directory [33m 1104[2mms[22m[39m
+   [33m[2m✓[22m[39m retains actual unsealed lifecycle prefixes and distinguishes an aborted run from pending work [33m 2057[2mms[22m[39m
+   [33m[2m✓[22m[39m authenticates a real sealed run then reevaluates source, task, policy and evidence without changing historical facts [33m 254035[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps real failed evidence denied and detects changed executable bytes without launching that executable [33m 126476[2mms[22m[39m
+   [33m[2m✓[22m[39m does not turn local CI environment claims into required backend provenance [33m 92409[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m      Tests [22m [1m[32m11 passed[39m[22m[90m (11)[39m
+[2m   Start at [22m 22:32:57
+[2m   Duration [22m 479.95s[2m (transform 1.39s, setup 0ms, import 5.43s, tests 889.39s, environment 0ms)[22m
+
+M2 stage exit=0; child command evidence: docs/implementation/evidence/m2-stage-2026-10-03T14-40-57-204Z.json

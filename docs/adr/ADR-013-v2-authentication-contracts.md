@@ -90,3 +90,18 @@ V2-R05 提交时本节写的是“真实存储打通前不得据此宣称引用�
 - 契约与单元测试位置：`tests/contract/m3-runtime-contracts.test.ts`（复用 `baseInput`）与 `tests/unit/v2/environment-assessment.test.ts`（自建夹具）；V2-R06 的真实存储贯通在 `tests/integration/environment/evidence-authentication.test.ts`。
 - V2-R06 之后，环境结论的证据引用必须是本 Run 索引里可重取的 artifact：把 HTTP request id 当作引用、引用未索引路径、跨 Run/跨 attempt 取证据、字节与摘要不一致、观察自报 `satisfied`/`CONTROLLED` 都在工厂层被拒，纯函数继续只做语义推导。
 - 工厂读取成功仍不等于环境来源独立：它只证明“内容与索引一致”。CONTROLLED 与真实 Run 接线分别留给 SG-056/058/060 与 SG-062。
+
+## 7. 测试专用启动记录协议（SG-055，协调者补记）
+
+`examples/contract-drift-demo/apps/api/scripts/launch_test_api.py` 写 `launcher.json`，kind `stackgate-test-api-launch`，字段含 pid、`process_creation{status,mechanism,creation_identity,created_at,clock}`、input_hash、instance_id、data_revision、host/port/origin（恒 127.0.0.1，端口由 OS 分配）、`served_routes`、`evidence_routes`、`source_digests`、`max_recorded_bytes`。要点：
+
+- 观察中间件只由该启动器包裹同一个 `create_app` 挂载；正常应用入口不启用观察，也不公开任何证据读取路由。
+- `instance_id` 与 `data_revision` 由启动器生成并作为服务端响应头追加；应用或客户端自报的同名头一律被替换，不回显为来源。
+- 观察目录布局 `<root>/<run>/<check>/<attempt>/<request>/{response.bin,observation.json,index.json}`；`index.json` 最后独占提交，即"完成索引"，只有全部字节落盘后才存在。`diagnostic.json` 与 `conflict.json` 与它互斥：重复同一 `(run,check,attempt,request)` 身份得到 `IDENTITY_CONFLICT` 且保留先前字节（`retained_bytes:0`），绝不覆盖。
+- 已声明能力边界：仅缓冲字节、以 `more_body=False` 为完成；超预算 `RESPONSE_OVER_BUDGET`；`content-encoding` 非 `identity` 为 `CONTENT_ENCODING_UNSUPPORTED`；其它响应消息类型为 `RESPONSE_MESSAGE_UNSUPPORTED`；`content-length` 与实测温差不符为 `RESPONSE_LENGTH_MISMATCH`；完成后应用抛错记 `APPLICATION_ERROR`。流式响应超出已测能力即显式拒绝，不假装支持。
+- 记账失败只写 stderr，不改变客户端已收到的响应；这是"证据失败不得篡改业务结果"的边界。
+- POSIX 分支与显式 `--port` 路径在 Windows 上未实跑，`process_creation.status` 在非 win32 属未验证；`<root>` 尚未接入 `FileEvidenceStore`，与认证工厂的联通属 SG-056/060。
+
+## 8. Compose 预检的策略输入边界（SG-057，协调者补记）
+
+`preflightCompose` 读取 `policy.compose_writable_mount_roots`，但该字段**尚未**在 `schemas/0.1/policy.schema.json` 中声明（本轮不改 Schema 以免与 SG-058 的真实资源接线同时变更协议）。当前语义：字段缺失即最严格——所有 bind mount 必须只读，任何可写挂载被拒。SG-058 接线时若要在策略里声明可写输出根，必须与测试一同变更 Schema 并在此追加兼容说明；未知字段仍由 `additionalProperties:false` 拒绝，不会被静默赋予含义。预检本身是纯解析：不 spawn 任何可变状态的进程，`include/configs/secrets` 等未支持段直接拒绝而非忽略。

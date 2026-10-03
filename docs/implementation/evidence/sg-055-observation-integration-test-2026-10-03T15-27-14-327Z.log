@@ -1,0 +1,15 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/environment/observation.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 4532[2mms[22m[39m
+   [33m[2m✓[22m[39m attests a real response with the exact bytes the client received [33m 913[2mms[22m[39m
+   [33m[2m✓[22m[39m binds the observation to the launcher identity, never to a header the client sent [33m 931[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a repeated request identity instead of overwriting the first record [33m 943[2mms[22m[39m
+   [33m[2m✓[22m[39m serves an unauthorized run without creating any fact about it [33m 858[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps secret request headers out of the record tree and reclaims only its own process [33m 886[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m5 passed[39m[22m[90m (5)[39m
+[2m   Start at [22m 23:27:17
+[2m   Duration [22m 5.77s[2m (transform 165ms, setup 0ms, import 979ms, tests 4.53s, environment 0ms)[22m
+

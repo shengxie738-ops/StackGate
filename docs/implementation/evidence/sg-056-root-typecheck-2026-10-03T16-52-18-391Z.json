@@ -1,0 +1,42 @@
+{
+  "task_id": "SG-056",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "89e00dba96c80abc5715676a902e8026687fa9a2",
+    "branch": "V2",
+    "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "command": "pnpm typecheck",
+  "argv": [
+    "pnpm",
+    "typecheck"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-10-03T16:52:18.391Z",
+  "finished_at": "2026-10-03T16:52:24.112Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/sg-056-root-typecheck-2026-10-03T16-52-18-391Z.json",
+  "log_path": "docs/implementation/evidence/sg-056-root-typecheck-2026-10-03T16-52-18-391Z.log",
+  "signal": null,
+  "duration_ms": 5721,
+  "source_before": {
+    "manifest_path": "docs/implementation/evidence/sg-056-root-typecheck-2026-10-03T16-52-18-391Z-source-before.json",
+    "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241",
+    "completeness": "COMPLETE",
+    "file_count": 2906,
+    "incomplete_reasons": []
+  },
+  "source_after": {
+    "manifest_path": "docs/implementation/evidence/sg-056-root-typecheck-2026-10-03T16-52-18-391Z-source-after.json",
+    "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241",
+    "completeness": "COMPLETE",
+    "file_count": 2906,
+    "incomplete_reasons": []
+  },
+  "source_changed_during_verification": false,
+  "verification_attributable": true,
+  "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241"
+}

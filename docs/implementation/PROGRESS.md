@@ -2,23 +2,25 @@
 
 当前阶段：M3；阶段完成以实际 stage 出口为准。
 
-完成：SG-001, SG-002, SG-003, SG-004, SG-005, SG-006, SG-007, SG-008, SG-009, SG-010, SG-011, SG-012, SG-013, SG-014, SG-015, SG-016, SG-017, SG-018, SG-019, SG-020, SG-021, SG-022, SG-023, SG-024, SG-025, SG-026, SG-027, SG-028, SG-029, SG-030, SG-031, SG-032, SG-033, SG-034, SG-035, SG-036, SG-037, SG-038, SG-039, SG-040, SG-041, SG-042, SG-043, SG-044, SG-045, SG-046, SG-047, SG-048, SG-049, SG-050, SG-051, SG-052, SG-054, SG-055, SG-057
+完成：SG-001, SG-002, SG-003, SG-004, SG-005, SG-006, SG-007, SG-008, SG-009, SG-010, SG-011, SG-012, SG-013, SG-014, SG-015, SG-016, SG-017, SG-018, SG-019, SG-020, SG-021, SG-022, SG-023, SG-024, SG-025, SG-026, SG-027, SG-028, SG-029, SG-030, SG-031, SG-032, SG-033, SG-034, SG-035, SG-036, SG-037, SG-038, SG-039, SG-040, SG-041, SG-042, SG-043, SG-044, SG-045, SG-046, SG-047, SG-048, SG-049, SG-050, SG-051, SG-052, SG-054, SG-055, SG-056, SG-057
 
-当前：SG-057 DONE
+当前：SG-056 DONE
 
 审计修复：M1-R07 DONE；详见 [audit-fixes.json](audit-fixes.json) 与 [M1 修复验收](evidence/M1-audit-summary.md)。
 
 M3 审计任务：AUD-003 DONE；详见 [audit-m3-fixes.json](audit-m3-fixes.json) 与 [M3 入口审计](M3-entry-audit.md)。
 
-V2 审计修复任务：V2-R06 DONE；详见 [audit-v2-fixes.json](audit-v2-fixes.json) 与 [V2 审计基线](V2-audit-baseline.md)。
+V2 审计修复任务：V2-R07 DONE；详见 [audit-v2-fixes.json](audit-v2-fixes.json) 与 [V2 审计基线](V2-audit-baseline.md)。
 
-下一步：SG-058: own-resource compose start with dynamic ports and provenance snapshots.
+下一步：SG-059: readiness and in-run environment continuity over the attached and owned environments.
 
 ## 最近真实验证
 
-- pnpm exec vitest run tests/security/compose-preflight.test.ts → 0 (PASSED); [evidence](evidence/sg-057-compose-preflight-test-2026-10-03T15-27-28-586Z.json)
-- pnpm typecheck → 0 (PASSED); [evidence](evidence/sg-057-root-typecheck-2026-10-03T15-27-35-066Z.json)
-- pnpm verify:boundaries → 0 (PASSED); [evidence](evidence/sg-057-verify-boundaries-2026-10-03T15-27-42-700Z.json)
+- pnpm exec vitest run tests/integration/environment/attach.test.ts → 0 (PASSED); [evidence](evidence/sg-056-attach-provenance-suite-2026-10-03T16-51-42-817Z.json)
+- pnpm typecheck → 0 (PASSED); [evidence](evidence/sg-056-root-typecheck-2026-10-03T16-52-18-391Z.json)
+- pnpm lint → 0 (PASSED); [evidence](evidence/sg-056-repo-lint-2026-10-03T16-52-26-202Z.json)
+- pnpm verify:boundaries → 0 (PASSED); [evidence](evidence/sg-056-verify-boundaries-2026-10-03T16-52-33-877Z.json)
+- pnpm exec vitest run tests/integration/environment/observation.test.ts tests/integration/environment/evidence-authentication.test.ts → 0 (PASSED); [evidence](evidence/sg-056-environment-suite-regression-2026-10-03T16-52-38-853Z.json)
 
 ## 限制与续接
 

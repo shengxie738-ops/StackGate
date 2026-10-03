@@ -17714,12 +17714,235 @@
         "SG-051",
         "SG-055"
       ],
-      "status": "READY",
-      "actual_files": [],
-      "verification": [],
+      "status": "DONE",
+      "actual_files": [
+        "packages/adapter-compose/src/attach/adapter.ts",
+        "packages/adapter-compose/src/attach/process-observation.ts",
+        "packages/adapter-compose/src/attach/provenance.ts",
+        "tests/integration/environment/attach.test.ts"
+      ],
+      "verification": [
+        {
+          "task_id": "SG-056",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "89e00dba96c80abc5715676a902e8026687fa9a2",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm exec vitest run tests/integration/environment/attach.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/environment/attach.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T16:51:42.817Z",
+          "finished_at": "2026-10-03T16:52:16.313Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-056-attach-provenance-suite-2026-10-03T16-51-42-817Z.json",
+          "log_path": "docs/implementation/evidence/sg-056-attach-provenance-suite-2026-10-03T16-51-42-817Z.log",
+          "signal": null,
+          "duration_ms": 33496,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-056-attach-provenance-suite-2026-10-03T16-51-42-817Z-source-before.json",
+            "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241",
+            "completeness": "COMPLETE",
+            "file_count": 2906,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-056-attach-provenance-suite-2026-10-03T16-51-42-817Z-source-after.json",
+            "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241",
+            "completeness": "COMPLETE",
+            "file_count": 2906,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241"
+        },
+        {
+          "task_id": "SG-056",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "89e00dba96c80abc5715676a902e8026687fa9a2",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm typecheck",
+          "argv": [
+            "pnpm",
+            "typecheck"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T16:52:18.391Z",
+          "finished_at": "2026-10-03T16:52:24.112Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-056-root-typecheck-2026-10-03T16-52-18-391Z.json",
+          "log_path": "docs/implementation/evidence/sg-056-root-typecheck-2026-10-03T16-52-18-391Z.log",
+          "signal": null,
+          "duration_ms": 5721,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-056-root-typecheck-2026-10-03T16-52-18-391Z-source-before.json",
+            "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241",
+            "completeness": "COMPLETE",
+            "file_count": 2906,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-056-root-typecheck-2026-10-03T16-52-18-391Z-source-after.json",
+            "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241",
+            "completeness": "COMPLETE",
+            "file_count": 2906,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241"
+        },
+        {
+          "task_id": "SG-056",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "89e00dba96c80abc5715676a902e8026687fa9a2",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm lint",
+          "argv": [
+            "pnpm",
+            "lint"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T16:52:26.202Z",
+          "finished_at": "2026-10-03T16:52:31.672Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-056-repo-lint-2026-10-03T16-52-26-202Z.json",
+          "log_path": "docs/implementation/evidence/sg-056-repo-lint-2026-10-03T16-52-26-202Z.log",
+          "signal": null,
+          "duration_ms": 5470,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-056-repo-lint-2026-10-03T16-52-26-202Z-source-before.json",
+            "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241",
+            "completeness": "COMPLETE",
+            "file_count": 2906,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-056-repo-lint-2026-10-03T16-52-26-202Z-source-after.json",
+            "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241",
+            "completeness": "COMPLETE",
+            "file_count": 2906,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241"
+        },
+        {
+          "task_id": "SG-056",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "89e00dba96c80abc5715676a902e8026687fa9a2",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm verify:boundaries",
+          "argv": [
+            "pnpm",
+            "verify:boundaries"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T16:52:33.877Z",
+          "finished_at": "2026-10-03T16:52:36.713Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-056-verify-boundaries-2026-10-03T16-52-33-877Z.json",
+          "log_path": "docs/implementation/evidence/sg-056-verify-boundaries-2026-10-03T16-52-33-877Z.log",
+          "signal": null,
+          "duration_ms": 2836,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-056-verify-boundaries-2026-10-03T16-52-33-877Z-source-before.json",
+            "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241",
+            "completeness": "COMPLETE",
+            "file_count": 2906,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-056-verify-boundaries-2026-10-03T16-52-33-877Z-source-after.json",
+            "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241",
+            "completeness": "COMPLETE",
+            "file_count": 2906,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241"
+        },
+        {
+          "task_id": "SG-056",
+          "repository": {
+            "identity_status": "VERIFIED",
+            "head": "89e00dba96c80abc5715676a902e8026687fa9a2",
+            "branch": "V2",
+            "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+            "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+          },
+          "command": "pnpm exec vitest run tests/integration/environment/observation.test.ts tests/integration/environment/evidence-authentication.test.ts",
+          "argv": [
+            "pnpm",
+            "exec",
+            "vitest",
+            "run",
+            "tests/integration/environment/observation.test.ts",
+            "tests/integration/environment/evidence-authentication.test.ts"
+          ],
+          "cwd_relative": ".",
+          "started_at": "2026-10-03T16:52:38.853Z",
+          "finished_at": "2026-10-03T16:52:52.506Z",
+          "exit_code": 0,
+          "result": "PASSED",
+          "evidence_path": "docs/implementation/evidence/sg-056-environment-suite-regression-2026-10-03T16-52-38-853Z.json",
+          "log_path": "docs/implementation/evidence/sg-056-environment-suite-regression-2026-10-03T16-52-38-853Z.log",
+          "signal": null,
+          "duration_ms": 13653,
+          "source_before": {
+            "manifest_path": "docs/implementation/evidence/sg-056-environment-suite-regression-2026-10-03T16-52-38-853Z-source-before.json",
+            "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241",
+            "completeness": "COMPLETE",
+            "file_count": 2906,
+            "incomplete_reasons": []
+          },
+          "source_after": {
+            "manifest_path": "docs/implementation/evidence/sg-056-environment-suite-regression-2026-10-03T16-52-38-853Z-source-after.json",
+            "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241",
+            "completeness": "COMPLETE",
+            "file_count": 2906,
+            "incomplete_reasons": []
+          },
+          "source_changed_during_verification": false,
+          "verification_attributable": true,
+          "content_hash": "sha256:03daaef4c09244d612a11cea8941755fa47038df6f29e638d3aff083e8ce1241"
+        }
+      ],
       "commit": null,
       "blockers": [],
-      "next_action": "实施 SG-056"
+      "next_action": "SG-059: readiness and in-run environment continuity over the attached and owned environments."
     },
     {
       "task_id": "SG-057",

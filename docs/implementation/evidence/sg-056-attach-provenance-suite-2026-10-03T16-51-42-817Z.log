@@ -1,0 +1,21 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+ [32m✓[39m tests/integration/environment/attach.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 23919[2mms[22m[39m
+   [33m[2m✓[22m[39m a healthy response is not provenance: two live instances look identical and a copied record still satisfies the core [33m 1857[2mms[22m[39m
+   [33m[2m✓[22m[39m attests OBSERVED for the instance whose start record matches a live process, and the core accepts it [33m 1518[2mms[22m[39m
+   [33m[2m✓[22m[39m records DECLARED for a service that answers healthily but has no start record, and the core refuses it [33m 1252[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a start record copied into another directory although every other fact still matches [33m 1747[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a forged pid: a live process is evidence only when it is the process the record names [33m 1234[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a record whose process is gone, a different candidate input and a different data revision [33m 3372[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps two live services with identical health bodies from being interchangeable [33m 3420[2mms[22m[39m
+   [33m[2m✓[22m[39m issues no request at all when the target was never confirmed, and no command ever starts a service [33m 2547[2mms[22m[39m
+   [33m[2m✓[22m[39m cleanup preserves the service it attached to, keeps its own evidence, and the service still answers [33m 2225[2mms[22m[39m
+   [33m[2m✓[22m[39m observe keeps its own artifact, and reports a service that changed underneath the run [33m 3593[2mms[22m[39m
+   [33m[2m✓[22m[39m stays DECLARED when the platform cannot supply a live process identity, and never guesses one [33m 1152[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m11 passed[39m[22m[90m (11)[39m
+[2m   Start at [22m 00:51:50
+[2m   Duration [22m 25.28s[2m (transform 319ms, setup 0ms, import 1.12s, tests 23.92s, environment 0ms)[22m
+

@@ -1,0 +1,42 @@
+{
+  "task_id": "V2-R04",
+  "repository": {
+    "identity_status": "VERIFIED",
+    "head": "56003cfa12773219efb3884559e1de7bc0f1b405",
+    "branch": "V2",
+    "repo_path_id": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest": "d1e4732dada07bfee6441db7ea7e032dc87584f8e3cfc3c4b960467bba2ccfb3",
+    "worktree_digest_semantics": "LEGACY_REPOSITORY_PATH_IDENTITY_NOT_SOURCE_CONTENT"
+  },
+  "command": "pnpm typecheck",
+  "argv": [
+    "pnpm",
+    "typecheck"
+  ],
+  "cwd_relative": ".",
+  "started_at": "2026-10-03T11:44:49.212Z",
+  "finished_at": "2026-10-03T11:44:54.386Z",
+  "exit_code": 0,
+  "result": "PASSED",
+  "evidence_path": "docs/implementation/evidence/v2-r04-root-typecheck-2026-10-03T11-44-49-212Z.json",
+  "log_path": "docs/implementation/evidence/v2-r04-root-typecheck-2026-10-03T11-44-49-212Z.log",
+  "signal": null,
+  "duration_ms": 5174,
+  "source_before": {
+    "manifest_path": "docs/implementation/evidence/v2-r04-root-typecheck-2026-10-03T11-44-49-212Z-source-before.json",
+    "content_hash": "sha256:ac8fb058359b83edf47bbcfeba37f38e4d499bff4a5b4d5a292942e54cd203b1",
+    "completeness": "COMPLETE",
+    "file_count": 2639,
+    "incomplete_reasons": []
+  },
+  "source_after": {
+    "manifest_path": "docs/implementation/evidence/v2-r04-root-typecheck-2026-10-03T11-44-49-212Z-source-after.json",
+    "content_hash": "sha256:ac8fb058359b83edf47bbcfeba37f38e4d499bff4a5b4d5a292942e54cd203b1",
+    "completeness": "COMPLETE",
+    "file_count": 2639,
+    "incomplete_reasons": []
+  },
+  "source_changed_during_verification": false,
+  "verification_attributable": true,
+  "content_hash": "sha256:ac8fb058359b83edf47bbcfeba37f38e4d499bff4a5b4d5a292942e54cd203b1"
+}

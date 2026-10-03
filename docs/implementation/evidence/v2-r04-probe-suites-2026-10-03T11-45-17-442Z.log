@@ -1,0 +1,64 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mG:/StackGate[39m
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mends a 100 ms total deadline against a 20 ms drip instead of completing the body
+[22m[39mV2-R03 slow-drip deadline_ms=100: {"code":2,"stdout":"","stderr":"DEADLINE_EXCEEDED: 100\r\n","elapsed_ms":346,"reason":"DEADLINE_EXCEEDED","completed":false,"has_report":false,"worker_pid":37872,"worker_reclaimed":true,"worker_killed":true,"worker_alive_after":false,"spawned":true,"pipes_closed":true,"reap_mechanism":"subprocess.wait on the handle this process created","reader_is_spawned_handle":null,"requests_at_exit":0,"requests_after_settle":0,"drip_bytes_sent":0,"server_closed":false,"fingerprints_at_exit":["probe-error.json","probe-worker.json"],"fingerprints_after_settle":["probe-error.json","probe-worker.json"]}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mterminates and reclaims the worker mid-request, with nothing reading afterwards
+[22m[39mV2-R03 terminate-and-reap deadline_ms=1: {"code":2,"stdout":"","stderr":"DEADLINE_EXCEEDED: 1\r\n","elapsed_ms":190,"reason":"DEADLINE_EXCEEDED","completed":false,"has_report":false,"worker_pid":41724,"worker_reclaimed":true,"worker_killed":true,"worker_alive_after":false,"spawned":true,"pipes_closed":true,"reap_mechanism":"subprocess.wait on the handle this process created","reader_is_spawned_handle":null,"requests_at_exit":0,"requests_after_settle":0,"drip_bytes_sent":0,"server_closed":false,"fingerprints_at_exit":["probe-error.json","probe-worker.json"],"fingerprints_after_settle":["probe-error.json","probe-worker.json"]}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mcancels a read that is already in progress, mid-body
+[22m[39mV2-R03 mid-body cancel deadline_ms=900: {"code":2,"stdout":"","stderr":"DEADLINE_EXCEEDED: 900\r\n","elapsed_ms":1091,"reason":"DEADLINE_EXCEEDED","completed":false,"has_report":false,"worker_pid":4240,"worker_reclaimed":true,"worker_killed":true,"worker_alive_after":false,"spawned":true,"pipes_closed":true,"reap_mechanism":"subprocess.wait on the handle this process created","reader_is_spawned_handle":null,"requests_at_exit":1,"requests_after_settle":1,"drip_bytes_sent":20,"server_closed":true,"fingerprints_at_exit":["probe-error.json","probe-worker.json"],"fingerprints_after_settle":["probe-error.json","probe-worker.json"]}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mhits the total deadline when the server never sends a status line
+[22m[39mV2-R03 withheld status line: {"code":2,"stdout":"","stderr":"DEADLINE_EXCEEDED: 700\r\n","elapsed_ms":903,"reason":"DEADLINE_EXCEEDED","requestLine":"GET /api/performance HTTP/1.1"}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mbounds an oversized error-response body and writes no success artifact
+[22m[39mV2-R03 oversized 500 body: {"code":2,"stdout":"","stderr":"RESPONSE_OVER_BUDGET: 33\r\n","elapsed_ms":416,"reason":"RESPONSE_OVER_BUDGET","files":["probe-error.json","probe-worker.json"],"requests":1,"bytesReceived":313}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mrefuses an unsupported Content-Encoding instead of re-serializing the body
+[22m[39mV2-R03 unsupported content-encoding: {"code":2,"stdout":"","stderr":"CONTENT_ENCODING_UNSUPPORTED: gzip\r\n","elapsed_ms":436,"reason":"CONTENT_ENCODING_UNSUPPORTED","requestLine":"GET /api/performance HTTP/1.1"}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2msends zero requests to an environment proxy and keeps the authorized origin as the route
+[22m[39mV2-R03 environment proxy: {"code":0,"elapsed_ms":458,"proxyRequests":0,"proxyRequestLine":"","targetRequestLine":"GET /api/performance HTTP/1.1","targetBytesReceived":313,"reason":null}
+
+ [32m✓[39m tests/integration/probe/http.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 6874[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a declared operation against a listener that is not there [33m 2499[2mms[22m[39m
+   [33m[2m✓[22m[39m records a real successful probe and lets the core recompute the same assertions [33m 478[2mms[22m[39m
+   [33m[2m✓[22m[39m does not promote a self-reported schema_valid over a recomputed type mismatch [33m 480[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a redirect instead of following it to another origin [33m 438[2mms[22m[39m
+   [33m[2m✓[22m[39m stops at the declared response budget and at the deadline instead of buffering [33m 962[2mms[22m[39m
+   [33m[2m✓[22m[39m observes exactly the declared method and path on the wire [33m 446[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses a non-integer resource budget through the real probe entry point [33m 956[2mms[22m[39m
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mkeeps existing artifact bytes instead of overwriting a previous attempt
+[22m[39mV2-R03 no-replace on probe-error.json: {"code":3,"stdout":"","stderr":"ARTIFACT_EXISTS: C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-test-CAtXGz\\attempt-failure\\probe-error.json\r\n","elapsed_ms":2493,"preserved":"{\"sentinel\":\"from-the-previous-attempt\"}\n"}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mkeeps existing artifact bytes instead of overwriting a previous attempt
+[22m[39mV2-R03 no-replace on probe.json: {"code":3,"stdout":"","stderr":"ARTIFACT_EXISTS: C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-test-CAtXGz\\attempt-success\\probe.json\r\n","elapsed_ms":448,"preserved":41}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mholds the frame, escape, isolation and no-spawn boundaries when driven directly
+[22m[39mV2-R03 support-module cases: {"bounded":{"over_budget_is_classified_after_the_first_byte_past":{"code":"RESPONSE_OVER_BUDGET","detail":"101","launch_proofs":null,"raised":true,"spawned":null,"worker_pid":null},"per_read_never_exc elapsed_ms [33m575[39m
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mseparates an unusable launch parameter from an artifact that cannot be committed
+[22m[39mV2-R03 launch parameter errors: {"relative":{"code":64,"stdout":"","stderr":"absolute STACKGATE_OUTPUT_DIR is required\r\n","elapsed_ms":178},"empty":{"code":64,"stdout":"","stderr":"absolute STACKGATE_OUTPUT_DIR is required\r\n","elapsed_ms":179}}
+
+[90mstdout[2m | tests/integration/probe/deadline-proxy.test.ts[2m > [22m[2mseparates an unusable launch parameter from an artifact that cannot be committed
+[22m[39mV2-R03 unresolvable artifact root: {"code":3,"stdout":"","stderr":"ARTIFACT_COMMIT_FAILED: C:\\Users\\17894\\AppData\\Local\\Temp\\stackgate-test-0537yO\\afile\\attempt\\responses\\request_v2_r03_1.json: [WinError 3] ϵͳ�Ҳ���ָ����·����: 'C:\\\\Users\\\\17894\\\\AppData\\\\Local\\\\Temp\\\\stackgate-test-0537yO\\\\afile\\\\attempt'\r\n","elapsed_ms":402}
+
+ [32m✓[39m tests/integration/probe/deadline-proxy.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 9562[2mms[22m[39m
+   [33m[2m✓[22m[39m ends a 100 ms total deadline against a 20 ms drip instead of completing the body [33m 810[2mms[22m[39m
+   [33m[2m✓[22m[39m terminates and reclaims the worker mid-request, with nothing reading afterwards [33m 624[2mms[22m[39m
+   [33m[2m✓[22m[39m cancels a read that is already in progress, mid-body [33m 1528[2mms[22m[39m
+   [33m[2m✓[22m[39m hits the total deadline when the server never sends a status line [33m 918[2mms[22m[39m
+   [33m[2m✓[22m[39m bounds an oversized error-response body and writes no success artifact [33m 431[2mms[22m[39m
+   [33m[2m✓[22m[39m refuses an unsupported Content-Encoding instead of re-serializing the body [33m 446[2mms[22m[39m
+   [33m[2m✓[22m[39m sends zero requests to an environment proxy and keeps the authorized origin as the route [33m 485[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps existing artifact bytes instead of overwriting a previous attempt [33m 2972[2mms[22m[39m
+   [33m[2m✓[22m[39m holds the frame, escape, isolation and no-spawn boundaries when driven directly [33m 576[2mms[22m[39m
+   [33m[2m✓[22m[39m separates an unusable launch parameter from an artifact that cannot be committed [33m 771[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m20 passed[39m[22m[90m (20)[39m
+[2m   Start at [22m 19:45:19
+[2m   Duration [22m 9.98s[2m (transform 273ms, setup 0ms, import 773ms, tests 16.44s, environment 0ms)[22m
+

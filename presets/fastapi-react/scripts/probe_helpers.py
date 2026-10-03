@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import os
 import re
 import socket
@@ -748,56 +749,235 @@ def execute_request(payload: dict) -> tuple[dict, bytes]:
 
 
 
-def resolve_pointer(document, pointer: str):
-    """RFC 6901 resolution. Returns (found, value)."""
-    if not pointer.startswith("/"):
-        raise ProbeError("POINTER_INVALID", pointer)
+# --- JSON Pointer, own-field and finite-number semantics -----------------------------------------------
+# This block is the Python half of one contract, described in
+# `tests/fixtures/v2-regressions/assertions.json` and enforced case by case in
+# `tests/contract/probe-assertions-parity.test.ts`. It mirrors `packages/core/src/services/probe-assertions.ts`:
+# same grammar, same reason codes, same refusals. A dict has no inherited members to trip over, but the pointer
+# grammar, the finite-number rule and the reason codes used to differ, and a probe that disagrees with the core
+# about what a response contains is worse than a probe that fails.
+
+CANONICAL_INDEX = re.compile(r"^(?:0|[1-9][0-9]*)$")
+MAX_JSON_DEPTH = 64
+MAX_JSON_BYTES = MAX_RESPONSE_BYTES
+# Integers above this are rounded by JavaScript and kept exactly by Python, so the same bytes would give two
+# documents. Refusing is the only answer that does not pick a winner.
+MAX_LOSSLESS_INTEGER = 2 ** 53 - 1
+# `parse_json_response` refusals, identical to `JsonResponseReason` in TypeScript.
+JSON_REFUSAL_CODES = ("RESPONSE_BODY_OVER_BUDGET", "RESPONSE_BODY_NOT_UTF8", "RESPONSE_BODY_NOT_JSON",
+                      "JSON_DUPLICATE_KEY", "JSON_NESTING_OVER_LIMIT", "JSON_NUMBER_NOT_FINITE",
+                      "JSON_NUMBER_NOT_LOSSLESS")
+POINTER_REASONS = ("POINTER_INVALID", "POINTER_ESCAPE_INVALID", "POINTER_INDEX_INVALID", "POINTER_NOT_FOUND")
+TYPE_KINDS = ("string", "number", "boolean", "null")
+
+
+def parse_pointer(pointer):
+    """Split an RFC 6901 pointer into its decoded tokens, or refuse it by name.
+
+    Two decisions are made here and nowhere else: the whole-document pointer `""` is not accepted, because a
+    declaration pointer has to start with `/`, and an empty segment is the empty key, so `/` addresses `""` and
+    `//x` addresses `""` then `x`. A `~` that is not `~0` or `~1` is refused before any token reaches the
+    document - a malformed pointer is never evaluated as if it were a key.
+    """
+    if not isinstance(pointer, str) or not pointer.startswith("/"):
+        raise ProbeError("POINTER_INVALID", str(pointer))
+    tokens = []
+    for segment in pointer[1:].split("/"):
+        token = ""
+        index = 0
+        while index < len(segment):
+            character = segment[index]
+            if character != "~":
+                token += character
+                index += 1
+                continue
+            escape = segment[index + 1] if index + 1 < len(segment) else ""
+            if escape == "0":
+                token += "~"
+                index += 2
+                continue
+            if escape == "1":
+                token += "/"
+                index += 2
+                continue
+            raise ProbeError("POINTER_ESCAPE_INVALID", pointer)
+        tokens.append(token)
+    return tokens
+
+
+def _resolve_tokens(document, tokens):
+    """Own members only. Returns (found, value), or raises for a pointer the document cannot be indexed by."""
     current = document
-    for raw in pointer[1:].split("/"):
-        token = raw.replace("~1", "/").replace("~0", "~")
+    for token in tokens:
         if isinstance(current, list):
-            if not token.isdigit() or int(token) >= len(current):
+            # An array position is canonical decimal only: `01` and `-` are malformed, while a canonical index
+            # past the end is simply absent. Against an object the same token is a key, so the key "01" reads.
+            if not CANONICAL_INDEX.match(token):
+                raise ProbeError("POINTER_INDEX_INVALID", token)
+            index = int(token)
+            if index >= len(current):
                 return False, None
-            current = current[int(token)]
-        elif isinstance(current, dict):
+            current = current[index]
+            continue
+        if isinstance(current, dict):
             if token not in current:
                 return False, None
             current = current[token]
-        else:
-            return False, None
+            continue
+        return False, None
     return True, current
 
 
-def evaluate_assertion(document, assertion: dict) -> bool:
-    found, value = resolve_pointer(document, assertion["pointer"])
-    operator = assertion["operator"]
-    if operator == "exists":
-        return found
-    if not found:
+def resolve_pointer(document, pointer: str):
+    """RFC 6901 resolution. Returns (found, value). A malformed pointer raises `ProbeError` with its reason."""
+    return _resolve_tokens(document, parse_pointer(pointer))
+
+
+def _json_type(value) -> str:
+    if value is None:
+        return "null"
+    if isinstance(value, bool):
+        return "boolean"
+    if isinstance(value, (int, float)):
+        return "number"
+    if isinstance(value, str):
+        return "string"
+    if isinstance(value, list):
+        return "array"
+    if isinstance(value, dict):
+        return "object"
+    return "unsupported"
+
+
+def _is_scalar(value) -> bool:
+    return _json_type(value) in ("null", "boolean", "number", "string")
+
+
+def _is_finite_number(value) -> bool:
+    """A bool is never a number and a non-finite float never is either; a string is never converted."""
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
         return False
+    # `math.isfinite` on a huge int would raise OverflowError; an int is always finite here.
+    return True if isinstance(value, int) else math.isfinite(value)
+
+
+def assertion_outcome(document, assertion: dict) -> dict:
+    """The same deterministic evaluation the core performs, with the same reason codes.
+
+    Restricted: no expression, no user code, no model judgement. A missing path and a malformed pointer are
+    reported differently, because "the response does not have it" and "the assertion cannot be read" are not
+    the same finding.
+    """
+    assertion_id = assertion.get("assertion_id")
+    operator = assertion.get("operator")
     expected = assertion.get("expected")
+    try:
+        found, value = resolve_pointer(document, assertion["pointer"])
+    except ProbeError as error:
+        if error.code in POINTER_REASONS:
+            return {"assertion_id": assertion_id, "passed": False, "reason": error.code}
+        raise
+    if operator == "exists":
+        return {"assertion_id": assertion_id, "passed": found,
+                "reason": None if found else "POINTER_NOT_FOUND"}
+    if not found:
+        return {"assertion_id": assertion_id, "passed": False, "reason": "POINTER_NOT_FOUND"}
     if operator == "type":
-        kinds = {"string": str, "number": (int, float), "boolean": bool, "null": type(None)}
-        kind = kinds.get(expected)
-        if kind is None:
-            raise ProbeError("OPERATOR_EXPECTED_INVALID", expected)
-        if expected == "number":
-            return isinstance(value, (int, float)) and not isinstance(value, bool)
-        if expected == "boolean":
-            return isinstance(value, bool)
-        return isinstance(value, kind)
+        # The kind has to be named as one of the four strings. A missing `expected`, a JSON null or a number is
+        # not the `null` kind: it is an unusable assertion.
+        if not isinstance(expected, str) or expected not in TYPE_KINDS:
+            return {"assertion_id": assertion_id, "passed": False, "reason": "TYPE_EXPECTED_UNKNOWN"}
+        passed = _json_type(value) == expected if expected != "number" else _is_finite_number(value)
+        return {"assertion_id": assertion_id, "passed": bool(passed),
+                "reason": None if passed else "TYPE_MISMATCH"}
     if operator == "equals":
-        if isinstance(value, bool) or isinstance(expected, bool):
-            return value is expected
-        return value == expected
-    numeric = {"number_lt": lambda a, b: a < b, "number_lte": lambda a, b: a <= b,
-               "number_gt": lambda a, b: a > b, "number_gte": lambda a, b: a >= b}
-    compare = numeric.get(operator)
+        # One JSON type only, scalars only: 0 never equals false, null never equals false, and an array or
+        # object is not declarable and is not compared structurally.
+        passed = (_is_scalar(value) and _is_scalar(expected) and _json_type(value) == _json_type(expected)
+                  and value == expected)
+        return {"assertion_id": assertion_id, "passed": bool(passed),
+                "reason": None if passed else "VALUE_MISMATCH"}
+    comparisons = {"number_lt": lambda a, b: a < b, "number_lte": lambda a, b: a <= b,
+                   "number_gt": lambda a, b: a > b, "number_gte": lambda a, b: a >= b}
+    compare = comparisons.get(operator)
     if compare is None:
-        raise ProbeError("OPERATOR_UNSUPPORTED", operator)
-    if isinstance(value, bool) or not isinstance(value, (int, float)) or not isinstance(expected, (int, float)):
-        return False
-    return bool(compare(value, expected))
+        return {"assertion_id": assertion_id, "passed": False, "reason": "OPERATOR_UNSUPPORTED"}
+    if not _is_finite_number(value) or not _is_finite_number(expected):
+        return {"assertion_id": assertion_id, "passed": False, "reason": "NUMBER_OPERAND_REQUIRED"}
+    passed = bool(compare(value, expected))
+    return {"assertion_id": assertion_id, "passed": passed,
+            "reason": None if passed else "NUMBER_COMPARISON_FAILED"}
+
+
+def evaluate_assertion(document, assertion: dict) -> bool:
+    """The boolean answer `assertion_outcome` gives, kept as the public shape the sample probe already calls."""
+    return bool(assertion_outcome(document, assertion)["passed"])
+
+
+def _refuse_constant(name: str) -> float:
+    """`NaN`, `Infinity` and `-Infinity` are not JSON literals; json.loads is lenient about them by default."""
+    raise ProbeError("RESPONSE_BODY_NOT_JSON", name)
+
+
+def _unique_pairs(pairs):
+    """Repeated member names are refused, the way the repository's strict document boundary refuses them."""
+    seen = set()
+    for key, value in pairs:
+        if key in seen:
+            raise ProbeError("JSON_DUPLICATE_KEY", key)
+        seen.add(key)
+    return dict(pairs)
+
+
+def find_refused_number(value, max_depth: int = MAX_JSON_DEPTH):
+    """The first number in `value` the two languages cannot agree about, or None. See the TypeScript twin."""
+    stack = [(value, 0)]
+    while stack:
+        item, depth = stack.pop()
+        if depth > max_depth:
+            return "JSON_NESTING_OVER_LIMIT"
+        kind = _json_type(item)
+        if kind in ("array", "object"):
+            children = item if kind == "array" else list(item.values())
+            for child in children:
+                stack.append((child, depth + 1))
+            continue
+        if kind != "number" or isinstance(item, bool):
+            continue
+        if isinstance(item, float) and not math.isfinite(item):
+            return "JSON_NUMBER_NOT_FINITE"
+        if abs(item) > MAX_LOSSLESS_INTEGER:
+            return "JSON_NUMBER_NOT_LOSSLESS"
+    return None
+
+
+def parse_json_response(data, *, max_bytes: int = MAX_JSON_BYTES, max_depth: int = MAX_JSON_DEPTH):
+    """Read one response body as JSON, strictly and within bounds. Raises `ProbeError` with the refusal code.
+
+    The byte budget and the UTF-8 decode say what the transport gave. `json.loads` decides the JSON grammar,
+    with `parse_constant` closing the one leniency Python's decoder has that JSON does not have, and
+    `object_pairs_hook` closing the other: repeated member names, which a plain decode would silently resolve to
+    the last value. `find_refused_number` then refuses any number that is not finite or not exactly
+    representable, so `1e400` cannot arrive as an infinity. A JSON `null`, scalar or array root parses: that is
+    a fact about the body, never "not JSON".
+    """
+    raw = bytes(data)
+    if len(raw) > max_bytes:
+        raise ProbeError("RESPONSE_BODY_OVER_BUDGET", "%d of %d bytes" % (len(raw), max_bytes))
+    try:
+        text = raw.decode("utf-8")
+    except UnicodeDecodeError as error:
+        raise ProbeError("RESPONSE_BODY_NOT_UTF8", str(error)) from error
+    try:
+        value = json.loads(text, parse_constant=_refuse_constant, object_pairs_hook=_unique_pairs)
+    except RecursionError as error:
+        raise ProbeError("JSON_NESTING_OVER_LIMIT", str(error)) from error
+    except json.JSONDecodeError as error:
+        raise ProbeError("RESPONSE_BODY_NOT_JSON", error.msg) from error
+    refusal = find_refused_number(value, max_depth)
+    if refusal:
+        raise ProbeError(refusal, text[:80])
+    return value
 
 
 def _commit(path: str, data: bytes) -> None:

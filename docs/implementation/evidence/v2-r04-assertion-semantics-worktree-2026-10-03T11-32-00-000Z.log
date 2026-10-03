@@ -1,0 +1,9 @@
+[worktree] exists /constructor on {}: passed=false reason=POINTER_NOT_FOUND
+[worktree] exists /__proto__ on {}: passed=false reason=POINTER_NOT_FOUND
+[worktree] exists /toString on {}: passed=false reason=POINTER_NOT_FOUND
+[worktree] type:number for Infinity: passed=false reason=TYPE_MISMATCH
+[worktree] exists /a/01 on {a:[1,2,3]}: passed=false reason=POINTER_INDEX_INVALID
+[worktree] exists /constructor on own member: passed=true reason=null
+[worktree] exists /a/1 on {a:[1,2,3]}: passed=true reason=null
+V2F06_STILL_PRESENT=none
+worktree exit=0

@@ -1,0 +1,8 @@
+exists /constructor on {}: passed=true reason=null
+exists /__proto__ on {}: passed=true reason=null
+exists /toString on {}: passed=true reason=null
+type:number for Infinity: passed=true reason=null
+exists /01 on [1,2,3] (non-canonical index must not resolve): passed=true reason=null
+exists /~2 (invalid escape must be diagnosed, not evaluated): passed=true reason=null
+WRONGLY_ACCEPTED=5
+RED_EXIT=1

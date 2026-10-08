@@ -155,9 +155,9 @@ function executionContext(root: string, runId: string, stored: Stored[]): Execut
 /** Namespaces this file generated; teardown walks only these, and only through label-verified ids. */
 const ownedNamespaces = new Map<string, string>();
 
-async function harness(options: { namespaceEntropy?: () => string; extraEnvironment?: Record<string, string>; protocols?: Record<string, 'http' | 'https'> } = {}): Promise<Harness> {
+async function harness(options: { namespaceEntropy?: () => string; extraEnvironment?: Record<string, string>; protocols?: Record<string, 'http' | 'https'>; run_id?: string } = {}): Promise<Harness> {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), 'stackgate-sg058-'));
-  const run_id = `run_sg058_${randomUUID().replaceAll('-', '').slice(0, 12)}`;
+  const run_id = options.run_id ?? `run_sg058_${randomUUID().replaceAll('-', '').slice(0, 12)}`;
   const environment = { STACKGATE_RUN_ID: run_id, STACKGATE_TEST_SEED: SECRET_MARKER, ...(options.extraEnvironment ?? {}) };
   const stored: Stored[] = [];
   const invocations: Invocation[] = [];
@@ -196,15 +196,20 @@ async function pinnedReference(): Promise<string> {
   const identity = await resolveLocalImageIdentity(probe.adapter.command_port, LOCAL_IMAGE_REFERENCE, probe.context);
   if (!identity.found || !identity.image_id) throw new Error(`SG-058 needs ${LOCAL_IMAGE_REFERENCE} present locally; the daemon reports it is not`);
   expect(identity.image_id).toMatch(/^sha256:[0-9a-f]{64}$/);
-  pinnedReferenceValue = `${LOCAL_IMAGE_REFERENCE}@${identity.image_id.slice('sha256:'.length)}`;
+  // The digest keeps its `sha256:` algorithm prefix: `name@<bare hex>` is not a Docker reference at all.
+  // Observed on this host before the fix — `compose up` exited 1 with
+  // `unable to get image 'python:3.14.3-slim-bookworm@f21c0d5a…': Error response from daemon: invalid
+  // reference format`, and it failed before creating the network, so the ledger came back empty.
+  pinnedReferenceValue = `${LOCAL_IMAGE_REFERENCE}@${identity.image_id}`;
   await fs.rm(probe.root, { recursive: true, force: true });
   return pinnedReferenceValue;
 }
 
-async function bringUp(options: { body?: string; revision?: string; input_hash?: string; policy?: EffectivePolicy; extraEnvironment?: Record<string, string>; namespaceEntropy?: () => string } = {}): Promise<BroughtUp> {
+async function bringUp(options: { body?: string; revision?: string; input_hash?: string; policy?: EffectivePolicy; extraEnvironment?: Record<string, string>; namespaceEntropy?: () => string; run_id?: string } = {}): Promise<BroughtUp> {
   const h = await harness({
     ...(options.extraEnvironment ? { extraEnvironment: options.extraEnvironment } : {}),
     ...(options.namespaceEntropy ? { namespaceEntropy: options.namespaceEntropy } : {}),
+    ...(options.run_id ? { run_id: options.run_id } : {}),
   });
   await fs.writeFile(path.join(h.root, 'compose.sg058.yaml'), options.body ?? composeDocument(await pinnedReference()), 'utf8');
   const manifest = await h.adapter.prepare(
@@ -288,15 +293,34 @@ describe('compose command capability', () => {
       ['compose', '--project-name', namespace, 'version', '--short'],
       ['compose', '--project-name', namespace, '--project-directory', '/tmp/x', '-f', 'c.yaml', 'config', '--format', 'json'],
       ['compose', '--project-name', namespace, '--project-directory', '/tmp/x', '-f', 'c.yaml', 'up', '-d', '--no-build', 'api'],
+      // every one of the three enumerations the adapter really emits
       ['ps', '-a', '--no-trunc', '--filter', `label=com.docker.compose.project=${namespace}`, '--format', '{{.ID}}'],
+      ['network', 'ls', '--no-trunc', '--filter', `label=com.docker.compose.project=${namespace}`, '--format', '{{.ID}}'],
+      ['volume', 'ls', '--filter', `label=com.docker.compose.project=${namespace}`, '--format', '{{.Name}}'],
       ['inspect', 'b7ae314ed5bc'],
       ['image', 'inspect', 'python:3.14.3-slim-bookworm'],
     ];
     for (const argv of permitted) expect(assertPermittedArgv(argv, namespace).ok, `argv ${JSON.stringify(argv)} must be permitted`).toBe(true);
     // the loose listing shapes are refused, so a truncated or unfiltered answer cannot reach the ledger
-    for (const argv of [['ps', '-aq', '--filter', `label=com.docker.compose.project=${namespace}`], ['ps', '-a', '--filter', `label=com.docker.compose.project=${namespace}`, '--format', '{{.Names}}']]) {
+    const label = `label=com.docker.compose.project=${namespace}`;
+    for (const argv of [
+      ['ps', '-aq', '--filter', label],
+      ['ps', '-a', '--filter', label, '--format', '{{.Names}}'],
+      // without `-a` an exited container this run created is invisible, which is not an enumeration to allow
+      ['ps', '--no-trunc', '--filter', label, '--format', '{{.ID}}'],
+      // a foreign project label in the otherwise correct shape stays refused
+      ['ps', '-a', '--no-trunc', '--filter', 'label=com.docker.compose.project=someone-elses-project', '--format', '{{.ID}}'],
+      ['network', 'ls', '--no-trunc', '--filter', 'label=com.docker.compose.project=someone-elses-project', '--format', '{{.ID}}'],
+      // `volume ls` gains nothing by truncation here, and this CLI rejects the flag: an extra token is refused
+      ['volume', 'ls', '--no-trunc', '--filter', label, '--format', '{{.Name}}'],
+      ['volume', 'ls', '--filter', label, '--format', '{{.Name}}', '--filter', 'dangling=true'],
+      ['inspect', 'a-user-container-name'],
+      ['image', 'inspect', 'one:1', 'two:2'],
+    ]) {
       expect(assertPermittedArgv(argv, namespace).ok, `argv ${JSON.stringify(argv)} must be refused`).toBe(false);
     }
+    // a request whose namespace is not even a safe compose project name cannot scope anything
+    expect(assertPermittedArgv(['ps', '-a', '--no-trunc', '--filter', 'label=com.docker.compose.project=..', '--format', '{{.ID}}'], '..').ok).toBe(false);
     expect(namespace).toMatch(/^stackgate-[a-z0-9-]+-[0-9a-f]{12}$/);
   });
 
@@ -436,10 +460,18 @@ describe('SG-058 ownership, refusal and failure accounting', () => {
     const first = await bringUp({ namespaceEntropy: entropy, body });
     expect(first.manifest.status).toBe('READY');
 
-    const second = await bringUp({ namespaceEntropy: entropy, body });
+    // The namespace is derived from the run id *and* the entropy, so reusing only the entropy would build a
+    // different namespace and collide with nothing: the premise of this case is a run that asks for the very
+    // namespace the first run already owns. Two separate adapter instances, one real daemon-side collision.
+    const second = await bringUp({ namespaceEntropy: entropy, body, run_id: first.h.run_id });
+    expect(second.h.adapter.namespaceFor(second.h.run_id)).toBe(first.h.adapter.namespaceFor(first.h.run_id));
     expect(second.manifest.status).toBe('BLOCKED');
     expect(second.manifest.reasons.join(' ')).toContain('RESOURCE_ADOPTION_REFUSED');
+    // and it says so before spawning anything, so the occupied namespace is never written to
     expect(second.h.invocations.filter((record) => record.purpose === 'up')).toEqual([]);
+    // the occupied objects are still listed, but only as resources this run does not claim
+    expect(second.manifest.resources.length).toBeGreaterThan(0);
+    expect(second.manifest.resources.every((resource) => resource.created_by_stackgate === false && resource.cleanup_status === 'PRESERVED')).toBe(true);
     const inspector = await harness();
     const stillThere = oneObject(await inspectObjects(inspector.adapter.command_port, [String(bindingOf(first.manifest, 'api').container_id)], inspector.context), 'first run container');
     expect(String(((stillThere.State ?? {}) as { Status?: unknown }).Status)).toBe('running');

@@ -356,6 +356,29 @@ it('refuses an unpinned image reference', () => {
   expectRefused(preflight(parsedConfig(serviceDocument('    image: nginx:latest\n    networks: [testnet]\n'))), COMPOSE_REFUSAL_CODES.IMAGE_UNPINNED);
 });
 
+it('refuses an image digest that the daemon itself cannot parse', () => {
+  // A real SG-058 bring-up died on `unable to get image 'python:3.14.3-slim-bookworm@f21c0d5a…':
+  // Error response from daemon: invalid reference format`. That string looked pinned to the old check
+  // because a bare hex still passes the tag test, so an unusable reference reached the daemon.
+  const cases = [
+    'python:3.14.3-slim-bookworm@f21c0d5a44c56805654c15abccc1b2fd576c8d93aca0a3f74b4aba2dc92510e2',
+    'nginx@sha256:',
+    'nginx@sha256:zz1c0d5a44c56805654c15abccc1b2fd576c8d93aca0a3f74b4aba2dc92510e2',
+    'nginx@sha256:F21C0D5A44C56805654C15ABCCC1B2FD576C8D93ACA0A3F74B4ABA2DC92510E2',
+    'nginx@sha256:f21c0d5a44c5',
+    'nginx@sha1:f21c0d5a44c56805654c15abccc1b2fd576c8d93aca0a3f74b4aba2dc92510e2',
+    'nginx@sha256:f21c0d5a44c56805654c15abccc1b2fd576c8d93aca0a3f74b4aba2dc92510e2@sha256:f21c0d5a44c56805654c15abccc1b2fd576c8d93aca0a3f74b4aba2dc92510e2',
+  ];
+  for (const image of cases) {
+    // Quoted because `image: nginx@sha256:` is ambiguous YAML: a plain scalar ending in ':' is read as a
+    // nested key, and the fixture would then be testing the parser rather than the digest rule.
+    expectRefused(preflight(parsedConfig(serviceDocument(`    image: "${image}"\n    networks: [testnet]\n`))), COMPOSE_REFUSAL_CODES.IMAGE_DIGEST_MALFORMED);
+  }
+  const valid = 'nginx@sha256:f21c0d5a44c56805654c15abccc1b2fd576c8d93aca0a3f74b4aba2dc92510e2';
+  expect(codes(preflight(parsedConfig(serviceDocument(`    image: "${valid}"\n    networks: [testnet]\n`))))).not.toContain(COMPOSE_REFUSAL_CODES.IMAGE_DIGEST_MALFORMED);
+  expect(codes(preflight(parsedConfig(serviceDocument(`    image: "registry.example.com:5000/team/${valid}"\n    networks: [testnet]\n`))))).not.toContain(COMPOSE_REFUSAL_CODES.IMAGE_DIGEST_MALFORMED);
+});
+
 it('refuses a hard-coded credential literal and never repeats it in the diagnostic', () => {
   const fixture = serviceDocument('    image: python:3.12-slim\n    networks: [testnet]\n    environment:\n      API_TOKEN: Bearer sk-live-3k4j5h6g\n');
   const result = preflight(parsedConfig(fixture));
@@ -583,7 +606,22 @@ it('declares every refusal code it can emit under one shared prefix', () => {
 });
 
 it('keeps preflight pure by containing no child-process, network or filesystem write call', async () => {
-  const forbidden = /\b(?:spawn|spawnSync|exec|execSync|execFile|execFileSync|fork)\s*\(|from ['"]node:child_process['"]|require\(['"]node:child_process['"]\)|\bprocess\s*\.\s*(?:exit|abort)\s*\(|createWriteStream|\bfetch\s*\(|\bhttps?\s*\.\s*(?:get|request)\s*\(/;
+  // `RegExp.prototype.exec` is a member call and looked identical to `cp.exec` under the old pattern, which
+  // made the guard cry wolf on innocent parsing code. Banning any mention of node:child_process catches a
+  // member call at its import instead, and is stronger than the previous from/require alternatives, because
+  // it also covers `import('node:child_process')`.
+  const forbidden = /node:child_process|(?<![\w.])\b(?:spawn|spawnSync|exec|execSync|execFile|execFileSync|fork)\s*\(|\bprocess\s*\.\s*(?:exit|abort)\s*\(|createWriteStream|\bfetch\s*\(|\bhttps?\s*\.\s*(?:get|request)\s*\(/;
+  expect('/x/.exec(subject)').not.toMatch(forbidden);
+  expect('const re = new RegExp("a"); re.exec(subject)').not.toMatch(forbidden);
+  expect('createHash("sha256").digest("hex")').not.toMatch(forbidden);
+  expect('spawn("docker", ["compose"])').toMatch(forbidden);
+  expect('execSync("docker ps")').toMatch(forbidden);
+  // A member call such as `cp.execSync` is only reachable through an import, and the module string itself is
+  // what the guard bans, so the violation is caught at its source instead of by guessing receiver types.
+  expect('import cp from "node:child_process"; cp.execSync("docker ps");').toMatch(forbidden);
+  expect('eval("const cp = await import(\'node:child_process\')")').toMatch(forbidden);
+  expect('process.exit(1)').toMatch(forbidden);
+  expect('fetch("http://169.254.169.254")').toMatch(forbidden);
   for (const file of ['config.ts', 'preflight.ts', 'target-bindings.ts']) {
     const text = await fs.readFile(path.resolve('packages/adapter-compose/src', file), 'utf8');
     expect(text, file).not.toMatch(forbidden);
@@ -591,10 +629,16 @@ it('keeps preflight pure by containing no child-process, network or filesystem w
 });
 
 it('creates no resource and leaves the repository fixture byte-identical', async () => {
-  expect((await fs.readdir(path.resolve('packages/adapter-compose/src'))).sort()).toEqual(['config.ts', 'preflight.ts', 'target-bindings.ts']);
+  // The old form pinned this directory to SG-057's three files, so every later module added here made the
+  // test red without saying anything about resources. What the task actually forbids is that *running*
+  // preflight leaves anything behind, which is now measured around the call instead of inferred from a list.
+  const moduleDirectory = path.resolve('packages/adapter-compose/src');
+  const snapshot = async () => (await fs.readdir(moduleDirectory, {recursive: true})).sort();
+  const listingBefore = await snapshot();
   const before = await fs.readFile(path.resolve(APPROVED_FILE));
   preflightApproved();
   expect(await fs.readFile(path.resolve(APPROVED_FILE))).toEqual(before);
+  expect(await snapshot()).toEqual(listingBefore);
 });
 
 /* ---------------------------------------------------------------------------- observed resource inventory ---------------------------------------------------------------------------- */

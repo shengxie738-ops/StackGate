@@ -203,24 +203,43 @@ export function assertPermittedArgv(argv: readonly string[], project_namespace: 
   return { ok: false, rule: COMPOSE_START_RULES.COMMAND_NOT_PERMITTED, message: `docker ${head} is outside the operations this run is allowed to start.` };
 }
 
-/** Enumerations are admitted only in the exact pinned shape, pinned to this run's project label. */
+/**
+ * Enumerations are admitted only in one exact pinned shape per listing, filtered to this run's project label.
+ *
+ * The shape is chosen by what the ledger has to be able to see, not by what is convenient to write:
+ * - `ps -a`: a container this run created and that then exited must still be enumerated. Without `-a` the
+ *   daemon hides it, so the ownership gate would adopt a namespace whose only leftover is an exited object,
+ *   and the accounting gate would drop the very resource SG-061 has to reclaim. `network ls` and `volume ls`
+ *   already list every object, so no such flag exists or is needed there.
+ * - `--no-trunc`: without it the daemon truncates ids to 12 characters, and the ledger would record an id no
+ *   independent inspection repeats. Verified on this host's CLI: `docker ps -a --format {{.ID}}` answers
+ *   `39297b3eb3a8`, the same listing with `--no-trunc` answers the 64-character id `docker inspect` reports.
+ *   `volume ls` is pinned without it because this CLI rejects the flag outright (`docker volume ls
+ *   --no-trunc` exits 125 with `unknown flag: --no-trunc`), and `{{.Name}}` is a volume name, never an id the
+ *   daemon would shorten, so nothing is lost by omitting it.
+ * - the project label and the pinned format field are matched position by position against the request, so a
+ *   looser listing (`-q`, a foreign label, `{{.Names}}`, an extra `--filter`) cannot reach the ledger.
+ */
 function enumerationDecision(argv: readonly string[], project_namespace: string | null, head: string): { ok: true } | { ok: false; rule: StartRule; message: string } {
-  const required = `label=com.docker.compose.project=${project_namespace ?? ''}`;
-  const shape = head === 'volume' ? ['{{.Name}}'] : ['{{.ID}}'];
-  const headTokens = head === 'ps' ? ['ps'] : [head, 'ls'];
-  if (project_namespace === null || !headTokens.every((token, index) => argv[index] === token)) {
-    return { ok: false, rule: COMPOSE_START_RULES.COMMAND_NOT_PERMITTED, message: `docker ${head} must stay inside its own listing subcommand.` };
+  if (project_namespace === null) {
+    return { ok: false, rule: COMPOSE_START_RULES.COMMAND_NOT_PERMITTED, message: `docker ${head} must be filtered to this run own project label.` };
   }
-  const filterIndex = argv.indexOf('--filter');
-  const expectedFilterAt = headTokens.length + 1;
-  if (argv[headTokens.length] !== '--no-trunc' || filterIndex !== expectedFilterAt || argv[filterIndex + 1] !== required) {
-    return { ok: false, rule: COMPOSE_START_RULES.COMMAND_NOT_PERMITTED, message: `docker ${head} must be un-truncated and filtered to this run own project label.` };
-  }
-  const tail = argv.slice(filterIndex + 2);
-  if (tail.length !== 2 || tail[0] !== '--format' || tail[1] !== shape[0]) {
-    return { ok: false, rule: COMPOSE_START_RULES.COMMAND_NOT_PERMITTED, message: `docker ${head} may only add the pinned ${String(shape[0])} format field after its project filter.` };
-  }
-  return { ok: true };
+  const required = `label=com.docker.compose.project=${project_namespace}`;
+  const untruncated = head === 'volume' ? [] : ['--no-trunc'];
+  const expected = [
+    ...(head === 'ps' ? ['ps', '-a'] : [head, 'ls']),
+    ...untruncated,
+    '--filter',
+    required,
+    '--format',
+    head === 'volume' ? '{{.Name}}' : '{{.ID}}',
+  ];
+  if (argv.length === expected.length && expected.every((token, index) => argv[index] === token)) return { ok: true };
+  return {
+    ok: false,
+    rule: COMPOSE_START_RULES.COMMAND_NOT_PERMITTED,
+    message: `docker ${head} enumeration must be exactly the pinned shape (${expected.join(' ')}); a looser listing could report objects this run does not own, or hide ones it created.`,
+  };
 }
 
 function composeArgvDecision(argv: readonly string[], project_namespace: string | null): { ok: true } | { ok: false; rule: StartRule; message: string } {
@@ -441,7 +460,9 @@ export async function enumerateProjectResources(port: ComposeCommandPort, namesp
   const [containers, networks, volumes] = await Promise.all([
     listing(['ps', '-a', '--no-trunc', '--filter', projectLabel(namespace), '--format', '{{.ID}}'], 'containers'),
     listing(['network', 'ls', '--no-trunc', '--filter', projectLabel(namespace), '--format', '{{.ID}}'], 'networks'),
-    listing(['volume', 'ls', '--no-trunc', '--filter', projectLabel(namespace), '--format', '{{.Name}}'], 'volumes'),
+    // `volume ls` on this CLI has no `--no-trunc` flag: passing it exits 125, so the pinned volume shape omits
+    // it and reads the full `{{.Name}}`, which the daemon never shortens.
+    listing(['volume', 'ls', '--filter', projectLabel(namespace), '--format', '{{.Name}}'], 'volumes'),
   ]);
   return { containers, networks, volumes };
 }

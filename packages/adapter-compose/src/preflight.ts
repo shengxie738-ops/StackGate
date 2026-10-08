@@ -55,6 +55,7 @@ export const COMPOSE_REFUSAL_CODES = {
   DSN_EXTERNAL_HOST: 'SG-POLICY-COMPOSE-DSN-EXTERNAL-HOST',
   CREDENTIAL_HARDCODED: 'SG-POLICY-COMPOSE-CREDENTIAL-HARDCODED',
   IMAGE_UNPINNED: 'SG-POLICY-COMPOSE-IMAGE-UNPINNED',
+  IMAGE_DIGEST_MALFORMED: 'SG-POLICY-COMPOSE-IMAGE-DIGEST-MALFORMED',
   BUILD_CONTEXT_REMOTE: 'SG-POLICY-COMPOSE-BUILD-CONTEXT-REMOTE',
   BUILD_INPUTS_UNACCOUNTED: 'SG-POLICY-COMPOSE-BUILD-INPUTS-UNACCOUNTED',
   BUILD_SSH: 'SG-POLICY-COMPOSE-BUILD-SSH',
@@ -79,6 +80,7 @@ const CONFIG_SHAPED: ReadonlySet<ComposeCode> = new Set<ComposeCode>([
   COMPOSE_REFUSAL_CODES.PORT_MALFORMED,
   COMPOSE_REFUSAL_CODES.VOLUME_MALFORMED,
   COMPOSE_REFUSAL_CODES.IMAGE_UNPINNED,
+  COMPOSE_REFUSAL_CODES.IMAGE_DIGEST_MALFORMED,
 ]);
 
 const DANGEROUS_CAPS = new Set(['ALL', 'SYS_ADMIN', 'SYS_PTRACE', 'SYS_MODULE', 'SYS_BOOT', 'SYS_RAWIO', 'DAC_READ_SEARCH', 'DAC_OVERRIDE', 'NET_ADMIN', 'NET_RAW', 'LINUX_IMMUTABLE', 'SETFCAP', 'BPF', 'PERFMON', 'TRACEFS']);
@@ -291,7 +293,20 @@ function inspectImage(image: unknown, location: string, name: string, diagnostic
     diagnostics.push(refuse(COMPOSE_REFUSAL_CODES.CONFIG_UNVALIDATED, 'image must be a non-empty string.', location, { service: name }));
     return;
   }
-  if (image.includes('@sha256:') || image.includes('@sha512:')) return;
+  const at = image.indexOf('@');
+  if (at >= 0) {
+    const digest = image.slice(at + 1);
+    // `name@<bare hex>` is not a reference at all, yet it looked pinned while only a tag was checked, and
+    // the daemon refused it later: `Error response from daemon: invalid reference format`. A digest is
+    // therefore validated as exactly one algorithm:hex pair after `@`, with the algorithms whose hex length
+    // can be checked, so a typo cannot reach `compose up` wearing the costume of a pinned input.
+    const wellFormed = /^(?:sha256:[0-9a-f]{64}|sha384:[0-9a-f]{96}|sha512:[0-9a-f]{128})$/.test(digest);
+    if (!wellFormed) {
+      diagnostics.push(refuse(COMPOSE_REFUSAL_CODES.IMAGE_DIGEST_MALFORMED, 'An image digest must be one algorithm:lowercase-hex pair of sha256, sha384 or sha512, or the daemon cannot resolve the reference.', location, {service: name, algorithm: digest.split(':')[0] ?? null, hex_length: (digest.split(':')[1] ?? '').length}));
+      return;
+    }
+    return;
+  }
   const lastSegment = image.split('/').pop() ?? image;
   const tag = lastSegment.includes(':') ? lastSegment.slice(lastSegment.lastIndexOf(':') + 1) : null;
   if (tag === null || tag === 'latest') diagnostics.push(refuse(COMPOSE_REFUSAL_CODES.IMAGE_UNPINNED, 'An unpinned or mutable image tag makes the run inputs unverifiable.', location, { service: name, tag }));
